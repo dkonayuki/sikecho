@@ -3,6 +3,12 @@ require 'test_helper'
 class UsersControllerTest < ActionController::TestCase
   setup do
     @user = users(:one)
+    @input_attributes = {
+      name:     "dkonayuki",
+      password: "secret",
+      password_confirmation: "secret",
+      email:    "dkonayuki@gmail.com"
+    }
   end
 
   test "should get index" do
@@ -18,10 +24,10 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should create user" do
     assert_difference('User.count') do
-      post :create, user: { avatar: @user.avatar, course: @user.course, dob: @user.dob, email: @user.email, faculty: @user.faculty, first_name: @user.first_name, last_name: @user.last_name, name: @user.name, nickname: @user.nickname, nickname: @user.nickname, password_digest: @user.password_digest, status: @user.status, university: @user.university }
+      post :create, user: @input_attributes
     end
 
-    assert_redirected_to user_path(assigns(:user))
+    assert_redirected_to users_path
   end
 
   test "should show user" do
@@ -35,7 +41,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should update user" do
-    patch :update, id: @user, user: { avatar: @user.avatar, course: @user.course, dob: @user.dob, email: @user.email, faculty: @user.faculty, first_name: @user.first_name, last_name: @user.last_name, name: @user.name, nickname: @user.nickname, nickname: @user.nickname, password_digest: @user.password_digest, status: @user.status, university: @user.university }
+    patch :update, id: @user.to_param, user: @input_attributes
     assert_redirected_to user_path(assigns(:user))
   end
 
