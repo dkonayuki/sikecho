@@ -11,15 +11,66 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :password_digest %><br>
-    <%= f.text_field :password_digest %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+	<fieldset>
+		<legend>User's Profile</legend>
+		<div class="field">
+	    <%= f.label :name %><br>
+	    <%= f.text_field :name %>
+	  </div>
+	  <div class="field">
+	    <%= f.label :password%><br>
+	    <%= f.password_field :password%>
+	  </div>
+	  <div class="field">
+	    <%= f.label :password_confirmation%><br>
+	    <%= f.password_field :password_confirmation%>
+	  </div>
+	  <div class="field">
+	    <%= f.label :email %><br>
+	    <%= f.text_field :email %>
+	  </div>
+	  <div class="field">
+	    <%= f.label :nickname %><br>
+	    <%= f.text_field :nickname %>
+	  </div>
+	  <div class="field">
+	    <%= f.label :university %><br>
+	    <%= f.text_field :university %>
+	  </div>
+	  <div class="field">
+	    <%= f.label :faculty %><br>
+	    <%= f.text_field :faculty %>
+	  </div>
+	  <div class="field">
+	    <%= f.label :course %><br>
+	    <%= f.text_field :course %>
+	  </div>
+	  <div class="field">
+	    <%= f.label :nickname %><br>
+	    <%= f.text_field :nickname %>
+	  </div>
+	  <div class="field">
+	    <%= f.label :first_name %><br>
+	    <%= f.text_field :first_name %>
+	  </div>
+	  <div class="field">
+	    <%= f.label :last_name %><br>
+	    <%= f.text_field :last_name %>
+	  </div>
+	  <div class="field">
+	    <%= f.label :avatar %><br>
+	    <%= f.text_field :avatar %>
+	  </div>
+	  <div class="field">
+	    <%= f.label :dob %><br>
+	    <%= f.text_field :dob %>
+	  </div>
+	  <div class="field">
+	    <%= f.label :status %><br>
+	    <%= f.text_field :status %>
+	  </div>
+	  <div class="actions">
+	    <%= f.submit %>
+	  </div>
+	</fieldset>
 <% end %>
