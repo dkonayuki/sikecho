@@ -1,9 +1,12 @@
 Shikechou::Application.routes.draw do
-  get "sessions/new"
-  get "sessions/create"
-  get "sessions/destroy"
-  get "home/index"
+  get 'home/index'
   resources :users
+
+  controller :sessions do
+    get 'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -17,7 +20,7 @@ Shikechou::Application.routes.draw do
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
+  get 'home/index' => 'home#index', as: :home
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
