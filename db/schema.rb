@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140118180635) do
+ActiveRecord::Schema.define(version: 20140118181925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "courses", force: true do |t|
+    t.string   "name"
+    t.integer  "faculty_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "faculties", force: true do |t|
+    t.string   "name"
+    t.string   "website"
+    t.integer  "university_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "notes", force: true do |t|
     t.text     "title"
@@ -39,8 +54,28 @@ ActiveRecord::Schema.define(version: 20140118180635) do
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "teachers", force: true do |t|
+    t.string   "first_name"
+    t.string   "first_name_kana"
+    t.string   "last_name"
+    t.string   "last_name_kana"
+    t.text     "role"
+    t.integer  "university_id"
+    t.integer  "faculty_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "universities", force: true do |t|
     t.string   "name"
+    t.string   "address"
+    t.string   "website"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "username"
     t.string   "password_digest"
     t.string   "email"
     t.string   "nickname"
@@ -48,7 +83,9 @@ ActiveRecord::Schema.define(version: 20140118180635) do
     t.integer  "faculty_id"
     t.integer  "course_id"
     t.string   "first_name"
+    t.string   "first_name_kana"
     t.string   "last_name"
+    t.string   "last_name_kana"
     t.string   "avatar"
     t.date     "dob"
     t.text     "status"

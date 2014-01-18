@@ -1,4 +1,12 @@
 Shikechou::Application.routes.draw do
+  resources :teachers
+
+  resources :universities
+
+  resources :faculties
+
+  resources :courses
+
   resources :subjects
 
   resources :notes
