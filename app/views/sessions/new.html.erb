@@ -1,20 +1,12 @@
 <% if flash[:alert]%>
 <p id="notice"><%= flash[:alert]%></p>
 <% end %>
-
-<%= form_tag do %>
-	<fieldset>
-		<legend>Login</legend>
-		<div>
-			<%= label_tag :name, 'Name'%>
-			<%= text_field_tag :name, params[:name]%>
-		</div>
-		<div>
-			<%= label_tag :password, 'Password'%>
-			<%= password_field_tag :password, params[:password]%>
-		</div>
-		<div>
-			<%= submit_tag 'Login'%>
-		</div>
-	</fieldset>
+<%= form_tag login_path, class: 'form-signin' do%>
+    <h2 class="form-signin-heading">Please sign in</h2>
+		<%= text_field_tag :name, params[:name], placeholder: 'Username', class: 'form-control'%>
+    <%= password_field_tag :password, params[:password], placeholder: 'Password', class: 'form-control'%>
+    <label class="checkbox">
+      <input type="checkbox" value="remember-me"> Remember me
+    </label>
+    <%= submit_tag 'Sign in', class: 'btn btn-lg btn-primary btn-block'%>
 <% end %>
