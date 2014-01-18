@@ -5,14 +5,9 @@ one:
   password_digest: <%= BCrypt::Password.create('secret') %>
   email: MyString
   nickname: MyString
-  university: MyString
-  faculty: MyString
-  course: MyString
-  nickname: MyString
   first_name: MyString
   last_name: MyString
   avatar: MyString
-  dob: MyString
   status: MyString
 
 two:
@@ -20,12 +15,7 @@ two:
   password_digest: MyString
   email: MyString
   nickname: MyString
-  university: MyString
-  faculty: MyString
-  course: MyString
-  nickname: MyString
   first_name: MyString
   last_name: MyString
   avatar: MyString
-  dob: MyString
   status: MyString
