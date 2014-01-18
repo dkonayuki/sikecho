@@ -1,4 +1,6 @@
 Shikechou::Application.routes.draw do
+  resources :subjects
+
   resources :notes
 
   get 'home/index'

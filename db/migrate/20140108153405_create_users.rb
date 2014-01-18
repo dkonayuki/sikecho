@@ -12,7 +12,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :last_name
       t.string :avatar
       t.date :dob
-      t.string :status
+      t.text :status
 
       t.timestamps
     end
