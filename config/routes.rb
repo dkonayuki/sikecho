@@ -1,4 +1,7 @@
 Shikechou::Application.routes.draw do
+  get 'schedule/index' => "schedule#index", as: :schedule
+  get "schedule/edit"
+  get "schedule/new"
   resources :teachers
 
   resources :universities

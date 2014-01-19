@@ -4,7 +4,7 @@ class UsersControllerTest < ActionController::TestCase
   setup do
     @user = users(:one)
     @input_attributes = {
-      name:     "dkonayuki",
+      username:     "dkonayuki",
       password: "secret",
       password_confirmation: "secret",
       email:    "dkonayuki@gmail.com"
