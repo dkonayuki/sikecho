@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   skip_before_filter :authorize, only: [:new, :create]
+  before_filter :disable_nav, only: [:new]
 
   # GET /users
   # GET /users.json
@@ -34,11 +35,10 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        puts 'User #{@user.username} was successfully created.'
         format.html { redirect_to home_url, notice: 'User #{@user.username} was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
-        puts 'Not success'
+        disable_nav
         format.html { render action: 'new' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end

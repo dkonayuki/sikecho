@@ -10,4 +10,9 @@ class ApplicationController < ActionController::Base
       redirect_to login_url, notice: "Please login"
     end
   end
+  
+  private
+  def disable_nav
+    @disable_nav = true
+  end
 end

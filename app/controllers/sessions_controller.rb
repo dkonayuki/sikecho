@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
   skip_before_filter :authorize
+  before_filter :disable_nav, only: [:new]
+
   def new
   end
 
