@@ -21,6 +21,7 @@ class NotesController < ApplicationController
 
   # GET /notes/1/edit
   def edit
+    @subjects = Subject.all
   end
 
   # POST /notes
