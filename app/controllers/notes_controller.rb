@@ -15,6 +15,8 @@ class NotesController < ApplicationController
   # GET /notes/new
   def new
     @note = Note.new
+    @user = current_user
+    @subjects = Subject.all
   end
 
   # GET /notes/1/edit

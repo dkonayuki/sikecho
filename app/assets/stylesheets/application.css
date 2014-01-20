@@ -11,12 +11,18 @@
  *= require_self
  *= require_tree .
  */
+
+/*Sign in page*/
 .form-signin {
 	max-width: 330px;
 	padding: 15px;
 	margin: 0 auto;
 }
 
-#new-user {
-	text-align: center;
+/*Sign up page*/
+
+/*New note page*/
+.form-new-note {
+	max-width: 600px;
+	margin: 0 auto;
 }

@@ -2,3 +2,5 @@ eclipse.preferences.version=1
 encoding//app/views/home/index.html.erb=UTF-8
 encoding//app/views/layouts/_navbar.html.erb=UTF-8
 encoding//app/views/layouts/application.html.erb=UTF-8
+encoding//app/views/notes/_form.html.erb=UTF-8
+encoding//app/views/notes/new.html.erb=UTF-8
