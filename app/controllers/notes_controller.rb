@@ -27,8 +27,15 @@ class NotesController < ApplicationController
   # POST /notes
   # POST /notes.json
   def create
+    @user = current_user
     @note = Note.new(note_params)
-
+    #path = Rails.root.join('public','uploads', @user.nickname, params[:upload][:datafile].original_filename)
+        
+    #@note.pdf_path = "#{Rails.root}/public/uploads/#{@user.nickname}/#{params[:upload][:datafile].original_filename}"
+    @note.user = @user
+    @note.subject = Subject.find( params[:subject] )
+    #save_file( @user, params[:upload][:datafile].original_filename, params[:upload][:datafile] )
+        
     respond_to do |format|
       if @note.save
         format.html { redirect_to notes_url, notice: 'Note was successfully created.' }

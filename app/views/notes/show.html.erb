@@ -1,34 +1,19 @@
-<p id="notice"><%= notice %></p>
-
+<div id="show-note">
+	<h1>ノート</h1>
 <p>
-  <strong>Title:</strong>
+  <strong>タイトル:</strong>
   <%= @note.title %>
 </p>
 
 <p>
-  <strong>Content:</strong>
+  <strong>内容:</strong>
   <%= @note.content %>
 </p>
 
 <p>
-  <strong>Image path:</strong>
-  <%= @note.image_path %>
+  <strong>科目:</strong>
+  <%= @note.subject.name %>
 </p>
 
-<p>
-  <strong>Pdf path:</strong>
-  <%= @note.pdf_path %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @note.user_id %>
-</p>
-
-<p>
-  <strong>Subject:</strong>
-  <%= @note.subject_id %>
-</p>
-
-<%= link_to 'Edit', edit_note_path(@note) %> |
-<%= link_to 'Back', notes_path %>
+    <%= link_to 'もどる', notes_path, class: 'btn btn-default col-md-2 col-md-offset-1' %>
+</div>

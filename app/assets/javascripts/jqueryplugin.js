@@ -11,7 +11,7 @@ gbks.jQueryPlugin = function() {
     $('#notes li').wookmark({
     	align: 'center',
   		autoResize: true,
-      offset: 10,
+      offset: 15,
       container: $('#notes'),
     });
   };
