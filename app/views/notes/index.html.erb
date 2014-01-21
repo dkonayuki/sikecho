@@ -35,3 +35,18 @@
 <br>
 
 <%= link_to 'New Note', new_note_path %>
+<div id="notes">
+<ul>
+<% @notes.each do |note| %>
+	<li id="item">
+      <p>
+         <%= image_tag("note_thumbnail.jpeg") %>
+      </p>
+      
+      <div class="caption">
+        <h3><%= note.title %></h3>
+      </div>
+ 	</li>
+<% end %>
+</ul>
+</div>
