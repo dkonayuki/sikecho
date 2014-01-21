@@ -21,6 +21,11 @@
 	margin: 0 auto;
 }
 
+/*Home page*/
+#home {
+	max-width: 600px;
+	margin: 0 auto;
+}
 /*Sign up page*/
 
 /*New note page*/
