@@ -13,7 +13,7 @@
 
 <p>
   <strong>学校:</strong>
-  <%= @user.university %>
+  <%= @user.university.name %>
 </p>
 <%= link_to '編集', edit_user_path(@user), class: 'btn btn-success col-md-2 col-md-offset-5' %>
 </div>

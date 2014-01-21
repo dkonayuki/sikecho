@@ -22,6 +22,7 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+    @universities = University.all
   end
 
   # GET /users/1/edit
@@ -31,7 +32,9 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    @universities = University.all
+    @user = User.new(user_params.except(:university))
+    @user.university = University.find(user_params[:university])
 
     respond_to do |format|
       if @user.save
@@ -77,6 +80,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :password, :password_confirmation, :email, :nickname, :first_name, :last_name, :avatar, :dob, :status)
+      params.require(:user).permit(:username, :password, :password_confirmation, :email, :university)
     end
 end

@@ -29,7 +29,7 @@
 /*Sign up page*/
 
 /*New note page*/
-.form-new-note {
+#form-new-note {
 	max-width: 600px;
 	margin: 0 auto;
 }
@@ -90,7 +90,7 @@ border-radius: 2px;
 	max-width: 400px;
 	margin: 0 auto;
 }
-.form-edit-profile {
+#form-edit-profile {
 	max-width: 400px;
 	margin: 0 auto;
 }

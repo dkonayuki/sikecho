@@ -28,6 +28,11 @@
 	    <%= f.label :email %><br>
 	    <%= f.text_field :email, class: 'form-control' %>
 	  </div>
+	  <div class="field">
+	  	<%= f.label :university %>
+	  	<%= f.select :university, options_from_collection_for_select(@universities,"id","name"), include_blank: true , class: "form-control" %>
+	  </div>
+
 	  <!-- 
 	  <div class="field">
 	    <%= f.label :nickname %><br>
