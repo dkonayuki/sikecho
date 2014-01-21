@@ -28,6 +28,10 @@
 }
 
 /*Note page*/
+#notes {
+	margin-top: 10px;
+}
+
 #notes li {
 	background-color: #ffffff;
 	-moz-border-radius: 4px;

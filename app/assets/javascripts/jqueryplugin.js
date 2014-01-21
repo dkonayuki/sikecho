@@ -8,12 +8,11 @@ gbks.jQueryPlugin = function() {
   };
   
   this.resize = function() {
-  	alert("hello");
     $('#notes li').wookmark({
     	align: 'center',
   		autoResize: true,
       offset: 10,
-      container: $('#container'),
+      container: $('#notes'),
     });
   };
   
@@ -21,6 +20,11 @@ gbks.jQueryPlugin = function() {
 
 var instance = null;
 $(window).on('page:load', function(){
+  instance = new gbks.jQueryPlugin();
+  instance.init();
+});
+
+$(window).load(function(){
   instance = new gbks.jQueryPlugin();
   instance.init();
 });

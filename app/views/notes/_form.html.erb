@@ -27,7 +27,8 @@
   	<%= file_field :pdf_file, 'Upload' %>
     <p class="help-block">Pdfのファイルが望ましいです。</p>
 	</div>
-  <div class="actions">
-    <%= f.submit '登録', class: 'btn btn-default col-md-2 col-md-offset-5' %>
+  <div class="actions ">
+    <%= f.submit '登録', class: 'btn btn-success col-md-2 col-md-offset-4' %>
+    <%= button_to 'キャンセル', notes_path, class: 'btn btn-default col-md-2 col-md-offset-1' %>
   </div>
 <% end %>
