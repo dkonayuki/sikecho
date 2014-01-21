@@ -6,3 +6,5 @@ encoding//app/views/notes/_form.html.erb=UTF-8
 encoding//app/views/notes/index.html.erb=UTF-8
 encoding//app/views/notes/new.html.erb=UTF-8
 encoding//app/views/notes/show.html.erb=UTF-8
+encoding//app/views/users/edit.html.erb=UTF-8
+encoding//app/views/users/show.html.erb=UTF-8

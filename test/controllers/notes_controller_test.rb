@@ -3,6 +3,8 @@ require 'test_helper'
 class NotesControllerTest < ActionController::TestCase
   setup do
     @note = notes(:one)
+    @subject = subjects(:one)
+    @note.subject = @subject
   end
 
   test "should get index" do
@@ -18,7 +20,7 @@ class NotesControllerTest < ActionController::TestCase
 
   test "should create note" do
     assert_difference('Note.count') do
-      post :create, note: { content: @note.content, image_path: @note.image_path, pdf_path: @note.pdf_path, subject_id: @note.subject_id, title: @note.title, user_id: @note.user_id }
+      post :create, note: { content: @note.content, image_path: @note.image_path, pdf_path: @note.pdf_path, title: @note.title, subject: @note.subject }
     end
 
     assert_redirected_to note_path(assigns(:note))
@@ -36,7 +38,7 @@ class NotesControllerTest < ActionController::TestCase
 
   test "should update note" do
     patch :update, id: @note, note: { content: @note.content, image_path: @note.image_path, pdf_path: @note.pdf_path, subject_id: @note.subject_id, title: @note.title, user_id: @note.user_id }
-    assert_redirected_to note_path(assigns(:note))
+    assert_redirected_to notes_path
   end
 
   test "should destroy note" do

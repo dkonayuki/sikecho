@@ -1,24 +1,19 @@
 <p id="notice"><%= notice %></p>
 
+<div id="profile">
 <p>
-  <strong>Username:</strong>
+  <strong>ユーザー名:</strong>
   <%= @user.username %>
 </p>
 
 <p>
-  <strong>Password digest:</strong>
-  <%= @user.password_digest %>
-</p>
-
-<p>
-  <strong>Email:</strong>
+  <strong>メール:</strong>
   <%= @user.email %>
 </p>
 
 <p>
-  <strong>Status:</strong>
-  <%= @user.status %>
+  <strong>学校:</strong>
+  <%= @user.university %>
 </p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to '編集', edit_user_path(@user), class: 'btn btn-success col-md-2 col-md-offset-5' %>
+</div>
