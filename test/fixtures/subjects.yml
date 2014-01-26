@@ -6,7 +6,6 @@ one:
   subject_code: MyString
   credit: 1
   term_id: 1
-  course_id: 1
   teacher_id: 1
 
 two:
@@ -15,5 +14,4 @@ two:
   subject_code: MyString
   credit: 1
   term_id: 1
-  course_id: 1
   teacher_id: 1

@@ -5,8 +5,6 @@ one:
   content: MyText
   image_path: MyText
   pdf_path: MyText
-  user_id: 1
-  subject_id: 1
 
 two:
   title: MyText

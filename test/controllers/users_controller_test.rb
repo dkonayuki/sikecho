@@ -9,6 +9,8 @@ class UsersControllerTest < ActionController::TestCase
       password_confirmation: "secret",
       email:    "dkonayuki@gmail.com"
     }
+    @university = universities(:one)
+    @user.university = @university
   end
 
   test "should get index" do
@@ -24,7 +26,13 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should create user" do
     assert_difference('User.count') do
-      post :create, user: @input_attributes
+      post :create, user: {
+      username:     "dkonayuki",
+      password: "secret",
+      password_confirmation: "secret",
+      email:    "dkonayuki@gmail.com",
+      university_id: @university.id
+    }
     end
 
     assert_redirected_to home_path

@@ -8,8 +8,6 @@ Shikechou::Application.routes.draw do
 
   resources :faculties
 
-  resources :courses
-
   resources :subjects
 
   resources :notes
