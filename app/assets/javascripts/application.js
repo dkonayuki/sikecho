@@ -14,3 +14,27 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function() {
+/*******************************
+    ImagesLoaded 
+********************************/
+  var $notes = $('#notes');
+
+	/*$('#container').on('click', '.nav li a', function() {
+    $notes.masonry('reloadItems');
+    $notes.masonry('layout');
+		alert("loaded on click");
+	});
+  
+  $notes.imagesLoaded(function(){
+    alert("loaded");
+    $notes.masonry({
+		  itemSelector: 'li',
+		  columnWidth: 30,
+		  isAnimated: true,
+		  isFitWidth: true
+		});
+  });*/
+  
+});
