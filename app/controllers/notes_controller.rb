@@ -33,7 +33,7 @@ class NotesController < ApplicationController
         
     #@note.pdf_path = "#{Rails.root}/public/uploads/#{@user.nickname}/#{params[:upload][:datafile].original_filename}"
     @note.user = @user
-    @note.subject = Subject.find( params[:subject] )
+    @note.subjects << Subject.find( params[:subject] )
     #save_file( @user, params[:upload][:datafile].original_filename, params[:upload][:datafile] )
         
     respond_to do |format|

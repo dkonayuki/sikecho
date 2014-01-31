@@ -11,17 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140118181925) do
+ActiveRecord::Schema.define(version: 20140131170614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "courses", force: true do |t|
-    t.string   "name"
-    t.integer  "faculty_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "faculties", force: true do |t|
     t.string   "name"
@@ -31,15 +24,24 @@ ActiveRecord::Schema.define(version: 20140118181925) do
     t.datetime "updated_at"
   end
 
+  create_table "faculties_subjects", force: true do |t|
+    t.integer "subject_id"
+    t.integer "faculty_id"
+  end
+
   create_table "notes", force: true do |t|
     t.text     "title"
     t.text     "content"
     t.text     "image_path"
     t.text     "pdf_path"
     t.integer  "user_id"
-    t.integer  "subject_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "notes_subjects", force: true do |t|
+    t.integer "note_id"
+    t.integer "subject_id"
   end
 
   create_table "subjects", force: true do |t|
@@ -47,11 +49,18 @@ ActiveRecord::Schema.define(version: 20140118181925) do
     t.text     "description"
     t.string   "subject_code"
     t.integer  "credit"
-    t.integer  "term_id"
-    t.integer  "course_id"
-    t.integer  "teacher_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "subjects_faculties", force: true do |t|
+    t.integer "subject_id"
+    t.integer "faculty_id"
+  end
+
+  create_table "subjects_notes", force: true do |t|
+    t.integer "subject_id"
+    t.integer "note_id"
   end
 
   create_table "teachers", force: true do |t|
@@ -84,8 +93,10 @@ ActiveRecord::Schema.define(version: 20140118181925) do
     t.integer  "course_id"
     t.string   "first_name"
     t.string   "first_name_kana"
+    t.string   "first_name_kanji"
     t.string   "last_name"
     t.string   "last_name_kana"
+    t.string   "last_name_kanji"
     t.string   "avatar"
     t.date     "dob"
     t.text     "status"

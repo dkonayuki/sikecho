@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
   
   belongs_to :university 
   belongs_to :faculty 
-  belongs_to :course
   
   has_many :notes, dependent: :destroy
 end

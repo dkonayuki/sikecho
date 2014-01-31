@@ -12,7 +12,7 @@
 
 <p>
   <strong>科目:</strong>
-  <%= @note.subject.name %>
+  <%= @note.subjects.first.name %>
 </p>
 
     <%= link_to 'もどる', notes_path, class: 'btn btn-default col-md-2 col-md-offset-1' %>

@@ -7,9 +7,6 @@
       <th>Description</th>
       <th>Subject code</th>
       <th>Credit</th>
-      <th>Term</th>
-      <th>Course</th>
-      <th>Teacher</th>
       <th></th>
       <th></th>
       <th></th>
@@ -23,9 +20,6 @@
         <td><%= subject.description %></td>
         <td><%= subject.subject_code %></td>
         <td><%= subject.credit %></td>
-        <td><%= subject.term_id %></td>
-        <td><%= subject.course_id %></td>
-        <td><%= subject.teacher_id %></td>
         <td><%= link_to 'Show', subject %></td>
         <td><%= link_to 'Edit', edit_subject_path(subject) %></td>
         <td><%= link_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' } %></td>

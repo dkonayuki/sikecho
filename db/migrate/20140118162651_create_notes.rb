@@ -6,7 +6,6 @@ class CreateNotes < ActiveRecord::Migration
       t.text :image_path
       t.text :pdf_path
       t.integer :user_id
-      t.integer :subject_id
 
       t.timestamps
     end
