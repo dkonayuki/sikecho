@@ -3,8 +3,6 @@ class CreateNotes < ActiveRecord::Migration
     create_table :notes do |t|
       t.text :title
       t.text :content
-      t.text :image_path
-      t.text :pdf_path
       t.integer :user_id
 
       t.timestamps

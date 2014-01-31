@@ -33,6 +33,12 @@ class NotesController < ApplicationController
         
     #@note.pdf_path = "#{Rails.root}/public/uploads/#{@user.nickname}/#{params[:upload][:datafile].original_filename}"
     @note.user = @user
+    if note_params[:subject].blank? 
+      puts 'subject blank'
+    end
+    if !params[:subject].blank?
+      puts 'params subject not blank'
+    end
     @note.subjects << Subject.find( params[:subject] )
     #save_file( @user, params[:upload][:datafile].original_filename, params[:upload][:datafile] )
         
@@ -79,6 +85,6 @@ class NotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
-      params.require(:note).permit(:title, :content, :image_path, :pdf_path, :user_id, :subject_id)
+      params.require(:note).permit(:title, :content, :pdf_path, :user_id, :subject)
     end
 end

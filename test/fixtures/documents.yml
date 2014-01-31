@@ -1,10 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyText
-  content: MyText
+  type: 
+  path: MyString
+  note_id: 1
 
 two:
-  title: MyText
-  content: MyText
-  user_id: 1
+  type: 
+  path: MyString
+  note_id: 1

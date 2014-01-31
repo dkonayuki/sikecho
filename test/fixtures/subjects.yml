@@ -5,13 +5,9 @@ one:
   description: MyText
   subject_code: MyString
   credit: 1
-  term_id: 1
-  teacher_id: 1
 
 two:
   name: MyString
   description: MyText
   subject_code: MyString
   credit: 1
-  term_id: 1
-  teacher_id: 1
