@@ -6,6 +6,12 @@
 .DS_Store
 ._*
 /public/uploads/*
+
+# for eclipse
+.project
+.settings
+.classpath
+
 # Ignore bundler config.
 /.bundle
 

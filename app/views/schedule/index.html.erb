@@ -1,2 +1,20 @@
 <h1>Schedule#index</h1>
 <p>Find me in app/views/schedule/index.html.erb</p>
+<div id="schedule">
+		<table id="example" >
+			<tr>
+				<th></th>
+				<% days = %w(月曜日 火曜日 水曜日 木曜日 金曜日 土曜日) %>
+				<% days.each do |d|%>
+				<th><%= d %></th>
+				<% end %>
+			</tr>
+			<% periods = %w(一時限 二時限 三時限 四時限 五時限 六時限) %>
+			<% periods.each_with_index do | p, idx | %>
+			<tr>
+				<td><%= p %></td>
+
+			</tr>
+			<% end %>
+		</table>
+	</div>
