@@ -28,20 +28,18 @@ class NotesController < ApplicationController
   # POST /notes.json
   def create
     @user = current_user
-    @note = Note.new(note_params)
-    #path = Rails.root.join('public','uploads', @user.nickname, params[:upload][:datafile].original_filename)
+    @note = Note.new(note_params.except(:document, :subject))
         
-    #@note.pdf_path = "#{Rails.root}/public/uploads/#{@user.nickname}/#{params[:upload][:datafile].original_filename}"
-    @note.user = @user
-    if note_params[:subject].blank? 
-      puts 'subject blank'
-    end
-    if !params[:subject].blank?
-      puts 'params subject not blank'
-    end
     @note.subjects << Subject.find( params[:subject] )
-    #save_file( @user, params[:upload][:datafile].original_filename, params[:upload][:datafile] )
-        
+    @note.user = @user
+    if !note_params[:document].blank?
+      path = save_file( @user, note_params[:document].original_filename, note_params[:document] )
+      @document = Document.new(path: path, name: note_params[:document].original_filename)
+      puts note_params[:document].original_filename
+      @document.save
+      @note.documents << @document
+    end
+    
     respond_to do |format|
       if @note.save
         format.html { redirect_to notes_url, notice: 'Note was successfully created.' }
@@ -51,6 +49,12 @@ class NotesController < ApplicationController
         format.json { render json: @note.errors, status: :unprocessable_entity }
       end
     end
+  end
+  
+  def download
+    # Download a document file 
+    @document = Document.find( params[:id] )
+    send_file(@document.path.strip,:type=>"application/pdf")
   end
 
   # PATCH/PUT /notes/1
@@ -85,6 +89,6 @@ class NotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
-      params.require(:note).permit(:title, :content, :pdf_path, :user_id, :subject)
+      params.require(:note).permit(:title, :content, :pdf_path, :user_id, :document)
     end
 end

@@ -15,5 +15,17 @@
   <%= @note.subjects.first.name %>
 </p>
 
+<p>
+  <strong>ユーザー:</strong>
+  <%= @note.user.username %>
+</p>
+
+<p>
+  <strong>資料：</strong>
+<% @note.documents.each do |document| %>
+  <%= link_to "#{document.name}", download_path(document.id) %>
+<% end %>
+</p>
+
     <%= link_to 'もどる', notes_path, class: 'btn btn-default col-md-2 col-md-offset-1' %>
 </div>

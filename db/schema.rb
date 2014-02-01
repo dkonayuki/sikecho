@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20140131174935) do
   create_table "documents", force: true do |t|
     t.string   "type"
     t.string   "path"
+    t.string   "name"
     t.integer  "note_id"
     t.datetime "created_at"
     t.datetime "updated_at"

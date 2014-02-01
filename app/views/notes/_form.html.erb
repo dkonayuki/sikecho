@@ -23,9 +23,9 @@
   	<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name") %>
   </div>
   <div class="field">
-    <%= f.label :pdf_file, '資料' %><br>
-  	<%= file_field :pdf_file, 'Upload' %>
-    <p class="help-block">Pdfのファイルが望ましいです。</p>
+    <%= f.label :document, '資料' %><br>
+  	<%= f.file_field :document %>
+    <!--<p class="help-block">Pdfのファイルが望ましいです。</p>-->
 	</div>
   <div class="actions ">
     <%= f.submit '登録', class: 'btn btn-success col-md-2 col-md-offset-4' %>
