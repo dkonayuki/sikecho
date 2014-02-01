@@ -6,6 +6,7 @@
 .DS_Store
 ._*
 /public/uploads/*
+/bin
 
 # for eclipse
 .project
