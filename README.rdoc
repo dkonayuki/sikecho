@@ -1,4 +1,5 @@
 == シケ長
 
-Ruby version: 2.0.0p247 (2013-06-27 revision 41674) [universal.x86_64-darwin13]
+Ruby version: 2.0.0p247
+
 Rails version: 4.0.2
