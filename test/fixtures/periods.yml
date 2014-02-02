@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  time: 1
+  time_name: MyString
+  day: 1
+  day_name: MyString
+  subject_id: 1
+  user_id: 1
+
+two:
+  time: 1
+  time_name: MyString
+  day: 1
+  day_name: MyString
+  subject_id: 1
+  user_id: 1
