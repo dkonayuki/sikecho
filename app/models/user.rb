@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
   belongs_to :faculty 
   
   has_many :notes, dependent: :destroy
+  has_many :periods, dependent: :destroy
 end

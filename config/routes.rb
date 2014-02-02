@@ -21,6 +21,15 @@ Shikechou::Application.routes.draw do
     post 'login' => :create
     delete 'logout' => :destroy
   end
+  
+  controller :schedule do
+    get 'new' => :new
+    get 'edit' => :edit
+    get 'index' => :index
+  end
+  
+  resources :schedule
+  resources :periods
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -13,7 +13,13 @@
 			<% periods.each_with_index do | p, idx | %>
 			<tr>
 				<td><%= p %></td>
-
+				<% (0..5).each do | i | %>
+				<% if @periods[[i,idx]].blank? %>
+				<td class="periods"><%= link_to "未登録", schedule_new_path(day: i, time: idx) %></td>
+				<% else %>
+				<td class="periods"><%= link_to @periods[[i,idx]].name, schedule_edit_path(id: @periods[[i,idx]]) %></td>
+				<% end %>
+				<% end %>
 			</tr>
 			<% end %>
 		</table>

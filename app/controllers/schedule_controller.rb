@@ -1,5 +1,12 @@
 class ScheduleController < ApplicationController
   def index
+    @user = current_user
+    @periods = Hash.new
+    @user.periods.each do | period |
+      key = [period.day, period.time]
+      value = period.subject
+      @periods[key] = value
+    end
   end
 
   def edit
@@ -7,7 +14,13 @@ class ScheduleController < ApplicationController
 
   def new
   end
+  
+  def create
+  end
 
-  def _form
+  def update
+  end
+  
+  def destroy
   end
 end
