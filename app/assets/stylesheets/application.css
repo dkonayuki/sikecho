@@ -101,8 +101,6 @@ border-radius: 2px;
 #schedule th, #schedule td {
 	margin: 0;
 	text-align: center;
-    border-collapse: collapse;
-    outline: 1px solid #e3e3e3;
 }
 
 #schedule table {
@@ -116,12 +114,27 @@ border-radius: 2px;
 
 #schedule th {
 	background: #333;
-    color: white;
-    padding: 5px 10px;
+  color: white;
+  padding: 5px 10px;
 }
 
-#schedule td:hover {
+.cell:hover {
 	cursor: pointer;
-    background: #666;
-    color: white;
+	background-color: #666666;
+	color: white;
+}
+
+.cell a:hover {
+	color: white;
+}
+
+.period {
+	background: #666;
+	color: white;
+  padding: 5px 10px;
+}
+
+#form-schedule {
+	max-width: 400px;
+	margin: 0 auto;
 }

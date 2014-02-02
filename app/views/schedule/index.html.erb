@@ -1,5 +1,5 @@
 <div id="schedule">
-		<table class="table-bordered" >
+		<table class="table" >
 			<tr>
 				<th></th>
 				<% days = %w(月曜日 火曜日 水曜日 木曜日 金曜日 土曜日) %>
@@ -10,12 +10,12 @@
 			<% periods = %w(一時限 二時限 三時限 四時限 五時限 六時限) %>
 			<% periods.each_with_index do | p, idx | %>
 			<tr>
-				<td><%= p %></td>
+				<td class="period"><%= p %></td>
 				<% (0..5).each do | i | %>
 				<% if @periods[[i,idx]].blank? %>
-				<td class="periods"><%= link_to "未登録", schedule_new_path(day: i, time: idx) %></td>
+				<td class="cell"><%= link_to "未登録", schedule_new_path(day: i, time: idx) %></td>
 				<% else %>
-				<td class="periods"><%= link_to @periods[[i,idx]].name, schedule_edit_path(id: @periods[[i,idx]]) %></td>
+				<td class="cell"><%= link_to @periods[[i,idx]].name, schedule_edit_path(id: @periods[[i,idx]]) %></td>
 				<% end %>
 				<% end %>
 			</tr>
