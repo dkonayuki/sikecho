@@ -95,3 +95,33 @@ border-radius: 2px;
 	max-width: 400px;
 	margin: 0 auto;
 }
+
+/*Schedule*/
+
+#schedule th, #schedule td {
+	margin: 0;
+	text-align: center;
+    border-collapse: collapse;
+    outline: 1px solid #e3e3e3;
+}
+
+#schedule table {
+	width: 700px;
+	margin: 0 auto;
+}
+
+#schedule td {
+	padding: 5px 10px;
+}
+
+#schedule th {
+	background: #333;
+    color: white;
+    padding: 5px 10px;
+}
+
+#schedule td:hover {
+	cursor: pointer;
+    background: #666;
+    color: white;
+}
