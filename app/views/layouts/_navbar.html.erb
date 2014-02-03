@@ -13,7 +13,7 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
-    	<li class="<%= 'active' if params[:controller] == 'schedule' %>"><%= link_to 'My Page', schedule_path %></li>
+    	<li class="<%= 'active' if params[:controller] == 'home' %>"><%= link_to 'My Page', home_path %></li>
       <li class="<%= 'active' if params[:controller] == 'subjects' %>"><%= link_to '授業', subjects_path %></li>
       <li class="<%= 'active' if params[:controller] == 'notes' %>"><%= link_to 'ノート', notes_path %></li>
       <li class="<%= 'active' if params[:controller] == 'users' %>"><%= link_to 'プロフィール', @user %></li>

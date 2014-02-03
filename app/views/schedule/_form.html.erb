@@ -1,4 +1,4 @@
-<%= form_for @period, html: {id: 'form-schedule'} do |f| %>
+<%= form_for @period, url: { action: "create"}, html: {id: 'form-schedule'} do |f| %>
 <% if flash[:alert]%>
 <p id="notice"><%= flash[:alert]%></p>
 <% end %>
@@ -18,7 +18,7 @@
   </div>
   <div class="actions">
     <%= submit_tag "登録", :class => "btn btn-primary" %>
-    <%= link_to "キャンセル", schedule_index_url,  :class => "btn btn-primary" %>
+    <%= link_to "キャンセル", @user,  :class => "btn btn-primary" %>
     <% if !isNew %>
     <%= link_to "削除", schedule_delete_url(:id => @period), :class => "btn btn-warning" %>
     <% end %>

@@ -24,11 +24,11 @@ Shikechou::Application.routes.draw do
   
   controller :schedule do
     get 'new' => :new
+    post 'new' => :create
     get 'edit' => :edit
     get 'index' => :index
   end
   
-  resources :schedule
   resources :periods
 
   # The priority is based upon order of creation: first created -> highest priority.

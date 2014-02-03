@@ -1,12 +1,6 @@
 class ScheduleController < ApplicationController
   def index
-    @user = current_user
-    @periods = Hash.new
-    @user.periods.each do | period |
-      key = [period.day, period.time]
-      value = period.subject
-      @periods[key] = value
-    end
+    get_schedule_content
   end
 
   def edit
@@ -23,12 +17,33 @@ class ScheduleController < ApplicationController
     @period.day_name = day_names[ params[:day].to_i]
   end
   
+  def show
+    get_schedule_content
+  end
+  
   def create
+    @user = current_user 
+    @period = Period.new( period_params )
+
+    @period.subject = Subject.find( params[:subject].to_i )
+    @period.user = @user
+    @period.save()
+    puts @period.time
+    puts @period.time_name
+    puts @period.day
+    puts @period.day_name
+    redirect_to @user
   end
 
   def update
   end
   
   def destroy
+  end
+  
+  private
+
+  def period_params
+    params.require(:period).permit(:time, :time_name, :day, :day_name, :subject)
   end
 end

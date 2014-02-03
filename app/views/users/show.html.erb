@@ -13,5 +13,7 @@
   <strong>学校:</strong>
   <%= @user.university.name %>
 </p>
+<%= render template: 'schedule/index' %>
 <%= link_to '編集', edit_user_path(@user), class: 'btn btn-success col-md-2 col-md-offset-5' %>
 </div>
+
