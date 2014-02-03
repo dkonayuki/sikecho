@@ -11,6 +11,7 @@
 			<% times.each_with_index do | p, idx | %>
 			<tr>
 				<% if @editable %>
+				<!--For profile page-->
 					<td class="period"><%= p %></td>
 					<% (0..5).each do | i | %>
 					<% if @periods[[i,idx]].blank? %>
@@ -20,6 +21,7 @@
 					<% end %>
 					<% end %>
 				<% else %>
+				<!--For home page-->
 					<td class="period"><%= p %></td>
 					<% (0..5).each do | i | %>
 					<% if @periods[[i,idx]].blank? %>
