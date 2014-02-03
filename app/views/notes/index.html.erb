@@ -19,7 +19,7 @@
       		<%= link_to new_note_path, method: :get, class: 'note-link col-md-6 text-center' do %>
       		<i class="icon-download"></i>
       		<% end %>
-					<%= link_to note, method: :delete, class: 'note-link col-md-6 text-center' do %>
+					<%= link_to note, method: :delete, class: 'note-link col-md-6 text-center', data: { confirm: 'Are you sure?' } do %>
 					<i class="icon-erase"></i>
 					<% end %>
 			</div>
