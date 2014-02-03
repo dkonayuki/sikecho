@@ -1,9 +1,7 @@
 class ScheduleController < ApplicationController
   def index
     get_schedule_content
-  end
-
-  def edit
+    @editable = true
   end
 
   def new
@@ -17,8 +15,9 @@ class ScheduleController < ApplicationController
     @period.day_name = day_names[ params[:day].to_i]
   end
   
-  def show
-    get_schedule_content
+  def edit
+    @period = Period.find( params[:id] )
+    @subjects = Subject.all
   end
   
   def create
@@ -39,6 +38,9 @@ class ScheduleController < ApplicationController
   end
   
   def destroy
+    @period = Period.find( params[:id])
+    @period.destroy
+    redirect_to @user
   end
   
   private

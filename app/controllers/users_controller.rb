@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     get_schedule_content
+    @editable = true
   end
 
   # GET /users/new

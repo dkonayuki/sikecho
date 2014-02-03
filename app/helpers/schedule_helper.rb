@@ -7,7 +7,7 @@ module ScheduleHelper
     @user.periods.each do | period |
       key = [period.day, period.time]
       value = period.subject
-      @periods[key] = value
+      @periods[key] = period
     end
   end
 end

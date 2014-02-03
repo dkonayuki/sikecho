@@ -10,13 +10,24 @@
 			<% times = %w(一時限 二時限 三時限 四時限 五時限 六時限) %>
 			<% times.each_with_index do | p, idx | %>
 			<tr>
-				<td class="period"><%= p %></td>
-				<% (0..5).each do | i | %>
-				<% if @periods[[i,idx]].blank? %>
-				<td class="cell"><%= link_to "未登録", schedule_new_path(day: i, time: idx) %></td>
+				<% if @editable %>
+					<td class="period"><%= p %></td>
+					<% (0..5).each do | i | %>
+					<% if @periods[[i,idx]].blank? %>
+					<td class="cell"><%= link_to "未登録", schedule_new_path(day: i, time: idx) %></td>
+					<% else %>
+					<td class="cell"><%= link_to @periods[[i,idx]].subject.name, schedule_edit_path(id: @periods[[i,idx]]) %></td>
+					<% end %>
+					<% end %>
 				<% else %>
-				<td class="cell"><%= link_to @periods[[i,idx]].name, schedule_edit_path(id: @periods[[i,idx]]) %></td>
-				<% end %>
+					<td class="period"><%= p %></td>
+					<% (0..5).each do | i | %>
+					<% if @periods[[i,idx]].blank? %>
+					<td class="cell">N/A</td>
+					<% else %>
+					<td class="cell"><%= link_to @periods[[i,idx]].subject.name, @periods[[i,idx]].subject %></td>
+					<% end %>
+					<% end %>
 				<% end %>
 			</tr>
 			<% end %>

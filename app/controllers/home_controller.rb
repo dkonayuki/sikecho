@@ -4,5 +4,6 @@ class HomeController < ApplicationController
     @number_of_notes = @user.notes.count
     
     get_schedule_content
+    @editable = false
   end
 end
