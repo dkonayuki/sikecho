@@ -14,32 +14,52 @@
 //= require entypo
 
 @charset "UTF-8";
-/*Sign in page*/
+/*Navigation bar
+ ===============================================================================================*/
+
+#search-bar {
+	width: 300px;
+}
+
+/*Sign in page
+ ===============================================================================================*/
+
 .form-signin {
 	max-width: 330px;
 	padding: 15px;
 	margin: 0 auto;
 }
 
-/*Home page*/
+/*Home page
+ ===============================================================================================*/
+
+#container {
+	position: relative;
+}
+
 #home {
 	max-width: 1200px;
 	margin: 0 auto;
 }
-/*Sign up page*/
+/*Sign up page
+===============================================================================================*/
 
-/*New note page*/
+
+/*New note page
+===============================================================================================*/
+
 #form-new-note {
 	max-width: 600px;
 	margin: 0 auto;
 }
 
-/*Note page*/
+/*Note page
+===============================================================================================*/
+
 #notes-menu {
 	display: block;
 	position: relative;
 	float: left;
-	width: 20%;
 	text-align: center;
 }
 #notes {
@@ -47,7 +67,6 @@
 	position: relative;
 	float: right;
 	margin: 10px auto 0;
-	width: 80%;
 }
 
 #notes li {
@@ -61,10 +80,6 @@
   margin-bottom: 20px;
 }
 
-ul {
-	list-style: none;
-}
-
 #notes li img {
   display: block;
   margin: 0;
@@ -73,15 +88,11 @@ ul {
 border-radius: 2px;
 	width: 200px;
 }
-
+/*
 #notes ul {
   position: absolute;
 }
-
-#container {
-	position: relative;
-}
-
+*/
 .note-link {
 	text-decoration: none;
 	font-size: 30px;
@@ -97,7 +108,8 @@ border-radius: 2px;
 }
 
 
-/*Profile*/
+/*Profile
+ *  ===============================================================================================*/
 #profile {
 	max-width: 1200px;
 	margin: 0 auto;
@@ -107,7 +119,8 @@ border-radius: 2px;
 	margin: 0 auto;
 }
 
-/*Schedule*/
+/*Schedule
+ ===============================================================================================*/
 
 #schedule th, #schedule td {
 	margin: 0;
@@ -149,12 +162,12 @@ border-radius: 2px;
 	margin: 0 auto;
 }
 
-/*Subject page*/
+/* Subject page 
+ ===============================================================================================*/
 #subjects-menu {
 	display: block;
 	position: relative;
 	float: left;
-	width: 20%;
 	text-align: center;
 }
 #subjects {
@@ -162,10 +175,9 @@ border-radius: 2px;
 	position: relative;
 	float: right;
 	margin: 10px auto 0;
-	width: 80%;
 }
 
-#subjects li {
+#subjects .item {
 	width: 200px;
 	background-color: #ffffff;
 	-moz-border-radius: 4px;
@@ -175,4 +187,28 @@ border-radius: 2px;
 	border: 1px solid #dedede;
 	display: inline-block;
   margin-bottom: 20px;
+}
+
+#show-subject {
+	margin: 0 auto 100px;
+}
+
+.text-content {
+	margin-left: 30px;
+}
+
+#show-subject .item {
+	max-width: 200px;
+	background-color: #ffffff;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	padding: 5px;
+	border: 1px solid #dedede;
+	display: inline-block;
+  margin-bottom: 20px;
+}
+
+#show-subject .item img {
+	width: 100%;
 }

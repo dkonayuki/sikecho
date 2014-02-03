@@ -1,16 +1,16 @@
-<div id="notes-menu">
+<div id="notes-menu" class="col-md-3 col-xs-3">
 	<div class="btn-group-vertical">
 		<%= link_to '新規ノート', new_note_path, method: :get, class: 'btn btn-lg btn-primary' %>
 	  <button type="button" class="btn btn-lg btn-default">自分のノート</button>
 	  <button type="button" class="btn btn-lg btn-default">授業のノート</button>
 	</div>
 </div>
-<div id="notes">
+<div id="notes" class="col-md-9 col-xs-9">
 <ul>
 <% @notes.each do |note| %>
 	<li id="item">
       <p>
-         <%= link_to image_tag("note_thumbnail.jpeg"), note %>
+         <%= link_to image_tag("note_thumbnail.png"), note %>
       </p>
       
       <div class="caption text-center">

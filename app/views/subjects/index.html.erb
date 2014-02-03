@@ -1,4 +1,4 @@
-<div id="subjects-menu">
+<div id="subjects-menu" class="col-md-3 col-xs-3">
 	<div class="btn-group-vertical">
 	  <button type="button" class="btn btn-lg btn-primary">全学年</button>
 	  <button type="button" class="btn btn-lg btn-default">1学期</button>
@@ -9,14 +9,14 @@
 	  <button type="button" class="btn btn-lg btn-default">6学期</button>
 	  <button type="button" class="btn btn-lg btn-default">7学期</button>
 	  <button type="button" class="btn btn-lg btn-default">8学期</button>
+	 	<button type="button" class="btn btn-lg btn-info">時間割表</button>
 	</div>
 </div>
-	
-<div id="subjects">
+<div id="subjects" class="col-md-9 col-xs-9">
 <ul>
 <% @subjects.each do |subject| %>
 	<%= link_to subject do %>
-	<li id="item"> 
+	<li class="item"> 
       <div class="caption text-center">
         <h4><%= subject.name %></h4>
       </div>

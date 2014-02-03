@@ -1,24 +1,102 @@
-<p id="notice"><%= notice %></p>
+<!-- sidebar -->
+<div class="col-xs-3 col-md-2 sidebar-offcanvas" id="show-subject-overview" role="navigation">
+	<div class="bs-sidebar hidden-print affix" role="complementary">
+		<ul class="nav">
+			<hr />
+      <li class="active"><a href="#description">概要</a></li>
+      <li><a href="#details">詳細</a></li>
+      <li><a href="#syllabus">授業日程</a></li>
+      <li><a href="#notes">ノート</a></li>      
+      <hr />        
+    </ul>
+	</div>
+</div>
+<div id="show-subject" class="col-md-10 col-xs-9">
+	<div class="panel panel-primary">
+	<!-- Default panel contents -->
+	  <div class="panel-heading text-center"><h4><%= @subject.name %></h4></div>
+	  <div class="panel-body">
+	  <!--for overview section -->
+	 	<a name="description"></a>
+		<h4><i class="icon-chevron-thin-right"></i>概要</h4>
+			<div class="text-content">
+				<%= @subject.description %>
+				5類1年次の学生を対象として，情報工学の基礎となる概念や手法について講義する。
+			</div>
+		<!--for overview section -->
+	 	<a name="details"></a>
+		<h4><i class="icon-chevron-thin-right"></i>詳細</h4>
+			<dl class="dl-horizontal">
+	      <dt>推奨学期:</dt>
+	      <dd>2学期</dd>
+	      <dt>時間:</dt>
+	      <dd>水曜日</dd>
+	      <dd>2時限</dd>
+	      <dt>講義室:</dt>
+	      <dd>S421</dd>
+	      <dt>教師:</dt>
+	      <dd>林 順平</dd>
+    	</dl>
+	  </div>
+	</div>
+	
+	<div class="panel panel-info">
+	<!-- Default panel contents -->
+	  <!--for overview section -->
+	 	<a name="syllabus"></a>
+	  <div class="panel-heading text-center"><h4>シラバス</h4></div>
+	  <div class="panel-body">
+		
+	 	<table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="col-md-2">回数</th>
+          <th class="col-md-2">日付</th>
+          <th class="col-md-8">内容</th>
+        </tr>
+      </thead>
+      <tbody>
+      	<% (1..15).each do | i | %>
+        <tr>
+          <td><%= i %>回目</td>
+          <td>1月２日</td>
+          <td>集合，写像，関係，論理，再帰</td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+	  </div>
+	</div>
+	
+	<div class="panel panel-danger">
+	<!-- Default panel contents -->
+	 	<!--for overview section -->
+	 	<a name="notes"></a>
+	  <div class="panel-heading text-center"><h4>ノート</h4></div>
+	  <div class="panel-body">
+			<ul>
+			<% @subject.notes.each do |note| %>
+				<li class="item">
+			      <p>
+			         <%= link_to image_tag("note_thumbnail.png"), note %>
+			      </p>
+			      
+			      <div class="caption text-center">
+			        <h3><%= note.title %></h3>
+			      </div>
+			      
+			      <div class="note-menu row">
+			      		<%= link_to new_note_path, method: :get, class: 'note-link col-md-6 text-center' do %>
+			      		<i class="icon-download"></i>
+			      		<% end %>
+								<%= link_to note, method: :delete, class: 'note-link col-md-6 text-center', data: { confirm: 'Are you sure?' } do %>
+								<i class="icon-erase"></i>
+								<% end %>
+						</div>
+			 	</li>
+			<% end %>
+			</ul>
+	  </div>
+	</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @subject.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @subject.description %>
-</p>
-
-<p>
-  <strong>Subject code:</strong>
-  <%= @subject.subject_code %>
-</p>
-
-<p>
-  <strong>Credit:</strong>
-  <%= @subject.credit %>
-</p>
-
-<%= link_to 'Edit', edit_subject_path(@subject) %> |
-<%= link_to 'Back', subjects_path %>
+</div>
