@@ -20,7 +20,7 @@
     <%= submit_tag "登録", :class => "btn btn-primary" %>
     <%= link_to "キャンセル", @user,  :class => "btn btn-primary" %>
     <% if !isNew %>
-    <%= link_to "削除", schedule_delete_path(id: @period), :class => "btn btn-warning" %>
+    <%= link_to "削除", schedule_destroy_path(id: @period), :class => "btn btn-warning" %>
     <% end %>
   </div>
 <% end %>

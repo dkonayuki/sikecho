@@ -1,7 +1,5 @@
 Shikechou::Application.routes.draw do
-  get 'schedule/index' => "schedule#index", as: :schedule
-  get "schedule/edit"
-  get "schedule/new"
+
   resources :teachers
 
   resources :universities
@@ -10,8 +8,8 @@ Shikechou::Application.routes.draw do
 
   resources :subjects
     
-  get '/notes/download/:id', to: 'notes#download', as: 'download'
   resources :notes
+  get '/notes/download/:id', to: 'notes#download', as: 'download'
 
   get 'home/index'
   resources :users
@@ -24,7 +22,10 @@ Shikechou::Application.routes.draw do
   
   controller :schedule do
   end
-  get 'schedule/destroy' => 'schedule#destroy', as: :schedule_delete
+  get 'schedule/destroy'
+  get 'schedule/index' => 'schedule#index', as: :schedule
+  get 'schedule/edit'
+  get 'schedule/new'
   resources :schedule
   
   resources :periods, path: 'schedule'
