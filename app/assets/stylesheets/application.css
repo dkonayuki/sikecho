@@ -110,13 +110,17 @@ border-radius: 2px;
 
 /*Profile
  *  ===============================================================================================*/
+
 #profile {
-	max-width: 1200px;
+	max-width: 600px;
 	margin: 0 auto;
 }
 #form-edit-profile {
 	max-width: 400px;
 	margin: 0 auto;
+}
+.calendar {
+	max-width: 40px;
 }
 
 /*Schedule

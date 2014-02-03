@@ -13,7 +13,6 @@
     </div>
   <% end %>
 
-	<fieldset>
 		<div class="field">
 	    <%= f.label :username, 'ユーザー名'%><br>
 	    <%= f.text_field :username, class: 'form-control' %>
@@ -52,5 +51,4 @@
     	<%= f.submit '完了', class: 'btn btn-success col-md-3 col-md-offset-2' %>
 	    <%= link_to 'キャンセル', @user, class: 'btn btn-default col-md-3 col-md-offset-1' %>
 	  </div>
-	</fieldset>
 <% end %>
