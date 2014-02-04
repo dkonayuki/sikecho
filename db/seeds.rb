@@ -17,5 +17,4 @@ sub_name = ["フーリエ変換とラープラス変換","確率と統計","基�
 sub_name.each do | name |
   sub = Subject.create(:name => name)
   sub.faculties << kougakubu
-  kougakubu.subjects << sub
 end 
