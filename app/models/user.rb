@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   belongs_to :university 
   belongs_to :faculty 
   
+  has_and_belongs_to_many :subjects
   has_many :notes, dependent: :destroy
   has_many :periods, dependent: :destroy
 end

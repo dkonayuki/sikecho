@@ -3,47 +3,59 @@ class ScheduleController < ApplicationController
     @user = User.find_by_id(session[:user_id])
     get_schedule_content
     @editable = true
+        
+    @user.subjects.each do |subject|
+      puts subject.name
+    end
   end
 
+  # GET /schedule/new
   def new
-    @period = Period.new
-    @subjects = get_faculty_subjects
-    time_names = %w(一時限 二時限 三時限 四時限 五時限 六時限)
-    day_names = %w(月曜日 火曜日 水曜日 木曜日 金曜日 土曜日)
-    @period.time = params[:time].to_i
-    @period.time_name = time_names[ params[:time].to_i ]
-    @period.day = params[:day].to_i
-    @period.day_name = day_names[ params[:day].to_i]
+    @user = current_user
+    subjects = @user.faculty.subjects.all
+    @subjects = subjects.select { | subject | subject.time == params[:time].to_i && subject.day == params[:day].to_i }
   end
   
   def edit
-    @period = Period.find( params[:id] )
-    @subjects = get_faculty_subjects
+    @user = current_user
+    subjects = @user.faculty.subjects.all
+    
+    #@subjects is for select_tag
+    @subjects = subjects.select { | subject | subject.time == params[:time].to_i && subject.day == params[:day].to_i }
+    #need @subject for default tag, old_subject ( to update )
+    @subject = @subjects.detect{|s| s.id == params[:subject].to_i}
   end
   
+  # PUT /schedule/new
+  # params[:subject, :old_subject]
   def create
     @user = current_user 
-    @period = Period.new( period_params )
-    @subjects = get_faculty_subjects
-
-    @period.subject = Subject.find( params[:subject].to_i )
-    @period.user = @user
-    @period.save()
+    subjects = @user.faculty.subjects.all
+    @subject = subjects.detect{|s| s.id == params[:subject].to_i}
+    @user.subjects << @subject
+    @user.save
+    
     redirect_to schedule_path
   end
 
   def update
+    @user = current_user 
+    subjects = @user.faculty.subjects.all
+    #delete old subject and create a new one
+    subject = subjects.detect{|s| s.id == params[:old_subject].to_i}
+    @user.subjects.delete(subject)
+    subject = subjects.detect{|s| s.id == params[:subject].to_i}
+    @user.subjects << subject
+    
+    redirect_to schedule_path
   end
   
   def destroy
-    @period = Period.find( params[:id])
-    @period.destroy
-    redirect_to @user
+    @user = current_user
+    subjects = @user.faculty.subjects.all
+    subject = subjects.detect{|s| s.id == params[:subject].to_i}
+    @user.subjects.delete(subject)
+    redirect_to schedule_path
   end
   
-  private
-
-  def period_params
-    params.require(:period).permit(:time, :time_name, :day, :day_name, :subject)
-  end
 end

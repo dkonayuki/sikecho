@@ -1,2 +1,4 @@
 <h1 class="text-center">授業変更</h1>
+<%= form_tag 'new', method: :put, id: 'form-schedule' do %>
 <%= render 'form' , isNew: false %>
+<% end %>

@@ -1,26 +1,16 @@
-<%= form_for @period, html: {id: 'form-schedule'} do |f| %>
-<% if flash[:alert]%>
-<p id="notice"><%= flash[:alert]%></p>
-<% end %>
-  <%= f.hidden_field :time, :value => @period.time %>
- 	<%= f.hidden_field :day, :value => @period.day %>
   <div class="field">
-    <%= f.label :time_name, '時限' %><br>
-    <%= f.text_field :time_name, class: 'form-control' %>
-  </div>
-  <div class="field">
-    <%= f.label :day_name, '曜日' %><br>
-  	<%= f.text_field :day_name, class: 'form-control' %>
-  </div>
-  <div class="field">
-  	<%= f.label :subject, '科目' %><br>
-  	<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name") %>
+  	<%= label_tag :subject, '科目' %><br>
+  	<% if !isNew %>
+  	<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name", selected: @subject.id) %>
+  	<%= hidden_field_tag "old_subject", @subject.id %>
+  	<% else %>
+  	<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name") %>  	
+  	<% end %>
   </div>
   <div class="actions">
-    <%= submit_tag "登録", :class => "btn btn-primary" %>
-    <%= link_to "キャンセル", :back,  :class => "btn btn-primary" %>
+    <%= submit_tag "登録", class: "btn btn-primary" %>
+    <%= link_to "キャンセル", schedule_path,  class: "btn btn-primary" %>
     <% if !isNew %>
-    <%= link_to "削除", schedule_destroy_path(id: @period), :class => "btn btn-warning" %>
+    <%= link_to "削除", schedule_destroy_path(subject: @subject), class: "btn btn-warning" %>
     <% end %>
   </div>
-<% end %>

@@ -17,7 +17,7 @@
 					<% if @periods[[i,idx]].blank? %>
 					<td class="cell"><%= link_to "未登録", schedule_new_path(day: i, time: idx) %></td>
 					<% else %>
-					<td class="cell"><%= link_to @periods[[i,idx]].subject.name, schedule_edit_path(id: @periods[[i,idx]]) %></td>
+					<td class="cell"><%= link_to @periods[[i,idx]].name, schedule_edit_path(day: i, time: idx, subject: @periods[[i,idx]]) %></td>
 					<% end %>
 					<% end %>
 				<% else %>
@@ -27,7 +27,7 @@
 					<% if @periods[[i,idx]].blank? %>
 					<td class="cell">N/A</td>
 					<% else %>
-					<td class="cell"><%= link_to @periods[[i,idx]].subject.name, @periods[[i,idx]].subject %></td>
+					<td class="cell"><%= link_to @periods[[i,idx]].name, @periods[[i,idx]] %></td>
 					<% end %>
 					<% end %>
 				<% end %>

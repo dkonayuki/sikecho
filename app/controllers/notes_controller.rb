@@ -23,12 +23,14 @@ class NotesController < ApplicationController
       @editable = true
     else
       @notes = Array.new
-      @user.periods.each do | period |
-        #puts period.subject.notes.first.name
-        period.subject.notes.each do | note |
+      @user.subjects.each do | subject |
+        subject.notes.each do | note |
           @notes.push note
         end
       end
+      puts 'users subject'
+      puts @user.subjects.count
+      puts @notes.count
       @notes.sort_by {| note | note.created_at}.reverse
       @editable = false
     end
@@ -52,8 +54,7 @@ class NotesController < ApplicationController
   def create
     @user = current_user
     @note = Note.new(note_params.except(:document, :subject))
-    @subjects = get_faculty_subjects
-    subject = Subject.find( params[:subject] )
+    @subjects = @user.faculty.subjects
 
     @note.subjects << Subject.find( params[:subject] )
     @note.user = @user

@@ -2,10 +2,10 @@ module ScheduleHelper
   def get_schedule_content
     #For schedule rendering
     @periods = Hash.new
-    @user.periods.each do | period |
-      key = [period.day, period.time]
-      value = period.subject
-      @periods[key] = period
+    @user.subjects.each do | subject |
+      key = [subject.day, subject.time]
+      #value = period.subject
+      @periods[key] = subject
     end
   end
 end

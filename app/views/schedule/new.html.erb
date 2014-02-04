@@ -1,3 +1,4 @@
 <h1 class="text-center">授業登録</h1>
-
+<%= form_tag 'new', method: :post, id: 'form-schedule' do %>
 <%= render 'form' , isNew: true %>
+<% end %>

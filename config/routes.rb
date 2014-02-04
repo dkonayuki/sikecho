@@ -23,6 +23,8 @@ Shikechou::Application.routes.draw do
   end
   
   controller :schedule do
+    post 'schedule/new' => :create
+    put 'schedule/new/:id' => :update
   end
   get 'schedule/destroy'
   get 'schedule/index' => 'schedule#index', as: :schedule
@@ -30,8 +32,6 @@ Shikechou::Application.routes.draw do
   get 'schedule/new'
   resources :schedule
   
-  resources :periods, path: 'schedule'
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
