@@ -22,6 +22,7 @@ class NotesController < ApplicationController
     else
       @notes = Array.new
       @user.periods.each do | period |
+        #puts period.subject.notes.first.name
         period.subject.notes.each do | note |
           @notes.push note
         end
@@ -49,8 +50,9 @@ class NotesController < ApplicationController
   def create
     @user = current_user
     @note = Note.new(note_params.except(:document, :subject))
-    @subjects = Subject.all
-        
+    @subjects = get_faculty_subjects
+    subject = Subject.find( params[:subject] )
+
     @note.subjects << Subject.find( params[:subject] )
     @note.user = @user
     if !note_params[:document].blank?

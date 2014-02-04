@@ -4,7 +4,8 @@ class SubjectsController < ApplicationController
   # GET /subjects
   # GET /subjects.json
   def index
-    @subjects = Subject.search(params[:search])
+    @user = current_user
+    @subjects = @user.faculty.subjects.search(params[:search])
   end
 
   # GET /subjects/1

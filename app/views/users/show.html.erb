@@ -10,6 +10,8 @@
 	      <dd><%= @user.email %></dd>
 	      <dt>学校:</dt>
 	      <dd><%= @user.university.name %></dd>
+	      <dt>学科・コース:</dt>
+	      <dd><%= @user.faculty.name %></dd>
 	      <% if @user == User.find_by_id(session[:user_id]) %>
 	      <hr />
 	      <dt>時間割表:</dt>

@@ -7,7 +7,7 @@ class ScheduleController < ApplicationController
 
   def new
     @period = Period.new
-    @subjects = Subject.all
+    @subjects = get_faculty_subjects
     time_names = %w(一時限 二時限 三時限 四時限 五時限 六時限)
     day_names = %w(月曜日 火曜日 水曜日 木曜日 金曜日 土曜日)
     @period.time = params[:time].to_i
@@ -18,12 +18,13 @@ class ScheduleController < ApplicationController
   
   def edit
     @period = Period.find( params[:id] )
-    @subjects = Subject.all
+    @subjects = get_faculty_subjects
   end
   
   def create
     @user = current_user 
     @period = Period.new( period_params )
+    @subjects = get_faculty_subjects
 
     @period.subject = Subject.find( params[:subject].to_i )
     @period.user = @user

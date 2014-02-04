@@ -23,5 +23,12 @@ class ApplicationController < ActionController::Base
   def disable_nav
     @disable_nav = true
   end
+  
+  private
+  def get_faculty_subjects
+    @user = current_user
+    @subjects = @user.faculty.subjects.all
+    @subjects
+  end
 
 end
