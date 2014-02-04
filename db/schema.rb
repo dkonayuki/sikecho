@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20140204155921) do
     t.integer  "day"
     t.string   "day_name"
     t.string   "place"
+    t.integer  "semester"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

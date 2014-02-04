@@ -9,6 +9,7 @@ class CreateSubjects < ActiveRecord::Migration
       t.integer :day
       t.string :day_name
       t.string :place
+      t.integer :semester
 
       t.timestamps
     end

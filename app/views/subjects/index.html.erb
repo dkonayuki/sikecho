@@ -1,14 +1,11 @@
 <div id="subjects-menu" class="col-md-3 col-xs-3">
 	<div class="btn-group-vertical">
-	  <button type="button" class="btn btn-lg btn-primary">全学年</button>
-	  <button type="button" class="btn btn-lg btn-default">1学期</button>
-	  <button type="button" class="btn btn-lg btn-default">2学期</button>
-	  <button type="button" class="btn btn-lg btn-default">3学期</button>
-	  <button type="button" class="btn btn-lg btn-default">4学期</button>
-	  <button type="button" class="btn btn-lg btn-default">5学期</button>
-	  <button type="button" class="btn btn-lg btn-default">6学期</button>
-	  <button type="button" class="btn btn-lg btn-default">7学期</button>
-	  <button type="button" class="btn btn-lg btn-default">8学期</button>
+		<%= link_to '全学年', subjects_path, class: 'btn btn-lg btn-primary' %>
+		<% (1..8).each do | i |%>
+			<%= link_to filter_subjects_path(semester: i), class: 'btn btn-lg btn-default' do %>
+			<%= i %>学期
+			<% end %>
+		<% end %>
 	 	<button type="button" class="btn btn-lg btn-info">時間割表</button>
 	</div>
 </div>

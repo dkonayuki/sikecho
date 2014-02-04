@@ -28,7 +28,7 @@
 		<h4><i class="icon-chevron-thin-right"></i>詳細</h4>
 			<dl class="dl-horizontal">
 	      <dt>推奨学期:</dt>
-	      <dd>2学期</dd>
+	      <dd><%= link_to @subject.semester, filter_subjects_path(semester: @subject.semester) %></dd>
 	      <dt>時間:</dt>
 	      <dd><%= @subject.time_name %></dd>
 	      <dd><%= @subject.day_name %></dd>

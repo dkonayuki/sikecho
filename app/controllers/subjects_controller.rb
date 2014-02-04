@@ -7,6 +7,13 @@ class SubjectsController < ApplicationController
     @user = current_user
     @subjects = @user.faculty.subjects.search(params[:search])
   end
+  
+  def filter
+    @user = current_user
+    #filter from user's faculty subjects
+    @subjects = @user.faculty.subjects.select { | subject | subject.semester == params[:semester].to_i }
+    render :action => "index"
+  end
 
   # GET /subjects/1
   # GET /subjects/1.json

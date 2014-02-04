@@ -26,7 +26,8 @@ description = "5類1年次の学生を対象として，情報工学の基礎と
 sub_name.each do | name |
   time = rand(6)
   day = rand(6)
-  sub = Subject.create(name: name, time: time, time_name: time_names[time], day: day, day_name: day_names[day], place: 'S421', description: description)
+  semester = 1 + rand(8)
+  sub = Subject.create(name: name, time: time, time_name: time_names[time], day: day, day_name: day_names[day], place: 'S421', description: description, semester: semester)
   sub.faculties << kougakubu
   sub.teachers << sensei
   sub.save
