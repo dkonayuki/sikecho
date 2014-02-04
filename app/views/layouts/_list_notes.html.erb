@@ -7,6 +7,10 @@
       <div class="caption text-center">
         <h3><%= note.title %></h3>
       </div>
+      <% if @show_subject %>
+	      <p><%= note.subjects.first.name %></p>
+      <% end %>
+	      <p><%= time_ago_in_words(note.created_at) %> ago</p>
       <% if @editable %>
       <div class="note-menu row">
       		<%= link_to edit_note_path(note.id), class: 'note-link col-md-6 text-center' do %>

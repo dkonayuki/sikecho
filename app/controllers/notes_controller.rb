@@ -6,6 +6,7 @@ class NotesController < ApplicationController
   def index
     @user = current_user
     @notes = @user.notes.all(order: "created_at DESC")
+    @show_subject = true
   end
 
   # GET /notes/1
@@ -15,7 +16,8 @@ class NotesController < ApplicationController
   
   def filter
     @user = current_user
-
+    @show_subject = true
+    
     if params[:id].to_i == 1
       @notes = @user.notes.all(order: "created_at DESC")
       @editable = true
