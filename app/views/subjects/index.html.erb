@@ -13,19 +13,5 @@
 	</div>
 </div>
 <div id="subjects" class="col-md-9 col-xs-9">
-<ul>
-<% @subjects.each do |subject| %>
-	<%= link_to subject do %>
-	<li class="item"> 
-      <div class="caption text-center">
-        <h4><%= subject.name %></h4>
-      </div>
-      
-      <div class="details">
-				<%= subject.description%>
-			</div>
- 	</li>
- 	<% end %>
-<% end %>
-</ul>
+<%= render 'layouts/list_subjects'%>
 </div>

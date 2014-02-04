@@ -35,7 +35,12 @@
 	      <dt>講義室:</dt>
 	      <dd>S421</dd>
 	      <dt>教師:</dt>
-	      <dd>林 順平</dd>
+	      <dd>
+	      	<%= link_to @subject.teachers.first do %>
+	      		<%= @subject.teachers.first.last_name_kanji %>
+	      		<%= @subject.teachers.first.first_name_kanji %>
+	      	<% end %>
+	      </dd>
     	</dl>
 	  </div>
 	</div>

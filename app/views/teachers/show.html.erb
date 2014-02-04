@@ -1,39 +1,30 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>First name:</strong>
-  <%= @teacher.first_name %>
-</p>
-
-<p>
-  <strong>First name kana:</strong>
-  <%= @teacher.first_name_kana %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @teacher.last_name %>
-</p>
-
-<p>
-  <strong>Last name kana:</strong>
-  <%= @teacher.last_name_kana %>
-</p>
-
-<p>
-  <strong>Role:</strong>
-  <%= @teacher.role %>
-</p>
-
-<p>
-  <strong>University:</strong>
-  <%= @teacher.university_id %>
-</p>
-
-<p>
-  <strong>Faculty:</strong>
-  <%= @teacher.faculty_id %>
-</p>
-
-<%= link_to 'Edit', edit_teacher_path(@teacher) %> |
-<%= link_to 'Back', teachers_path %>
+<div id="show-teacher">
+	<div class="panel panel-info">
+	<!-- Default panel contents -->
+	  <div class="panel-heading text-center"><h4>教員情報</h4></div>
+	  <div class="panel-body">
+	  	<dl class="dl-horizontal">
+	  		<dt>勤務:</dt>
+	  		<dd><%= @teacher.role %></dd>
+	      <dt>名前:</dt>
+	      <dd><%= @teacher.last_name_kanji %> <%= @teacher.first_name_kanji %></dd>
+	      <dt>メール:</dt>
+	      <dd></dd>
+	      <hr />
+	      <dt>所属大学:</dt>
+	      <dd><%= @teacher.university.name %></dd>
+	      <dt>所属部局:</dt>
+	      <dd><%= @teacher.faculty.name %></dd>
+	      <dt>研究室:</dt>
+	      <dd></dd>
+	      <dt>研究室URL:</dt>
+	      <dd></dd>
+	      
+    	</dl>
+    	<hr />
+    	<h4 class="text-center">担当講義</h4>
+    	<%= render 'layouts/list_subjects' %>
+	  </div>
+	</div>
+	<%= link_to 'もどる', :back, class: 'btn btn-default col-md-2 col-md-offset-5' %>
+</div>

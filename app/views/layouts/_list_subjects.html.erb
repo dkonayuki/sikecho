@@ -1,0 +1,15 @@
+<ul>
+<% @subjects.each do |subject| %>
+	<%= link_to subject do %>
+	<li class="subject-item"> 
+      <div class="caption text-center">
+        <h4><%= subject.name %></h4>
+      </div>
+      
+      <div class="details">
+				<%= subject.description%>
+			</div>
+ 	</li>
+ 	<% end %>
+<% end %>
+</ul>

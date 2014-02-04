@@ -10,6 +10,9 @@ class CreateTeachers < ActiveRecord::Migration
       t.text :role
       t.integer :university_id
       t.integer :faculty_id
+      t.string :lab
+      t.string :lab_url
+      t.string :email
 
       t.timestamps
     end
