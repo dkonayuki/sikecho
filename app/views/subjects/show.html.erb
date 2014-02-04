@@ -7,7 +7,8 @@
       <li><a href="#details">詳細</a></li>
       <li><a href="#syllabus">授業日程</a></li>
       <li><a href="#notes">ノート</a></li>      
-      <hr />        
+      <hr />
+      <%= link_to '時間割に登録', schedule_path, class: 'btn btn-default' %>        
     </ul>
 	</div>
 </div>
@@ -21,7 +22,6 @@
 		<h4><i class="icon-chevron-thin-right"></i>概要</h4>
 			<div class="text-content">
 				<%= @subject.description %>
-				5類1年次の学生を対象として，情報工学の基礎となる概念や手法について講義する。
 			</div>
 		<!--for overview section -->
 	 	<a name="details"></a>
@@ -30,10 +30,10 @@
 	      <dt>推奨学期:</dt>
 	      <dd>2学期</dd>
 	      <dt>時間:</dt>
-	      <dd>水曜日</dd>
-	      <dd>2時限</dd>
+	      <dd><%= @subject.time_name %></dd>
+	      <dd><%= @subject.day_name %></dd>
 	      <dt>講義室:</dt>
-	      <dd>S421</dd>
+	      <dd><%= @subject.place %></dd>
 	      <dt>教師:</dt>
 	      <dd>
 	      	<%= link_to @subject.teachers.first do %>

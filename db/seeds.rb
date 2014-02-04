@@ -22,10 +22,11 @@ sub_name = ["フーリエ変換とラープラス変換","確率と統計","基�
      "情報ネットワーク設計論","データベース","計算機ネットワーク"]
 time_names = %w(一時限 二時限 三時限 四時限 五時限 六時限)
 day_names = %w(月曜日 火曜日 水曜日 木曜日 金曜日 土曜日)
+description = "5類1年次の学生を対象として，情報工学の基礎となる概念や手法について講義する。"
 sub_name.each do | name |
   time = rand(6)
   day = rand(6)
-  sub = Subject.create(name: name, time: time, time_name: time_names[time], day: day, day_name: day_names[day])
+  sub = Subject.create(name: name, time: time, time_name: time_names[time], day: day, day_name: day_names[day], place: 'S421', description: description)
   sub.faculties << kougakubu
   sub.teachers << sensei
   sub.save

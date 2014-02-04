@@ -23,7 +23,7 @@ Shikechou::Application.routes.draw do
   end
   
   controller :schedule do
-    post 'schedule/new' => :create
+    post 'schedule/new' => :create, as: 'create_schedule'
     put 'schedule/new/:id' => :update
   end
   get 'schedule/destroy'
