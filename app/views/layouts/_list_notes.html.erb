@@ -1,0 +1,22 @@
+<ul>
+<% @notes.each do |note| %>
+	<li class="item">
+      
+      <%= link_to image_tag("note_thumbnail.png"), note %>
+      
+      <div class="caption text-center">
+        <h3><%= note.title %></h3>
+      </div>
+      <% if @editable %>
+      <div class="note-menu row">
+      		<%= link_to edit_note_path(note.id), class: 'note-link col-md-6 text-center' do %>
+      		<i class="icon-brush"></i>
+      		<% end %>
+					<%= link_to note, method: :delete, class: 'note-link col-md-6 text-center', data: { confirm: 'Are you sure?' } do %>
+					<i class="icon-erase"></i>
+					<% end %>
+			</div>
+			<% end %>
+ 	</li>
+<% end %>
+</ul>

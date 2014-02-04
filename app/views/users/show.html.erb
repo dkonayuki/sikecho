@@ -10,11 +10,15 @@
 	      <dd><%= @user.email %></dd>
 	      <dt>学校:</dt>
 	      <dd><%= @user.university.name %></dd>
+	      <% if @user == User.find_by_id(session[:user_id]) %>
 	      <hr />
 	      <dt>時間割表:</dt>
 	      <dd><%= link_to image_tag("calendar.jpeg", class: 'calendar'), schedule_path %></dd>
+	      <% end %>
     	</dl>
+    		  <% if @user == User.find_by_id(session[:user_id]) %>
     		  <%= link_to '編集', edit_user_path(@user), class: 'btn btn-success col-md-2 col-md-offset-5' %>
+    		  <% end %>
 	  </div>
 	</div>
 </div>

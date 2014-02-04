@@ -1,31 +1,10 @@
 <div id="notes-menu" class="col-md-3 col-xs-3">
 	<div class="btn-group-vertical">
-		<%= link_to '新規ノート', new_note_path, method: :get, class: 'btn btn-lg btn-primary' %>
-	  <button type="button" class="btn btn-lg btn-default">自分のノート</button>
-	  <button type="button" class="btn btn-lg btn-default">授業のノート</button>
+		<%= link_to '新規ノート', new_note_path, class: 'btn btn-lg btn-primary' %>
+		<%= link_to '自分のノート', filter_notes_path(1), class: 'btn btn-lg btn-default' %>
+		<%= link_to '授業のノート', filter_notes_path(2), class: 'btn btn-lg btn-default' %>
 	</div>
 </div>
 <div id="notes" class="col-md-9 col-xs-9">
-<ul>
-<% @notes.each do |note| %>
-	<li id="item">
-      <p>
-         <%= link_to image_tag("note_thumbnail.png"), note %>
-      </p>
-      
-      <div class="caption text-center">
-        <h3><%= note.title %></h3>
-      </div>
-      
-      <div class="note-menu row">
-      		<%= link_to new_note_path, method: :get, class: 'note-link col-md-6 text-center' do %>
-      		<i class="icon-download"></i>
-      		<% end %>
-					<%= link_to note, method: :delete, class: 'note-link col-md-6 text-center', data: { confirm: 'Are you sure?' } do %>
-					<i class="icon-erase"></i>
-					<% end %>
-			</div>
- 	</li>
-<% end %>
-</ul>
+		<%= render 'layouts/list_notes' %>
 </div>

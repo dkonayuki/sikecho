@@ -1,17 +1,17 @@
 <div id="show-note">
 	<div class="panel panel-danger">
 	<!-- Default panel contents -->
-	  <div class="panel-heading text-center"><h4>Profile</h4></div>
+	  <div class="panel-heading text-center"><h4><%= @note.title %></h4></div>
 	  <div class="panel-body">
 	  	<dl class="dl-horizontal">
-	      <dt>タイトル:</dt>
-	      <dd><%= @note.title %></dd>
 	      <dt>内容:</dt>
 	      <dd><%= @note.content %></dd>
 	      <dt>科目:</dt>
-	      <dd><%= @note.subjects.first.name %></dd>
+	      <dd><%= link_to @note.subjects.first.name, @note.subjects.first %></dd>
 	      <dt>ユーザー:</dt>
-	      <dd><%= @note.user.username %></dd>
+	      <dd><%= link_to @note.user.username, @note.user %></dd>
+	      <dt>作成日:</dt>
+	      <dd><%= @note.created_at %></dd>
 	      <hr />
 	      <dt>資料：</dt>
 	      <% if @note.documents.empty? %>
@@ -22,7 +22,13 @@
 					<% end %>
 				<% end %>
     	</dl>
-    		  <%= link_to 'もどる', notes_path, class: 'btn btn-default col-md-2 col-md-offset-5' %>
+    	<!-- <% if @editable %>
+    		  <%= link_to edit_note_path(@note.id), class: 'btn btn-primary', id: 'note-edit-btn' do %>
+    		  <i class="icon-brush"></i>
+    		  <% end %>    	
+    	<% end %> -->
+    	<% logger.debug session[:return_to] %>
+    		  <%= link_to 'もどる', :back, class: 'btn btn-default col-md-2 col-md-offset-5' %>
 	  </div>
 	</div>
 </div>

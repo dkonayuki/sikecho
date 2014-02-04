@@ -5,12 +5,31 @@ class NotesController < ApplicationController
   # GET /notes.json
   def index
     @user = current_user
-    @notes = @user.notes.all
+    @notes = @user.notes.all(order: "created_at DESC")
   end
 
   # GET /notes/1
   # GET /notes/1.json
   def show
+  end
+  
+  def filter
+    @user = current_user
+
+    if params[:id].to_i == 1
+      @notes = @user.notes.all(order: "created_at DESC")
+      @editable = true
+    else
+      @notes = Array.new
+      @user.periods.each do | period |
+        period.subject.notes.each do | note |
+          @notes.push note
+        end
+      end
+      @notes.sort_by {| note | note.created_at}.reverse
+      @editable = false
+    end
+    render :action => "index"
   end
 
   # GET /notes/new
@@ -30,6 +49,7 @@ class NotesController < ApplicationController
   def create
     @user = current_user
     @note = Note.new(note_params.except(:document, :subject))
+    @subjects = Subject.all
         
     @note.subjects << Subject.find( params[:subject] )
     @note.user = @user
@@ -61,8 +81,20 @@ class NotesController < ApplicationController
   # PATCH/PUT /notes/1
   # PATCH/PUT /notes/1.json
   def update
+    @note = Note.find( params[:id] )
+    
+    # Update subject and document
+    @note.subjects << Subject.find( params[:subject] )
+    if !note_params[:document].blank?
+      path = save_file( @user, note_params[:document].original_filename, note_params[:document] )
+      @document = Document.new(path: path, name: note_params[:document].original_filename)
+      puts note_params[:document].original_filename
+      @document.save
+      @note.documents << @document
+    end
+    
     respond_to do |format|
-      if @note.update(note_params)
+      if @note.update(note_params.except(:document))
         format.html { redirect_to notes_url, notice: 'Note was successfully updated.' }
         format.json { head :no_content }
       else
@@ -77,7 +109,7 @@ class NotesController < ApplicationController
   def destroy
     @note.destroy
     respond_to do |format|
-      format.html { redirect_to notes_url }
+      format.html { redirect_to :back }
       format.json { head :no_content }
     end
   end

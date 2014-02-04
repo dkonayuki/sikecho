@@ -74,28 +74,7 @@
 	 	<a name="notes"></a>
 	  <div class="panel-heading text-center"><h4>ノート</h4></div>
 	  <div class="panel-body">
-			<ul>
-			<% @subject.notes.each do |note| %>
-				<li class="item">
-			      <p>
-			         <%= link_to image_tag("note_thumbnail.png"), note %>
-			      </p>
-			      
-			      <div class="caption text-center">
-			        <h3><%= note.title %></h3>
-			      </div>
-			      
-			      <div class="note-menu row">
-			      		<%= link_to new_note_path, method: :get, class: 'note-link col-md-6 text-center' do %>
-			      		<i class="icon-download"></i>
-			      		<% end %>
-								<%= link_to note, method: :delete, class: 'note-link col-md-6 text-center', data: { confirm: 'Are you sure?' } do %>
-								<i class="icon-erase"></i>
-								<% end %>
-						</div>
-			 	</li>
-			<% end %>
-			</ul>
+			<%= render 'layouts/list_notes'%>
 	  </div>
 	</div>
 

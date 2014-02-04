@@ -1,5 +1,6 @@
 class ScheduleController < ApplicationController
   def index
+    @user = User.find_by_id(session[:user_id])
     get_schedule_content
     @editable = true
   end

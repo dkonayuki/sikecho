@@ -71,7 +71,7 @@
 	margin: 10px auto 0;
 }
 
-#notes li {
+#notes .item {
 	background-color: #ffffff;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
@@ -80,16 +80,18 @@
 	border: 1px solid #dedede;
 	display: inline-block;
   margin-bottom: 20px;
+  width: 200px;
 }
 
-#notes li img {
+#notes .item img {
   display: block;
   margin: 0;
 -moz-border-radius: 2px;
 -webkit-border-radius: 2px;
 border-radius: 2px;
-	width: 200px;
+	width: 100%;
 }
+
 /*
 #notes ul {
   position: absolute;
@@ -107,6 +109,19 @@ border-radius: 2px;
 #show-note {
 	max-width: 600px;
 	margin: 0 auto;
+	position: relative;
+}
+
+#show-note:hover #note-edit-btn{
+	display: block;
+}
+
+#note-edit-btn {
+	position: absolute;
+	top: 80px;
+	right: 20px;
+	padding: 6px 10px;
+	display: none;
 }
 
 
@@ -117,6 +132,7 @@ border-radius: 2px;
 	max-width: 600px;
 	margin: 0 auto;
 }
+
 #form-edit-profile {
 	max-width: 400px;
 	margin: 0 auto;
@@ -204,7 +220,6 @@ border-radius: 2px;
 }
 
 #show-subject .item {
-	max-width: 200px;
 	background-color: #ffffff;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
@@ -213,8 +228,14 @@ border-radius: 2px;
 	border: 1px solid #dedede;
 	display: inline-block;
   margin-bottom: 20px;
+  width: 200px;
 }
 
 #show-subject .item img {
+  display: block;
+  margin: 0;
+-moz-border-radius: 2px;
+-webkit-border-radius: 2px;
+border-radius: 2px;
 	width: 100%;
 }
