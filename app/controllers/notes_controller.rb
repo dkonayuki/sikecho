@@ -41,12 +41,7 @@ class NotesController < ApplicationController
   def new
     @note = Note.new
     @user = current_user
-    @subjects = Subject.all
-  end
-
-  # GET /notes/1/edit
-  def edit
-    @subjects = Subject.all
+    @subjects = @user.faculty.subjects
   end
 
   # POST /notes
@@ -89,14 +84,28 @@ class NotesController < ApplicationController
     @document = Document.find( params[:id] )
     send_file(@document.path.strip,:type=>"application/pdf")
   end
+  
+  # GET /notes/1/edit
+  def edit
+    @subjects = @user.faculty.subjects
+    @note = Note.find( params[:id] )    
+    @subject = @note.subjects.first
+  end
 
   # PATCH/PUT /notes/1
   # PATCH/PUT /notes/1.json
   def update
+    # Update subject and document
     @note = Note.find( params[:id] )
     
-    # Update subject and document
-    @note.subjects << Subject.find( params[:subject] )
+    # delete old_subject and add a new one
+    subjects = @user.faculty.subjects
+    subject = subjects.detect{|s| s.id == params[:old_subject].to_i}
+    @note.subjects.delete(subject)
+    subject = subjects.detect{|s| s.id == params[:subject].to_i}
+    @note.subjects << subject
+    
+    # update document
     if !note_params[:document].blank?
       path = save_file( @user, note_params[:document].original_filename, note_params[:document] )
       @document = Document.new(path: path, name: note_params[:document].original_filename)

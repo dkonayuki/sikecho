@@ -10,6 +10,7 @@
       </ul>
     </div>
   <% end %>
+  	
   <div class="field">
     <%= f.label :title, 'タイトル' %><br>
     <%= f.text_area :title, class: 'form-control', rows: 1%>
@@ -20,7 +21,13 @@
   </div>
   <div class="field">
   	<%= f.label :subject, '科目' %><br>
+  	
+  	<% if !isNew %>
+		<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name", selected: @subject.id) %>
+		<%= hidden_field_tag "old_subject", @subject.id %>
+		<% else %>
   	<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name") %>
+  	<% end %>
   </div>
   <div class="field">
     <%= f.label :document, '資料' %><br>
