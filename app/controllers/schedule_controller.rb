@@ -13,6 +13,7 @@ class ScheduleController < ApplicationController
   def new
     @user = current_user
     subjects = @user.faculty.subjects.all
+    #great filter stuff, always remember pass params as to_i
     @subjects = subjects.select { | subject | subject.time == params[:time].to_i && subject.day == params[:day].to_i }
   end
   
@@ -53,6 +54,7 @@ class ScheduleController < ApplicationController
   def destroy
     @user = current_user
     subjects = @user.faculty.subjects.all
+    #delete subject user relationshp
     subject = subjects.detect{|s| s.id == params[:subject].to_i}
     @user.subjects.delete(subject)
     redirect_to schedule_path

@@ -18,20 +18,22 @@ class NotesController < ApplicationController
     @user = current_user
     @show_subject = true
     
+    #filter/id=1 : user's notes
     if params[:id].to_i == 1
       @notes = @user.notes.all(order: "created_at DESC")
+      #user can edit notes
       @editable = true
     else
+    #filter/id=2 : subject's notes
       @notes = Array.new
       @user.subjects.each do | subject |
         subject.notes.each do | note |
           @notes.push note
         end
       end
-      puts 'users subject'
-      puts @user.subjects.count
-      puts @notes.count
+      #sort desc
       @notes.sort_by {| note | note.created_at}.reverse
+      #user can not edit notes
       @editable = false
     end
     render :action => "index"
@@ -50,9 +52,13 @@ class NotesController < ApplicationController
     @user = current_user
     @note = Note.new(note_params.except(:document, :subject))
     @subjects = @user.faculty.subjects
+    subject = @subjects.detect{|s| s.id == params[:subject].to_i}
 
-    @note.subjects << Subject.find( params[:subject] )
+    #add relationship
+    @note.subjects << subject
     @note.user = @user
+    
+    #save document
     if !note_params[:document].blank?
       path = save_file( @user, note_params[:document].original_filename, note_params[:document] )
       @document = Document.new(path: path, name: note_params[:document].original_filename)
@@ -73,6 +79,7 @@ class NotesController < ApplicationController
   end
   
   def delete_document
+    #need to deploy
     @document = Document.find( params[:id] )
     #delete_file(@document.path)
     #@document.destroy
