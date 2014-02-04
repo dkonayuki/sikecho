@@ -31,6 +31,10 @@
 	  	<%= f.label :university %>
 	  	<%= f.select :university, options_from_collection_for_select(@universities,"id","name"), class: "form-control" %>
 	  </div>
+	  <div class="field">
+	  	<%= f.label :faculty %>
+	  	<%= f.select :faculty, options_from_collection_for_select(@faculties,"id","name"), class: "form-control" %>
+	  </div>
 
 	  <!-- 
 	  <div class="field">
