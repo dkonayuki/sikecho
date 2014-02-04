@@ -28,11 +28,7 @@ class ScheduleController < ApplicationController
     @period.subject = Subject.find( params[:subject].to_i )
     @period.user = @user
     @period.save()
-    puts @period.time
-    puts @period.time_name
-    puts @period.day
-    puts @period.day_name
-    redirect_to @user
+    redirect_to schedule_path
   end
 
   def update

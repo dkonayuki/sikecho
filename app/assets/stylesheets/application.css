@@ -124,6 +124,15 @@ border-radius: 2px;
 	display: none;
 }
 
+#document-delete-btn {
+	padding: 0 4px;
+	width: 10px;
+	color: #d9534f;
+	display: none;
+}
+.document:hover #document-delete-btn{
+	display: inline-block;
+}
 
 /*Profile
  *  ===============================================================================================*/

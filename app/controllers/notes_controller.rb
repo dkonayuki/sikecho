@@ -72,6 +72,13 @@ class NotesController < ApplicationController
     end
   end
   
+  def delete_document
+    @document = Document.find( params[:id] )
+    #delete_file(@document.path)
+    #@document.destroy
+    redirect_to notes_path
+  end
+  
   def download
     # Download a document file 
     @document = Document.find( params[:id] )

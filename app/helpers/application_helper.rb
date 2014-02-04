@@ -8,4 +8,8 @@ module ApplicationHelper
     end
     path
   end
+  
+  def delete_file( path )
+    File.delete(path)
+  end
 end

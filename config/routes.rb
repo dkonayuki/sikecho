@@ -9,7 +9,8 @@ Shikechou::Application.routes.draw do
   resources :subjects
     
   resources :notes
-  get '/notes/download/:id', to: 'notes#download', as: 'download'
+  get 'notes/download/:id', to: 'notes#download', as: 'download'
+  get 'notes/delete/:id', to: 'notes#delete_document', as: 'delete_document'
   get 'notes/filter/:id', to: 'notes#filter', as: 'filter_notes'
 
   get 'home/index'

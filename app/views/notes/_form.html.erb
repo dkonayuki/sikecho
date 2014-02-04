@@ -24,7 +24,20 @@
   </div>
   <div class="field">
     <%= f.label :document, '資料' %><br>
-  	<%= f.file_field :document %>
+    		<% if @note.documents.empty? %>
+	      	<p>まだ資料がありません。</p>
+  			<% else %>
+		      <% @note.documents.each do |document| %>
+					  <p class="document">
+					  	<%= link_to "#{document.name}", download_path(document.id) %>
+					  	<%= link_to delete_document_path(document.id), confirm: '本当にいいですか?' do %>
+					  	<i class="icon-cross" id="document-delete-btn"></i>
+					  	<% end %>
+					  </p>
+					<% end %>
+				<% end %>
+  	<%= f.file_field :document %><br />
+  			
     <!--<p class="help-block">Pdfのファイルが望ましいです。</p>-->
 	</div>
   <div class="actions ">
