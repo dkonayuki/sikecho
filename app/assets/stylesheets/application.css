@@ -14,8 +14,19 @@
 //= require entypo
 
 @charset "UTF-8";
+
+/*Main page
+ ===============================================================================================*/
+
+#container {
+	position: relative;
+	overflow: hidden;
+	margin-bottom: 60px;
+}
+
 /*Navigation bar
  ===============================================================================================*/
+
 #nav-bar {
 	border-radius: 0;
 }
@@ -35,14 +46,11 @@
 /*Home page
  ===============================================================================================*/
 
-#container {
-	position: relative;
-}
-
 #home {
 	max-width: 1200px;
 	margin: 0 auto;
 }
+
 /*Sign up page
 ===============================================================================================*/
 
@@ -222,7 +230,7 @@ border-radius: 2px;
 }
 
 #show-subject {
-	margin: 0 auto 100px;
+	margin: 0 auto;
 }
 
 .text-content {
