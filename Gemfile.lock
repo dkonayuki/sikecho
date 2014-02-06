@@ -115,7 +115,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts-as-taggable-on
+  acts-as-taggable-on (~> 3.0.1)
   bcrypt-ruby (~> 3.1.2)
   coffee-rails (~> 4.0.0)
   entypo-rails

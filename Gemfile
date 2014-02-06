@@ -45,4 +45,4 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 # gem 'debugger', group: [:development, :test]
 gem 'entypo-rails'
 gem 'quiet_assets', group: :development
-gem 'acts-as-taggable-on'
+gem 'acts-as-taggable-on', '~> 3.0.1'
