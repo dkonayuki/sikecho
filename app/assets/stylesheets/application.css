@@ -18,6 +18,11 @@
 /*Main page
  ===============================================================================================*/
 
+a:hover {
+  outline: 0;
+  text-decoration: none;
+}
+
 #container {
 	position: relative;
 	overflow: hidden;
