@@ -12,7 +12,6 @@
 .settings
 .classpath
 .sass-cache
-/public/system
 
 # Ignore bundler config.
 /.bundle
