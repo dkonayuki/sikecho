@@ -45,6 +45,21 @@
 				<% end %>
   	<%= f.file_field :document %><br />  		
 	</div>
+	<div class="field">
+	<!-- Build your select: -->
+<select class="selectpicker">
+  <option>Mustard</option>
+  <option>Ketchup</option>
+  <option>Barbecue</option>
+</select>
+ 
+<!-- Initialize the plugin: -->
+<script type="text/javascript">
+  $(document).ready(function() {
+		$('.selectpicker').selectpicker();
+  });
+</script>
+	</div>
   <div class="actions ">
     <%= f.submit '登録', class: 'btn btn-success col-md-2 col-md-offset-4' %>
     <%= link_to 'キャンセル', :back, class: 'btn btn-default col-md-2 col-md-offset-1' %>

@@ -27,5 +27,4 @@ Shikechou::Application.configure do
   # number of complex assets.
   config.assets.debug = true
   config.serve_static_assets = false
-  config.assets.prefix = "/assets_dev"
 end

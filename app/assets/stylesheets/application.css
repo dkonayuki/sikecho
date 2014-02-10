@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require bootstrap
+ *= require bootstrap-select
  *= require_tree .
  * 
  */
@@ -22,10 +23,23 @@ a:hover {
   text-decoration: none;
 }
 
-#container {
+#main {
 	position: relative;
-	overflow: hidden;
 	margin-bottom: 60px;
+}
+
+/* For modern browsers */
+#main:before,
+#main:after {
+    content:"";
+    display:table;
+}
+#main:after {
+    clear:both;
+}
+/* For IE 6/7 (trigger hasLayout) */
+.container {
+    zoom:1;
 }
 
 /*Navigation bar

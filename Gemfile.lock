@@ -123,7 +123,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on (~> 3.0.1)
   bcrypt-ruby (~> 3.1.2)
-  bootstrap-sass (~> 3.1.0)
+  bootstrap-sass (~> 3.1.0.2)
   carrierwave
   coffee-rails (~> 4.0.0)
   jbuilder (~> 1.2)
