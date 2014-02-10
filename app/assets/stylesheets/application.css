@@ -62,8 +62,8 @@ a:hover {
 /*New note page
 ===============================================================================================*/
 
-#form-new-note {
-	max-width: 600px;
+#new-note-form {
+	max-width: 1000px;
 	margin: 0 auto;
 }
 

@@ -46,3 +46,5 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'quiet_assets', group: :development
 gem 'acts-as-taggable-on', '~> 3.0.1'
 gem 'bootstrap-sass', '~> 3.1.0'
+gem 'carrierwave'
+gem "mini_magick"
