@@ -11,6 +11,7 @@
  *= require_self
  *= require bootstrap
  *= require bootstrap-select
+ *= require bootstrap-editable
  *= require_tree .
  * 
  */
@@ -20,7 +21,7 @@
 
 a:hover {
   outline: 0;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 #main {
@@ -237,7 +238,6 @@ border-radius: 2px;
 
 .subject-item {
 	width: 200px;
-	height: 100px;
 	background-color: #ffffff;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
@@ -250,8 +250,6 @@ border-radius: 2px;
 
 .caption {
 	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
 }
 
 .details {

@@ -50,10 +50,12 @@ class SubjectsController < ApplicationController
   # PATCH/PUT /subjects/1
   # PATCH/PUT /subjects/1.json
   def update
+    @subject = Subject.find(params[:id])
+    @subject.description = params[:value]
     respond_to do |format|
-      if @subject.update(subject_params)
+      if @subject.save
         format.html { redirect_to @subject, notice: 'Subject was successfully updated.' }
-        format.json { head :no_content }
+        format.json { render json: @subject, status: :ok } # 204 No Content
       else
         format.html { render action: 'edit' }
         format.json { render json: @subject.errors, status: :unprocessable_entity }
@@ -79,6 +81,6 @@ class SubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
-      params.require(:subject).permit(:name, :description, :subject_code, :credit)
+      params.require(:subject).permit(:name, :description, :credit)
     end
 end

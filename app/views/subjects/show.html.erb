@@ -21,8 +21,35 @@
 	 	<a name="description"></a>
 		<h4><i class="icon-chevron-thin-right"></i>概要</h4>
 			<div class="text-content">
-				<%= @subject.description %>
+				<a href="#" class="editable"><%= @subject.description %></a>
 			</div>
+			<script>
+				//turn to inline mode
+				$.fn.editable.defaults.mode = 'inline';
+				$(document).ready(function() {
+				    $('.editable').editable({
+						    type: 'text',
+						    name: 'description',
+						    pk: <%= @subject.id %>,
+						    url: '/subjects/<%= @subject.id %>',
+						    title: '修正',
+						    ajaxOptions: {
+						        dataType: 'json',
+						        type: 'put'
+						    },
+						    success: function(response, newValue) {
+						        if(response.status == 'error') return response.msg; //msg will be shown in editable form
+						    },
+						    error: function(response, newValue) {
+								    if(response.status === 500) {
+								        return 'Service unavailable. Please try later.';
+								    } else {
+								        return response.statusr;
+								    }
+								}
+						});
+				});
+			</script>
 		<!--for overview section -->
 	 	<a name="details"></a>
 		<h4><i class="icon-chevron-thin-right"></i>詳細</h4>
