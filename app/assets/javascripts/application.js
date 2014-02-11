@@ -16,6 +16,7 @@
 //= require bootstrap
 //= require bootstrap-select
 //= require bootstrap-editable
+//= require bootstrap-tagsinput
 //= require_tree .
 
 
@@ -40,5 +41,4 @@ $(document).ready(function() {
 		  isFitWidth: true
 		});
   });*/
-  
 });

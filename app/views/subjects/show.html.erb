@@ -28,7 +28,7 @@
 				$.fn.editable.defaults.mode = 'inline';
 				$(document).ready(function() {
 				    $('.editable').editable({
-						    type: 'text',
+						    type: 'textarea',
 						    name: 'description',
 						    pk: <%= @subject.id %>,
 						    url: '/subjects/<%= @subject.id %>',

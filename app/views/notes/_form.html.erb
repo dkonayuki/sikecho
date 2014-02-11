@@ -30,9 +30,7 @@
   	<% end %>
   	<!-- Initialize the plugin: -->
 		<script type="text/javascript">
-		  $(document).ready(function() {
 				$('.selectpicker').selectpicker();
-		  });
 		</script>
   </div>
   <div class="field">
@@ -52,7 +50,43 @@
   	<%= f.file_field :document %><br />  		
 	</div>
 	<div class="field">
-
+		<div id='tag-form'>
+			<div id='tag-menu'>
+	   		<div id="add-all" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus-sign"></span>全15回</div>
+	   		<div id="add-year" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus-sign"></span>通年</div>
+	   		<div id="add-special" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus-sign"></span>集中講義</div>
+      </div>
+      <% if isNew %>
+  		<input type="text" id="tag-input"/>
+  		<% else %>
+  		<% end %>
+  		<script>
+				$('#tag-input').tagsinput({
+					confirmKeys: [13, 9],
+					tagClass: function(item) {
+				    switch (item.type) {
+				      case 'normal'   : return 'label label-info';
+				      case 'year'  : return 'label label-warning';
+				      case 'special' : return 'label label-danger';
+				    }
+				  },
+				  itemValue: 'value',
+				  itemText: 'text',
+				});
+				$('#add-all').on('click', function() {
+					for (var i=1;i<=15;i++)
+					{ 
+						$('#tag-input').tagsinput('add', { "value": i , "text": i+'回目' , "type": "normal" } );
+					}
+				});
+				$('#add-year').on('click', function() {
+					$('#tag-input').tagsinput('add', { "value": 24 , "text": '通年' , "type": "year" } );
+				});
+				$('#add-special').on('click', function() {
+					$('#tag-input').tagsinput('add', { "value": 0 , "text": '集中講義' , "type": "special" } );
+				});
+			</script>
+		</div>
 	</div>
   <div class="actions ">
     <%= f.submit '登録', class: 'btn btn-success col-md-2 col-md-offset-4' %>
