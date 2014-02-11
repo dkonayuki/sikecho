@@ -23,11 +23,17 @@
   	<%= f.label :subject, '科目' %><br>
   	
   	<% if !isNew %>
-		<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name", selected: @subject.id) %>
+		<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name", selected: @subject.id), class: 'selectpicker', data: {width: 'auto'} %>
 		<%= hidden_field_tag "old_subject", @subject.id %>
 		<% else %>
-  	<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name") %>
+  	<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name"), class: 'selectpicker', data: {width: 'auto'} %>
   	<% end %>
+  	<!-- Initialize the plugin: -->
+		<script type="text/javascript">
+		  $(document).ready(function() {
+				$('.selectpicker').selectpicker();
+		  });
+		</script>
   </div>
   <div class="field">
     <%= f.label :document, '資料' %><br>
@@ -46,22 +52,6 @@
   	<%= f.file_field :document %><br />  		
 	</div>
 	<div class="field">
-	<!-- Build your select: -->
-	<select id="id_select" class="selectpicker" title="タグを選んでください" multiple="" data-selected-text-format="count>3">
-      <option>cow</option>
-      <option>bull</option>
-      <option>cow2</option>
-      <option>bull3</option>
-      <option>cow4</option>
-      <option>bull5</option>
-  </select>
- 
-<!-- Initialize the plugin: -->
-<script type="text/javascript">
-  $(document).ready(function() {
-		$('.selectpicker').selectpicker();
-  });
-</script>
 
 	</div>
   <div class="actions ">
