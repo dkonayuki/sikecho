@@ -12,6 +12,7 @@ class NotesController < ApplicationController
   # GET /notes/1
   # GET /notes/1.json
   def show
+    @tags = @note.tag_list
   end
   
   def filter
