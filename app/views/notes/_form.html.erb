@@ -28,10 +28,6 @@
 		<% else %>
   	<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name"), class: 'selectpicker', data: {width: 'auto'} %>
   	<% end %>
-  	<!-- Initialize the plugin: -->
-		<script type="text/javascript">
-				$('.selectpicker').selectpicker();
-		</script>
   </div>
   <div class="field">
     <%= f.label :document, '資料' %><br>
@@ -55,37 +51,9 @@
 	   		<div id="add-all" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus-sign"></span>全15回</div>
 	   		<div id="add-year" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus-sign"></span>通年</div>
 	   		<div id="add-special" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus-sign"></span>集中講義</div>
+	   		<div id="remove-all" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>クリア</div>
       </div>
-      <% if isNew %>
   		<input type="text" id="tag-input"/>
-  		<% else %>
-  		<% end %>
-  		<script>
-				$('#tag-input').tagsinput({
-					confirmKeys: [13, 9],
-					tagClass: function(item) {
-				    switch (item.type) {
-				      case 'normal'   : return 'label label-info';
-				      case 'year'  : return 'label label-warning';
-				      case 'special' : return 'label label-danger';
-				    }
-				  },
-				  itemValue: 'value',
-				  itemText: 'text',
-				});
-				$('#add-all').on('click', function() {
-					for (var i=1;i<=15;i++)
-					{ 
-						$('#tag-input').tagsinput('add', { "value": i , "text": i+'回目' , "type": "normal" } );
-					}
-				});
-				$('#add-year').on('click', function() {
-					$('#tag-input').tagsinput('add', { "value": 24 , "text": '通年' , "type": "year" } );
-				});
-				$('#add-special').on('click', function() {
-					$('#tag-input').tagsinput('add', { "value": 0 , "text": '集中講義' , "type": "special" } );
-				});
-			</script>
 		</div>
 	</div>
   <div class="actions ">
@@ -93,3 +61,59 @@
     <%= link_to 'キャンセル', :back, class: 'btn btn-default col-md-2 col-md-offset-1' %>
   </div>
 <% end %>
+
+<!-- Initialize the plugin: -->
+<script>
+	$('.selectpicker').selectpicker();
+	$(document).keypress(function (e) {
+		//disable enter key in textarea
+	  if (e.which == 13 && e.target.nodeName != "TEXTAREA") return false;
+	  if (e.which == 9 && e.target.nodeName != "TEXTAREA") return false;
+	});
+	//local sources
+	var sources = [
+	<% (1..15).each do |i| %>
+	{ "value": <%= i %>, "text":"<%= i %>回目" , "type": "normal" },
+	<% end %>
+	{ "value":365 , "text":"通年" , "type": "year" },
+	{ "value":0 , "text":"集中講義" , "type": "special" }			
+	];
+	//initiate tagsinput
+	$('#tag-input').tagsinput({
+		confirmKeys: [13, 9],
+		tagClass: function(item) {
+	    switch (item.type) {
+	      case 'normal'   : return 'label label-info';
+	      case 'year'  : return 'label label-warning';
+	      case 'special' : return 'label label-danger';
+	    }
+	  },
+	  itemValue: 'value',
+	  itemText: 'text',
+	});
+
+	$('#tag-input').tagsinput('input').typeahead({
+		//or can use prefetch: 'assets_path(cities.json)',
+	  local: sources,
+	  valueKey: 'text'
+	}).bind('typeahead:selected', $.proxy(function (obj, datum) {  
+	  this.tagsinput('add', datum);
+	  this.tagsinput('input').typeahead('setQuery', '');
+	}, $('#tag-input')));
+	
+	$('#add-all').on('click', function() {
+		for (var i=1;i<=15;i++)
+		{ 
+			$('#tag-input').tagsinput('add', { "value": i, "text": i + '回目', "type": "normal" } );
+		}
+	});
+	$('#add-year').on('click', function() {
+		$('#tag-input').tagsinput('add', { "value": 365, "text": '通年', "type": "year" } );
+	});
+	$('#add-special').on('click', function() {
+		$('#tag-input').tagsinput('add', { "value": 0, "text": '集中講義', "type": "special" } );
+	});
+	$('#remove-all').on('click', function() {
+		$('#tag-input').tagsinput('removeAll');
+	})
+</script>

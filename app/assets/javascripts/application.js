@@ -17,6 +17,7 @@
 //= require bootstrap-select
 //= require bootstrap-editable
 //= require bootstrap-tagsinput
+//= require typeahead.min.js
 //= require_tree .
 
 
