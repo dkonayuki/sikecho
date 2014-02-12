@@ -43,7 +43,7 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-.bootstrap-tagsinput .tag [data-role="remove"]:after {
+.bootstrap-tagsinput .tag [data-role="remove"]:before {
   /*content: "x";*/
   content: "\e014";
   padding: 0px 2px;

@@ -13,6 +13,8 @@
  *= require bootstrap-select
  *= require bootstrap-editable
  *= require bootstrap-tagsinput
+ *= require chosen
+ *= require chosen-bootstrap
  *= require_tree .
  * 
  */

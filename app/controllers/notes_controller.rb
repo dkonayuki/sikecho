@@ -5,7 +5,7 @@ class NotesController < ApplicationController
   # GET /notes.json
   def index
     @user = current_user
-    @notes = @user.notes.all(order: "created_at DESC")
+    @notes = @user.notes.order('created_at DESC').to_a
     @show_subject = true
   end
 
@@ -36,7 +36,7 @@ class NotesController < ApplicationController
       #user can not edit notes
       @editable = false
     end
-    render :action => "index"
+    render action: "index"
   end
 
   # GET /notes/new
@@ -49,9 +49,14 @@ class NotesController < ApplicationController
   # POST /notes
   # POST /notes.json
   def create
+    #puts params.inspect
+    tags = params[:tags].split(',')
     @user = current_user
-    @note = Note.new(note_params.except(:document, :subject))
+    @note = Note.new(note_params.except(:document))
+    @note.tag_list = tags
+
     @subjects = @user.faculty.subjects
+    #search object in array
     subject = @subjects.detect{|s| s.id == params[:subject].to_i}
 
     #add relationship
@@ -97,6 +102,7 @@ class NotesController < ApplicationController
     @subjects = @user.faculty.subjects
     @note = Note.find( params[:id] )    
     @subject = @note.subjects.first
+    @tags = @note.tag_list
   end
 
   # PATCH/PUT /notes/1
@@ -104,6 +110,10 @@ class NotesController < ApplicationController
   def update
     # Update subject and document
     @note = Note.find( params[:id] )
+    
+    # update tags list
+    tags = params[:tags].split(',')
+    @note.tag_list = tags
     
     # delete old_subject and add a new one
     subjects = @user.faculty.subjects

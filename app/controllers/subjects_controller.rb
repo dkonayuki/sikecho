@@ -8,11 +8,20 @@ class SubjectsController < ApplicationController
     @subjects = @user.faculty.subjects.search(params[:search])
   end
   
+  #filter in index page
   def filter
     @user = current_user
     #filter from user's faculty subjects
     @subjects = @user.faculty.subjects.select { | subject | subject.semester == params[:semester].to_i }
-    render :action => "index"
+    render action: "index"
+  end
+  
+  #filter in show subject page
+  def notes
+    @subject = Subject.find(params[:id])
+    @notes = @subject.notes.tagged_with(params[:number].to_s)
+    @show_subject = false
+    render action: 'show'
   end
 
   # GET /subjects/1

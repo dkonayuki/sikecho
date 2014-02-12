@@ -84,7 +84,8 @@
         <tr>
           <th class="col-md-2">回数</th>
           <th class="col-md-2">日付</th>
-          <th class="col-md-8">内容</th>
+          <th class="col-md-7">内容</th>
+          <th class="col-md-1"></th>
         </tr>
       </thead>
       <tbody>
@@ -93,6 +94,11 @@
           <td><%= i %>回目</td>
           <td>1月２日</td>
           <td>集合，写像，関係，論理，再帰</td>
+          <td>
+          	<%= link_to notes_in_show_subject_path(number: i, id: @subject.id, anchor: 'notes'), class: 'btn btn-primary btn-xs' do %>
+          	<%= i %>回目
+          	<% end %>
+          </td>
         </tr>
         <% end %>
       </tbody>

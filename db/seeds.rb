@@ -31,4 +31,4 @@ sub_name.each do | name |
   sub.faculties << kougakubu
   sub.teachers << sensei
   sub.save
-end 
+end
