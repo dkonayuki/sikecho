@@ -24,17 +24,19 @@
     	</dl>
     	<hr />
 			<%= text_area_tag 'tags', :tags, id: 'tag-input' %>
-    	<!-- <% if @editable %>
-    		  <%= link_to edit_note_path(@note.id), class: 'btn btn-primary', id: 'note-edit-btn' do %>
-    		  <i class="icon-brush"></i>
-    		  <% end %>    	
-    	<% end %> -->
-    		  <%= link_to 'もどる', :back, class: 'btn btn-default col-md-2 col-md-offset-5' %>
+    	<%= link_to 'もどる', :back, class: 'btn btn-default col-md-2 col-md-offset-5' %>
 	  </div>
 	</div>
 </div>
 <script>
 	$('#tag-input').tagsinput({
+		tagClass: function(item) {
+	    switch (item) {
+	      case '試験対策'  : return 'label label-warning';
+	      case '過去問題': return 'label label-success';
+	      default: return 'label label-info';
+	    }
+  	},
 	  disable: 'true'
 	});
 	<% @tags.each do |tag| %>

@@ -54,9 +54,6 @@
 	   		<div id="remove-all" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>クリア</div>
       </div>
       <%= text_area_tag 'tags', :tags, id: 'tag-input' %>
-      <!-- 
-      <%= f.collection_select :tag_ids, @subjects, :id, :name, {selected: @subjects.first.id}, {multiple: true, class: 'form-control'} %>
-      -->
 		</div>
 	</div>
   <div class="actions ">
@@ -67,10 +64,9 @@
 
 <!-- Initialize the plugin: -->
 <script>
-	//$('#note_tag_ids').chosen();
 	$('.selectpicker').selectpicker();
 	$(document).keypress(function (e) {
-		//disable enter key in textarea
+		//disable enter key in submit form
 	  if (e.which == 13 && e.target.nodeName != "TEXTAREA") return false;
 	  if (e.which == 9 && e.target.nodeName != "TEXTAREA") return false;
 	  if (e.which == 8 && e.target.nodeName != "TEXTAREA") return false;
@@ -84,6 +80,13 @@
 	];
 	//initiate tagsinput	
 	$('#tag-input').tagsinput({
+		tagClass: function(item) {
+	    switch (item) {
+	      case '試験対策'  : return 'label label-warning';
+	      case '過去問題': return 'label label-success';
+	      default: return 'label label-info';
+	    }
+  	},
 		confirmKeys: [13, 9]
 	});
 
@@ -95,6 +98,7 @@
 	  this.tagsinput('input').typeahead('setQuery', '');
 	}, $('#tag-input')));
 	
+	//menu bar
 	$('#add-all').on('click', function() {
 		for (var i=1;i<=15;i++)
 		{ 
