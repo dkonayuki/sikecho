@@ -19,7 +19,7 @@ class SubjectsController < ApplicationController
   #filter in show subject page
   def notes
     @subject = Subject.find(params[:id])
-    @notes = @subject.notes.tagged_with(params[:number].to_s)
+    @notes = @subject.notes.tagged_with(params[:tag])
     @show_subject = false
     render action: 'show'
   end

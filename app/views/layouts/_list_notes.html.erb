@@ -13,11 +13,11 @@
       <% if @show_subject %>
 	      <span class="label label-primary"><%= note.subjects.first.name %></span>
       <% end %>
-      <% if note.tag_list.include?('365') %>
-      	<span class="label label-warning">通年</span>
+      <% if note.tag_list.include?('試験対策') %>
+      	<span class="label label-warning">試験対策</span>
       <% end %>
-      <% if note.tag_list.include?('0') %>
-      	<span class="label label-danger">集中講義</span>
+      <% if note.tag_list.include?('過去問題') %>
+      	<span class="label label-danger">過去問代</span>
       <% end %>
 	      <span class="label label-danger"><%= time_ago_in_words(note.created_at) %> ago</span>
 	      <span class="label label-info"><%= note.user.username %></span>

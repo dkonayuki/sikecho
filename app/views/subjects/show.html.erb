@@ -95,7 +95,7 @@
           <td>1月２日</td>
           <td>集合，写像，関係，論理，再帰</td>
           <td>
-          	<%= link_to notes_in_show_subject_path(number: i, id: @subject.id, anchor: 'notes'), class: 'btn btn-primary btn-xs' do %>
+          	<%= link_to notes_in_show_subject_path(tag: "#{i}回目", id: @subject.id, anchor: 'notes'), class: 'btn btn-primary btn-xs' do %>
           	<%= i %>回目
           	<% end %>
           </td>

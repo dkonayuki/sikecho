@@ -50,8 +50,9 @@ class NotesController < ApplicationController
   # POST /notes
   # POST /notes.json
   def create
-    #puts params.inspect
-    tags = params[:tags].split(',')
+    puts params.inspect
+    tags_text = Moji.zen_to_han(params[:tags])
+    tags = tags_text.split(',')
     @user = current_user
     @note = Note.new(note_params.except(:document))
     @note.tag_list = tags

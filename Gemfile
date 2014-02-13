@@ -60,3 +60,6 @@ gem "bootstrap-sass", "~> 3.1.0.2"
 gem 'carrierwave'
 #resize file
 gem "mini_magick"
+
+#gem moji for japanese character
+gem "moji", "~> 1.6"

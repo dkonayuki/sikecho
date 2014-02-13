@@ -48,9 +48,9 @@
 	<div class="field">
 		<div id='tag-form'>
 			<div id='tag-menu'>
-	   		<div id="add-all" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus-sign"></span>全15回</div>
-	   		<div id="add-year" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus-sign"></span>通年</div>
-	   		<div id="add-special" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus-sign"></span>集中講義</div>
+	   		<div id="add-all" class="btn btn-primary btn-xs">全15回</div>
+	   		<div class="btn btn-primary btn-xs tag-menu-btn">試験対策</div>
+	   		<div class="btn btn-primary btn-xs tag-menu-btn">過去問題</div>
 	   		<div id="remove-all" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>クリア</div>
       </div>
       <%= text_area_tag 'tags', :tags, id: 'tag-input' %>
@@ -78,62 +78,45 @@
 	
 	//local sources
 	var sources = [
-	<% (1..15).each do |i| %>
-	{ "value": <%= i %>, "text":"<%= i %>回目" , "type": "normal" },
-	<% end %>
-	{ "value":365 , "text":"通年" , "type": "year" },
-	{ "value":0 , "text":"集中講義" , "type": "special" }			
+		<% ActsAsTaggableOn::Tag.all.each do |tag| %>
+		"<%= tag %>",
+		<% end %>
 	];
 	//initiate tagsinput	
 	$('#tag-input').tagsinput({
-		confirmKeys: [13, 9],
-		tagClass: function(item) {
-	    switch (item.type) {
-	      case 'normal' 	: return 'label label-info';
-	      case 'year'  		: return 'label label-warning';
-	      case 'special' 	: return 'label label-danger';
-	    }
-	  },
-	  itemValue: 'value',
-	  itemText: 'text',
+		confirmKeys: [13, 9]
 	});
 
 	$('#tag-input').tagsinput('input').typeahead({
 		//or can use prefetch: 'assets_path(cities.json)',
 	  local: sources,
-	  valueKey: 'text'
 	}).bind('typeahead:selected', $.proxy(function (obj, datum) {  
-	  this.tagsinput('add', datum);
+	  this.tagsinput('add', datum.value);
 	  this.tagsinput('input').typeahead('setQuery', '');
 	}, $('#tag-input')));
 	
 	$('#add-all').on('click', function() {
 		for (var i=1;i<=15;i++)
 		{ 
-			$('#tag-input').tagsinput('add', { "value": i, "text": i + '回目', "type": "normal" } );
+			$('#tag-input').tagsinput('add', i + '回目' );
 		}
 	});
-	$('#add-year').on('click', function() {
-		$("#test").append("<option>Utopia</option>");
-		$('#tag-input').tagsinput('add', { "value": 365, "text": '通年', "type": "year" } );
-	});
-	$('#add-special').on('click', function() {
-		$('#tag-input').tagsinput('add', { "value": 0, "text": '集中講義', "type": "special" } );
+	$('.tag-menu-btn').on('click', function() {
+		$('#tag-input').tagsinput('add', this.innerHTML );
 	});
 	$('#remove-all').on('click', function() {
 		$('#tag-input').tagsinput('removeAll');
 	})
 	
+	//fix for left over typeahead
+	$('.tt-query').on('blur', function() {
+		$(this).val('');
+	});
+	
 	//add old tags if exist
 	<% if @tags != nil %>
 		<% @tags.each do |tag| %>
-			<% if tag.to_i === 365 %>
-				$('#tag-input').tagsinput('add', { "value": <%= tag %>, "text": "通年", "type": "year" } );
-			<% elsif tag.to_i === 0 %>
-				$('#tag-input').tagsinput('add', { "value": <%= tag %>, "text": "集中講義", "type": "special" } );
-			<% else %>
-				$('#tag-input').tagsinput('add', { "value": <%= tag %>, "text": "<%= tag %>回目", "type": "normal" } );
-			<% end %>
+				$('#tag-input').tagsinput('add', "<%= tag %>" );
 		<% end %>
 	<% end %>
 	
