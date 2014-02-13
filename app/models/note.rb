@@ -6,4 +6,7 @@ class Note < ActiveRecord::Base
   has_many :documents
   
   acts_as_taggable_on :tags
+  
+  acts_as_readable on: :created_at
+  
 end

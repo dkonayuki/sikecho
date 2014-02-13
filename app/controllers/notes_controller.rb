@@ -5,13 +5,15 @@ class NotesController < ApplicationController
   # GET /notes.json
   def index
     @user = current_user
-    @notes = @user.notes.order('created_at DESC').to_a
+    @notes = @user.notes.order('created_at DESC').to_a #use this method instead of .all
     @show_subject = true
   end
 
   # GET /notes/1
   # GET /notes/1.json
   def show
+    @user = current_user
+    @note.mark_as_read! for: @user
     @tags = @note.tag_list
   end
   
@@ -19,23 +21,28 @@ class NotesController < ApplicationController
     @user = current_user
     @show_subject = true
     
-    #filter/id=1 : user's notes
-    if params[:id].to_i == 1
-      @notes = @user.notes.all(order: "created_at DESC")
+    case params[:type].to_i 
+    when 1    #filter/id=1 : user's notes
+      @notes = @user.notes.order('created_at DESC').to_a
       #user can edit notes
       @editable = true
-    else
-    #filter/id=2 : subject's notes
+    when 2    #filter/id=2 : subject's notes
       @notes = Array.new
       @user.subjects.each do | subject |
-        subject.notes.each do | note |
-          @notes.push note
+        subject.notes.order('created_at DESC').each do | note |
+          @notes << note
         end
       end
       #sort desc
-      @notes.sort_by {| note | note.created_at}.reverse
+      #@notes.sort_by {| note | note.created_at}.reverse
+      #@notes.sort_by(&:created_at).reverse
+      puts @notes.inspect
       #user can not edit notes
       @editable = false
+    when 3
+      
+    else
+      #no implement
     end
     render action: "index"
   end
@@ -64,7 +71,8 @@ class NotesController < ApplicationController
     #add relationship
     @note.subjects << subject
     @note.user = @user
-    
+
+
     #save document
     if !note_params[:document].blank?
       path = save_file( @user, note_params[:document].original_filename, note_params[:document] )
@@ -76,6 +84,8 @@ class NotesController < ApplicationController
     
     respond_to do |format|
       if @note.save
+        # need to save b4 mark as read
+        @note.mark_as_read! for: @user
         format.html { redirect_to notes_url, notice: 'Note was successfully created.' }
         format.json { render action: 'show', status: :created, location: @note }
       else

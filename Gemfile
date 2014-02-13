@@ -60,3 +60,6 @@ gem "mini_magick"
 
 #gem moji for japanese character
 gem "moji", "~> 1.6"
+
+#gem for read/unread messages
+gem 'unread'

@@ -59,6 +59,7 @@ class SubjectsController < ApplicationController
   # PATCH/PUT /subjects/1
   # PATCH/PUT /subjects/1.json
   def update
+    # for inline edit
     @subject = Subject.find(params[:id])
     @subject.description = params[:value]
     respond_to do |format|
