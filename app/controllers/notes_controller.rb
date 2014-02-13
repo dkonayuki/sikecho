@@ -33,9 +33,6 @@ class NotesController < ApplicationController
           @notes << note
         end
       end
-      #sort desc
-      #@notes.sort_by {| note | note.created_at}.reverse
-      #@notes.sort_by(&:created_at).reverse
       #user can not edit notes
       @editable = false
     when 3
@@ -58,7 +55,7 @@ class NotesController < ApplicationController
   # POST /notes
   # POST /notes.json
   def create
-    puts params.inspect
+    #convert full-width to half-width
     tags_text = Moji.zen_to_han(params[:tags])
     tags = tags_text.split(',')
     @user = current_user
@@ -66,7 +63,7 @@ class NotesController < ApplicationController
     @note.tag_list = tags
 
     @subjects = @user.faculty.subjects
-    #search object in array
+    #search object in array , or can do @subject.find_by_id(id)
     subject = @subjects.detect{|s| s.id == params[:subject].to_i}
 
     #add relationship
@@ -78,7 +75,6 @@ class NotesController < ApplicationController
     if !note_params[:document].blank?
       path = save_file( @user, note_params[:document].original_filename, note_params[:document] )
       @document = Document.new(path: path, name: note_params[:document].original_filename)
-      puts note_params[:document].original_filename
       @document.save
       @note.documents << @document
     end

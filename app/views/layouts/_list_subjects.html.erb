@@ -7,7 +7,14 @@
       </div>
       
       <div class="details">
-				<%= subject.description%>
+	      <dt>時間:</dt>
+	      <dd><%= subject.time_name %></dd>
+	      <dd><%= subject.day_name %></dd>
+	      <dt>教師:</dt>
+	      <dd>
+	      		<%= subject.teachers.first.last_name_kanji %>
+	      		<%= subject.teachers.first.first_name_kanji %>
+	      </dd>
 			</div>
  	</li>
  	<% end %>

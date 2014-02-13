@@ -21,35 +21,8 @@
 	 	<a name="description"></a>
 		<h4><i class="icon-chevron-thin-right"></i>概要</h4>
 			<div class="text-content">
-				<a href="#" class="editable"><%= @subject.description %></a>
+				<a href="#" id="subject-description"><%= @subject.description.html_safe %></a>
 			</div>
-			<script>
-				//turn to inline mode
-				$.fn.editable.defaults.mode = 'inline';
-				$(document).ready(function() {
-				    $('.editable').editable({
-						    type: 'textarea',
-						    name: 'description',
-						    pk: <%= @subject.id %>,
-						    url: '/subjects/<%= @subject.id %>',
-						    title: '修正',
-						    ajaxOptions: {
-						        dataType: 'json',
-						        type: 'put'
-						    },
-						    success: function(response, newValue) {
-						        if(response.status == 'error') return response.msg; //msg will be shown in editable form
-						    },
-						    error: function(response, newValue) {
-								    if(response.status === 500) {
-								        return 'Service unavailable. Please try later.';
-								    } else {
-								        return response.statusr;
-								    }
-								}
-						});
-				});
-			</script>
 		<!--for overview section -->
 	 	<a name="details"></a>
 		<h4><i class="icon-chevron-thin-right"></i>詳細</h4>
@@ -82,21 +55,21 @@
 	 	<table class="table table-striped">
       <thead>
         <tr>
-          <th class="col-md-2">回数</th>
-          <th class="col-md-2">日付</th>
+          <th class="col-md-1">回数</th>
+          <th class="col-md-3">日付</th>
           <th class="col-md-7">内容</th>
           <th class="col-md-1"></th>
         </tr>
       </thead>
       <tbody>
-      	<% (1..15).each do | i | %>
+      	<% @subject.outlines.order('number ASC').each do | outline | %>
         <tr>
-          <td><%= i %>回目</td>
-          <td>1月２日</td>
-          <td>集合，写像，関係，論理，再帰</td>
+          <td><%= outline.number %>回目</td>
+          <td><a href="#" data-pk="<%= outline.number %>" class="outline-date"><%= outline.date %></a></td>
+          <td><a href="#" data-pk="<%= outline.number %>" class="outline-content"><%= outline.content %></a></td>
           <td>
-          	<%= link_to notes_in_show_subject_path(tag: "#{i}回目", id: @subject.id, anchor: 'notes'), class: 'btn btn-primary btn-xs' do %>
-          	<%= i %>回目
+          	<%= link_to notes_in_show_subject_path(tag: "#{outline.number}回目", id: @subject.id, anchor: 'notes'), class: 'btn btn-primary btn-xs' do %>
+          	<%= outline.number %>回目
           	<% end %>
           </td>
         </tr>
@@ -115,5 +88,38 @@
 			<%= render 'layouts/list_notes'%>
 	  </div>
 	</div>
-
+	
 </div>
+<script>
+	//turn to inline mode
+	$.fn.editable.defaults.mode = 'inline';
+	$.fn.editable.defaults.ajaxOptions = {dataType: 'json', type: "PUT"};
+	$(document).ready(function() {
+	    $('#subject-description').editable({
+			    type: 'wysihtml5',
+			    name: 'description',
+			    pk: <%= @subject.id %>,
+			    url: '/subjects/<%= @subject.id %>',
+			});
+			
+			$('.outline-date').editable({
+					mode: 'popup',
+			    type: 'combodate',
+			    format: 'YYYY年MM月DD日', //for sending value
+			    viewformat: 'YYYY年MM月DD日', //for view
+			    template: 'YYYY / MM / DD',  //for combodate selector  
+			    name: 'date',
+	        combodate: {
+	                minYear: 2000,
+	                maxYear: 2015,
+	        },
+			    url: '/subjects/<%= @subject.id %>',
+			});
+			
+			$('.outline-content').editable({
+			    type: 'wysihtml5',
+			    name: 'content',
+			    url: '/subjects/<%= @subject.id %>',
+			});
+	});
+</script>

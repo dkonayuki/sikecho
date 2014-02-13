@@ -18,6 +18,9 @@
 //= require bootstrap-editable
 //= require bootstrap-tagsinput
 //= require typeahead.min.js
+//= require moment.min.js
+//= require bootstrap3-wysihtml5.all.min.js
+//= require wysihtml5
 //= require_tree .
 
 

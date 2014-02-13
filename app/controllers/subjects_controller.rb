@@ -1,6 +1,6 @@
 class SubjectsController < ApplicationController
   before_action :set_subject, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /subjects
   # GET /subjects.json
   def index
@@ -61,7 +61,22 @@ class SubjectsController < ApplicationController
   def update
     # for inline edit
     @subject = Subject.find(params[:id])
-    @subject.description = params[:value]
+    case params[:name].to_s
+    when 'description'
+      @subject.description = params[:value]
+    when 'date'
+      #search in array 
+      outline = @subject.outlines.find_by_number(params[:pk])
+      outline.date = DateTime.strptime(params[:value], '%Y年%m月%d日')
+      outline.save
+    when 'content'
+      #search in array 
+      outline = @subject.outlines.find_by_number(params[:pk])
+      outline.content = params[:value]
+      outline.save
+    else
+      #no implement
+    end
     respond_to do |format|
       if @subject.save
         format.html { redirect_to @subject, notice: 'Subject was successfully updated.' }

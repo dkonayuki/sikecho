@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140213072503) do
+ActiveRecord::Schema.define(version: 20140213141115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,15 @@ ActiveRecord::Schema.define(version: 20140213072503) do
     t.integer "subject_id"
   end
 
+  create_table "outlines", force: true do |t|
+    t.integer  "number"
+    t.date     "date"
+    t.text     "content"
+    t.integer  "subject_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "read_marks", force: true do |t|
     t.integer  "readable_id"
     t.integer  "user_id",                  null: false
@@ -71,6 +80,7 @@ ActiveRecord::Schema.define(version: 20140213072503) do
     t.string   "day_name"
     t.string   "place"
     t.integer  "semester"
+    t.integer  "number_of_outlines"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

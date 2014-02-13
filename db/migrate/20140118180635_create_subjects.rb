@@ -10,6 +10,7 @@ class CreateSubjects < ActiveRecord::Migration
       t.string :day_name
       t.string :place
       t.integer :semester
+      t.integer :number_of_outlines
 
       t.timestamps
     end

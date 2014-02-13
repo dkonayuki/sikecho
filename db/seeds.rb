@@ -30,5 +30,9 @@ sub_name.each do | name |
   sub = Subject.create(name: name, time: time, time_name: time_names[time], day: day, day_name: day_names[day], place: 'S421', description: description, semester: semester)
   sub.faculties << kougakubu
   sub.teachers << sensei
+  (1..15).each do | i |
+    outline = Outline.create(number: i, content: '')
+    sub.outlines << outline
+  end
   sub.save
 end
