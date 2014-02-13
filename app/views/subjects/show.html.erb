@@ -12,82 +12,103 @@
     </ul>
 	</div>
 </div>
+
+<!-- main part -->
 <div id="show-subject" class="col-md-10 col-xs-9">
-	<div class="panel panel-primary">
+	<div class="panel panel-success">
 	<!-- Default panel contents -->
-	  <div class="panel-heading text-center"><h4><%= @subject.name %></h4></div>
-	  <div class="panel-body">
-	  <!--for overview section -->
-	 	<a name="description"></a>
-		<h4><i class="icon-chevron-thin-right"></i>概要</h4>
-			<div class="text-content">
-				<a href="#" id="subject-description"><%= @subject.description.html_safe %></a>
-			</div>
-		<!--for overview section -->
-	 	<a name="details"></a>
-		<h4><i class="icon-chevron-thin-right"></i>詳細</h4>
-			<dl class="dl-horizontal">
-	      <dt>推奨学期:</dt>
-	      <dd><%= link_to @subject.semester, filter_subjects_path(semester: @subject.semester) %></dd>
-	      <dt>時間:</dt>
-	      <dd><%= @subject.time_name %></dd>
-	      <dd><%= @subject.day_name %></dd>
-	      <dt>講義室:</dt>
-	      <dd><%= @subject.place %></dd>
-	      <dt>教師:</dt>
-	      <dd>
-	      	<%= link_to @subject.teachers.first do %>
-	      		<%= @subject.teachers.first.last_name_kanji %>
-	      		<%= @subject.teachers.first.first_name_kanji %>
-	      	<% end %>
-	      </dd>
-    	</dl>
-	  </div>
-	</div>
+	  <div class="panel-heading text-center">
+	  	<a data-toggle="collapse" href="#collapseDescription">
+        <h4><%= @subject.name %></h4>
+      </a>
+    </div>
+    
+    <!-- collapse div -->
+   	<div id="collapseDescription" class="panel-collapse collapse in">
+		  <div class="panel-body">
+		  <!--for overview section -->
+		 	<a name="description"></a>
+			<h4><i class="icon-chevron-thin-right"></i>概要</h4>
+				<div class="text-content">
+					<!-- a tag for collapsable panel -->
+					<a href="#" id="subject-description"><%= @subject.description.html_safe %></a>
+				</div>
+			<!--for overview section -->
+		 	<a name="details"></a>
+			<h4><i class="icon-chevron-thin-right"></i>詳細</h4>
+				<dl class="dl-horizontal">
+		      <dt>推奨学期:</dt>
+		      <dd><%= link_to @subject.semester, filter_subjects_path(semester: @subject.semester) %></dd>
+		      <dt>時間:</dt>
+		      <dd><%= @subject.time_name %></dd>
+		      <dd><%= @subject.day_name %></dd>
+		      <dt>講義室:</dt>
+		      <dd><%= @subject.place %></dd>
+		      <dt>教師:</dt>
+		      <dd>
+		      	<%= link_to @subject.teachers.first do %>
+		      		<%= @subject.teachers.first.last_name_kanji %>
+		      		<%= @subject.teachers.first.first_name_kanji %>
+		      	<% end %>
+		      </dd>
+	    	</dl>
+		  </div> <!-- end of panel-body -->	  
+	  </div><!-- end of collapseDescription div -->
+	</div><!-- end of panel -->
 	
 	<div class="panel panel-info">
 	<!-- Default panel contents -->
 	  <!--for overview section -->
 	 	<a name="syllabus"></a>
-	  <div class="panel-heading text-center"><h4>シラバス</h4></div>
-	  <div class="panel-body">
-		
-	 	<table class="table table-striped">
-      <thead>
-        <tr>
-          <th class="col-md-1">回数</th>
-          <th class="col-md-3">日付</th>
-          <th class="col-md-7">内容</th>
-          <th class="col-md-1"></th>
-        </tr>
-      </thead>
-      <tbody>
-      	<% @subject.outlines.order('number ASC').each do | outline | %>
-        <tr>
-          <td><%= outline.number %>回目</td>
-          <td><a href="#" data-pk="<%= outline.number %>" class="outline-date"><%= outline.date %></a></td>
-          <td><a href="#" data-pk="<%= outline.number %>" class="outline-content"><%= outline.content %></a></td>
-          <td>
-          	<%= link_to notes_in_show_subject_path(tag: "#{outline.number}回目", id: @subject.id, anchor: 'notes'), class: 'btn btn-primary btn-xs' do %>
-          	<%= outline.number %>回目
-          	<% end %>
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-	  </div>
-	</div>
+	  <div class="panel-heading text-center">
+	  	<!-- a tag for collapsable panel -->
+	  	<a data-toggle="collapse" href="#collapseSyllabus">
+        <h4>シラバス</h4>
+      </a>
+    </div>
+    
+    <!-- collapse div -->
+	  <div id="collapseSyllabus" class="panel-collapse collapse out">
+		  <div class="panel-body">		
+			 	<table class="table table-striped">
+			    <thead>
+			      <tr>
+			        <th class="col-md-1">回数</th>
+			        <th class="col-md-3">日付</th>
+			        <th class="col-md-8">内容</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			    	<% @subject.outlines.order('number ASC').each do | outline | %>
+			      <tr>
+			        <td><%= link_to "#{outline.number}回目", notes_in_show_subject_path(tag: "#{outline.number}回目", id: @subject.id, anchor: 'notes'), class: 'btn btn-primary btn-xs' %></td>
+			        <td><a href="#" data-pk="<%= outline.number %>" class="outline-date"><%= outline.date %></a></td>
+			        <td><a href="#" data-pk="<%= outline.number %>" class="outline-content"><%= outline.content %></a></td>
+			      </tr>
+			      <% end %>
+			    </tbody>
+			  </table>  
+		  </div> <!-- end of panel-body -->	  
+	  </div><!-- end of collapseSyllabus div -->
+	</div><!-- end of panel -->
 	
 	<div class="panel panel-danger">
 	<!-- Default panel contents -->
 	 	<!--for overview section -->
 	 	<a name="notes"></a>
-	  <div class="panel-heading text-center"><h4>ノート</h4></div>
-	  <div class="panel-body">
-			<%= render 'layouts/list_notes'%>
-	  </div>
-	</div>
+	  <div class="panel-heading text-center">
+	  	<!-- a tag for collapsable panel -->
+	  	<a data-toggle="collapse" href="#collapseNotes">
+        <h4>ノート</h4>
+      </a>
+    </div>
+    <!-- collapse div -->
+	  <div id="collapseNotes" class="panel-collapse collapse in">
+		  <div class="panel-body">
+				<%= render 'layouts/list_notes'%>
+		  </div> <!-- end of panel-body -->	  
+	  </div><!-- end of collapseNotes div -->
+	</div><!-- end of panel -->
 	
 </div>
 <script>
@@ -117,6 +138,7 @@
 			});
 			
 			$('.outline-content').editable({
+					mode: 'popup',
 			    type: 'wysihtml5',
 			    name: 'content',
 			    url: '/subjects/<%= @subject.id %>',
