@@ -36,11 +36,12 @@ class NotesController < ApplicationController
       #sort desc
       #@notes.sort_by {| note | note.created_at}.reverse
       #@notes.sort_by(&:created_at).reverse
-      puts @notes.inspect
       #user can not edit notes
       @editable = false
     when 3
-      
+      @notes = Note.unread_by(@user).order('created_at DESC').to_a
+      #user can not edit notes
+      @editable = false
     else
       #no implement
     end
