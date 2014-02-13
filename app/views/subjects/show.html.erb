@@ -28,14 +28,14 @@
 		  <div class="panel-body">
 		  <!--for overview section -->
 		 	<a name="description"></a>
-			<h4><i class="icon-chevron-thin-right"></i>概要</h4>
+			<i class="glyphicon glyphicon-chevron-right"></i><h4 class="inline">概要</h4>
 				<div class="text-content">
 					<!-- a tag for collapsable panel -->
 					<a href="#" id="subject-description"><%= sanitize(@subject.description) %></a>
 				</div>
 			<!--for overview section -->
 		 	<a name="details"></a>
-			<h4><i class="icon-chevron-thin-right"></i>詳細</h4>
+			<i class="glyphicon glyphicon-chevron-right"></i><h4 class="inline">詳細</h4>
 				<dl class="dl-horizontal">
 		      <dt>推奨学期:</dt>
 		      <dd><%= link_to @subject.semester, filter_subjects_path(semester: @subject.semester) %></dd>

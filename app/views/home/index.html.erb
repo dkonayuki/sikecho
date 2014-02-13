@@ -1,9 +1,6 @@
 <div id="home">
 	<p>
-		<%= Time.now %>
-	</p>
-	<p>
-		ノートが<%= @number_of_notes %>つ作成されました。
+		新着ノート:<%= Note.unread_by(@user).count %>
 	</p>
 	<%= render template: 'schedule/index' %>
 </div>
