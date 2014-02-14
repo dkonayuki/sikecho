@@ -3,9 +3,7 @@
 one:
   type: 
   path: MyString
-  note_id: 1
 
 two:
   type: 
   path: MyString
-  note_id: 1

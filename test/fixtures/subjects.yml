@@ -3,11 +3,9 @@
 one:
   name: MyString
   description: MyText
-  subject_code: MyString
   credit: 1
 
 two:
   name: MyString
   description: MyText
-  subject_code: MyString
   credit: 1
