@@ -118,6 +118,9 @@
 	$(document).ready(function() {
 	    $('#subject-description').editable({
 			    type: 'wysihtml5',
+			    wysihtml5: {
+			    	locale: 'en-US'
+			    },
 			    name: 'description',
 			    pk: <%= @subject.id %>,
 			    url: '/subjects/<%= @subject.id %>',
