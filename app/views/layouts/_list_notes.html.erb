@@ -4,36 +4,36 @@
 <ul>
 <% @notes.each do |note| %>
 	<li class="note-item">
-      
-      <%= link_to image_tag("note_thumbnail.png"), note %>
-      
-      <div class="caption text-center">
-        <h3><%= note.title %></h3>
+      <div class="note-thumbnail">
+      	<%= link_to image_tag("note_thumbnail.png"), note %>
       </div>
-      <% if @show_subject %>
-	      <span class="label label-primary"><%= note.subjects.first.name %></span>
-      <% end %>
-      <% if note.tag_list.include?('試験対策') %>
-      	<span class="label label-warning">試験対策</span>
-      <% end %>
-      <% if note.tag_list.include?('過去問題') %>
-      	<span class="label label-success">過去問題</span>
-      <% end %>
-      <% if note.unread?(@user) %>
-      	<span class="label label-danger">New</span>
-      <% end %>
-	      <span class="label label-info"><%= time_ago_in_words(note.created_at) %> ago</span>
-	      <span class="label label-info"><%= note.user.username %></span>
-      <% if @editable %>
-      <div class="note-menu row">
-      		<%= link_to edit_note_path(note.id), class: 'note-link col-md-6 text-center' do %>
-      		<i class="glyphicon glyphicon-pencil"></i>
-      		<% end %>
-					<%= link_to note, method: :delete, class: 'note-link col-md-6 text-center', data: { confirm: 'Are you sure?' } do %>
-					<i class="glyphicon glyphicon-trash"></i>
-					<% end %>
-			</div>
-			<% end %>
+      <div class="note-caption">
+	      <h4><%= note.title %></h4>
+	      <% if @show_subject %>
+		      <span class="label label-primary"><%= note.subjects.first.name %></span>
+	      <% end %>
+	      <% if note.tag_list.include?('試験対策') %>
+	      	<span class="label label-warning">試験対策</span>
+	      <% end %>
+	      <% if note.tag_list.include?('過去問題') %>
+	      	<span class="label label-success">過去問題</span>
+	      <% end %>
+	      <% if note.unread?(@user) %>
+	      	<span class="label label-danger">New</span>
+	      <% end %>
+		      <span class="label label-info"><%= time_ago_in_words(note.created_at) %> ago</span>
+		      <span class="label label-info"><%= note.user.username %></span>
+	      <% if @editable %>
+	      <div class="note-menu row">
+	      		<%= link_to edit_note_path(note.id), class: 'note-link col-md-6 text-center' do %>
+	      		<i class="glyphicon glyphicon-pencil"></i>
+	      		<% end %>
+						<%= link_to note, method: :delete, class: 'note-link col-md-6 text-center', data: { confirm: 'Are you sure?' } do %>
+						<i class="glyphicon glyphicon-trash"></i>
+						<% end %>
+				</div>
+				<% end %>
+      </div>
  	</li>
 <% end %>
 </ul>
