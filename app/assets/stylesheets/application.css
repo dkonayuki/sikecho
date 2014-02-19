@@ -18,16 +18,28 @@
  * 
  */
 
-/*Main page
- ===============================================================================================*/
+/*Common
+===============================================================================================*/
+
+.has-margin {
+	margin: 10px 0 10px;
+}
+
+img {
+	max-width: 100%;
+}
+
 .inline {
-    display:inline;
+  display: inline;
 }
 
 a:hover {
   outline: 0;
   text-decoration: none !important;
 }
+
+/*Main page
+ ===============================================================================================*/
 
 #main {
 	position: relative;
@@ -75,6 +87,10 @@ body {
 
 /*Navigation bar
  ===============================================================================================*/
+
+#logo:before {
+	content: "Shikechou";
+}
 
 #nav-bar {
 	border-radius: 0;
@@ -303,6 +319,7 @@ border-radius: 2px;
 #profile {
 	max-width: 600px;
 	margin: 0 auto;
+	float: none !important;
 }
 
 #form-edit-profile {
@@ -393,7 +410,6 @@ border-radius: 2px;
 }
 
 #show-subject {
-	margin: 0 auto;
 }
 
 .text-content {

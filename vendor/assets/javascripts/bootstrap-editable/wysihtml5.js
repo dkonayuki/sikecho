@@ -129,7 +129,6 @@ $(function(){
         @default {stylesheets: false}
         **/        
         wysihtml5: {
-            stylesheets: false //see https://github.com/jhollingworth/bootstrap-wysihtml5/issues/183
         }
     });
 

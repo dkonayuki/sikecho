@@ -1,4 +1,4 @@
-<div id="profile">
+<div id="profile" class="col-xs-12">
 	<div class="panel panel-primary">
 	<!-- Default panel contents -->
 	  <div class="panel-heading text-center"><h4>Profile</h4></div>
@@ -19,7 +19,9 @@
 	      <% end %>
     	</dl>
     		  <% if @user == User.find_by_id(session[:user_id]) %>
-    		  <%= link_to '編集', edit_user_path(@user), class: 'btn btn-success col-md-2 col-md-offset-5' %>
+    		  <div class="row text-center">
+    		  	<%= link_to '編集', edit_user_path(@user), class: 'btn btn-success' %>
+  		  	</div>
     		  <% end %>
 	  </div>
 	</div>

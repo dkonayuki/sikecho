@@ -1,5 +1,5 @@
 <!-- sidebar -->
-<div class="col-xs-3 col-md-2 sidebar-offcanvas" id="show-subject-overview" role="navigation">
+<div class="hidden-xs col-md-2 col-sm-2 sidebar-offcanvas" id="show-subject-overview" role="navigation">
 	<div class="bs-sidebar hidden-print affix" role="complementary">
 		<ul class="nav">
 			<hr />
@@ -14,10 +14,11 @@
 </div>
 
 <!-- main part -->
-<div id="show-subject" class="col-md-10 col-xs-9">
+<div id="show-subject" class="col-md-10 col-sm-10 col-xs-12">
 	<div class="panel panel-success">
 	<!-- Default panel contents -->
 	  <div class="panel-heading text-center">
+	  	<!-- a tag for collapsable panel -->
 	  	<a data-toggle="collapse" href="#collapseDescription">
         <h4><%= @subject.name %></h4>
       </a>
@@ -29,8 +30,7 @@
 		  <!--for overview section -->
 		 	<a name="description"></a>
 			<i class="glyphicon glyphicon-chevron-right"></i><h4 class="inline">概要</h4>
-				<div class="text-content">
-					<!-- a tag for collapsable panel -->
+				<div class="text-content has-margin">
 					<a href="#" id="subject-description"><%= sanitize(@subject.description) %></a>
 				</div>
 			<!--for overview section -->
@@ -73,9 +73,9 @@
 			 	<table class="table table-striped">
 			    <thead>
 			      <tr>
-			        <th class="col-md-1">回数</th>
-			        <th class="col-md-3">日付</th>
-			        <th class="col-md-8">内容</th>
+			        <th class="col-md-1 col-xs-1">回数</th>
+			        <th class="col-md-2 col-xs-3">日付</th>
+			        <th class="col-md-9 col-xs-8">内容</th>
 			      </tr>
 			    </thead>
 			    <tbody>
@@ -127,7 +127,6 @@
 			});
 			
 			$('.outline-date').editable({
-					mode: 'popup',
 			    type: 'combodate',
 			    format: 'YYYY年MM月DD日', //for sending value
 			    viewformat: 'YYYY年MM月DD日', //for view
@@ -137,11 +136,11 @@
 	                minYear: 2000,
 	                maxYear: 2015,
 	        },
+	        inputclass: 'btn-xs',
 			    url: '/subjects/<%= @subject.id %>',
 			});
 			
 			$('.outline-content').editable({
-					mode: 'popup',
 			    type: 'wysihtml5',
 			    name: 'content',
 			    url: '/subjects/<%= @subject.id %>',
