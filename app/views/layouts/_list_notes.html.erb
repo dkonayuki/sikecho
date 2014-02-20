@@ -1,24 +1,26 @@
 <ul>
 <% @notes.each do |note| %>
-	<li class="note-item col-xs-12 col-sm-11 col-sm-offset-1 col-md-5 col-md-offset-1">
+	<li class="note-item col-xs-12 col-sm-11 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-3 col-lg-offset-1">
       <div class="note-thumbnail">
       	<span class="helper"></span>
       	<%= link_to image_tag("note_thumbnail.png"), note %>
       </div>
       <div class="note-details">
-	      <h4><%= link_to "#{note.title}", note %></h4>
-	      <% if @show_subject %>
-		      <span class="label label-primary"><%= note.subjects.first.name %></span>
-	      <% end %>
-	      <% if note.tag_list.include?('試験対策') %>
-	      	<span class="label label-warning hidden-xs">試験対策</span>
-	      <% end %>
-	      <% if note.tag_list.include?('過去問題') %>
-	      	<span class="label label-success hidden-xs">過去問題</span>
-	      <% end %>
-	      <% if note.unread?(@user) %>
-	      	<span class="label label-danger">New</span>
-	      <% end %>
+	      <div class="note-title"><%= link_to "#{note.title}", note %></div>
+	      <div class="note-tags">
+		      <% if @show_subject %>
+			      <span class="label label-primary"><%= note.subjects.first.name %></span>
+		      <% end %>
+		      <% if note.tag_list.include?('試験対策') %>
+		      	<span class="label label-warning">試験対策</span>
+		      <% end %>
+		      <% if note.tag_list.include?('過去問題') %>
+		      	<span class="label label-success">過去問題</span>
+		      <% end %>
+		      <% if note.unread?(@user) %>
+		      	<span class="label label-danger">New</span>
+		      <% end %>
+	      </div>
       </div>
       <div class="note-info">
       	<div class="note-time">

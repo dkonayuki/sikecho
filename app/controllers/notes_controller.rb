@@ -24,8 +24,6 @@ class NotesController < ApplicationController
     case params[:type].to_i 
     when 1    #filter/id=1 : user's notes
       @notes = @user.notes.order('created_at DESC').to_a
-      #user can edit notes
-      @editable = true
     when 2    #filter/id=2 : subject's notes
       @notes = Array.new
       @user.subjects.each do | subject |
@@ -33,16 +31,17 @@ class NotesController < ApplicationController
           @notes << note
         end
       end
-      #user can not edit notes
-      @editable = false
     when 3
       @notes = Note.unread_by(@user).order('created_at DESC').to_a
-      #user can not edit notes
-      @editable = false
     else
       #no implement
     end
-    render action: "index"
+    respond_to do |format|
+        format.html { redirect_to :notes }
+        format.js   {}
+        format.json { render json: @notes, status: :ok, location: :notes }
+    end
+    #render action: "index"
   end
 
   # GET /notes/new

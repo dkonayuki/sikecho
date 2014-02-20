@@ -12,10 +12,12 @@
 	    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search' %>
 		<% end %>
 		<ul id="filter-menu" class="col-sm-5 hidden-xs">
-		<li><%= link_to '自分のノート', filter_notes_path(1) %></li>
-	  <li><%= link_to '新着ノート', filter_notes_path(3) %></li>
-	  <li><%= link_to '授業のノート', filter_notes_path(2) %></li>
+		<li><%= link_to '自分のノート', filter_notes_path(1), remote: true %></li>
+		<li><%= link_to '授業のノート', filter_notes_path(2), remote: true %></li>
+	  <li><%= link_to '新着ノート', filter_notes_path(3), remote: true %></li>
 		</ul>
 	</div>
-	<%= render 'layouts/list_notes' %>
+	<div id="notes-list">
+		<%= render 'layouts/list_notes' %>
+	</div>
 </div>

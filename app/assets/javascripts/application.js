@@ -45,4 +45,19 @@ $(document).ready(function() {
 		  isFitWidth: true
 		});
   });*/
+ 
+ 	$('#filter-menu li a').on('click', function() {
+  	$('#filter-menu li a').each(function() {
+  		$( this ).removeClass( "active" );
+  	});
+  	$(this).addClass("active");
+	});
+});
+$(document).on('page:change', function() { 
+	$('#filter-menu li a').on('click', function() {
+  	$('#filter-menu li a').each(function() {
+  		$( this ).removeClass( "active" );
+  	});
+  	$(this).addClass("active");
+	});
 });
