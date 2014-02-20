@@ -25,6 +25,12 @@
     	<hr />
 			<%= text_area_tag 'tags', :tags, id: 'tag-input' %>
     	<%= link_to 'もどる', :back, class: 'btn btn-default col-md-2 col-md-offset-5' %>
+    	<% if @note.user == @user %>
+	      <div class="note-menu">
+	      		<%= link_to '修正', edit_note_path(@note.id), class: 'btn btn-default' %>
+						<%= link_to '削除', @note, method: :delete, class: 'btn btn-default', data: { confirm: 'Are you sure?' } %>
+				</div>
+			<% end %>
 	  </div>
 	</div>
 </div>

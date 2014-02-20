@@ -43,6 +43,12 @@ a:hover {
   text-decoration: none !important;
 }
 
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
 /*Main page
  ===============================================================================================*/
 
@@ -183,14 +189,12 @@ body {
 }
 
 .note-item {
-	background-color: #ffffff;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	border-radius: 4px;
-	padding: 5px;
-	border: 1px solid #dedede;
-  margin-bottom: 20px;
-  height: 100px;
+	position: relative;
+	height: 66px;
+	padding-bottom: 20px;
+	margin: 0 0 20px;
+	list-style: none;
+	border-bottom: 1px solid #eee;
 }
 
 .note-item img {
@@ -199,29 +203,101 @@ body {
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
 	border-radius: 2px;
-	height: 100%;
+	height: 20px;
+	vertical-align: middle;
 }
 
 .note-thumbnail {
 	float: left;
 	height: 100%;
+	margin-right: 10px;
 }
 
-.note-caption {
+.note-details {
+	float: left;
 }
 
-/*
-#notes ul {
-  position: absolute;
+#filter-bar {
+	position: relative;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #ddd;
+	overflow: auto;
 }
-*/
-.note-link {
+
+#filter-option {
+	float: left;
+}
+
+#filter-menu {
+	float: right;
+	margin-top: 8px;
+}
+
+#filter-menu li {
+	float: right;
+	padding-right: 10px;
+}
+
+#filter-menu a:hover, #filter-menu .active {
+	border-bottom: 2px solid #563d7c;
+}
+
+#filter-form {
+	margin: 0px !important;
+	padding-top: 0;
+	padding-bottom: 0;	
+	float: left;
+}
+
+#new-note-btn {
+	float: right;
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+@media (min-width: 768px) {
+  #new-note-btn:after {
+    content: "新規ノート";
+  } 
+}
+
+.note-edit {
 	text-decoration: none;
 	font-size: 30px;
+	position: absolute;
+	top: 3px;
+	right: 3px;
+}
+
+.note-delete {
+	text-decoration: none;
+	font-size: 30px;
+	position: absolute;
+	bottom: 3px;
+	right: 3px;
 }
 
 .note-menu {
-	margin-bottom: 10px;
+	position: relative;
+}
+
+.note-info {
+	float: right;
+	font-size: 11px;
+	color: #999999;
+}
+
+.note-time {
+	top: 5px;
+	right: 10px;
+	position: absolute;
+}
+
+.note-view {
+	bottom: 5px;
+	right: 10px;
+	position: absolute;
 }
 
 #show-note {
