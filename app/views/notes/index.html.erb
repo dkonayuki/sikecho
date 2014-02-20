@@ -1,3 +1,21 @@
 <div id="notes" class="col-md-12 col-xs-12">
-		<%= render 'layouts/list_notes' %>
+	<div id="filter-bar">
+		<ul id="filter-option">
+			<li><span class="glyphicon glyphicon-th"></span></li>
+			<li><span class="glyphicon glyphicon-th-list"></span></li>
+		</ul>
+	  <%= link_to new_note_path, class: 'btn btn-default', id:'new-note-btn' do %>
+	  <span class="glyphicon glyphicon-plus-sign"></span>
+		<% end %>
+	
+	  <%= form_tag subjects_path, method: :get, class: "navbar-form navbar-left col-sm-4", id: 'filter-form' do %>
+	    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search' %>
+		<% end %>
+		<ul id="filter-menu" class="col-sm-5 hidden-xs">
+		<li><%= link_to '自分のノート', filter_notes_path(1) %></li>
+	  <li><%= link_to '新着ノート', filter_notes_path(3) %></li>
+	  <li><%= link_to '授業のノート', filter_notes_path(2) %></li>
+		</ul>
+	</div>
+	<%= render 'layouts/list_notes' %>
 </div>
