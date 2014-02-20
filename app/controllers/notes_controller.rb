@@ -5,8 +5,35 @@ class NotesController < ApplicationController
   # GET /notes.json
   def index
     @user = current_user
-    @notes = @user.notes.order('created_at DESC').to_a #use this method instead of .all
     @show_subject = true
+    
+    puts params.inspect
+    if params[:filter].blank? 
+      @notes = @user.notes.search(params[:search]).order('created_at DESC').to_a #use this method instead of .all
+    else
+      case params[:filter].to_i 
+      when 1    #filter/id=1 : user's notes
+        @notes = @user.notes.order('created_at DESC').to_a
+        @old_filter = 1
+      when 2    #filter/id=2 : subject's notes
+        @notes = Array.new
+        @user.subjects.each do | subject |
+          subject.notes.order('created_at DESC').each do | note |
+            @notes << note
+          end
+        end
+      when 3
+        @notes = Note.unread_by(@user).order('created_at DESC').to_a
+      else
+        #no implement
+      end
+      respond_to do |format|
+        format.html { redirect_to :notes }
+        format.js   {}
+        format.json { render json: @notes, status: :ok, location: :notes }
+      end
+    end
+    
   end
 
   # GET /notes/1
@@ -15,33 +42,6 @@ class NotesController < ApplicationController
     @user = current_user
     @note.mark_as_read! for: @user
     @tags = @note.tag_list
-  end
-  
-  def filter
-    @user = current_user
-    @show_subject = true
-    
-    case params[:type].to_i 
-    when 1    #filter/id=1 : user's notes
-      @notes = @user.notes.order('created_at DESC').to_a
-    when 2    #filter/id=2 : subject's notes
-      @notes = Array.new
-      @user.subjects.each do | subject |
-        subject.notes.order('created_at DESC').each do | note |
-          @notes << note
-        end
-      end
-    when 3
-      @notes = Note.unread_by(@user).order('created_at DESC').to_a
-    else
-      #no implement
-    end
-    respond_to do |format|
-        format.html { redirect_to :notes }
-        format.js   {}
-        format.json { render json: @notes, status: :ok, location: :notes }
-    end
-    #render action: "index"
   end
 
   # GET /notes/new
@@ -56,6 +56,7 @@ class NotesController < ApplicationController
   def create
     #convert full-width to half-width
     tags_text = Moji.zen_to_han(params[:tags])
+    puts tags_text.inspect
     tags = tags_text.split(',')
     @user = current_user
     @note = Note.new(note_params.except(:document))

@@ -53,7 +53,7 @@
 	   		<div class="btn btn-primary btn-xs tag-menu-btn">過去問題</div>
 	   		<div id="remove-all" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>クリア</div>
       </div>
-      <%= text_area_tag 'tags', :tags, id: 'tag-input' %>
+      <%= text_area_tag 'tags', nil, id: 'tag-input' %>
 		</div>
 	</div>
   <div class="actions ">
@@ -82,7 +82,7 @@
 	$('#tag-input').tagsinput({
 		tagClass: function(item) {
 	    switch (item) {
-	      case '試験対策'  : return 'label label-warning';
+	      case '試験対策': return 'label label-warning';
 	      case '過去問題': return 'label label-success';
 	      default: return 'label label-info';
 	    }

@@ -9,4 +9,12 @@ class Note < ActiveRecord::Base
   
   acts_as_readable on: :created_at
   
+  def self.search(search)
+    if search
+      where('title LIKE ?', "%#{search}%")
+    else
+      all
+    end
+  end
+  
 end
