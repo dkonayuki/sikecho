@@ -23,7 +23,7 @@
 //= require bootstrap-editable/wysihtml5
 //= require_tree .
 
-
+	
 $(document).ready(function() {
 /*******************************
     ImagesLoaded 
@@ -46,18 +46,45 @@ $(document).ready(function() {
 		});
   });*/
  
+ 	/*For filter menu active*/
  	$('#filter-menu li a').on('click', function() {
   	$('#filter-menu li a').each(function() {
   		$( this ).removeClass( "active" );
   	});
   	$(this).addClass("active");
+  	$("#filter-form input").val("");
 	});
+	
+	/*For live search*/
+	$("#filter-form input").keyup(function() {
+	  $.ajax({
+		  url: $("#filter-form").attr("action"),
+		  data: $("#filter-form").serialize() + "&filter=" + $("#filter-menu .active").text(), //default contenttype is url text
+		  success: null,
+		  dataType: "script"
+		});
+  });
+  
+
 });
+
 $(document).on('page:change', function() { 
-	$('#filter-menu li a').on('click', function() {
+ 	/*For filter menu active*/
+ 	$('#filter-menu li a').on('click', function() {
   	$('#filter-menu li a').each(function() {
   		$( this ).removeClass( "active" );
   	});
   	$(this).addClass("active");
+  	$("#filter-form input").val("");
 	});
+	
+	/*For live search*/
+	$("#filter-form input").keyup(function() {
+	  $.ajax({
+		  url: $("#filter-form").attr("action"),
+		  data: $("#filter-form").serialize() + "&filter=" + $("#filter-menu .active").text(), //default contenttype is url text
+		  success: null,
+		  dataType: "script"
+		});
+  });
 });
