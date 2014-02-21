@@ -106,8 +106,15 @@ body {
 #nav-bar {
 	border-radius: 0;
 }
+
 #search-bar {
 	width: 300px;
+}
+@media (max-width: 767px) {
+	#search-bar {
+		width: 100%;
+		margin: 0;
+	}
 }
 
 /*Sign in page
@@ -295,7 +302,7 @@ body {
 	font-size: 17px;
 	margin-top: 5px;
 	margin-bottom: 5px;
-	max-width: 230px;
+	max-width: 250px;
 	overflow: hidden;
 	word-wrap: break-word;
 	white-space: nowrap;
