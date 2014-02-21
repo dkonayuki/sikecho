@@ -3,13 +3,13 @@
 	<li class="note-item col-xs-12 col-sm-11 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-0">
       <div class="note-thumbnail">
       	<span class="helper"></span>
-      	<%= link_to image_tag("note_thumbnail.png"), note %>
+      	<%= link_to image_tag("note.png"), note %>
       </div>
       <div class="note-details">
 	      <div class="note-title"><%= link_to "#{note.title}", note %></div>
 	      <div class="note-tags">
 		      <% if @show_subject %>
-			      <span class="label label-primary"><%= note.subjects.first.name %></span>
+			      <span class="label label-info"><%= note.subjects.first.name %></span>
 		      <% end %>
 		      <% if note.tag_list.include?('試験対策') %>
 		      	<span class="label label-warning">試験対策</span>

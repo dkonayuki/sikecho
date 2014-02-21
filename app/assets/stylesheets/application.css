@@ -197,6 +197,12 @@ body {
 	border-bottom: 1px solid #eee;
 }
 
+@media (max-width: 767px) {
+  .note-item {
+  	padding-left: 0px !important;
+  }
+}
+
 .note-item img {
   display: inline-block;
   margin: 0;
@@ -290,8 +296,12 @@ body {
 	margin-bottom: 5px;
 }
 
+.note-title a {
+}
+
 .note-tags {
 	max-width: 200px;
+	font-size: 11px;
 }
 
 .note-info {
@@ -427,11 +437,11 @@ body {
   margin-bottom: 20px;
 }
 
-.caption {
+.subject-caption {
 	text-overflow: ellipsis;
 }
 
-.details {
+.subject-details {
 	text-overflow: ellipsis;
 	overflow: hidden;
 }
