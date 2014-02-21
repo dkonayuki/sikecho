@@ -28,8 +28,6 @@ $(document).ready(function() {
 /*******************************
     ImagesLoaded 
 ********************************/
-  var $notes = $('#notes');
-
 	/*$('#container').on('click', '.nav li a', function() {
     $notes.masonry('reloadItems');
     $notes.masonry('layout');
@@ -45,10 +43,11 @@ $(document).ready(function() {
 		  isFitWidth: true
 		});
   });*/
- 
+
+	 
  	/*For filter menu active*/
  	$('#filter-menu li a').on('click', function() {
- 		$.getScript(this.href); 
+ 		$.getScript(this.href, null); 
  		/* equal to : $.ajax({
 		  url: url,
 		  dataType: "script",
@@ -75,9 +74,10 @@ $(document).ready(function() {
 });
 
 $(document).on('page:change', function() { 
+  
  	/*For filter menu active*/
  	$('#filter-menu li a').on('click', function() {
- 		$.getScript(this.href); 
+ 		$.getScript(this.href, null); 
  		/* equal to : $.ajax({
 		  url: url,
 		  dataType: "script",

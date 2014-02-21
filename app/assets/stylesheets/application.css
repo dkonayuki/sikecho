@@ -43,12 +43,6 @@ a:hover {
   text-decoration: none !important;
 }
 
-.helper {
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-}
-
 /*Main page
  ===============================================================================================*/
 
@@ -181,13 +175,6 @@ body {
 /*Note page
 ===============================================================================================*/
 
-#notes-menu {
-	display: block;
-	position: relative;
-	float: left;
-	text-align: center;
-}
-
 #notes {
 	display: block;
 	position: relative;
@@ -198,12 +185,10 @@ body {
 .note-item {
 	position: relative;
 	height: 66px;
-	padding-bottom: 35px;
 	margin: 0 0 20px;
 	list-style: none;
 	border-bottom: 1px solid #eee;
 }
-
 @media (max-width: 767px) {
   .note-item {
   	padding-left: 0px !important;
@@ -213,112 +198,38 @@ body {
 .note-item img {
   display: inline-block;
   margin: 0;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
-	border-radius: 2px;
 	height: 20px;
-	vertical-align: middle;
 }
 
 .note-thumbnail {
 	float: left;
 	height: 100%;
+	width: 20px;
 	margin-right: 10px;
+	margin-top: 3px;
+	background-image: url('note.png'); /* use background to preload */
+	background-size:20px 20px;
+	background-repeat:no-repeat;
 }
 
 .note-details {
 	float: left;
 }
 
-#filter-bar {
-	position: relative;
-	margin-bottom: 20px;
-	border-bottom: 1px solid #ddd;
-	overflow: auto;
-}
-
-#filter-option {
-	float: left;
-}
-
-#filter-menu {
-	float: right;
-	margin-top: 8px;
-}
-
-#filter-menu li {
-	float: right;
-	padding-right: 10px;
-}
-
-#filter-menu a:hover, #filter-menu .active {
-	border-bottom: 2px solid #563d7c;
-}
-
-#filter-menu a {
-	padding-bottom: 5px;
-}
-
-#filter-form {
-	margin: 0px !important;
-	padding-top: 0;
-	padding-bottom: 0;	
-	float: left;
-}
-
-#new-note-btn {
-	float: right;
-	position: relative;
-	display: inline-block;
-	vertical-align: middle;
-}
-
-@media (min-width: 768px) {
-  #new-note-btn:after {
-    content: "新規ノート";
-  } 
-}
-
-.note-edit {
-	text-decoration: none;
-	font-size: 30px;
-	position: absolute;
-	top: 3px;
-	right: 3px;
-}
-
-.note-delete {
-	text-decoration: none;
-	font-size: 30px;
-	position: absolute;
-	bottom: 3px;
-	right: 3px;
-}
-
-.note-menu {
-}
-
 .note-title {
 	font-size: 17px;
 	margin-top: 5px;
 	margin-bottom: 5px;
-	max-width: 250px;
 	overflow: hidden;
 	word-wrap: break-word;
 	white-space: nowrap;
 	text-overflow: ellipsis; 
-}
-@media (max-width: 767px) {
-  .note-title  {
-		max-width: 180px;
-	}
 }
 
 .note-title a {
 }
 
 .note-tags {
-	max-width: 200px;
 	font-size: 11px;
 }
 
@@ -340,13 +251,61 @@ body {
 	position: absolute;
 }
 
+#filter-bar {
+	position: relative;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #ddd;
+	overflow: auto;
+}
+
+#filter-option {
+	float: left;
+}
+
+#filter-menu {
+	float: right;
+	margin-top: 16px;
+}
+
+#filter-menu li {
+	float: right;
+	padding-right: 10px;
+}
+
+#filter-menu a:hover, #filter-menu .active {
+	border-bottom: 3px solid #563d7c;
+}
+
+#filter-menu a {
+	padding-bottom: 10px;
+}
+
+#filter-form {
+	margin: 0px !important;
+	padding-top: 0;
+	padding-bottom: 0;	
+	float: left;
+}
+
+#new-note-btn {
+	float: right;
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+}
+@media (min-width: 768px) {
+  #new-note-btn:after {
+    content: "新規ノート";
+  } 
+}
+
 #show-note {
 	max-width: 600px;
 	margin: 0 auto;
 	position: relative;
 }
 
-#show-note:hover #note-edit-btn{
+#show-note:hover #note-edit-btn { 
 	display: block;
 }
 
@@ -364,7 +323,8 @@ body {
 	color: #d9534f;
 	display: none;
 }
-.document:hover #document-delete-btn{
+
+.document:hover #document-delete-btn {
 	display: inline-block;
 }
 
@@ -430,6 +390,7 @@ body {
 
 /* Subject page 
  ===============================================================================================*/
+
 #subjects-menu {
 	display: block;
 	position: relative;
@@ -444,7 +405,8 @@ body {
 }
 
 .subject-item {
-	width: 200px;
+	width: 250px;
+	height: 80px;
 	background-color: #ffffff;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
@@ -453,15 +415,53 @@ body {
 	border: 1px solid #dedede;
 	display: inline-block;
   margin-bottom: 20px;
+	position: relative;
 }
 
-.subject-caption {
-	text-overflow: ellipsis;
+.subject-item img {
+  display: inline-block;
+  margin: 0;
+	height: 20px;
+}
+
+.subject-thumbnail {
+	float: left;
+	height: 100%;
+	margin-right: 10px;
+	margin-top: 3px;
 }
 
 .subject-details {
-	text-overflow: ellipsis;
-	overflow: hidden;
+	float: left;
+}
+
+.subject-name {
+	font-size: 17px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	max-width: 200px;
+	word-wrap: break-word;
+	text-overflow: ellipsis; 
+}
+
+.subject-teacher {
+	max-width: 100px;
+	font-size: 11px;
+	position: absolute;
+	bottom: 5px;
+	left: 35px;
+}
+
+.subject-info {
+	float: right;
+	font-size: 11px;
+	color: #999999;
+}
+
+.subject-notes-number {
+	bottom: 5px;
+	right: 10px;
+	position: absolute;
 }
 
 #show-subject {

@@ -2,8 +2,6 @@
 <% @notes.each do |note| %>
 	<li class="note-item col-xs-12 col-sm-11 col-sm-offset-1 col-md-5 col-md-offset-1">
       <div class="note-thumbnail">
-      	<span class="helper"></span>
-      	<%= link_to image_tag("note.png"), note %>
       </div>
       <div class="note-details">
 	      <div class="note-title"><%= link_to "#{note.title}", note %></div>
@@ -34,3 +32,15 @@
  	</li>
 <% end %>
 </ul>
+<script>
+	$(document).ready(function() {
+		/*For note dynamic max width*/
+	  setMaxWidth();
+	  $( window ).on( "resize", setMaxWidth ); //Remove this if it's not needed. It will react when window changes size.
+	
+	  function setMaxWidth() {
+	  	$(".note-title").css("maxWidth", ( $('.note-item').width() - $('.note-thumbnail').outerWidth(true) - 1 ) + "px" ); //outerWidth(true): include margin
+	  	$(".note-tags").css("maxWidth", ( $('.note-item').width() - $('.note-thumbnail').outerWidth(true) - 1 ) + "px" );
+	  }
+	});
+</script>

@@ -1,15 +1,24 @@
 <ul>
 <% @subjects.each do |subject| %>
 	<%= link_to subject do %>
-	<li class="subject-item"> 
-      <div class="subject-caption text-center">
-        <h4><%= subject.name %></h4>
-      </div>
-      
+	<li class="subject-item">
+			<div class="subject-thumbnail">
+      	<span class="helper"></span>
+      	<%= image_tag("lecture.png") %>
+      </div> 
+			
       <div class="subject-details">
+	      <div class="subject-name"><%= subject.name %></div>
+	      <div class="subject-teacher">
 	      		<%= subject.teachers.first.last_name_kanji %>
 	      		<%= subject.teachers.first.first_name_kanji %>
-			</div>
+	      </div>
+      </div>
+      <div class="subject-info">
+      	<div class="subject-notes-number">
+    		<span class="glyphicon glyphicon-eye-open"></span>20
+  			</div>
+    	</div>
  	</li>
  	<% end %>
 <% end %>
