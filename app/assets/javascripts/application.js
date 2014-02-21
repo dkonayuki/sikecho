@@ -48,11 +48,18 @@ $(document).ready(function() {
  
  	/*For filter menu active*/
  	$('#filter-menu li a').on('click', function() {
+ 		$.getScript(this.href); 
+ 		/* equal to : $.ajax({
+		  url: url,
+		  dataType: "script",
+		  success: success
+		}); */
   	$('#filter-menu li a').each(function() {
   		$( this ).removeClass( "active" );
   	});
   	$(this).addClass("active");
   	$("#filter-form input").val("");
+  	return false;
 	});
 	
 	/*For live search*/
@@ -63,19 +70,25 @@ $(document).ready(function() {
 		  success: null,
 		  dataType: "script"
 		});
+		return false;
   });
-  
-
 });
 
 $(document).on('page:change', function() { 
  	/*For filter menu active*/
  	$('#filter-menu li a').on('click', function() {
+ 		$.getScript(this.href); 
+ 		/* equal to : $.ajax({
+		  url: url,
+		  dataType: "script",
+		  success: success
+		}); */
   	$('#filter-menu li a').each(function() {
   		$( this ).removeClass( "active" );
   	});
   	$(this).addClass("active");
   	$("#filter-form input").val("");
+  	return false;
 	});
 	
 	/*For live search*/
@@ -86,5 +99,6 @@ $(document).on('page:change', function() {
 		  success: null,
 		  dataType: "script"
 		});
+		return false;
   });
 });

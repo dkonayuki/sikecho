@@ -8,13 +8,13 @@
 	  <span class="glyphicon glyphicon-plus-sign"></span>
 		<% end %>
 	
-	  <%= form_tag notes_path, method: :get, class: "navbar-form navbar-left col-sm-4", id: 'filter-form', remote: true do %>
+	  <%= form_tag notes_path, method: :get, class: "navbar-form navbar-left", id: 'filter-form' do %>
 	    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search' %>
 		<% end %>
 		<ul id="filter-menu" class="col-sm-5 hidden-xs">
-		<li><%= link_to '自分のノート', notes_path(filter: '自分のノート'), remote: true, class: 'active' %></li>
-		<li><%= link_to '授業のノート', notes_path(filter: '授業のノート'), remote: true %></li>
-	  <li><%= link_to '新着ノート', notes_path(filter: '新着ノート'), remote: true %></li>
+		<li><%= link_to '自分のノート', notes_path(filter: '自分のノート'), class: 'active' %></li>
+		<li><%= link_to '授業のノート', notes_path(filter: '授業のノート') %></li>
+	  <li><%= link_to '新着ノート', notes_path(filter: '新着ノート') %></li>
 		</ul>
 	</div>
 	<div id="notes-list">
