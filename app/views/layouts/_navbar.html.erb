@@ -14,7 +14,7 @@
     <%= link_to "", home_path, class: 'navbar-brand', id: 'logo' %>
   </div>
   
-	<!-- Collect the nav links, forms, and other content for toggling -->
+	<!-- User info -->
 	<div class="collapse navbar-collapse hidden-xs" id="navbar-collapse-3">
 		<ul class="nav navbar-nav navbar-right">
     	<li class="dropdown">
@@ -28,7 +28,7 @@
     </ul>
   </div><!-- /.navbar-collapse -->
   
-  <!-- Collect the nav links, forms, and other content for toggling -->
+  <!-- Menu bar -->
   <div class="collapse navbar-collapse" id="navbar-collapse-1">
     <ul class="nav navbar-nav">
     	<!-- <li class="<%= 'active' if params[:controller] == 'home' %> hidden-sm"><%= link_to 'My Page', home_path %></li> -->
@@ -54,7 +54,7 @@
 		<% end %>
   </div><!-- /.navbar-collapse -->
   
-  	<!-- Collect the nav links, forms, and other content for toggling -->
+  <!-- Search bar -->
   <div class="collapse navbar-collapse" id="navbar-collapse-2">
 	<%= form_tag subjects_path, method: :get, class: "navbar-form navbar-left visible-xs", id: 'search-bar' do %>
 	  <div class="input-group">

@@ -14,3 +14,25 @@
 .navbar-header {
 	text-align: center;
 }
+
+.dropdown-menu {
+	border-radius: 0;
+	box-shadow: none;
+}
+
+.btn {
+	border-radius: 0;
+}
+
+.form-control {
+	border-radius: 0;
+}
+
+.navbar-toggle {
+	border-radius: 0;
+}
+
+.label {
+	padding: 3px 7px;
+	border-radius: 0;
+}

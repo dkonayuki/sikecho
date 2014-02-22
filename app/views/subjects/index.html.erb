@@ -1,14 +1,25 @@
-<div id="subjects-menu" class="col-md-3 col-xs-3">
+<div id="subjects-menu">
 	<div class="btn-group-vertical">
-		<%= link_to '全学年', subjects_path, class: 'btn btn-lg btn-primary' %>
+		
+	</div>
+	<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+    <span class="glyphicon glyphicon-cog"></span> <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
 		<% (1..8).each do | i |%>
-			<%= link_to filter_subjects_path(semester: i), class: 'btn btn-lg btn-default' do %>
+			<li>
+			<%= link_to filter_subjects_path(semester: i) do %>
 			<%= i %>学期
 			<% end %>
+			</li>
 		<% end %>
-	 	<button type="button" class="btn btn-lg btn-info">時間割表</button>
+		<li class="divider"></li>
+  	<li><%= link_to '全学年', subjects_path %></li>
+  </ul>
 	</div>
 </div>
-<div id="subjects" class="col-md-9 col-xs-9">
+
+<div id="subjects" class="col-md-12">
 <%= render 'layouts/list_subjects'%>
 </div>

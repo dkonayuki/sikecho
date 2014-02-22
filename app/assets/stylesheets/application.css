@@ -74,6 +74,7 @@ a:hover {
 
 html,
 body {
+	background-color: #f1f4f9 !important;
   height: 100%;
   /* The html and body elements cannot have any padding or margin. */
 }
@@ -91,7 +92,8 @@ body {
 /* Set the fixed height of the footer here */
 #footer {
   height: 60px;
-  background-color: #f5f5f5;
+  background-color: #fff;
+  border-top: 1px solid #e7e7e7;
 }
 
 /*Navigation bar
@@ -106,6 +108,7 @@ body {
 #nav-bar {
 	border-radius: 0;
 	background-color: #fff;
+	margin-bottom: 0;
 }
 
 #nav-bar .nav > li > a:hover, #nav-bar .nav > li > a:focus {
@@ -191,9 +194,6 @@ body {
 	padding: 30px 19px 10px;
 	background-color: #fff;
 	border: 1px solid #ddd;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
 }
 
 #tag-form:after {
@@ -207,15 +207,14 @@ body {
 	background-color: #f5f5f5;
 	border: 1px solid #ddd;
 	color: #9da0a4;
-	-webkit-border-radius: 4px 0 4px 0;
-	-moz-border-radius: 4px 0 4px 0;
-	border-radius: 4px 0 4px 0;
 }
 
 /*Note page
 ===============================================================================================*/
 
 #notes {
+	background: #fff;
+	padding-top: 10px;
 }
 
 .note-item {
@@ -335,15 +334,8 @@ body {
   } 
 }
 
-#show-note {
-	max-width: 600px;
-	margin: 0 auto;
-	position: relative;
-}
-
-#show-note:hover #note-edit-btn { 
-	display: block;
-}
+/*Show Note page
+ *  ===============================================================================================*/
 
 #note-edit-btn {
 	position: absolute;
@@ -362,6 +354,85 @@ body {
 
 .document:hover #document-delete-btn {
 	display: inline-block;
+}
+
+#show-note-thumbnail {
+	float: left;
+}
+
+@media (max-width: 469px) {
+	#show-note-thumbnail {
+		display: none;
+	}
+	#show-note-desc {
+	margin-left: 0px !important;
+	}
+	#show-note h4 {
+		text-align: center;
+	}
+	#show-note {
+		margin: 0 15px !important;
+	}
+}
+
+#show-note {
+	margin: 0 auto;
+	padding-top: 10px;
+	padding-bottom: 10px;	
+	max-width: 600px;
+	background-color: #f1f4f9;
+}
+
+#show-note-content {
+	background-color: #fff;
+	padding: 28px;
+	border: 1px solid #eee;
+	position: relative;
+}
+
+#show-note-thumbnail img {
+	height: 60px;
+	width: 60px;
+}
+
+#show-note-desc {
+	margin-left: 105px;
+	font-size: 0.95em;
+	line-height: 1.5;
+}
+
+#show-note p {
+	line-height: 1.5;
+}
+
+#show-note h4 {
+	text-transform: uppercase;
+	font-size: 26px;
+	font-weight: normal;
+	margin: 5px 5px 10px 5px;
+	padding: 5px 5px 15px 0px;
+}
+
+#show-note-menu {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+}
+
+#show-note-menu a {
+	margin-left: 10px;
+}
+
+.label-custom {
+	background: #fff;
+	color: #aaa !important;
+	padding: 8px 20px;
+	line-height: 20px;
+	border: 1px solid #eee;
+	font-size: 11px;
+	text-transform: uppercase;
+	display: inline-block;
+	margin: 3px 2px;
 }
 
 /*Profile
@@ -430,14 +501,16 @@ body {
 #subjects-menu {
 	display: block;
 	position: relative;
-	float: left;
-	text-align: center;
+	margin-bottom: 20px;
 }
+
 #subjects {
 	display: block;
 	position: relative;
-	float: right;
-	margin: 10px auto 0;
+}
+
+#subjects ul {
+	text-align: center;
 }
 
 .subject-item {
@@ -469,6 +542,7 @@ body {
 
 .subject-details {
 	float: left;
+	text-align: left;
 }
 
 .subject-name {
@@ -501,7 +575,12 @@ body {
 }
 
 .subject-notes-number img {
-	
+	width: 11px;
+	height: 11px;
+	margin-bottom: 3px;
+}
+
+.subject-notes-number span {
 }
 
 #show-subject {

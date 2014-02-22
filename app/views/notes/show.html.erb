@@ -1,50 +1,53 @@
 <div id="show-note">
-	<div class="panel panel-danger">
-	<!-- Default panel contents -->
-	  <div class="panel-heading text-center"><h4><%= @note.title %></h4></div>
-	  <div class="panel-body">
-	  	<dl class="dl-horizontal">
-	      <dt>内容:</dt>
-	      <dd><%= @note.content %></dd>
-	      <dt>科目:</dt>
-	      <dd><%= link_to @note.subjects.first.name, @note.subjects.first %></dd>
-	      <dt>ユーザー:</dt>
-	      <dd><%= link_to @note.user.username, @note.user %></dd>
-	      <dt>作成日:</dt>
-	      <dd><%= @note.created_at %></dd>
-	      <hr />
-	      <dt>資料：</dt>
-	      <% if @note.documents.empty? %>
-	      	<dd>まだ資料がありません。</dd>
+	<div id="show-note-content">
+		<div id="show-note-thumbnail">
+			<%= image_tag("note.png")  %>
+		</div>
+		<div id="show-note-desc">
+			<h4><%= @note.title %></h4>
+			<hr />
+			<p>
+				<%= @note.content %>
+			</p>
+			<p>
+				<strong>科目:</strong>
+				<%= link_to @note.subjects.first.name, @note.subjects.first %>
+			</p>
+			<p>
+				<strong>ユーザー:</strong>
+				<%= link_to @note.user.username, @note.user %>
+			</p>
+			<p>
+				<strong>作成日:</strong>
+				<%= @note.created_at %>
+			</p>
+			<hr />
+			<p>
+				<strong>資料:</strong>
+				<% if @note.documents.empty? %>
+	    	<dd>まだ資料がありません。</dd>
 	      <% else %>
 		      <% @note.documents.each do |document| %>
 					  <dd><%= link_to "#{document.name}", download_path(document.id) %></dd>
 					<% end %>
 				<% end %>
-    	</dl>
-    	<hr />
-			<%= text_area_tag 'tags', :tags, id: 'tag-input' %>
-    	<% if @note.user == @user %>
-    	<div id="note-menu">
-    		<%= link_to '修正', edit_note_path(@note.id), class: 'btn btn-primary col-sm-2 col-sm-offset-2 col-xs-3 col-xs-offset-1' %>
-				<%= link_to '削除', @note, method: :delete, class: 'btn btn-danger col-sm-2 col-sm-offset-1 col-xs-3 col-xs-offset-1', data: { confirm: 'Are you sure?' } %>
-    	</div>
+			</p>
+			<hr />
+			<ul>
+				<% @tags.each do |tag| %>
+				<li class="label-custom"><%= tag %></li>
+				<% end %>
+			</ul>
+		</div>
+		<% if @note.user == @user %>
+		<div id="show-note-menu">
+			<%= link_to edit_note_path(@note.id) do %>
+				<span class="glyphicon glyphicon-pencil"></span>
 			<% end %>
-	  </div>
+			<%= link_to @note, method: :delete, data: { confirm: 'Are you sure?' } do %>
+				<span class="glyphicon glyphicon-remove"></span>
+			<% end %>
+		</div>
+		<% end %>
 	</div>
 </div>
-<script>
-	$('#tag-input').tagsinput({
-		tagClass: function(item) {
-	    switch (item) {
-	      case '試験対策'  : return 'label label-warning';
-	      case '過去問題': return 'label label-success';
-	      default: return 'label label-info';
-	    }
-  	},
-	  disable: 'true'
-	});
-	<% @tags.each do |tag| %>
-			$('#tag-input').tagsinput('add', "<%= tag %>" );
-	<% end %>
-</script>
