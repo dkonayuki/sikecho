@@ -119,7 +119,8 @@
 	    $('#subject-description').editable({
 			    type: 'wysihtml5',
 			    wysihtml5: {
-			    	locale: 'en-US'
+			    	locale: 'en-US',
+			    	size: 'sm'
 			    },
 			    name: 'description',
 			    pk: <%= @subject.id %>,
@@ -128,6 +129,10 @@
 			
 			$('.outline-date').editable({
 			    type: 'combodate',
+			    wysihtml5: {
+			    	locale: 'en-US',
+			    	size: 'xs'
+			    },
 			    format: 'YYYY年MM月DD日', //for sending value
 			    viewformat: 'YYYY年MM月DD日', //for view
 			    template: 'YYYY / MM / DD',  //for combodate selector  
@@ -136,12 +141,15 @@
 	                minYear: 2000,
 	                maxYear: 2015,
 	        },
-	        inputclass: 'btn-xs',
 			    url: '/subjects/<%= @subject.id %>',
 			});
 			
 			$('.outline-content').editable({
 			    type: 'wysihtml5',
+			    wysihtml5: {
+			    	locale: 'en-US',
+			    	size: 'sm'
+			    },
 			    name: 'content',
 			    url: '/subjects/<%= @subject.id %>',
 			});

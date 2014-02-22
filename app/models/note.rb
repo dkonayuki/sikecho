@@ -13,9 +13,9 @@ class Note < ActiveRecord::Base
     if search
       #where('title LIKE ?', "%#{search}%")
       q = "%#{search}%"
-        Note.select('distinct notes.*').joins("LEFT JOIN taggings on Notes.id = taggings.taggable_id")
-        .joins("LEFT JOIN tags on tags.id = taggings.tag_id")
-        .where('title LIKE ? OR tags.name LIKE ?', q, q )
+      select('distinct notes.*').joins("LEFT JOIN taggings on Notes.id = taggings.taggable_id")
+      .joins("LEFT JOIN tags on tags.id = taggings.tag_id").joins(:subjects)
+      .where('title LIKE ? OR tags.name LIKE ? OR subjects.name LIKE ?', q, q, q )
     else
       all
     end

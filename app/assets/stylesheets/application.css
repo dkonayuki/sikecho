@@ -43,13 +43,6 @@ a:hover {
   text-decoration: none !important;
 }
 
-.form-control:focus {
-	border-color: #4cae4c !important;
-	outline: 0;
-	-webkit-box-shadow: none !important;
-	box-shadow: none !important;
-}
-
 .badge-important {
 	background-color: #b94a48 !important;
 }
@@ -123,13 +116,39 @@ body {
 }
 
 #search-bar {
-	width: 300px;
+	border: none !important;
 }
-@media (max-width: 767px) {
+@media (min-width: 768px) {
 	#search-bar {
-		width: 100%;
-		margin: 0;
+		width: 285px;
 	}
+}
+
+#navbar-search {
+	padding: 7px 15px !important;
+}
+
+#navbar-menu {
+	margin-right: 0 !important;
+	margin-left: 15px;
+}
+
+@media (max-width: 767px) {
+	#logo {
+	  float: none !important;
+		margin: auto auto;
+		display: table;
+  }
+}
+
+@media (min-width: 768px) {
+	#navbar-collapse-1 {
+		padding: 0 !important;
+	}
+}
+
+#navbar-collapse-3 {
+	float: right;
 }
 
 /*Sign in page

@@ -1,0 +1,16 @@
+@media (min-width: 768px) {
+	.navbar-collapse.collapse {
+		display: table !important;
+	}
+}
+
+.form-control:focus {
+	border-color: #4cae4c !important;
+	outline: 0;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+}
+
+.navbar-header {
+	text-align: center;
+}
