@@ -61,7 +61,7 @@ class NotesController < ApplicationController
     puts tags_text.inspect
     tags = tags_text.split(',')
     @user = current_user
-    @note = Note.new(note_params.except(:document))
+    @note = Note.new(note_params)
     @note.tag_list = tags
 
     @subjects = @user.faculty.subjects
@@ -74,9 +74,10 @@ class NotesController < ApplicationController
 
 
     #save document
-    if !note_params[:document].blank?
-      path = save_file( @user, note_params[:document].original_filename, note_params[:document] )
-      @document = Document.new(path: path, name: note_params[:document].original_filename)
+    puts params.inspect
+    if !params[:document].blank?
+      path = save_file( @user, params[:document].original_filename, params[:document] )
+      @document = Document.new(path: path, name: params[:document].original_filename)
       @document.save
       @note.documents << @document
     end
@@ -120,7 +121,7 @@ class NotesController < ApplicationController
   # PATCH/PUT /notes/1.json
   def update
     # Update subject and document
-    @note = Note.find( params[:id] )
+    #@note = Note.find( params[:id] )
     
     # update tags list
     tags = params[:tags].split(',')
@@ -134,16 +135,16 @@ class NotesController < ApplicationController
     @note.subjects << subject
     
     # update document
-    if !note_params[:document].blank?
-      path = save_file( @user, note_params[:document].original_filename, note_params[:document] )
-      @document = Document.new(path: path, name: note_params[:document].original_filename)
-      puts note_params[:document].original_filename
+    if !params[:document].blank?
+      path = save_file( @user, params[:document].original_filename, params[:document] )
+      @document = Document.new(path: path, name: params[:document].original_filename)
+      puts params[:document].original_filename
       @document.save
       @note.documents << @document
     end
     
     respond_to do |format|
-      if @note.update(note_params.except(:document))
+      if @note.update(note_params)
         format.html { redirect_to notes_url, notice: 'Note was successfully updated.' }
         format.json { head :no_content }
       else
@@ -171,7 +172,8 @@ class NotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
-      params.require(:note).permit(:title, :content, :user_id, :document)
+      params.permit(:document, :tags, :subject, :old_subject)
+      params.require(:note).permit(:title, :content)
     end
 
 end

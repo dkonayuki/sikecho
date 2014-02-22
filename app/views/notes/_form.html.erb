@@ -30,7 +30,7 @@
   	<% end %>
   </div>
   <div class="field">
-    <%= f.label :document, '資料' %><br>
+    <%= label_tag :document, '資料' %><br>
     		<% if @note.documents.empty? %>
 	      	<p>まだ資料がありません。</p>
   			<% else %>
@@ -43,7 +43,7 @@
 					  </p>
 					<% end %>
 				<% end %>
-  	<%= f.file_field :document %><br />  		
+  	<%= file_field_tag :document %><br />  		
 	</div>
 	<div class="field">
 		<div id='tag-form'>

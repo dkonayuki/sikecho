@@ -60,7 +60,6 @@ class SubjectsController < ApplicationController
   # PATCH/PUT /subjects/1.json
   def update
     # for inline edit
-    @subject = Subject.find(params[:id])
     case params[:name].to_s
     when 'description'
       @subject.description = params[:value]
@@ -106,6 +105,7 @@ class SubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
-      params.require(:subject).permit(:name, :description, :credit)
+      params.permit(:name, :value)
+      params.require(:subject).permit(:name, :description)
     end
 end
