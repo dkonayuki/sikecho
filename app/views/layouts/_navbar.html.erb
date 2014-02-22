@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse" role="navigation" id="nav-bar">
+<nav class="navbar navbar-default" role="navigation" id="nav-bar">
   <!-- Brand and toggle get grouped for better mobile display -->
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -18,14 +18,14 @@
       <li class="<%= 'active' if params[:controller] == 'notes' %>">
       	<%= link_to notes_path do %>
 	      	ノート
-	      	<span class="badge"><%= Note.unread_by(@user).count %></span>
+	      	<span class="badge badge-important"><%= Note.unread_by(@user).count %></span>
       	<% end %>
     	</li>
       <li class="<%= 'active' if params[:controller] == 'users' %>"><%= link_to 'プロフィール', @user %></li>
     </ul>
   	<%= form_tag subjects_path, method: :get, class: "navbar-form navbar-left", id: 'search-bar' do %>
   	  <div class="input-group">
-		    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search' %>
+		    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: '検索' %>
 				<div class="input-group-btn">
 					<%= button_tag(type: "submit", class: "btn btn-success") do %>
 					  <i class="glyphicon glyphicon-search"></i>
@@ -40,7 +40,7 @@
           <ul class="dropdown-menu">
 						<li><%= link_to 'プロフィール', @user %></li>           
 						<li class="divider"></li>
-      			<li><%= link_to 'Logout', logout_path, method: :delete%></li>
+      			<li><%= link_to 'ログアウト', logout_path, method: :delete%></li>
           </ul>
         </li>
     </ul>

@@ -43,6 +43,17 @@ a:hover {
   text-decoration: none !important;
 }
 
+.form-control:focus {
+	border-color: #4cae4c !important;
+	outline: 0;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+}
+
+.badge-important {
+	background-color: #b94a48 !important;
+}
+
 /*Main page
  ===============================================================================================*/
 
@@ -95,10 +106,20 @@ body {
 
 #logo:before {
 	content: "Shikechou";
+	color: #563d7c;
+	font-weight: bold;
 }
 
 #nav-bar {
 	border-radius: 0;
+	background-color: #fff;
+}
+
+#nav-bar .nav > li > a:hover, #nav-bar .nav > li > a:focus {
+  -webkit-transition: border-color .218s;
+	transition: border-color .218s;
+	border-color: #427fed !important;
+	color: #262626 !important;
 }
 
 #search-bar {
@@ -176,10 +197,6 @@ body {
 ===============================================================================================*/
 
 #notes {
-	display: block;
-	position: relative;
-	float: right;
-	margin: 10px auto 0;
 }
 
 .note-item {
