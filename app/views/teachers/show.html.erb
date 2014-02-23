@@ -1,30 +1,38 @@
-<div id="show-teacher">
-	<div class="panel panel-info">
-	<!-- Default panel contents -->
-	  <div class="panel-heading text-center"><h4>教員情報</h4></div>
-	  <div class="panel-body">
-	  	<dl class="dl-horizontal">
-	  		<dt>勤務:</dt>
-	  		<dd><%= @teacher.role %></dd>
-	      <dt>名前:</dt>
-	      <dd><%= @teacher.last_name_kanji %> <%= @teacher.first_name_kanji %></dd>
-	      <dt>メール:</dt>
-	      <dd></dd>
-	      <hr />
-	      <dt>所属大学:</dt>
-	      <dd><%= @teacher.university.name %></dd>
-	      <dt>所属部局:</dt>
-	      <dd><%= @teacher.faculty.name %></dd>
-	      <dt>研究室:</dt>
-	      <dd></dd>
-	      <dt>研究室URL:</dt>
-	      <dd></dd>
-	      
-    	</dl>
-    	<hr />
-    	<h4 class="text-center">担当講義</h4>
-    	<%= render 'layouts/list_subjects' %>
-	  </div>
+<div class="skc-box">
+	<div class="skc-box-content">
+		<div class="skc-box-thumbnail">
+			<%= image_tag("user.png")  %>
+		</div>
+		<div class="skc-box-desc">
+			<h4><%= @teacher.last_name_kanji %> <%= @teacher.first_name_kanji %></h4>
+			<hr />
+			<p>
+				<strong>メール:</strong>
+				<%= @teacher.email %>
+			</p>
+			<p>
+				<strong>所属大学:</strong>
+				<%= @teacher.university.name %>
+			</p>
+			<p>
+				<strong>所属部局:</strong>
+				<%= @teacher.faculty.name %>
+			</p>
+			<p>
+				<strong>研究室:</strong>
+				<%= @teacher.lab %>
+			</p>
+			<p>
+				<strong>研究室URL:</strong>
+				<%= @teacher.lab_url %>
+			</p>
+		</div>
+		<hr />
+		<div class="text-center">
+			<p>
+				<strong>担当講義</strong>
+    		<%= render 'layouts/list_subjects' %>
+			</p>			
+		</div>
 	</div>
-	<%= link_to 'もどる', :back, class: 'btn btn-default col-md-2 col-md-offset-5' %>
 </div>

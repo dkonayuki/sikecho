@@ -74,7 +74,7 @@ a:hover {
 
 html,
 body {
-	background-color: #f1f4f9 !important;
+	background-color: #f1f1f1 !important;
   height: 100%;
   /* The html and body elements cannot have any padding or margin. */
 }
@@ -214,7 +214,8 @@ body {
 
 #notes {
 	background: #fff;
-	padding-top: 10px;
+	overflow: hidden;
+	padding: 10px 15px 0 15px;
 }
 
 .note-item {
@@ -354,73 +355,6 @@ body {
 
 .document:hover #document-delete-btn {
 	display: inline-block;
-}
-
-#show-note-thumbnail {
-	float: left;
-}
-
-@media (max-width: 469px) {
-	#show-note-thumbnail {
-		display: none;
-	}
-	#show-note-desc {
-	margin-left: 0px !important;
-	}
-	#show-note h4 {
-		text-align: center;
-	}
-	#show-note {
-		margin: 0 15px !important;
-	}
-}
-
-#show-note {
-	margin: 0 auto;
-	padding-top: 10px;
-	padding-bottom: 10px;	
-	max-width: 600px;
-	background-color: #f1f4f9;
-}
-
-#show-note-content {
-	background-color: #fff;
-	padding: 28px;
-	border: 1px solid #eee;
-	position: relative;
-}
-
-#show-note-thumbnail img {
-	height: 60px;
-	width: 60px;
-}
-
-#show-note-desc {
-	margin-left: 105px;
-	font-size: 0.95em;
-	line-height: 1.5;
-}
-
-#show-note p {
-	line-height: 1.5;
-}
-
-#show-note h4 {
-	text-transform: uppercase;
-	font-size: 26px;
-	font-weight: normal;
-	margin: 5px 5px 10px 5px;
-	padding: 5px 5px 15px 0px;
-}
-
-#show-note-menu {
-	position: absolute;
-	top: 15px;
-	right: 15px;
-}
-
-#show-note-menu a {
-	margin-left: 10px;
 }
 
 .label-custom {
@@ -584,7 +518,19 @@ body {
 }
 
 #show-subject {
-	padding-top: 10px;
+}
+
+.btn-custom {
+	color: white;
+	background-color: #5bc0de;
+	width: 100%;
+	min-width: 90px;
+}
+
+#show-subject-overview {
+	background-color: #fff;
+	margin-top: 20px;
+	padding: 10px;
 }
 
 .text-content {
@@ -593,7 +539,4 @@ body {
 
 /* Teacher page
  ===============================================================================================*/
-#show-teacher {
-		margin: 0 auto 100px;
-		max-width: 700px;
-}
+

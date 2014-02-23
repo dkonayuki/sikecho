@@ -1,9 +1,9 @@
-<div id="show-note">
-	<div id="show-note-content">
-		<div id="show-note-thumbnail">
+<div class="skc-box">
+	<div class="skc-box-content">
+		<div class="skc-box-thumbnail">
 			<%= image_tag("note.png")  %>
 		</div>
-		<div id="show-note-desc">
+		<div class="skc-box-desc">
 			<h4><%= @note.title %></h4>
 			<hr />
 			<p>
@@ -40,7 +40,7 @@
 			</ul>
 		</div>
 		<% if @note.user == @user %>
-		<div id="show-note-menu">
+		<div class="skc-box-menu">
 			<%= link_to edit_note_path(@note.id) do %>
 				<span class="glyphicon glyphicon-pencil"></span>
 			<% end %>

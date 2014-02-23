@@ -1,28 +1,37 @@
-<div id="profile" class="col-xs-12">
-	<div class="panel panel-primary">
-	<!-- Default panel contents -->
-	  <div class="panel-heading text-center"><h4>Profile</h4></div>
-	  <div class="panel-body">
-	  	<dl class="dl-horizontal">
-	      <dt>ユーザー名:</dt>
-	      <dd><%= @user.username %></dd>
-	      <dt>メール:</dt>
-	      <dd><%= @user.email %></dd>
-	      <dt>学校:</dt>
-	      <dd><%= @user.university.name %></dd>
-	      <dt>学科・コース:</dt>
-	      <dd><%= @user.faculty.name %></dd>
-	      <% if @user == User.find_by_id(session[:user_id]) %>
-	      <hr />
-	      <dt>時間割表:</dt>
-	      <dd><%= link_to image_tag("calendar.jpeg", class: 'calendar'), schedule_path %></dd>
+<div class="skc-box">
+	<div class="skc-box-content">
+		<div class="skc-box-thumbnail">
+			<%= image_tag("user.png")  %>
+		</div>
+		<div class="skc-box-desc">
+			<h4><%= @user.username %></h4>
+			<hr />
+			<p>
+				<strong>メール:</strong>
+				<%= @user.email %>
+			</p>
+			<p>
+				<strong>学校:</strong>
+				<%= @user.university.name %>
+			</p>
+			<p>
+				<strong>学科・コース:</strong>
+				<%= @user.faculty.name %>
+			</p>
+			<hr />
+			<p>
+				<% if @user == User.find_by_id(session[:user_id]) %>
+					<strong>時間割表:</strong>
+					<%= link_to image_tag("calendar.jpeg", class: 'calendar'), schedule_path %>
 	      <% end %>
-    	</dl>
-    		  <% if @user == User.find_by_id(session[:user_id]) %>
-    		  <div class="row text-center">
-    		  	<%= link_to '編集', edit_user_path(@user), class: 'btn btn-success' %>
-  		  	</div>
-    		  <% end %>
-	  </div>
+			</p>
+		</div>
+	  <% if @user == User.find_by_id(session[:user_id]) %>
+  		<div class="skc-box-menu">
+		  	<%= link_to edit_user_path(@user) do %>
+		  	<span class="glyphicon glyphicon-pencil"></span>
+		  	<% end %>
+			</div>
+	  <% end %>
 	</div>
 </div>

@@ -1,76 +1,70 @@
 <!-- sidebar -->
-<div class="hidden-xs col-md-2 col-sm-2 sidebar-offcanvas" id="show-subject-overview" role="navigation">
-	<div class="bs-sidebar hidden-print affix" role="complementary">
+<div class="hidden-xs col-md-2 col-sm-2 sidebar-offcanvas" role="navigation">
+	<div class="affix" role="complementary" id="show-subject-overview">
 		<ul class="nav">
-			<hr />
       <li class="active"><a href="#description">概要</a></li>
-      <li><a href="#details">詳細</a></li>
-      <li><a href="#syllabus">授業日程</a></li>
+      <li><a href="#syllabus">シラバス</a></li>
       <li><a href="#notes">ノート</a></li>      
-      <hr />
-      <%= link_to '時間割に登録', schedule_path, class: 'btn btn-default' %>        
+      <%= link_to schedule_path, class: 'btn btn-custom' do %>  
+      <span class="glyphicon glyphicon-plus-sign"></span>登録
+      <% end %>      
     </ul>
 	</div>
 </div>
 
 <!-- main part -->
 <div id="show-subject" class="col-md-10 col-sm-10 col-xs-12">
-	<div class="panel panel-success">
-	<!-- Default panel contents -->
-	  <div class="panel-heading text-center">
-	  	<!-- a tag for collapsable panel -->
-	  	<a data-toggle="collapse" href="#collapseDescription">
-        <h4><%= @subject.name %></h4>
-      </a>
-    </div>
-    
-    <!-- collapse div -->
-   	<div id="collapseDescription" class="panel-collapse collapse in">
-		  <div class="panel-body">
-		  <!--for overview section -->
-		 	<a name="description"></a>
-			<i class="glyphicon glyphicon-chevron-right"></i><h4 class="inline">概要</h4>
-				<div class="text-content has-margin">
+  <!--for overview section -->
+	<a name="description"></a>
+	<div class="skc-box skc-box-no-padding">
+		<div class="skc-box-content">
+			<div class="skc-box-thumbnail">
+				<%= image_tag("lecture.png")  %>
+			</div>
+			<div class="skc-box-title">
+				<a data-toggle="collapse" href="#collapseDescription">
+	        <h4><%= @subject.name %></h4>
+	      </a>
+	    </div>
+			<div class="skc-box-desc collapse in" id="collapseDescription">
+				<p>
 					<a href="#" id="subject-description"><%= sanitize(@subject.description) %></a>
-				</div>
-			<!--for overview section -->
-		 	<a name="details"></a>
-			<i class="glyphicon glyphicon-chevron-right"></i><h4 class="inline">詳細</h4>
-				<dl class="dl-horizontal">
-		      <dt>推奨学期:</dt>
-		      <dd><%= link_to @subject.semester, filter_subjects_path(semester: @subject.semester) %></dd>
-		      <dt>時間:</dt>
-		      <dd><%= @subject.time_name %></dd>
-		      <dd><%= @subject.day_name %></dd>
-		      <dt>講義室:</dt>
-		      <dd><%= @subject.place %></dd>
-		      <dt>教員:</dt>
-		      <dd>
-		      	<%= link_to @subject.teachers.first do %>
-		      		<%= @subject.teachers.first.last_name_kanji %>
-		      		<%= @subject.teachers.first.first_name_kanji %>
-		      	<% end %>
-		      </dd>
-	    	</dl>
-		  </div> <!-- end of panel-body -->	  
-	  </div><!-- end of collapseDescription div -->
-	</div><!-- end of panel -->
+				</p>
+				<hr />
+				<p>
+					<strong>推奨学期:</strong>
+					<%= link_to @subject.semester, filter_subjects_path(semester: @subject.semester) %>
+				</p>
+				<p>
+					<strong>時間:</strong>
+					<%= @subject.time_name %><%= @subject.day_name %>
+				</p>
+				<p>
+					<strong>講義室:</strong>
+					<%= @subject.place %>
+				</p>
+				<p>
+					<strong>教員:</strong>
+					<%= link_to @subject.teachers.first do %>
+	      		<%= @subject.teachers.first.last_name_kanji %>
+	      		<%= @subject.teachers.first.first_name_kanji %>
+	      	<% end %>
+				</p>
+			</div>
+		</div>
+	</div>
 	
-	<div class="panel panel-info">
-	<!-- Default panel contents -->
-	  <!--for overview section -->
-	 	<a name="syllabus"></a>
-	  <div class="panel-heading text-center">
-	  	<!-- a tag for collapsable panel -->
-	  	<a data-toggle="collapse" href="#collapseSyllabus">
-        <h4>シラバス</h4>
-      </a>
-    </div>
-    
-    <!-- collapse div -->
-	  <div id="collapseSyllabus" class="panel-collapse collapse out">
-		  <div class="panel-body">		
-			 	<table class="table table-striped">
+  <!--for overview section -->
+ 	<a name="syllabus"></a>
+	<div class="skc-box skc-box-no-padding">
+		<div class="skc-box-content">
+			<div class="skc-box-title-no-margin">
+				<a data-toggle="collapse" href="#collapseSyllabus">
+	        <h4>シラバス</h4>
+	      </a>
+	    </div>
+			<div class="skc-box-desc skc-box-desc-no-margin collapse out" id="collapseSyllabus">
+				<table class="table table-striped">
 			    <thead>
 			      <tr>
 			        <th class="col-md-1 col-xs-1">回数</th>
@@ -87,28 +81,26 @@
 			      </tr>
 			      <% end %>
 			    </tbody>
-			  </table>  
-		  </div> <!-- end of panel-body -->	  
-	  </div><!-- end of collapseSyllabus div -->
-	</div><!-- end of panel -->
+			  </table>
+			</div>
+		</div>
+	</div>
 	
-	<div class="panel panel-danger">
-	<!-- Default panel contents -->
-	 	<!--for overview section -->
-	 	<a name="notes"></a>
-	  <div class="panel-heading text-center">
-	  	<!-- a tag for collapsable panel -->
-	  	<a data-toggle="collapse" href="#collapseNotes">
-        <h4>ノート</h4>
-      </a>
-    </div>
-    <!-- collapse div -->
-	  <div id="collapseNotes" class="panel-collapse collapse in">
-		  <div class="panel-body">
+	
+	<!--for overview section -->
+ 	<a name="notes"></a>
+	<div class="skc-box skc-box-no-padding">
+		<div class="skc-box-content">
+			<div class="skc-box-title-no-margin">
+				<a data-toggle="collapse" href="#collapseNotes">
+	        <h4>ノート</h4>
+	      </a>
+	    </div>
+			<div class="skc-box-desc skc-box-desc-no-margin collapse in" id="collapseNotes">
 				<%= render 'layouts/list_notes'%>
-		  </div> <!-- end of panel-body -->	  
-	  </div><!-- end of collapseNotes div -->
-	</div><!-- end of panel -->
+			</div>
+		</div>
+	</div>
 	
 </div>
 <script>

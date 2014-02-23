@@ -1,25 +1,36 @@
 <div id="subjects-menu">
-	<div class="btn-group-vertical">
-		
-	</div>
-	<div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-    <span class="glyphicon glyphicon-cog"></span> <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
-		<% (1..8).each do | i |%>
-			<li>
-			<%= link_to filter_subjects_path(semester: i) do %>
-			<%= i %>学期
+	<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+    <h3>Menu</h3>
+    <ul>
+			<% (1..8).each do | i |%>
+				<li>
+				<%= link_to filter_subjects_path(semester: i) do %>
+				<%= i %>学期
+				<% end %>
+				</li>
 			<% end %>
-			</li>
-		<% end %>
-		<li class="divider"></li>
-  	<li><%= link_to '全学年', subjects_path %></li>
-  </ul>
-	</div>
+			<li class="divider"></li>
+	  	<li><%= link_to '全学年', subjects_path %></li>
+  	</ul>
+	</nav>
+  <button id="showLeftPush" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span></button>
+
 </div>
 
 <div id="subjects" class="col-md-12">
 <%= render 'layouts/list_subjects'%>
 </div>
+
+<script>
+$(document).ready(function() {
+					var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+				showLeftPush = document.getElementById( 'showLeftPush' ),
+				body = document.body;
+
+			showLeftPush.onclick = function() {
+				classie.toggle( this, 'active' );
+				classie.toggle( body, 'cbp-spmenu-push-toright' );
+				classie.toggle( menuLeft, 'cbp-spmenu-open' );
+			};
+});
+</script>
