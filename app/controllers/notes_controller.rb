@@ -44,6 +44,10 @@ class NotesController < ApplicationController
     @user = current_user
     @note.mark_as_read! for: @user
     @tags = @note.tag_list
+    
+    #increase view
+    @note.view += 1
+    @note.save
   end
 
   # GET /notes/new
@@ -71,7 +75,9 @@ class NotesController < ApplicationController
     #add relationship
     @note.subjects << subject
     @note.user = @user
-
+    
+    #initiate view
+    @note.view = 0;
 
     #save document
     puts params.inspect

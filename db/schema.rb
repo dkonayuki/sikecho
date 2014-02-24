@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20140213141115) do
     t.text     "title"
     t.text     "content"
     t.integer  "user_id"
+    t.integer  "view"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -4,6 +4,7 @@ class CreateNotes < ActiveRecord::Migration
       t.text :title
       t.text :content
       t.integer :user_id
+      t.integer :view
 
       t.timestamps
     end
