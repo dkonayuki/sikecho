@@ -14,7 +14,7 @@
 }
 
 .scroller {
-	/*overflow-y: scroll;*/
+	overflow: hidden;
 }
 
 .scroller,
@@ -161,7 +161,7 @@
 	position: absolute;
 	top: 0;
 	right: 0;
-	margin-right: 8px;
+	margin-right: 10px;
 	font-size: 100%;
 	line-height: 1.8;
 	opacity: 0;
@@ -207,7 +207,7 @@
 	left: 10px;
 	z-index: -1;
 	color: rgba(0,0,0,0.2);
-	line-height: 3.5;
+	line-height: 3;
 }
 
 /*
@@ -285,4 +285,8 @@
 	font-family: 'Glyphicons Halflings';	
 	content: "\e109";
 	font-size: 20px;
+}
+.icon-arrow:before {
+	font-family: 'Glyphicons Halflings';	
+	content: "\e079";
 }

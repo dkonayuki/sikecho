@@ -7,7 +7,7 @@
 					<div class="mp-level" data-level="1">
 						<h4 class="icon-menu">授業カテゴリ</h4>
 						 <ul>
-						 	<li><a>学年別</a>
+						 	<li class="icon-arrow"><a>学年別</a>
 						 		<div class="mp-level" data-level="2" style="-webkit-transform: translate3d(-100%, 0px, 0px) translate3d(-40px, 0px, 0px);">
 									<h4 class="icon-year">学年別</h4>
 									<ul>
@@ -23,6 +23,12 @@
 						 	</li>
 							
 					  	<li><%= link_to '全学年', subjects_path %></li>
+					  	<li><%= link_to '通年授業', subjects_path %></li>
+					  	<li><%= link_to '体育', subjects_path %></li>
+					  	<li><%= link_to '合宿', subjects_path %></li>
+					  	<li><%= link_to 'ゼミ', subjects_path %></li>
+					  	<li><%= link_to '集中講義', subjects_path %></li>
+
 				  	</ul>
 							
 					</div>
