@@ -1,36 +1,47 @@
-<div id="subjects-menu">
-	<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
-    <h3>Menu</h3>
-    <ul>
-			<% (1..8).each do | i |%>
-				<li>
-				<%= link_to filter_subjects_path(semester: i) do %>
-				<%= i %>学期
-				<% end %>
-				</li>
-			<% end %>
-			<li class="divider"></li>
-	  	<li><%= link_to '全学年', subjects_path %></li>
-  	</ul>
-	</nav>
-  <button id="showLeftPush" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span></button>
-
-</div>
-
-<div id="subjects" class="col-md-12">
-<%= render 'layouts/list_subjects'%>
-</div>
-
+<div class="mp-container">
+    <!-- Push Wrapper -->
+    <div class="mp-pusher" id="mp-pusher">
+ 
+        <!-- mp-menu -->
+        <nav id="mp-menu" class="mp-menu mp-overlap">
+					<div class="mp-level" data-level="1">
+						<h4 class="icon-menu">授業カテゴリ</h4>
+						 <ul>
+						 	<li><a>学年別</a>
+						 		<div class="mp-level" data-level="2" style="-webkit-transform: translate3d(-100%, 0px, 0px) translate3d(-40px, 0px, 0px);">
+									<h4 class="icon-year">学年別</h4>
+									<ul>
+										<% (1..8).each do | i |%>
+											<li>
+											<%= link_to filter_subjects_path(semester: i) do %>
+											<%= i %>学期
+											<% end %>
+											</li>
+										<% end %>
+									</ul>
+								</div>
+						 	</li>
+							
+					  	<li><%= link_to '全学年', subjects_path %></li>
+				  	</ul>
+							
+					</div>
+				</nav>
+        <!-- /mp-menu -->
+ 
+        <div class="scroller"><!-- this is for emulating position fixed of the nav -->
+            <div class="scroller-inner">
+                <!-- site content goes here -->
+                <a href="#" id="trigger" class="btn-trigger"><span class="glyphicon glyphicon-cog"></span></a>
+                <div id="subjects" class="col-md-12">
+									<%= render 'layouts/list_subjects'%>
+									</div>
+            </div><!-- /scroller-inner -->
+        </div><!-- /scroller -->
+ 
+    </div><!-- /pusher -->
+</div><!-- /mp-container -->
 <script>
-$(document).ready(function() {
-					var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
-				showLeftPush = document.getElementById( 'showLeftPush' ),
-				body = document.body;
-
-			showLeftPush.onclick = function() {
-				classie.toggle( this, 'active' );
-				classie.toggle( body, 'cbp-spmenu-push-toright' );
-				classie.toggle( menuLeft, 'cbp-spmenu-open' );
-			};
-});
+	new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ) );
 </script>
+

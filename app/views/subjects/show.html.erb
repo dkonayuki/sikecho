@@ -16,7 +16,7 @@
 <div id="show-subject" class="col-md-10 col-sm-10 col-xs-12">
   <!--for overview section -->
 	<a name="description"></a>
-	<div class="skc-box skc-box-no-padding">
+	<div class="skc-box skc-box-no-padding skc-box-lg">
 		<div class="skc-box-content">
 			<div class="skc-box-thumbnail">
 				<%= image_tag("lecture.png")  %>
@@ -56,7 +56,7 @@
 	
   <!--for overview section -->
  	<a name="syllabus"></a>
-	<div class="skc-box skc-box-no-padding">
+	<div class="skc-box skc-box-no-padding skc-box-lg">
 		<div class="skc-box-content">
 			<div class="skc-box-title-no-margin">
 				<a data-toggle="collapse" href="#collapseSyllabus">
@@ -89,7 +89,7 @@
 	
 	<!--for overview section -->
  	<a name="notes"></a>
-	<div class="skc-box skc-box-no-padding">
+	<div class="skc-box skc-box-no-padding skc-box-lg">
 		<div class="skc-box-content">
 			<div class="skc-box-title-no-margin">
 				<a data-toggle="collapse" href="#collapseNotes">
@@ -137,11 +137,7 @@
 			});
 			
 			$('.outline-content').editable({
-			    type: 'wysihtml5',
-			    wysihtml5: {
-			    	locale: 'en-US',
-			    	size: 'sm'
-			    },
+			    type: 'textarea',
 			    name: 'content',
 			    url: '/subjects/<%= @subject.id %>',
 			});

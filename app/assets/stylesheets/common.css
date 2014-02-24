@@ -20,6 +20,10 @@
 	padding: 20px 0 !important;
 }
 
+.skc-box-lg {
+	max-width: 800px !important;
+}
+
 .skc-box-thumbnail {
 	float: left;
 }
