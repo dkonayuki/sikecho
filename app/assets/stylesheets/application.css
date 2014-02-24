@@ -535,11 +535,11 @@ body {
 .btn-trigger {
 	color: #333333;
 	background-color: white;
-	border-color: #cccccc;
 	display: inline-block;
 	cursor: pointer;
 	border-right: 1px solid transparent; 
 	border-bottom: 1px solid transparent; 
+	border-color: #E7E7E7;
 	padding: 6px 10px;
 	font-size: 20px;
 }
