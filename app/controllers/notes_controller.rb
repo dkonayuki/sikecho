@@ -7,7 +7,7 @@ class NotesController < ApplicationController
     @user = current_user
     @show_subject = true
     
-    puts params.inspect
+    #process filter if has any
     if params[:filter].blank? 
       @notes = @user.notes.search(params[:search]).order('created_at DESC').to_a #use this method instead of .all
     else
@@ -62,7 +62,6 @@ class NotesController < ApplicationController
   def create
     #convert full-width to half-width
     tags_text = Moji.zen_to_han(params[:tags])
-    puts tags_text.inspect
     tags = tags_text.split(',')
     @user = current_user
     @note = Note.new(note_params)
@@ -178,7 +177,7 @@ class NotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
-      params.permit(:document, :tags, :subject, :old_subject)
+      params.permit(:document, :tags, :subject, :old_subject, :filter)
       params.require(:note).permit(:title, :content)
     end
 

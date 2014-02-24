@@ -6,6 +6,10 @@ class Subject < ActiveRecord::Base
   
   has_many :outlines
   
+  belongs_to :semester
+  
+  acts_as_taggable_on :tags
+    
   def self.search(search)
     if search
       where('name LIKE ?', "%#{search}%")

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140213141115) do
+ActiveRecord::Schema.define(version: 20140224135718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,14 @@ ActiveRecord::Schema.define(version: 20140213141115) do
 
   add_index "read_marks", ["user_id", "readable_type", "readable_id"], name: "index_read_marks_on_user_id_and_readable_type_and_readable_id", using: :btree
 
+  create_table "semesters", force: true do |t|
+    t.integer  "no"
+    t.string   "name"
+    t.integer  "year_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "subjects", force: true do |t|
     t.string   "name"
     t.text     "description"
@@ -80,7 +88,7 @@ ActiveRecord::Schema.define(version: 20140213141115) do
     t.integer  "day"
     t.string   "day_name"
     t.string   "place"
-    t.integer  "semester"
+    t.integer  "semester_id"
     t.integer  "number_of_outlines"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -155,6 +163,14 @@ ActiveRecord::Schema.define(version: 20140213141115) do
     t.string   "avatar"
     t.date     "dob"
     t.text     "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "years", force: true do |t|
+    t.integer  "no"
+    t.string   "name"
+    t.integer  "university_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

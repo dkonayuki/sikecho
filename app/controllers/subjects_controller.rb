@@ -5,15 +5,22 @@ class SubjectsController < ApplicationController
   # GET /subjects.json
   def index
     @user = current_user
-    @subjects = @user.faculty.subjects.search(params[:search])
-  end
-  
-  #filter in index page
-  def filter
-    @user = current_user
-    #filter from user's faculty subjects
-    @subjects = @user.faculty.subjects.select { | subject | subject.semester == params[:semester].to_i }
-    render action: "index"
+    
+    #filter tag
+    if !params[:tag].blank?
+      @subjects = @user.faculty.subjects.tagged_with(params[:tag])
+    #filter semester
+    elsif !params[:semester].blank?
+      year = @user.university.years.find_by_no(params[:year].to_i)
+      semester = year.semesters.find_by_no(params[:semester].to_i)
+      #filter from user's faculty subjects
+      @subjects = @user.faculty.subjects.select { | subject | subject.semester == semester }
+    #all
+    else
+      @subjects = @user.faculty.subjects.search(params[:search])
+    end
+    
+    #other opstion: render action: "index"
   end
   
   #filter in show subject page
@@ -105,7 +112,7 @@ class SubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
-      params.permit(:name, :value)
+      params.permit(:name, :value, :tag, :semester, :year)
       params.require(:subject).permit(:name, :description)
     end
 end

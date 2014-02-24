@@ -7,7 +7,7 @@ Shikechou::Application.routes.draw do
   resources :faculties
 
   resources :subjects
-  get 'subjects/filter/:semester', to: 'subjects#filter', as: 'filter_subjects'
+  #get 'filter/', to: 'subjects#filter', as: 'filter_subjects'
   get 'subjects/:id/notes/', to: 'subjects#notes', as: 'notes_in_show_subject'
     
   resources :notes

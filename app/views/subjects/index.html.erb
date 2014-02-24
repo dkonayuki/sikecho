@@ -7,27 +7,34 @@
 					<div class="mp-level" data-level="1">
 						<h4 class="icon-menu">授業カテゴリ</h4>
 						 <ul>
-						 	<li class="icon-arrow"><a>学年別</a>
-						 		<div class="mp-level" data-level="2" style="-webkit-transform: translate3d(-100%, 0px, 0px) translate3d(-40px, 0px, 0px);">
+						 	<li class="icon-arrow">
+						 		<a>学年別</a>
+						 		<div class="mp-level" data-level="2">
 									<h4 class="icon-year">学年別</h4>
 									<ul>
-										<% (1..8).each do | i |%>
-											<li>
-											<%= link_to filter_subjects_path(semester: i) do %>
-											<%= i %>学期
-											<% end %>
-											</li>
+										<% @user.university.years.each do | year | %>
+										<li class="icon-arrow">
+											<a><%= year.name %></a>
+											<div class="mp-level" data-level="3">
+												<h4><%= year.name %></h4>
+												<ul>
+													<% year.semesters.each do | semester | %>
+													<li><%= link_to semester.name, subjects_path(year: year.no, semester: semester.no) %></li>
+													<% end %>
+												</ul>
+											</div>
+										</li>
 										<% end %>
 									</ul>
 								</div>
 						 	</li>
 							
 					  	<li><%= link_to '全学年', subjects_path %></li>
-					  	<li><%= link_to '通年授業', subjects_path %></li>
+					  	<li><%= link_to '通年授業', subjects_path(tag: '通年') %></li>
 					  	<li><%= link_to '体育', subjects_path %></li>
 					  	<li><%= link_to '合宿', subjects_path %></li>
 					  	<li><%= link_to 'ゼミ', subjects_path %></li>
-					  	<li><%= link_to '集中講義', subjects_path %></li>
+					  	<li><%= link_to '集中講義', subjects_path(tag: '集中講義') %></li>
 
 				  	</ul>
 							
