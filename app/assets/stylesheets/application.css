@@ -227,6 +227,9 @@ body {
 	background: #fff;
 	overflow: hidden;
 	padding: 10px 15px 0 15px;
+/*happy hacking for full height overlapping*/
+	padding-bottom: 1000px;
+	margin-bottom: -1000px;
 }
 
 .note-item {
@@ -443,15 +446,10 @@ body {
 /* Subject page 
  ===============================================================================================*/
 
-#subjects-menu {
-	display: block;
-	position: relative;
-	margin-bottom: 20px;
-}
-
 #subjects {
 	display: block;
 	position: relative;
+	padding-top: 10px;
 }
 
 #subjects ul {
