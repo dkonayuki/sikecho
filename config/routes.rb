@@ -12,11 +12,11 @@ Shikechou::Application.routes.draw do
   get 'subjects/:id/notes/', to: 'subjects#notes', as: 'notes_in_show_subject'
     
   resources :notes
-  get 'notes/download/:id', to: 'notes#download', as: 'download'
-  get 'notes/delete/:id', to: 'notes#delete_document', as: 'delete_document'
+  #get 'notes/delete/:id', to: 'notes#delete_document', as: 'delete_document'
   #get 'notes/filter/:type', to: 'notes#filter', as: 'filter_notes'
 
   resources :documents
+  get 'documents/download/:id', to: 'documents#download', as: 'download'
 
   resources :users
   get "/faculty" => "users#faculty"

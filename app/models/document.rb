@@ -1,7 +1,7 @@
 class Document < ActiveRecord::Base  
   belongs_to :note  
   has_attached_file :upload, styles: {thumbnail: "60x60#"}
-  validates_attachment_content_type :upload, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :upload, content_type: /\Aimage\/.*\Z/
   
   include Rails.application.routes.url_helpers
     

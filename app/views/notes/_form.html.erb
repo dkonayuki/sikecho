@@ -36,6 +36,7 @@
 			<hr />
 			<p>
 				<strong>資料:</strong>
+				<!-- 
     		<% if @note.documents.empty? %>
 	      	<p>まだ資料がありません。</p>
   			<% else %>
@@ -49,27 +50,28 @@
 					<% end %>
 				<% end %>
   			<%= file_field_tag :document %><br /> 
-  
+  			-->
+  			
   <div id="fileupload">
     <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
     <div class="row fileupload-buttonbar">
       <div class="span7">
         <!-- The fileinput-button span is used to style the file input field as button -->
         <span class="btn btn-success fileinput-button">
-          <i class="icon-plus icon-white"></i>
+          <i class="glyphicon glyphicon-plus"></i>
           <span>Add files...</span>
           <%= file_field_tag :upload %>
         </span>
         <button type="submit" class="btn btn-primary start">
-          <i class="icon-upload icon-white"></i>
+          <i class="glyphicon glyphicon-upload"></i>
           <span>Start upload</span>
         </button>
         <button type="reset" class="btn btn-warning cancel">
-          <i class="icon-ban-circle icon-white"></i>
+          <i class="glyphicon glyphicon-ban-circle"></i>
           <span>Cancel upload</span>
         </button>
         <button type="button" class="btn btn-danger delete">
-          <i class="icon-trash icon-white"></i>
+          <i class="glyphicon glyphicon-trash"></i>
           <span>Delete</span>
         </button>
         <input type="checkbox" class="toggle">
@@ -201,7 +203,7 @@
     </td>
     <td class="start">{% if (!o.options.autoUpload) { %}
       <button class="btn btn-primary">
-        <i class="icon-upload icon-white"></i>
+        <i class="glyphicon glyphicon-upload"></i>
         <span>{%=locale.fileupload.start%}</span>
       </button>
       {% } %}</td>
@@ -210,7 +212,7 @@
     {% } %}
     <td class="cancel">{% if (!i) { %}
       <button class="btn btn-warning">
-        <i class="icon-ban-circle icon-white"></i>
+        <i class="glyphicon glyphicon-ban-circle"></i>
         <span>{%=locale.fileupload.cancel%}</span>
       </button>
       {% } %}</td>
@@ -238,7 +240,7 @@
         {% } %}
       <td class="delete">
         <button class="btn btn-danger" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}">
-          <i class="icon-trash icon-white"></i>
+          <i class="glyphicon glyphicon-trash"></i>
           <span>{%=locale.fileupload.destroy%}</span>
         </button>
         <input type="checkbox" name="delete" value="1">

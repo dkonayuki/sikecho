@@ -48,6 +48,14 @@ class NotesController < ApplicationController
     #increase view
     @note.view += 1
     @note.save
+    
+    #show documents
+    #@documents = Document.all
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @documents.map{|document| document.to_jq_upload } }
+    end
   end
 
   # GET /notes/new
@@ -79,13 +87,12 @@ class NotesController < ApplicationController
     @note.view = 0;
 
     #save document
-    puts params.inspect
-    if !params[:document].blank?
-      path = save_file( @user, params[:document].original_filename, params[:document] )
-      @document = Document.new(path: path, name: params[:document].original_filename)
-      @document.save
-      @note.documents << @document
-    end
+    #if !params[:document].blank?
+      #path = save_file( @user, params[:document].original_filename, params[:document] )
+      #@document = Document.new(path: path, name: params[:document].original_filename)
+      #@document.save
+      #@note.documents << @document
+    #end
     
     respond_to do |format|
       if @note.save
@@ -98,20 +105,6 @@ class NotesController < ApplicationController
         format.json { render json: @note.errors, status: :unprocessable_entity }
       end
     end
-  end
-  
-  def delete_document
-    #need to deploy
-    @document = Document.find( params[:id] )
-    #delete_file(@document.path)
-    #@document.destroy
-    redirect_to notes_path
-  end
-  
-  def download
-    # Download a document file 
-    @document = Document.find( params[:id] )
-    send_file(@document.path.strip,:type=>"application/pdf")
   end
   
   # GET /notes/1/edit

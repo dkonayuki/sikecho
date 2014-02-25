@@ -25,7 +25,9 @@ class DocumentsController < ApplicationController
   # POST /documents.json
   def create
     @document = Document.new(upload: params[:upload])
-
+    note = Note.find_by_id(params[:note_id])
+    @document.note = note
+    
     respond_to do |format|
       if @document.save
         format.html {
@@ -54,6 +56,12 @@ class DocumentsController < ApplicationController
       end
     end
   end
+  
+  def download
+    # Download a document file 
+    @document = Document.find( params[:id] )
+    send_file(@document.path.strip,:type=>"application/pdf")
+  end
 
   # DELETE /documents/1
   # DELETE /documents/1.json
@@ -73,7 +81,7 @@ class DocumentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.permit(:upload)
+      params.permit(:upload, :note_id)
       params.require(:document).permit(:note_id)
     end
 end
