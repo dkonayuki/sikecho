@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  skip_before_filter :authorize, only: [:new, :create]
+  skip_before_filter :authorize, only: [:new, :create, :faculty]
   before_filter :disable_nav, only: [:new]
 
   # GET /users
@@ -11,6 +11,15 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html 
       format.json { render json: @users }
+    end
+  end
+  
+  def faculty
+    @faculties = Faculty.where(university_id: params[:university_id]).order(:name)
+    respond_to do |format|
+      format.js { render 'users/faculty' }
+      format.html
+      format.json
     end
   end
 
@@ -25,7 +34,7 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     @universities = University.all
-    @faculties = Faculty.all
+    @faculties = Array.new
   end
 
   # GET /users/1/edit
@@ -35,12 +44,12 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    @user = User.new
     @universities = University.all
-    @faculties = Faculty.all    
-    @user = User.new(user_params.except(:university, :faculty))
-    @user.university = University.find(user_params[:university])
-    @user.faculty = Faculty.find(user_params[:faculty])
+    @faculties = Array.new
 
+    @user = User.new(user_params)
+    
     respond_to do |format|
       if @user.save
         format.html { redirect_to home_url, notice: 'User #{@user.username} was successfully created.' }
@@ -85,6 +94,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :password, :password_confirmation, :email, :university, :faculty)
+      params.permit(:university_id)
+      params.require(:user).permit(:username, :password, :password_confirmation, :email, :university_id, :faculty_id)
     end
 end

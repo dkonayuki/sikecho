@@ -28,14 +28,10 @@
 									</ul>
 								</div>
 						 	</li>
-							
-					  	<li><%= link_to '全学年', subjects_path %></li>
-					  	<li><%= link_to '通年授業', subjects_path(tag: '通年') %></li>
-					  	<li><%= link_to '体育', subjects_path %></li>
-					  	<li><%= link_to '合宿', subjects_path %></li>
-					  	<li><%= link_to 'ゼミ', subjects_path %></li>
-					  	<li><%= link_to '集中講義', subjects_path(tag: '集中講義') %></li>
-
+							<% Subject.tag_counts.order('count desc').limit(8).each do | tag | %>
+					  	<li><%= link_to tag.name, subjects_path(tag: tag.name) %></li>
+							<% end %>
+							<li><%= link_to '全学年', subjects_path %></li>
 				  	</ul>
 							
 					</div>

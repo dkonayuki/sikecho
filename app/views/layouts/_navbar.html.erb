@@ -36,7 +36,9 @@
       <li class="<%= 'active' if params[:controller] == 'notes' %>">
       	<%= link_to notes_path do %>
 	      	ノート
-	      	<span class="badge badge-important"><%= Note.unread_by(@user).count %></span>
+	      	<% if Note.unread_by(@user).count > 0 %>
+	      		<span class="badge badge-important"><%= Note.unread_by(@user).count %></span>
+	      	<% end %>
       	<% end %>
     	</li>
       <li class="<%= 'active' if params[:controller] == 'users' %>"><%= link_to 'プロフィール', @user %></li>

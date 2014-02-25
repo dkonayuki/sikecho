@@ -14,9 +14,11 @@ Year.destroy_all()
 Semester.destroy_all()
 
 tokodai = University.create(name: "東工大", address: "大岡山", website: "http://www.titech.ac.jp/")
-
-(1..4).each do |i|
-  year = Year.create(no: i, name: "#{i}年")
+tkd_year_name = ["1年","2年","3年","4年"]
+i=1
+tkd_year_name.each do |year|
+  year = Year.create(no: i, name: year)
+  i+=1
   year.university = tokodai
   semester1 = Semester.create(no: 1, name: "前期")
   semester2 = Semester.create(no: 2, name: "後期")
@@ -26,19 +28,55 @@ tokodai = University.create(name: "東工大", address: "大岡山", website: "h
   tokodai.save
 end
 
+todai = University.create(name: "東大", address: "東大前", website: "http://www.u-tokyo.ac.jp/")
+td_year_name = ["教養1年","教養2年","後期1年","後期2年"]
+i=1
+td_year_name.each do |year|
+  year = Year.create(no: i, name: year, university: todai)
+  i+=1
+  semester1 = Semester.create(no: 1, name: "夏")
+  semester2 = Semester.create(no: 2, name: "冬")
+  year.semesters << semester1
+  year.semesters << semester2
+  year.save
+  todai.save
+end
+
+sub_tags = ["通年","集中講義","ゼミ","文理共通"]
+time_names = %w(一時限 二時限 三時限 四時限 五時限 六時限)
+day_names = %w(月曜日 火曜日 水曜日 木曜日 金曜日 土曜日)
+
+igakubu = Faculty.create(name: "医学部", university: todai)
+td_sensei = Teacher.create(first_name_kanji: '村田', last_name_kanji: '金子', faculty: igakubu, university: todai)
+td_sub_name = ["英語一列","英語二列","数学1","数学2","力学","化学熱力学","生命科学","健康科学実習","基礎物理学"]
+td_desc = "毎週予習としてon campusを一課ずつ読んで出席し、授業ではビデオを見てちょっとした問題を解いて終わり。"
+td_sub_name.each do | name |
+  time = rand(6)
+  day = rand(6)
+  semesterNo = 1 + rand(2)
+  yearNo = 1 + rand(4)
+  year = todai.years.find_by_no(yearNo)
+  semester = year.semesters.find_by_no(semesterNo)
+  sub = Subject.create(name: name, time: time, time_name: time_names[time], day: day, day_name: day_names[day], place: 'W300', description: td_desc, number_of_outlines: 15)
+  sub.faculties << igakubu
+  sub.teachers << td_sensei
+  sub.semester = semester
+  sub.tag_list.add(sub_tags[rand(4)])
+  (1..15).each do | j |
+    outline = Outline.create(number: j, content: '')
+    sub.outlines << outline
+  end
+  sub.save
+end
+
 kougakubu = Faculty.create(name: "工学部", university: tokodai)
-sensei = Teacher.create(first_name_kanji: '順平', last_name_kanji: '林')
-sensei.faculty = kougakubu
-sensei.university = tokodai
-sensei.save
+sensei = Teacher.create(first_name_kanji: '順平', last_name_kanji: '林', faculty: kougakubu, university: tokodai)
 sub_name = ["フーリエ変換とラープラス変換","確率と統計","基礎集積回廊","論理回路理論","計算基礎論","プログラミング第一","プログラミング第二",
     "プログラミング第三","プログラミング第四","数理論理学","オートマトンと言語","計算機論理設計","代数系と符号理論","離散構造とアルゴリズム",
      "計算機アーキテクチャ第一","計算機アーキテクチャ第二","オペレーティングシステム","数値計算法","電気回路基礎論","人工知能基礎論","コンパイラ構成",
      "関数解析学","集積回路設計","線形回路設計","ディジタル通信","信号処理","情報認識","生命知識論第一","生命知識論第二","数理計画法","線形電子回路",
      "情報ネットワーク設計論","データベース","計算機ネットワーク"]
-sub_tags = ["通年","集中講義","ゼミ","合宿"]
-time_names = %w(一時限 二時限 三時限 四時限 五時限 六時限)
-day_names = %w(月曜日 火曜日 水曜日 木曜日 金曜日 土曜日)
+
 description = "5類1年次の学生を対象として，情報工学の基礎となる概念や手法について講義する。"
 sub_name.each do | name |
   time = rand(6)
@@ -51,9 +89,9 @@ sub_name.each do | name |
   sub.faculties << kougakubu
   sub.teachers << sensei
   sub.semester = semester
-  sub.tag_list.add(sub_tags[rand(4)])
-  (1..15).each do | i |
-    outline = Outline.create(number: i, content: '')
+  sub.tag_list.add(sub_tags[rand(5)])
+  (1..15).each do | j |
+    outline = Outline.create(number: j, content: '')
     sub.outlines << outline
   end
   sub.save
