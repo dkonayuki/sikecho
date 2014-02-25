@@ -1,3 +1,4 @@
+
 <%= form_for @note, html: { multipart: true, id: 'new-note-form'} do |f| %>
   <% if @note.errors.any? %>
     <div id="error_explanation">
@@ -10,27 +11,31 @@
       </ul>
     </div>
   <% end %>
-  	
-  <div class="field">
-    <%= f.label :title, 'タイトル' %><br>
-    <%= f.text_area :title, class: 'form-control', rows: 1%>
-  </div>
-  <div class="field">
-    <%= f.label :content, '内容' %><br>
-    <%= f.text_area :content, class: 'form-control', id: 'edit-note-area' %>
-  </div>
-  <div class="field">
-  	<%= f.label :subject, '科目' %><br>
-  	
-  	<% if !isNew %>
-		<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name", selected: @subject.id), class: 'selectpicker', data: {width: 'auto'} %>
-		<%= hidden_field_tag "old_subject", @subject.id %>
-		<% else %>
-  	<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name"), class: 'selectpicker', data: {width: 'auto'} %>
-  	<% end %>
-  </div>
-  <div class="field">
-    <%= label_tag :document, '資料' %><br>
+  
+<div class="skc-box skc-box-lg">
+	<div class="skc-box-content">
+		<div class="skc-box-thumbnail">
+			<%= image_tag("note.png")  %>
+		</div>
+		<div class="skc-box-desc">
+			<h4><%= f.text_area :title, class: 'form-control', rows: 1%></h4>
+			<hr />
+			<p>
+				<strong>内容:</strong>
+				<%= f.text_area :content, class: 'form-control', id: 'edit-note-area' %>
+			</p>
+			<p>
+				<strong>科目:</strong>
+		  	<% if !isNew %>
+					<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name", selected: @subject.id), class: 'selectpicker', data: {width: 'auto'} %>
+					<%= hidden_field_tag "old_subject", @subject.id %>
+				<% else %>
+		  		<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name"), class: 'selectpicker', data: {width: 'auto'} %>
+		  	<% end %>
+			</p>
+			<hr />
+			<p>
+				<strong>資料:</strong>
     		<% if @note.documents.empty? %>
 	      	<p>まだ資料がありません。</p>
   			<% else %>
@@ -43,23 +48,26 @@
 					  </p>
 					<% end %>
 				<% end %>
-  	<%= file_field_tag :document %><br />  		
-	</div>
-	<div class="field">
-		<div id='tag-form'>
-			<div id='tag-menu'>
-	   		<div id="add-all" class="btn btn-primary btn-xs">全15回</div>
-	   		<div class="btn btn-primary btn-xs tag-menu-btn">試験対策</div>
-	   		<div class="btn btn-primary btn-xs tag-menu-btn">過去問題</div>
-	   		<div id="remove-all" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>クリア</div>
-      </div>
-      <%= text_area_tag 'tags', nil, id: 'tag-input' %>
+  			<%= file_field_tag :document %><br /> 
+			</p>
+			<hr />
+			<div id='tag-form'>
+				<div id='tag-menu'>
+		   		<div id="add-all" class="btn btn-primary btn-xs">全15回</div>
+		   		<div class="btn btn-primary btn-xs tag-menu-btn">試験対策</div>
+		   		<div class="btn btn-primary btn-xs tag-menu-btn">過去問題</div>
+		   		<div id="remove-all" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>クリア</div>
+	      </div>
+	      <%= text_area_tag 'tags', nil, id: 'tag-input' %>
+			</div>
 		</div>
+		<br />
+		<%= f.submit '登録', class: 'btn btn-success col-md-2 col-md-offset-4' %>
+    <%= link_to 'キャンセル', :back, class: 'btn btn-default col-md-2 col-md-offset-1' %>	
 	</div>
-  <div class="actions ">
-    <%= f.submit '登録', class: 'btn btn-success col-md-2 col-md-offset-4' %>
-    <%= link_to 'キャンセル', :back, class: 'btn btn-default col-md-2 col-md-offset-1' %>
-  </div>
+</div>
+
+  	
 <% end %>
 
 <!-- Initialize the plugin: -->
@@ -124,5 +132,5 @@
 		<% end %>
 	<% end %>
 	
-	$("#edit-note-area").wysihtml5();
+	$("#edit-note-area").wysihtml5({locale: "en-US"});
 </script>
