@@ -114,3 +114,7 @@ ul.wysihtml5-toolbar div[data-wysihtml5-command-value="orange"] {
 .glyphicon-quote:after {
   content: "\0000a0";
 }
+
+.wysihtml5-sandbox {
+	min-height: 200px !important;	
+}

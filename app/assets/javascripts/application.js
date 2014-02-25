@@ -26,6 +26,7 @@
 //= require wysihtml5/bootstrap-wysihtml5.en-US.js
 //= require wysihtml5/commands.js
 //= require bootstrap-editable/wysihtml5
+//= require jquery-fileupload
 //= require_tree .
 
 	

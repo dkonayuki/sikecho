@@ -14,6 +14,7 @@
  *= require bootstrap-editable
  *= require bootstrap-tagsinput
  *= require bootstrap3-wysihtml5
+ *= require jquery.fileupload-ui
  *= require_tree .
  * 
  */

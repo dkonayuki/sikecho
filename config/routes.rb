@@ -1,4 +1,5 @@
 Shikechou::Application.routes.draw do
+  get 'home/index'
 
   resources :teachers
 
@@ -15,7 +16,8 @@ Shikechou::Application.routes.draw do
   get 'notes/delete/:id', to: 'notes#delete_document', as: 'delete_document'
   #get 'notes/filter/:type', to: 'notes#filter', as: 'filter_notes'
 
-  get 'home/index'
+  resources :documents
+
   resources :users
   get "/faculty" => "users#faculty"
 

@@ -53,13 +53,13 @@ gem 'acts-as-taggable-on', '~> 3.0.1'
 #bootstrap
 gem "bootstrap-sass", "~> 3.1.0.2"
 
-#upload file
-gem 'carrierwave'
-#resize file
-gem "mini_magick"
-
 #gem moji for japanese character
 gem "moji", "~> 1.6"
 
 #gem for read/unread messages
 gem 'unread'
+
+#for upload file
+gem 'jquery-fileupload-rails'
+  
+gem 'paperclip', "~> 4.1"

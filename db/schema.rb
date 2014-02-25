@@ -11,19 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140224135718) do
+ActiveRecord::Schema.define(version: 20140225114741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "documents", force: true do |t|
-    t.string   "type"
-    t.string   "path"
-    t.string   "name"
     t.integer  "note_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "file"
+    t.string   "upload_file_name"
+    t.string   "upload_content_type"
+    t.integer  "upload_file_size"
+    t.datetime "upload_updated_at"
   end
 
   create_table "faculties", force: true do |t|
