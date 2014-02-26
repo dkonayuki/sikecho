@@ -25,7 +25,9 @@ Shikechou::Application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
-  config.serve_static_assets = false
+  
+  # need this line below for static assets, for example: uploaded photo
+  config.serve_static_assets = true
   #The available log levels are: :debug, :info, :warn, :error, :fatal, and :unknown, 
   config.log_level = :info
 end

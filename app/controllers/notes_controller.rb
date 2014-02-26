@@ -50,12 +50,6 @@ class NotesController < ApplicationController
     @note.save
     
     #show documents
-    #@documents = Document.all
-
-    respond_to do |format|
-      format.html
-      format.json { render json: @documents.map{|document| document.to_jq_upload } }
-    end
   end
 
   # GET /notes/new
