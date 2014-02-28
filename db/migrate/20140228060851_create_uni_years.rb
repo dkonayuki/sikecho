@@ -1,6 +1,6 @@
-class CreateYears < ActiveRecord::Migration
+class CreateUniYears < ActiveRecord::Migration
   def change
-    create_table :years do |t|
+    create_table :uni_years do |t|
       t.integer :no
       t.string :name
       t.integer :university_id

@@ -1,5 +1,5 @@
 class Semester < ActiveRecord::Base
-  belongs_to :year
+  belongs_to :uni_year
   
   has_many :subjects
 end

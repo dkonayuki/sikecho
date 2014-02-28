@@ -10,14 +10,14 @@ Faculty.destroy_all()
 Subject.destroy_all()
 Teacher.destroy_all()
 Outline.destroy_all()
-Year.destroy_all()
+UniYear.destroy_all()
 Semester.destroy_all()
 
 tokodai = University.create(name: "東工大", address: "大岡山", website: "http://www.titech.ac.jp/")
 tkd_year_name = ["1年","2年","3年","4年"]
 i=1
 tkd_year_name.each do |year|
-  year = Year.create(no: i, name: year)
+  year = UniYear.create(no: i, name: year)
   i+=1
   year.university = tokodai
   semester1 = Semester.create(no: 1, name: "前期")
@@ -32,7 +32,7 @@ todai = University.create(name: "東大", address: "東大前", website: "http:/
 td_year_name = ["教養1年","教養2年","後期1年","後期2年"]
 i=1
 td_year_name.each do |year|
-  year = Year.create(no: i, name: year, university: todai)
+  year = UniYear.create(no: i, name: year, university: todai)
   i+=1
   semester1 = Semester.create(no: 1, name: "夏")
   semester2 = Semester.create(no: 2, name: "冬")
@@ -55,7 +55,7 @@ td_sub_name.each do | name |
   day = rand(6)
   semesterNo = 1 + rand(2)
   yearNo = 1 + rand(4)
-  year = todai.years.find_by_no(yearNo)
+  year = todai.uni_years.find_by_no(yearNo)
   semester = year.semesters.find_by_no(semesterNo)
   sub = Subject.create(name: name, time: time, time_name: time_names[time], day: day, day_name: day_names[day], place: 'W300', description: td_desc, number_of_outlines: 15)
   sub.faculties << igakubu
@@ -83,7 +83,7 @@ sub_name.each do | name |
   day = rand(6)
   semesterNo = 1 + rand(2)
   yearNo = 1 + rand(4)
-  year = tokodai.years.find_by_no(yearNo)
+  year = tokodai.uni_years.find_by_no(yearNo)
   semester = year.semesters.find_by_no(semesterNo)
   sub = Subject.create(name: name, time: time, time_name: time_names[time], day: day, day_name: day_names[day], place: 'S421', description: description, number_of_outlines: 15)
   sub.faculties << kougakubu

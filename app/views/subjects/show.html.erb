@@ -33,7 +33,7 @@
 				<hr />
 				<p>
 					<strong>推奨学期:</strong>
-					<%= link_to "#{@subject.semester.year.name}#{@subject.semester.name}", subjects_path(semester: @subject.semester.no, year: @subject.semester.year.no) %>
+					<%= link_to "#{@subject.semester.uni_year.name}#{@subject.semester.name}", subjects_path(semester: @subject.semester.no, year: @subject.semester.uni_year.no) %>
 				</p>
 				<p>
 					<strong>時間:</strong>

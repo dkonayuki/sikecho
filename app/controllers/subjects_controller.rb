@@ -11,7 +11,7 @@ class SubjectsController < ApplicationController
       @subjects = @user.faculty.subjects.tagged_with(params[:tag])
     #filter semester
     elsif !params[:semester].blank?
-      year = @user.university.years.find_by_no(params[:year].to_i)
+      year = @user.university.uni_years.find_by_no(params[:year].to_i)
       semester = year.semesters.find_by_no(params[:semester].to_i)
       #filter from user's faculty subjects
       @subjects = @user.faculty.subjects.select { | subject | subject.semester == semester }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140225114741) do
+ActiveRecord::Schema.define(version: 20140228061100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20140225114741) do
   create_table "semesters", force: true do |t|
     t.integer  "no"
     t.string   "name"
-    t.integer  "year_id"
+    t.integer  "uni_year_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -139,6 +139,14 @@ ActiveRecord::Schema.define(version: 20140225114741) do
     t.datetime "updated_at"
   end
 
+  create_table "uni_years", force: true do |t|
+    t.integer  "no"
+    t.string   "name"
+    t.integer  "university_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "universities", force: true do |t|
     t.string   "name"
     t.string   "address"
@@ -163,14 +171,6 @@ ActiveRecord::Schema.define(version: 20140225114741) do
     t.string   "avatar"
     t.date     "dob"
     t.text     "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "years", force: true do |t|
-    t.integer  "no"
-    t.string   "name"
-    t.integer  "university_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
