@@ -48,7 +48,7 @@ td_sub_name.each do | name |
   yearNo = 1 + rand(4)
   year = todai.uni_years.find_by_no(yearNo)
   semester = year.semesters.find_by_no(semesterNo)
-  sub = Subject.new(name: name, time: time, time_name: time_names[time], day: day, day_name: day_names[day], place: 'W300', description: td_desc, number_of_outlines: 15)
+  sub = Subject.new(name: name, time: time, time_name: time_names[time], day: day, day_name: day_names[day], place: 'W300', description: td_desc, number_of_outlines: 15, year: 2014)
   sub.faculties << igakubu
   sub.teachers << td_sensei
   sub.semester = semester
@@ -76,7 +76,7 @@ sub_name.each do | name |
   yearNo = 1 + rand(4)
   year = tokodai.uni_years.find_by_no(yearNo)
   semester = year.semesters.find_by_no(semesterNo)
-  sub = Subject.create(name: name, time: time, time_name: time_names[time], day: day, day_name: day_names[day], place: 'S421', description: description, number_of_outlines: 15)
+  sub = Subject.create(name: name, time: time, time_name: time_names[time], day: day, day_name: day_names[day], place: 'S421', description: description, number_of_outlines: 15, year: 2014)
   sub.faculties << kougakubu
   sub.teachers << sensei
   sub.semester = semester

@@ -74,7 +74,7 @@
 			    <tbody>
 			    	<% @subject.outlines.order('number ASC').each do | outline | %>
 			      <tr>
-			        <td><%= link_to "#{outline.number}回目", notes_in_show_subject_path(tag: "#{outline.number}回目", id: @subject.id, anchor: 'notes'), class: 'btn btn-primary btn-xs' %></td>
+			        <td><%= link_to "#{outline.number}回目", notes_in_show_subject_path(tag: "#{outline.number}回目", id: @subject.id, anchor: 'notes'), class: 'btn btn-default btn-xs' %></td>
 			        <td><a href="#" data-pk="<%= outline.number %>" class="outline-date"><%= outline.date %></a></td>
 			        <td><a href="#" data-pk="<%= outline.number %>" class="outline-content"><%= sanitize(outline.content) %></a></td>
 			      </tr>

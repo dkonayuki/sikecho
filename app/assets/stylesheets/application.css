@@ -56,6 +56,11 @@ a:hover {
 	background-color: #b94a48 !important;
 }
 
+.hr-narrow {
+	margin-top: 10px !important;
+	margin-bottom: 10px !important;
+}
+
 /*Main page
  ===============================================================================================*/
 
@@ -458,14 +463,26 @@ body {
 }
 
 .subject-item {
-	width: 270px;
-	height: 100px;
+	width: 340px;
+	height: 180px;
 	background-color: #ffffff;
 	padding: 15px;
 	margin: 8px;
 	border: 1px solid #eee;
 	display: inline-block;
 	position: relative;
+}
+
+.subject-year {
+	position: absolute;
+	top: -1px;
+	right: -1px;
+	padding: 6px 10px;
+	font-size: 12px;
+	background-color: #555E6B;
+	border-left: 6px solid #f1f1f1;
+	border-bottom: 6px solid #f1f1f1;
+	color: #fff;
 }
 
 .subject-item img {
@@ -477,8 +494,8 @@ body {
 .subject-thumbnail {
 	float: left;
 	height: 100%;
-	margin-right: 10px;
-	margin-top: 3px;
+	padding-right: 10px;
+	padding-top: 3px;
 }
 
 .subject-details {
@@ -486,21 +503,27 @@ body {
 	text-align: left;
 }
 
+.subject-desc {
+	max-height: 60px;
+}
+
 .subject-name {
 	font-size: 17px;
 	margin-top: 5px;
 	margin-bottom: 5px;
-	max-width: 200px;
 	word-wrap: break-word;
 	text-overflow: ellipsis; 
+	line-height: 20px;
+	width: 220px;
+	color: #555E6B;
 }
 
 .subject-teacher {
 	max-width: 100px;
 	font-size: 11px;
+	bottom: 8px;
+	right: 35px;
 	position: absolute;
-	bottom: 5px;
-	left: 35px;
 }
 
 .subject-info {
@@ -510,7 +533,7 @@ body {
 }
 
 .subject-notes-number {
-	bottom: 5px;
+	bottom: 8px;
 	right: 10px;
 	position: absolute;
 }
