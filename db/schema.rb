@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 20140228061100) do
     t.string   "place"
     t.integer  "semester_id"
     t.integer  "number_of_outlines"
+    t.integer  "year"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

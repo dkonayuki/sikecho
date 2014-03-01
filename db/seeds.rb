@@ -17,15 +17,10 @@ tokodai = University.create(name: "東工大", address: "大岡山", website: "h
 tkd_year_name = ["1年","2年","3年","4年"]
 i=1
 tkd_year_name.each do |year|
-  year = UniYear.create(no: i, name: year)
+  year = UniYear.create(no: i, name: year, university: tokodai)
   i+=1
-  year.university = tokodai
-  semester1 = Semester.create(no: 1, name: "前期")
-  semester2 = Semester.create(no: 2, name: "後期")
-  year.semesters << semester1
-  year.semesters << semester2
-  year.save
-  tokodai.save
+  semester1 = Semester.create(no: 1, name: "前期", uni_year: year)
+  semester2 = Semester.create(no: 2, name: "後期", uni_year: year)
 end
 
 todai = University.create(name: "東大", address: "東大前", website: "http://www.u-tokyo.ac.jp/")
@@ -34,12 +29,8 @@ i=1
 td_year_name.each do |year|
   year = UniYear.create(no: i, name: year, university: todai)
   i+=1
-  semester1 = Semester.create(no: 1, name: "夏")
-  semester2 = Semester.create(no: 2, name: "冬")
-  year.semesters << semester1
-  year.semesters << semester2
-  year.save
-  todai.save
+  semester1 = Semester.create(no: 1, name: "夏", uni_year: year)
+  semester2 = Semester.create(no: 2, name: "冬", uni_year: year)
 end
 
 sub_tags = ["通年","集中講義","ゼミ","文理共通"]
@@ -57,7 +48,7 @@ td_sub_name.each do | name |
   yearNo = 1 + rand(4)
   year = todai.uni_years.find_by_no(yearNo)
   semester = year.semesters.find_by_no(semesterNo)
-  sub = Subject.create(name: name, time: time, time_name: time_names[time], day: day, day_name: day_names[day], place: 'W300', description: td_desc, number_of_outlines: 15)
+  sub = Subject.new(name: name, time: time, time_name: time_names[time], day: day, day_name: day_names[day], place: 'W300', description: td_desc, number_of_outlines: 15)
   sub.faculties << igakubu
   sub.teachers << td_sensei
   sub.semester = semester
