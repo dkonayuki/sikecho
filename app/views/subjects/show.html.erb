@@ -45,10 +45,9 @@
 				</p>
 				<p>
 					<strong>教員:</strong>
-					<%= link_to @subject.teachers.first do %>
-	      		<%= @subject.teachers.first.last_name_kanji %>
-	      		<%= @subject.teachers.first.first_name_kanji %>
-	      	<% end %>
+					<% @subject.teachers.each do |teacher| %>
+					<%= link_to teacher.name_kanji, teacher %>
+					<% end %>
 				</p>
 			</div>
 		</div>

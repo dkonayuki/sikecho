@@ -13,4 +13,9 @@ class User < ActiveRecord::Base
   has_many :notes, dependent: :destroy
   
   acts_as_reader
+  
+  def name_kanji
+    "#{first_name_kanji} #{last_name_kanji}"  
+  end
+  
 end
