@@ -11,6 +11,7 @@ class CreateSubjects < ActiveRecord::Migration
       t.string :place
       t.integer :semester_id
       t.integer :number_of_outlines
+      t.integer :year
 
       t.timestamps
     end
