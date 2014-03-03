@@ -1,6 +1,44 @@
 <div id="home">
-	<p>
-		新着ノート:<%= Note.unread_by(@user).count %>
-	</p>
-	<%= render template: 'schedule/index' %>
+	<div id="home-schedule" class="col-xs12 col-md-9">
+		<%= render template: 'schedule/index' %>
+	</div>
+	<div id="home-widget" class="col-xs12 col-md-3">
+		<div class="skc-box skc-box-sm">
+			<div class="skc-box-content">
+				<div class="skc-box-thumbnail">
+					<%= image_tag("calendar.jpeg")  %>
+				</div>
+				<div class="skc-box-desc">
+					<h4>スケジュール</h4>
+				</div>
+			</div>
+		</div>
+		<div class="skc-box skc-box-sm">
+			<div class="skc-box-content">
+				<div class="skc-box-thumbnail">
+					<%= image_tag("note.png")  %>
+				</div>
+				<div class="skc-box-desc">
+					<h4>ノート</h4>
+					<p>
+						新着ノート: <%= Note.unread_by(@user).count %>
+					</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="skc-box skc-box-sm">
+			<div class="skc-box-content">
+				<div class="skc-box-thumbnail">
+					<%= image_tag("lecture.png")  %>
+				</div>
+				<div class="skc-box-desc">
+					<h4>授業</h4>
+					<p>
+						授業数: <%= @user.faculty.subjects.count %>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
