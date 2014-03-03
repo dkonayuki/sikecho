@@ -7,6 +7,7 @@
 					<div class="mp-level" data-level="1">
 						<h4 class="icon-menu">授業カテゴリ</h4>
 						 <ul>
+						 	<!-- 学年別　-->
 						 	<li class="icon-arrow">
 						 		<a>学年別</a>
 						 		<div class="mp-level" data-level="2">
@@ -27,7 +28,7 @@
 										<% end %>
 									</ul>
 								</div>
-						 	</li>
+						 	</li>　<!-- end of 学年別 -->
 							<% Subject.tag_counts.order('count desc').limit(8).each do | tag | %>
 					  	<li><%= link_to tag.name, subjects_path(tag: tag.name) %></li>
 							<% end %>
@@ -42,15 +43,48 @@
             <div class="scroller-inner">
                 <!-- site content goes here -->
                 <a href="#" id="trigger" class="btn-trigger visible-xs"><span class="glyphicon glyphicon-cog"></span></a>
-                <div id="subjects" class="col-md-12">
-									<%= render 'layouts/list_subjects'%>
+                <div id="subjects">      	
+	              	<div id="filter-bar" class="hidden-xs">
+	          			  <%= link_to new_subject_path, class: 'btn btn-default', id:'new-subject-btn' do %>
+									  <span class="glyphicon glyphicon-plus-sign"></span>新規授業
+										<% end %>
+										<ul id="filter-menu">
+											<li><%= link_to '全学年', subjects_path, class: 'active' %></li>										
+										  <% Subject.tag_counts.order('count desc').limit(8).each do | tag | %>
+									  	<li><%= link_to tag.name, subjects_path(tag: tag.name) %></li>
+											<% end %>
+											<li><a href="#" id="sub-menu-trigger">学年別</a></li>
+										</ul>
 									</div>
+									<!--subbar for 学年別-->
+									<div id="sub-filter-bar" class="hidden-xs">
+										<div class="outer-center">
+						        	<div id="sub-filter-bar-inner" class="inner-center">
+						        		<% @user.university.uni_years.each do | year | %>
+												<div>
+													<h4><%= year.name %></h4>
+													<ul>
+														<% year.semesters.each do | semester | %>
+														<li><%= link_to semester.name, subjects_path(year: year.no, semester: semester.no) %></li>
+														<% end %>
+													</ul>
+												</div>
+												<% end %>
+											</div>
+								    </div>
+								    <div class="clear"></div>
+										
+									</div>	
+	                <div id="subjects-list">
+										<%= render 'layouts/list_subjects'%>
+									</div>
+								</div>
             </div><!-- /scroller-inner -->
         </div><!-- /scroller -->
  
     </div><!-- /pusher -->
 </div><!-- /mp-container -->
+
 <script>
 	new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ) );
 </script>
-

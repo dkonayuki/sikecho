@@ -31,69 +31,50 @@
 
 	
 $(document).ready(function() {
-/*******************************
-    ImagesLoaded 
-********************************/
-	/*$('#container').on('click', '.nav li a', function() {
-    $notes.masonry('reloadItems');
-    $notes.masonry('layout');
-		alert("loaded on click");
-	});
-  
-  $notes.imagesLoaded(function(){
-    alert("loaded");
-    $notes.masonry({
-		  itemSelector: 'li',
-		  columnWidth: 30,
-		  isAnimated: true,
-		  isFitWidth: true
-		});
-  });*/
 
-	 
- 	/*For filter menu active*/
- 	$('#filter-menu li a').on('click', function() {
- 		$.getScript(this.href, null); 
- 		/* equal to : $.ajax({
-		  url: url,
-		  dataType: "script",
-		  success: success
-		}); */
-  	$('#filter-menu li a').each(function() {
-  		$( this ).removeClass( "active" );
-  	});
-  	$(this).addClass("active");
-  	$("#filter-form input").val("");
-  	return false;
-	});
-	
-	/*For live search*/
-	$("#filter-form input").keyup(function() {
-	  $.ajax({
-		  url: $("#filter-form").attr("action"),
-		  data: $("#filter-form").serialize() + "&filter=" + $("#filter-menu .active").text(), //default contenttype is url text
-		  success: null,
-		  dataType: "script"
-		});
-		return false;
-  });
 });
 
 $(document).on('page:change', function() { 
   
  	/*For filter menu active*/
  	$('#filter-menu li a').on('click', function() {
+ 		if ($(this).attr('id') == 'sub-menu-trigger') {
+ 			$('#sub-filter-bar').toggle();
+ 			$('#filter-menu li a').each(function() {
+	  		$( this ).removeClass( "active" );
+	  	});
+	  	$(this).addClass("active");
+ 		}
+ 		else {
+ 			$.getScript(this.href, null); 
+	 		/* equal to : $.ajax({
+			  url: url,
+			  dataType: "script",
+			  success: success
+			}); */
+	  	$('#filter-menu li a').each(function() {
+	  		$( this ).removeClass( "active" );
+	  	});
+	  	$(this).addClass("active");
+	  	$("#filter-form input").val("");
+	  	$('#sub-filter-bar').hide();
+ 		}
+	  return false;
+	});
+	
+ 	/*For sub filter menu active*/
+ 	$('#sub-filter-bar li a').on('click', function() {
  		$.getScript(this.href, null); 
  		/* equal to : $.ajax({
 		  url: url,
 		  dataType: "script",
 		  success: success
 		}); */
-  	$('#filter-menu li a').each(function() {
+  	$('#sub-filter-bar li a').each(function() {
   		$( this ).removeClass( "active" );
   	});
   	$(this).addClass("active");
-  	$("#filter-form input").val("");
+  	$('#sub-filter-bar').hide();
   	return false;
 	});
 	

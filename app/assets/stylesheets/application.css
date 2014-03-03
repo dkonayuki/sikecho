@@ -61,6 +61,22 @@ a:hover {
 	margin-bottom: 10px !important;
 }
 
+.outer-center {
+    float: right;
+    right: 50%;
+    position: relative;
+}
+
+.inner-center {
+    float: right;
+    right: -50%;
+    position: relative;
+}
+
+.clear {
+    clear: both;
+}
+
 /*Main page
  ===============================================================================================*/
 
@@ -232,10 +248,14 @@ body {
 #notes {
 	background: #fff;
 	overflow: hidden;
-	padding: 10px 15px 0 15px;
+	padding: 0 15px 0 15px;
 /*happy hacking for full height overlapping*/
 	padding-bottom: 1000px;
 	margin-bottom: -1000px;
+}
+
+#notes-list {
+	margin-top: 20px;
 }
 
 .note-item {
@@ -309,9 +329,10 @@ body {
 
 #filter-bar {
 	position: relative;
-	margin-bottom: 20px;
+	padding-top: 10px;
 	border-bottom: 1px solid #ddd;
-	overflow: auto;
+	height: 57px;
+	background-color: #fff;
 }
 
 #filter-option {
@@ -325,11 +346,15 @@ body {
 
 #filter-menu li {
 	float: right;
-	padding-right: 10px;
+	padding-right: 20px;
+}
+
+#filter-menu a {
+	border-bottom: 3px solid transparent;
 }
 
 #filter-menu a:hover, #filter-menu .active {
-	border-bottom: 3px solid #563d7c;
+	border-color: #563d7c;
 }
 
 #filter-menu a {
@@ -453,13 +478,11 @@ body {
  ===============================================================================================*/
 
 #subjects {
-	display: block;
-	position: relative;
-	padding-top: 10px;
 }
 
-#subjects ul {
+#subjects-list ul {
 	text-align: center;
+	margin-top: 20px;
 }
 
 .subject-item {
@@ -494,8 +517,12 @@ body {
 .subject-thumbnail {
 	float: left;
 	height: 100%;
-	padding-right: 10px;
-	padding-top: 3px;
+	width: 20px;
+	margin-right: 10px;
+	margin-top: 3px;
+	background-image: url('lecture.png'); /* use background to preload */
+	background-size:20px 20px;
+	background-repeat:no-repeat;
 }
 
 .subject-details {
@@ -545,6 +572,35 @@ body {
 }
 
 .subject-notes-number span {
+}
+
+#new-subject-btn {
+	float: right;
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 15px;
+}
+
+#sub-filter-bar {
+	padding-top: 10px;
+	border-bottom: 1px solid #ddd;
+	background-color: #fff;
+	display: none;
+}
+
+#sub-filter-bar-inner li a{
+	padding-left: 5px;
+	border-left: 3px solid transparent;
+}
+
+#sub-filter-bar-inner li a:hover, #sub-filter-bar-inner li .active {
+	border-color: #563d7c !important;
+}
+
+#sub-filter-bar-inner div {
+	display: inline-block;
+	margin-right: 40px;
 }
 
 #show-subject {

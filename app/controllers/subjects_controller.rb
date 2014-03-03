@@ -6,21 +6,29 @@ class SubjectsController < ApplicationController
   def index
     @user = current_user
     
-    #filter tag
-    if !params[:tag].blank?
-      @subjects = @user.faculty.subjects.tagged_with(params[:tag])
-    #filter semester
-    elsif !params[:semester].blank?
-      year = @user.university.uni_years.find_by_no(params[:year].to_i)
-      semester = year.semesters.find_by_no(params[:semester].to_i)
-      #filter from user's faculty subjects
-      @subjects = @user.faculty.subjects.select { | subject | subject.semester == semester }
-    #all
-    else
+    if params[:tag].blank? && params[:semester].blank?
+      #all
       @subjects = @user.faculty.subjects.search(params[:search])
+    else
+      #filter tag
+      if !params[:tag].blank?
+        @subjects = @user.faculty.subjects.tagged_with(params[:tag])
+      #filter semester
+      elsif !params[:semester].blank?
+        year = @user.university.uni_years.find_by_no(params[:year].to_i)
+        semester = year.semesters.find_by_no(params[:semester].to_i)
+        #filter from user's faculty subjects
+        @subjects = @user.faculty.subjects.select { | subject | subject.semester == semester }
+      else
+      end
+      #respond with js format, index.js.erb will be run
+      respond_to do |format|
+        format.html { redirect_to :subjects }
+        format.js   {}
+        format.json { render json: @subjects, status: :ok, location: :subjects }
+      end
     end
-    
-    #other opstion: render action: "index"
+    #other option: render action: "index"
   end
   
   #filter in show subject page
