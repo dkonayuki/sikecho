@@ -28,24 +28,13 @@
 //= require bootstrap-editable/wysihtml5
 //= require jquery-fileupload
 //= require_tree .
-
-function change_university() {
-	var university_id = $("#user_university_id").val();
-	$.ajax({
-			url:"<%= url_for action: 'faculty'%>",	
-			data:'university_id=' + university_id,
-		}
-	);
-}
 	
 $(document).ready(function() {
 
 });
 	
-$(document).on('page:change', function() { 
-	/*For user sign up*/
-	$('#user_university_id').on("change", change_university);
-	
+$(document).on('page:change', function() {
+
  	/*For filter menu active*/
  	$('#filter-menu li a').on('click', function() {
  		if ($(this).attr('id') == 'sub-menu-trigger') {
@@ -98,9 +87,6 @@ $(document).on('page:change', function() {
 		});
 		return false;
   });
-  
-  /*Bootstrap select*/
-	$('.selectpicker').selectpicker();
   
   /*wysihtml5*/
  	$(document).keypress(function (e) {

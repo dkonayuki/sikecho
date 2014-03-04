@@ -62,6 +62,10 @@
 	margin-left: 0 !important;
 }
 
+.skc-box strong {
+	margin-right: 5px;
+}
+
 .skc-box p {
 	line-height: 1.5;
 	word-wrap: break-word;

@@ -36,3 +36,8 @@
 	padding: 3px 7px;
 	border-radius: 0;
 }
+
+.form-control-inline {
+	display: inline-block !important;
+	width: auto !important;
+}

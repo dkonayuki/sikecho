@@ -11,7 +11,7 @@
     </div>
   <% end %>
   
-<div class="skc-box skc-box-no-padding skc-box-lg">
+<div class="skc-box skc-box-lg">
 		<div class="skc-box-content">
 			<div class="skc-box-thumbnail">
 				<%= image_tag("lecture.png")  %>
@@ -26,35 +26,44 @@
 					<%= f.text_area :description, class: 'form-control', id: 'subject-description' %>
 				</p>
 				<p>
-					<strong>推奨学期:</strong>
+					<strong>学年:</strong><%= select_tag :uni_year, options_from_collection_for_select(@uni_years,"id","name"), class: 'selectpicker show-tick', data: {width: 'auto'} %>
 					<br/>
-					学年:<%= select_tag :uni_year, options_from_collection_for_select(@uni_years,"id","name"), class: 'selectpicker show-tick', data: {width: 'auto'} %>
-					<br/>
-					学期:<%= select_tag :semester, options_from_collection_for_select(@semesters,"id","name"), class: 'selectpicker show-tick', data: {width: 'auto'} %>
+					<strong>学期:</strong><%= select_tag :semester, options_from_collection_for_select(@semesters,"id","name"), class: 'selectpicker show-tick', data: {width: 'auto'} %>
 				</p>
 				<p>
 					<strong>時間:</strong>
 					<br />
-					時間:
-					<br />
-					曜日:
+					<strong>曜日:</strong>
 				</p>
 				<p>
 					<strong>講義室:</strong>
-					<%= f.text_field :place, class: 'form-control' %>
+					<%= f.text_field :place, class: 'form-control form-control-inline' %>
 				</p>
 				<p>
 					<strong>教員:</strong>
-					<%= select_tag :teacher, options_for_select(@teachers.map { |t| [t.name_kanji, t.id] }), class: 'selectpicker show-tick', data: {width: 'auto'}, multiple: 'true' %>
+					<%= select_tag :teacher, options_for_select(@teachers.map { |t| [t.name_kanji, t.id] }), class: 'selectpicker show-tick', data: {width: 'auto'}, multiple: 'true', title: '' %>
 				</p>
 			</div>
+			<br />
+			<%= f.submit '登録', class: 'btn btn-success col-sm-2 col-sm-offset-5 col-xs-12 col-xs-offset-0' %>
 		</div>
 	</div>
 	
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
 <script>
-		$("#subject-description").wysihtml5({locale: "en-US"});
+	$("#subject-description").wysihtml5({locale: "en-US"});
+	function change_uni_year() {
+		var uni_year_id = $("#uni_year").val();
+		alert(uni_year_id);
+		$.ajax({
+				url:"<%= url_for action: 'semester'%>",	
+				data:'uni_year_id=' + uni_year_id,
+			}
+		);
+	}
+	
+	$(document).ready(function() {
+		$('.selectpicker').selectpicker();
+		$('#uni_year').change(change_uni_year());
+	});
 </script>

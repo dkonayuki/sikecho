@@ -15,7 +15,7 @@ class SubjectsController < ApplicationController
         @subjects = @user.faculty.subjects.tagged_with(params[:tag])
       #filter semester
       elsif !params[:semester].blank?
-        year = @user.university.uni_years.find_by_no(params[:year].to_i)
+        year = @user.university.uni_years.find_by_no(params[:uni_year].to_i)
         semester = year.semesters.find_by_no(params[:semester].to_i)
         #filter from user's faculty subjects
         @subjects = @user.faculty.subjects.select { | subject | subject.semester == semester }
@@ -46,16 +46,21 @@ class SubjectsController < ApplicationController
     @show_subject = false
   end
 
+  def semester
+    uni_year = UniYear.find_by_id(params[:uni_year_id])
+    @semesters = uni_year.semesters
+    respond_to do |format|
+      format.js { render 'subjects/semester' }
+      format.html
+      format.json
+    end
+  end
+
   # GET /subjects/new
   def new
     @subject = Subject.new
     @uni_years = current_user.university.uni_years
     @semesters = []
-    @uni_years.each do | year |
-      year.semesters.each do | semester |
-        @semesters << semester
-      end
-    end
     @teachers = current_user.university.teachers
   end
 
@@ -128,7 +133,7 @@ class SubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
-      params.permit(:name, :value, :tag, :semester, :year)
+      params.permit(:name, :value, :tag, :semester, :uni_year, :uni_year_id)
       params.require(:subject).permit(:name, :description)
     end
 end

@@ -60,12 +60,12 @@
 									<div id="sub-filter-bar" class="hidden-xs">
 										<div class="outer-center">
 						        	<div id="sub-filter-bar-inner" class="inner-center">
-						        		<% @user.university.uni_years.each do | year | %>
+						        		<% @user.university.uni_years.each do | uni_year | %>
 												<div>
-													<h4><%= year.name %></h4>
+													<h4><%= uni_year.name %></h4>
 													<ul>
-														<% year.semesters.each do | semester | %>
-														<li><%= link_to semester.name, subjects_path(year: year.no, semester: semester.no) %></li>
+														<% uni_year.semesters.each do | semester | %>
+														<li><%= link_to semester.name, subjects_path(uni_year: uni_year.no, semester: semester.no) %></li>
 														<% end %>
 													</ul>
 												</div>

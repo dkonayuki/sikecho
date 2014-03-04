@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     @universities = University.all
-    @faculties = Array.new
+    @faculties = []
   end
 
   # GET /users/1/edit

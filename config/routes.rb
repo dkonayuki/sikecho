@@ -10,6 +10,7 @@ Shikechou::Application.routes.draw do
   resources :subjects
   #get 'filter/', to: 'subjects#filter', as: 'filter_subjects'
   get 'subjects/:id/notes/', to: 'subjects#notes', as: 'notes_in_show_subject'
+  get '/semester' => 'subjects#semester'
     
   resources :notes
   #get 'notes/delete/:id', to: 'notes#delete_document', as: 'delete_document'
@@ -19,7 +20,7 @@ Shikechou::Application.routes.draw do
   get 'documents/download/:id', to: 'documents#download', as: 'download'
 
   resources :users
-  get "/faculty" => "users#faculty"
+  get '/faculty' => 'users#faculty'
 
   controller :sessions do
     get 'login' => :new
