@@ -39,16 +39,3 @@
 	    <%= f.submit 'Sign up', class: 'btn btn-lg btn-primary btn-block'%>
 	  </div>
 <% end %>
-<script>
-	function change_university() {
-		var university_id = $("#user_university_id").val();
-		$.ajax({
-				url:"<%= url_for action: 'faculty'%>",	
-				data:'university_id=' + university_id,
-			}
-		);
-	}
-	$('document').ready(function() {
-		$('#user_university_id').on("change", change_university);
-	});
-</script>

@@ -49,6 +49,14 @@ class SubjectsController < ApplicationController
   # GET /subjects/new
   def new
     @subject = Subject.new
+    @uni_years = current_user.university.uni_years
+    @semesters = []
+    @uni_years.each do | year |
+      year.semesters.each do | semester |
+        @semesters << semester
+      end
+    end
+    @teachers = current_user.university.teachers
   end
 
   # GET /subjects/1/edit

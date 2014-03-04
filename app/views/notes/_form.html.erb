@@ -18,7 +18,7 @@
 			<%= image_tag("note.png")  %>
 		</div>
 		<div class="skc-box-desc">
-			<h4><%= f.text_area :title, class: 'form-control', rows: 1%></h4>
+			<h4><%= f.text_area :title, class: 'form-control', rows: 1, placeholder: 'タイトル' %></h4>
 			<hr />
 			<p>
 				<strong>内容:</strong>
@@ -27,10 +27,10 @@
 			<p>
 				<strong>科目:</strong>
 		  	<% if !isNew %>
-					<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name", selected: @subject.id), class: 'selectpicker', data: {width: 'auto'} %>
+					<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name", selected: @subject.id), class: 'selectpicker show-tick', data: {width: 'auto'} %>
 					<%= hidden_field_tag "old_subject", @subject.id %>
 				<% else %>
-		  		<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name"), class: 'selectpicker', data: {width: 'auto'} %>
+		  		<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name"), class: 'selectpicker show-tick', data: {width: 'auto'} %>
 		  	<% end %>
 			</p>
 			<hr />
@@ -114,14 +114,8 @@
 
 <!-- Initialize the plugin: -->
 <script>
-	$('.selectpicker').selectpicker();
-	$(document).keypress(function (e) {
-		//disable enter key in submit form
-	  if (e.which == 13 && e.target.nodeName != "TEXTAREA") return false;
-	  if (e.which == 9 && e.target.nodeName != "TEXTAREA") return false;
-	  if (e.which == 8 && e.target.nodeName != "TEXTAREA") return false;
-	});
-	
+	$("#edit-note-area").wysihtml5({locale: "en-US"});
+
 	//local sources
 	var sources = [
 		<% ActsAsTaggableOn::Tag.all.each do |tag| %>
@@ -160,7 +154,7 @@
 	});
 	$('#remove-all').on('click', function() {
 		$('#tag-input').tagsinput('removeAll');
-	})
+	});
 	
 	//fix for left over typeahead
 	$('.tt-query').on('blur', function() {
@@ -173,8 +167,6 @@
 				$('#tag-input').tagsinput('add', "<%= tag %>" );
 		<% end %>
 	<% end %>
-	
-	$("#edit-note-area").wysihtml5({locale: "en-US"});
 </script>
 
 <script>

@@ -10,16 +10,51 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
+  
+<div class="skc-box skc-box-no-padding skc-box-lg">
+		<div class="skc-box-content">
+			<div class="skc-box-thumbnail">
+				<%= image_tag("lecture.png")  %>
+			</div>
+			<div class="skc-box-title">
+    		<h4><%= f.text_area :name, class: 'form-control', rows: 1, placeholder: '授業名' %></h4>
+				<hr />
+	    </div>
+			<div class="skc-box-desc">
+				<p>
+					<strong>概要:</strong>
+					<%= f.text_area :description, class: 'form-control', id: 'subject-description' %>
+				</p>
+				<p>
+					<strong>推奨学期:</strong>
+					<br/>
+					学年:<%= select_tag :uni_year, options_from_collection_for_select(@uni_years,"id","name"), class: 'selectpicker show-tick', data: {width: 'auto'} %>
+					<br/>
+					学期:<%= select_tag :semester, options_from_collection_for_select(@semesters,"id","name"), class: 'selectpicker show-tick', data: {width: 'auto'} %>
+				</p>
+				<p>
+					<strong>時間:</strong>
+					<br />
+					時間:
+					<br />
+					曜日:
+				</p>
+				<p>
+					<strong>講義室:</strong>
+					<%= f.text_field :place, class: 'form-control' %>
+				</p>
+				<p>
+					<strong>教員:</strong>
+					<%= select_tag :teacher, options_for_select(@teachers.map { |t| [t.name_kanji, t.id] }), class: 'selectpicker show-tick', data: {width: 'auto'}, multiple: 'true' %>
+				</p>
+			</div>
+		</div>
+	</div>
+	
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+<script>
+		$("#subject-description").wysihtml5({locale: "en-US"});
+</script>
