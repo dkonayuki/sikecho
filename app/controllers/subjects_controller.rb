@@ -81,7 +81,7 @@ class SubjectsController < ApplicationController
     @number_of_outlines_list = (1..15).to_a
     
     @subject = Subject.new(subject_params)
-    @subject.semester = Semester.find(params[:semester])
+    @subject.semester = Semester.find(params[:semester]) unless params[:semester].blank?
     @subject.teachers = current_user.university.teachers.where(id: params[:teachers])
     @subject.faculties << current_user.faculty
     (1..@subject.number_of_outlines).each do | i |
