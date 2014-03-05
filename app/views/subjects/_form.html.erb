@@ -28,7 +28,7 @@
 				<p>
 					<strong>学年:</strong><%= select_tag :uni_year, options_from_collection_for_select(@uni_years,"id","name"), class: 'selectpicker show-tick', data: {width: 'auto'}, include_blank: true %>
 					<br/>
-					<strong>学期:</strong><%= select_tag :semester, options_from_collection_for_select(@semesters,"id","name"), class: 'selectpicker show-tick', data: {width: 'auto'} %>
+					<strong>学期:</strong><%= f.select :semester_id, options_from_collection_for_select(@semesters,"id","name"), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
 				</p>
 				<p>
 					<strong>年度:</strong><%= f.select :year, options_for_select(@years), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
