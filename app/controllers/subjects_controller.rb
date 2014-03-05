@@ -18,7 +18,8 @@ class SubjectsController < ApplicationController
         year = @user.university.uni_years.find_by_no(params[:uni_year].to_i)
         semester = year.semesters.find_by_no(params[:semester].to_i)
         #filter from user's faculty subjects
-        @subjects = @user.faculty.subjects.select { | subject | subject.semester == semester }
+        #@subjects = @user.faculty.subjects.select { | subject | subject.semester == semester } old version
+        @subjects = @user.faculty.subjects.where(semester: semester)
       else
       end
       #respond with js format, index.js.erb will be run
@@ -62,6 +63,8 @@ class SubjectsController < ApplicationController
     @uni_years = current_user.university.uni_years
     @semesters = []
     @teachers = current_user.university.teachers
+    @years = (2012..2015).to_a
+    @number_of_outlines_list = (1..15).to_a
   end
 
   # GET /subjects/1/edit
@@ -71,7 +74,20 @@ class SubjectsController < ApplicationController
   # POST /subjects
   # POST /subjects.json
   def create
+    @uni_years = current_user.university.uni_years
+    @semesters = []
+    @teachers = current_user.university.teachers
+    @years = (2012..2015).to_a
+    @number_of_outlines_list = (1..15).to_a
+    
     @subject = Subject.new(subject_params)
+    @subject.semester = Semester.find(params[:semester])
+    @subject.teachers = current_user.university.teachers.where(id: params[:teachers])
+    @subject.faculties << current_user.faculty
+    (1..@subject.number_of_outlines).each do | i |
+      outline = Outline.new(number: i)
+      @subject.outlines << outline
+    end
 
     respond_to do |format|
       if @subject.save
@@ -133,7 +149,7 @@ class SubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
-      params.permit(:name, :value, :tag, :semester, :uni_year, :uni_year_id)
-      params.require(:subject).permit(:name, :description)
+      params.permit(:name, :value, :tag, :semester, :uni_year, :uni_year_id, :teachers)
+      params.require(:subject).permit(:name, :description, :year, :place, :number_of_outlines)
     end
 end

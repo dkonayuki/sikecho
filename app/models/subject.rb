@@ -1,4 +1,8 @@
 class Subject < ActiveRecord::Base
+  validates :name, presence: true, uniqueness: true
+  #validates :uni_year, presence: true
+  #validates :semester, presence: true
+
   has_and_belongs_to_many :faculties
   has_and_belongs_to_many :notes
   has_and_belongs_to_many :teachers
