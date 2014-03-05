@@ -29,11 +29,11 @@
 	  </div>
 	  <div class="field">
 	  	<%= f.label :university_id %>
-	  	<%= f.select :university_id, options_from_collection_for_select(@universities,"id","name"), include_blank: true, class: "form-control" %>
+	  	<%= f.select :university_id, options_from_collection_for_select(@universities,"id","name"), {include_blank: true}, {class: "form-control selectpicker show-tick"} %>
 	  </div>
 	  <div class="field">
 	  	<%= f.label :faculty_id %>
-	  	<%= f.select :faculty_id, options_from_collection_for_select(@faculties,"id","name"), class: "form-control" %>
+	  	<%= f.select :faculty_id, options_from_collection_for_select(@faculties,"id","name"), {}, {class: "form-control selectpicker show-tick"} %>
 	  </div>
 	  <div class="actions">
 	    <%= f.submit 'Sign up', class: 'btn btn-lg btn-primary btn-block'%>
@@ -49,6 +49,7 @@
 		);
 	}
 	$('document').ready(function() {
+		$('.selectpicker').selectpicker();
 		$('#user_university_id').on("change", change_university);
 	});
 </script>
