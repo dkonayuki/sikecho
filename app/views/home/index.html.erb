@@ -1,4 +1,6 @@
 <div id="home">
+	          <input class="typeahead" type="text" placeholder="try it out">
+
 	<div id="home-schedule" class="col-xs12 col-md-9">
 		<%= render template: 'schedule/index' %>
 	</div>
@@ -42,3 +44,19 @@
 		</div>
 	</div>
 </div>
+<script>
+var anExcitedSource = function(query, cb) {
+  var results = $.map(['!', '!!', '!!!'], function(appendage) {
+    var datum = { theValue: query + appendage };
+ 
+    return datum;
+  });
+ 
+  cb(results);
+};
+ 
+$('.example-exclaimation .typeahead').typeahead(null, {
+  displayKey: 'theValue',
+  source: anExcitedSource
+});
+</script>

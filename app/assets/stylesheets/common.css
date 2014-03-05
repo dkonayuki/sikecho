@@ -40,7 +40,14 @@
 	padding: 28px;
 	border: 1px solid #eee;
 	position: relative;
-	overflow: hidden;
+}
+.skc-box-content:before,
+.skc-box-content:after {
+    content:"";
+    display:table;
+}
+.skc-box-content:after {
+    clear:both;
 }
 
 .skc-box-sm .skc-box-content {
