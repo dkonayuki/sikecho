@@ -101,6 +101,11 @@ class NotesController < ApplicationController
     end
   end
   
+  def tags
+    @tags = ActsAsTaggableOn::Tag.all
+    render json: @tags 
+  end
+  
   # GET /notes/1/edit
   def edit
     @subjects = @user.faculty.subjects

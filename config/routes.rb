@@ -15,6 +15,7 @@ Shikechou::Application.routes.draw do
   resources :notes
   #get 'notes/delete/:id', to: 'notes#delete_document', as: 'delete_document'
   #get 'notes/filter/:type', to: 'notes#filter', as: 'filter_notes'
+  get 'tags', to: 'notes#tags'
 
   resources :documents
   get 'documents/download/:id', to: 'documents#download', as: 'download'

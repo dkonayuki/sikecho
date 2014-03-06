@@ -17,7 +17,7 @@
 //= require bootstrap-select
 //= require bootstrap-editable/bootstrap-editable
 //= require bootstrap-tagsinput
-//= require typeahead.min.js
+//= require typeahead.bundle.js
 //= require moment.min.js
 //= require wysihtml5/wysihtml5-0.3.0.js
 //= require wysihtml5/handlebars.runtime.min.js
