@@ -3,3 +3,9 @@
 Ruby version: 2.0.0p247
 
 Rails version: 4.0.2
+
+typeahead.js 0.10.1
+X-editable - v1.5.1 (custom)
+bootstrap tagsinput 0.3.9 (custom)
+bootstrap-select v1.4.3
+wysihtml5 v0.3.0 (custom)
