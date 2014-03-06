@@ -103,7 +103,10 @@ class NotesController < ApplicationController
   
   def tags
     @tags = ActsAsTaggableOn::Tag.all
-    render json: @tags 
+    respond_to do |format|
+      format.html {}
+      format.json { render json: @tags }
+    end
   end
   
   # GET /notes/1/edit

@@ -16,9 +16,9 @@
 //= require bootstrap
 //= require bootstrap-select
 //= require bootstrap-tagsinput
+//= require handlebars.js
 //= require typeahead.bundle.js
 //= require wysihtml5/wysihtml5-0.3.0.js
-//= require wysihtml5/handlebars.runtime.min.js
 //= require wysihtml5/templates.js
 //= require wysihtml5/bootstrap3-wysihtml5.js
 //= require wysihtml5/bootstrap-wysihtml5.en-US.js

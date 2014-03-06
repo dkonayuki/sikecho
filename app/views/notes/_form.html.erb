@@ -122,6 +122,7 @@
 	  queryTokenizer: Bloodhound.tokenizers.whitespace,
 	  limit: 5,
 	  prefetch: {
+	  	ttl_ms: 0,
 	    url: '/tags.json',
 	    filter: function(list) {
 	      return $.map(list, function(tag) { return { name: tag.name }; });
@@ -131,7 +132,7 @@
 	 
 	// initialize the bloodhound suggestion engine
 	tags.initialize();
-
+	
 	//initiate tagsinput	
 	$('#tag-input').tagsinput({
 		tagClass: function(item) {
