@@ -26,7 +26,7 @@ class SubjectsController < ApplicationController
       end
       #respond with js format, index.js.erb will be run
       respond_to do |format|
-        format.html { redirect_to :subjects }
+        format.html {}
         format.js   {}
         format.json { render json: @subjects, status: :ok, location: :subjects }
       end
