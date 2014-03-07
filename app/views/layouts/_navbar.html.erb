@@ -44,7 +44,7 @@
       <li class="<%= 'active' if params[:controller] == 'users' %>"><%= link_to 'プロフィール', @user %></li>
       <li id="log-out"><%= link_to 'ログアウト', logout_path, method: :delete, class: 'visible-xs' %></li>
     </ul>
-  	<%= form_tag subjects_path, method: :get, class: "navbar-form navbar-left hidden-xs search-bar" do %>
+  	<%= form_tag subjects_path, method: :get, class: "navbar-form navbar-left hidden-xs search-bar search-bar-slide" do %>
   	  <div class="input-group">
 		    <%= text_field_tag :search, params[:search], class: 'form-control typeahead', placeholder: '検索' %>
 				<div class="input-group-btn">

@@ -41,3 +41,11 @@
 	display: inline-block !important;
 	width: auto !important;
 }
+
+.navbar-collapse.in {
+	overflow-y: visible !important;
+}
+
+.navbar-form {
+	border: none !important;
+}

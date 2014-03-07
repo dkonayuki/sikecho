@@ -156,14 +156,11 @@ body {
 	color: #262626 !important;
 }
 
-.search-bar {
-	border: none !important;
+
+.search-bar-slide {
+	width: 245px !important;
 }
-media (min-width: 768px) {
-	.search-bar {
-		width: 285px;
-	}
-}
+
 
 #navbar-search {
 	padding: 7px 15px !important;

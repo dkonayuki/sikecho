@@ -87,5 +87,18 @@ $(document).on('page:change', function() {
 		});
 		return false;
   });
+
+	/*For search bar slide*/
+  $(".search-bar-slide input").focus(function() {
+  	$(this).animate({
+  		width : "+=70px"		
+  	}, 500);
+  });
+  
+  $(".search-bar-slide input").focusout(function() {
+  	$(this).animate({
+  		width : "-=70px"		
+  	}, 500);
+  });
   
 });
