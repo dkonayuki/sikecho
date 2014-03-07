@@ -1,115 +1,116 @@
-
-<%= form_for @note, html: { multipart: true, id: 'new-note-form'} do |f| %>
-  <% if @note.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@note.errors.count, "error") %> prohibited this note from being saved:</h2>
-
-      <ul>
-      <% @note.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  
-<div class="skc-box skc-box-lg">
-	<div class="skc-box-content">
-		<div class="skc-box-thumbnail">
-			<%= image_tag("note.png")  %>
-		</div>
-		<div class="skc-box-desc">
-			<h4><%= f.text_area :title, class: 'form-control', rows: 1, placeholder: 'タイトル' %></h4>
-			<hr />
-			<p>
-				<strong>内容:</strong>
-				<%= f.text_area :content, class: 'form-control', id: 'edit-note-area' %>
-			</p>
-			<p>
-				<strong>科目:</strong>
-		  	<% if !isNew %>
-					<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name", selected: @subject.id), class: 'selectpicker show-tick', data: {width: 'auto'} %>
-					<%= hidden_field_tag "old_subject", @subject.id %>
-				<% else %>
-		  		<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name"), class: 'selectpicker show-tick', data: {width: 'auto'} %>
-		  	<% end %>
-			</p>
-			<hr />
-			<p>
-				<strong>資料:</strong>
-				<!-- 
-    		<% if @note.documents.empty? %>
-	      	<p>まだ資料がありません。</p>
-  			<% else %>
-		      <% @note.documents.each do |document| %>
-					  <p class="document">
-					  	<%= link_to "#{document.name}", download_path(document.id) %>
-					  	<%= link_to delete_document_path(document.id), confirm: '本当にいいですか?' do %>
-					  	<i class="icon-cross" id="document-delete-btn"></i>
-					  	<% end %>
-					  </p>
-					<% end %>
-				<% end %>
-  			<%= file_field_tag :document %><br /> 
-  			-->
-  			
-  <div id="fileupload">
-    <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-    <div class="row fileupload-buttonbar">
-      <div class="span7">
-        <!-- The fileinput-button span is used to style the file input field as button -->
-        <span class="btn btn-success fileinput-button">
-          <i class="glyphicon glyphicon-plus"></i>
-          <span>Add files...</span>
-          <%= file_field_tag :upload %>
-        </span>
-        <button type="submit" class="btn btn-primary start">
-          <i class="glyphicon glyphicon-upload"></i>
-          <span>Start upload</span>
-        </button>
-        <button type="reset" class="btn btn-warning cancel">
-          <i class="glyphicon glyphicon-ban-circle"></i>
-          <span>Cancel upload</span>
-        </button>
-        <button type="button" class="btn btn-danger delete">
-          <i class="glyphicon glyphicon-trash"></i>
-          <span>Delete</span>
-        </button>
-        <input type="checkbox" class="toggle">
-      </div>
-      <div class="span5">
-        <!-- The global progress bar -->
-        <div class="progress progress-success progress-striped active fade">
-          <div class="bar" style="width:0%;"></div>
-        </div>
-      </div>
-    </div>
-    <!-- The loading indicator is shown during image processing -->
-    <div class="fileupload-loading"></div>
-    <br>
-    <!-- The table listing the files available for upload/download -->
-    <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
-    </table>
-  </div>
-  
-			</p>
-			<hr />
-			<div id='tag-form'>
-				<div id='tag-menu'>
-		   		<div id="add-all" class="btn btn-primary btn-xs">全15回</div>
-		   		<div class="btn btn-primary btn-xs tag-menu-btn">試験対策</div>
-		   		<div class="btn btn-primary btn-xs tag-menu-btn">過去問題</div>
-		   		<div id="remove-all" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>クリア</div>
-	      </div>
-	      <%= text_area_tag 'tags', nil, id: 'tag-input' %>
+<div id="note-edit">
+	<%= form_for @note, html: { multipart: true, id: 'new-note-form'} do |f| %>
+	  <% if @note.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@note.errors.count, "error") %> prohibited this note from being saved:</h2>
+	
+	      <ul>
+	      <% @note.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+	  
+	<div class="skc-box skc-box-lg">
+		<div class="skc-box-content">
+			<div class="skc-box-thumbnail">
+				<%= image_tag("note.png")  %>
 			</div>
+			<div class="skc-box-desc">
+				<h4><%= f.text_area :title, class: 'form-control', rows: 1, placeholder: 'タイトル' %></h4>
+				<hr />
+				<p>
+					<strong>内容:</strong>
+					<%= f.text_area :content, class: 'form-control', id: 'edit-note-area' %>
+				</p>
+				<p>
+					<strong>科目:</strong>
+			  	<% if !isNew %>
+						<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name", selected: @subject.id), class: 'selectpicker show-tick', data: {width: 'auto'} %>
+						<%= hidden_field_tag "old_subject", @subject.id %>
+					<% else %>
+			  		<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name"), class: 'selectpicker show-tick', data: {width: 'auto'} %>
+			  	<% end %>
+				</p>
+				<hr />
+				<p>
+					<strong>資料:</strong>
+					<!-- 
+	    		<% if @note.documents.empty? %>
+		      	<p>まだ資料がありません。</p>
+	  			<% else %>
+			      <% @note.documents.each do |document| %>
+						  <p class="document">
+						  	<%= link_to "#{document.name}", download_path(document.id) %>
+						  	<%= link_to delete_document_path(document.id), confirm: '本当にいいですか?' do %>
+						  	<i class="icon-cross" id="document-delete-btn"></i>
+						  	<% end %>
+						  </p>
+						<% end %>
+					<% end %>
+	  			<%= file_field_tag :document %><br /> 
+	  			-->
+	  			
+	  <div id="fileupload">
+	    <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+	    <div class="row fileupload-buttonbar">
+	      <div class="span7">
+	        <!-- The fileinput-button span is used to style the file input field as button -->
+	        <span class="btn btn-success fileinput-button">
+	          <i class="glyphicon glyphicon-plus"></i>
+	          <span>Add files...</span>
+	          <%= file_field_tag :upload %>
+	        </span>
+	        <button type="submit" class="btn btn-primary start">
+	          <i class="glyphicon glyphicon-upload"></i>
+	          <span>Start upload</span>
+	        </button>
+	        <button type="reset" class="btn btn-warning cancel">
+	          <i class="glyphicon glyphicon-ban-circle"></i>
+	          <span>Cancel upload</span>
+	        </button>
+	        <button type="button" class="btn btn-danger delete">
+	          <i class="glyphicon glyphicon-trash"></i>
+	          <span>Delete</span>
+	        </button>
+	        <input type="checkbox" class="toggle">
+	      </div>
+	      <div class="span5">
+	        <!-- The global progress bar -->
+	        <div class="progress progress-success progress-striped active fade">
+	          <div class="bar" style="width:0%;"></div>
+	        </div>
+	      </div>
+	    </div>
+	    <!-- The loading indicator is shown during image processing -->
+	    <div class="fileupload-loading"></div>
+	    <br>
+	    <!-- The table listing the files available for upload/download -->
+	    <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
+	    </table>
+	  </div>
+	  
+				</p>
+				<hr />
+				<div id='tag-form'>
+					<div id='tag-menu'>
+			   		<div id="add-all" class="btn btn-primary btn-xs">全15回</div>
+			   		<div class="btn btn-primary btn-xs tag-menu-btn">試験対策</div>
+			   		<div class="btn btn-primary btn-xs tag-menu-btn">過去問題</div>
+			   		<div id="remove-all" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>クリア</div>
+		      </div>
+		      <%= text_area_tag 'tags', nil, id: 'tag-input' %>
+				</div>
+			</div>
+			<br />
+			<%= f.submit '登録', class: 'btn btn-success col-sm-2 col-sm-offset-5 col-xs-12 col-xs-offset-0' %>
 		</div>
-		<br />
-		<%= f.submit '登録', class: 'btn btn-success col-sm-2 col-sm-offset-5 col-xs-12 col-xs-offset-0' %>
 	</div>
+	
+	  	
+	<% end %>
 </div>
-
-  	
-<% end %>
 
 <!-- Initialize the plugin: -->
 <script>

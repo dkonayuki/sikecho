@@ -14,44 +14,55 @@
 
 <!-- main part -->
 <div id="show-subject" class="col-md-10 col-sm-10 col-xs-12">
-  <!--for overview section -->
-	<a name="description"></a>
-	<div class="skc-box skc-box-no-padding skc-box-lg">
-		<div class="skc-box-content">
-			<div class="skc-box-thumbnail">
-				<%= image_tag("lecture.png")  %>
+	<div id="show-subject-content">
+		<ul id="year-list" class="clear">
+			<% @same_subjects.each do |subject| %>
+				<% if subject.year == @subject.year %>
+					<li class="label-year label-year-inverse"><%= link_to subject.year, subject %></li>
+				<% else %>
+					<li class="label-year"><%= link_to subject.year, subject %></li>
+				<% end %>
+			<% end %>
+		</ul>
+	  <!--for overview section -->
+		<a name="description"></a>
+		<div class="skc-box skc-box-no-padding skc-box-lg">
+			<div class="skc-box-content">
+				<div class="skc-box-thumbnail">
+					<%= image_tag("lecture.png")  %>
+				</div>
+				<div class="skc-box-title">
+					<a data-toggle="collapse" href="#collapseDescription">
+		        <h4><%= @subject.name %></h4>
+		      </a>
+		    </div>
+				<div class="skc-box-desc collapse in" id="collapseDescription">
+					<p>
+						<a href="#" id="subject-description"><%= sanitize(@subject.description) %></a>
+					</p>
+					<hr />
+					<p>
+						<strong>推奨学期:</strong>
+						<%= link_to "#{@subject.semester.uni_year.name}#{@subject.semester.name}", subjects_path(semester: @subject.semester.no, uni_year: @subject.semester.uni_year.no) %>
+					</p>
+					<p>
+						<strong>時間:</strong>
+						<%= @subject.time_name %><%= @subject.day_name %>
+					</p>
+					<p>
+						<strong>講義室:</strong>
+						<%= @subject.place %>
+					</p>
+					<p>
+						<strong>教員:</strong>
+						<% @subject.teachers.each do |teacher| %>
+						<%= link_to teacher.name_kanji, teacher %>
+						<% end %>
+					</p>
+				</div>
 			</div>
-			<div class="skc-box-title">
-				<a data-toggle="collapse" href="#collapseDescription">
-	        <h4><%= @subject.name %></h4>
-	      </a>
-	    </div>
-			<div class="skc-box-desc collapse in" id="collapseDescription">
-				<p>
-					<a href="#" id="subject-description"><%= sanitize(@subject.description) %></a>
-				</p>
-				<hr />
-				<p>
-					<strong>推奨学期:</strong>
-					<%= link_to "#{@subject.semester.uni_year.name}#{@subject.semester.name}", subjects_path(semester: @subject.semester.no, uni_year: @subject.semester.uni_year.no) %>
-				</p>
-				<p>
-					<strong>時間:</strong>
-					<%= @subject.time_name %><%= @subject.day_name %>
-				</p>
-				<p>
-					<strong>講義室:</strong>
-					<%= @subject.place %>
-				</p>
-				<p>
-					<strong>教員:</strong>
-					<% @subject.teachers.each do |teacher| %>
-					<%= link_to teacher.name_kanji, teacher %>
-					<% end %>
-				</p>
-			</div>
-		</div>
-	</div>
+	</div><!--end of content-->
+</div><!-- end of show-subject -->
 	
   <!--for overview section -->
  	<a name="syllabus"></a>

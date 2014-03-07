@@ -1,62 +1,65 @@
-<%= form_for(@subject) do |f| %>
-  <% if @subject.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@subject.errors.count, "error") %> prohibited this subject from being saved:</h2>
-
-      <ul>
-      <% @subject.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  
-<div class="skc-box skc-box-lg">
-		<div class="skc-box-content">
-			<div class="skc-box-thumbnail">
-				<%= image_tag("lecture.png")  %>
-			</div>
-			<div class="skc-box-title">
-    		<h4><%= f.text_area :name, class: 'form-control', rows: 1, placeholder: '授業名' %></h4>
-				<hr />
-	    </div>
-			<div class="skc-box-desc">
-				<p>
-					<strong>概要:</strong>
-					<%= f.text_area :description, class: 'form-control', id: 'subject-description' %>
-				</p>
-				<p>
-					<strong>学年:</strong><%= select_tag :uni_year, options_from_collection_for_select(@uni_years,"id","name"), class: 'selectpicker show-tick', data: {width: 'auto'}, include_blank: true %>
-					<br/>
-					<strong>学期:</strong><%= f.select :semester_id, options_from_collection_for_select(@semesters,"id","name"), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
-				</p>
-				<p>
-					<strong>年度:</strong><%= f.select :year, options_for_select(@years), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
-				</p>
-				<p>
-					<strong>時間:</strong>
-					<br />
-					<strong>曜日:</strong>
-				</p>
-				<p>
-					<strong>講義室:</strong>
-					<%= f.text_field :place, class: 'form-control form-control-inline' %>
-				</p>
-				<p>
-					<strong>教員:</strong>
-					<%= select_tag :teachers, options_for_select(@teachers.map { |t| [t.name_kanji, t.id] }), class: 'selectpicker show-tick', data: {width: 'auto'}, multiple: 'true', title: '' %>
-				</p>
-				<p>
-					<strong>シラバス:</strong>
-					<%= f.select :number_of_outlines, options_for_select(@number_of_outlines_list), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
-				</p>
-			</div>
-			<br />
-			<%= f.submit '登録', class: 'btn btn-success col-sm-2 col-sm-offset-5 col-xs-12 col-xs-offset-0' %>
-		</div>
-	</div>
+<div id="subject-edit">
+	<%= form_for(@subject) do |f| %>
+	  <% if @subject.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@subject.errors.count, "error") %> prohibited this subject from being saved:</h2>
 	
-<% end %>
+	      <ul>
+	      <% @subject.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+	  
+	<div class="skc-box skc-box-lg">
+			<div class="skc-box-content">
+				<div class="skc-box-thumbnail">
+					<%= image_tag("lecture.png")  %>
+				</div>
+				<div class="skc-box-title">
+	    		<h4><%= f.text_area :name, class: 'form-control', rows: 1, placeholder: '授業名' %></h4>
+					<hr />
+		    </div>
+				<div class="skc-box-desc">
+					<p>
+						<strong>概要:</strong>
+						<%= f.text_area :description, class: 'form-control', id: 'subject-description' %>
+					</p>
+					<p>
+						<strong>学年:</strong><%= select_tag :uni_year, options_from_collection_for_select(@uni_years,"id","name"), class: 'selectpicker show-tick', data: {width: 'auto'}, include_blank: true %>
+						<br/>
+						<strong>学期:</strong><%= f.select :semester_id, options_from_collection_for_select(@semesters,"id","name"), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+					</p>
+					<p>
+						<strong>年度:</strong><%= f.select :year, options_for_select(@years), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+					</p>
+					<p>
+						<strong>時間:</strong>
+						<br />
+						<strong>曜日:</strong>
+					</p>
+					<p>
+						<strong>講義室:</strong>
+						<%= f.text_field :place, class: 'form-control form-control-inline' %>
+					</p>
+					<p>
+						<strong>教員:</strong>
+						<%= select_tag :teachers, options_for_select(@teachers.map { |t| [t.name_kanji, t.id] }), class: 'selectpicker show-tick', data: {width: 'auto'}, multiple: 'true', title: '' %>
+					</p>
+					<p>
+						<strong>シラバス:</strong>
+						<%= f.select :number_of_outlines, options_for_select(@number_of_outlines_list), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+					</p>
+				</div>
+				<br />
+				<%= f.submit '登録', class: 'btn btn-success col-sm-2 col-sm-offset-5 col-xs-12 col-xs-offset-0' %>
+			</div>
+		</div>
+		
+	<% end %>
+</div>
+
 <script>
 	$("#subject-description").wysihtml5({locale: "en-US"});
 	function change_uni_year() {

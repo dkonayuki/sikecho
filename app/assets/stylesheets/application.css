@@ -74,8 +74,13 @@ a:hover {
   position: relative;
 }
 
-.clear {
-  clear: both;
+.clear:before,
+.clear:after {
+  content: "";
+  display: table;
+}
+.clear:after {
+	clear: both;
 }
 
 .italic {
@@ -88,20 +93,6 @@ a:hover {
 #main {
 	position: relative;
 	overflow: hidden;
-}
-
-/* For modern browsers */
-#main:before,
-#main:after {
-    content:"";
-    display:table;
-}
-#main:after {
-    clear:both;
-}
-/* For IE 6/7 (trigger hasLayout) */
-#main {
-    zoom:1;
 }
 
 /* Sticky footer styles
@@ -160,7 +151,6 @@ body {
 .search-bar-slide {
 	width: 245px !important;
 }
-
 
 #navbar-search {
 	padding: 7px 15px !important;
@@ -385,6 +375,14 @@ body {
 /*Show Note page
  *  ===============================================================================================*/
 
+#show-note {
+	margin-top: 20px;
+}
+
+#note-edit {
+	margin-top: 20px;
+}
+
 #note-edit-btn {
 	position: absolute;
 	top: 80px;
@@ -420,9 +418,7 @@ body {
  *  ===============================================================================================*/
 
 #profile {
-	max-width: 600px;
-	margin: 0 auto;
-	float: none !important;
+	margin: 20px auto 0;
 }
 
 #form-edit-profile {
@@ -498,18 +494,6 @@ body {
 	position: relative;
 }
 
-.subject-year {
-	position: absolute;
-	top: -1px;
-	right: -1px;
-	padding: 6px 10px;
-	font-size: 12px;
-	background-color: #555E6B;
-	border-left: 6px solid #f1f1f1;
-	border-bottom: 6px solid #f1f1f1;
-	color: #fff;
-}
-
 .subject-item img {
   display: inline-block;
   margin: 0;
@@ -576,6 +560,34 @@ body {
 .subject-notes-number span {
 }
 
+.label-year {
+	padding: 6px 10px;
+	font-size: 12px;
+	background-color: #555E6B;
+	color: #fff;
+	width: 58px;
+	text-align: center;
+}
+.label-year a {
+	color: #fff;
+}
+
+.label-year-inverse {
+	background-color: #fff;
+	color: #555E6B;
+}
+.label-year-inverse a{
+	color: #555E6B;
+}
+
+.subject-year {
+	border-left: 6px solid #f1f1f1;
+	border-bottom: 6px solid #f1f1f1;
+	position: absolute;
+	top: -1px;
+	right: -1px;
+}
+
 #new-subject-btn {
 	float: right;
 	position: relative;
@@ -605,7 +617,9 @@ body {
 	margin-right: 40px;
 }
 
-#show-subject {
+#show-subject-content {
+	max-width: 800px;
+	margin: 0 auto;
 }
 
 .btn-custom {
@@ -635,8 +649,17 @@ body {
 	padding: 10px;
 }
 
-.text-content {
-	margin-left: 30px;
+#year-list {
+	margin: 20px 0 10px;
+}
+
+#year-list li {
+	float: right;
+	margin-left: 10px;
+}
+
+#subject-edit {
+	margin-top: 20px;
 }
 
 /* Teacher page

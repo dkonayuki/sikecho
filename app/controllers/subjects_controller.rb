@@ -5,7 +5,6 @@ class SubjectsController < ApplicationController
   # GET /subjects.json
   def index
     @user = current_user
-    puts params.inspect
     if params[:tag].blank? && params[:semester].blank? && params[:search].blank?
       #all
       @subjects = @user.faculty.subjects.to_a
@@ -47,6 +46,8 @@ class SubjectsController < ApplicationController
   def show
     @notes = @subject.notes
     @show_subject = false
+    @same_subjects = @user.faculty.subjects.where(name: @subject.name)
+    puts @same_subjects.inspect
   end
 
   def semester

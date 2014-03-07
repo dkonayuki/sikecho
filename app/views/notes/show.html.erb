@@ -1,53 +1,55 @@
-<div class="skc-box skc-box-lg">
-	<div class="skc-box-content">
-		<div class="skc-box-thumbnail">
-			<%= image_tag("note.png")  %>
-		</div>
-		<div class="skc-box-desc">
-			<h4><%= @note.title %></h4>
-			<hr />
-			<p>
-				<%= sanitize(@note.content) %>
-			</p>
-			<p>
-				<strong>科目:</strong>
-				<%= link_to @note.subjects.first.name, @note.subjects.first %>
-			</p>
-			<p>
-				<strong>ユーザー:</strong>
-				<%= link_to @note.user.username, @note.user %>
-			</p>
-			<p>
-				<strong>作成日:</strong>
-				<%= @note.created_at %>
-			</p>
-			<hr />
-			<p>
-				<strong>資料:</strong>
-				<% if @note.documents.empty? %>
-	    	<dd>まだ資料がありません。</dd>
-	      <% else %>
-		      <% @note.documents.each do |document| %>
-					  <dd><%= link_to "#{document.name}", download_path(document.id) %></dd>
+<div id="show-note">
+	<div class="skc-box skc-box-lg">
+		<div class="skc-box-content">
+			<div class="skc-box-thumbnail">
+				<%= image_tag("note.png")  %>
+			</div>
+			<div class="skc-box-desc">
+				<h4><%= @note.title %></h4>
+				<hr />
+				<p>
+					<%= sanitize(@note.content) %>
+				</p>
+				<p>
+					<strong>科目:</strong>
+					<%= link_to @note.subjects.first.name, @note.subjects.first %>
+				</p>
+				<p>
+					<strong>ユーザー:</strong>
+					<%= link_to @note.user.username, @note.user %>
+				</p>
+				<p>
+					<strong>作成日:</strong>
+					<%= @note.created_at %>
+				</p>
+				<hr />
+				<p>
+					<strong>資料:</strong>
+					<% if @note.documents.empty? %>
+		    	<dd>まだ資料がありません。</dd>
+		      <% else %>
+			      <% @note.documents.each do |document| %>
+						  <dd><%= link_to "#{document.name}", download_path(document.id) %></dd>
+						<% end %>
 					<% end %>
+				</p>
+				<hr />
+				<ul>
+					<% @tags.each do |tag| %>
+					<li class="label-custom"><%= tag %></li>
+					<% end %>
+				</ul>
+			</div>
+			<% if @note.user == @user %>
+			<div class="skc-box-menu">
+				<%= link_to edit_note_path(@note.id) do %>
+					<span class="glyphicon glyphicon-pencil"></span>
 				<% end %>
-			</p>
-			<hr />
-			<ul>
-				<% @tags.each do |tag| %>
-				<li class="label-custom"><%= tag %></li>
+				<%= link_to @note, method: :delete, data: { confirm: 'Are you sure?' } do %>
+					<span class="glyphicon glyphicon-remove"></span>
 				<% end %>
-			</ul>
-		</div>
-		<% if @note.user == @user %>
-		<div class="skc-box-menu">
-			<%= link_to edit_note_path(@note.id) do %>
-				<span class="glyphicon glyphicon-pencil"></span>
-			<% end %>
-			<%= link_to @note, method: :delete, data: { confirm: 'Are you sure?' } do %>
-				<span class="glyphicon glyphicon-remove"></span>
+			</div>
 			<% end %>
 		</div>
-		<% end %>
 	</div>
 </div>

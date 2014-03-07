@@ -1,5 +1,5 @@
 class Subject < ActiveRecord::Base
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true
   validates :semester_id, presence: true
   #validates :uni_year, presence: true
 

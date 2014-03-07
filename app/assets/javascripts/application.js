@@ -39,10 +39,6 @@ $(document).on('page:change', function() {
  	$('#filter-menu li a').on('click', function() {
  		if ($(this).attr('id') == 'sub-menu-trigger') {
  			$('#sub-filter-bar').toggle();
- 			$('#filter-menu li a').each(function() {
-	  		$( this ).removeClass( "active" );
-	  	});
-	  	$(this).addClass("active");
  		}
  		else {
  			$.getScript(this.href, null); 
@@ -54,6 +50,9 @@ $(document).on('page:change', function() {
 	  	$('#filter-menu li a').each(function() {
 	  		$( this ).removeClass( "active" );
 	  	});
+	  	$('#sub-filter-bar li a').each(function() {
+  			$( this ).removeClass( "active" );
+  		});
 	  	$(this).addClass("active");
 	  	$("#filter-form input").val("");
 	  	$('#sub-filter-bar').hide();
@@ -69,10 +68,14 @@ $(document).on('page:change', function() {
 		  dataType: "script",
 		  success: success
 		}); */
+		$('#filter-menu li a').each(function() {
+	  		$( this ).removeClass( "active" );
+	  	});
   	$('#sub-filter-bar li a').each(function() {
   		$( this ).removeClass( "active" );
   	});
   	$(this).addClass("active");
+		$('#sub-menu-trigger').addClass("active");
   	$('#sub-filter-bar').hide();
   	return false;
 	});
@@ -100,5 +103,33 @@ $(document).on('page:change', function() {
   		width : "-=70px"		
   	}, 500);
   });
-  
+	
+	/*For typeahead*/
+	var searchSource = function(query, cb) {
+	
+	  var results = [];
+	  var subject_item = new Object();
+	  subject_item.value = "授業検索: " + "'" + query + "'";
+	  subject_item.url = "/subjects?search=" + query;
+	  results.push(subject_item);
+	  var note_item = new Object();
+	  note_item.value = "ノート検索: " + "'" + query + "'";
+	  note_item.url = "/notes?search=" + query;
+	  results.push(note_item);
+	  cb(results);
+	};
+	
+	$('.typeahead').typeahead(null, {
+	  displayKey: 'value',
+	  source: searchSource,
+	  templates: {
+	    suggestion: Handlebars.compile(
+	      '<p><strong>{{value}}</strong></p>'
+	    )
+	  }
+	});
+	$('.typeahead').on('typeahead:selected', function(event, item) {
+		window.location.href = item.url;
+	});
+
 });
