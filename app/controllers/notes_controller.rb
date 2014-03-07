@@ -55,8 +55,11 @@ class NotesController < ApplicationController
 
   # GET /notes/new
   def new
-    @note = Note.new
     @user = current_user
+    if !params[:subject_id].blank? 
+      @subject = @user.faculty.subjects.find_by_id(params[:subject_id])
+    end
+    @note = Note.new
     @subjects = @user.faculty.subjects
   end
 
@@ -173,7 +176,7 @@ class NotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
-      params.permit(:document, :tags, :subject, :old_subject, :filter)
+      params.permit(:document, :tags, :subject, :old_subject, :filter, :subject_id)
       params.require(:note).permit(:title, :content)
     end
 

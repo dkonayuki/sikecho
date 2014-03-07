@@ -26,7 +26,7 @@
 				</p>
 				<p>
 					<strong>科目:</strong>
-			  	<% if !isNew %>
+			  	<% if @subject %>
 						<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name", selected: @subject.id), class: 'selectpicker show-tick', data: {width: 'auto'} %>
 						<%= hidden_field_tag "old_subject", @subject.id %>
 					<% else %>

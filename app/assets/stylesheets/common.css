@@ -1,3 +1,70 @@
+/*Common
+===============================================================================================*/
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+
+body {
+ 	font-family: 'lato', sans-serif, verdana, arial, helvetica !important; 
+}
+p, ol, ul, td {
+ 	font-family: 'lato', sans-serif, verdana, arial, helvetica !important; 
+}
+
+ul {
+	list-style-type: none;
+	padding: 0px;
+}
+
+.has-margin {
+	margin: 10px 0 10px;
+}
+
+img {
+	max-width: 100%;
+}
+
+.inline {
+  display: inline;
+}
+
+a:hover {
+  outline: 0;
+  text-decoration: none !important;
+}
+
+.badge-important {
+	background-color: #b94a48 !important;
+}
+
+.hr-narrow {
+	margin-top: 10px !important;
+	margin-bottom: 10px !important;
+}
+
+.outer-center {
+  float: right;
+  right: 50%;
+  position: relative;
+}
+
+.inner-center {
+  float: right;
+  right: -50%;
+  position: relative;
+}
+
+.clear:before,
+.clear:after {
+  content: "";
+  display: table;
+}
+.clear:after {
+	clear: both;
+}
+
+.italic {
+	font-style: italic;
+}
+
 @media (max-width: 469px) {
 	.skc-box-thumbnail {
 		display: none;
@@ -108,4 +175,63 @@
 .skc-box-title-no-margin {
 	margin-left: 0 !important;
 	text-align: center;
+}
+
+.label-custom {
+	background: #fff;
+	color: #aaa !important;
+	padding: 8px 20px;
+	line-height: 20px;
+	border: 1px solid #eee;
+	font-size: 11px;
+	text-transform: uppercase;
+	display: inline-block;
+	margin: 3px 2px;
+}
+
+.btn-blue {
+	color: #fff;
+	background-color: #5bc0de;
+	width: 100%;
+}
+
+.btn-yellow {
+	color: #fff;
+	background-color: #f0ad4e;
+	width: 100%;
+}
+
+.label-year {
+	padding: 6px 10px;
+	font-size: 12px;
+	background-color: #555E6B;
+	color: #fff;
+	width: 58px;
+	text-align: center;
+}
+.label-year a {
+	color: #fff;
+}
+
+.label-year-inverse {
+	background-color: #fff;
+	color: #555E6B;
+}
+.label-year-inverse a{
+	color: #555E6B;
+}
+
+
+.btn-trigger {
+	color: #333333;
+	background-color: white;
+	display: inline-block;
+	cursor: pointer;
+	border-right: 1px solid transparent; 
+	border-bottom: 1px solid transparent; 
+	border-color: #E7E7E7;
+	padding: 6px 10px;
+	font-size: 20px;
+	width: 40px;
+	height: 35px;
 }

@@ -1,12 +1,28 @@
 <!-- sidebar -->
 <div class="hidden-xs col-md-2 col-sm-2 sidebar-offcanvas" role="navigation">
-	<div class="affix" role="complementary" id="show-subject-overview">
+	<div class="affix show-subject-menu" role="complementary" id="show-subject-overview">
+		<h4>要旨</h4>
 		<ul class="nav">
       <li class="active"><a href="#description">概要</a></li>
       <li><a href="#syllabus">シラバス</a></li>
-      <li><a href="#notes">ノート</a></li>      
-      <%= link_to schedule_path, class: 'btn btn-custom' do %>  
+      <li><a href="#notes">ノート</a></li>         
+    </ul>
+	</div>
+	
+	<div class="affix show-subject-menu" role="complementary" id="show-subject-schedule">
+		<h4>授業</h4>
+		<ul class="nav">     
+      <%= link_to schedule_path, class: 'btn btn-blue' do %>  
       <span class="glyphicon glyphicon-plus-sign"></span>登録
+      <% end %>      
+    </ul>
+	</div>
+	
+	<div class="affix show-subject-menu" role="complementary" id="show-subject-notes">
+		<h4>ノート</h4>
+		<ul class="nav">     
+      <%= link_to new_note_path(subject_id: @subject.id), class: 'btn btn-yellow' do %>  
+      <span class="glyphicon glyphicon-plus-sign"></span>追加
       <% end %>      
     </ul>
 	</div>

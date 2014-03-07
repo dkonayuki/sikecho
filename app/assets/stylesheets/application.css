@@ -402,18 +402,6 @@ body {
 	display: inline-block;
 }
 
-.label-custom {
-	background: #fff;
-	color: #aaa !important;
-	padding: 8px 20px;
-	line-height: 20px;
-	border: 1px solid #eee;
-	font-size: 11px;
-	text-transform: uppercase;
-	display: inline-block;
-	margin: 3px 2px;
-}
-
 /*Profile
  *  ===============================================================================================*/
 
@@ -425,6 +413,7 @@ body {
 	max-width: 400px;
 	margin: 0 auto;
 }
+
 .calendar {
 	max-width: 40px;
 }
@@ -560,26 +549,6 @@ body {
 .subject-notes-number span {
 }
 
-.label-year {
-	padding: 6px 10px;
-	font-size: 12px;
-	background-color: #555E6B;
-	color: #fff;
-	width: 58px;
-	text-align: center;
-}
-.label-year a {
-	color: #fff;
-}
-
-.label-year-inverse {
-	background-color: #fff;
-	color: #555E6B;
-}
-.label-year-inverse a{
-	color: #555E6B;
-}
-
 .subject-year {
 	border-left: 6px solid #f1f1f1;
 	border-bottom: 6px solid #f1f1f1;
@@ -622,31 +591,28 @@ body {
 	margin: 0 auto;
 }
 
-.btn-custom {
-	color: white;
-	background-color: #5bc0de;
-	width: 100%;
-	min-width: 90px;
+.show-subject-menu {
+	width: 120px;
+	background-color: #fff;
+	padding: 10px;
 }
 
-.btn-trigger {
-	color: #333333;
-	background-color: white;
-	display: inline-block;
-	cursor: pointer;
-	border-right: 1px solid transparent; 
-	border-bottom: 1px solid transparent; 
-	border-color: #E7E7E7;
-	padding: 6px 10px;
-	font-size: 20px;
-	width: 40px;
-	height: 35px;
+.show-subject-menu h4 {
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
 }
 
 #show-subject-overview {
-	background-color: #fff;
 	margin-top: 20px;
-	padding: 10px;
+}
+
+#show-subject-schedule {
+	margin-top: 220px;
+}
+
+#show-subject-notes {
+	margin-top: 340px;
 }
 
 #year-list {
