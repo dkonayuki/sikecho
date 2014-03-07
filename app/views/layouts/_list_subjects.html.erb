@@ -9,7 +9,7 @@
 	      <p class="subject-name"><%= subject.name %></p>
 	      <hr class="hr-narrow" />
 				<p class="subject-desc">
-					<%= subject.description %>
+					<%= strip_tags(subject.description) %>
 				</p>
       </div>
       <div class="subject-info">

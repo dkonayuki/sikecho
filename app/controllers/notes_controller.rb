@@ -10,6 +10,7 @@ class NotesController < ApplicationController
     #process filter if has any
     if params[:filter].blank? 
       @notes = @user.notes.search(params[:search]).order('created_at DESC').to_a #use this method instead of .all
+      @search = params[:search]
     else
       case params[:filter] 
       when '自分のノート'    #filter=1 : user's notes

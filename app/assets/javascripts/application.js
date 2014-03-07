@@ -88,11 +88,4 @@ $(document).on('page:change', function() {
 		return false;
   });
   
-  /*wysihtml5*/
- 	$(document).keypress(function (e) {
-		//disable enter key in submit form
-	  if (e.which == 13 && e.target.nodeName != "TEXTAREA") return false;
-	  if (e.which == 9 && e.target.nodeName != "TEXTAREA") return false;
-	  if (e.which == 8 && e.target.nodeName != "TEXTAREA") return false;
-	});
 });

@@ -1,6 +1,4 @@
 <div id="home">
-          <input class="typeahead" type="text" placeholder="numbers (1-10)">
-
 	<div id="home-schedule" class="col-xs12 col-md-9">
 		<%= render template: 'schedule/index' %>
 	</div>
@@ -44,24 +42,3 @@
 		</div>
 	</div>
 </div>
-<script>
-var anExcitedSource = function(query, cb) {
-  var results = $.map(['授業検索:', 'ノート検索:', '教員検索:'], function(appendage) {
-    var datum = { value: appendage + query};
- 
-    return datum;
-  });
- 
-  cb(results);
-};
- 
-$('.typeahead').typeahead(null, {
-  displayKey: 'value',
-  source: anExcitedSource,
-  templates: {
-    suggestion: Handlebars.compile(
-      '<p><strong>{{value}}</strong> – {{year}}</p>'
-    )
-  }
-});
-</script>

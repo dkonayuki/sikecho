@@ -5,9 +5,11 @@ class SubjectsController < ApplicationController
   # GET /subjects.json
   def index
     @user = current_user
-    
-    if params[:tag].blank? && params[:semester].blank?
+    puts params.inspect
+    if params[:tag].blank? && params[:semester].blank? && params[:search].blank?
       #all
+      @subjects = @user.faculty.subjects.to_a
+    elsif !params[:search].blank?
       @subjects = @user.faculty.subjects.search(params[:search])
     else
       #filter tag
