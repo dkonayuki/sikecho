@@ -33,21 +33,21 @@ class SubjectsController < ApplicationController
     #other option: render action: "index"
   end
   
-  #filter in show subject page
-  def notes
-    @subject = Subject.find(params[:id])
-    @notes = @subject.notes.tagged_with(params[:tag])
-    @show_subject = false
-    render action: 'show'
-  end
-
   # GET /subjects/1
   # GET /subjects/1.json
   def show
-    @notes = @subject.notes
+    if !params[:tag].blank?
+      #filter in show subject page
+      @notes = @subject.notes.tagged_with(params[:tag])
+    else
+      @notes = @subject.notes
+    end
     @show_subject = false
     @same_subjects = @user.faculty.subjects.where(name: @subject.name)
-    puts @same_subjects.inspect
+    respond_to do |format|
+      format.html {}
+      format.js   {}
+    end
   end
 
   def semester

@@ -80,6 +80,30 @@ $(document).on('page:change', function() {
   	return false;
 	});
 	
+	/*for anchor*/
+	function scrollToAnchor(aid){
+    var aTag = $("a[name='"+ aid +"']");
+    $('html,body').animate({scrollTop: aTag.offset().top},'fast');
+	}
+	$("#show-subject-overview a").on("click", function() {
+		var anchor = $(this).attr("href").replace("#",""); 
+		// the difference between this.href and jquery attr("href")
+		// $(this).attr("href") == #notes 
+		// this.href == http://localhost:8000/subjects/11#description 
+		scrollToAnchor(anchor);
+		return false;
+	});
+	
+	/*For outline btn*/
+	$(".outline-btn").on("click", function() {
+		$.ajax({
+		  url: this.href,
+		  dataType: "script",
+		  success: scrollToAnchor('notes')
+		});
+		return false;
+	});
+	
 	/*For live search*/
 	$("#filter-form input").keyup(function() {
 	  $.ajax({
