@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :university_id, presence: true
   validates :faculty_id, presence: true
+  validates :password_confirmation, presence: true
   
   has_secure_password
   

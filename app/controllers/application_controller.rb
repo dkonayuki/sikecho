@@ -8,14 +8,13 @@ class ApplicationController < ActionController::Base
     
   private 
   def current_user
-    @user = User.find_by_id(session[:user_id])
-    @user
+    User.find_by_id(session[:user_id]) if session[:user_id]
   end
     
   private
   def authorize
     unless User.find_by_id(session[:user_id])
-      redirect_to login_url, notice: "Please login"
+      redirect_to login_url, notice: "ログインしてください。"
     end
   end
   

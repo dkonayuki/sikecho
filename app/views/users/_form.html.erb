@@ -1,4 +1,5 @@
-<%= form_for @user, html: {class: 'form-signin'} do |f| %>
+<div id="user-edit">
+<%= form_for @user do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -10,35 +11,53 @@
       </ul>
     </div>
   <% end %>
-
-		<div class="field">
-	    <%= f.label :username, 'Username'%><br>
-	    <%= f.text_field :username, class: 'form-control' %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :password%><br>
-	    <%= f.password_field :password, class: 'form-control'%>
-	  </div>
-	  <div class="field">
-	    <%= f.label :password_confirmation%><br>
-	    <%= f.password_field :password_confirmation, class: 'form-control'%>
-	  </div>
-	  <div class="field">
-	    <%= f.label :email %><br>
-	    <%= f.text_field :email, class: 'form-control' %>
-	  </div>
-	  <div class="field">
-	  	<%= f.label :university_id %>
-	  	<%= f.select :university_id, options_from_collection_for_select(@universities,"id","name"), {include_blank: true}, {class: "form-control selectpicker show-tick"} %>
-	  </div>
-	  <div class="field">
-	  	<%= f.label :faculty_id %>
-	  	<%= f.select :faculty_id, options_from_collection_for_select(@faculties,"id","name"), {}, {class: "form-control selectpicker show-tick"} %>
-	  </div>
-	  <div class="actions">
-	    <%= f.submit 'Sign up', class: 'btn btn-lg btn-primary btn-block'%>
-	  </div>
+	<div class="skc-box">
+		<div class="skc-box-content">
+			<div class="skc-box-thumbnail">
+				<%= image_tag("user.png")  %>
+			</div>
+			<div class="skc-box-desc">
+				<%= f.text_field :username, class: 'form-control', placeholder: 'ユーザー名:' %>
+				<hr />
+				<% if isNew %>
+				<p>
+					<strong>パスワード:</strong>
+					<%= f.password_field :password, class: 'form-control'%>
+				</p>
+				<% end %>
+				<p>
+					<strong>パスワード確認:</strong>
+					<%= f.password_field :password_confirmation, class: 'form-control'%>
+				</p>
+				<p>
+					<strong>メール:</strong>
+					<%= f.text_field :email, class: 'form-control' %>
+				</p>
+				<p>
+					<strong>学校:</strong>
+					<% if @user.university_id %>
+	  				<%= f.select :university_id, options_from_collection_for_select(@universities,"id","name", @user.university.id), {include_blank: true}, {class: "form-control selectpicker show-tick inline", data: {width: 'auto'}} %>
+					<% else %>
+	  				<%= f.select :university_id, options_from_collection_for_select(@universities,"id","name"), {include_blank: true}, {class: "form-control selectpicker show-tick inline", data: {width: 'auto'}} %>					
+					<% end %>
+				</p>
+				<p>
+					<strong>学科・コース:</strong>
+					<% if @user.faculty_id %>
+	  			<%= f.select :faculty_id, options_from_collection_for_select(@faculties,"id","name", @user.faculty.id), {}, {class: "form-control selectpicker show-tick", data: {width: 'auto'}} %>
+					<% else %>
+	  			<%= f.select :faculty_id, options_from_collection_for_select(@faculties,"id","name"), {}, {class: "form-control selectpicker show-tick", data: {width: 'auto'}} %>
+					<% end %>
+				</p>
+				<hr />
+			</div>
+			<%= f.submit '登録', class: 'btn btn-success col-sm-2 col-sm-offset-5 col-xs-12 col-xs-offset-0'%>
+			<br />
+		</div>
+	</div>
 <% end %>
+</div>
+
 <script>
 	function change_university() {
 		var university_id = $("#user_university_id").val();

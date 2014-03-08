@@ -115,6 +115,7 @@ class NotesController < ApplicationController
   
   # GET /notes/1/edit
   def edit
+    @user = current_user
     @subjects = @user.faculty.subjects
     @note = Note.find( params[:id] )    
     @subject = @note.subjects.first
@@ -125,8 +126,8 @@ class NotesController < ApplicationController
   # PATCH/PUT /notes/1.json
   def update
     # Update subject and document
-    #@note = Note.find( params[:id] )
-    
+    @user = current_user
+        
     # update tags list
     tags = params[:tags].split(',')
     @note.tag_list = tags

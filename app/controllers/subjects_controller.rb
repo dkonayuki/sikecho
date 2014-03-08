@@ -36,6 +36,7 @@ class SubjectsController < ApplicationController
   # GET /subjects/1
   # GET /subjects/1.json
   def show
+    @user = current_user
     if !params[:tag].blank?
       #filter in show subject page
       @notes = @subject.notes.tagged_with(params[:tag])
@@ -62,6 +63,7 @@ class SubjectsController < ApplicationController
 
   # GET /subjects/new
   def new
+    @user = current_user
     @subject = Subject.new
     @uni_years = current_user.university.uni_years
     @semesters = []
@@ -77,6 +79,7 @@ class SubjectsController < ApplicationController
   # POST /subjects
   # POST /subjects.json
   def create
+    @user = current_user
     @uni_years = current_user.university.uni_years
     @semesters = []
     @teachers = current_user.university.teachers
