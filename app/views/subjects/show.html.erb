@@ -42,7 +42,7 @@
 		</ul>
 	  <!--for overview section -->
 		<a name="description"></a>
-		<div class="skc-box skc-box-no-padding skc-box-lg">
+		<div class="skc-box skc-box-no-padding skc-box-lg" id="show-subject-desc">
 			<div class="skc-box-content">
 				<div class="skc-box-thumbnail">
 					<%= image_tag("lecture.png")  %>
@@ -54,7 +54,7 @@
 		    </div>
 				<div class="skc-box-desc collapse in" id="collapseDescription">
 					<p>
-						<a href="#" id="subject-description"><%= sanitize(@subject.description) %></a>
+						<%= sanitize(@subject.description) %>
 					</p>
 					<hr />
 					<p>
@@ -72,12 +72,23 @@
 					<p>
 						<strong>教員:</strong>
 						<% @subject.teachers.each do |teacher| %>
-						<%= link_to teacher.name_kanji, teacher %>
-						<% end %>
+		      		<% if teacher != @subject.teachers.first  %>
+		      		・
+		      		<% end %>
+							<%= link_to teacher.name_kanji, teacher %>
+      			<% end %>
 					</p>
 				</div>
+				<div class="skc-box-menu">
+					<%= link_to edit_subject_path(@subject.id) do %>
+						<span class="glyphicon glyphicon-pencil"></span>
+					<% end %>
+					<%= link_to @subject, method: :delete, data: { confirm: 'Are you sure?' } do %>
+						<span class="glyphicon glyphicon-remove"></span>
+					<% end %>
+				</div>
 			</div>
-	</div><!--end of content-->
+	</div><!--end of skc-box-->
 </div><!-- end of show-subject -->
 	
   <!--for overview section -->
@@ -129,39 +140,3 @@
 	</div>
 	
 </div>
-<script>
-	//turn to inline mode
-	$.fn.editable.defaults.mode = 'inline';
-	$.fn.editable.defaults.ajaxOptions = {dataType: 'json', type: "PUT"};
-	$(document).ready(function() {
-	    $('#subject-description').editable({
-			    type: 'wysihtml5',
-			    wysihtml5: {
-			    	locale: 'en-US',
-			    	size: 'sm'
-			    },
-			    name: 'description',
-			    pk: <%= @subject.id %>,
-			    url: '/subjects/<%= @subject.id %>',
-			});
-			
-			$('.outline-date').editable({
-			    type: 'combodate',
-			    format: 'YYYY年MM月DD日', //for sending value
-			    viewformat: 'YYYY年MM月DD日', //for view
-			    template: 'YYYY / MM / DD',  //for combodate selector  
-			    name: 'date',
-	        combodate: {
-            minYear: 2000,
-            maxYear: 2015,
-	        },
-			    url: '/subjects/<%= @subject.id %>',
-			});
-			
-			$('.outline-content').editable({
-			    type: 'textarea',
-			    name: 'content',
-			    url: '/subjects/<%= @subject.id %>',
-			});
-	});
-</script>

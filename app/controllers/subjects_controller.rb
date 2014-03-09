@@ -53,7 +53,7 @@ class SubjectsController < ApplicationController
 
   def semester
     uni_year = UniYear.find_by_id(params[:uni_year_id])
-    @semesters = uni_year.semesters
+    @semesters = uni_year ? uni_year.semesters : []
     respond_to do |format|
       format.js { render 'subjects/semester' }
       format.html
@@ -74,11 +74,18 @@ class SubjectsController < ApplicationController
 
   # GET /subjects/1/edit
   def edit
+    @user = current_user
+    @uni_years = current_user.university.uni_years
+    @semesters = []
+    @teachers = current_user.university.teachers
+    @years = (2012..2015).to_a
+    @number_of_outlines_list = (1..15).to_a
   end
 
   # POST /subjects
   # POST /subjects.json
   def create
+    #prepare previous info
     @user = current_user
     @uni_years = current_user.university.uni_years
     @semesters = []
@@ -86,8 +93,8 @@ class SubjectsController < ApplicationController
     @years = (2012..2015).to_a
     @number_of_outlines_list = (1..15).to_a
     
+    #create new subject
     @subject = Subject.new(subject_params)
-    @subject.semester = Semester.find(params[:semester]) unless params[:semester].blank?
     @subject.teachers = current_user.university.teachers.where(id: params[:teachers])
     @subject.faculties << current_user.faculty
     (1..@subject.number_of_outlines).each do | i |
@@ -100,6 +107,8 @@ class SubjectsController < ApplicationController
         format.html { redirect_to @subject, notice: 'Subject was successfully created.' }
         format.json { render action: 'show', status: :created, location: @subject }
       else
+        #prepare semester select
+        @semesters = @subject.uni_year ? @subject.uni_year.semesters : []
         format.html { render action: 'new' }
         format.json { render json: @subject.errors, status: :unprocessable_entity }
       end
@@ -109,23 +118,6 @@ class SubjectsController < ApplicationController
   # PATCH/PUT /subjects/1
   # PATCH/PUT /subjects/1.json
   def update
-    # for inline edit
-    case params[:name].to_s
-    when 'description'
-      @subject.description = params[:value]
-    when 'date'
-      #search in array 
-      outline = @subject.outlines.find_by_number(params[:pk])
-      outline.date = DateTime.strptime(params[:value], '%Y年%m月%d日')
-      outline.save
-    when 'content'
-      #search in array 
-      outline = @subject.outlines.find_by_number(params[:pk])
-      outline.content = params[:value]
-      outline.save
-    else
-      #no implement
-    end
     respond_to do |format|
       if @subject.save
         format.html { redirect_to @subject, notice: 'Subject was successfully updated.' }
@@ -156,6 +148,6 @@ class SubjectsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
       params.permit(:name, :value, :tag, :semester, :uni_year, :uni_year_id, :teachers)
-      params.require(:subject).permit(:name, :description, :year, :place, :number_of_outlines, :semester_id)
+      params.require(:subject).permit(:name, :description, :year, :place, :number_of_outlines, :semester_id, :uni_year_id)
     end
 end

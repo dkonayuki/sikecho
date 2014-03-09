@@ -86,6 +86,10 @@ a:hover {
 	max-width: 600px;
 }
 
+.skc-box:hover .skc-box-menu {
+	display: block;
+}
+
 .skc-box-no-padding {
 	padding: 0 0 20px !important;
 }
@@ -127,6 +131,7 @@ a:hover {
 }
 
 .skc-box-desc {
+	position: relative;
 	margin-left: 105px;
 	font-size: 0.95em;
 	line-height: 1.5;
@@ -159,6 +164,7 @@ a:hover {
 }
 
 .skc-box-menu {
+	display: none;
 	position: absolute;
 	top: 30px;
 	right: 30px;

@@ -46,12 +46,13 @@ td_sub_name.each do | name |
   day = rand(6)
   semesterNo = 1 + rand(2)
   yearNo = 1 + rand(4)
-  year = todai.uni_years.find_by_no(yearNo)
-  semester = year.semesters.find_by_no(semesterNo)
+  uni_year = todai.uni_years.find_by_no(yearNo)
+  semester = uni_year.semesters.find_by_no(semesterNo)
   sub = Subject.new(name: name, time: time, time_name: time_names[time], day: day, day_name: day_names[day], place: 'W300', description: td_desc, number_of_outlines: 15, year: 2014)
   sub.faculties << igakubu
   sub.teachers << td_sensei
   sub.semester = semester
+  sub.uni_year = uni_year
   sub.tag_list.add(sub_tags[rand(4)])
   (1..15).each do | j |
     outline = Outline.create(number: j, content: '')
@@ -62,6 +63,8 @@ end
 
 kougakubu = Faculty.create(name: "工学部", university: tokodai)
 sensei = Teacher.create(first_name_kanji: '順平', last_name_kanji: '林', faculty: kougakubu, university: tokodai)
+sensei2 = Teacher.create(first_name_kanji: '小林', last_name_kanji: '次郎', faculty: kougakubu, university: tokodai)
+sensei3 = Teacher.create(first_name_kanji: '篠田', last_name_kanji: '太郎', faculty: kougakubu, university: tokodai)
 sub_name = ["フーリエ変換とラープラス変換","確率と統計","基礎集積回廊","論理回路理論","計算基礎論","プログラミング第一","プログラミング第二",
     "プログラミング第三","プログラミング第四","数理論理学","オートマトンと言語","計算機論理設計","代数系と符号理論","離散構造とアルゴリズム",
      "計算機アーキテクチャ第一","計算機アーキテクチャ第二","オペレーティングシステム","数値計算法","電気回路基礎論","人工知能基礎論","コンパイラ構成",
@@ -74,12 +77,13 @@ sub_name.each do | name |
   day = rand(6)
   semesterNo = 1 + rand(2)
   yearNo = 1 + rand(4)
-  year = tokodai.uni_years.find_by_no(yearNo)
-  semester = year.semesters.find_by_no(semesterNo)
+  uni_year = tokodai.uni_years.find_by_no(yearNo)
+  semester = uni_year.semesters.find_by_no(semesterNo)
   sub = Subject.create(name: name, time: time, time_name: time_names[time], day: day, day_name: day_names[day], place: 'S421', description: description, number_of_outlines: 15, year: 2014)
   sub.faculties << kougakubu
   sub.teachers << sensei
   sub.semester = semester
+  sub.uni_year = uni_year
   sub.tag_list.add(sub_tags[rand(5)])
   (1..15).each do | j |
     outline = Outline.create(number: j, content: '')

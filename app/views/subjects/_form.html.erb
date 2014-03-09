@@ -27,12 +27,27 @@
 						<%= f.text_area :description, class: 'form-control', id: 'subject-description' %>
 					</p>
 					<p>
-						<strong>学年:</strong><%= select_tag :uni_year, options_from_collection_for_select(@uni_years,"id","name"), class: 'selectpicker show-tick', data: {width: 'auto'}, include_blank: true %>
+						<strong>学年:</strong>
+						<% if @subject.uni_year %>
+						<%= f.select :uni_year_id	, options_from_collection_for_select(@uni_years,"id","name",selected:@subject.uni_year.id), {include_blank: true}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<% else %>
+						<%= f.select :uni_year_id	, options_from_collection_for_select(@uni_years,"id","name"), {include_blank: true}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<% end %>
 						<br/>
-						<strong>学期:</strong><%= f.select :semester_id, options_from_collection_for_select(@semesters,"id","name"), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<strong>学期:</strong>
+						<% if @subject.semester %>
+						<%= f.select :semester_id, options_from_collection_for_select(@semesters,"id","name",selected:@subject.semester.id), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<% else %>
+						<%= f.select :semester_id, options_from_collection_for_select(@semesters,"id","name"), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<% end %>
 					</p>
 					<p>
-						<strong>年度:</strong><%= f.select :year, options_for_select(@years), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<strong>年度:</strong>
+						<% if @subject.year %>
+						<%= f.select :year, options_for_select(@years, selected: @subject.year), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<% else %>
+						<%= f.select :year, options_for_select(@years), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<% end %>
 					</p>
 					<p>
 						<strong>時間:</strong>
@@ -45,11 +60,19 @@
 					</p>
 					<p>
 						<strong>教員:</strong>
-						<%= select_tag :teachers, options_for_select(@teachers.map { |t| [t.name_kanji, t.id] }), class: 'selectpicker show-tick', data: {width: 'auto'}, multiple: 'true', title: '' %>
+						<% if @subject.teachers %>
+						<%= select_tag :teachers, options_for_select(@teachers.map { |t| [t.name_kanji, t.id] }, selected: @subject.teachers.map { |t| t.id }), class: 'selectpicker show-tick', data: {width: 'auto'}, multiple: true, title: '' %>
+						<% else %>
+						<%= select_tag :teachers, options_for_select(@teachers.map { |t| [t.name_kanji, t.id] }), class: 'selectpicker show-tick', data: {width: 'auto'}, multiple: true, title: '' %>
+						<% end %>
 					</p>
 					<p>
 						<strong>シラバス:</strong>
+						<% if @subject.number_of_outlines %>
+						<%= f.select :number_of_outlines, options_for_select(@number_of_outlines_list, selected: @subject.number_of_outlines), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<% else %>
 						<%= f.select :number_of_outlines, options_for_select(@number_of_outlines_list), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<% end %>
 					</p>
 				</div>
 				<br />
@@ -63,7 +86,7 @@
 <script>
 	$("#subject-description").wysihtml5({locale: "en-US"});
 	function change_uni_year() {
-		var uni_year_id = $("#uni_year").val();
+		var uni_year_id = $("#subject_uni_year_id").val();
 		$.ajax({
 				url:"<%= url_for action: 'semester'%>",	
 				data:'uni_year_id=' + uni_year_id,
@@ -73,6 +96,6 @@
 	
 	$(document).ready(function() {
 		$('.selectpicker').selectpicker();
-		$('#uni_year').on("change", change_uni_year);
+		$('#subject_uni_year_id').on("change", change_uni_year);
 	});
 </script>

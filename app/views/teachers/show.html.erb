@@ -1,38 +1,40 @@
-<div class="skc-box">
-	<div class="skc-box-content">
-		<div class="skc-box-thumbnail">
-			<%= image_tag("user.png")  %>
-		</div>
-		<div class="skc-box-desc">
-			<h4><%= @teacher.name_kanji %></h4>
+<div id="show-teacher">
+	<div class="skc-box">
+		<div class="skc-box-content">
+			<div class="skc-box-thumbnail">
+				<%= image_tag("user.png")  %>
+			</div>
+			<div class="skc-box-desc">
+				<h4><%= @teacher.name_kanji %></h4>
+				<hr />
+				<p>
+					<strong>メール:</strong>
+					<%= @teacher.email %>
+				</p>
+				<p>
+					<strong>所属大学:</strong>
+					<%= @teacher.university.name %>
+				</p>
+				<p>
+					<strong>所属部局:</strong>
+					<%= @teacher.faculty.name %>
+				</p>
+				<p>
+					<strong>研究室:</strong>
+					<%= @teacher.lab %>
+				</p>
+				<p>
+					<strong>研究室URL:</strong>
+					<%= @teacher.lab_url %>
+				</p>
+			</div>
 			<hr />
-			<p>
-				<strong>メール:</strong>
-				<%= @teacher.email %>
-			</p>
-			<p>
-				<strong>所属大学:</strong>
-				<%= @teacher.university.name %>
-			</p>
-			<p>
-				<strong>所属部局:</strong>
-				<%= @teacher.faculty.name %>
-			</p>
-			<p>
-				<strong>研究室:</strong>
-				<%= @teacher.lab %>
-			</p>
-			<p>
-				<strong>研究室URL:</strong>
-				<%= @teacher.lab_url %>
-			</p>
-		</div>
-		<hr />
-		<div class="text-center">
-			<p>
-				<strong>担当講義</strong>
-    		<%= render 'layouts/list_subjects' %>
-			</p>			
+			<div class="text-center">
+				<p>
+					<strong>担当講義</strong>
+	    		<%= render 'layouts/list_subjects' %>
+				</p>			
+			</div>
 		</div>
 	</div>
 </div>
