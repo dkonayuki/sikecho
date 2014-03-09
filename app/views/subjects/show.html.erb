@@ -147,17 +147,13 @@
 			
 			$('.outline-date').editable({
 			    type: 'combodate',
-			    wysihtml5: {
-			    	locale: 'en-US',
-			    	size: 'xs'
-			    },
 			    format: 'YYYY年MM月DD日', //for sending value
 			    viewformat: 'YYYY年MM月DD日', //for view
 			    template: 'YYYY / MM / DD',  //for combodate selector  
 			    name: 'date',
 	        combodate: {
-	                minYear: 2000,
-	                maxYear: 2015,
+            minYear: 2000,
+            maxYear: 2015,
 	        },
 			    url: '/subjects/<%= @subject.id %>',
 			});
