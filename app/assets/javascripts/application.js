@@ -36,7 +36,7 @@ $(document).ready(function() {
 $(document).on("page:change", function() {
 
  	/*For filter menu active*/
- 	$("#filter-menu li a").on("click", function() {
+ 	$("#filter-menu li a").off("click").on("click", function() {
  		if ($(this).attr("id") == "sub-menu-trigger") {
  			$("#sub-filter-bar").toggle();
  		}
@@ -61,7 +61,7 @@ $(document).on("page:change", function() {
 	});
 	
  	/*For sub filter menu active*/
- 	$("#sub-filter-bar li a").on("click", function() {
+ 	$("#sub-filter-bar li a").off("click").on("click", function() {
  		$.getScript(this.href, null); 
  		/* equal to : $.ajax({
 		  url: url,
@@ -95,7 +95,7 @@ $(document).on("page:change", function() {
 	});
 	
 	/*For outline btn*/
-	$(".outline-btn").on("click", function() {
+	$(".outline-btn").off("click").on("click", function() {
 		$.ajax({
 		  url: this.href,
 		  dataType: "script",
@@ -143,6 +143,7 @@ $(document).on("page:change", function() {
 	  cb(results);
 	};
 	
+	$(".typeahead").typeahead("destroy");
 	$(".typeahead").typeahead(null, {
 	  displayKey: "value",
 	  source: searchSource,
