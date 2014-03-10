@@ -1,5 +1,5 @@
 class SubjectsController < ApplicationController
-  before_action :set_subject, only: [:show, :edit, :update, :destroy]
+  before_action :set_subject, only: [:show, :edit, :update, :destroy, :inline]
   
   # GET /subjects
   # GET /subjects.json
@@ -114,10 +114,8 @@ class SubjectsController < ApplicationController
       end
     end
   end
-
-  # PATCH/PUT /subjects/1
-  # PATCH/PUT /subjects/1.json
-  def update
+  
+  def inline
     # for inline edit
     case params[:name].to_s
     when 'date'
@@ -133,6 +131,20 @@ class SubjectsController < ApplicationController
     else
       #no implement
     end
+    respond_to do |format|
+      if @subject.save
+        format.html { redirect_to @subject, notice: 'Subject was successfully updated.' }
+        format.json { render json: @subject, status: :ok } # 204 No Content
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @subject.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /subjects/1
+  # PATCH/PUT /subjects/1.json
+  def update
     @subject.teachers = current_user.university.teachers.where(id: params[:teachers])
     new_number = subject_params[:number_of_outlines].to_i
     old_number = params[:old_number].to_i
@@ -176,7 +188,7 @@ class SubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
-      params.permit(:name, :value, :tag, :semester, :uni_year, :uni_year_id, :teachers, :old_number)
+      params.permit(:name, :pk, :value, :tag, :semester, :uni_year, :uni_year_id, :teachers, :old_number)
       params.require(:subject).permit(:name, :description, :year, :place, :number_of_outlines, :semester_id, :uni_year_id)
     end
 end

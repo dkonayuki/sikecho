@@ -155,13 +155,13 @@
             minYear: 2000,
             maxYear: 2015,
 	        },
-			    url: '/subjects/<%= @subject.id %>',
+			    url: '/subjects/<%= @subject.id %>/inline',
 			});
 			
 			$('.outline-content').editable({
 			    type: 'textarea',
 			    name: 'content',
-			    url: '/subjects/<%= @subject.id %>',
+			    url: '/subjects/<%= @subject.id %>/inline',
 			});
 	});
 </script>
