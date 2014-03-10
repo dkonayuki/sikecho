@@ -118,6 +118,21 @@ class SubjectsController < ApplicationController
   # PATCH/PUT /subjects/1
   # PATCH/PUT /subjects/1.json
   def update
+    # for inline edit
+    case params[:name].to_s
+    when 'date'
+      #search in array 
+      outline = @subject.outlines.find_by_number(params[:pk])
+      outline.date = DateTime.strptime(params[:value], '%Y年%m月%d日')
+      outline.save
+    when 'content'
+      #search in array 
+      outline = @subject.outlines.find_by_number(params[:pk])
+      outline.content = params[:value]
+      outline.save
+    else
+      #no implement
+    end
     @subject.teachers = current_user.university.teachers.where(id: params[:teachers])
     new_number = subject_params[:number_of_outlines].to_i
     old_number = params[:old_number].to_i
