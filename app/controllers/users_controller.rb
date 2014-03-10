@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
   
   def faculty
-    @faculties = Faculty.where(university_id: params[:university_id]).order(:name)
+    @faculties = @user.university_id ? Faculty.where(university_id: @user.university.id).order(:name) : []
     respond_to do |format|
       format.js { render 'users/faculty' }
       format.html
@@ -46,8 +46,8 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    #prepare previous info
     @universities = University.all
-    @faculties = []
 
     @user = User.new(user_params)
     
@@ -59,9 +59,7 @@ class UsersController < ApplicationController
         format.json { render json: @user, status: :created, location: @user }
       else
         #prepare faculty select
-        if @user.university_id
-          @faculties = Faculty.where(university_id: @user.university.id).order(:name)
-        end
+        @faculties = @user.university_id ? Faculty.where(university_id: @user.university.id).order(:name) : []
         format.html { render action: 'new' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -71,8 +69,9 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    #prepare previous info
     @universities = University.all
-    @faculties = Faculty.where(university_id: @user.university.id).order(:name)
+
     respond_to do |format|
       if @user.update(user_params) && @user.authenticate(user_params[:password_confirmation])
         format.html { redirect_to @user, notice: 'User #{@user.username} was successfully updated.' }
@@ -80,6 +79,8 @@ class UsersController < ApplicationController
       else
         #custom message for password_confirmation
         @user.errors.add(:password_confirmation, "doesn't match password.")
+        #prepare faculty select
+        @faculties = @user.university_id ? Faculty.where(university_id: @user.university.id).order(:name) : []
         format.html { render action: 'edit' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end

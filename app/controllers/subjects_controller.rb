@@ -51,9 +51,11 @@ class SubjectsController < ApplicationController
     end
   end
 
+  # get new semester list when uni_year changes
   def semester
     uni_year = UniYear.find_by_id(params[:uni_year_id])
     @semesters = uni_year ? uni_year.semesters : []
+ 
     respond_to do |format|
       format.js { render 'subjects/semester' }
       format.html
@@ -88,7 +90,6 @@ class SubjectsController < ApplicationController
     #prepare previous info
     @user = current_user
     @uni_years = current_user.university.uni_years
-    @semesters = []
     @teachers = current_user.university.teachers
     @years = (2012..2015).to_a
     @number_of_outlines_list = (1..15).to_a
@@ -145,7 +146,17 @@ class SubjectsController < ApplicationController
   # PATCH/PUT /subjects/1
   # PATCH/PUT /subjects/1.json
   def update
+    #prepare previous info
+    @user = current_user
+    @uni_years = current_user.university.uni_years
+    @teachers = current_user.university.teachers
+    @years = (2012..2015).to_a
+    @number_of_outlines_list = (1..15).to_a
+    
+    #add teachers
     @subject.teachers = current_user.university.teachers.where(id: params[:teachers])
+    
+    #add outlines
     new_number = subject_params[:number_of_outlines].to_i
     old_number = params[:old_number].to_i
     if old_number > new_number
@@ -164,6 +175,8 @@ class SubjectsController < ApplicationController
         format.html { redirect_to @subject, notice: 'Subject was successfully updated.' }
         format.json { render json: @subject, status: :ok } # 204 No Content
       else
+        #prepare semester select
+        @semesters = @subject.uni_year ? @subject.uni_year.semesters : []
         format.html { render action: 'edit' }
         format.json { render json: @subject.errors, status: :unprocessable_entity }
       end
