@@ -29,14 +29,14 @@
 					<p>
 						<strong>学年:</strong>
 						<% if @subject.uni_year %>
-						<%= f.select :uni_year_id	, options_from_collection_for_select(@uni_years,"id","name",selected:@subject.uni_year.id), {include_blank: true}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<%= f.select :uni_year_id	, options_from_collection_for_select(@uni_years,"id","name", selected:@subject.uni_year.id), {include_blank: true}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
 						<% else %>
 						<%= f.select :uni_year_id	, options_from_collection_for_select(@uni_years,"id","name"), {include_blank: true}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
 						<% end %>
 						<br/>
 						<strong>学期:</strong>
 						<% if @subject.semester %>
-						<%= f.select :semester_id, options_from_collection_for_select(@semesters,"id","name",selected:@subject.semester.id), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<%= f.select :semester_id, options_from_collection_for_select(@semesters,"id","name",selected: @subject.semester.id), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
 						<% else %>
 						<%= f.select :semester_id, options_from_collection_for_select(@semesters,"id","name"), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
 						<% end %>

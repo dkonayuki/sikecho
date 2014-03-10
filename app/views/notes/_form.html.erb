@@ -26,12 +26,11 @@
 				</p>
 				<p>
 					<strong>科目:</strong>
-			  	<% if @subject %>
-						<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name", selected: @subject.id), class: 'selectpicker show-tick', data: {width: 'auto'} %>
-						<%= hidden_field_tag "old_subject", @subject.id %>
+					<% if @note.subjects %>
+						<%= select_tag :subjects, options_from_collection_for_select(@subjects,"id","name", selected: @note.subjects.map { |s| s.id } ), class: 'form-control selectpicker show-tick', multiple: true, title: '' %>
 					<% else %>
-			  		<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name"), class: 'selectpicker show-tick', data: {width: 'auto'} %>
-			  	<% end %>
+			  		<%= select_tag :subjects, options_from_collection_for_select(@subjects,"id","name"), class: 'form-control selectpicker show-tick', multiple: true, title: '' %>
+					<% end %>
 				</p>
 				<hr />
 				<p>

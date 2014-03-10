@@ -56,10 +56,11 @@ class NotesController < ApplicationController
   # GET /notes/new
   def new
     @user = current_user
-    if !params[:subject_id].blank? 
-      @subject = @user.faculty.subjects.find_by_id(params[:subject_id])
-    end
     @note = Note.new
+    #create note from subject page, subject_id
+    if !params[:subject_id].blank? 
+      @note.subjects << @user.faculty.subjects.find_by_id(params[:subject_id])
+    end
     @subjects = @user.faculty.subjects
   end
 
@@ -73,16 +74,17 @@ class NotesController < ApplicationController
     @note = Note.new(note_params)
     @note.tag_list = tags
 
+    #prepare subjects list
     @subjects = @user.faculty.subjects
-    #search object in array , or can do @subject.find_by_id(id)
-    subject = @subjects.detect{|s| s.id == params[:subject].to_i}
+    
+    #add subjects
+    @note.subjects = @user.faculty.subjects.where(id: params[:subjects])
 
     #add relationship
-    @note.subjects << subject
     @note.user = @user
     
     #initiate view
-    @note.view = 0;
+    @note.view = 0
 
     #save document
     #if !params[:document].blank?
@@ -118,26 +120,21 @@ class NotesController < ApplicationController
     @user = current_user
     @subjects = @user.faculty.subjects
     @note = Note.find( params[:id] )    
-    @subject = @note.subjects.first
     @tags = @note.tag_list
   end
 
   # PATCH/PUT /notes/1
   # PATCH/PUT /notes/1.json
-  def update
-    # Update subject and document
-    @user = current_user
-        
+  def update        
     # update tags list
     tags = params[:tags].split(',')
     @note.tag_list = tags
     
+    #prepare subjects list
+    @subjects = @user.faculty.subjects
+
     # delete old_subject and add a new one
-    subjects = @user.faculty.subjects
-    subject = subjects.detect{|s| s.id == params[:old_subject].to_i}
-    @note.subjects.delete(subject)
-    subject = subjects.detect{|s| s.id == params[:subject].to_i}
-    @note.subjects << subject
+    @note.subjects = @user.faculty.subjects.where(id: params[:subjects])
     
     # update document
     if !params[:document].blank?
@@ -177,7 +174,7 @@ class NotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
-      params.permit(:document, :tags, :subject, :old_subject, :filter, :subject_id)
+      params.permit(:document, :tags, :subjects, :filter, :subject_id)
       params.require(:note).permit(:title, :content)
     end
 

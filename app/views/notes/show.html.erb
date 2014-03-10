@@ -12,7 +12,11 @@
 				</p>
 				<p>
 					<strong>科目:</strong>
-					<%= link_to @note.subjects.first.name, @note.subjects.first %>
+					<ul>
+						<% @note.subjects.each do |subject| %>
+						<li><span class="subject-icon"></span><%= link_to subject.name, subject %></li>
+						<% end %>						
+					</ul>
 				</p>
 				<p>
 					<strong>ユーザー:</strong>

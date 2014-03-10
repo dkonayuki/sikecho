@@ -7,7 +7,9 @@
 	      <div class="note-title"><%= link_to "#{note.title}", note %></div>
 	      <div class="note-tags">
 		      <% if @show_subject %>
-			      <span class="label label-info"><%= note.subjects.first.name %></span>
+			      <% note.subjects.each do |subject| %>
+				      <span class="label label-info"><%= subject.name %></span>
+			      <% end %>
 		      <% end %>
 		      <% if note.tag_list.include?('試験対策') %>
 		      	<span class="label label-warning">試験対策</span>
@@ -41,7 +43,7 @@
 	
 	  function setMaxWidth() {
 	  	$(".note-title").css("maxWidth", ( $('.note-item').width() - $('.note-thumbnail').outerWidth(true) - 1 ) + "px" ); //outerWidth(true): include margin
-	  	$(".note-tags").css("maxWidth", ( $('.note-item').width() - $('.note-thumbnail').outerWidth(true) - 1 ) + "px" );
+	  	$(".note-tags").css("maxWidth", ( $('.note-item').width() - $('.note-thumbnail').outerWidth(true) - $('.note-view').width() - 1 ) + "px" );
 	  }
 	});
 </script>

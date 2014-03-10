@@ -416,12 +416,6 @@ body {
 	position: relative;
 }
 
-.subject-item img {
-  display: inline-block;
-  margin: 0;
-	height: 20px;
-}
-
 .subject-thumbnail {
 	float: left;
 	height: 100%;
