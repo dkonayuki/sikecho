@@ -11,7 +11,8 @@
  *= require_self
  *= require bootstrap
  *= require bootstrap-select
- *= require bootstrap-editable
+ *= require bootstrap-editable/bootstrap-editable
+ *= require bootstrap-editable/bootstrap3-datepicker
  *= require bootstrap-tagsinput
  *= require bootstrap3-wysihtml5
  *= require bootstrap3-typeahead

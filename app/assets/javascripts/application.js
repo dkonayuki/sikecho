@@ -24,6 +24,7 @@
 //= require wysihtml5/bootstrap-wysihtml5.en-US.js
 //= require wysihtml5/commands.js
 //= require bootstrap-editable/bootstrap-editable
+//= require bootstrap-editable/bootstrap-datepicker
 //= require bootstrap-editable/moment.min.js
 //= require bootstrap-editable/wysihtml5
 //= require jquery-fileupload

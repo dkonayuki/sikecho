@@ -101,19 +101,19 @@
 	      </a>
 	    </div>
 			<div class="skc-box-desc skc-box-desc-no-margin collapse out" id="collapseSyllabus">
-				<table class="table table-striped">
+				<table class="table table-bordered table-hover">
 			    <thead>
 			      <tr>
-			        <th class="col-md-1 col-xs-1">回数</th>
-			        <th class="col-md-2 col-xs-3">日付</th>
-			        <th class="col-md-9 col-xs-8">内容</th>
+			        <th class="col-xs-2 col-sm-1">回数</th>
+			        <th class="col-xs-3 col-sm-3">日付</th>
+			        <th class="col-xs-7 col-sm-9">内容</th>
 			      </tr>
 			    </thead>
 			    <tbody>
 			    	<% @subject.outlines.order('number ASC').each do | outline | %>
 			      <tr>
-			        <td><%= link_to "#{outline.number}回目", subject_path(tag: "#{outline.number}回目"), class: 'btn btn-default btn-xs outline-btn' %></td>
-			        <td><a href="#" data-pk="<%= outline.number %>" class="outline-date"><%= outline.date %></a></td>
+			        <td><%= link_to "#{outline.number}", subject_path(tag: "#{outline.number}回目"), class: 'outline-btn' %></td>
+			        <td><a href="#" data-type="date" data-viewformat="yyyy-mm-dd" data-pk="<%= outline.number %>" class="outline-date"><%= outline.date %></a></td>
 			        <td><a href="#" data-pk="<%= outline.number %>" class="outline-content"><%= sanitize(outline.content) %></a></td>
 			      </tr>
 			      <% end %>
@@ -146,22 +146,17 @@
 	$.fn.editable.defaults.ajaxOptions = {dataType: 'json', type: "PUT"};
 	$(document).ready(function() {			
 			$('.outline-date').editable({
-			    type: 'combodate',
-			    format: 'YYYY年MM月DD日', //for sending value
-			    viewformat: 'YYYY年MM月DD日', //for view
-			    template: 'YYYY / MM / DD',  //for combodate selector  
+			    format: 'yyyy-mm-dd', //for sending value
 			    name: 'date',
-	        combodate: {
-            minYear: 2000,
-            maxYear: 2015,
-	        },
 			    url: '/subjects/<%= @subject.id %>/inline',
+          showbuttons: 'bottom'
 			});
 			
 			$('.outline-content').editable({
 			    type: 'textarea',
 			    name: 'content',
 			    url: '/subjects/<%= @subject.id %>/inline',
+          showbuttons: 'bottom'
 			});
 	});
 </script>

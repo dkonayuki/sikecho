@@ -7,6 +7,8 @@ Form with single input element, two buttons and two states: normal/loading.
 Applied as jQuery method to DIV tag (not to form tag!). This is because form can be in loading state when spinner shown.
 Editableform is linked with one of input types, e.g. 'text', 'select' etc.
 
+editted: 6469, 6112, 6114
+
 @class editableform
 @uses text
 @uses textarea
@@ -6107,9 +6109,9 @@ Editableform based on Twitter Bootstrap 3
 		},
 		headTemplate: '<thead>'+
 							'<tr>'+
-								'<th class="prev"><i class="icon-arrow-left"/></th>'+
+								'<th class="prev"><i class="icon-arrow-left glyphicon glyphicon-chevron-left"></i></th>'+
 								'<th colspan="5" class="datepicker-switch"></th>'+
-								'<th class="next"><i class="icon-arrow-right"/></th>'+
+								'<th class="next"><i class="icon-arrow-left glyphicon glyphicon-chevron-right"></i></th>'+
 							'</tr>'+
 						'</thead>',
 		contTemplate: '<tbody><tr><td colspan="7"></td></tr></tbody>',
@@ -6465,7 +6467,7 @@ Automatically shown in inline mode.
         /**
         @property tpl 
         **/         
-        tpl:'<div class="input-append date"><input type="text"/><span class="add-on"><i class="icon-th"></i></span></div>',
+				tpl:'<div class="input-group date"><div class="input-group-btn"><button class="btn btn-success" type="button"><i class="glyphicon glyphicon-calendar"></i></button></div><input type="text" readonly class="form-control input-medium"/></div>',
         /**
         @property inputclass 
         @default 'input-small'
