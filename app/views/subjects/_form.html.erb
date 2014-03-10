@@ -70,6 +70,7 @@
 						<strong>シラバス:</strong>
 						<% if @subject.number_of_outlines %>
 						<%= f.select :number_of_outlines, options_for_select(@number_of_outlines_list, selected: @subject.number_of_outlines), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<%= hidden_field_tag "old_number", @subject.number_of_outlines %>
 						<% else %>
 						<%= f.select :number_of_outlines, options_for_select(@number_of_outlines_list), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
 						<% end %>
