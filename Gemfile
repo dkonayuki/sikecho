@@ -63,3 +63,6 @@ gem 'unread'
 gem 'jquery-fileupload-rails'
   
 gem 'paperclip', "~> 4.1"
+
+#for versions
+gem 'paper_trail', '~> 3.0.0'
