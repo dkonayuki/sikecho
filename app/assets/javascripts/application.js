@@ -14,19 +14,12 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
-//= require bootstrap-select
-//= require bootstrap-tagsinput
+//= require bootstrap-select.js
+//= require bootstrap-tagsinput.js
 //= require handlebars.js
 //= require typeahead.bundle.js
-//= require wysihtml5/wysihtml5x-0.4.3-toolbar.js
-//= require wysihtml5/templates.js
-//= require wysihtml5/bootstrap3-wysihtml5.js
-//= require wysihtml5/bootstrap-wysihtml5.en-US.js
-//= require wysihtml5/commands.js
-//= require bootstrap-editable/bootstrap-editable
-//= require bootstrap-editable/bootstrap-datepicker
-//= require bootstrap-editable/moment.min.js
-//= require bootstrap-editable/wysihtml5
+//= require wysihtml5
+//= require bootstrap-editable
 //= require jquery-fileupload
 //= require_tree .
 	

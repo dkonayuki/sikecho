@@ -10,13 +10,12 @@
  *
  *= require_self
  *= require bootstrap
- *= require bootstrap-select
- *= require bootstrap-editable/bootstrap-editable
- *= require bootstrap-editable/bootstrap3-datepicker
- *= require bootstrap-tagsinput
- *= require bootstrap3-wysihtml5
- *= require bootstrap3-typeahead
+ *= require bootstrap-select.css
+ *= require bootstrap-tagsinput.css
+ *= require wysihtml5
+ *= require bootstrap3-typeahead.css
  *= require jquery.fileupload-ui
+ *= require bootstrap-editable
  *= require_tree .
  * 
  */
@@ -523,6 +522,11 @@ body {
 	width: 120px;
 	background-color: #fff;
 	padding: 10px;
+}
+
+.show-subject-menu > ul > li > a:hover, .show-subject-menu > ul > li > a:focus {
+	background-color: #555 !important;
+	color: #fff;
 }
 
 .show-subject-menu h4 {

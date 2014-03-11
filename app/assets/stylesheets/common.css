@@ -197,14 +197,28 @@ a:hover {
 
 .btn-blue {
 	color: #fff;
-	background-color: #5bc0de;
+	background-color: #4ec8ec;
 	width: 100%;
+	border-bottom: 2px solid #4ec8ec;
+}
+
+.btn-blue:hover {
+	background-color: #6cd1ef;
+	color: #fff;
+	border-bottom-color: #3db7db;
 }
 
 .btn-yellow {
 	color: #fff;
 	background-color: #f0ad4e;
 	width: 100%;
+	border-bottom: 2px solid #f0ad4e;
+}
+
+.btn-yellow:hover {
+	background-color: #f1be5f;
+	color: #fff;
+	border-bottom-color: #e0ac3d;
 }
 
 .label-year {
