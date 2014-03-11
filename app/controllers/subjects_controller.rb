@@ -1,5 +1,5 @@
 class SubjectsController < ApplicationController
-  before_action :set_subject, only: [:show, :edit, :update, :destroy, :inline]
+  before_action :set_subject, only: [:show, :edit, :update, :destroy, :inline, :version]
   
   # GET /subjects
   # GET /subjects.json
@@ -116,6 +116,7 @@ class SubjectsController < ApplicationController
     end
   end
   
+  #inline in syllabus
   def inline
     # for inline edit
     case params[:name].to_s
@@ -140,6 +141,26 @@ class SubjectsController < ApplicationController
         format.html { render action: 'edit' }
         format.json { render json: @subject.errors, status: :unprocessable_entity }
       end
+    end
+  end
+  
+  #display version
+  def version
+    #revert to previous version
+    @subject = @subject.versions.find(params[:version_id]).reify
+    
+    #prepare show information
+    @user = current_user
+    if !params[:tag].blank?
+      #filter in show subject page
+      @notes = @subject.notes.tagged_with(params[:tag])
+    else
+      @notes = @subject.notes
+    end
+    @show_subject = false
+    @same_subjects = @user.faculty.subjects.where(name: @subject.name)
+    respond_to do |format|
+      format.html { render action: 'show' }
     end
   end
 
@@ -201,7 +222,7 @@ class SubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
-      params.permit(:name, :pk, :value, :tag, :semester, :uni_year, :uni_year_id, :teachers, :old_number)
+      params.permit(:name, :pk, :value, :tag, :semester, :uni_year, :uni_year_id, :teachers, :old_number, :version_id)
       params.require(:subject).permit(:name, :description, :year, :place, :number_of_outlines, :semester_id, :uni_year_id)
     end
 end

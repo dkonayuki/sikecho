@@ -21,7 +21,7 @@
 	<div class="affix show-subject-menu" role="complementary" id="show-subject-notes">
 		<h4>ノート</h4>
 		<ul class="nav">     
-      <%= link_to new_note_path(subject_id: @subject.id), class: 'btn btn-yellow' do %>  
+      <%= link_to new_note_path(subject_id: @subject.id), class: 'btn btn-orange' do %>  
       <span class="glyphicon glyphicon-plus-sign"></span>追加
       <% end %>      
     </ul>
@@ -29,67 +29,79 @@
 </div>
 
 <!-- main part -->
-<div id="show-subject" class="col-md-8 col-sm-8 col-xs-12">
-	<div id="show-subject-content">
-		<ul id="year-list" class="clear">
-			<% @same_subjects.each do |subject| %>
-				<% if subject.year == @subject.year %>
-					<li><span class="btn btn-white btn-sm active"><%= subject.year %></span></li>
-				<% else %>
-					<li><%= link_to subject.year, subject, class: "btn btn-navi btn-sm" %></li>
+<div id="show-subject" class="col-sm-10 col-xs-12">
+	<ul id="year-list" class="clear">
+		<li class="dropdown year-item">
+			<a data-toggle="dropdown" class="btn btn-navi btn-sm dropdown-toggle"><span class="glyphicon glyphicon-cog"></a>
+			<ul class="dropdown-menu pull-right">
+				<li><%= link_to '最新', @subject %></li>
+				<% @subject.versions.reverse.first(5).each do |version| %>
+					<li>
+						<%= link_to version_path(id: @subject.id, version_id: version.id) do %>
+			        <%= version.created_at.to_date %>
+							<%= version.created_at.strftime("%I:%M%p") %>
+						<% end %>
+					</li>
 				<% end %>
+			</ul>
+		</li>
+		<% @same_subjects.each do |subject| %>
+			<% if subject.year == @subject.year %>
+				<li class="year-item"><span class="btn btn-white btn-sm active"><%= subject.year %></span></li>
+			<% else %>
+				<li class="year-item"><%= link_to subject.year, subject, class: "btn btn-navi btn-sm" %></li>
 			<% end %>
-		</ul>
-	  <!--for overview section -->
-		<a name="description"></a>
-		<div class="skc-box skc-box-no-padding skc-box-lg" id="show-subject-desc">
-			<div class="skc-box-content">
-				<div class="skc-box-thumbnail">
-					<%= image_tag("lecture.png")  %>
-				</div>
-				<div class="skc-box-title">
-					<a data-toggle="collapse" href="#collapseDescription">
-		        <h4><%= @subject.name %></h4>
-		      </a>
-		    </div>
-				<div class="skc-box-desc collapse in" id="collapseDescription">
-					<p>
-						<%= sanitize(@subject.description) %>
-					</p>
-					<hr />
-					<p>
-						<strong>推奨学期:</strong>
-						<%= link_to "#{@subject.semester.uni_year.name}#{@subject.semester.name}", subjects_path(semester: @subject.semester.no, uni_year: @subject.semester.uni_year.no) %>
-					</p>
-					<p>
-						<strong>時間:</strong>
-						<%= @subject.time_name %><%= @subject.day_name %>
-					</p>
-					<p>
-						<strong>講義室:</strong>
-						<%= @subject.place %>
-					</p>
-					<p>
-						<strong>教員:</strong>
-						<% @subject.teachers.each do |teacher| %>
-		      		<% if teacher != @subject.teachers.first  %>
-		      		・
-		      		<% end %>
-							<%= link_to teacher.name_kanji, teacher %>
-      			<% end %>
-					</p>
-				</div>
-				<div class="skc-box-menu">
-					<%= link_to edit_subject_path(@subject.id) do %>
-						<span class="glyphicon glyphicon-pencil"></span>
-					<% end %>
-					<%= link_to @subject, method: :delete, data: { confirm: 'Are you sure?' } do %>
-						<span class="glyphicon glyphicon-remove"></span>
-					<% end %>
-				</div>
+		<% end %>
+	</ul>
+  <!--for overview section -->
+	<a name="description"></a>
+	<div class="skc-box skc-box-no-padding skc-box-lg" id="show-subject-desc">
+		<div class="skc-box-content">
+			<div class="skc-box-thumbnail">
+				<%= image_tag("lecture.png")  %>
 			</div>
-		</div><!--end of skc-box-->
-	</div><!-- end of show-subject -->
+			<div class="skc-box-title">
+				<a data-toggle="collapse" href="#collapseDescription">
+	        <h4><%= @subject.name %></h4>
+	      </a>
+	    </div>
+			<div class="skc-box-desc collapse in" id="collapseDescription">
+				<p>
+					<%= sanitize(@subject.description) %>
+				</p>
+				<hr />
+				<p>
+					<strong>推奨学期:</strong>
+					<%= link_to "#{@subject.semester.uni_year.name}#{@subject.semester.name}", subjects_path(semester: @subject.semester.no, uni_year: @subject.semester.uni_year.no) %>
+				</p>
+				<p>
+					<strong>時間:</strong>
+					<%= @subject.time_name %><%= @subject.day_name %>
+				</p>
+				<p>
+					<strong>講義室:</strong>
+					<%= @subject.place %>
+				</p>
+				<p>
+					<strong>教員:</strong>
+					<% @subject.teachers.each do |teacher| %>
+	      		<% if teacher != @subject.teachers.first  %>
+	      		・
+	      		<% end %>
+						<%= link_to teacher.name_kanji, teacher %>
+    			<% end %>
+				</p>
+			</div>
+			<div class="skc-box-menu">
+				<%= link_to edit_subject_path(@subject.id) do %>
+					<span class="glyphicon glyphicon-pencil"></span>
+				<% end %>
+				<%= link_to @subject, method: :delete, data: { confirm: 'Are you sure?' } do %>
+					<span class="glyphicon glyphicon-remove"></span>
+				<% end %>
+			</div>
+		</div>
+	</div><!--end of skc-box-->
 	
   <!--for overview section -->
  	<a name="syllabus"></a>
@@ -139,35 +151,6 @@
 		</div>
 	</div>
 	
-</div>
-<div id="timeline" class="col-sm-2 hidden-xs">
-	<ul class="cbp_tmtimeline">
-	    <li>
-	        <time class="cbp_tmtime" datetime="2013-04-10 18:30"><span>4/10/13</span> <span>18:30</span></time>
-	        <div class="cbp_tmicon cbp_tmicon-edit"></div>
-
-	    </li>
-	    <li>
-	        <time class="cbp_tmtime" datetime="2013-04-11T12:04"><span>4/11/13</span> <span>12:04</span></time>
-	        <div class="cbp_tmicon cbp_tmicon-edit"></div>
-
-	    </li>
-	    <li>
-	        <time class="cbp_tmtime" datetime="2013-04-13 05:36"><span>4/13/13</span> <span>05:36</span></time>
-	        <div class="cbp_tmicon cbp_tmicon-edit"></div>
-
-	    </li>
-	    <li>
-	        <time class="cbp_tmtime" datetime="2013-04-15 13:15"><span>4/15/13</span> <span>13:15</span></time>
-	        <div class="cbp_tmicon cbp_tmicon-edit"></div>
-
-	    </li>
-	    <li>
-	        <time class="cbp_tmtime" datetime="2013-04-16 21:30"><span>4/16/13</span> <span>21:30</span></time>
-	        <div class="cbp_tmicon cbp_tmicon-edit"></div>
-
-	    </li>
-	</ul>
 </div>
 <script>
 	//turn to inline mode

@@ -216,44 +216,44 @@ a:hover {
 
 .btn-navi {
 	color: #fff;
-	background-color: #555E6B;
-	border-bottom: 2px solid #555E6B;
+	background-color: #34495E;
+	border-bottom: 2px solid #34495E;
 }
 
 .btn-navi:hover {
-	background-color: #666F7C;
+	background-color: #455A6F;
 	color: #fff;
-	border-bottom-color: #444d5a;
+	border-bottom-color: #2C3E50;
 }
 
 .btn-blue {
 	color: #fff;
-	background-color: #4ec8ec;
-	border-bottom: 2px solid #4ec8ec;
+	background-color: #3498DB;
+	border-bottom: 2px solid #3498DB;
 }
 
 .btn-blue:hover {
-	background-color: #6cd1ef;
+	background-color: #45A9EC;
 	color: #fff;
-	border-bottom-color: #3db7db;
+	border-bottom-color: #2387ca;
 }
 
-.btn-yellow {
+.btn-orange {
 	color: #fff;
-	background-color: #f0ad4e;
-	border-bottom: 2px solid #f0ad4e;
+	background-color: #E67E22;
+	border-bottom: 2px solid #E67E22;
 }
 
-.btn-yellow:hover {
-	background-color: #f1be5f;
+.btn-orange:hover {
+	background-color: #F39C12;
 	color: #fff;
-	border-bottom-color: #e0ac3d;
+	border-bottom-color: #d56d11;
 }
 
 .label-year {
 	padding: 6px 10px;
 	font-size: 12px;
-	background-color: #555E6B;
+	background-color: #34495E;
 	color: #fff;
 	width: 58px;
 	text-align: center;

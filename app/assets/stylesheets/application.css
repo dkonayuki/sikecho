@@ -181,7 +181,7 @@ body {
 
 .note-item {
 	position: relative;
-	height: 66px;
+	height: 72px;
 	margin: 0 0 20px;
 	list-style: none;
 	border-bottom: 1px solid #eee;
@@ -444,7 +444,7 @@ body {
 	text-overflow: ellipsis; 
 	line-height: 20px;
 	width: 220px;
-	color: #555E6B;
+	color: #34495E;
 }
 
 .subject-teacher {
@@ -513,11 +513,6 @@ body {
 	margin-right: 40px;
 }
 
-#show-subject-content {
-	max-width: 800px;
-	margin: 0 auto;
-}
-
 .show-subject-menu {
 	width: 120px;
 	background-color: #fff;
@@ -552,10 +547,11 @@ body {
 }
 
 #year-list {
-	margin: 20px 0 10px;
+	margin: 20px auto 10px;
+	max-width: 800px;
 }
 
-#year-list li {
+#year-list .year-item {
 	float: right;
 	margin-left: 10px;
 }

@@ -10,6 +10,7 @@ Shikechou::Application.routes.draw do
   resources :subjects
   get '/semester' => 'subjects#semester'
   put '/subjects/:id/inline' => 'subjects#inline'
+  get '/subjects/:id/version/:version_id' => 'subjects#version', as: 'version'
     
   resources :notes
   #get 'notes/delete/:id', to: 'notes#delete_document', as: 'delete_document'
