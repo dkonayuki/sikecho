@@ -535,6 +535,10 @@ body {
 	text-align: center;
 }
 
+.show-subject-menu .btn {
+	width: 100%;
+}
+
 #show-subject-overview {
 	margin-top: 20px;
 }

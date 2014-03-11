@@ -34,9 +34,9 @@
 		<ul id="year-list" class="clear">
 			<% @same_subjects.each do |subject| %>
 				<% if subject.year == @subject.year %>
-					<li class="label-year label-year-inverse"><%= link_to subject.year, subject %></li>
+					<li><span class="btn btn-white btn-sm active"><%= subject.year %></span></li>
 				<% else %>
-					<li class="label-year"><%= link_to subject.year, subject %></li>
+					<li><%= link_to subject.year, subject, class: "btn btn-navi btn-sm" %></li>
 				<% end %>
 			<% end %>
 		</ul>

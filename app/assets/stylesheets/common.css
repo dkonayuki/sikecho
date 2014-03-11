@@ -195,10 +195,35 @@ a:hover {
 	margin: 3px 2px;
 }
 
+.btn-white {
+	color: #555E6B;
+	background-color: #fff;
+	border-bottom: 2px solid #fff;	
+}
+.btn-white:hover {
+	color: #555E6B;
+	background-color: #fff;
+	border-bottom-color: #aaa;	
+}
+.btn-white.active:hover {
+	border-bottom-color: #fff;		
+}
+
+.btn-navi {
+	color: #fff;
+	background-color: #555E6B;
+	border-bottom: 2px solid #555E6B;
+}
+
+.btn-navi:hover {
+	background-color: #666F7C;
+	color: #fff;
+	border-bottom-color: #444d5a;
+}
+
 .btn-blue {
 	color: #fff;
 	background-color: #4ec8ec;
-	width: 100%;
 	border-bottom: 2px solid #4ec8ec;
 }
 
@@ -211,7 +236,6 @@ a:hover {
 .btn-yellow {
 	color: #fff;
 	background-color: #f0ad4e;
-	width: 100%;
 	border-bottom: 2px solid #f0ad4e;
 }
 
@@ -228,17 +252,6 @@ a:hover {
 	color: #fff;
 	width: 58px;
 	text-align: center;
-}
-.label-year a {
-	color: #fff;
-}
-
-.label-year-inverse {
-	background-color: #fff;
-	color: #555E6B;
-}
-.label-year-inverse a{
-	color: #555E6B;
 }
 
 .btn-trigger {
