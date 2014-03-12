@@ -76,7 +76,9 @@
 				</p>
 				<p>
 					<strong>時間:</strong>
-					<%= @subject.time_name %><%= @subject.day_name %>
+					<% @subject.periods.each do |period| %>
+					<%= time_names(period.time) %><%= day_names(period.day) %>
+					<% end %>
 				</p>
 				<p>
 					<strong>講義室:</strong>

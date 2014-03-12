@@ -34,21 +34,18 @@ td_year_name.each do |year|
 end
 
 sub_tags = ["通年","集中講義","ゼミ","文理共通"]
-time_names = %w(一時限 二時限 三時限 四時限 五時限 六時限)
-day_names = %w(月曜日 火曜日 水曜日 木曜日 金曜日 土曜日)
 
 igakubu = Faculty.create(name: "医学部", university: todai)
 td_sensei = Teacher.create(first_name_kanji: '村田', last_name_kanji: '金子', faculty: igakubu, university: todai)
 td_sub_name = ["英語一列","英語二列","数学1","数学2","力学","化学熱力学","生命科学","健康科学実習","基礎物理学"]
 td_desc = "毎週予習としてon campusを一課ずつ読んで出席し、授業ではビデオを見てちょっとした問題を解いて終わり。"
 td_sub_name.each do | name |
-  time = rand(6)
-  day = rand(6)
   semesterNo = 1 + rand(2)
   yearNo = 1 + rand(4)
   uni_year = todai.uni_years.find_by_no(yearNo)
   semester = uni_year.semesters.find_by_no(semesterNo)
-  sub = Subject.new(name: name, time: time, time_name: time_names[time], day: day, day_name: day_names[day], place: 'W300', description: td_desc, number_of_outlines: 15, year: 2014)
+  sub = Subject.new(name: name, place: 'W300', description: td_desc, number_of_outlines: 15, year: 2014)
+  sub.periods << Period.create(time: rand(7), day: rand(6))
   sub.faculties << igakubu
   sub.teachers << td_sensei
   sub.semester = semester
@@ -73,13 +70,12 @@ sub_name = ["フーリエ変換とラープラス変換","確率と統計","基�
 
 description = "5類1年次の学生を対象として，情報工学の基礎となる概念や手法について講義する。"
 sub_name.each do | name |
-  time = rand(6)
-  day = rand(6)
   semesterNo = 1 + rand(2)
   yearNo = 1 + rand(4)
   uni_year = tokodai.uni_years.find_by_no(yearNo)
   semester = uni_year.semesters.find_by_no(semesterNo)
-  sub = Subject.create(name: name, time: time, time_name: time_names[time], day: day, day_name: day_names[day], place: 'S421', description: description, number_of_outlines: 15, year: 2014)
+  sub = Subject.create(name: name, place: 'S421', description: description, number_of_outlines: 15, year: 2014)
+  sub.periods << Period.create(time: rand(7), day: rand(6))
   sub.faculties << kougakubu
   sub.teachers << sensei
   sub.semester = semester

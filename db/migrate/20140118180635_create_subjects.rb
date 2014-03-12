@@ -4,10 +4,6 @@ class CreateSubjects < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.integer :credit
-      t.integer :time
-      t.string :time_name
-      t.integer :day
-      t.string :day_name
       t.string :place
       t.integer :semester_id
       t.integer :uni_year_id

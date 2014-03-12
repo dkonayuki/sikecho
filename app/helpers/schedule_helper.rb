@@ -3,9 +3,11 @@ module ScheduleHelper
     #For schedule rendering
     @periods = Hash.new
     @user.subjects.each do | subject |
-      key = [subject.day, subject.time]
-      #value = period.subject
-      @periods[key] = subject
+      subject.periods.each do | period |
+        key = [period.day, period.time]
+        #value = period.subject
+        @periods[key] = subject
+        end
     end
   end
 end

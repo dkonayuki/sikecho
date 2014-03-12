@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  day: 1
+  time: 1
+  subject_id: 1
+
+two:
+  day: 1
+  time: 1
+  subject_id: 1

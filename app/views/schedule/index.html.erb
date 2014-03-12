@@ -2,33 +2,31 @@
 		<table class="table" >
 			<tr>
 				<th></th>
-				<% days = %w(月曜日 火曜日 水曜日 木曜日 金曜日 土曜日) %>
-				<% days.each do |d|%>
-				<th><%= d %></th>
+				<% (0..5).each do | d |%>
+				<th><%= day_names(d) %></th>
 				<% end %>
 			</tr>
-			<% times = %w(一時限 二時限 三時限 四時限 五時限 六時限) %>
-			<% times.each_with_index do | p, idx | %>
+			<% (0..6).each do | t | %>
 			<tr>
 				<% if @editable %>
 				<!--For profile page-->
-					<td class="period"><%= p %></td>
-					<% (0..5).each do | i | %>
-					<% if @periods[[i,idx]].blank? %>
-					<td class="cell"><%= link_to "未登録", schedule_new_path(day: i, time: idx) %></td>
-					<% else %>
-					<td class="cell"><%= link_to @periods[[i,idx]].name, schedule_edit_path(day: i, time: idx, subject: @periods[[i,idx]]) %></td>
-					<% end %>
+					<td class="period"><%= time_names(t) %></td>
+					<% (0..5).each do | d | %>
+						<% if @periods[[d,t]].blank? %>
+							<td class="cell"><%= link_to "未登録", schedule_new_path(day: d, time: t) %></td>
+						<% else %>
+							<td class="cell"><%= link_to @periods[[d,t]].name, schedule_edit_path(day: d, time: t, subject: @periods[[d,t]]) %></td>
+						<% end %>
 					<% end %>
 				<% else %>
 				<!--For home page-->
-					<td class="period"><%= p %></td>
-					<% (0..5).each do | i | %>
-					<% if @periods[[i,idx]].blank? %>
-					<td class="cell">N/A</td>
-					<% else %>
-					<td class="cell"><%= link_to @periods[[i,idx]].name, @periods[[i,idx]] %></td>
-					<% end %>
+					<td class="period"><%= time_names(t) %></td>
+					<% (0..5).each do | d | %>
+						<% if @periods[[d,t]].blank? %>
+							<td class="cell">N/A</td>
+						<% else %>
+							<td class="cell"><%= link_to @periods[[d,t]].name, @periods[[d,t]] %></td>
+						<% end %>
 					<% end %>
 				<% end %>
 			</tr>
