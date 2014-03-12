@@ -14,7 +14,7 @@ class Subject < ActiveRecord::Base
   belongs_to :uni_year
   
   acts_as_taggable_on :tags
-  has_paper_trail only: [:description]
+  has_paper_trail only: [:description], on: [:update]
     
   def self.search(search)
     if search

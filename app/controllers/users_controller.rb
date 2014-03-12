@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
   
   def faculty
-    @faculties = @user.university_id ? Faculty.where(university_id: @user.university.id).order(:name) : []
+    @faculties = Faculty.where(university_id: params[:university_id]).order(:name)
     respond_to do |format|
       format.js { render 'users/faculty' }
       format.html
@@ -105,6 +105,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
+      params.permit(:university_id)
       params.require(:user).permit(:username, :password, :password_confirmation, :email, :university_id, :faculty_id)
     end
 end
