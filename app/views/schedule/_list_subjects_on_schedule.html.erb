@@ -1,0 +1,26 @@
+		<%= link_to_previous_page @subjects, '', remote: true, params: {search: @search}, class: 'previous-btn' %>
+		<%= link_to_next_page @subjects, '', remote: true, params: {search: @search}, class: 'next-btn' %>
+<ul>
+<% @subjects.each do |subject| %>
+	<%= link_to subject do %>
+	<li class="subject-item subject-item-sm">
+      <div class="subject-details">
+	      <p class="subject-name subject-name-sm"><%= subject.name %></p>
+      </div>
+      <div class="subject-info">
+  			<div class="subject-year label-year subject-year-sm">
+					<%= subject.year %>
+				</div>
+				<div class="subject-teacher">
+	      	<% subject.teachers.each do |teacher| %>
+	      		<% if teacher != subject.teachers.first  %>
+	      		・
+	      		<% end %>
+	      		<%= teacher.name_kanji %>
+      		<% end %>
+	      </div>
+    	</div>
+ 	</li>
+ 	<% end %>
+<% end %>
+</ul>

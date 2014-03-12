@@ -43,7 +43,8 @@
             <div class="scroller-inner">
                 <!-- site content goes here -->
                 <a href="#" id="trigger" class="btn-trigger visible-xs"><span class="glyphicon glyphicon-cog"></span></a>
-                <div id="subjects">      	
+                <div id="subjects">
+                	<!--menu bar-->  	
 	              	<div id="filter-bar" class="hidden-xs">
 	          			  <%= link_to new_subject_path, class: 'btn btn-default', id:'new-subject-btn' do %>
 									  <span class="glyphicon glyphicon-plus-sign"></span>新規授業
@@ -56,9 +57,11 @@
 											<li><a href="#" id="sub-menu-trigger">学年別</a></li>
 										</ul>
 									</div>
+									<!-- end of menu bar -->
+									
 									<!--subbar for 学年別-->
 									<div id="sub-filter-bar" class="hidden-xs">
-										<div class="outer-center">
+										<div class="outer-center"> <!-- outer center and inner center are needed for center divs with unknown width -->
 						        	<div id="sub-filter-bar-inner" class="inner-center">
 						        		<% @user.university.uni_years.each do | uni_year | %>
 												<div>
@@ -72,9 +75,10 @@
 												<% end %>
 											</div>
 								    </div>
-								    <div class="clear"></div>
-										
+								    <div class="clear"></div>	
 									</div>	
+									<!-- end of sub-bar -->
+									
 	                <div id="subjects-list">
 										<%= render 'layouts/list_subjects'%>
 									</div>

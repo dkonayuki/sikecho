@@ -3,6 +3,13 @@ class ScheduleController < ApplicationController
     @user = current_user
     get_schedule_content
     @editable = true
+    @subjects = @user.faculty.subjects.search(params[:search]).page(params[:page]).per(4)
+    @search = params[:search]
+    respond_to do |format|
+      format.html {}
+      format.js   {}
+      format.json { render json: @subjects, status: :ok, location: :subjects }
+    end
   end
 
   # GET /schedule/new

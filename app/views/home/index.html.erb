@@ -1,11 +1,21 @@
 <div id="home">
 	<div id="home-schedule" class="col-sm-12 col-md-9">
-		<%= render 'schedule/schedule' %>
+		<div class="skc-box skc-box-no-padding skc-box-lg">
+			<div class="skc-box-content">
+				<div class="skc-box-title-no-margin">
+	        <h4>スケジュール</h4>
+		    </div>
+				<div class="skc-box-desc-no-padding">
+					<%= render 'schedule/schedule' %>
+				</div>
+			</div>
+		</div>
 	</div>
+	
 	<div id="home-widget" class="col-sm-12 col-md-3">
 		<div class="skc-box skc-box-sm skc-box-no-padding">
 			<div class="skc-box-content">
-				<div class="skc-box-thumbnail">
+				<div class="skc-box-thumbnail skc-box-thumbnail-visible">
 					<%= image_tag("note.png")  %>
 				</div>
 				<div class="skc-box-desc">
@@ -19,7 +29,7 @@
 		
 		<div class="skc-box skc-box-sm skc-box-no-padding">
 			<div class="skc-box-content">
-				<div class="skc-box-thumbnail">
+				<div class="skc-box-thumbnail skc-box-thumbnail-visible">
 					<%= image_tag("lecture.png")  %>
 				</div>
 				<div class="skc-box-desc">
