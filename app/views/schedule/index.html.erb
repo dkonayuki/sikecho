@@ -1,35 +1,3 @@
 <div id="schedule">
-		<table class="table" >
-			<tr>
-				<th></th>
-				<% (0..5).each do | d |%>
-				<th><%= day_names(d) %></th>
-				<% end %>
-			</tr>
-			<% (0..6).each do | t | %>
-			<tr>
-				<% if @editable %>
-				<!--For profile page-->
-					<td class="period"><%= time_names(t) %></td>
-					<% (0..5).each do | d | %>
-						<% if @periods[[d,t]].blank? %>
-							<td class="cell"><%= link_to "未登録", schedule_new_path(day: d, time: t) %></td>
-						<% else %>
-							<td class="cell"><%= link_to @periods[[d,t]].name, schedule_edit_path(day: d, time: t, subject: @periods[[d,t]]) %></td>
-						<% end %>
-					<% end %>
-				<% else %>
-				<!--For home page-->
-					<td class="period"><%= time_names(t) %></td>
-					<% (0..5).each do | d | %>
-						<% if @periods[[d,t]].blank? %>
-							<td class="cell">N/A</td>
-						<% else %>
-							<td class="cell"><%= link_to @periods[[d,t]].name, @periods[[d,t]] %></td>
-						<% end %>
-					<% end %>
-				<% end %>
-			</tr>
-			<% end %>
-		</table>
+	<%= render 'schedule' %>
 </div>

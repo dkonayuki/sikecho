@@ -102,6 +102,10 @@ a:hover {
 	max-width: 400px !important;
 }
 
+.skc-box-sm .skc-box-desc {
+	margin-left: 75px !important;
+}
+
 .skc-box-thumbnail {
 	float: left;
 }

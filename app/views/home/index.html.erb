@@ -1,19 +1,9 @@
 <div id="home">
-	<div id="home-schedule" class="col-xs12 col-md-9">
-		<%= render template: 'schedule/index' %>
+	<div id="home-schedule" class="col-sm-12 col-md-9">
+		<%= render 'schedule/schedule' %>
 	</div>
-	<div id="home-widget" class="col-xs12 col-md-3">
-		<div class="skc-box skc-box-sm">
-			<div class="skc-box-content">
-				<div class="skc-box-thumbnail">
-					<%= image_tag("calendar.jpeg")  %>
-				</div>
-				<div class="skc-box-desc">
-					<h4>スケジュール</h4>
-				</div>
-			</div>
-		</div>
-		<div class="skc-box skc-box-sm">
+	<div id="home-widget" class="col-sm-12 col-md-3">
+		<div class="skc-box skc-box-sm skc-box-no-padding">
 			<div class="skc-box-content">
 				<div class="skc-box-thumbnail">
 					<%= image_tag("note.png")  %>
@@ -27,7 +17,7 @@
 			</div>
 		</div>
 		
-		<div class="skc-box skc-box-sm">
+		<div class="skc-box skc-box-sm skc-box-no-padding">
 			<div class="skc-box-content">
 				<div class="skc-box-thumbnail">
 					<%= image_tag("lecture.png")  %>
