@@ -90,14 +90,16 @@ $(document).on("page:change", function() {
 	});
 	
 	/*For fixed subject menu*/
-	var fixedMenuOffset = $("#show-subject-menu-content").offset();
-	$(window).scroll(function(){
-        if($(window).scrollTop() > fixedMenuOffset.top - 20){
-            $("#show-subject-menu-content").css('position','fixed').css('top','0');
-        } else {
-            $("#show-subject-menu-content").css('position','static');
-        }    
-	});
+	if ($("#show-subject-menu-content").length) {
+		var fixedMenuOffset = $("#show-subject-menu-content").offset();
+		$(window).scroll(function(){
+	        if($(window).scrollTop() > fixedMenuOffset.top - 20){
+	            $("#show-subject-menu-content").css('position','fixed').css('top','0');
+	        } else {
+	            $("#show-subject-menu-content").css('position','static');
+	        }    
+		});		
+	}
 
 	/*For outline btn*/
 	$(".outline-btn").off("click").on("click", function() {
