@@ -2,7 +2,7 @@ class Subject < ActiveRecord::Base
   validates :name, presence: true
   validates :semester_id, presence: true
   validates :uni_year_id, presence: true
-  validate :validate_same_year
+  validate :validate_same_year, on: :create
 
   has_and_belongs_to_many :faculties
   has_and_belongs_to_many :notes
