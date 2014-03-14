@@ -113,6 +113,12 @@ body {
 	float: right;
 }
 
+.nav-calendar {
+	max-width: 30px;
+	margin-right: 20px;
+	margin-top: 10px;
+}
+
 /*Sign in page
  ===============================================================================================*/
 
