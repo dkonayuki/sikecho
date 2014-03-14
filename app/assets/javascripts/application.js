@@ -21,6 +21,7 @@
 //= require wysihtml5
 //= require bootstrap-editable
 //= require jquery-fileupload
+//= require jquery.ui.all
 //= require_tree .
 	
 $(document).ready(function() {

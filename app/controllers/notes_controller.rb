@@ -9,12 +9,12 @@ class NotesController < ApplicationController
     
     #process filter if has any
     if params[:filter].blank? 
-      @notes = @user.notes.search(params[:search]).order('created_at DESC').to_a #use this method instead of .all
+      @notes = @user.notes.search(params[:search]).order('created_at DESC')
       @search = params[:search]
     else
       case params[:filter] 
       when '自分のノート'    #filter=1 : user's notes
-        @notes = @user.notes.search(params[:search]).order('created_at DESC').to_a
+        @notes = @user.notes.search(params[:search]).order('created_at DESC')
       when '授業のノート'    #filter=2 : subject's notes
         @notes = Array.new
         @user.subjects.each do | subject |
@@ -23,10 +23,10 @@ class NotesController < ApplicationController
           end
         end
       when '新着ノート' #filter=3 : new notes
-        @notes = Note.unread_by(@user).search(params[:search]).order('created_at DESC').to_a
+        @notes = Note.unread_by(@user).search(params[:search]).order('created_at DESC')
       else
         #default
-        @notes = @user.notes.search(params[:search]).order('created_at DESC').to_a #use this method instead of .all
+        @notes = @user.notes.search(params[:search]).order('created_at DESC') 
       end
       
       #respond with js format, index.js.erb will be run

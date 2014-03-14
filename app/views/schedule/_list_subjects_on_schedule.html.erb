@@ -2,16 +2,15 @@
 		<%= link_to_next_page @subjects, '', remote: true, params: {search: @search}, class: 'next-btn' %>
 <ul>
 <% @subjects.each do |subject| %>
-	<%= link_to subject do %>
-	<li class="subject-item subject-item-sm">
+	<li class="subject-item subject-item-sm subject-draggable" data-id="<%= subject.id %>">
       <div class="subject-details">
-	      <p class="subject-name subject-name-sm"><%= subject.name %></p>
+	      <p class="subject-name subject-name-sm">	<%= link_to subject.name, subject %></p>
       </div>
       <div class="subject-info">
   			<div class="subject-year label-year subject-year-sm">
 					<%= subject.year %>
 				</div>
-				<div class="subject-teacher">
+				<div class="subject-teacher-left">
 	      	<% subject.teachers.each do |teacher| %>
 	      		<% if teacher != subject.teachers.first  %>
 	      		・
@@ -19,8 +18,24 @@
 	      		<%= teacher.name_kanji %>
       		<% end %>
 	      </div>
+	      <div class="subject-add label-white">
+	      	<% if @user.subjects.include?(subject) %>
+	      		<%= link_to schedule_destroy_path(subject: subject.id, search: @search, page: @page), method: :delete, remote: true do %>
+		      		<span class="glyphicon glyphicon-remove"></span>
+		      	<% end %>
+	      	<% else %>
+		      	<%= link_to schedule_create_path(subject: subject.id, search: @search, page: @page), method: :post, remote: true do %>
+		      		<span class="glyphicon glyphicon-plus"></span>
+		      	<% end %>
+	      	<% end %>
+      	</div>
     	</div>
  	</li>
- 	<% end %>
 <% end %>
 </ul>
+<script>
+    $(".subject-draggable").draggable({
+	    revert: true,
+	    revertDuration: 0
+    });
+</script>

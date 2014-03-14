@@ -13,29 +13,33 @@
 	</tr>
 	<% (0..6).each do | t | %>
 	<tr>
-		<% if @editable %>
-		<!--For profile page-->
-			<td class="period hidden-xs"><%= time_names(t) %></td>
-			<td class="period visible-xs"><%= time_names_short(t) %></td>
-			<% (0..5).each do | d | %>
-				<% if @periods[[d,t]].blank? %>
-					<td class="cell"><%= link_to "未登録", schedule_new_path(day: d, time: t) %></td>
-				<% else %>
-					<td class="cell"><%= link_to @periods[[d,t]].name, schedule_edit_path(day: d, time: t, subject: @periods[[d,t]]) %></td>
-				<% end %>
-			<% end %>
-		<% else %>
-		<!--For home page-->
-			<td class="period hidden-xs"><%= time_names(t) %></td>
-			<td class="period visible-xs"><%= time_names_short(t) %></td>
-			<% (0..5).each do | d | %>
-				<% if @periods[[d,t]].blank? %>
-					<td class="cell"></td>
-				<% else %>
-					<td class="cell"><%= link_to @periods[[d,t]].name, @periods[[d,t]] %></td>
-				<% end %>
+		<td class="period hidden-xs"><%= time_names(t) %></td>
+		<td class="period visible-xs"><%= time_names_short(t) %></td>
+		<% (0..5).each do | d | %>
+			<% if @periods[[d, t]].blank? %>
+				<td class="cell"></td>
+			<% else %>
+				<td class="cell">
+					<ul>
+						<% @periods[[d, t]].each do | subject | %>
+						<li><%= link_to subject.name, subject %></li>
+						<% end %>
+					</ul>					
+				</td>
 			<% end %>
 		<% end %>
 	</tr>
 	<% end %>
 </table>
+<script>
+	$("#schedule-table").droppable({
+    drop: function( event, ui ) {
+      $.ajax ({
+      	url: "/schedule/",
+      	type: "post",
+      	data: {subject: ui.draggable[0].getAttribute("data-id"), page: "<%= @page %>", search: "<%= @search %>" },
+      	dataType: "script",
+      });
+    }
+	});
+</script>

@@ -1,10 +1,13 @@
 class ScheduleController < ApplicationController
   def index
     @user = current_user
+    
+    #prepare view
     get_schedule_content
-    @editable = true
     @subjects = @user.faculty.subjects.search(params[:search]).page(params[:page]).per(4)
     @search = params[:search]
+    @page = params[:page]
+    
     respond_to do |format|
       format.html {}
       format.js   {}
@@ -19,36 +22,48 @@ class ScheduleController < ApplicationController
   end
   
   def edit
-    @user = current_user
-    @subjects = @user.faculty.subjects.joins(:periods).where(periods: {day: params[:day].to_i, time: params[:time].to_i})
-
-    @subject = @subjects.find_by_id(params[:subject].to_i)
   end
   
-  # PUT /schedule/new
-  # params[:subject, :old_subject]
+  # POST /schedule/:subject
   def create
-    @user = current_user 
-    @user.subjects << @user.faculty.subjects.find_by_id(params[:subject].to_i)
+    @user = current_user
+
+    #add new subject
+    subject = @user.faculty.subjects.find_by_id(params[:subject].to_i)
+    @user.subjects << subject unless @user.subjects.include?(subject)
+        
+    #prepare view
+    get_schedule_content
+    @subjects = @user.faculty.subjects.search(params[:search]).page(params[:page]).per(4)
+    @search = params[:search]
+    @page = params[:page]
     
-    redirect_to schedule_path
+    respond_to do |format|    
+      format.html { redirect_to schedule_path }
+      format.js   {}
+    end
   end
 
   def update
-    @user = current_user 
-    subjects = @user.faculty.subjects.all
-    #delete old subject and create a new one
-    @user.subjects.delete(subjects.find_by_id(params[:old_subject].to_i))
-    @user.subjects << subjects.find_by_id(params[:subject].to_i)
-    
-    redirect_to schedule_path
   end
   
+  # DELETE /schedule/:subject
   def destroy
     @user = current_user
-    #delete subject user relationshp
+    
+    #delete subject user relationship
     @user.subjects.delete(@user.faculty.subjects.find_by_id(params[:subject].to_i))
-    redirect_to schedule_path
+    
+    #prepare view
+    get_schedule_content
+    @subjects = @user.faculty.subjects.search(params[:search]).page(params[:page]).per(4)
+    @search = params[:search]
+    @page = params[:page]
+    
+    respond_to do |format|    
+      format.html { redirect_to schedule_path }
+      format.js   {}
+    end
   end
   
 end

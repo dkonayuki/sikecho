@@ -62,7 +62,7 @@ kougakubu = Faculty.create(name: "工学部", university: tokodai)
 sensei = Teacher.create(first_name_kanji: '順平', last_name_kanji: '林', faculty: kougakubu, university: tokodai)
 sensei2 = Teacher.create(first_name_kanji: '小林', last_name_kanji: '次郎', faculty: kougakubu, university: tokodai)
 sensei3 = Teacher.create(first_name_kanji: '篠田', last_name_kanji: '太郎', faculty: kougakubu, university: tokodai)
-sub_name = ["フーリエ変換とラープラス変換","確率と統計","基礎集積回廊","論理回路理論","計算基礎論","プログラミング第一","プログラミング第二",
+sub_name = ["フーリエ変換とラープラス変換","確率と統計","基礎集積回路","論理回路理論","計算基礎論","プログラミング第一","プログラミング第二",
     "プログラミング第三","プログラミング第四","数理論理学","オートマトンと言語","計算機論理設計","代数系と符号理論","離散構造とアルゴリズム",
      "計算機アーキテクチャ第一","計算機アーキテクチャ第二","オペレーティングシステム","数値計算法","電気回路基礎論","人工知能基礎論","コンパイラ構成",
      "関数解析学","集積回路設計","線形回路設計","ディジタル通信","信号処理","情報認識","生命知識論第一","生命知識論第二","数理計画法","線形電子回路",

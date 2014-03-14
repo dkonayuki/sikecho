@@ -7,7 +7,7 @@ class SubjectsController < ApplicationController
     @user = current_user
     if params[:tag].blank? && params[:semester].blank? && params[:search].blank?
       #all
-      @subjects = @user.faculty.subjects.to_a
+      @subjects = @user.faculty.subjects.order('year DESC')
     elsif !params[:search].blank?
       @subjects = @user.faculty.subjects.search(params[:search])
     else
@@ -16,13 +16,16 @@ class SubjectsController < ApplicationController
         @subjects = @user.faculty.subjects.tagged_with(params[:tag])
       #filter semester
       elsif !params[:semester].blank?
-        year = @user.university.uni_years.find_by_no(params[:uni_year].to_i)
-        semester = year.semesters.find_by_no(params[:semester].to_i)
+        uni_year = @user.university.uni_years.find_by_no(params[:uni_year].to_i)
+        semester = uni_year.semesters.find_by_no(params[:semester].to_i)
         #filter from user's faculty subjects
         #@subjects = @user.faculty.subjects.select { | subject | subject.semester == semester } old version
         @subjects = @user.faculty.subjects.where(semester: semester)
       else
       end
+      
+      #reorder subjects list
+      @subjects = @subjects.order('year DESC')
       #respond with js format, index.js.erb will be run
       respond_to do |format|
         format.html {}
@@ -30,6 +33,7 @@ class SubjectsController < ApplicationController
         format.json { render json: @subjects, status: :ok, location: :subjects }
       end
     end
+
     #other option: render action: "index"
   end
   
@@ -57,7 +61,7 @@ class SubjectsController < ApplicationController
     @semesters = uni_year ? uni_year.semesters : []
  
     respond_to do |format|
-      format.js { render 'subjects/semester' }
+      format.js {}
       format.html
       format.json
     end

@@ -30,13 +30,11 @@ Shikechou::Application.routes.draw do
   end
   
   controller :schedule do
-    post 'schedule/new' => :create, as: 'create_schedule'
-    put 'schedule/new/:id' => :update
   end
-  get 'schedule/destroy'
+  delete 'schedule' => 'schedule#destroy', as: 'schedule_destroy'
   get 'schedule/index' => 'schedule#index', as: :schedule
-  get 'schedule/edit'
-  get 'schedule/new'
+  post 'schedule' => 'schedule#create', as: 'schedule_create'
+  
   resources :schedule
     
   # The priority is based upon order of creation: first created -> highest priority.

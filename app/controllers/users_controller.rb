@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   def faculty
     @faculties = Faculty.where(university_id: params[:university_id]).order(:name)
     respond_to do |format|
-      format.js { render 'users/faculty' }
+      format.js { }
       format.html
       format.json
     end

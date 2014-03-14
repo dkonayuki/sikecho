@@ -68,3 +68,4 @@ gem 'paperclip', "~> 4.1"
 gem 'paper_trail', '~> 3.0.0'
 
 gem 'kaminari'
+gem 'jquery-ui-rails'
