@@ -2,7 +2,7 @@
 		<%= link_to_next_page @subjects, '', remote: true, params: {search: @search}, class: 'next-btn' %>
 <ul>
 <% @subjects.each do |subject| %>
-	<li class="subject-item subject-item-sm subject-draggable" data-id="<%= subject.id %>">
+	<li class="subject-item subject-item-sm subject-draggable <%= @user.subjects.include?(subject)? 'active' : ''  %>" data-id="<%= subject.id %>">
       <div class="subject-details">
 	      <p class="subject-name subject-name-sm">	<%= link_to subject.name, subject %></p>
       </div>
@@ -36,6 +36,7 @@
 <script>
     $(".subject-draggable").draggable({
 	    revert: true,
-	    revertDuration: 0
+	    revertDuration: 0,
+	    stack: ".subject-draggable"
     });
 </script>

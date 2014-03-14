@@ -33,6 +33,7 @@
 </table>
 <script>
 	$("#schedule-table").droppable({
+		accept: ".subject-draggable",
     drop: function( event, ui ) {
       $.ajax ({
       	url: "/schedule/",
@@ -40,6 +41,9 @@
       	data: {subject: ui.draggable[0].getAttribute("data-id"), page: "<%= @page %>", search: "<%= @search %>" },
       	dataType: "script",
       });
+    },
+    over: function( event, ui ) {
+    	
     }
 	});
 </script>

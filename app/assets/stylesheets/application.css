@@ -366,6 +366,10 @@ body {
 	text-align: center;
 }
 
+#schedule-sub-list .active{
+	background-color: #eee;
+}
+
 #form-schedule {
 	max-width: 400px;
 	margin: 0 auto;
@@ -402,12 +406,13 @@ body {
 	background-color: #ffffff;
 	padding: 15px;
 	margin: 8px;
-	border: 1px solid #ddd;
+	border: 1px solid #eee;
 	display: inline-block;
 	position: relative;
 }
 
 .subject-item-sm {
+	border-color: #ddd;
 	width: 225px;
 	height: 90px;	
 }
@@ -540,6 +545,7 @@ body {
 	width: 120px;
 	background-color: #fff;
 	padding: 10px;
+	margin-top: 20px;
 }
 
 .show-subject-menu > ul > li > a:hover, .show-subject-menu > ul > li > a:focus {
@@ -558,15 +564,12 @@ body {
 }
 
 #show-subject-overview {
-	margin-top: 20px;
 }
 
 #show-subject-schedule {
-	margin-top: 220px;
 }
 
 #show-subject-notes {
-	margin-top: 340px;
 }
 
 #year-list {

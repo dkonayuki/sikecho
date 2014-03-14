@@ -27,7 +27,7 @@
 				<p>
 					<strong>科目:</strong>
 					<% if @note.subjects %>
-						<%= select_tag :subjects, options_from_collection_for_select(@subjects,"id","name", selected: @note.subjects.map { |s| s.id } ), class: 'form-control selectpicker show-tick', multiple: true, title: '' %>
+						<%= select_tag :subjects, options_for_select(@subjects.map { |s| ["#{s.name}-#{s.year}", s.id]}, selected: @note.subjects.map { |s| s.id } ), class: 'form-control selectpicker show-tick', multiple: true, title: '' %>
 					<% else %>
 			  		<%= select_tag :subjects, options_from_collection_for_select(@subjects,"id","name"), class: 'form-control selectpicker show-tick', multiple: true, title: '' %>
 					<% end %>
