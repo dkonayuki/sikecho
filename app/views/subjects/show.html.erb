@@ -85,7 +85,10 @@
 				<p>
 					<strong>時間:</strong>
 					<% @subject.periods.each do |period| %>
-					<%= time_names(period.time) %><%= day_names(period.day) %>
+						<% if period != @subject.periods.first %>
+						・
+						<% end %>
+						<%= time_names(period.time) %><%= day_names(period.day) %>
 					<% end %>
 				</p>
 				<p>

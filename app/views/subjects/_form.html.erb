@@ -50,11 +50,6 @@
 						<% end %>
 					</p>
 					<p>
-						<strong>時間:</strong>
-						<br />
-						<strong>曜日:</strong>
-					</p>
-					<p>
 						<strong>講義室:</strong>
 						<%= f.text_field :place, class: 'form-control form-control-inline' %>
 					</p>
@@ -66,6 +61,17 @@
 						<%= select_tag :teachers, options_for_select(@teachers.map { |t| [t.name_kanji, t.id] }), class: 'selectpicker show-tick', data: {width: 'auto'}, multiple: true, title: '' %>
 						<% end %>
 					</p>
+					<hr />
+					<p>
+						<h5>時間割</h5><br />
+						<%= f.fields_for :periods do | builder | %>
+							<%= render 'period_fields', f: builder %>		
+						<% end %>
+						<%= link_to_add_fields f, :periods, {class: 'btn btn-default'} do %>
+						<span class="glyphicon glyphicon-plus"></span>追加
+						<% end %>
+					</p>
+					<hr />
 					<p>
 						<strong>シラバス:</strong>
 						<% if @subject.number_of_outlines %>

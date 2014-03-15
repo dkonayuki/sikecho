@@ -76,6 +76,8 @@ class SubjectsController < ApplicationController
     @teachers = current_user.university.teachers
     @years = (2012..2015).to_a
     @number_of_outlines_list = (1..15).to_a
+    @times = (0..6).to_a
+    @days = (0..5).to_a
   end
 
   # GET /subjects/1/edit
@@ -86,6 +88,8 @@ class SubjectsController < ApplicationController
     @teachers = current_user.university.teachers
     @years = (2012..2015).to_a
     @number_of_outlines_list = (1..15).to_a
+    @times = (0..6).to_a
+    @days = (0..5).to_a
   end
 
   # POST /subjects
@@ -97,6 +101,8 @@ class SubjectsController < ApplicationController
     @teachers = current_user.university.teachers
     @years = (2012..2015).to_a
     @number_of_outlines_list = (1..15).to_a
+    @times = (0..6).to_a
+    @days = (0..5).to_a
     
     #create new subject
     @subject = Subject.new(subject_params)
@@ -173,13 +179,15 @@ class SubjectsController < ApplicationController
   def update
     #prepare previous info
     @user = current_user
-    @uni_years = current_user.university.uni_years
-    @teachers = current_user.university.teachers
+    @uni_years = @user.university.uni_years
+    @teachers = @user.university.teachers
     @years = (2012..2015).to_a
     @number_of_outlines_list = (1..15).to_a
+    @times = (0..6).to_a
+    @days = (0..5).to_a
     
     #add teachers
-    @subject.teachers = current_user.university.teachers.where(id: params[:teachers])
+    @subject.teachers = @user.university.teachers.where(id: params[:teachers])
     
     #add outlines
     new_number = subject_params[:number_of_outlines].to_i
@@ -195,6 +203,7 @@ class SubjectsController < ApplicationController
         @subject.outlines << outline
       end
     end
+    
     respond_to do |format|
       if @subject.update(subject_params)
         format.html { redirect_to @subject, notice: 'Subject was successfully updated.' }
@@ -227,6 +236,6 @@ class SubjectsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
       params.permit(:name, :pk, :value, :tag, :semester, :uni_year, :uni_year_id, :teachers, :old_number, :version_id)
-      params.require(:subject).permit(:name, :description, :year, :place, :number_of_outlines, :semester_id, :uni_year_id)
+      params.require(:subject).permit(:name, :description, :year, :place, :number_of_outlines, :semester_id, :uni_year_id, periods_attributes: [:id, :time, :day, :_destroy])
     end
 end

@@ -9,11 +9,13 @@ class Subject < ActiveRecord::Base
   has_and_belongs_to_many :teachers
   has_and_belongs_to_many :users
   
-  has_many :outlines
-  has_many :periods
+  has_many :outlines, dependent: :destroy
+  has_many :periods, dependent: :destroy
   
   belongs_to :semester
   belongs_to :uni_year
+  
+  accepts_nested_attributes_for :periods, allow_destroy: true
   
   acts_as_taggable_on :tags
   has_paper_trail only: [:description], on: [:update]

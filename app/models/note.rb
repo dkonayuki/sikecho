@@ -4,7 +4,7 @@ class Note < ActiveRecord::Base
 
   belongs_to :user 
   has_and_belongs_to_many :subjects
-  has_many :documents
+  has_many :documents, dependent: :destroy
   
   acts_as_taggable_on :tags
   
