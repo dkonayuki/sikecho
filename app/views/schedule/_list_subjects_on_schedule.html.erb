@@ -4,10 +4,10 @@
 <% @subjects.each do |subject| %>
 	<li class="subject-item subject-item-sm subject-draggable <%= @user.subjects.include?(subject)? 'active' : ''  %>" data-id="<%= subject.id %>">
       <div class="subject-details">
-	      <p class="subject-name subject-name-sm">	<%= link_to subject.name, subject %></p>
+	      <p class="subject-name">	<%= link_to subject.name, subject %></p>
       </div>
       <div class="subject-info">
-  			<div class="subject-year label-year subject-year-sm">
+  			<div class="subject-year label-year">
 					<%= subject.year %>
 				</div>
 				<div class="subject-teacher-left">

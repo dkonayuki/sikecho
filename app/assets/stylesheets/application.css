@@ -406,6 +406,15 @@ body {
 	margin-top: 20px;
 }
 
+@media (max-width: 469px) {
+	.subject-item {
+		width: 90% !important;
+	}
+	.subject-thumbnail {
+		display: none !important;
+	}
+}
+
 .subject-item {
 	width: 340px;
 	height: 180px;
@@ -415,12 +424,6 @@ body {
 	border: 1px solid #eee;
 	display: inline-block;
 	position: relative;
-}
-
-.subject-item-sm {
-	border-color: #ddd;
-	width: 225px;
-	height: 90px;	
 }
 
 .subject-thumbnail {
@@ -452,10 +455,6 @@ body {
 	line-height: 20px;
 	width: 220px;
 	color: #34495E;
-}
-
-.subject-name-sm {
-	width: 160px;
 }
 
 .subject-info {
@@ -499,13 +498,6 @@ body {
 	right: 10px;
 }
 
-.subject-year-sm {
-	border: none;
-	font-size: 10px !important;
-	width: auto !important;
-	padding: 4px 8px !important;
-}
-
 .subject-add {
 	bottom: 0;
 	right: 0;
@@ -516,6 +508,24 @@ body {
 	border-top: 1px solid #ddd;
 	border-left: 1px solid #ddd;
 	text-align: center;
+}
+
+
+.subject-item-sm {
+	border-color: #ddd;
+	width: 225px;
+	height: 90px;	
+}
+
+.subject-item-sm .subject-name {
+	width: 160px;
+}
+
+.subject-item-sm .subject-year {
+	border: none;
+	font-size: 10px !important;
+	width: auto !important;
+	padding: 4px 8px !important;
 }
 
 #new-subject-btn {
