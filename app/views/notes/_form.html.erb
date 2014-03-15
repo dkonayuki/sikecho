@@ -122,7 +122,7 @@
 	  queryTokenizer: Bloodhound.tokenizers.whitespace,
 	  limit: 5,
 	  prefetch: {
-	  	ttl_ms: 0,
+	  	ttl: 0,
 	    url: '/tags.json',
 	    filter: function(list) {
 	      return $.map(list, function(tag) { return { name: tag.name }; });

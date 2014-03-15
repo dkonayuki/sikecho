@@ -110,7 +110,6 @@ class NotesController < ApplicationController
   # for tags.json
   def tags
     @tags = ActsAsTaggableOn::Tag.all
-    puts 'hahaha'
     respond_to do |format|
       format.html {}
       format.json { render json: @tags }
