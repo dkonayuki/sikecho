@@ -137,7 +137,6 @@ $(document).on("page:change", function() {
 	
 	/*For typeahead*/
 	var searchSource = function(query, cb) {
-	
 	  var results = [];
 	  var subject_item = new Object();
 	  subject_item.value = "授業検索: " + "'" + query + "'";

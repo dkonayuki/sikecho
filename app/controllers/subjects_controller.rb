@@ -19,7 +19,6 @@ class SubjectsController < ApplicationController
         uni_year = @user.university.uni_years.find_by_no(params[:uni_year].to_i)
         semester = uni_year.semesters.find_by_no(params[:semester].to_i)
         #filter from user's faculty subjects
-        #@subjects = @user.faculty.subjects.select { | subject | subject.semester == semester } old version
         @subjects = @user.faculty.subjects.where(semester: semester)
       else
       end
@@ -33,8 +32,6 @@ class SubjectsController < ApplicationController
         format.json { render json: @subjects, status: :ok, location: :subjects }
       end
     end
-
-    #other option: render action: "index"
   end
   
   # GET /subjects/1
@@ -50,8 +47,8 @@ class SubjectsController < ApplicationController
     @show_subject = false
     @same_subjects = @user.faculty.subjects.where(name: @subject.name)
     respond_to do |format|
-      format.html {}
-      format.js   {}
+      format.html 
+      format.js   
     end
   end
 
@@ -61,9 +58,8 @@ class SubjectsController < ApplicationController
     @semesters = uni_year ? uni_year.semesters : []
  
     respond_to do |format|
-      format.js {}
+      format.js
       format.html
-      format.json
     end
   end
 
@@ -71,25 +67,25 @@ class SubjectsController < ApplicationController
   def new
     @user = current_user
     @subject = Subject.new
-    @uni_years = current_user.university.uni_years
+    @uni_years = @user.university.uni_years
     @semesters = []
-    @teachers = current_user.university.teachers
-    @years = (2012..2015).to_a
+    @teachers = @user.university.teachers
+    @years = (Subject.MAX_YEAR_BEGIN..Subject.MAX_YEAR_END).to_a
     @number_of_outlines_list = (1..15).to_a
-    @times = (0..6).to_a
-    @days = (0..5).to_a
+    @times = 1.upto(Period.MAX_TIME).to_a
+    @days = 1.upto(Period.MAX_DAY).to_a
   end
 
   # GET /subjects/1/edit
   def edit
     @user = current_user
-    @uni_years = current_user.university.uni_years
+    @uni_years = @user.university.uni_years
     @semesters = @subject.uni_year ? @subject.uni_year.semesters : []    
-    @teachers = current_user.university.teachers
-    @years = (2012..2015).to_a
+    @teachers = @user.university.teachers
+    @years = (Subject.MAX_YEAR_BEGIN..Subject.MAX_YEAR_END).to_a
     @number_of_outlines_list = (1..15).to_a
-    @times = (0..6).to_a
-    @days = (0..5).to_a
+    @times = 1.upto(Period.MAX_TIME).to_a
+    @days = 1.upto(Period.MAX_DAY).to_a
   end
 
   # POST /subjects
@@ -97,12 +93,12 @@ class SubjectsController < ApplicationController
   def create
     #prepare previous info
     @user = current_user
-    @uni_years = current_user.university.uni_years
-    @teachers = current_user.university.teachers
-    @years = (2012..2015).to_a
+    @uni_years = @user.university.uni_years
+    @teachers = @user.university.teachers
+    @years = (Subject.MAX_YEAR_BEGIN..Subject.MAX_YEAR_END).to_a
     @number_of_outlines_list = (1..15).to_a
-    @times = (0..6).to_a
-    @days = (0..5).to_a
+    @times = 1.upto(Period.MAX_TIME).to_a
+    @days = 1.upto(Period.MAX_DAY).to_a
     
     #create new subject
     @subject = Subject.new(subject_params)
@@ -181,10 +177,10 @@ class SubjectsController < ApplicationController
     @user = current_user
     @uni_years = @user.university.uni_years
     @teachers = @user.university.teachers
-    @years = (2012..2015).to_a
+    @years = (Subject.MAX_YEAR_BEGIN..Subject.MAX_YEAR_END).to_a
     @number_of_outlines_list = (1..15).to_a
-    @times = (0..6).to_a
-    @days = (0..5).to_a
+    @times = 1.upto(Period.MAX_TIME).to_a
+    @days = 1.upto(Period.MAX_DAY).to_a
     
     #add teachers
     @subject.teachers = @user.university.teachers.where(id: params[:teachers])

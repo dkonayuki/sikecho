@@ -107,7 +107,7 @@ class NotesController < ApplicationController
     end
   end
   
-  # for tags.json
+  # for /tags.json
   def tags
     @tags = ActsAsTaggableOn::Tag.all
     respond_to do |format|
@@ -138,13 +138,13 @@ class NotesController < ApplicationController
     @note.subjects = @user.faculty.subjects.where(id: params[:subjects])
     
     # update document
-    if !params[:document].blank?
-      path = save_file( @user, params[:document].original_filename, params[:document] )
-      @document = Document.new(path: path, name: params[:document].original_filename)
-      puts params[:document].original_filename
-      @document.save
-      @note.documents << @document
-    end
+    #if !params[:document].blank?
+      #path = save_file( @user, params[:document].original_filename, params[:document] )
+      #@document = Document.new(path: path, name: params[:document].original_filename)
+      #puts params[:document].original_filename
+      #@document.save
+      #@note.documents << @document
+    #end
     
     respond_to do |format|
       if @note.update(note_params)

@@ -3,8 +3,8 @@ module ScheduleHelper
     #For schedule rendering
     @periods = Hash.new
     @user = current_user
-    (0..5).each do | d | 
-      (0..6).each do | t |
+    1.upto(Period.MAX_DAY).each do | d | 
+      1.upto(Period.MAX_TIME).each do | t |
         key = [d, t]
         @periods[key] = []
         @periods[key] = @user.subjects.joins(:periods).where(periods: {day: d, time: t})

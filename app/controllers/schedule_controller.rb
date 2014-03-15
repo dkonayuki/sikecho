@@ -11,7 +11,6 @@ class ScheduleController < ApplicationController
     respond_to do |format|
       format.html {}
       format.js   {}
-      format.json { render json: @subjects, status: :ok, location: :subjects }
     end
   end
 

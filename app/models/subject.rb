@@ -33,5 +33,13 @@ class Subject < ActiveRecord::Base
       errors.add(:year, 'This year for subject existed')
     end
   end
+  
+  def self.MAX_YEAR_BEGIN
+    2012
+  end
+  
+  def self.MAX_YEAR_END
+    2016
+  end
 
 end

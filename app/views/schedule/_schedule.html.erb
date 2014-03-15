@@ -1,21 +1,21 @@
 <table class="table table-bordered">
 	<tr class="hidden-xs">
 		<th></th>
-		<% (0..5).each do | d |%>
+		<% 1.upto(Period.MAX_DAY).each do | d |%>
 		<th><%= day_names(d) %></th>
 		<% end %>
 	</tr>
 	<tr class="visible-xs">
 		<th></th>
-		<% (0..5).each do | d |%>
+		<% 1.upto(Period.MAX_DAY).each do | d |%>
 		<th><%= day_names_short(d) %></th>
 		<% end %>
 	</tr>
-	<% (0..6).each do | t | %>
+	<% 1.upto(Period.MAX_TIME).each do | t | %>
 	<tr>
 		<td class="period hidden-xs"><%= time_names(t) %></td>
 		<td class="period visible-xs"><%= time_names_short(t) %></td>
-		<% (0..5).each do | d | %>
+		<% 1.upto(Period.MAX_DAY).each do | d | %>
 			<% if @periods[[d, t]].blank? %>
 				<td class="cell"></td>
 			<% else %>
