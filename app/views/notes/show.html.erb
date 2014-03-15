@@ -38,11 +38,7 @@
 					<% end %>
 				</p>
 				<hr />
-				<ul>
-					<% @tags.each do |tag| %>
-					<li class="label-custom"><%= tag %></li>
-					<% end %>
-				</ul>
+				<%= text_area_tag 'tags', :tags, id: 'tag-input' %>
 			</div>
 			<% if @note.user == @user %>
 			<div class="skc-box-menu">
@@ -57,3 +53,18 @@
 		</div>
 	</div>
 </div>
+<script>
+	$('#tag-input').tagsinput({
+		tagClass: function(item) {
+	    switch (item) {
+	      case '試験対策'  : return 'label label-warning';
+	      case '過去問題': return 'label label-success';
+	      default: return 'label label-info';
+	    }
+  	},
+	  disable: 'true'
+	});
+	<% @tags.each do |tag| %>
+			$('#tag-input').tagsinput('add', "<%= tag %>" );
+	<% end %>
+</script>
