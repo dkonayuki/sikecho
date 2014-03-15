@@ -112,14 +112,22 @@ $(document).on("page:change", function() {
 	});
 	
 	/*For live search*/
+	var timeout; // add delay time
 	$("#filter-form input").keyup(function() {
-	  $.ajax({
-		  url: $("#filter-form").attr("action"),
-		  data: $("#filter-form").serialize() + "&filter=" + $("#filter-menu .active").text(), //default contenttype is url text
-		  success: null,
-		  dataType: "script"
-		});
+		window.clearTimeout(timeout); //clear delay
+    timeout = window.setTimeout(function(){ //set a new delay, after an amount of time, ajax function will be called
+		  $.ajax({
+			  url: $("#filter-form").attr("action"),
+			  data: $("#filter-form").serialize() + "&filter=" + $("#filter-menu .active").text(), //default contenttype is url text
+			  success: null,
+			  dataType: "script"
+			});    
+		}, 500);
+
 		return false;
+  });
+  $("#filter-form").on("submit", function() {
+		return false; // disable enter key in filter form
   });
 
 	/*For search bar slide*/
