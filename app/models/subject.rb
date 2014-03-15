@@ -2,7 +2,7 @@ class Subject < ActiveRecord::Base
   validates :name, presence: true
   validates :semester_id, presence: true
   validates :uni_year_id, presence: true
-  validate :validate_same_year, on: :create
+  validate :validate_same_year
 
   has_and_belongs_to_many :faculties
   has_and_belongs_to_many :notes
@@ -29,7 +29,8 @@ class Subject < ActiveRecord::Base
   end
   
   def validate_same_year
-    unless Subject.where(name: self.name, year: self.year).empty?
+    same_year = Subject.where(name: self.name, year: self.year)
+    if !same_year.empty? && same_year.first != self
       errors.add(:year, 'This year for subject existed')
     end
   end
