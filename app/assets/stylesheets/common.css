@@ -65,7 +65,7 @@ a:hover {
 	font-style: italic;
 }
 
-@media (max-width: 469px) {
+@media (max-width: 767px) {
 	.skc-box-thumbnail {
 		display: none;
 	}
@@ -73,7 +73,7 @@ a:hover {
 		display: block;
 	}
 	.skc-box-desc, .skc-box-title {
-	margin-left: 0px !important;
+		margin-left: 0px !important;
 	}
 	.skc-box h4 {
 		text-align: center;

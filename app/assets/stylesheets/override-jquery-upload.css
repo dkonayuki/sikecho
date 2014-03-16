@@ -1,0 +1,58 @@
+
+@media (min-width: 768px) {
+  .files .name * {
+    width: 120px;
+    display: inline-block;
+    word-wrap: break-word; 
+  }
+
+  .files .progress {
+    width: 100px; 
+  }
+	#fileupload {
+		margin-left: 0 !important;
+	}	
+
+}
+@media (max-width: 767px) {
+  .files .btn span {
+    display: none; 
+  }
+  
+  .files td {
+    padding: 2px !important;
+  }
+
+  .files .preview * {
+    width: 40px; 
+  }
+
+  .files .name * {
+  	width: 120px;
+    display: inline-block;
+    word-wrap: break-word; 
+  }
+
+  .files .progress {
+    width: 80px; 
+  }
+
+  .files .delete {
+    width: 60px; 
+  } 
+        
+}
+@media (max-width: 479px) {
+	.files .name * {
+  	width: 60px;
+    display: inline-block;
+    word-wrap: break-word; 
+  }
+  .files .progress {
+    width: 40px; 
+  }
+}
+.fileupload-buttonbar {
+	margin: 0;
+}
+

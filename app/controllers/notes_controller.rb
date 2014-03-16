@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_action :set_note, only: [:show, :edit, :update, :destroy]
+  before_action :set_note, only: [:show, :edit, :update, :destroy, :documents]
 
   # GET /notes
   # GET /notes.json
@@ -52,6 +52,15 @@ class NotesController < ApplicationController
     
     #show documents
   end
+  
+  # GET /notes/:id/documents
+  # return documents.json for jquery upload file
+  def documents
+    respond_to do |format|
+      format.html
+      format.json { render json: @note.documents.map{|d| d.to_jq_upload } }
+    end
+  end
 
   # GET /notes/new
   def new
@@ -86,13 +95,8 @@ class NotesController < ApplicationController
     #initiate view
     @note.view = 0
 
-    #save document
-    #if !params[:document].blank?
-      #path = save_file( @user, params[:document].original_filename, params[:document] )
-      #@document = Document.new(path: path, name: params[:document].original_filename)
-      #@document.save
-      #@note.documents << @document
-    #end
+    #create association between note and uploaded documents
+    @note.documents = Document.where(id: params[:document_ids])
     
     respond_to do |format|
       if @note.save
@@ -134,18 +138,12 @@ class NotesController < ApplicationController
     #prepare subjects list
     @subjects = @user.faculty.subjects
 
-    # delete old_subject and add a new one
+    #update subjects
     @note.subjects = @user.faculty.subjects.where(id: params[:subjects])
     
-    # update document
-    #if !params[:document].blank?
-      #path = save_file( @user, params[:document].original_filename, params[:document] )
-      #@document = Document.new(path: path, name: params[:document].original_filename)
-      #puts params[:document].original_filename
-      #@document.save
-      #@note.documents << @document
-    #end
-    
+    #update document
+    @note.documents = Document.where(id: params[:document_ids])
+   
     respond_to do |format|
       if @note.update(note_params)
         format.html { redirect_to notes_url, notice: 'Note was successfully updated.' }
@@ -175,7 +173,7 @@ class NotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
-      params.permit(:document, :tags, :subjects, :filter, :subject_id)
+      params.permit(:document, :tags, :subjects, :filter, :subject_id, :document_ids)
       params.require(:note).permit(:title, :content)
     end
 

@@ -33,7 +33,6 @@
 		    	<dd>まだ資料がありません。</dd>
 		      <% else %>
 			      <% @note.documents.each do |document| %>
-						  <dd><%= link_to "#{document.name}", download_path(document.id) %></dd>
 						<% end %>
 					<% end %>
 				</p>

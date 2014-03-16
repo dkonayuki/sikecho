@@ -8,20 +8,20 @@ Shikechou::Application.routes.draw do
   resources :faculties
 
   resources :subjects
-  get '/semester' => 'subjects#semester'
-  put '/subjects/:id/inline' => 'subjects#inline'
-  get '/subjects/:id/version/:version_id' => 'subjects#version', as: 'version'
+  get 'semester' => 'subjects#semester'
+  put 'subjects/:id/inline' => 'subjects#inline'
+  get 'subjects/:id/version/:version_id' => 'subjects#version', as: 'version'
     
   resources :notes
-  #get 'notes/delete/:id', to: 'notes#delete_document', as: 'delete_document'
   #get 'notes/filter/:type', to: 'notes#filter', as: 'filter_notes'
-  get 'tags', to: 'notes#tags'
+  get 'tags' => 'notes#tags'
+  get 'notes/:id/documents' => 'notes#documents'
 
   resources :documents
-  get 'documents/download/:id', to: 'documents#download', as: 'download'
+  patch 'documents' => 'documents#create'
 
   resources :users
-  get '/faculty' => 'users#faculty'
+  get 'faculty' => 'users#faculty'
 
   controller :sessions do
     get 'login' => :new
