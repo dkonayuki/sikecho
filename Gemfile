@@ -47,6 +47,8 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 # delete uneccessary info
 gem 'quiet_assets', group: :development
 
+gem 'rails_12factor', group: :production
+
 # add tag
 gem 'acts-as-taggable-on', '~> 3.0.1'
 
