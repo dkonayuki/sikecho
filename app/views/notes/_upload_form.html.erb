@@ -131,6 +131,16 @@
       	$("#fileupload :input[value=" + data.url.split('/').pop() + "]").remove();
     	});
 
+			// Uploading process, disable submit btn
+      $('#fileupload').bind('fileuploadprogress', function (e, data) {
+      	 $("#note-form :input[type='submit']").prop("disabled", true);
+      });
+   		
+   		// Uploading process finished
+   		$('#fileupload').bind('fileuploadstop', function (e) {
+  		  $("#note-form :input[type='submit']").prop("disabled", false);
+   		});
+
       // Load existing files:
       <% if note_id %>
 	      $.getJSON('/notes/<%= note_id %>/documents.json', function (files) {
