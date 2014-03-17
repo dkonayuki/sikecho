@@ -134,8 +134,9 @@
 			// Uploading process, disable submit btn
       $('#fileupload').bind('fileuploadprogress', function (e, data) {
       	 $("#note-form :input[type='submit']").prop("disabled", true);
+  	     console.log(data.bitrate);
       });
-   		
+
    		// Uploading process finished
    		$('#fileupload').bind('fileuploadstop', function (e) {
   		  $("#note-form :input[type='submit']").prop("disabled", false);

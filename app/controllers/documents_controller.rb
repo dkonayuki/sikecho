@@ -60,7 +60,13 @@ class DocumentsController < ApplicationController
   # DELETE /documents/1
   # DELETE /documents/1.json
   def destroy
+    #delete uploaded file in amazon
+    bucket = AWS::S3.new.buckets['shikechou']
+    bucket.objects.delete(@document.upload.path)
+    
+    #destroy document
     @document.destroy
+
     respond_to do |format|
       format.html { redirect_to documents_url }
       format.json { head :no_content }

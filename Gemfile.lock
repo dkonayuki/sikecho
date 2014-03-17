@@ -29,6 +29,10 @@ GEM
       rails (>= 3, < 5)
     arel (4.0.1)
     atomic (1.1.14)
+    aws-sdk (1.36.1)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
+      uuidtools (~> 2.1)
     bcrypt-ruby (3.1.2)
     bootstrap-sass (3.1.0.2)
       sass (~> 3.2)
@@ -67,9 +71,12 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
+    mini_portile (0.5.2)
     minitest (4.7.5)
     moji (1.6)
     multi_json (1.8.2)
+    nokogiri (1.6.1)
+      mini_portile (~> 0.5.0)
     paper_trail (3.0.0)
       activerecord (>= 3.0, < 5.0)
       activesupport (>= 3.0, < 5.0)
@@ -138,12 +145,14 @@ GEM
       json (>= 1.8.0)
     unread (0.3.1)
       activerecord (>= 3)
+    uuidtools (2.1.4)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   acts-as-taggable-on (~> 3.0.1)
+  aws-sdk (~> 1.0)
   bcrypt-ruby (~> 3.1.2)
   bootstrap-sass (~> 3.1.0.2)
   coffee-rails (~> 4.0.0)
