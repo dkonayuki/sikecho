@@ -1,5 +1,4 @@
 <div id="show-document" class="clear">
-	<% if @document.file_type != '.pdf' %>
 	<div id="document-content"> 
 		<%= image_tag(@document.upload.url(:original)) %>
 	</div>
@@ -34,9 +33,6 @@
 	    </div>
   	</div>
 	</div>
-	<% else %>
-	pdf
-	<% end %>
 </div>
 
 
