@@ -47,6 +47,7 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 # delete uneccessary info
 gem 'quiet_assets', group: :development
 
+# gem for heroku
 gem 'rails_12factor', group: :production
 
 # add tag
@@ -69,5 +70,8 @@ gem 'paperclip', "~> 4.1"
 #for versions
 gem 'paper_trail', '~> 3.0.0'
 
+#for pagination
 gem 'kaminari'
+
+#for jquery ui
 gem 'jquery-ui-rails'
