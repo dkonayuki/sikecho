@@ -17,3 +17,5 @@ wysihtml5 v0.3.0 (custom)
 handlebars v1.2.0
 
 Magnific Popup - v0.9.9 (custom)
+
+Jquery-file-upload v6.7.0
