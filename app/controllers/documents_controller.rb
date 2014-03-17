@@ -10,6 +10,7 @@ class DocumentsController < ApplicationController
   # GET /documents/1
   # GET /documents/1.json
   def show
+    
   end
 
   # GET /documents/new
@@ -26,7 +27,7 @@ class DocumentsController < ApplicationController
   # PATH /documents
   def create
     @document = Document.new(upload: params[:upload])
-    
+            
     respond_to do |format|
       if @document.save
         format.html {

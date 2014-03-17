@@ -33,6 +33,7 @@
 		    	<dd>まだ資料がありません。</dd>
 		      <% else %>
 			      <% @note.documents.each do |document| %>
+			      <%= link_to image_tag(document.upload.url(:small)), document, class: 'ajax-popup-link' %>
 						<% end %>
 					<% end %>
 				</p>

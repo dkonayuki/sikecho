@@ -22,8 +22,17 @@
 //= require bootstrap-editable
 //= require jquery-fileupload
 //= require jquery.ui.all
+//= require jquery.magnific-popup.js
 //= require_tree .
 	
+function setMaxWidth() {
+	$(".note-title").css("maxWidth", ( $('.note-item').width() - $('.note-thumbnail').outerWidth(true) - 1 ) + "px" ); //outerWidth(true): include margin
+	$(".note-tags").css("maxWidth", ( $('.note-item').width() - $('.note-thumbnail').outerWidth(true) - $('.note-view').width() - 1 ) + "px" );
+	if ($(window).width() >= 768) {
+		$("#document-content").css("maxWidth", ( $("#show-document").width() - $("#document-comment-section").width() - 30 ) + "px"); //30 for scroolbar
+	}
+}
+
 $(document).ready(function() {
 
 });
@@ -185,5 +194,20 @@ $(document).on("page:change", function() {
     //Refresh selectpicker
 		$('.selectpicker').selectpicker('refresh');
 		return false;
+	});
+	
+	/*For note dynamic max width*/
+	/* also for document popup */
+  setMaxWidth();
+  $( window ).on( "resize", setMaxWidth ); 
+  
+  /*For ajax popup link in show note page*/	
+  $('.ajax-popup-link').magnificPopup({
+	  type: 'ajax',
+    callbacks: {
+   		parseAjax: function( mfpResponse ) {
+        mfpResponse.data = $(mfpResponse.data).find('#show-document');
+		  }
+		}
 	});
 });

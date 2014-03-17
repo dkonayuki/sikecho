@@ -17,6 +17,7 @@
  *= require bootstrap3-typeahead.css
  *= require jquery.fileupload-ui
  *= require bootstrap-editable
+ *= require magnific-popup.css
  *= require_tree .
  * 
  */
@@ -327,17 +328,6 @@ body {
 	display: none;
 }
 
-#document-delete-btn {
-	padding: 0 4px;
-	width: 10px;
-	color: #d9534f;
-	display: none;
-}
-
-.document:hover #document-delete-btn {
-	display: inline-block;
-}
-
 /*User page
  *  ===============================================================================================*/
 
@@ -607,4 +597,40 @@ body {
 
 #show-teacher {
 	margin-top: 20px;
+}
+
+/* Document page
+ ===============================================================================================*/
+
+#show-document {
+  position: relative;
+  background: #FFF;
+  padding: 15px;
+  width: auto;
+  max-width: 800px;
+  max-height: 600px;
+  overflow: auto;
+  margin: 20px auto;
+}
+
+#document-content {
+	max-width: 440px;
+	width: 100%;
+	float: left;
+	text-align: center;
+}
+
+#document-comment-section {
+  width: 300px;
+  float: right;
+}
+
+@media (max-width: 768px) {
+	#document-content	{
+		max-width: 100% !important;
+		margin-bottom: 20px;
+	}
+	#document-comment-section {
+		width: 100%;
+	}
 }

@@ -168,6 +168,7 @@ a:hover {
 	font-weight: bold;
 	margin: 5px 5px 10px 5px;
 	padding: 5px 5px 15px 0px;
+	word-wrap: break-word;
 }
 
 /*section title inside*/
