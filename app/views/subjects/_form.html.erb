@@ -91,6 +91,8 @@
 </div>
 
 <script>
+$(document).ready(function() {
+
 	$("#subject-description").wysihtml5({locale: "en-US"});
 	function change_uni_year() {
 		var uni_year_id = $("#subject_uni_year_id").val();
@@ -101,8 +103,7 @@
 		);
 	}
 	
-	$(document).ready(function() {
-		$('.selectpicker').selectpicker();
-		$('#subject_uni_year_id').on("change", change_uni_year);
-	});
+	$('.selectpicker').selectpicker();
+	$('#subject_uni_year_id').on("change", change_uni_year);
+});
 </script>

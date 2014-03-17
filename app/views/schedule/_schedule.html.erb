@@ -32,6 +32,8 @@
 	<% end %>
 </table>
 <script>
+$(document).ready(function() {
+	
 	$("#schedule-table").droppable({
 		accept: ".subject-draggable",
     drop: function( event, ui ) {
@@ -46,4 +48,6 @@
     	
     }
 	});
+});
+
 </script>

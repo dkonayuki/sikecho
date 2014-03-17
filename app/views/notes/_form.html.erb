@@ -59,6 +59,8 @@
 
 <!-- Initialize the plugin: -->
 <script>
+$(document).ready(function() {
+	
 	$("#edit-note-area").wysihtml5({locale: "en-US"});
 	$('.selectpicker').selectpicker();
 
@@ -125,4 +127,6 @@
 				$('#tag-input').tagsinput('add', "<%= tag %>" );
 		<% end %>
 	<% end %>
+
+});
 </script>

@@ -35,3 +35,15 @@
  	</li>
 <% end %>
 </ul>
+<script>
+	$(document).ready(function() {
+		/*For note dynamic max width*/
+	  setMaxWidth();
+	  $( window ).on( "resize", setMaxWidth ); //Remove this if it's not needed. It will react when window changes size.
+	
+	  function setMaxWidth() {
+	  	$(".note-title").css("maxWidth", ( $('.note-item').width() - $('.note-thumbnail').outerWidth(true) - 1 ) + "px" ); //outerWidth(true): include margin
+	  	$(".note-tags").css("maxWidth", ( $('.note-item').width() - $('.note-thumbnail').outerWidth(true) - $('.note-view').width() - 1 ) + "px" );
+	  }
+	});
+</script>
