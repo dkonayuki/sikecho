@@ -18,6 +18,10 @@ ul {
 	margin: 10px 0 10px;
 }
 
+.has-padding {
+	padding: 0 10px 0;
+}
+
 img {
 	max-width: 100%;
 }

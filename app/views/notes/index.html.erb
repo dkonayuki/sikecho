@@ -8,7 +8,7 @@
 	  <span class="glyphicon glyphicon-plus-sign"></span>
 		<% end %>
 	
-	  <%= form_tag notes_path, method: :get, class: "navbar-form navbar-left", id: 'filter-form' do %>
+	  <%= form_tag notes_path, method: :get, class: "filter-form" do %>
 	    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'ライブ検索', value:"#{@search}", autocorrect: "off", autocapitalize: "off" %>
 		<% end %>
 		<ul id="filter-menu" class="hidden-xs">

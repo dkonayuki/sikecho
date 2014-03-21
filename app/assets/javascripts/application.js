@@ -50,7 +50,7 @@ $(document).on("page:change", function() {
   			$( this ).removeClass( "active" );
   		});
 	  	$(this).addClass("active");
-	  	$("#filter-form input").val("");
+	  	$(".filter-form input").val("");
 	  	$("#sub-filter-bar").hide();
  		}
 	  return false;
@@ -114,12 +114,12 @@ $(document).on("page:change", function() {
 	
 	/*For live search*/
 	var timeout; // add delay time
-	$("#filter-form input").keyup(function() {
+	$(".filter-form input").keyup(function() {
 		window.clearTimeout(timeout); //clear delay
     timeout = window.setTimeout(function(){ //set a new delay, after an amount of time, ajax function will be called
 		  $.ajax({
-			  url: $("#filter-form").attr("action"),
-			  data: $("#filter-form").serialize() + "&filter=" + $("#filter-menu .active").text(), //default contenttype is url text
+			  url: $(".filter-form").attr("action"),
+			  data: $(".filter-form").serialize() + "&filter=" + $(".filter-menu .active").text(), //default contenttype is url text
 			  success: null,
 			  dataType: "script"
 			});    
@@ -127,7 +127,7 @@ $(document).on("page:change", function() {
 
 		return false;
   });
-  $("#filter-form").on("submit", function() {
+  $(".filter-form").on("submit", function() {
 		return false; // disable enter key in filter form
   });
 

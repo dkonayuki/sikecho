@@ -291,8 +291,8 @@ body {
 	padding-bottom: 10px;
 }
 
-#filter-form {
-	margin: 0px !important;
+.filter-form {
+	margin: 0;
 	padding: 0;
 	float: left;
 }
@@ -524,6 +524,11 @@ body {
 	display: inline-block;
 	vertical-align: middle;
 	margin-right: 15px;
+}
+@media (min-width: 768px) {
+  #new-subject-btn:after {
+    content: "新規授業";
+  } 
 }
 
 #sub-filter-bar {
