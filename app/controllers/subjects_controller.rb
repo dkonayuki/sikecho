@@ -5,32 +5,38 @@ class SubjectsController < ApplicationController
   # GET /subjects.json
   def index
     @user = current_user
-    if params[:tag].blank? && params[:semester].blank? && params[:search].blank?
+    if params[:filter].blank?
       #all
-      @subjects = @user.university.subjects.order('year DESC')
-    elsif !params[:search].blank?
       @subjects = @user.university.subjects.search(params[:search])
+      #define @search
+      @search = params[:search]
     else
       #filter tag
-      if !params[:tag].blank?
-        @subjects = @user.university.subjects.tagged_with(params[:tag])
-      #filter semester
-      elsif !params[:semester].blank?
+      case params[:filter]
+      when '全学年'
+        @subjects = @user.university.subjects.search(params[:search])
+      when '学年別'
+        #filter semester
         uni_year = @user.university.uni_years.find_by_no(params[:uni_year].to_i)
         semester = uni_year.semesters.find_by_no(params[:semester].to_i)
         #filter from user's university
-        @subjects = @user.university.subjects.where(semester: semester)
+        @subjects = @user.university.subjects.search(params[:search]).where(semester: semester)
+        #define @uni_year and @semester
+        @uni_year = params[:uni_year]
+        @semester = params[:semester]
       else
+        #default: filter with tag
+        @subjects = @user.university.subjects.search(params[:search]).tagged_with(params[:filter])
       end
-      
-      #reorder subjects list
-      @subjects = @subjects.order('year DESC')
-      #respond with js format, index.js.erb will be run
-      respond_to do |format|
-        format.html {}
-        format.js   {}
-        format.json { render json: @subjects, status: :ok, location: :subjects }
-      end
+    end
+          
+    #reorder subjects list
+    @subjects = @subjects.order('year DESC')
+    #respond with js format, index.js.erb will be run
+    respond_to do |format|
+      format.html {}
+      format.js   {}
+      format.json { render json: @subjects, status: :ok, location: :subjects }
     end
   end
   
@@ -232,7 +238,7 @@ class SubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
-      params.permit(:name, :pk, :value, :tag, :semester, :uni_year, :uni_year_id, :teachers, :old_number, :version_id)
+      params.permit(:name, :pk, :value, :tag, :filter, :semester, :uni_year, :uni_year_id, :teachers, :old_number, :version_id)
       params.require(:subject).permit(:name, :description, :year, :place, :number_of_outlines, :semester_id, :uni_year_id, periods_attributes: [:id, :time, :day, :_destroy])
     end
 end

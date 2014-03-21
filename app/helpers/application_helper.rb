@@ -1,5 +1,6 @@
 module ApplicationHelper
   
+  #helper link when add more field dynamically
   def link_to_add_fields(name = nil, f, association, html_options, &block)
     new_object = f.object.send(association).klass.new
     id = new_object.object_id
@@ -15,4 +16,10 @@ module ApplicationHelper
     end
   end
   
+  #helper link, add active class when current_page is link_path
+  def nav_link(link_text, link_path)
+    class_name = current_page?(link_path) ? 'active' : ''
+    
+    link_to link_text, link_path, class: class_name
+  end
 end

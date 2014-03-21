@@ -11,10 +11,11 @@
 	  <%= form_tag notes_path, method: :get, class: "filter-form" do %>
 	    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'ライブ検索', value:"#{@search}", autocorrect: "off", autocapitalize: "off" %>
 		<% end %>
-		<ul id="filter-menu" class="hidden-xs">
+		<ul class="hidden-xs filter-menu">
 		<li><%= link_to '自分のノート', notes_path(filter: '自分のノート'), class: 'active' %></li>
 		<li><%= link_to '授業のノート', notes_path(filter: '授業のノート') %></li>
 	  <li><%= link_to '新着ノート', notes_path(filter: '新着ノート') %></li>
+	  <li><%= link_to 'すべて', notes_path(filter: 'すべて') %></li>
 		</ul>
 	</div>
 	<div id="notes-list">

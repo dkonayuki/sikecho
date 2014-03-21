@@ -269,25 +269,25 @@ body {
 	margin-right: 10px;
 }
 
-#filter-menu {
+.filter-menu {
 	float: right;
 	margin-top: 16px;
 }
 
-#filter-menu li {
+.filter-menu li {
 	float: right;
 	padding-right: 20px;
 }
 
-#filter-menu a {
+.filter-menu a {
 	border-bottom: 3px solid transparent;
 }
 
-#filter-menu a:hover, #filter-menu .active {
+.filter-menu a:hover, .filter-menu .active {
 	border-color: #563d7c;
 }
 
-#filter-menu a {
+.filter-menu a {
 	padding-bottom: 10px;
 }
 
@@ -353,8 +353,8 @@ body {
 #schedule {
 	padding-top: 20px;
 	background-color: #fff;
-	padding-bottom: 1000px;
-	margin-bottom: -1000px;
+	padding-bottom: 2000px;
+	margin-bottom: -2000px;
 }
 
 #schedule-sub-list {

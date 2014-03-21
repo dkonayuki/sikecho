@@ -32,7 +32,7 @@ $(document).ready(function() {
 $(document).on("page:change", function() {
 
  	/*For filter menu active*/
- 	$("#filter-menu li a").off("click").on("click", function() {
+ 	$(".filter-menu li a").off("click").on("click", function() {
  		if ($(this).attr("id") == "sub-menu-trigger") {
  			$("#sub-filter-bar").toggle();
  		}
@@ -43,7 +43,7 @@ $(document).on("page:change", function() {
 			  dataType: "script",
 			  success: success
 			}); */
-	  	$("#filter-menu li a").each(function() {
+	  	$(".filter-menu li a").each(function() {
 	  		$( this ).removeClass( "active" );
 	  	});
 	  	$("#sub-filter-bar li a").each(function() {
@@ -64,13 +64,14 @@ $(document).on("page:change", function() {
 		  dataType: "script",
 		  success: success
 		}); */
-		$("#filter-menu li a").each(function() {
+		$(".filter-menu li a").each(function() {
 	  		$( this ).removeClass( "active" );
 	  	});
   	$("#sub-filter-bar li a").each(function() {
   		$( this ).removeClass( "active" );
   	});
   	$(this).addClass("active");
+  	$(".filter-form input").val("");
 		$("#sub-menu-trigger").addClass("active");
   	$("#sub-filter-bar").hide();
   	return false;
@@ -119,7 +120,7 @@ $(document).on("page:change", function() {
     timeout = window.setTimeout(function(){ //set a new delay, after an amount of time, ajax function will be called
 		  $.ajax({
 			  url: $(".filter-form").attr("action"),
-			  data: $(".filter-form").serialize() + "&filter=" + $(".filter-menu .active").text(), //default contenttype is url text
+			  data: $(".filter-form").serialize() + "&filter=" + $(".filter-menu .active").text() + "&uni_year=" + $("input:hidden[name='uni_year']").val() + "&semester=" + $("input:hidden[name='semester']").val(), //default contenttype is url text
 			  success: null,
 			  dataType: "script"
 			});    

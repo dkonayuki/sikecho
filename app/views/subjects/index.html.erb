@@ -4,20 +4,39 @@
 	  <%= link_to new_subject_path, class: 'btn btn-default', id:'new-subject-btn' do %>
 	  <span class="glyphicon glyphicon-plus-sign"></span>
 		<% end %>
-		
 	  <%= form_tag subjects_path, method: :get, class: "filter-form has-padding" do %>
 	    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'ライブ検索', value:"#{@search}", autocorrect: "off", autocapitalize: "off" %>
 		<% end %>
 		
-		<ul id="filter-menu" class="hidden-xs">
-			<li><%= link_to '全学年', subjects_path, class: 'active' %></li>										
-		  <%  @user.university.subjects.tag_counts.order('count desc').limit(8).each do | tag | %>
-	  	<li><%= link_to tag.name, subjects_path(tag: tag.name) %></li>
+		<ul class="hidden-xs filter-menu">
+			<li><%= nav_link '全学年', subjects_path(filter: '全学年') %></li>										
+		  <%  @user.university.subjects.tag_counts.order('count desc').limit(4).each do | tag | %>
+	  	<li><%= nav_link tag.name, subjects_path(filter: tag.name) %></li>
 			<% end %>
+
 			<li><a href="#" id="sub-menu-trigger">学年別</a></li>
 		</ul>
 	</div>
 	<!-- end of menu bar -->
+	<!--subbar for 学年別-->
+	<div id="sub-filter-bar" class="hidden-xs">
+		<div class="outer-center"> <!-- outer center and inner center are needed for center divs with unknown width -->
+    	<div id="sub-filter-bar-inner" class="inner-center">
+    		<% @user.university.uni_years.each do | uni_year | %>
+				<div>
+					<h4><%= uni_year.name %></h4>
+					<ul>
+						<% uni_year.semesters.each do | semester | %>
+						<li><%= nav_link semester.name, subjects_path(filter: '学年別', uni_year: uni_year.no, semester: semester.no) %></li>
+						<% end %>
+					</ul>
+				</div>
+				<% end %>
+			</div>
+    </div>
+    <div class="clear"></div>	
+	</div>
+	<!-- end of sub-bar -->
 		
     <!-- Push Wrapper -->
     <div class="mp-pusher" id="mp-pusher">
@@ -40,7 +59,7 @@
 												<h4><%= uni_year.name %></h4>
 												<ul>
 													<% uni_year.semesters.each do | semester | %>
-													<li><%= link_to semester.name, subjects_path(uni_year: uni_year.no, semester: semester.no) %></li>
+													<li><%= link_to semester.name, subjects_path(filter: '学年別', uni_year: uni_year.no, semester: semester.no) %></li>
 													<% end %>
 												</ul>
 											</div>
@@ -50,7 +69,7 @@
 								</div>
 						 	</li>　<!-- end of 学年別 -->
 							<% @user.university.subjects.tag_counts.order('count desc').limit(8).each do | tag | %>
-					  	<li><%= link_to tag.name, subjects_path(tag: tag.name) %></li>
+					  	<li><%= link_to tag.name, subjects_path(filter: tag.name) %></li>
 							<% end %>
 							<li><%= link_to '全学年', subjects_path %></li>
 				  	</ul>
@@ -63,28 +82,8 @@
             <div class="scroller-inner">
                 <!-- site content goes here -->
                 <div id="subjects">
-									
+									<!-- trigger btn -->
 									<a href="#" id="trigger" class="btn-trigger visible-xs"><span class="glyphicon glyphicon-cog"></span></a>
-
-									<!--subbar for 学年別-->
-									<div id="sub-filter-bar" class="hidden-xs">
-										<div class="outer-center"> <!-- outer center and inner center are needed for center divs with unknown width -->
-						        	<div id="sub-filter-bar-inner" class="inner-center">
-						        		<% @user.university.uni_years.each do | uni_year | %>
-												<div>
-													<h4><%= uni_year.name %></h4>
-													<ul>
-														<% uni_year.semesters.each do | semester | %>
-														<li><%= link_to semester.name, subjects_path(uni_year: uni_year.no, semester: semester.no) %></li>
-														<% end %>
-													</ul>
-												</div>
-												<% end %>
-											</div>
-								    </div>
-								    <div class="clear"></div>	
-									</div>	
-									<!-- end of sub-bar -->
 									
 	                <div id="subjects-list">
 										<%= render 'layouts/list_subjects'%>
@@ -97,5 +96,20 @@
 </div><!-- /mp-container -->
 
 <script>
-	new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ) );
+	function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
+	$(document).ready(function() {
+		new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ) );
+		filter = getParameterByName("filter");
+		if (filter == "学年別") {
+			$("#filter-bar a:contains('学年別')").attr("class", "active");
+		} else if (filter == "") {
+			//default
+			$("#filter-bar a:contains('全学年')").attr("class", "active");
+		}
+	});
 </script>

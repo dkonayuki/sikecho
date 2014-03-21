@@ -24,6 +24,8 @@ class NotesController < ApplicationController
         end
       when '新着ノート' #filter=3 : new notes
         @notes = Note.unread_by(@user).search(params[:search]).order('created_at DESC')
+      when 'すべて'
+        @notes = Note.search(params[:search]).order('created_at DESC')
       else
         #default
         @notes = @user.notes.search(params[:search]).order('created_at DESC') 
