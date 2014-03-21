@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140312065553) do
+ActiveRecord::Schema.define(version: 20140321104826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "courses", force: true do |t|
+    t.string   "name"
+    t.integer  "faculty_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "courses_subjects", force: true do |t|
+    t.integer "subject_id"
+    t.integer "course_id"
+  end
 
   create_table "documents", force: true do |t|
     t.integer  "note_id"
@@ -32,11 +44,6 @@ ActiveRecord::Schema.define(version: 20140312065553) do
     t.integer  "university_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "faculties_subjects", force: true do |t|
-    t.integer "subject_id"
-    t.integer "faculty_id"
   end
 
   create_table "notes", force: true do |t|
@@ -94,6 +101,7 @@ ActiveRecord::Schema.define(version: 20140312065553) do
     t.string   "place"
     t.integer  "semester_id"
     t.integer  "uni_year_id"
+    t.integer  "university_id"
     t.integer  "number_of_outlines"
     t.integer  "year"
     t.datetime "created_at"
@@ -168,6 +176,7 @@ ActiveRecord::Schema.define(version: 20140312065553) do
     t.string   "nickname"
     t.integer  "university_id"
     t.integer  "faculty_id"
+    t.integer  "course_id"
     t.string   "first_name"
     t.string   "first_name_kana"
     t.string   "first_name_kanji"

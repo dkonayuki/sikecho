@@ -1,4 +1,6 @@
 Shikechou::Application.routes.draw do
+  resources :courses
+
   get 'home/index'
 
   resources :teachers
@@ -22,6 +24,7 @@ Shikechou::Application.routes.draw do
 
   resources :users
   get 'faculty' => 'users#faculty'
+  get 'course' => 'users#course'
 
   controller :sessions do
     get 'login' => :new

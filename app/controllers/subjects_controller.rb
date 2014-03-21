@@ -7,19 +7,19 @@ class SubjectsController < ApplicationController
     @user = current_user
     if params[:tag].blank? && params[:semester].blank? && params[:search].blank?
       #all
-      @subjects = @user.faculty.subjects.order('year DESC')
+      @subjects = @user.university.subjects.order('year DESC')
     elsif !params[:search].blank?
-      @subjects = @user.faculty.subjects.search(params[:search])
+      @subjects = @user.university.subjects.search(params[:search])
     else
       #filter tag
       if !params[:tag].blank?
-        @subjects = @user.faculty.subjects.tagged_with(params[:tag])
+        @subjects = @user.university.subjects.tagged_with(params[:tag])
       #filter semester
       elsif !params[:semester].blank?
         uni_year = @user.university.uni_years.find_by_no(params[:uni_year].to_i)
         semester = uni_year.semesters.find_by_no(params[:semester].to_i)
-        #filter from user's faculty subjects
-        @subjects = @user.faculty.subjects.where(semester: semester)
+        #filter from user's university
+        @subjects = @user.university.subjects.where(semester: semester)
       else
       end
       
@@ -45,7 +45,7 @@ class SubjectsController < ApplicationController
       @notes = @subject.notes
     end
     @show_subject = false
-    @same_subjects = @user.faculty.subjects.where(name: @subject.name)
+    @same_subjects = @user.university.subjects.where(name: @subject.name)
     respond_to do |format|
       format.html 
       format.js   
@@ -102,8 +102,9 @@ class SubjectsController < ApplicationController
     
     #create new subject
     @subject = Subject.new(subject_params)
-    @subject.teachers = current_user.university.teachers.where(id: params[:teachers])
-    @subject.faculties << current_user.faculty
+    @subject.teachers = @user.university.teachers.where(id: params[:teachers])
+    @subject.university = @user.university
+    
     (1..@subject.number_of_outlines).each do | i |
       outline = Outline.new(number: i)
       @subject.outlines << outline
@@ -164,7 +165,7 @@ class SubjectsController < ApplicationController
       @notes = @subject.notes
     end
     @show_subject = false
-    @same_subjects = @user.faculty.subjects.where(name: @subject.name)
+    @same_subjects = @user.university.subjects.where(name: @subject.name)
     respond_to do |format|
       format.html { render action: 'show' }
     end

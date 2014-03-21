@@ -42,11 +42,19 @@
 					<% end %>
 				</p>
 				<p>
-					<strong>学科・コース:</strong>
+					<strong>学部・研究科:</strong>
 					<% if @user.faculty_id %>
-	  			<%= f.select :faculty_id, options_from_collection_for_select(@faculties,"id","name", @user.faculty.id), {}, {class: "form-control selectpicker show-tick", data: {width: 'auto'}} %>
+	  			<%= f.select :faculty_id, options_from_collection_for_select(@faculties,"id","name", @user.faculty.id), {include_blank: true}, {class: "form-control selectpicker show-tick", data: {width: 'auto'}} %>
 					<% else %>
-	  			<%= f.select :faculty_id, options_from_collection_for_select(@faculties,"id","name"), {}, {class: "form-control selectpicker show-tick", data: {width: 'auto'}} %>
+	  			<%= f.select :faculty_id, options_from_collection_for_select(@faculties,"id","name"), {include_blank: true}, {class: "form-control selectpicker show-tick", data: {width: 'auto'}} %>
+					<% end %>
+				</p>
+				<p>
+					<strong>学科・コース:</strong>
+					<% if @user.course_id %>
+	  			<%= f.select :course_id, options_from_collection_for_select(@courses,"id","name", @user.course.id), {include_blank: true}, {class: "form-control selectpicker show-tick", data: {width: 'auto'}} %>
+					<% else %>
+	  			<%= f.select :course_id, options_from_collection_for_select(@courses,"id","name"), {include_blank: true}, {class: "form-control selectpicker show-tick", data: {width: 'auto'}} %>
 					<% end %>
 				</p>
 				<hr />
@@ -64,11 +72,22 @@
 		$.ajax({
 				url:"<%= url_for action: 'faculty'%>",	
 				data:'university_id=' + university_id,
+				dataType: "script"
+			}
+		);
+	}
+	function change_faculty() {
+		var faculty_id = $("#user_faculty_id").val();
+		$.ajax({
+				url:"<%= url_for action: 'course'%>",	
+				data:'faculty_id=' + faculty_id,
+				dataType: "script"
 			}
 		);
 	}
 	$('document').ready(function() {
 		$('.selectpicker').selectpicker();
 		$('#user_university_id').on("change", change_university);
+		$('#user_faculty_id').on("change", change_faculty);
 	});
 </script>

@@ -68,9 +68,9 @@ class NotesController < ApplicationController
     @note = Note.new
     #create note from subject page, subject_id
     if !params[:subject_id].blank? 
-      @note.subjects << @user.faculty.subjects.find_by_id(params[:subject_id])
+      @note.subjects << @user.university.subjects.find_by_id(params[:subject_id])
     end
-    @subjects = @user.faculty.subjects
+    @subjects = @user.university.subjects
   end
 
   # POST /notes
@@ -84,10 +84,10 @@ class NotesController < ApplicationController
     @note.tag_list = tags
 
     #prepare subjects list
-    @subjects = @user.faculty.subjects
+    @subjects = @user.university.subjects
     
     #add subjects
-    @note.subjects = @user.faculty.subjects.where(id: params[:subjects])
+    @note.subjects = @user.university.subjects.where(id: params[:subjects])
 
     #add relationship
     @note.user = @user
@@ -123,7 +123,7 @@ class NotesController < ApplicationController
   # GET /notes/1/edit
   def edit
     @user = current_user
-    @subjects = @user.faculty.subjects
+    @subjects = @user.university.subjects
     @note = Note.find( params[:id] )    
     @tags = @note.tag_list
   end
@@ -136,10 +136,10 @@ class NotesController < ApplicationController
     @note.tag_list = tags
     
     #prepare subjects list
-    @subjects = @user.faculty.subjects
+    @subjects = @user.university.subjects
 
     #update subjects
-    @note.subjects = @user.faculty.subjects.where(id: params[:subjects])
+    @note.subjects = @user.university.subjects.where(id: params[:subjects])
     
     #update document
     @note.documents = Document.where(id: params[:document_ids])

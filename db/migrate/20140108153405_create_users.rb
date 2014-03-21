@@ -7,6 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :nickname
       t.integer :university_id
       t.integer :faculty_id
+      t.integer :course_id
       t.string :first_name
       t.string :first_name_kana
       t.string :first_name_kanji

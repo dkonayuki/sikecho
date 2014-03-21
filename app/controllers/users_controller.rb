@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  skip_before_filter :authorize, only: [:new, :create, :faculty]
+  skip_before_filter :authorize, only: [:new, :create, :faculty, :course]
   before_filter :disable_nav, only: [:new, :create]
 
   # GET /users
@@ -14,8 +14,19 @@ class UsersController < ApplicationController
     end
   end
   
+  # get faculty list when university selection changed
   def faculty
     @faculties = Faculty.where(university_id: params[:university_id]).order(:name)
+    @courses = []
+    respond_to do |format|
+      format.js
+      format.html
+    end
+  end
+  
+  # get course list when faculty selection changed
+  def course
+    @courses = Course.where(faculty_id: params[:faculty_id]).order(:name)
     respond_to do |format|
       format.js
       format.html
@@ -34,12 +45,14 @@ class UsersController < ApplicationController
     @user = User.new
     @universities = University.all
     @faculties = []
+    @courses = []
   end
 
   # GET /users/1/edit
   def edit
     @universities = University.all
-    @faculties = Faculty.where(university_id: @user.university.id).order(:name)
+    @faculties = @user.university_id ? Faculty.where(university_id: @user.university.id).order(:name) : []
+    @courses = @user.faculty_id ? Course.where(faculty_id: @user.faculty.id).order(:name) : []
   end
 
   # POST /users
@@ -57,8 +70,9 @@ class UsersController < ApplicationController
         format.html { redirect_to home_url, notice: 'User #{@user.username} was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
-        #prepare faculty select
+        #prepare faculty and course select
         @faculties = @user.university_id ? Faculty.where(university_id: @user.university.id).order(:name) : []
+        @courses = @user.faculty_id ? Course.where(faculty_id: @user.faculty.id).order(:name) : []
         format.html { render action: 'new' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -78,8 +92,9 @@ class UsersController < ApplicationController
       else
         #custom message for password_confirmation
         @user.errors.add(:password_confirmation, "doesn't match password.")
-        #prepare faculty select
+        #prepare faculty and course select
         @faculties = @user.university_id ? Faculty.where(university_id: @user.university.id).order(:name) : []
+        @courses = @user.faculty_id ? Course.where(faculty_id: @user.faculty.id).order(:name) : []
         format.html { render action: 'edit' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -104,7 +119,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.permit(:university_id)
-      params.require(:user).permit(:username, :password, :password_confirmation, :email, :university_id, :faculty_id)
+      params.permit(:university_id, :faculty_id)
+      params.require(:user).permit(:username, :password, :password_confirmation, :email, :university_id, :faculty_id, :course_id)
     end
 end

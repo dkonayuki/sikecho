@@ -4,7 +4,7 @@ class Subject < ActiveRecord::Base
   validates :uni_year_id, presence: true
   validate :validate_same_year
 
-  has_and_belongs_to_many :faculties
+  has_and_belongs_to_many :courses
   has_and_belongs_to_many :notes
   has_and_belongs_to_many :teachers
   has_and_belongs_to_many :users
@@ -12,6 +12,7 @@ class Subject < ActiveRecord::Base
   has_many :outlines, dependent: :destroy
   has_many :periods, dependent: :destroy
   
+  belongs_to :university
   belongs_to :semester
   belongs_to :uni_year
   
