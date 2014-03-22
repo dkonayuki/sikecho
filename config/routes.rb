@@ -5,9 +5,10 @@ Shikechou::Application.routes.draw do
 
   resources :teachers
 
-  resources :universities
+  resources :universities do
+    resources :faculties
+  end
 
-  resources :faculties
 
   resources :subjects
   get 'semester' => 'subjects#semester'

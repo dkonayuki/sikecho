@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @faculty %> |
-<%= link_to 'Back', faculties_path %>
+<%= link_to 'Show',[@faculty.university, @faculty] %> |
+<%= link_to 'Back', university_faculties_path(@faculty.university) %>
