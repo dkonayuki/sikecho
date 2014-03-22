@@ -1,6 +1,6 @@
 class FacultiesController < ApplicationController
   before_action :set_faculty, only: [:show, :edit, :update, :destroy]
-  before_action :set_university
+  before_action :set_university, only: [:index, :new, :create]
 
   # GET /universities/:university_id/faculties
   # GET /universities/:university_id/faculties
@@ -29,7 +29,7 @@ class FacultiesController < ApplicationController
 
     respond_to do |format|
       if @faculty.save
-        format.html { redirect_to [@faculty.university, @faculty], notice: 'Faculty was successfully created.' }
+        format.html { redirect_to university_faculties_path(@university), notice: 'Faculty was successfully created.' }
         format.json { render action: 'show', status: :created, location: @faculty }
       else
         format.html { render action: 'new' }
@@ -43,7 +43,7 @@ class FacultiesController < ApplicationController
   def update
     respond_to do |format|
       if @faculty.update(faculty_params)
-        format.html { redirect_to [@faculty.university, @faculty], notice: 'Faculty was successfully updated.' }
+        format.html { redirect_to @faculty, notice: 'Faculty was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -57,7 +57,7 @@ class FacultiesController < ApplicationController
   def destroy
     @faculty.destroy
     respond_to do |format|
-      format.html { redirect_to university_faculties_url }
+      format.html { redirect_to university_faculties_path(@faculty.university) }
       format.json { head :no_content }
     end
   end

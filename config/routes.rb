@@ -1,14 +1,13 @@
 Shikechou::Application.routes.draw do
-  resources :courses
-
   get 'home/index'
 
   resources :teachers
 
-  resources :universities do
-    resources :faculties
+  resources :universities, shallow: true do
+    resources :faculties do
+      resources :courses
+    end
   end
-
 
   resources :subjects
   get 'semester' => 'subjects#semester'

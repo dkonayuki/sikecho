@@ -1,4 +1,4 @@
-<%= form_for(@course) do |f| %>
+<%= form_for(shallow_args(@course.faculty, @course)) do |f| %>
   <% if @course.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
@@ -14,10 +14,6 @@
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :faculty_id %><br>
-    <%= f.number_field :faculty_id %>
   </div>
   <div class="actions">
     <%= f.submit %>

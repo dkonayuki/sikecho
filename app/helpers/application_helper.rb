@@ -22,4 +22,8 @@ module ApplicationHelper
     
     link_to link_text, link_path, class: class_name
   end
+  
+  def shallow_args(parent, child)
+    child.try(:new_record?) ? [parent, child] : child
+  end
 end

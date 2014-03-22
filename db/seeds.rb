@@ -34,7 +34,7 @@ td_year_name.each do |year|
   semester2 = Semester.create(no: 2, name: "冬", uni_year: year)
 end
 
-todai_sub_tags = ["通年","集中講義","ゼミ","文理共通"]
+todai_sub_tags = ["通年","集中講義","ゼミ"]
 
 igakubu = Faculty.create(name: "医学部", university: todai)
 kenkogakka = Course.create(name: '健康総合科学科', faculty: igakubu)
@@ -53,7 +53,7 @@ td_sub_name.each do | name |
   sub.teachers << td_sensei
   sub.semester = semester
   sub.uni_year = uni_year
-  sub.tag_list.add(todai_sub_tags[rand(4)])
+  sub.tag_list.add(todai_sub_tags[rand(3)])
   (1..15).each do | j |
     outline = Outline.create(number: j, content: '')
     sub.outlines << outline
@@ -61,9 +61,10 @@ td_sub_name.each do | name |
   sub.save
 end
 
-tokodai_sub_tags = ["通年","集中講義","ゼミ","学部共通"]
+tokodai_sub_tags = ["通年","集中講義","ゼミ"]
 
 kougakubu = Faculty.create(name: "工学部", university: tokodai)
+gakubukyoutsu = Faculty.create(name: '学部共通', university: tokodai)
 jouhou = Course.create(name: '情報工学科', faculty: kougakubu)
 
 sensei = Teacher.create(first_name_kanji: '順平', last_name_kanji: '林', faculty: kougakubu, university: tokodai)
@@ -87,7 +88,7 @@ sub_name.each do | name |
   sub.teachers << sensei
   sub.semester = semester
   sub.uni_year = uni_year
-  sub.tag_list.add(tokodai_sub_tags[rand(5)])
+  sub.tag_list.add(tokodai_sub_tags[rand(3)])
   (1..15).each do | j |
     outline = Outline.create(number: j, content: '')
     sub.outlines << outline

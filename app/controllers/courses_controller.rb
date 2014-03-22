@@ -1,10 +1,11 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_faculty, only: [:index, :new, :create]
 
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+    @courses = @faculty.courses
   end
 
   # GET /courses/1
@@ -14,7 +15,7 @@ class CoursesController < ApplicationController
 
   # GET /courses/new
   def new
-    @course = Course.new
+    @course = @faculty.courses.build
   end
 
   # GET /courses/1/edit
@@ -24,11 +25,11 @@ class CoursesController < ApplicationController
   # POST /courses
   # POST /courses.json
   def create
-    @course = Course.new(course_params)
+    @course = @faculty.courses.new(course_params)
 
     respond_to do |format|
       if @course.save
-        format.html { redirect_to @course, notice: 'Course was successfully created.' }
+        format.html { redirect_to faculty_courses_path(@faculty), notice: 'Course was successfully created.' }
         format.json { render action: 'show', status: :created, location: @course }
       else
         format.html { render action: 'new' }
@@ -56,7 +57,7 @@ class CoursesController < ApplicationController
   def destroy
     @course.destroy
     respond_to do |format|
-      format.html { redirect_to courses_url }
+      format.html { redirect_to faculty_courses_path(@course.faculty) }
       format.json { head :no_content }
     end
   end
@@ -66,9 +67,14 @@ class CoursesController < ApplicationController
     def set_course
       @course = Course.find(params[:id])
     end
+    
+    def set_faculty
+      @faculty = Faculty.find(params[:faculty_id])
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:name, :faculty_id)
+      params.permit(:faculty_id)
+      params.require(:course).permit(:name)
     end
 end
