@@ -1,3 +1,4 @@
+<div class="hidden">
 <h1>Listing faculties</h1>
 
 <table>
@@ -29,3 +30,21 @@
 <br>
 
 <%= link_to 'New Faculty', new_university_faculty_path(@university) %>
+</div>
+
+<div id="faculty-list">
+	<% @faculties.each do |faculty| %>
+		<div class="faculty">
+			<div class="faculty-name">
+				<h4><%= faculty.name %></h4>
+			</div>
+			<div class="faculty-courses-list">
+				<ul>
+				<% faculty.courses.each do |course| %>
+					<li><%= link_to course.name, course_subjects_path(course) %></li>
+				<% end %>
+				</ul>
+			</div>
+		</div>
+	<% end %>
+</div>

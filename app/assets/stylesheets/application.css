@@ -391,6 +391,18 @@ body {
 #subjects {
 }
 
+#path-info {
+	display: inline-block;
+	margin: 10px auto 0;
+	position: relative;
+	left: 50px;
+}
+@media (max-width: 767px) {
+	#path-info {
+		left: 10px;
+	}
+}
+
 #subjects-list ul {
 	text-align: center;
 	margin-top: 20px;
@@ -638,4 +650,21 @@ body {
 	#document-comment-section {
 		width: 100%;
 	}
+}
+
+/* Faculty page
+ ===============================================================================================*/
+
+.faculty {
+	width: 285px;
+	display: inline-block;	
+	margin: 20px;
+	background-color: #fff;
+}
+
+.faculty-name {
+	padding: 10px;
+	text-align: center;
+	background: #563d7c;
+	color: #fff;
 }
