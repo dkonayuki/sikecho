@@ -28,7 +28,7 @@ class ScheduleController < ApplicationController
     @user = current_user
 
     #add new subject
-    subject = @user.university.subjects.find_by_id(params[:subject].to_i)
+    subject = Subject.find_by_id(params[:subject].to_i)
     @user.subjects << subject unless @user.subjects.include?(subject)
         
     #prepare view
@@ -51,7 +51,7 @@ class ScheduleController < ApplicationController
     @user = current_user
     
     #delete subject user relationship
-    @user.subjects.delete(@user.university.subjects.find_by_id(params[:subject].to_i))
+    @user.subjects.delete(Subject.find_by_id(params[:subject].to_i))
     
     #prepare view
     get_schedule_content

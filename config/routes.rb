@@ -5,11 +5,13 @@ Shikechou::Application.routes.draw do
 
   resources :universities, shallow: true do
     resources :faculties do
-      resources :courses
+      resources :courses do
+        resources :subjects
+      end
     end
   end
 
-  resources :subjects
+  #resources :subjects
   get 'semester' => 'subjects#semester'
   put 'subjects/:id/inline' => 'subjects#inline'
   get 'subjects/:id/version/:version_id' => 'subjects#version', as: 'version'

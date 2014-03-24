@@ -3,7 +3,6 @@ class Subject < ActiveRecord::Base
   validates :semester_id, presence: true
   validates :uni_year_id, presence: true
 
-  has_and_belongs_to_many :courses
   has_and_belongs_to_many :notes
   has_and_belongs_to_many :teachers
   has_and_belongs_to_many :users
@@ -11,7 +10,7 @@ class Subject < ActiveRecord::Base
   has_many :outlines, dependent: :destroy
   has_many :periods, dependent: :destroy
   
-  belongs_to :university
+  belongs_to :course
   belongs_to :semester
   belongs_to :uni_year
   

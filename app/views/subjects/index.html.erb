@@ -1,17 +1,17 @@
 <div class="mp-container">
 	<!--menu bar-->  	
 	<div id="filter-bar">
-	  <%= link_to new_subject_path, class: 'btn btn-default', id:'new-subject-btn' do %>
+	  <%= link_to new_course_subject_path(@course), class: 'btn btn-default', id:'new-subject-btn' do %>
 	  <span class="glyphicon glyphicon-plus-sign"></span>
 		<% end %>
-	  <%= form_tag subjects_path, method: :get, class: "filter-form has-padding" do %>
+	  <%= form_tag course_subjects_path(@course), method: :get, class: "filter-form has-padding" do %>
 	    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'ライブ検索', value:"#{@search}", autocorrect: "off", autocapitalize: "off" %>
 		<% end %>
 		
 		<ul class="hidden-xs filter-menu">
-			<li><%= nav_link '全学年', subjects_path(filter: '全学年') %></li>										
-		  <%  @user.university.subjects.tag_counts.order('count desc').limit(4).each do | tag | %>
-	  	<li><%= nav_link tag.name, subjects_path(filter: tag.name) %></li>
+			<li><%= nav_link '全学年', course_subjects_path(@course, filter: '全学年') %></li>										
+		  <%  @subjects.tag_counts.order('count desc').limit(4).each do | tag | %>
+	  	<li><%= nav_link tag.name, course_subjects_path(@course, filter: tag.name) %></li>
 			<% end %>
 
 			<li><a href="#" id="sub-menu-trigger">学年別</a></li>
@@ -27,7 +27,7 @@
 					<h4><%= uni_year.name %></h4>
 					<ul>
 						<% uni_year.semesters.each do | semester | %>
-						<li><%= nav_link semester.name, subjects_path(filter: '学年別', uni_year: uni_year.no, semester: semester.no) %></li>
+						<li><%= nav_link semester.name, course_subjects_path(@course, filter: '学年別', uni_year: uni_year.no, semester: semester.no) %></li>
 						<% end %>
 					</ul>
 				</div>
@@ -59,7 +59,7 @@
 												<h4><%= uni_year.name %></h4>
 												<ul>
 													<% uni_year.semesters.each do | semester | %>
-													<li><%= link_to semester.name, subjects_path(filter: '学年別', uni_year: uni_year.no, semester: semester.no) %></li>
+													<li><%= link_to semester.name, course_subjects_path(@course, filter: '学年別', uni_year: uni_year.no, semester: semester.no) %></li>
 													<% end %>
 												</ul>
 											</div>
@@ -68,10 +68,10 @@
 									</ul>
 								</div>
 						 	</li>　<!-- end of 学年別 -->
-							<% @user.university.subjects.tag_counts.order('count desc').limit(8).each do | tag | %>
-					  	<li><%= link_to tag.name, subjects_path(filter: tag.name) %></li>
+							<% @subjects.tag_counts.order('count desc').limit(8).each do | tag | %>
+					  	<li><%= link_to tag.name, course_subjects_path(@course, filter: tag.name) %></li>
 							<% end %>
-							<li><%= link_to '全学年', subjects_path %></li>
+							<li><%= link_to '全学年', course_subjects_path(@course) %></li>
 				  	</ul>
 							
 					</div>

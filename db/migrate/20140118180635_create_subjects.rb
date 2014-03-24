@@ -7,7 +7,7 @@ class CreateSubjects < ActiveRecord::Migration
       t.string :place
       t.integer :semester_id
       t.integer :uni_year_id
-      t.integer :university_id
+      t.integer :course_id
       t.integer :number_of_outlines
       t.integer :year
 

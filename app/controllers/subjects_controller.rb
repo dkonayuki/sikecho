@@ -1,5 +1,6 @@
 class SubjectsController < ApplicationController
   before_action :set_subject, only: [:show, :edit, :update, :destroy, :inline, :version]
+  before_action :set_course, only: [:index, :new, :create]
   
   # GET /subjects
   # GET /subjects.json
@@ -7,26 +8,26 @@ class SubjectsController < ApplicationController
     @user = current_user
     if params[:filter].blank?
       #all
-      @subjects = @user.university.subjects.search(params[:search])
+      @subjects = @course.subjects.search(params[:search])
       #define @search
       @search = params[:search]
     else
       #filter tag
       case params[:filter]
       when '全学年'
-        @subjects = @user.university.subjects.search(params[:search])
+        @subjects = @course.subjects.search(params[:search])
       when '学年別'
         #filter semester
         uni_year = @user.university.uni_years.find_by_no(params[:uni_year].to_i)
         semester = uni_year.semesters.find_by_no(params[:semester].to_i)
         #filter from user's university
-        @subjects = @user.university.subjects.search(params[:search]).where(semester: semester)
+        @subjects = @course.subjects.search(params[:search]).where(semester: semester)
         #define @uni_year and @semester
         @uni_year = params[:uni_year]
         @semester = params[:semester]
       else
         #default: filter with tag
-        @subjects = @user.university.subjects.search(params[:search]).tagged_with(params[:filter])
+        @subjects = @course.subjects.search(params[:search]).tagged_with(params[:filter])
       end
     end
           
@@ -43,15 +44,15 @@ class SubjectsController < ApplicationController
   # GET /subjects/1
   # GET /subjects/1.json
   def show
-    @user = current_user
     if !params[:tag].blank?
       #filter in show subject page
       @notes = @subject.notes.tagged_with(params[:tag])
     else
       @notes = @subject.notes
     end
+    # notes will not show subject name
     @show_subject = false
-    @same_subjects = @user.university.subjects.where(name: @subject.name)
+    @same_subjects = @subject.course.subjects.where(name: @subject.name)
     respond_to do |format|
       format.html 
       format.js   
@@ -71,8 +72,9 @@ class SubjectsController < ApplicationController
 
   # GET /subjects/new
   def new
+    @subject = @course.subjects.build
+
     @user = current_user
-    @subject = Subject.new
     @uni_years = @user.university.uni_years
     @semesters = []
     @teachers = @user.university.teachers
@@ -107,9 +109,8 @@ class SubjectsController < ApplicationController
     @days = 1.upto(Period.MAX_DAY).to_a
     
     #create new subject
-    @subject = Subject.new(subject_params)
+    @subject = @course.subjects.new(subject_params)
     @subject.teachers = @user.university.teachers.where(id: params[:teachers])
-    @subject.university = @user.university
     
     (1..@subject.number_of_outlines).each do | i |
       outline = Outline.new(number: i)
@@ -163,15 +164,15 @@ class SubjectsController < ApplicationController
     @subject = @subject.versions.find(params[:version_id]).reify
     
     #prepare show information
-    @user = current_user
     if !params[:tag].blank?
       #filter in show subject page
       @notes = @subject.notes.tagged_with(params[:tag])
     else
       @notes = @subject.notes
     end
+    # notes will not show subject name
     @show_subject = false
-    @same_subjects = @user.university.subjects.where(name: @subject.name)
+    @same_subjects = @subject.course.subjects.where(name: @subject.name)
     respond_to do |format|
       format.html { render action: 'show' }
     end
@@ -225,7 +226,7 @@ class SubjectsController < ApplicationController
   def destroy
     @subject.destroy
     respond_to do |format|
-      format.html { redirect_to subjects_url }
+      format.html { redirect_to course_subjects_path(@subject.course) }
       format.json { head :no_content }
     end
   end
@@ -235,10 +236,14 @@ class SubjectsController < ApplicationController
     def set_subject
       @subject = Subject.find(params[:id])
     end
+    
+    def set_course
+      @course = Course.find(params[:course_id])
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
-      params.permit(:name, :pk, :value, :tag, :filter, :semester, :uni_year, :uni_year_id, :teachers, :old_number, :version_id)
+      params.permit(:name, :pk, :value, :tag, :filter, :semester, :uni_year, :uni_year_id, :teachers, :old_number, :version_id, :course_id)
       params.require(:subject).permit(:name, :description, :year, :place, :number_of_outlines, :semester_id, :uni_year_id, periods_attributes: [:id, :time, :day, :_destroy])
     end
 end

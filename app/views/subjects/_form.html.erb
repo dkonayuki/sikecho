@@ -1,5 +1,5 @@
 <div id="subject-edit">
-	<%= form_for(@subject) do |f| %>
+	<%= form_for(shallow_args(@subject.course, @subject)) do |f| %>
 	  <% if @subject.errors.any? %>
 	    <div id="error_explanation">
 	      <h2><%= pluralize(@subject.errors.count, "error") %> prohibited this subject from being saved:</h2>
