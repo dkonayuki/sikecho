@@ -8,9 +8,6 @@
 
 .mp-container, .scroller {
 	height: 100%;
-/* Happy hacking for background being overlapping*/
-	padding-bottom: 2000px;
-	margin-bottom: -2000px;
 }
 
 .scroller {

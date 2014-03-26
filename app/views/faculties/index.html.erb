@@ -31,20 +31,21 @@
 
 <%= link_to 'New Faculty', new_university_faculty_path(@university) %>
 </div>
-
 <div id="faculty-list">
+
 	<% @faculties.each do |faculty| %>
-		<div class="faculty">
-			<div class="faculty-name">
-				<h4><%= faculty.name %></h4>
-			</div>
-			<div class="faculty-courses-list">
-				<ul>
-				<% faculty.courses.each do |course| %>
-					<li><%= link_to course.name, course_subjects_path(course) %></li>
-				<% end %>
-				</ul>
-			</div>
-		</div>
+	 <div class="faculty-item">
+	 	<div class="faculty-item-content">
+		 	<div class="faculty-name"><%= faculty.name %></div>
+		 	<div class="faculty-courses-list">
+		 		<ul>
+			 		<% faculty.courses.each do |course| %>
+			 		<li><%= link_to course.name, course_subjects_path(course) %></li>
+			 		<% end %>	 			
+		 		</ul>
+		 	</div>
+	 	</div>
+	 </div>
 	<% end %>
+	
 </div>
