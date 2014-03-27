@@ -4,8 +4,11 @@ class University < ActiveRecord::Base
   has_many :uni_years
   has_many :users
   
+  def courses
+    Course.where('faculty_id IN (?)', faculty_ids)
+  end
+  
   def subjects
-    courses = Course.where('faculty_id IN (?)', faculty_ids)
-    Subject.where('course_id IN (?)', courses.ids)
+    Subject.where('course_id IN (?)', self.courses.ids)
   end
 end

@@ -87,7 +87,7 @@
 									
 									<div id="path-info">
 										<%= link_to @course.faculty.university.name, university_faculties_path(@course.faculty.university) %><span class="glyphicon glyphicon-chevron-right"></span>
-										<%= link_to @course.faculty.name, university_faculties_path(@course.faculty.university) %><span class="glyphicon glyphicon-chevron-right"></span>
+										<%= link_to @course.faculty.name, @course.faculty %><span class="glyphicon glyphicon-chevron-right"></span>
 										<%= @course.name %>
 									</div>
 

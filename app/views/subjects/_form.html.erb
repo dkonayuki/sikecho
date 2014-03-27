@@ -27,6 +27,14 @@
 						<%= f.text_area :description, class: 'form-control', id: 'subject-description' %>
 					</p>
 					<p>
+						<strong>所属学科:</strong>
+						<% if @subject.course %>
+						<%= f.select :course_id	, options_from_collection_for_select(@courses,"id","name", selected: @subject.course.id), {include_blank: true}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<% else %>
+						<%= f.select :course_id	, options_from_collection_for_select(@course,"id","name"), {include_blank: true}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<% end %>
+					</p>
+					<p>
 						<strong>学年:</strong>
 						<% if @subject.uni_year %>
 						<%= f.select :uni_year_id	, options_from_collection_for_select(@uni_years,"id","name", selected:@subject.uni_year.id), {include_blank: true}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>

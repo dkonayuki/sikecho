@@ -82,6 +82,7 @@ class SubjectsController < ApplicationController
     @number_of_outlines_list = (1..15).to_a
     @times = 1.upto(Period.MAX_TIME).to_a
     @days = 1.upto(Period.MAX_DAY).to_a
+    @courses = @user.university.courses
   end
 
   # GET /subjects/1/edit
@@ -107,6 +108,7 @@ class SubjectsController < ApplicationController
     @number_of_outlines_list = (1..15).to_a
     @times = 1.upto(Period.MAX_TIME).to_a
     @days = 1.upto(Period.MAX_DAY).to_a
+    @courses = @user.university.courses
     
     #create new subject
     @subject = @course.subjects.new(subject_params)
@@ -244,6 +246,6 @@ class SubjectsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
       params.permit(:name, :pk, :value, :tag, :filter, :semester, :uni_year, :uni_year_id, :teachers, :old_number, :version_id, :course_id)
-      params.require(:subject).permit(:name, :description, :year, :place, :number_of_outlines, :semester_id, :uni_year_id, periods_attributes: [:id, :time, :day, :_destroy])
+      params.require(:subject).permit(:name, :description, :year, :place, :number_of_outlines, :semester_id, :uni_year_id, :course_id, periods_attributes: [:id, :time, :day, :_destroy])
     end
 end
