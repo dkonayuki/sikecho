@@ -46,9 +46,9 @@
       <li class="<%= 'active' if params[:controller] == 'users' %>"><%= link_to 'プロフィール', @user %></li>
       <li id="log-out"><%= link_to 'ログアウト', logout_path, method: :delete, class: 'visible-xs' %></li>
     </ul>
-  	<%= form_tag university_faculties_path(@user.university), method: :get, class: "navbar-form navbar-left hidden-xs search-bar search-bar-slide" do %>
+  	<%= form_tag search_path, class: "navbar-form navbar-left hidden-xs search-bar search-bar-slide" do %>
   	  <div class="input-group">
-		    <%= text_field_tag :search, params[:search], class: 'form-control typeahead', placeholder: '検索' %>
+		    <%= text_field_tag :query, params[:query], class: 'form-control typeahead', placeholder: '検索' %>
 				<div class="input-group-btn">
 					<%= button_tag(type: "submit", class: "btn btn-success") do %>
 					  <i class="glyphicon glyphicon-search"></i>
@@ -60,9 +60,9 @@
   
   <!-- Search bar -->
   <div class="collapse navbar-collapse" id="navbar-collapse-2">
-	<%= form_tag university_faculties_path(@user.university), method: :get, class: "navbar-form navbar-left visible-xs search-bar" do %>
+	<%= form_tag search_path, class: "navbar-form navbar-left visible-xs search-bar" do %>
 	  <div class="input-group">
-	    <%= text_field_tag :search, params[:search], class: 'form-control typeahead', placeholder: '検索' %>
+	    <%= text_field_tag :query, params[:query], class: 'form-control typeahead', placeholder: '検索' %>
 			<div class="input-group-btn">
 				<%= button_tag(type: "submit", class: "btn btn-success") do %>
 				  <i class="glyphicon glyphicon-search"></i>

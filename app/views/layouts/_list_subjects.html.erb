@@ -1,3 +1,6 @@
+<% if @subjects.count == 0 %>
+授業が見つかりません。
+<% end %>
 <ul>
 <% @subjects.each do |subject| %>
 	<%= link_to subject do %>

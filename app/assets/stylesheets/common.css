@@ -43,6 +43,14 @@ a:hover {
 	background-color: #b94a48 !important;
 }
 
+.badge-info {
+	background-color: #3498DB !important;
+}
+
+.badge-sm {
+	font-size: 8px;
+}
+
 .hr-narrow {
 	margin-top: 10px !important;
 	margin-bottom: 10px !important;
@@ -126,6 +134,9 @@ a:hover {
 	padding: 28px;
 	border: 1px solid #eee;
 	position: relative;
+}
+.skc-box-content-no-padding {
+	padding: 10px 0;	
 }
 .skc-box-content:before,
 .skc-box-content:after {

@@ -24,7 +24,12 @@
 //= require jquery.ui.all
 //= require jquery.magnific-popup.js
 //= require_tree .
-
+function getParameterByName(name) {
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+      results = regex.exec(location.search);
+  return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
 $(document).ready(function() {
 
 });
@@ -92,13 +97,13 @@ $(document).on("page:change", function() {
 	});
 	
 	/*For fixed subject menu*/
-	if ($("#show-subject-menu-content").length) {
-		var fixedMenuOffset = $("#show-subject-menu-content").offset();
+	if ($(".fixed-menu").length) {
+		var fixedMenuOffset = $(".fixed-menu").offset();
 		$(window).scroll(function(){
 	        if($(window).scrollTop() > fixedMenuOffset.top - 20){
-	            $("#show-subject-menu-content").css('position','fixed').css('top','0');
+	            $(".fixed-menu").css('position','fixed').css('top','0');
 	        } else {
-	            $("#show-subject-menu-content").css('position','static');
+	            $(".fixed-menu").css('position','static');
 	        }    
 		});		
 	}
@@ -144,17 +149,23 @@ $(document).on("page:change", function() {
   		width : "-=70px"		
   	}, 200);
   });
+  
+  /*For search bar submit*/
+  $(".search-bar").on("submit", function(){
+  	window.location.href = "/search?query=" + $(this).find("#query").val() + "&type=授業";
+  	return false;
+  });
 	
 	/*For typeahead*/
 	var searchSource = function(query, cb) {
 	  var results = [];
 	  var subject_item = new Object();
 	  subject_item.value = "授業検索: " + "'" + query + "'";
-	  subject_item.url = "/subjects?search=" + query;
+	  subject_item.url = "/search?query=" + query + "&type=授業";
 	  results.push(subject_item);
 	  var note_item = new Object();
 	  note_item.value = "ノート検索: " + "'" + query + "'";
-	  note_item.url = "/notes?search=" + query;
+	  note_item.url = "/search?query=" + query + "&type=ノート";
 	  results.push(note_item);
 	  cb(results);
 	};

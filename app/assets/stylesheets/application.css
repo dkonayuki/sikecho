@@ -395,13 +395,18 @@ body {
 	display: inline-block;
 	margin: 10px auto 0;
 	position: relative;
-	left: 50px;
-	border-bottom: 3px double #bbb;
+	background: #E67E22;
+	padding: 5px;
+	color: #fff;
+	font-size: 10px;
 }
-@media (max-width: 767px) {
-	#path-info {
-		left: 0;
-	}
+
+#path-info a, #path-info span {
+	color: #FFFFFF;
+	margin: 4px;
+}
+#path-info a:hover {
+	color: #000;
 }
 
 #subjects-list ul {
@@ -715,4 +720,37 @@ body {
 	.faculty-item {
 		height: 250px;
 	}
+}
+
+/* Search page
+ ***************************************************************************/
+
+#search-menu {
+	width: 120px;
+	background-color: #fff;
+	padding: 10px;
+	margin-top: 20px;
+}
+
+#search-menu li {
+	margin-top: 10px;
+}
+
+#search-menu a {
+	padding: 10px 10px !important;
+}
+
+#search-menu > ul > li > a:hover {
+	background-color: #999 !important;
+	color: #fff;	
+}
+
+#search-menu > ul > li > a:focus, #search-menu ul li .active {
+	background-color: #555 !important;
+	color: #fff;
+}
+
+#result {
+	margin-top: 20px;
+	text-align: center;
 }

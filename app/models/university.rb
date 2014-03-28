@@ -11,4 +11,10 @@ class University < ActiveRecord::Base
   def subjects
     Subject.where('course_id IN (?)', self.courses.ids)
   end
+  
+  def notes
+    Note.joins(:subjects).where('subjects.id IN (?)', self.subjects.ids)
+    #Note.joins(:subjects).where(subjects: {id: self.subjects.ids})
+  end
+  
 end

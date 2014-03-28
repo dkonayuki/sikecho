@@ -5,7 +5,7 @@
 	  <span class="glyphicon glyphicon-plus-sign"></span>
 		<% end %>
 	  <%= form_tag course_subjects_path(@course), method: :get, class: "filter-form has-padding" do %>
-	    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'ライブ検索', value:"#{@search}", autocorrect: "off", autocapitalize: "off" %>
+	    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'ライブ検索', autocorrect: "off", autocapitalize: "off" %>
 		<% end %>
 		
 		<ul class="hidden-xs filter-menu">
@@ -85,12 +85,17 @@
 									<!-- trigger btn -->
 									<a href="#" id="trigger" class="btn-trigger"><span class="glyphicon glyphicon-cog"></span></a>
 									
-									<div id="path-info">
-										<%= link_to @course.faculty.university.name, university_faculties_path(@course.faculty.university) %><span class="glyphicon glyphicon-chevron-right"></span>
-										<%= link_to @course.faculty.name, @course.faculty %><span class="glyphicon glyphicon-chevron-right"></span>
-										<%= @course.name %>
+									<div class="outer-center"> <!-- outer center and inner center are needed for center divs with unknown width -->
+    								<div class="inner-center">
+											<div id="path-info">
+												<%= link_to @course.faculty.university.name, university_faculties_path(@course.faculty.university) %><span class="glyphicon glyphicon-chevron-right"></span>
+												<%= link_to @course.faculty.name, @course.faculty %><span class="glyphicon glyphicon-chevron-right"></span>
+												<span><%= @course.name %></span>
+											</div>
+										</div>	
 									</div>
-
+									<div class="clear"></div>
+									
 	                <div id="subjects-list">
 										<%= render 'layouts/list_subjects'%>
 									</div>
@@ -102,12 +107,6 @@
 </div><!-- /mp-container -->
 
 <script>
-	function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-        results = regex.exec(location.search);
-    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-	}
 	$(document).ready(function() {
 		new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ) );
 		filter = getParameterByName("filter");

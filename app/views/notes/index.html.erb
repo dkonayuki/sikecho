@@ -9,7 +9,7 @@
 		<% end %>
 	
 	  <%= form_tag notes_path, method: :get, class: "filter-form" do %>
-	    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'ライブ検索', value:"#{@search}", autocorrect: "off", autocapitalize: "off" %>
+	    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'ライブ検索', autocorrect: "off", autocapitalize: "off" %>
 		<% end %>
 		<ul class="hidden-xs filter-menu">
 		<li><%= link_to '自分のノート', notes_path(filter: '自分のノート'), class: 'active' %></li>

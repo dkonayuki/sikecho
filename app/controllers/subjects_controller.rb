@@ -9,8 +9,6 @@ class SubjectsController < ApplicationController
     if params[:filter].blank?
       #all
       @subjects = @course.subjects.search(params[:search])
-      #define @search
-      @search = params[:search]
     else
       #filter tag
       case params[:filter]
