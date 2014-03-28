@@ -6,6 +6,11 @@ class SubjectsController < ApplicationController
   # GET /subjects.json
   def index
     @user = current_user
+    
+    if !params[:page].blank?
+      @show_more = true
+    end
+    
     if params[:filter].blank?
       #all
       @subjects = @course.subjects.search(params[:search])
@@ -31,11 +36,13 @@ class SubjectsController < ApplicationController
           
     #reorder subjects list
     @subjects = @subjects.order('year DESC')
+    @subjects = @subjects.page(params[:page]).per(12)
+    
     #respond with js format, index.js.erb will be run
     respond_to do |format|
       format.html {}
       format.js   {}
-      format.json { render json: @subjects, status: :ok, location: :subjects }
+      format.json { render json: @subjects, status: :ok }
     end
   end
   
@@ -243,7 +250,7 @@ class SubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
-      params.permit(:name, :pk, :value, :tag, :filter, :semester, :uni_year, :uni_year_id, :teachers, :old_number, :version_id, :course_id)
+      params.permit(:name, :pk, :value, :tag, :filter, :semester, :uni_year, :uni_year_id, :teachers, :old_number, :version_id, :course_id, :page)
       params.require(:subject).permit(:name, :description, :year, :place, :number_of_outlines, :semester_id, :uni_year_id, :course_id, periods_attributes: [:id, :time, :day, :_destroy])
     end
 end

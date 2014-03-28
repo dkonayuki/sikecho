@@ -136,7 +136,7 @@ a:hover {
 	position: relative;
 }
 .skc-box-content-no-padding {
-	padding: 10px 0;	
+	padding: 10px 10px;	
 }
 .skc-box-content:before,
 .skc-box-content:after {
@@ -291,25 +291,6 @@ a:hover {
 	color: #fff;
 	width: 58px;
 	text-align: center;
-}
-
-.btn-trigger {
-	color: #333333;
-	background-color: white;
-	display: none;
-	cursor: pointer;
-	border-right: 1px solid transparent; 
-	border-bottom: 1px solid transparent; 
-	border-color: #E7E7E7;
-	padding: 6px 10px;
-	font-size: 20px;
-	width: 40px;
-	height: 35px;
-}
-@media (max-width: 767px) {
-	.btn-trigger {
-		display: inline-block;
-	}
 }
 
 .subject-icon {

@@ -389,6 +389,7 @@ body {
  ===============================================================================================*/
 
 #subjects {
+	text-align: center;
 }
 
 #path-info {
@@ -411,7 +412,7 @@ body {
 
 #subjects-list ul {
 	text-align: center;
-	margin-top: 20px;
+	margin: 0;
 }
 
 @media (max-width: 469px) {
@@ -592,13 +593,25 @@ body {
 	width: 100%;
 }
 
-#show-subject-overview {
-}
 
-#show-subject-schedule {
+.btn-trigger {
+	float: left;
+	color: #333333;
+	background-color: white;
+	display: none;
+	cursor: pointer;
+	border-right: 1px solid transparent; 
+	border-bottom: 1px solid transparent; 
+	border-color: #E7E7E7;
+	padding: 6px 10px;
+	font-size: 20px;
+	width: 40px;
+	height: 35px;
 }
-
-#show-subject-notes {
+@media (max-width: 767px) {
+	.btn-trigger {
+		display: inline-block;
+	}
 }
 
 #year-list {
@@ -613,6 +626,10 @@ body {
 
 #subject-edit {
 	margin-top: 20px;
+}
+
+.hidden-pagination {
+	display: none;
 }
 
 /* Teacher page

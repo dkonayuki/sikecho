@@ -10,7 +10,7 @@
 		
 		<ul class="hidden-xs filter-menu">
 			<li><%= nav_link '全学年', course_subjects_path(@course, filter: '全学年') %></li>										
-		  <%  @subjects.tag_counts.order('count desc').limit(4).each do | tag | %>
+		  <%  @user.university.subjects.tag_counts.order('count desc').limit(4).each do | tag | %>
 	  	<li><%= nav_link tag.name, course_subjects_path(@course, filter: tag.name) %></li>
 			<% end %>
 
@@ -68,7 +68,7 @@
 									</ul>
 								</div>
 						 	</li>　<!-- end of 学年別 -->
-							<% @subjects.tag_counts.order('count desc').limit(8).each do | tag | %>
+							<% @user.university.subjects.tag_counts.order('count desc').limit(8).each do | tag | %>
 					  	<li><%= link_to tag.name, course_subjects_path(@course, filter: tag.name) %></li>
 							<% end %>
 							<li><%= link_to '全学年', course_subjects_path(@course) %></li>
@@ -85,19 +85,17 @@
 									<!-- trigger btn -->
 									<a href="#" id="trigger" class="btn-trigger"><span class="glyphicon glyphicon-cog"></span></a>
 									
-									<div class="outer-center"> <!-- outer center and inner center are needed for center divs with unknown width -->
-    								<div class="inner-center">
-											<div id="path-info">
-												<%= link_to @course.faculty.university.name, university_faculties_path(@course.faculty.university) %><span class="glyphicon glyphicon-chevron-right"></span>
-												<%= link_to @course.faculty.name, @course.faculty %><span class="glyphicon glyphicon-chevron-right"></span>
-												<span><%= @course.name %></span>
-											</div>
-										</div>	
+									<div id="path-info">
+										<%= link_to @course.faculty.university.name, university_faculties_path(@course.faculty.university) %><span class="glyphicon glyphicon-chevron-right"></span>
+										<%= link_to @course.faculty.name, @course.faculty %><span class="glyphicon glyphicon-chevron-right"></span>
+										<span><%= @course.name %></span>
 									</div>
-									<div class="clear"></div>
-									
+
 	                <div id="subjects-list">
-										<%= render 'layouts/list_subjects'%>
+										<%= render 'layouts/list_subjects'%>	
+									</div>
+									<div class="hidden-pagination">
+										<%= paginate @subjects %>										
 									</div>
 								</div>
             </div><!-- /scroller-inner -->
@@ -108,6 +106,8 @@
 
 <script>
 	$(document).ready(function() {
+		
+		// need to set active beside nav_link helper
 		new mlPushMenu( document.getElementById( 'mp-menu' ), document.getElementById( 'trigger' ) );
 		filter = getParameterByName("filter");
 		if (filter == "学年別") {
@@ -116,5 +116,16 @@
 			//default
 			$("#filter-bar a:contains('全学年')").attr("class", "active");
 		}
+			
+		/*For endless page*/
+		$(window).scroll(function(){
+			url = $(".next a").attr("href");
+	    if (url && ($(window).scrollTop() > $(document).height() - $(window).height() - 50)) {
+	    	$(".pagination").text("fetching...");
+    		$('#subjects-list').append("<div id='loading'>loading...</div>");
+				$.getScript(url);
+	    }   
+		});	
+
 	});
 </script>

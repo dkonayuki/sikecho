@@ -5,6 +5,8 @@ class ScheduleController < ApplicationController
     #prepare view
     get_schedule_content
     @subjects = @user.university.subjects.search(params[:search]).page(params[:page]).per(4)
+    
+    #for add/remove consistency
     @search = params[:search]
     @page = params[:page]
     
