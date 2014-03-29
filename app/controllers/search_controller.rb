@@ -1,12 +1,17 @@
 class SearchController < ApplicationController
   def search
     @user = current_user
+    
+    #search subjects and notes
     @subjects = @user.university.subjects.search(params[:query])
     @notes = @user.university.notes.search(params[:query])
-    puts @notes.count
-    puts @notes.inspect
+    
+    #prepare instance variable for view
     @type = params[:type]
     @query = params[:query]
+    
+    #show course name
+    @show_course = true
     
     respond_to do |format|
       format.html 

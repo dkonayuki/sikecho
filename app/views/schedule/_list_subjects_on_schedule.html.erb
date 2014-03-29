@@ -7,9 +7,6 @@
 	      <p class="subject-name">	<%= link_to subject.name, subject %></p>
       </div>
       <div class="subject-info">
-  			<div class="subject-year label-year">
-					<%= subject.year %>
-				</div>
 				<div class="subject-teacher-left">
 	      	<% subject.teachers.each do |teacher| %>
 	      		<% if teacher != subject.teachers.first  %>
@@ -29,6 +26,14 @@
 		      	<% end %>
 	      	<% end %>
       	</div>
+      	<div class="subject-badge">
+		      <div class="subject-course label-orange">
+		      	<%= subject.course.name %>
+	      	</div>
+	      	<div class="subject-year label-navi">
+						<%= subject.year %>
+					</div>
+    		</div>
     	</div>
  	</li>
 <% end %>

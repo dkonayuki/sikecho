@@ -222,6 +222,7 @@ body {
 }
 
 .note-title {
+	text-align: left;
 	font-size: 17px;
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -235,6 +236,7 @@ body {
 }
 
 .note-tags {
+	text-align: left;
 	font-size: 11px;
 }
 
@@ -426,9 +428,10 @@ body {
 
 .subject-item {
 	width: 340px;
-	height: 180px;
+	height: 200px;
 	background-color: #ffffff;
 	padding: 15px;
+	padding-top: 30px;
 	margin: 8px;
 	border: 1px solid #eee;
 	display: inline-block;
@@ -501,10 +504,19 @@ body {
 .subject-notes-number span {
 }
 
-.subject-year {
+.subject-badge {
 	position: absolute;
 	top: -4px;
-	right: 10px;
+	right: 10px;	
+}
+
+.subject-year {
+  display: inline-block;
+}
+
+.subject-course {
+  display: inline-block;
+  margin-right: 10px;
 }
 
 .subject-add {
@@ -519,7 +531,6 @@ body {
 	text-align: center;
 }
 
-
 .subject-item-sm {
 	border-color: #ddd;
 	width: 225px;
@@ -531,9 +542,12 @@ body {
 }
 
 .subject-item-sm .subject-year {
-	border: none;
 	font-size: 10px !important;
-	width: auto !important;
+	padding: 4px 8px !important;
+}
+
+.subject-item-sm .subject-course {
+	font-size: 10px !important;
 	padding: 4px 8px !important;
 }
 

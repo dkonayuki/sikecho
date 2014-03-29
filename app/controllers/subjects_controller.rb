@@ -103,6 +103,7 @@ class SubjectsController < ApplicationController
     @number_of_outlines_list = (1..15).to_a
     @times = 1.upto(Period.MAX_TIME).to_a
     @days = 1.upto(Period.MAX_DAY).to_a
+    @courses = @user.university.courses
   end
 
   # POST /subjects

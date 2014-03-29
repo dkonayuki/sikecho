@@ -31,7 +31,7 @@
 						<% if @subject.course %>
 						<%= f.select :course_id	, options_from_collection_for_select(@courses,"id","name", selected: @subject.course.id), {include_blank: true}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
 						<% else %>
-						<%= f.select :course_id	, options_from_collection_for_select(@course,"id","name"), {include_blank: true}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<%= f.select :course_id	, options_from_collection_for_select(@courses,"id","name"), {include_blank: true}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
 						<% end %>
 					</p>
 					<p>
