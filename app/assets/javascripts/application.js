@@ -44,17 +44,15 @@ $(document).on("page:change", function() {
  			$("#sub-filter-bar").toggle();
  		}
  		else {
- 			$.getScript(this.href, null); 
-	 		/* equal to : $.ajax({
-			  url: url,
-			  dataType: "script",
-			  success: success
-			}); */
+ 			$.getScript(this.href, function() {
+ 				//load more items if needed
+				$(window).scroll();		
+ 			}); 
 	  	$(".filter-menu li a").each(function() {
-	  		$( this ).removeClass( "active" );
+	  		$(this).removeClass( "active" );
 	  	});
 	  	$("#sub-filter-bar li a").each(function() {
-  			$( this ).removeClass( "active" );
+  			$(this).removeClass( "active" );
   		});
 	  	$(this).addClass("active");
 	  	$(".filter-form input").val("");
@@ -65,21 +63,19 @@ $(document).on("page:change", function() {
 	
  	/*For sub filter menu active*/
  	$("#sub-filter-bar li a").off("click").on("click", function() {
- 		$.getScript(this.href, null); 
- 		/* equal to : $.ajax({
-		  url: url,
-		  dataType: "script",
-		  success: success
-		}); */
+ 		$.getScript(this.href, function() {
+			//load more items if needed
+			$(window).scroll();		 			
+ 		}); 
 		$(".filter-menu li a").each(function() {
-	  		$( this ).removeClass( "active" );
-	  	});
+  		$(this).removeClass("active");
+  	});
   	$("#sub-filter-bar li a").each(function() {
-  		$( this ).removeClass( "active" );
+  		$(this).removeClass("active");
   	});
   	$(this).addClass("active");
-  	$(".filter-form input").val("");
 		$("#sub-menu-trigger").addClass("active");
+  	$(".filter-form input").val("");
   	$("#sub-filter-bar").hide();
   	return false;
 	});
@@ -211,5 +207,22 @@ $(document).on("page:change", function() {
 		  }
 		}
 	});
+			
+	/*For endless page*/
+	if ($(".hidden-pagination").length) {
+		$(window).scroll(function(){
+			url = $(".next a").attr("href");
+	    if (url && ($(window).scrollTop() > $(document).height() - $(window).height() - 50)) {
+	    	//disable pagination link
+	    	$(".pagination").text("fetching...");
+	    	//append loading.gif
+	  		$('#subjects-list').append("<div id='loading'><img src='/assets/loading.gif'></div>");
+	  		$('#notes-list').append("<div id='loading'><img src='/assets/loading.gif'></div>");
+				$.getScript(url);
+	    }   
+		});	
+		//first time
+		$(window).scroll();		
+	}
 
 });

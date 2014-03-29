@@ -34,6 +34,13 @@ img {
 	display: none;
 }
 
+
+#loading {
+	width: 30px;
+	height: 30px;
+	margin: 10px auto;
+}
+
 a:hover {
   outline: 0;
   text-decoration: none !important;

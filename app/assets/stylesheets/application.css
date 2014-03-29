@@ -179,7 +179,7 @@ body {
 	overflow: hidden;
 	padding: 0 15px 0 15px;
 /*happy hacking for full height overlapping*/
-	padding-bottom: 1000px;
+	padding-bottom: 1060px;
 	margin-bottom: -1000px;
 }
 

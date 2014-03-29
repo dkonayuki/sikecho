@@ -1,1 +1,8 @@
-$('#notes-list').html("<%=j render 'layouts/list_notes' %>")
+<% if @show_more %>
+	$("#notes-list #loading").remove();
+	$('#notes-list').append("<%=j render 'layouts/list_notes' %>")
+	<% sleep 1 %>
+<% else %>
+	$('#notes-list').html("<%=j render 'layouts/list_notes' %>")
+<% end %>
+	$(".hidden-pagination").html("<%=j paginate @notes %>")

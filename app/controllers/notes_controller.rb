@@ -7,6 +7,10 @@ class NotesController < ApplicationController
     @user = current_user
     @show_subject = true
     
+    if !params[:page].blank?
+      @show_more = true
+    end
+    
     #process filter if has any
     if params[:filter].blank? 
       @notes = @user.notes.search(params[:search]).order('created_at DESC')
@@ -29,15 +33,18 @@ class NotesController < ApplicationController
         #default
         @notes = @user.notes.search(params[:search]).order('created_at DESC') 
       end
-      
-      #respond with js format, index.js.erb will be run
-      respond_to do |format|
-        format.html { redirect_to :notes }
-        format.js   {}
-        format.json { render json: @notes, status: :ok, location: :notes }
-      end
+
     end
     
+    #paginate @notes
+    @notes = @notes.page(params[:page]).per(12)
+    
+    #respond with js format, index.js.erb will be run
+    respond_to do |format|
+      format.html 
+      format.js
+      format.json { render json: @notes, status: :ok, location: :notes }
+    end
   end
 
   # GET /notes/1
@@ -174,7 +181,7 @@ class NotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
-      params.permit(:document, :tags, :subjects, :filter, :subject_id, :document_ids)
+      params.permit(:document, :tags, :subjects, :filter, :subject_id, :document_ids, :page)
       params.require(:note).permit(:title, :content)
     end
 

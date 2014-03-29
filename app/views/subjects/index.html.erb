@@ -116,16 +116,6 @@
 			//default
 			$("#filter-bar a:contains('全学年')").attr("class", "active");
 		}
-			
-		/*For endless page*/
-		$(window).scroll(function(){
-			url = $(".next a").attr("href");
-	    if (url && ($(window).scrollTop() > $(document).height() - $(window).height() - 50)) {
-	    	$(".pagination").text("fetching...");
-    		$('#subjects-list').append("<div id='loading'>loading...</div>");
-				$.getScript(url);
-	    }   
-		});	
 
 	});
 </script>
