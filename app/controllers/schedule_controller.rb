@@ -1,4 +1,6 @@
 class ScheduleController < ApplicationController
+  include ScheduleHelper
+  
   def index
     @user = current_user
     
@@ -11,8 +13,8 @@ class ScheduleController < ApplicationController
     @page = params[:page]
     
     respond_to do |format|
-      format.html {}
-      format.js   {}
+      format.html 
+      format.js
     end
   end
 
@@ -41,7 +43,7 @@ class ScheduleController < ApplicationController
     
     respond_to do |format|    
       format.html { redirect_to schedule_path }
-      format.js   {}
+      format.js 
     end
   end
 
@@ -63,7 +65,7 @@ class ScheduleController < ApplicationController
     
     respond_to do |format|    
       format.html { redirect_to schedule_path }
-      format.js   {}
+      format.js
     end
   end
   
