@@ -13,8 +13,8 @@ class University < ActiveRecord::Base
   end
   
   def notes
-    Note.joins(:subjects).where('subjects.id IN (?)', self.subjects.ids)
-    #Note.joins(:subjects).where(subjects: {id: self.subjects.ids})
+    Note.select('distinct notes.*').joins(:subjects).where('subjects.id IN (?)', self.subjects.ids)
+    #Note.select('distinct notes.*').joins(:subjects).where(subjects: {id: self.subjects.ids})
   end
   
 end

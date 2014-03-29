@@ -13,29 +13,27 @@ class NotesController < ApplicationController
     
     #process filter if has any
     if params[:filter].blank? 
-      @notes = @user.notes.search(params[:search]).order('created_at DESC')
+      @notes = @user.notes
     else
       case params[:filter] 
-      when '自分のノート'    #filter=1 : user's notes
-        @notes = @user.notes.search(params[:search]).order('created_at DESC')
-      when '授業のノート'    #filter=2 : subject's notes
-        @notes = Array.new
-        @user.subjects.each do | subject |
-          subject.notes.search(params[:search]).order('created_at DESC').each do | note |
-            @notes << note
-          end
-        end
-      when '新着ノート' #filter=3 : new notes
-        @notes = Note.unread_by(@user).search(params[:search]).order('created_at DESC')
+      when '自分のノート'
+        @notes = @user.notes
+      when '授業のノート'
+        @notes = Note.select('distinct notes.*').joins(subjects: :users).where('users.id = ?', @user.id)
+      when '新着ノート'
+        @notes = Note.unread_by(@user)
       when 'すべて'
-        @notes = Note.search(params[:search]).order('created_at DESC')
+        @notes = @user.university.notes
       else
         #default
-        @notes = @user.notes.search(params[:search]).order('created_at DESC') 
+        @notes = @user.notes
       end
-
     end
     
+    #reorder
+    @notes = @notes.order('created_at DESC')
+    #search
+    @notes = @notes.search(params[:search])
     #paginate @notes
     @notes = @notes.page(params[:page]).per(12)
     
@@ -57,8 +55,6 @@ class NotesController < ApplicationController
     #increase view
     @note.view += 1
     @note.save
-    
-    #show documents
   end
   
   # GET /notes/:id/documents

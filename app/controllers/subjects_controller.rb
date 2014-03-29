@@ -13,29 +13,32 @@ class SubjectsController < ApplicationController
     
     if params[:filter].blank?
       #all
-      @subjects = @course.subjects.search(params[:search])
+      @subjects = @course.subjects
     else
       #filter tag
       case params[:filter]
       when '全学年'
-        @subjects = @course.subjects.search(params[:search])
+        @subjects = @course.subjects
       when '学年別'
         #filter semester
         uni_year = @user.university.uni_years.find_by_no(params[:uni_year].to_i)
         semester = uni_year.semesters.find_by_no(params[:semester].to_i)
         #filter from user's university
-        @subjects = @course.subjects.search(params[:search]).where(semester: semester)
+        @subjects = @course.subjects.where(semester: semester)
         #define @uni_year and @semester
         @uni_year = params[:uni_year]
         @semester = params[:semester]
       else
         #default: filter with tag
-        @subjects = @course.subjects.search(params[:search]).tagged_with(params[:filter])
+        @subjects = @course.subjects.tagged_with(params[:filter])
       end
     end
           
     #reorder subjects list
     @subjects = @subjects.order('year DESC')
+    #search subjects list
+    @subjects = @subjects.search(params[:search])
+    #paginate @subjects
     @subjects = @subjects.page(params[:page]).per(12)
     
     #respond with js format, index.js.erb will be run
