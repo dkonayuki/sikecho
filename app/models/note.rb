@@ -10,6 +10,8 @@ class Note < ActiveRecord::Base
   
   acts_as_readable on: :created_at
   
+  is_impressionable counter_cache: true, column_name: :view_count, unique: :all
+  
   def self.search(search)
     if search
       #where('title LIKE ?', "%#{search}%")

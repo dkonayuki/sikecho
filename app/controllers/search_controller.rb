@@ -13,6 +13,8 @@ class SearchController < ApplicationController
     #show course name
     @show_course = true
     
+    @show_subject = true
+    
     respond_to do |format|
       format.html 
       format.js   

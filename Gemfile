@@ -79,3 +79,6 @@ gem 'jquery-ui-rails'
 
 #for configuration
 gem 'ledermann-rails-settings', require: 'rails-settings'
+
+#for view count
+gem 'impressionist'

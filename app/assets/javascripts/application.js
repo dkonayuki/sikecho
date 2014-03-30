@@ -162,8 +162,8 @@ $(document).on("page:change", function() {
  		});
  		$(this).addClass("active");
  		var data = "filter=" + $(".filter-menu .active").text() + "&order=" + $(this).data("type");
- 		if ($("#filter-note input").text() != "") {
- 			data += "&search=" + $("#filter-note input").text();
+ 		if ($("#filter-note #search").val() != "") {
+ 			data += "&search=" + $("#filter-note #search").val();
  		}
 	  $.ajax({
 		  url: "/notes",

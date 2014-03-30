@@ -1,5 +1,6 @@
 class NotesController < ApplicationController
   before_action :set_note, only: [:show, :edit, :update, :destroy, :documents]
+  impressionist actions: [:show]
 
   # GET /notes
   # GET /notes.json
@@ -41,7 +42,8 @@ class NotesController < ApplicationController
     when :time
       @notes = @notes.order('created_at DESC')
     when :view
-      @notes = @notes.order('view DESC')
+      #@notes = @notes.order('view DESC')
+      @notes = @notes.order('view_count DESC')
     end
     
     #search
@@ -63,10 +65,6 @@ class NotesController < ApplicationController
     @user = current_user
     @note.mark_as_read! for: @user
     @tags = @note.tag_list
-    
-    #increase view
-    @note.view += 1
-    @note.save
   end
   
   # GET /notes/:id/documents
@@ -107,9 +105,6 @@ class NotesController < ApplicationController
 
     #add relationship
     @note.user = @user
-    
-    #initiate view
-    @note.view = 0
 
     #create association between note and uploaded documents
     @note.documents = Document.where(id: params[:document_ids])

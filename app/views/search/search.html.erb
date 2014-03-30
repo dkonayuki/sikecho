@@ -12,8 +12,8 @@
       <li>
       	<%= link_to search_path(query: @query, type: 'ノート') do %>
       		ノート
-	      	<% if @notes.all.count > 0 %>
-	      		<span class="badge badge-sm badge-info pull-right"><%= @notes.all.count %></span>
+	      	<% if @notes.to_a.count > 0 %>
+	      		<span class="badge badge-sm badge-info pull-right"><%= @notes.to_a.count %></span>
 	      	<% end %>
       	<% end %>
   		</li>

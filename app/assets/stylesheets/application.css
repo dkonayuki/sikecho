@@ -726,7 +726,8 @@ body {
 .faculty-courses-list {
 	padding: 20px;
 	padding-left: 40px;
-	display: inline-block;
+	margin-left: 150px;
+	display: block;
 }
 
 .faculty-courses-list ul {
