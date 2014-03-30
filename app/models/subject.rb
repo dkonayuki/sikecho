@@ -17,7 +17,10 @@ class Subject < ActiveRecord::Base
   accepts_nested_attributes_for :periods, allow_destroy: true
   
   acts_as_taggable_on :tags
+  
   has_paper_trail only: [:description], on: [:update]
+  
+  is_impressionable counter_cache: true, column_name: :view_count, unique: :all
     
   def self.search(search)
     if search

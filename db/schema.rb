@@ -135,6 +135,7 @@ ActiveRecord::Schema.define(version: 20140330152540) do
     t.integer  "course_id"
     t.integer  "number_of_outlines"
     t.integer  "year"
+    t.integer  "view_count",         default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

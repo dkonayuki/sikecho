@@ -1,6 +1,8 @@
 class SubjectsController < ApplicationController
   before_action :set_subject, only: [:show, :edit, :update, :destroy, :inline, :version]
   before_action :set_course, only: [:index, :new, :create]
+  impressionist actions: [:show]
+
   include SubjectsHelper
   
   # GET /subjects
@@ -32,7 +34,7 @@ class SubjectsController < ApplicationController
     end
           
     #reorder subjects list
-    @subjects = @subjects.order('year DESC')
+    @subjects = @subjects.order('year DESC, view_count DESC')
     #search subjects list
     @subjects = @subjects.search(params[:search])
     #paginate @subjects
