@@ -76,3 +76,6 @@ gem 'kaminari'
 
 #for jquery ui
 gem 'jquery-ui-rails'
+
+#for configuration
+#gem 'ledermann-rails-settings', '~> 2.2.1'

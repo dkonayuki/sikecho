@@ -1,14 +1,10 @@
 <div id="notes">
 	<div id="filter-bar">
-		<ul id="filter-option">
-			<li><span class="glyphicon glyphicon-th"></span></li>
-			<li><span class="glyphicon glyphicon-th-list"></span></li>
-		</ul>
 	  <%= link_to new_note_path, class: 'btn btn-default', id:'new-note-btn' do %>
 	  <span class="glyphicon glyphicon-plus-sign"></span>
 		<% end %>
 	
-	  <%= form_tag notes_path, method: :get, class: "filter-form" do %>
+	  <%= form_tag notes_path, method: :get, class: "filter-form", id: 'filter-note' do %>
 	    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'ライブ検索', autocorrect: "off", autocapitalize: "off" %>
 		<% end %>
 		<ul class="hidden-xs filter-menu">
@@ -17,6 +13,9 @@
 	  <li><%= link_to '新着ノート', notes_path(filter: '新着ノート') %></li>
 	  <li><%= link_to 'すべて', notes_path(filter: 'すべて') %></li>
 		</ul>
+	</div>
+	<div id="filter-option">
+		
 	</div>
 	<div id="notes-list">
 		<%= render 'layouts/list_notes' %>

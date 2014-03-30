@@ -4,7 +4,7 @@
 	  <%= link_to new_course_subject_path(@course), class: 'btn btn-default', id:'new-subject-btn' do %>
 	  <span class="glyphicon glyphicon-plus-sign"></span>
 		<% end %>
-	  <%= form_tag course_subjects_path(@course), method: :get, class: "filter-form has-padding" do %>
+	  <%= form_tag course_subjects_path(@course), method: :get, class: "filter-form has-padding", id: "filter-subject" do %>
 	    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'ライブ検索', autocorrect: "off", autocapitalize: "off" %>
 		<% end %>
 		
@@ -27,7 +27,7 @@
 					<h4><%= uni_year.name %></h4>
 					<ul>
 						<% uni_year.semesters.each do | semester | %>
-						<li><%= nav_link semester.name, course_subjects_path(@course, filter: '学年別', uni_year: uni_year.no, semester: semester.no) %></li>
+						<li><%= nav_link semester.name, course_subjects_path(@course, filter: '学年別', semester: semester.id), data: {id: semester.id} %></li>
 						<% end %>
 					</ul>
 				</div>
@@ -59,7 +59,7 @@
 												<h4><%= uni_year.name %></h4>
 												<ul>
 													<% uni_year.semesters.each do | semester | %>
-													<li><%= link_to semester.name, course_subjects_path(@course, filter: '学年別', uni_year: uni_year.no, semester: semester.no) %></li>
+													<li><%= link_to semester.name, course_subjects_path(@course, filter: '学年別', semester: semester.id) %></li>
 													<% end %>
 												</ul>
 											</div>

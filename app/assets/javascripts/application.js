@@ -118,12 +118,12 @@ $(document).on("page:change", function() {
 	
 	/*For live search*/
 	var timeout; // add delay time
-	$(".filter-form input").keyup(function() {
+	$("#filter-subject input").keyup(function() {
 		window.clearTimeout(timeout); //clear delay
     timeout = window.setTimeout(function(){ //set a new delay, after an amount of time, ajax function will be called
 		  $.ajax({
-			  url: $(".filter-form").attr("action"),
-			  data: $(".filter-form").serialize() + "&filter=" + $(".filter-menu .active").text() + "&uni_year=" + $("input:hidden[name='uni_year']").val() + "&semester=" + $("input:hidden[name='semester']").val(), //default contenttype is url text
+			  url: $("#filter-subject").attr("action"),
+			  data: $("#filter-subject").serialize() + "&filter=" + $(".filter-menu .active").text() + "&semester=" + $("#sub-filter-bar .active").data("id"), //default contenttype is url text
 			  success: null,
 			  dataType: "script"
 			});    
@@ -131,8 +131,24 @@ $(document).on("page:change", function() {
 
 		return false;
   });
+  
+  $("#filter-note input").keyup(function() {
+		window.clearTimeout(timeout); //clear delay
+    timeout = window.setTimeout(function(){ //set a new delay, after an amount of time, ajax function will be called
+		  $.ajax({
+			  url: $("#filter-note").attr("action"),
+			  data: $("#filter-note").serialize() + "&filter=" + $(".filter-menu .active").text(), //default contenttype is url text
+			  success: null,
+			  dataType: "script"
+			});    
+		}, 500);
+
+		return false;
+  });
+  
+  // disable enter key in filter form
   $(".filter-form").on("submit", function() {
-		return false; // disable enter key in filter form
+		return false; 
   });
 
 	/*For search bar slide*/

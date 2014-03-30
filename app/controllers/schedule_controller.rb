@@ -1,5 +1,4 @@
 class ScheduleController < ApplicationController
-  include ScheduleHelper
   
   def index
     @user = current_user

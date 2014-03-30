@@ -22,13 +22,9 @@ class SubjectsController < ApplicationController
         @subjects = @course.subjects
       when '学年別'
         #filter semester
-        uni_year = @user.university.uni_years.find_by_no(params[:uni_year].to_i)
-        semester = uni_year.semesters.find_by_no(params[:semester].to_i)
+        semester = Semester.find(params[:semester].to_i)
         #filter from user's university
         @subjects = @course.subjects.where(semester: semester)
-        #define @uni_year and @semester
-        @uni_year = params[:uni_year]
-        @semester = params[:semester]
       else
         #default: filter with tag
         @subjects = @course.subjects.tagged_with(params[:filter])
@@ -226,7 +222,7 @@ class SubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
-      params.permit(:name, :pk, :value, :tag, :filter, :semester, :uni_year, :uni_year_id, :teachers, :old_number, :version_id, :course_id, :page)
+      params.permit(:name, :pk, :value, :tag, :filter, :semester, :uni_year_id, :teachers, :old_number, :version_id, :course_id, :page)
       params.require(:subject).permit(:name, :description, :year, :place, :number_of_outlines, :semester_id, :uni_year_id, :course_id, periods_attributes: [:id, :time, :day, :_destroy])
     end
 end

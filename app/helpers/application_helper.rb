@@ -17,10 +17,16 @@ module ApplicationHelper
   end
   
   #helper link, add active class when current_page is link_path
-  def nav_link(link_text, link_path)
+  def nav_link(link_text, link_path, html_options = {})
     class_name = current_page?(link_path) ? 'active' : ''
     
-    link_to link_text, link_path, class: class_name
+    if html_options[:class]
+      html_options[:class] += class_name
+    else
+      html_options[:class] = class_name
+    end
+    
+    link_to link_text, link_path, html_options
   end
   
   #helper link for shallow= true
