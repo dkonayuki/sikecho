@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   
   has_settings do |s|
     s.key :note, defaults: { order: :time }
+    s.key :subject, defaults: { style: :all }
   end
   
   def name_kanji

@@ -1,6 +1,10 @@
 <div class="mp-container">
 	<!--menu bar-->  	
 	<div id="filter-bar">
+		<div class="btn-group" id="subject-style-option">
+		  <button type="button" data-type="all" class="btn btn-default <%= 'active' if @user.settings(:subject).style == :all %>"><span class="glyphicon glyphicon-th"></span></button>
+		  <button type="button" data-type="semester" class="btn btn-default <%= 'active' if @user.settings(:subject).style == :semester %>"><span class="glyphicon glyphicon-th-list"></span></button>
+		</div>
 	  <%= link_to new_course_subject_path(@course), class: 'btn btn-default', id:'new-subject-btn' do %>
 	  <span class="glyphicon glyphicon-plus-sign"></span>
 		<% end %>
@@ -90,9 +94,9 @@
 										<%= link_to @course.faculty.name, @course.faculty %><span class="glyphicon glyphicon-chevron-right"></span>
 										<span><%= @course.name %></span>
 									</div>
-
+									
 	                <div id="subjects-list">
-										<%= render 'layouts/list_subjects'%>	
+										<%= render 'layouts/list_subjects' %>	
 									</div>
 									<div class="hidden-pagination">
 										<%= paginate @subjects %>										

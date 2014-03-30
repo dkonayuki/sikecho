@@ -229,18 +229,6 @@ a:hover {
 	text-align: center;
 }
 
-.label-custom {
-	background: #fff;
-	color: #aaa !important;
-	padding: 8px 20px;
-	line-height: 20px;
-	border: 1px solid #eee;
-	font-size: 11px;
-	text-transform: uppercase;
-	display: inline-block;
-	margin: 3px 2px;
-}
-
 .btn-white {
 	color: #555E6B;
 	background-color: #fff;
@@ -302,6 +290,18 @@ a:hover {
 	padding: 6px 15px;
 	font-size: 12px;	color: #fff;
 	background-color: #E67E22;
+}
+
+.label-green {
+	padding: 6px 15px;
+	font-size: 12px;	color: #fff;
+	background-color: #27ae60;
+}
+
+.label-blue {
+	padding: 6px 15px;
+	font-size: 12px;	color: #fff;
+	background-color: #2980b9;
 }
 
 .subject-icon {

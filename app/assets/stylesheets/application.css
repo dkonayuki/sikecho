@@ -412,6 +412,11 @@ body {
 	margin: 0;
 }
 
+#subject-style-option {
+	float: left;
+	margin-left: 10px;
+}
+
 @media (max-width: 469px) {
 	.subject-item {
 		width: 90% !important;

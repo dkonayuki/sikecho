@@ -6,8 +6,12 @@ class NotesController < ApplicationController
   # GET /notes.json
   def index
     @user = current_user
+    
+    #custom show
+    @show_notice = true
     @show_subject = true
     
+    #enable endless page only params has :page
     if !params[:page].blank?
       @show_more = true
     end
@@ -42,7 +46,6 @@ class NotesController < ApplicationController
     when :time
       @notes = @notes.order('created_at DESC')
     when :view
-      #@notes = @notes.order('view DESC')
       @notes = @notes.order('view_count DESC')
     end
     

@@ -10,9 +10,9 @@ class SearchController < ApplicationController
     @type = params[:type]
     @query = params[:query]
     
-    #show course name
+    #custom show
     @show_course = true
-    
+    @show_notice = true    
     @show_subject = true
     
     respond_to do |format|

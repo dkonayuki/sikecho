@@ -1,5 +1,5 @@
-<% if @subjects.count == 0 %>
-授業が見つかりません。
+<% if @subjects.count == 0 && @show_notice %>
+	授業が見つかりません。
 <% end %>
 <ul>
 <% @subjects.each do |subject| %>
@@ -29,6 +29,11 @@
       		<% end %>
 	      </div>
 	      <div class="subject-badge">
+	      	<% if @show_semester %>
+	      		<div class="subject-course label-blue">
+			      	<%= subject.semester.uni_year.name %><%= subject.semester.name %>
+		      	</div>
+	      	<% end %>
 		      <% if @show_course %>
 			      <div class="subject-course label-orange">
 			      	<%= subject.course.name %>

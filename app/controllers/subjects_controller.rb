@@ -10,6 +10,10 @@ class SubjectsController < ApplicationController
   def index
     @user = current_user
     
+    #custom show
+    @show_semester = true
+    @show_notice = true
+    
     if !params[:page].blank?
       @show_more = true
     end
@@ -32,9 +36,20 @@ class SubjectsController < ApplicationController
         @subjects = @course.subjects.tagged_with(params[:filter])
       end
     end
-          
+    
+    if !params[:style].blank?
+      @user.settings(:subject).style = params[:style].to_sym
+      @user.save
+    end
+    
     #reorder subjects list
-    @subjects = @subjects.order('year DESC, view_count DESC')
+    case @user.settings(:subject).style
+    when :all
+      @subjects = @subjects.order('year DESC, view_count DESC')
+    when :semester
+      @subjects = @subjects.joins(:semester).joins(:uni_year).order('uni_years.no ASC, semesters.no ASC')
+    end
+    
     #search subjects list
     @subjects = @subjects.search(params[:search])
     #paginate @subjects
@@ -59,7 +74,7 @@ class SubjectsController < ApplicationController
     end
     # notes will not show subject name
     @show_subject = false
-    @same_subjects = @subject.course.subjects.where(name: @subject.name)
+    @same_subjects = @subject.course.subjects.where(name: @subject.name).order('year DESC')
     respond_to do |format|
       format.html 
       format.js   
@@ -224,7 +239,7 @@ class SubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
-      params.permit(:name, :pk, :value, :tag, :filter, :semester, :uni_year_id, :teachers, :old_number, :version_id, :course_id, :page)
+      params.permit(:name, :pk, :value, :tag, :filter, :semester, :uni_year_id, :teachers, :old_number, :version_id, :course_id, :page, :style)
       params.require(:subject).permit(:name, :description, :year, :place, :number_of_outlines, :semester_id, :uni_year_id, :course_id, periods_attributes: [:id, :time, :day, :_destroy])
     end
 end

@@ -134,7 +134,7 @@ $(document).on("page:change", function() {
 		}, 500);
 
 		return false;
-  });
+	});
   
   $("#filter-note input").keyup(function() {
 		window.clearTimeout(timeout); //clear delay
@@ -171,6 +171,27 @@ $(document).on("page:change", function() {
 		  success: null,
 		  dataType: "script"
 		});    
+ 	});
+ 	
+ 	/*For subject style option*/
+ 	$("#subject-style-option button").on("click", function() {
+ 		$("#subject-style-option button").each(function() {
+ 			$(this).removeClass("active");
+ 		});
+ 		$(this).addClass("active");
+		var data = "filter=" + $(".filter-menu .active").text() + "&style=" + $(this).data("type");
+		if ($("#sub-filter-bar .active").length) {
+			data += "&semester=" + $("#sub-filter-bar .active").data("id");
+		}
+		if ($("#filter-subject #search").val() != "") {
+			data += "&search=" + $("#filter-subject #search").val();
+		}
+	  $.ajax({
+		  url: $("#filter-subject").attr("action"),
+		  data: data ,//default contenttype is url text
+		  success: null,
+		  dataType: "script"
+		});  
  	});
 
 	/*For search bar slide*/
