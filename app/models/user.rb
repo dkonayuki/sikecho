@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
   validates :university_id, presence: true
-  validates :password_confirmation, presence: true
+  validates :password_confirmation, presence: true, on: :create
   
   has_secure_password
   
@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
   has_many :notes, dependent: :destroy
   
   acts_as_reader
+  
+  has_settings do |s|
+    s.key :note, defaults: { order: :time }
+  end
   
   def name_kanji
     "#{first_name_kanji} #{last_name_kanji}"  

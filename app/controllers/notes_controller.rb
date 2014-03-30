@@ -30,8 +30,20 @@ class NotesController < ApplicationController
       end
     end
     
+    if !params[:order].blank?
+      @user.settings(:note).order = params[:order].to_sym
+      @user.save
+    end
     #reorder
-    @notes = @notes.order('created_at DESC')
+    case @user.settings(:note).order
+    when :alphabet
+      @notes = @notes.order('title ASC')
+    when :time
+      @notes = @notes.order('created_at DESC')
+    when :view
+      @notes = @notes.order('view DESC')
+    end
+    
     #search
     @notes = @notes.search(params[:search])
     #paginate @notes
@@ -177,7 +189,7 @@ class NotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
-      params.permit(:document, :tags, :subjects, :filter, :subject_id, :document_ids, :page)
+      params.permit(:document, :tags, :subjects, :filter, :subject_id, :document_ids, :page, :order)
       params.require(:note).permit(:title, :content)
     end
 

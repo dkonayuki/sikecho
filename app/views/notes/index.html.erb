@@ -14,8 +14,12 @@
 	  <li><%= link_to 'すべて', notes_path(filter: 'すべて') %></li>
 		</ul>
 	</div>
-	<div id="filter-option">
-		
+	<div id="note-order-option">
+		<div class="btn-group">
+		  <button type="button" data-type="alphabet" class="btn btn-default <%= 'active' if @user.settings(:note).order == :alphabet %>"><span class="glyphicon glyphicon-font"></span></button>
+		  <button type="button" data-type="time" class="btn btn-default <%= 'active' if @user.settings(:note).order == :time %>"><span class="glyphicon glyphicon-time"></span></button>
+		  <button type="button" data-type="view" class="btn btn-default <%= 'active' if @user.settings(:note).order == :view %>"><span class="glyphicon glyphicon-eye-open"></span></button>
+		</div>
 	</div>
 	<div id="notes-list">
 		<%= render 'layouts/list_notes' %>

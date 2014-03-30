@@ -120,10 +120,14 @@ $(document).on("page:change", function() {
 	var timeout; // add delay time
 	$("#filter-subject input").keyup(function() {
 		window.clearTimeout(timeout); //clear delay
+		var data = $("#filter-subject").serialize() + "&filter=" + $(".filter-menu .active").text();
+		if ($("#sub-filter-bar .active").length) {
+			data += "&semester=" + $("#sub-filter-bar .active").data("id");
+		}
     timeout = window.setTimeout(function(){ //set a new delay, after an amount of time, ajax function will be called
 		  $.ajax({
 			  url: $("#filter-subject").attr("action"),
-			  data: $("#filter-subject").serialize() + "&filter=" + $(".filter-menu .active").text() + "&semester=" + $("#sub-filter-bar .active").data("id"), //default contenttype is url text
+			  data: data, //default contenttype is url text
 			  success: null,
 			  dataType: "script"
 			});    
@@ -150,6 +154,24 @@ $(document).on("page:change", function() {
   $(".filter-form").on("submit", function() {
 		return false; 
   });
+  
+  /*For order option*/
+ 	$("#note-order-option button").on("click", function() {
+ 		$("#note-order-option button").each(function() {
+ 			$(this).removeClass("active");
+ 		});
+ 		$(this).addClass("active");
+ 		var data = "filter=" + $(".filter-menu .active").text() + "&order=" + $(this).data("type");
+ 		if ($("#filter-note input").text() != "") {
+ 			data += "&search=" + $("#filter-note input").text();
+ 		}
+	  $.ajax({
+		  url: "/notes",
+		  data: data ,//default contenttype is url text
+		  success: null,
+		  dataType: "script"
+		});    
+ 	});
 
 	/*For search bar slide*/
   $(".search-bar-slide input").focus(function() {

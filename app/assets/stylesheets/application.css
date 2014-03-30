@@ -526,6 +526,11 @@ body {
 	text-align: center;
 }
 
+#note-order-option {
+	text-align: center;
+	margin-top: 20px;
+}
+
 .subject-item-sm {
 	border-color: #ddd;
 	width: 225px;
