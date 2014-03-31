@@ -710,7 +710,7 @@ body {
 	height: 60px;
 }
 
-.comment-content {
+#comment-content {
 	line-height: 1.7 !important;
 }
 

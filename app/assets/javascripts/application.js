@@ -286,7 +286,10 @@ $(document).on("page:change", function() {
 					  url: $(this).attr("action"),
 					  dataType: "script",
 					  data: $(this).serialize(),
-					  type: "post"
+					  type: "post",
+					  success: function() {
+					  	$("#comment_content").val("");
+					  }
 					});
 					return false;
 				});

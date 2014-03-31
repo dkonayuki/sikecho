@@ -1,1 +1,1 @@
-$("#comments").html("<%=j render 'list_comments' %>");
+$("#comments").html("<%=j render @document.comments.order('created_at ASC') %>");

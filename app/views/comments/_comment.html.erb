@@ -1,11 +1,9 @@
-<% @comments.each do |comment| %>
 	<div class="media">
     <a class="pull-left" href="#">
 			<%= image_tag("avatar.png", class: 'media-object avatar')  %>
     </a>
     <div class="media-body">
       <h4 class="media-heading"><%= comment.user.username %></h4>
-			<%= comment.content %>
+			<%= sanitize simple_format(comment.content), tags: %w(br) %>
     </div>
   </div>
-<% end %>

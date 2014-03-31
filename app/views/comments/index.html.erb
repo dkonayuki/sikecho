@@ -1,5 +1,5 @@
 		<div id="comments">
-			<%= render 'comments/list_comments' %>
+			<%= render @document.comments.order('created_at ASC') %>
 		</div>
 		<div id="new-comment">
 			<%= render 'comments/form' %>
