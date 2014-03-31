@@ -1,47 +1,38 @@
-<div class="hidden-xs col-md-2 col-sm-2 sidebar-offcanvas">
-	<div class="fixed-menu" id="search-menu">
-		<ul class="nav">
-      <li>
-      	<%= link_to search_path(query: @query, type: '授業') do %>   
-      		授業	
-	      	<% if @subjects.count > 0 %>
-	      		<span class="badge badge-sm badge-info pull-right"><%= @subjects.count %></span>
+<div id="search-page">
+	<div class="col-xs-12 col-md-2 col-sm-2 sidebar-offcanvas">
+		<div id="search-menu">
+			<ul class="nav">
+	      <li>
+	      	<%= link_to search_path(query: @query, type: '授業') do %>   
+	      		授業	
+		      	<% if @subjects.count > 0 %>
+		      		<span class="badge badge-sm badge-info pull-right"><%= @subjects.count %></span>
+		      	<% end %>
 	      	<% end %>
-      	<% end %>
-    	</li>
-      <li>
-      	<%= link_to search_path(query: @query, type: 'ノート') do %>
-      		ノート
-	      	<% if @notes.to_a.count > 0 %>
-	      		<span class="badge badge-sm badge-info pull-right"><%= @notes.to_a.count %></span>
+	    	</li>
+	      <li>
+	      	<%= link_to search_path(query: @query, type: 'ノート') do %>
+	      		ノート
+		      	<% if @notes.to_a.count > 0 %>
+		      		<span class="badge badge-sm badge-info pull-right"><%= @notes.to_a.count %></span>
+		      	<% end %>
 	      	<% end %>
-      	<% end %>
-  		</li>
-      <li><a href="#">教員</a></li>         
-    </ul>
+	  		</li>
+	      <li><a href="#">教員</a></li>         
+	    </ul>
+		</div>
 	</div>
-</div>
-<div class="col-xs-12 col-sm-10">
-	<div id="result">
-		<div class="skc-box skc-box-no-padding skc-box-lg">
-			<div class="skc-box-content skc-box-content-no-padding">
-				<div class="skc-box-title-no-margin">
-		        <h4><%= @type %></h4>
-		    </div>
-				<div class="skc-box-desc skc-box-desc-no-margin">
-					<div id="result-content">
-						<% if @type == "授業" %>
-							<%= render 'layouts/list_subjects' %>		
-						<% elsif @type == "ノート" %>
-							<%= render 'layouts/list_notes' %>		
-						<% end %>						
-					</div>
-				</div>
-			</div>
+	<div class="col-xs-12 col-sm-10" id="result">
+    <h4><%= @type %></h4>
+		<div id="result-content">
+			<% if @type == "授業" %>
+				<%= render 'layouts/list_subjects' %>		
+			<% elsif @type == "ノート" %>
+				<%= render 'layouts/list_notes' %>		
+			<% end %>						
 		</div>
 	</div>
 </div>
-
 <script>
 	$(document).ready(function() {
 		type = getParameterByName("type");

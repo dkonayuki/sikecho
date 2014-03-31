@@ -98,11 +98,11 @@ $(document).on("page:change", function() {
 	if ($(".fixed-menu").length) {
 		var fixedMenuOffset = $(".fixed-menu").offset();
 		$(window).scroll(function(){
-	        if($(window).scrollTop() > fixedMenuOffset.top - 20){
-	            $(".fixed-menu").css('position','fixed').css('top','0');
-	        } else {
-	            $(".fixed-menu").css('position','static');
-	        }    
+      if($(window).scrollTop() > fixedMenuOffset.top - 20){
+          $(".fixed-menu").css('position','fixed').css('top','0');
+      } else {
+          $(".fixed-menu").css('position','static');
+      }    
 		});		
 	}
 
