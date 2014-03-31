@@ -21,7 +21,9 @@ Shikechou::Application.routes.draw do
   get 'tags' => 'notes#tags'
   get 'notes/:id/documents' => 'notes#documents'
 
-  resources :documents
+  resources :documents do
+    resources :comments
+  end
   patch 'documents' => 'documents#create'
 
   resources :users

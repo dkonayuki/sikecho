@@ -72,14 +72,6 @@ $(document).ready(function() {
 	<% @tags.each do |tag| %>
 			$('#tag-input').tagsinput('add', "<%= tag %>" );
 	<% end %>
-	
-		/* for document popup */
-	  setMaxWidth();
-	  $( window ).on( "resize", setMaxWidth ); 
-		function setMaxWidth() {
-			if ($(window).width() >= 768) {
-				$("#document-content").css("maxWidth", ( $("#show-document").width() - $("#document-comment-section").width() - 30 ) + "px"); //30 for scroolbar
-			}
-		}
+		
 });
 </script>

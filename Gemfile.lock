@@ -29,6 +29,8 @@ GEM
       rails (>= 3, < 5)
     arel (4.0.1)
     atomic (1.1.14)
+    autosize-rails (1.18.6)
+      rails (>= 3.1)
     aws-sdk (1.36.1)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
@@ -158,6 +160,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on (~> 3.0.1)
+  autosize-rails
   aws-sdk (~> 1.0)
   bcrypt-ruby (~> 3.1.2)
   bootstrap-sass (~> 3.1.0.2)

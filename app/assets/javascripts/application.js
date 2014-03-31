@@ -23,6 +23,7 @@
 //= require jquery-fileupload
 //= require jquery.ui.all
 //= require jquery.magnific-popup.js
+//= require jquery.autosize
 //= require_tree .
 
 function getParameterByName(name) {
@@ -257,12 +258,43 @@ $(document).on("page:change", function() {
 		return false;
 	});
   
+  /*MaxWidth for ajax popup*/
+	function setMaxWidth() {
+		if ($(window).width() >= 768) {
+			$("#document-content").css("maxWidth", ( $("#show-document").width() - $("#document-comment-section").width() - 30 ) + "px"); //30 for scroolbar
+		}
+	}
   /*For ajax popup link in show note page*/	
   $('.ajax-popup-link').magnificPopup({
 	  type: 'ajax',
     callbacks: {
    		parseAjax: function( mfpResponse ) {
         mfpResponse.data = $(mfpResponse.data).find('#show-document');
+		  },
+	    ajaxContentAdded: function() {
+		    // Ajax content is loaded and appended to DOM
+				/* auto resize for textarea */
+			  $('textarea').autosize();
+			  	
+				/* for document popup */
+			  setMaxWidth();
+			  $( window ).on( "resize", setMaxWidth ); 
+	
+				/*New comment*/
+				$("#new-comment-form").on("submit", function() {
+					$.ajax({
+					  url: $(this).attr("action"),
+					  dataType: "script",
+					  data: $(this).serialize(),
+					  type: "post"
+					});
+					return false;
+				});
+				/*Remove focus on comment btn*/
+				$("#comment-btn").on("click", function() {
+					$(this).blur();
+				}); 			  	
+
 		  }
 		}
 	});

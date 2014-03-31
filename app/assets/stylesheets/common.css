@@ -279,6 +279,18 @@ a:hover {
 	border-bottom-color: #d56d11;
 }
 
+.btn-green {
+	color: #fff;
+	background-color: #5cb85c;
+	border-bottom: 2px solid #5CB85C;	
+}
+
+.btn-green:hover {
+	color: #fff;
+	background-color: #6dc96d;
+	border-bottom: 2px solid #4ba74b;	
+}
+
 .label-navi {
 	padding: 6px 15px;
 	font-size: 12px;

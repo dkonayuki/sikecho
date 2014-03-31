@@ -10,7 +10,7 @@ class DocumentsController < ApplicationController
   # GET /documents/1
   # GET /documents/1.json
   def show
-    
+    @comments = @document.comments.order('created_at ASC')
   end
 
   # GET /documents/new

@@ -82,3 +82,6 @@ gem 'ledermann-rails-settings', require: 'rails-settings'
 
 #for view count
 gem 'impressionist'
+
+#auto resize for textarea
+gem 'autosize-rails'
