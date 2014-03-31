@@ -72,8 +72,14 @@ class SubjectsController < ApplicationController
     else
       @notes = @subject.notes
     end
+    
+    #order by view count
+    @notes = @notes.order('view_count DESC')
+    
     # notes will not show subject name
     @show_subject = false
+    
+    # same subjects, need to change later
     @same_subjects = @subject.course.subjects.where(name: @subject.name).order('year DESC')
     respond_to do |format|
       format.html 
