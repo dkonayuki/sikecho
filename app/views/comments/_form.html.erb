@@ -4,7 +4,7 @@
 			<%= image_tag("avatar.png", class: 'media-object avatar')  %>
     </a>
     <div class="media-body">
-	    <%= f.text_area :content, class: 'form-control' %>
+	    <%= f.text_area :content, class: 'form-control', id: 'comment-content' %>
     </div>
     <%= button_tag class: 'btn btn-green', id: 'comment-btn', type: 'submit' do %>
 	    <span class="glyphicon glyphicon-comment"></span>コメントする

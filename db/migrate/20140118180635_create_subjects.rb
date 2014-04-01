@@ -11,6 +11,7 @@ class CreateSubjects < ActiveRecord::Migration
       t.integer :number_of_outlines
       t.integer :year
       t.integer :view_count, default: 0
+      t.integer :notes_count, default: 0
 
       t.timestamps
     end

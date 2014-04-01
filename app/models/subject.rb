@@ -3,7 +3,8 @@ class Subject < ActiveRecord::Base
   validates :semester_id, presence: true
   validates :uni_year_id, presence: true
 
-  has_and_belongs_to_many :notes
+  has_many :notes_subjects
+  has_many :notes, through: :notes_subjects
   has_and_belongs_to_many :teachers
   has_and_belongs_to_many :users
   

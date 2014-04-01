@@ -174,9 +174,9 @@ $(document).on("page:change", function() {
 		});    
  	});
  	
- 	/*For subject style option*/
- 	$("#subject-style-option button").on("click", function() {
- 		$("#subject-style-option button").each(function() {
+ 	/*For subject order option*/
+ 	$("#subject-order-option button").on("click", function() {
+ 		$("#subject-order-option button").each(function() {
  			$(this).removeClass("active");
  		});
  		$(this).addClass("active");
@@ -288,7 +288,7 @@ $(document).on("page:change", function() {
 					  data: $(this).serialize(),
 					  type: "post",
 					  success: function() {
-					  	$("#comment_content").val("");
+					  	$("#comment-content").val("");
 					  }
 					});
 					return false;

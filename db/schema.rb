@@ -144,6 +144,7 @@ ActiveRecord::Schema.define(version: 20140331063310) do
     t.integer  "number_of_outlines"
     t.integer  "year"
     t.integer  "view_count",         default: 0
+    t.integer  "notes_count",        default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

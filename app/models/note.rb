@@ -3,7 +3,8 @@ class Note < ActiveRecord::Base
   validates :subjects, presence: true
 
   belongs_to :user 
-  has_and_belongs_to_many :subjects
+  has_many :notes_subjects
+  has_many :subjects, through: :notes_subjects
   has_many :documents, dependent: :destroy
   
   acts_as_taggable_on :tags

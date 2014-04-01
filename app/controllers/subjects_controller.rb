@@ -48,6 +48,10 @@ class SubjectsController < ApplicationController
       @subjects = @subjects.order('year DESC, view_count DESC')
     when :semester
       @subjects = @subjects.joins(:semester).joins(:uni_year).order('uni_years.no ASC, semesters.no ASC')
+    when :note_count
+      @subjects = @subjects.order('notes_count DESC')
+      #@subjects = @subjects.joins(:notes).group('notes_subjects.subject_id').order('COUNT(notes_subjects.subject_id) DESC')
+      #Topic.includes(:questions).group('questions_topics.topic_id').references(:questions).order("count(questions_topics.topic_id) DESC")
     end
     
     #search subjects list

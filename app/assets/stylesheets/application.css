@@ -258,7 +258,7 @@ body {
 	position: absolute;
 }
 
-#filter-bar {
+.filter-bar {
 	position: relative;
 	padding-top: 10px;
 	border-bottom: 1px solid #ddd;
@@ -386,14 +386,14 @@ body {
  ===============================================================================================*/
 
 #subjects {
-	text-align: center;
 }
 
 #path-info {
-	display: inline-block;
-	margin: 10px auto 0;
-	position: relative;
-	background: #E67E22;
+	height: 34px;
+	position: absolute;
+	bottom: 0;
+	left: 20px;
+	background-color: #563d7c;
 	padding: 5px;
 	color: #fff;
 	font-size: 10px;
@@ -403,8 +403,13 @@ body {
 	color: #FFFFFF;
 	margin: 4px;
 }
+
 #path-info a:hover {
 	color: #000;
+}
+
+#subjects-list {
+	margin: 20px 0;
 }
 
 #subjects-list ul {
@@ -412,9 +417,27 @@ body {
 	margin: 0;
 }
 
-#subject-style-option {
-	float: left;
-	margin-left: 10px;
+#subject-view-menu {
+	position: relative;
+	height: 45px;
+	border-bottom: 4px solid #563d7c;
+	overflow: hidden;
+}
+
+#subject-order-option {
+	position: absolute;
+	bottom: 0;
+	right: 20px;
+}
+
+.btn-order {
+	background: #A198AF;
+	color: #fff;
+}
+
+.btn-order.active, .btn-order:hover, .btn-order.active:hover {
+	color: #fff !important;
+	background: #563d7c;	
 }
 
 @media (max-width: 469px) {
@@ -539,11 +562,11 @@ body {
 .subject-item-sm {
 	border-color: #ddd;
 	width: 225px;
-	height: 90px;	
+	height: 110px;	
 }
 
 .subject-item-sm .subject-name {
-	width: 160px;
+	width: 190px;
 }
 
 .subject-item-sm .subject-year {
@@ -612,25 +635,8 @@ body {
 	width: 100%;
 }
 
-
-.btn-trigger {
-	float: left;
-	color: #333333;
-	background-color: white;
-	display: none;
-	cursor: pointer;
-	border-right: 1px solid transparent; 
-	border-bottom: 1px solid transparent; 
-	border-color: #E7E7E7;
-	padding: 6px 10px;
-	font-size: 20px;
-	width: 40px;
-	height: 35px;
-}
-@media (max-width: 767px) {
-	.btn-trigger {
-		display: inline-block;
-	}
+#pushmenu-trigger {
+	margin-left: 15px;
 }
 
 #year-list {
