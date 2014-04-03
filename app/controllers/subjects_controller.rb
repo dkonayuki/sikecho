@@ -49,8 +49,6 @@ class SubjectsController < ApplicationController
       @subjects = @subjects.joins(:semester).joins(:uni_year).order('uni_years.no ASC, semesters.no ASC')
     when :note_count
       @subjects = @subjects.order('notes_count DESC')
-      #@subjects = @subjects.joins(:notes).group('notes_subjects.subject_id').order('COUNT(notes_subjects.subject_id) DESC')
-      #Topic.includes(:questions).group('questions_topics.topic_id').references(:questions).order("count(questions_topics.topic_id) DESC")
     end
     
     #search subjects list
@@ -126,7 +124,7 @@ class SubjectsController < ApplicationController
     
     #create new subject
     @subject = @course.subjects.new(subject_params)
-    @subject.teachers = @user.university.teachers.where(id: params[:teachers])
+    @subject.teachers = Teacher.where(id: params[:teachers])
     
     (1..@subject.number_of_outlines).each do | i |
       outline = Outline.new(number: i)
@@ -201,7 +199,7 @@ class SubjectsController < ApplicationController
     prepare_view_content
     
     #add teachers
-    @subject.teachers = @user.university.teachers.where(id: params[:teachers])
+    @subject.teachers = Teacher.where(id: params[:teachers])
     
     #add outlines
     new_number = subject_params[:number_of_outlines].to_i

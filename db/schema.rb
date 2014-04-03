@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140331063310) do
+ActiveRecord::Schema.define(version: 20140403170040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,23 @@ ActiveRecord::Schema.define(version: 20140331063310) do
     t.string   "upload_content_type"
     t.integer  "upload_file_size"
     t.datetime "upload_updated_at"
+  end
+
+  create_table "educations", force: true do |t|
+    t.integer  "uni_year_id"
+    t.integer  "semester_id"
+    t.integer  "year"
+    t.string   "university_id"
+    t.string   "faculty_id"
+    t.integer  "course_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "educations_periods", force: true do |t|
+    t.integer "education_id"
+    t.integer "period_id"
   end
 
   create_table "faculties", force: true do |t|
@@ -154,11 +171,6 @@ ActiveRecord::Schema.define(version: 20140331063310) do
     t.integer "teacher_id"
   end
 
-  create_table "subjects_users", force: true do |t|
-    t.integer "subject_id"
-    t.integer "user_id"
-  end
-
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
@@ -215,9 +227,6 @@ ActiveRecord::Schema.define(version: 20140331063310) do
     t.string   "password_digest"
     t.string   "email"
     t.string   "nickname"
-    t.integer  "university_id"
-    t.integer  "faculty_id"
-    t.integer  "course_id"
     t.string   "first_name"
     t.string   "first_name_kana"
     t.string   "first_name_kanji"

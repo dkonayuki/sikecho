@@ -2,7 +2,7 @@
 		<%= link_to_next_page @subjects, '', remote: true, params: {search: @search}, class: 'next-btn' %>
 <ul>
 <% @subjects.each do |subject| %>
-	<li class="subject-item subject-item-sm subject-draggable <%= @user.subjects.include?(subject)? 'active' : ''  %>" data-id="<%= subject.id %>">
+	<li class="subject-item subject-item-sm subject-draggable <%= @user.current_subjects.include?(subject)? 'active' : ''  %>" data-id="<%= subject.id %>">
       <div class="subject-details">
 	      <p class="subject-name">	<%= link_to subject.name, subject %></p>
       </div>
@@ -16,7 +16,7 @@
       		<% end %>
 	      </div>
 	      <div class="subject-add label-white">
-	      	<% if @user.subjects.include?(subject) %>
+	      	<% if @user.current_subjects.include?(subject) %>
 	      		<%= link_to schedule_destroy_path(subject: subject.id, search: @search, page: @page), method: :delete, remote: true do %>
 		      		<span class="glyphicon glyphicon-remove"></span>
 		      	<% end %>

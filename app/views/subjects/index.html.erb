@@ -14,7 +14,7 @@
 						 		<div class="mp-level" data-level="2">
 									<h4 class="icon-year">学年別</h4>
 									<ul>
-										<% @user.university.uni_years.each do | uni_year | %>
+										<% @user.current_university.uni_years.each do | uni_year | %>
 										<li class="icon-arrow">
 											<a><%= uni_year.name %></a>
 											<div class="mp-level" data-level="3">
@@ -30,7 +30,7 @@
 									</ul>
 								</div>
 						 	</li>　<!-- end of 学年別 -->
-							<% @user.university.subjects.tag_counts.order('count desc').limit(8).each do | tag | %>
+							<% @user.current_university.subjects.tag_counts.order('count desc').limit(8).each do | tag | %>
 					  	<li><%= link_to tag.name, course_subjects_path(@course, filter: tag.name) %></li>
 							<% end %>
 							<li><%= link_to '全学年', course_subjects_path(@course) %></li>
@@ -57,7 +57,7 @@
 										
 										<ul class="hidden-xs filter-menu">
 											<li><%= nav_link '全学年', course_subjects_path(@course, filter: '全学年') %></li>										
-										  <%  @user.university.subjects.tag_counts.order('count desc').limit(4).each do | tag | %>
+										  <%  @user.current_university.subjects.tag_counts.order('count desc').limit(4).each do | tag | %>
 									  	<li><%= nav_link tag.name, course_subjects_path(@course, filter: tag.name) %></li>
 											<% end %>
 								
@@ -69,7 +69,7 @@
 									<div id="sub-filter-bar" class="hidden-xs">
 										<div class="outer-center"> <!-- outer center and inner center are needed for center divs with unknown width -->
 								    	<div id="sub-filter-bar-inner" class="inner-center">
-								    		<% @user.university.uni_years.each do | uni_year | %>
+								    		<% @user.current_university.uni_years.each do | uni_year | %>
 												<div>
 													<h4><%= uni_year.name %></h4>
 													<ul>

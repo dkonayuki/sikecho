@@ -1,0 +1,19 @@
+<fieldset>
+<p>
+	<% puts f.object.university %>
+	<strong>学校:</strong>
+	<%= f.select :university_id, options_from_collection_for_select(@universities,"id","name", selected: f.object.university), {include_blank: true}, {class: "form-control selectpicker show-tick", data: {width: 'auto'}, title: ''} %>					
+</p>
+<p>
+	<strong>学部・研究科:</strong>
+	<%= f.select :faculty_id, options_from_collection_for_select(@faculties,"id","name", selected: f.object.faculty), {include_blank: true}, {class: "form-control selectpicker show-tick", data: {width: 'auto'}, title: ''} %>
+</p>
+<p>
+	<strong>学科・コース:</strong>
+	<%= f.select :course_id, options_from_collection_for_select(@courses,"id","name", selected: f.object.course), {include_blank: true}, {class: "form-control selectpicker show-tick", data: {width: 'auto'}, title: ''} %>
+</p>
+	<%= f.hidden_field :_destroy %>
+	<%= link_to '#', class: 'remove_fields' do %>
+	<span class="glyphicon glyphicon-remove"></span>
+	<% end %>
+</fieldset>	

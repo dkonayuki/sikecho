@@ -24,11 +24,13 @@ class NotesController < ApplicationController
       when '自分のノート'
         @notes = @user.notes
       when '授業のノート'
-        @notes = Note.select('distinct notes.*').joins(subjects: :users).where('users.id = ?', @user.id)
+        #need to fix
+        #@notes = Note.select('distinct notes.*').joins(subjects: :users).where('users.id = ?', @user.id)
+        @notes = Note.select('distinct notes.*').joins(:subjects).where('subjects.ids in (?)', @user.current_subjects.ids)
       when '新着ノート'
         @notes = Note.unread_by(@user)
       when 'すべて'
-        @notes = @user.university.notes
+        @notes = @user.current_university.notes
       else
         #default
         @notes = @user.notes
@@ -85,9 +87,9 @@ class NotesController < ApplicationController
     @note = Note.new
     #create note from subject page, subject_id
     if !params[:subject_id].blank? 
-      @note.subjects << @user.university.subjects.find_by_id(params[:subject_id])
+      @note.subjects << Subject.find(params[:subject_id])
     end
-    @subjects = @user.university.subjects
+    @subjects = @user.current_university.subjects
   end
 
   # POST /notes
@@ -101,10 +103,10 @@ class NotesController < ApplicationController
     @note.tag_list = tags
 
     #prepare subjects list
-    @subjects = @user.university.subjects
+    @subjects = @user.current_university.subjects
     
     #add subjects
-    @note.subjects = @user.university.subjects.where(id: params[:subjects])
+    @note.subjects = Subject.where(id: params[:subjects])
 
     #add relationship
     @note.user = @user
@@ -137,7 +139,7 @@ class NotesController < ApplicationController
   # GET /notes/1/edit
   def edit
     @user = current_user
-    @subjects = @user.university.subjects
+    @subjects = @user.current_university.subjects
     @note = Note.find( params[:id] )    
     @tags = @note.tag_list
   end
@@ -150,10 +152,10 @@ class NotesController < ApplicationController
     @note.tag_list = tags
     
     #prepare subjects list
-    @subjects = @user.university.subjects
+    @subjects = @user.current_university.subjects
 
     #update subjects
-    @note.subjects = @user.university.subjects.where(id: params[:subjects])
+    @note.subjects = Subject.where(id: params[:subjects])
     
     #update document
     @note.documents = Document.where(id: params[:document_ids])

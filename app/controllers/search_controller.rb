@@ -3,8 +3,8 @@ class SearchController < ApplicationController
     @user = current_user
     
     #search subjects and notes
-    @subjects = @user.university.subjects.search(params[:query])
-    @notes = @user.university.notes.search(params[:query])
+    @subjects = @user.current_university.subjects.search(params[:query])
+    @notes = @user.current_university.notes.search(params[:query])
     
     #prepare instance variable for view
     @type = params[:type]

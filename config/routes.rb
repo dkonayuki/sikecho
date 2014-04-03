@@ -1,4 +1,6 @@
 Shikechou::Application.routes.draw do
+  resources :educations
+
   get 'home/index'
 
   resources :teachers

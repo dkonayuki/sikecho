@@ -1,0 +1,39 @@
+<h1>Listing educations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Uni year</th>
+      <th>Semester</th>
+      <th>Year</th>
+      <th>University</th>
+      <th>Faculty</th>
+      <th>Course</th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @educations.each do |education| %>
+      <tr>
+        <td><%= education.uni_year_id %></td>
+        <td><%= education.semester_id %></td>
+        <td><%= education.year %></td>
+        <td><%= education.university_id %></td>
+        <td><%= education.faculty_id %></td>
+        <td><%= education.course_id %></td>
+        <td><%= education.user_id %></td>
+        <td><%= link_to 'Show', education %></td>
+        <td><%= link_to 'Edit', edit_education_path(education) %></td>
+        <td><%= link_to 'Destroy', education, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Education', new_education_path %>

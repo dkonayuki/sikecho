@@ -11,22 +11,6 @@
 					<strong>メール:</strong>
 					<%= @user.email %>
 				</p>
-				<p>
-					<strong>学校:</strong>
-					<%= @user.university.name %>
-				</p>
-				<% if @user.faculty %>
-				<p>
-					<strong>学部・研究科:</strong>
-					<%= @user.faculty.name %>
-				</p>
-				<% end %>
-				<% if @user.course %>
-				<p>
-					<strong>学科・コース:</strong>
-					<%= @user.course.name %>
-				</p>
-				<% end %>
 				<hr />
 				<p>
 					<% if @user == User.find_by_id(session[:user_id]) %>

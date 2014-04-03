@@ -6,8 +6,8 @@ module ScheduleHelper
     1.upto(Period.MAX_DAY).each do | d | 
       1.upto(Period.MAX_TIME).each do | t |
         key = [d, t]
-        @periods[key] = []
-        @periods[key] = @user.subjects.joins(:periods).where(periods: {day: d, time: t})
+        @periods[key] = @user.current_subjects.joins(:periods).where(periods: {day: d, time: t}) || []
+        # => @periods[key] = @user.subjects.joins(:periods).where(periods: {day: d, time: t})
       end
     end
   end

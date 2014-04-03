@@ -34,7 +34,7 @@
   <div class="collapse navbar-collapse" id="navbar-collapse-1">
     <ul class="nav navbar-nav">
     	<!-- <li class="<%= 'active' if params[:controller] == 'home' %> hidden-sm"><%= link_to 'My Page', home_path %></li> -->
-      <li class="<%= 'active' if params[:controller] == 'subjects' %>"><%= link_to '授業', university_faculties_path(@user.university) %></li>
+      <li class="<%= 'active' if params[:controller] == 'subjects' %>"><%= link_to '授業', university_faculties_path(@user.current_university) %></li>
       <li class="<%= 'active' if params[:controller] == 'notes' %>">
       	<%= link_to notes_path do %>
 	      	ノート

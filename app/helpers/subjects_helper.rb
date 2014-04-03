@@ -1,17 +1,17 @@
 module SubjectsHelper
   def prepare_view_content
     @user = current_user
-    @uni_years = @user.university.uni_years
+    @uni_years = @user.current_university.uni_years
     if @subject 
       @semesters = @subject.uni_year ? @subject.uni_year.semesters : []    
     else
       @semesters = []
     end
-    @teachers = @user.university.teachers
+    @teachers = @user.current_university.teachers
     @years = (Subject.MAX_YEAR_BEGIN..Subject.MAX_YEAR_END).to_a
     @number_of_outlines_list = (1..15).to_a
     @times = 1.upto(Period.MAX_TIME).to_a
     @days = 1.upto(Period.MAX_DAY).to_a
-    @courses = @user.university.courses
+    @courses = @user.current_university.courses
   end
 end

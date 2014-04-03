@@ -33,31 +33,14 @@
 					<strong>メール:</strong>
 					<%= f.text_field :email, class: 'form-control' %>
 				</p>
-				<p>
-					<strong>学校:</strong>
-					<% if @user.university_id %>
-	  				<%= f.select :university_id, options_from_collection_for_select(@universities,"id","name", @user.university.id), {include_blank: true}, {class: "form-control selectpicker show-tick inline", data: {width: 'auto'}} %>
-					<% else %>
-	  				<%= f.select :university_id, options_from_collection_for_select(@universities,"id","name"), {include_blank: true}, {class: "form-control selectpicker show-tick inline", data: {width: 'auto'}} %>					
-					<% end %>
-				</p>
-				<p>
-					<strong>学部・研究科:</strong>
-					<% if @user.faculty_id %>
-	  			<%= f.select :faculty_id, options_from_collection_for_select(@faculties,"id","name", @user.faculty.id), {include_blank: true}, {class: "form-control selectpicker show-tick", data: {width: 'auto'}} %>
-					<% else %>
-	  			<%= f.select :faculty_id, options_from_collection_for_select(@faculties,"id","name"), {include_blank: true}, {class: "form-control selectpicker show-tick", data: {width: 'auto'}} %>
-					<% end %>
-				</p>
-				<p>
-					<strong>学科・コース:</strong>
-					<% if @user.course_id %>
-	  			<%= f.select :course_id, options_from_collection_for_select(@courses,"id","name", @user.course.id), {include_blank: true}, {class: "form-control selectpicker show-tick", data: {width: 'auto'}} %>
-					<% else %>
-	  			<%= f.select :course_id, options_from_collection_for_select(@courses,"id","name"), {include_blank: true}, {class: "form-control selectpicker show-tick", data: {width: 'auto'}} %>
-					<% end %>
-				</p>
 				<hr />
+				<h5>学歴</h5><br />
+				<%= f.fields_for :educations do | builder | %>
+					<%= render 'education_fields', f: builder %>		
+				<% end %>
+				<%= link_to_add_fields f, :educations, {class: 'btn btn-default'} do %>
+				<span class="glyphicon glyphicon-plus"></span>追加
+				<% end %>
 			</div>
 			<%= f.submit '登録', class: 'btn btn-success col-sm-2 col-sm-offset-5 col-xs-12 col-xs-offset-0'%>
 			<br />
@@ -68,7 +51,7 @@
 
 <script>
 	function change_university() {
-		var university_id = $("#user_university_id").val();
+		var university_id = $("#user_educations_university_id").val();
 		$.ajax({
 				url:"<%= url_for action: 'faculty'%>",	
 				data:'university_id=' + university_id,
@@ -77,7 +60,7 @@
 		);
 	}
 	function change_faculty() {
-		var faculty_id = $("#user_faculty_id").val();
+		var faculty_id = $("#user_educations_faculty_id").val();
 		$.ajax({
 				url:"<%= url_for action: 'course'%>",	
 				data:'faculty_id=' + faculty_id,
@@ -87,7 +70,7 @@
 	}
 	$('document').ready(function() {
 		$('.selectpicker').selectpicker();
-		$('#user_university_id').on("change", change_university);
-		$('#user_faculty_id').on("change", change_faculty);
+		$('#user_educations_university_id').on("change", change_university);
+		$('#user_educations_faculty_id').on("change", change_faculty);
 	});
 </script>
