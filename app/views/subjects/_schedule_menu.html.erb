@@ -1,12 +1,12 @@
-	<h4>授業</h4>
-		<ul class="nav">
-			<% if @user.subjects.include?(@subject) %>
-    		<%= link_to schedule_destroy_path(subject: @subject.id), method: :delete, class: 'btn btn-blue' do %>
-      		<span class="glyphicon glyphicon-remove-sign"></span>解除
-      	<% end %>
-    	<% else %>
-      	<%= link_to schedule_create_path(subject: @subject.id), method: :post, class: 'btn btn-blue' do %>
-      		<span class="glyphicon glyphicon-plus-sign"></span>登録
-      	<% end %>
-    	<% end %>   
-    </ul>
+<h4>授業</h4>
+	<ul class="nav">
+		<% if @user.subjects.include?(@subject) %>
+  		<%= link_to schedule_destroy_path(subject: @subject.id), method: :delete, class: 'btn btn-blue' do %>
+    		<span class="glyphicon glyphicon-remove-sign"></span>解除
+    	<% end %>
+  	<% else %>
+    	<%= link_to schedule_create_path(subject: @subject.id), method: :post, class: 'btn btn-blue' do %>
+    		<span class="glyphicon glyphicon-plus-sign"></span>登録
+    	<% end %>
+  	<% end %>   
+  </ul>

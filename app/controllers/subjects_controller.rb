@@ -12,7 +12,6 @@ class SubjectsController < ApplicationController
     
     #custom show
     @show_semester = true
-    @show_notice = true
     
     if !params[:page].blank?
       @show_more = true
@@ -85,6 +84,11 @@ class SubjectsController < ApplicationController
     
     # same subjects, need to change later
     @same_subjects = @subject.course.subjects.where(name: @subject.name).order('year DESC')
+    
+    # recommend subjects
+    @recommend_subjects = @subject.course.subjects.where('semester_id = ? AND id != ?', @subject.semester, @subject.id).order('view_count DESC, notes_count DESC').limit(8)
+    @show_course = true 
+    
     respond_to do |format|
       format.html 
       format.js   

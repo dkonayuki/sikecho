@@ -26,9 +26,9 @@
     <h4><%= @type %></h4>
 		<div id="result-content">
 			<% if @type == "授業" %>
-				<%= render 'layouts/list_subjects' %>		
+				<%= render(@subjects) || '授業が見つかりません。' %>
 			<% elsif @type == "ノート" %>
-				<%= render 'layouts/list_notes' %>		
+				<%= render(@notes) || 'ノートが見つかりません。' %>
 			<% end %>						
 		</div>
 	</div>

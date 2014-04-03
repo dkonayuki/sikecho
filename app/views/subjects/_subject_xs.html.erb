@@ -1,0 +1,38 @@
+<%= link_to subject, class: 'subject-item-xs' do %>	
+  <div class="subject-details">
+    <p class="subject-name"><%= subject.name %></p>
+    <hr class="hr-narrow" />
+		<p class="subject-desc">
+			<%= strip_tags(subject.description) %>
+		</p>
+  </div>
+  <div class="subject-info">
+  	<div class="subject-notes-number">
+  		<span><%= subject.notes.count %></span>
+  		<%= image_tag("note.png") %>
+		</div>
+		<div class="subject-teacher">
+    	<% subject.teachers.each do |teacher| %>
+    		<% if teacher != subject.teachers.first  %>
+    		・
+    		<% end %>
+    		<%= teacher.name_kanji %>
+  		<% end %>
+    </div>
+    <div class="subject-badge">
+    	<% if @show_semester %>
+    		<div class="subject-course label-blue">
+	      	<%= subject.semester.uni_year.name %><%= subject.semester.name %>
+      	</div>
+    	<% end %>
+      <% if @show_course %>
+	      <div class="subject-course label-orange">
+	      	<%= subject.course.name %>
+      	</div>
+    	<% end %>
+    	<div class="subject-year label-navi">
+				<%= subject.year %>
+			</div>
+  	</div>
+	</div>
+<% end %>

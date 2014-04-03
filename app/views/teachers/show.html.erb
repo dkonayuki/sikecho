@@ -13,11 +13,11 @@
 				</p>
 				<p>
 					<strong>所属大学:</strong>
-					<%= @teacher.university.name %>
+					<%= link_to @teacher.university.name, university_faculties_path(@teacher.university) %>
 				</p>
 				<p>
-					<strong>所属部局:</strong>
-					<%= @teacher.faculty.name %>
+					<strong>所属学科:</strong>
+					<%= link_to @teacher.faculty.name, @teacher.faculty %>
 				</p>
 				<p>
 					<strong>研究室:</strong>
@@ -32,8 +32,8 @@
 			<div class="text-center">
 				<p>
 					<strong>担当講義</strong>
-	    		<%= render 'layouts/list_subjects' %>
 				</p>			
+	    		<%= render @subjects %>
 			</div>
 		</div>
 	</div>

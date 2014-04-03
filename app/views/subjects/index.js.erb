@@ -1,8 +1,8 @@
 <% if @show_more %>
 	$("#subjects-list #loading").remove();
-	$('#subjects-list').append("<%=j render 'layouts/list_subjects' %>");
+	$('#subjects-list').append("<%=j render @subjects %>");
 	<% sleep 1 %>
 <% else %>
-	$('#subjects-list').html("<%=j render 'layouts/list_subjects' %>");
+	$('#subjects-list').html("<%=j render @subjects %>");
 <% end %>
 	$(".hidden-pagination").html("<%=j paginate @subjects %>")

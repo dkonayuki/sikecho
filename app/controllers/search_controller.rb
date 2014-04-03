@@ -12,7 +12,6 @@ class SearchController < ApplicationController
     
     #custom show
     @show_course = true
-    @show_notice = true    
     @show_subject = true
     
     respond_to do |format|

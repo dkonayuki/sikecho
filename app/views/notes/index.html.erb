@@ -22,7 +22,7 @@
 		</div>
 	</div>
 	<div id="notes-list">
-		<%= render 'layouts/list_notes' %>
+		<%= render(@notes) || 'ノートが見つかりません。' %>
 	</div>
 	<div class="hidden-pagination">
 		<%= paginate @notes %>										

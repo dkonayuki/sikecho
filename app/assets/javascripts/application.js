@@ -24,7 +24,31 @@
 //= require jquery.ui.all
 //= require jquery.magnific-popup.js
 //= require jquery.autosize
+//= require owl.carousel.js
 //= require_tree .
+	  
+/*MaxWidth for ajax popup*/
+function setMaxWidth() {
+	if ($(window).width() >= 768) {
+		if ($("#document-content").length) {
+			$("#document-content").css("maxWidth", ( $("#show-document").width() - $("#document-comment-section").width() - 30 ) + "px"); //30 for scroolbar				
+		}
+	}
+	if ($(".note-item").length) {
+		$(".note-title").css("maxWidth", ( $('.note-item').width() - $('.note-thumbnail').outerWidth(true) - 1 ) + "px" ); //outerWidth(true): include margin
+		$(".note-tags").css("maxWidth", ( $('.note-item').width() - $('.note-thumbnail').outerWidth(true) - $('.note-view').width() - 1 ) + "px" );
+	}
+}
+
+/*Define after ajax success*/
+function ajaxSuccess() {
+	/*For note dynamic max width*/
+  setMaxWidth();
+	$( window ).on( "resize", setMaxWidth ); //Remove this if it's not needed. It will react when window changes size.
+	
+	//load more items if needed
+	$(window).scroll();		
+}
 
 function getParameterByName(name) {
   name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -33,11 +57,22 @@ function getParameterByName(name) {
   return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
+function prepareFirstTime() {
+	//first time
+	$(window).scroll();	
+	
+	/*For note dynamic max width first time*/
+  setMaxWidth();
+	$( window ).on( "resize", setMaxWidth ); //Remove this if it's not needed. It will react when window changes size.		
+}
+
 $(document).ready(function() {
 
 });
 	
 $(document).on("page:change", function() {
+	
+	prepareFirstTime();
 
  	/*For filter menu active*/
  	$(".filter-menu li a").off("click").on("click", function() {
@@ -45,10 +80,7 @@ $(document).on("page:change", function() {
  			$("#sub-filter-bar").toggle();
  		}
  		else {
- 			$.getScript(this.href, function() {
- 				//load more items if needed
-				$(window).scroll();		
- 			}); 
+ 			$.getScript(this.href, ajaxSuccess); 
 	  	$(".filter-menu li a").each(function() {
 	  		$(this).removeClass( "active" );
 	  	});
@@ -112,7 +144,10 @@ $(document).on("page:change", function() {
 		$.ajax({
 		  url: this.href,
 		  dataType: "script",
-		  success: scrollToAnchor("notes")
+		  success: function() {
+		  	ajaxSuccess();
+		  	scrollToAnchor("notes");
+		  }
 		});
 		return false;
 	});
@@ -143,7 +178,7 @@ $(document).on("page:change", function() {
 		  $.ajax({
 			  url: $("#filter-note").attr("action"),
 			  data: $("#filter-note").serialize() + "&filter=" + $(".filter-menu .active").text(), //default contenttype is url text
-			  success: null,
+			  success: ajaxSuccess,
 			  dataType: "script"
 			});    
 		}, 500);
@@ -156,7 +191,7 @@ $(document).on("page:change", function() {
 		return false; 
   });
   
-  /*For order option*/
+  /*For note order option*/
  	$("#note-order-option button").on("click", function() {
  		$("#note-order-option button").each(function() {
  			$(this).removeClass("active");
@@ -169,7 +204,7 @@ $(document).on("page:change", function() {
 	  $.ajax({
 		  url: "/notes",
 		  data: data ,//default contenttype is url text
-		  success: null,
+		  success: ajaxSuccess,
 		  dataType: "script"
 		});    
  	});
@@ -257,13 +292,7 @@ $(document).on("page:change", function() {
 		$('.selectpicker').selectpicker('refresh');
 		return false;
 	});
-  
-  /*MaxWidth for ajax popup*/
-	function setMaxWidth() {
-		if ($(window).width() >= 768) {
-			$("#document-content").css("maxWidth", ( $("#show-document").width() - $("#document-comment-section").width() - 30 ) + "px"); //30 for scroolbar
-		}
-	}
+
   /*For ajax popup link in show note page*/	
   $('.ajax-popup-link').magnificPopup({
 	  type: 'ajax',
@@ -276,9 +305,7 @@ $(document).on("page:change", function() {
 				/* auto resize for textarea */
 			  $('textarea').autosize();
 			  	
-				/* for document popup */
-			  setMaxWidth();
-			  $( window ).on( "resize", setMaxWidth ); 
+				ajaxSuccess();
 	
 				/*New comment*/
 				$("#new-comment-form").on("submit", function() {
@@ -310,13 +337,15 @@ $(document).on("page:change", function() {
 	    	//disable pagination link
 	    	$(".pagination").text("fetching...");
 	    	//append loading.gif
-	  		$('#subjects-list').append("<div id='loading'><img src='/assets/loading.gif'></div>");
-	  		$('#notes-list').append("<div id='loading'><img src='/assets/loading.gif'></div>");
+	  		if ($("#subjects-list").length) {
+	  			$('#subjects-list').append("<div id='loading'><img src='/assets/loading.gif'></div>");
+	  		}
+	  		if ($("#notes-list").length) {
+	  			$('#notes-list').append("<div id='loading'><img src='/assets/loading.gif'></div>");
+	  		}
 				$.getScript(url);
 	    }   
 		});	
-		//first time
-		$(window).scroll();		
 	}
 
 });

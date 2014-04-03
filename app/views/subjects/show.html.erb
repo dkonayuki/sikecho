@@ -40,7 +40,7 @@
 <div id="show-subject" class="col-sm-10 col-xs-12">
 	<ul id="year-list" class="clear">
 		<li class="dropdown year-item">
-			<a data-toggle="dropdown" class="btn btn-navi btn-sm dropdown-toggle"><span class="glyphicon glyphicon-cog"></a>
+			<a data-toggle="dropdown" class="btn btn-navi btn-sm dropdown-toggle"><span class="glyphicon glyphicon-cog"></span></a>
 			<ul class="dropdown-menu pull-right">
 				<li><%= link_to '最新', @subject %></li>
 				<% @subject.versions.reverse.first(5).each do |version| %>
@@ -159,9 +159,14 @@
 	      </a>
 	    </div>
 			<div class="skc-box-desc skc-box-desc-no-margin collapse in" id="collapseNotes">
-				<%= render 'layouts/list_notes'%>
+				<%= render @notes %>
 			</div>
 		</div>
+	</div>
+	
+	<h4>関連授業:</h4>
+	<div class="owl-carousel text-center">
+  	<%= render collection: @recommend_subjects, partial: 'subject_xs', as: :subject %>
 	</div>
 	
 </div>
@@ -198,4 +203,8 @@
 		});
 		return false;
 	});
+	
+	$(".owl-carousel").owlCarousel({
+	});
+
 </script>

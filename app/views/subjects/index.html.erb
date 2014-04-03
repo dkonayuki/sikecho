@@ -103,7 +103,7 @@
 									
 									<!-- subjects list goes here -->
 	                <div id="subjects-list">
-										<%= render 'layouts/list_subjects' %>	
+										<%= render(@subjects) || '授業が見つかりません。' %>												
 									</div>
 									
 									<!-- for endless pagaination -->

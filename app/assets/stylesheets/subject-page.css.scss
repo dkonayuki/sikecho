@@ -15,3 +15,9 @@ $lines-to-show: 4;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+//custom for item xs 
+.subject-item-xs .subject-desc {
+  height: $font-size*$line-height*3; /* Fallback for non-webkit */
+  -webkit-line-clamp: 3;
+}
