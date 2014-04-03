@@ -807,6 +807,9 @@ body {
 		height: 50px;
 	}
 	.faculty-courses-list {
+		margin-left: 0;
+		display: inline-block;
+		width: 100%;
 	}
 	.faculty-item {
 		height: 250px;
