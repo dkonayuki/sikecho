@@ -79,15 +79,15 @@ class SubjectsController < ApplicationController
     #order by view count
     @notes = @notes.order('view_count DESC')
     
-    # notes will not show subject name
+    # custom show
     @show_subject = false
+    @show_course = true 
     
     # same subjects, need to change later
     @same_subjects = @subject.course.subjects.where(name: @subject.name).order('year DESC')
     
     # recommend subjects
     @recommend_subjects = @subject.course.subjects.where('semester_id = ? AND id != ?', @subject.semester, @subject.id).order('view_count DESC, notes_count DESC').limit(8)
-    @show_course = true 
     
     respond_to do |format|
       format.html 

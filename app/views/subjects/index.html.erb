@@ -126,10 +126,10 @@
 
 		filter = getParameterByName("filter");
 		if (filter == "学年別") {
-			$("#filter-bar a:contains('学年別')").attr("class", "active");
+			$(".filter-bar a:contains('学年別')").attr("class", "active");
 		} else if (filter == "") {
 			//default
-			$("#filter-bar a:contains('全学年')").attr("class", "active");
+			$(".filter-bar a:contains('全学年')").attr("class", "active");
 		}
 
 	});

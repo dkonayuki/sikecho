@@ -390,6 +390,10 @@ body {
 #subjects {
 }
 
+#filter-subject {
+	margin-left: 5px;
+}
+
 #path-info {
 	height: 34px;
 	position: absolute;
@@ -480,6 +484,7 @@ body {
 }
 
 .subject-item-xs {
+	min-width: 200px;
 	height: 170px;
 	background-color: #ffffff;
 	padding: 15px;
