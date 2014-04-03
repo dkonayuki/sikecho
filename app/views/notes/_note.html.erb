@@ -5,7 +5,7 @@
       <div class="note-title"><%= link_to "#{note.title}", note %></div>
       <div class="note-tags">
 	      <% if @show_subject %>
-		      <% note.subjects.order('year DESC').first(4).each do |subject| %>
+		      <% note.subjects.order('year DESC, view_count DESC').first(4).each do |subject| %>
 			      <span class="label label-info"><%= subject.name %></span>
 		      <% end %>
 	      <% end %>
