@@ -52,7 +52,8 @@ class UsersController < ApplicationController
   def edit
     @universities = University.all
     @faculties = Faculty.all
-    @courses = Course.all    #@faculties = @user.university_id ? Faculty.where(university_id: @user.university.id).order(:name) : []
+    @courses = Course.all    
+    #@faculties = @user.university_id ? Faculty.where(university_id: @user.university.id).order(:name) : []
     #@courses = @user.faculty_id ? Course.where(faculty_id: @user.faculty.id).order(:name) : []
   end
 

@@ -30,5 +30,4 @@ Shikechou::Application.configure do
   config.serve_static_assets = true
   #The available log levels are: :debug, :info, :warn, :error, :fatal, and :unknown, 
   config.log_level = :info
-
 end

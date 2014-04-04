@@ -24,9 +24,14 @@ class NotesController < ApplicationController
       when '自分のノート'
         @notes = @user.notes
       when '授業のノート'
-        #need to fix
-        #@notes = Note.select('distinct notes.*').joins(subjects: :users).where('users.id = ?', @user.id)
-        @notes = Note.select('distinct notes.*').joins(:subjects).where('subjects.ids in (?)', @user.current_subjects.ids)
+        #select distinct notes from crazy joins
+        @notes = Note.select('distinct notes.*').joins('INNER JOIN notes_subjects ON notes.id = notes_subjects.note_id')
+        .joins('INNER JOIN subjects ON subjects.id = notes_subjects.subject_id')
+        .joins('INNER JOIN periods ON periods.subject_id = subjects.id')
+        .joins('INNER JOIN educations_periods ON educations_periods.period_id = periods.id')
+        .joins('INNER JOIN educations ON educations.id = educations_periods.education_id')
+        .where('educations.id = ?', @user.id)
+
       when '新着ノート'
         @notes = Note.unread_by(@user)
       when 'すべて'
