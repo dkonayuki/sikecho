@@ -20,7 +20,7 @@ Shikechou::Application.routes.draw do
     
   resources :notes
   #get 'notes/filter/:type', to: 'notes#filter', as: 'filter_notes'
-  get 'tags' => 'notes#tags'
+  get 'tags' => 'application#tags'
   get 'notes/:id/documents' => 'notes#documents'
 
   resources :documents do

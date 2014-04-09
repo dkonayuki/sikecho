@@ -42,7 +42,7 @@
 					<% end %>
 				</p>
 				<hr />
-				<%= text_area_tag 'tags', :tags, id: 'tag-input' %>
+				<%= text_area_tag 'tags', :tags, class: 'tag-input' %>
 			</div>
 			<% if @note.user == @user %>
 			<div class="skc-box-menu">
@@ -59,7 +59,7 @@
 </div>
 <script>
 $(document).ready(function() {
-	$('#tag-input').tagsinput({
+	$('.tag-input').tagsinput({
 		tagClass: function(item) {
 	    switch (item) {
 	      case '試験対策'  : return 'label label-warning';
@@ -70,7 +70,7 @@ $(document).ready(function() {
 	  disable: 'true'
 	});
 	<% @tags.each do |tag| %>
-			$('#tag-input').tagsinput('add', "<%= tag %>" );
+			$('.tag-input').tagsinput('add', "<%= tag %>" );
 	<% end %>
 		
 });

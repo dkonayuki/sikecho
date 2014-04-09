@@ -38,14 +38,14 @@
 	  			<%= render 'upload_form', note_id: @note.id %>
 				</p>
 				<hr />
-				<div id='tag-form'>
-					<div id='tag-menu'>
+				<div class='tag-form'>
+					<div class='tag-menu'>
 			   		<div id="add-all" class="btn btn-primary btn-xs">全15回</div>
 			   		<div class="btn btn-primary btn-xs tag-menu-btn">試験対策</div>
 			   		<div class="btn btn-primary btn-xs tag-menu-btn">過去問題</div>
 			   		<div id="remove-all" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>クリア</div>
 		      </div>
-		      <%= text_area_tag 'tags', nil, id: 'tag-input' %>
+		      <%= text_area_tag 'tags', nil, class: 'tag-input' %>
 				</div>
 			</div>
 			<br />
@@ -82,7 +82,7 @@ $(document).ready(function() {
 	tags.initialize();
 	
 	//initiate tagsinput	
-	$('#tag-input').tagsinput({
+	$('.tag-input').tagsinput({
 		tagClass: function(item) {
 	    switch (item) {
 	      case '試験対策': return 'label label-warning';
@@ -93,27 +93,27 @@ $(document).ready(function() {
 		confirmKeys: [13, 9]
 	});
 
-	$('#tag-input').tagsinput('input').typeahead(null, {
+	$('.tag-input').tagsinput('input').typeahead(null, {
 		// instantiate the typeahead UI
 		  displayKey: 'name',
  			source: tags.ttAdapter()
 	}).bind('typeahead:selected', $.proxy(function (obj, datum) {  
 	  this.tagsinput('add', datum.value);
 	  //this.tagsinput('input').typeahead('val','');
-	}, $('#tag-input')));
+	}, $('.tag-input')));
 	
 	//menu bar
 	$('#add-all').on('click', function() {
 		for (var i=1;i<=15;i++)
 		{ 
-			$('#tag-input').tagsinput('add', i + '回目' );
+			$('.tag-input').tagsinput('add', i + '回目' );
 		}
 	});
 	$('.tag-menu-btn').on('click', function() {
-		$('#tag-input').tagsinput('add', this.innerHTML );
+		$('.tag-input').tagsinput('add', this.innerHTML );
 	});
 	$('#remove-all').on('click', function() {
-		$('#tag-input').tagsinput('removeAll');
+		$('.tag-input').tagsinput('removeAll');
 	});
 	
 	//fix for left over text
@@ -124,7 +124,7 @@ $(document).ready(function() {
 	//add old tags if exist
 	<% if @tags != nil %>
 		<% @tags.each do |tag| %>
-				$('#tag-input').tagsinput('add', "<%= tag %>" );
+				$('.tag-input').tagsinput('add', "<%= tag %>" );
 		<% end %>
 	<% end %>
 

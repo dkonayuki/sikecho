@@ -6,20 +6,17 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   include ScheduleHelper
     
-  private 
   def current_user
     #need @user for navbar
     @user = User.find_by_id(session[:user_id]) if session[:user_id]
   end
     
-  private
   def authorize
     unless User.find_by_id(session[:user_id])
       redirect_to login_url, notice: "ログインしてください。"
     end
   end
   
-  private
   def disable_nav
     @disable_nav = true
   end
@@ -29,5 +26,16 @@ class ApplicationController < ActionController::Base
     response.headers["Pragma"] = "no-cache"
     response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
   end
+  
+  # for /tags.json
+  def tags
+    @tags = ActsAsTaggableOn::Tag.all
+    respond_to do |format|
+      format.html {}
+      format.json { render json: @tags }
+    end
+  end
+
+  private :current_user, :authorize, :disable_nav
 
 end

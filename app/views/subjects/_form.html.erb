@@ -89,6 +89,14 @@
 						<%= f.select :number_of_outlines, options_for_select(@number_of_outlines_list), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
 						<% end %>
 					</p>
+					<div class='tag-form'>
+						<div class='tag-menu'>
+				   		<div class="btn btn-primary btn-xs tag-menu-btn">通年</div>
+				   		<div class="btn btn-primary btn-xs tag-menu-btn">集中講義</div>
+				   		<div id="remove-all" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>クリア</div>
+			      </div>
+			      <%= text_area_tag 'tags', nil, class: 'tag-input' %>
+					</div>
 				</div>
 				<br />
 				<%= f.submit '登録', class: 'btn btn-success col-sm-2 col-sm-offset-5 col-xs-12 col-xs-offset-0' %>
@@ -113,5 +121,64 @@ $(document).ready(function() {
 	
 	$('.selectpicker').selectpicker();
 	$('#subject_uni_year_id').on("change", change_uni_year);
+	
+	// instantiate the bloodhound suggestion engine
+	var tags = new Bloodhound({
+	  datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.name); },
+	  queryTokenizer: Bloodhound.tokenizers.whitespace,
+	  limit: 5,
+	  prefetch: {
+	  	ttl: 0,
+	    url: '/tags.json',
+	    filter: function(list) {
+	      return $.map(list, function(tag) { return { name: tag.name }; });
+	    }
+	  }
+	});
+	 
+	// initialize the bloodhound suggestion engine
+	tags.initialize();
+	
+	//initiate tagsinput	
+	$('.tag-input').tagsinput({
+		tagClass: function(item) {
+	    switch (item) {
+	      case '通年': return 'label label-warning';
+	      case '集中講義': return 'label label-success';
+	      default: return 'label label-info';
+	    }
+  	},
+		confirmKeys: [13, 9]
+	});
+
+	$('.tag-input').tagsinput('input').typeahead(null, {
+		// instantiate the typeahead UI
+		  displayKey: 'name',
+ 			source: tags.ttAdapter()
+	}).bind('typeahead:selected', $.proxy(function (obj, datum) {  
+	  this.tagsinput('add', datum.value);
+	  //this.tagsinput('input').typeahead('val','');
+	}, $('.tag-input')));
+	
+	//menu bar
+	$('.tag-menu-btn').on('click', function() {
+		$('.tag-input').tagsinput('add', this.innerHTML );
+	});
+	$('#remove-all').on('click', function() {
+		$('.tag-input').tagsinput('removeAll');
+	});
+	
+	//fix for left over text
+	$('.bootstrap-tagsinput input').blur(function() {
+		$(this).val('');
+	});
+	
+	//add old tags if exist
+	<% if @tags != nil %>
+		<% @tags.each do |tag| %>
+				$('.tag-input').tagsinput('add', "<%= tag %>" );
+		<% end %>
+	<% end %>
+	
 });
 </script>

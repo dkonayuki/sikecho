@@ -147,20 +147,20 @@ body {
 	margin: 0 auto;
 }
 
-#tag-menu {
+.tag-menu {
 	position: absolute;
 	top: 5px;
 	right: 5px;
 }
 
-#tag-form {
+.tag-form {
 	position: relative;
 	padding: 30px 19px 10px;
 	background-color: #fff;
 	border: 1px solid #ddd;
 }
 
-#tag-form:after {
+.tag-form:after {
 	content: "タグ";
 	position: absolute;
 	top: -1px;

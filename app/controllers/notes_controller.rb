@@ -33,7 +33,7 @@ class NotesController < ApplicationController
         .where('educations.id = ?', @user.id)
 
       when '新着ノート'
-        @notes = Note.unread_by(@user)
+        @notes = @user.current_university.notes.unread_by(@user)
       when 'すべて'
         @notes = @user.current_university.notes
       else
@@ -129,15 +129,6 @@ class NotesController < ApplicationController
         format.html { render action: 'new' }
         format.json { render json: @note.errors, status: :unprocessable_entity }
       end
-    end
-  end
-  
-  # for /tags.json
-  def tags
-    @tags = ActsAsTaggableOn::Tag.all
-    respond_to do |format|
-      format.html {}
-      format.json { render json: @tags }
     end
   end
   
