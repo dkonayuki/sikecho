@@ -395,23 +395,25 @@ body {
 }
 
 #path-info {
-	height: 34px;
-	position: absolute;
-	bottom: 0;
-	left: 20px;
-	background-color: #563d7c;
-	padding: 5px;
-	color: #fff;
 	font-size: 10px;
 }
 
-#path-info a, #path-info span {
-	color: #FFFFFF;
-	margin: 4px;
+#path-info a {
+	display: inline-block;
+	color: #666;
+	text-decoration: none;
+	padding: 6px 14px 6px 6px;
+	background-image: url('path-arrow.png');
+	background-repeat: no-repeat;
+	background-position: 100% -28px;
+	background-size: 30px 187px;
+}
+#path-info span {
+	padding: 6px 14px 6px 6px;
+	color: #666;
 }
 
 #path-info a:hover {
-	color: #000;
 }
 
 #subjects-list {
@@ -421,25 +423,24 @@ body {
 
 #subject-view-menu {
 	position: relative;
-	height: 45px;
-	border-bottom: 4px solid #563d7c;
-	overflow: hidden;
+	margin: 20px;
+	border: 1px solid #ddd;
 }
 
 #subject-order-option {
 	position: absolute;
 	bottom: 0;
-	right: 20px;
+	right: 0;
 }
 
 .btn-order {
-	background: #A198AF;
-	color: #fff;
+	font-size: 12px !important;
+	background: none;
+	border-left: 1px solid #ddd !important;
 }
 
-.btn-order.active, .btn-order:hover, .btn-order.active:hover {
-	color: #fff !important;
-	background: #563d7c;	
+.btn-order.active {
+	background: #ccc !important;
 }
 
 @media (max-width: 469px) {

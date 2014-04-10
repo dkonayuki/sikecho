@@ -89,15 +89,16 @@
 								<!--subject index page content goes here-->
 									<div id="subject-view-menu">
 										<div id="path-info">
-											<%= link_to @course.faculty.university.name, university_faculties_path(@course.faculty.university) %><span class="glyphicon glyphicon-chevron-right"></span>
-											<%= link_to @course.faculty.name, @course.faculty %><span class="glyphicon glyphicon-chevron-right"></span>
+											<%= link_to @course.faculty.university.name, university_faculties_path(@course.faculty.university) %>
+											<%= link_to @course.faculty.name, @course.faculty %>
 											<span><%= @course.name %></span>
 										</div>
-										
 										<div id="subject-order-option">
-										  <button data-type="all" class="btn btn-order <%= 'active' if @user.settings(:subject).style == :all %>">年</button>
-										  <button data-type="semester" class="btn btn-order <%= 'active' if @user.settings(:subject).style == :semester %>">期</button>
-										  <button data-type="note_count" class="btn btn-order <%= 'active' if @user.settings(:subject).style == :note_count %>">の</button>
+											<div class="btn-group">
+											  <button data-type="all" class="btn btn-order <%= 'active' if @user.settings(:subject).style == :all %>">年</button>
+											  <button data-type="semester" class="btn btn-order <%= 'active' if @user.settings(:subject).style == :semester %>">期</button>
+											  <button data-type="note_count" class="btn btn-order <%= 'active' if @user.settings(:subject).style == :note_count %>">の</button>
+											</div>
 										</div>
 									</div>
 									
