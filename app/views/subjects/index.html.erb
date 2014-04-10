@@ -9,7 +9,7 @@
 						<h4 class="icon-menu">授業カテゴリ</h4>
 						 <ul>
 						 	<!-- 学年別　-->
-						 	<li class="icon-arrow">
+						 	<li class="icon-arrow fix-margin-bug">
 						 		<a>学年別</a>
 						 		<div class="mp-level" data-level="2">
 									<h4 class="icon-year">学年別</h4>
@@ -30,10 +30,33 @@
 									</ul>
 								</div>
 						 	</li>　<!-- end of 学年別 -->
+							<!-- 学科　-->
+						 	<li class="icon-arrow fix-margin-bug">
+						 		<a>学部</a>
+						 		<div class="mp-level" data-level="2">
+									<h4 class="icon-year">学部別</h4>
+									<ul>
+										<% @user.current_university.faculties.each do | faculty | %>
+										<li class="icon-arrow">
+											<a><%= faculty.name %></a>
+											<div class="mp-level" data-level="3">
+												<h4><%= faculty.name %></h4>
+												<ul>
+													<% faculty.courses.each do | course | %>
+													<li><%= link_to course.name, course_subjects_path(@course) %></li>
+													<% end %>
+												</ul>
+											</div>
+										</li>
+										<% end %>
+									</ul>
+								</div>
+						 	</li>　<!-- end of 学科 -->						 	
 							<% @user.current_university.subjects.tag_counts.order('count desc').limit(8).each do | tag | %>
 					  	<li><%= link_to tag.name, course_subjects_path(@course, filter: tag.name) %></li>
 							<% end %>
 							<li><%= link_to '全学年', course_subjects_path(@course) %></li>
+
 				  	</ul>
 							
 					</div>

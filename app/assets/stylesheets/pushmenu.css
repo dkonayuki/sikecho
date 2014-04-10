@@ -287,3 +287,7 @@
 	font-family: 'Glyphicons Halflings';	
 	content: "\e079";
 }
+
+.fix-margin-bug {
+	margin-bottom: -18px;
+}
