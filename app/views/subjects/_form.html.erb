@@ -29,9 +29,9 @@
 					<p>
 						<strong>所属学科:</strong>
 						<% if @subject.course %>
-						<%= f.select :course_id	, options_from_collection_for_select(@courses,"id","name", selected: @subject.course.id), {include_blank: true}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<%= f.select :course_id	, options_from_collection_for_select(@courses,"id","name", selected: @subject.course.id), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
 						<% else %>
-						<%= f.select :course_id	, options_from_collection_for_select(@courses,"id","name"), {include_blank: true}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<%= f.select :course_id	, options_from_collection_for_select(@courses,"id","name"), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
 						<% end %>
 					</p>
 					<p>
@@ -91,6 +91,7 @@
 					</p>
 					<div class='tag-form'>
 						<div class='tag-menu'>
+				   		<div class="btn btn-primary btn-xs tag-menu-btn">ゼミ</div>
 				   		<div class="btn btn-primary btn-xs tag-menu-btn">通年</div>
 				   		<div class="btn btn-primary btn-xs tag-menu-btn">集中講義</div>
 				   		<div id="remove-all" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>クリア</div>
@@ -143,6 +144,7 @@ $(document).ready(function() {
 	$('.tag-input').tagsinput({
 		tagClass: function(item) {
 	    switch (item) {
+	    	case 'ゼミ': return 'label label-danger';
 	      case '通年': return 'label label-warning';
 	      case '集中講義': return 'label label-success';
 	      default: return 'label label-info';

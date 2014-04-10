@@ -146,6 +146,7 @@ class NotesController < ApplicationController
     # update tags list
     tags = params[:tags].split(',')
     @note.tag_list = tags
+    @tags = @note.tag_list
     
     #prepare subjects list
     @subjects = @user.current_university.subjects

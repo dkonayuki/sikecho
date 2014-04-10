@@ -114,6 +114,8 @@ class SubjectsController < ApplicationController
   # GET /subjects/1/edit
   def edit
     prepare_view_content
+    
+    @tags = @subject.tag_list
   end
 
   # POST /subjects
@@ -126,6 +128,11 @@ class SubjectsController < ApplicationController
     @subject = @course.subjects.new(subject_params)
     @subject.teachers = Teacher.where(id: params[:teachers])
     
+    #convert full-width to half-width
+    tags_text = Moji.zen_to_han(params[:tags])
+    tags = tags_text.split(',')
+    @subject.tag_list = tags
+        
     (1..@subject.number_of_outlines).each do | i |
       outline = Outline.new(number: i)
       @subject.outlines << outline
@@ -197,6 +204,12 @@ class SubjectsController < ApplicationController
   def update
     #prepare previous info
     prepare_view_content
+    
+    @tags = @subject.tag_list
+    
+    # update tags list
+    tags = params[:tags].split(',')
+    @subject.tag_list = tags
     
     #add teachers
     @subject.teachers = Teacher.where(id: params[:teachers])
