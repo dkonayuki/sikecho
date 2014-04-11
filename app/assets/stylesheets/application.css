@@ -402,22 +402,48 @@ body {
 	display: inline-block;
 	color: #666;
 	text-decoration: none;
-	padding: 6px 14px 6px 6px;
+	padding: 7px 14px 7px 8px;
 	background-image: url('path-arrow.png');
 	background-repeat: no-repeat;
 	background-position: 100% -28px;
 	background-size: 30px 187px;
 }
 #path-info span {
-	padding: 6px 14px 6px 6px;
+	padding: 7px 14px 7px 8px;
 	color: #666;
 }
 
 #path-info a:hover {
 }
 
+#courses-list {
+	width: 150px;
+	background-color: #fff;
+	padding: 10px 5px;
+	display: block;
+	margin: 0 auto;
+	border: 5px solid #e2e5e8;	
+}
+
+#courses-list li {
+	margin-top: 10px;
+}
+
+#courses-list a {
+	padding: 10px 10px !important;
+}
+
+#courses-list > ul > li > a:hover {
+	background-color: #999 !important;
+	color: #fff;	
+}
+
+#courses-list > ul > li > a:focus, #courses-list ul li .active {
+	background-color: #555 !important;
+	color: #fff;
+}
+
 #subjects-list {
-	margin: 20px 0;
 	text-align: center;
 }
 
@@ -435,6 +461,7 @@ body {
 
 .btn-order {
 	font-size: 12px !important;
+	padding: 7px 12px !important;
 	background: none;
 	border-left: 1px solid #ddd !important;
 }

@@ -66,6 +66,7 @@
         <div class="scroller"><!-- this is for emulating position fixed of the nav -->
             <div class="scroller-inner">
                 <!-- site content goes here -->
+									
 	                <!--menu bar-->  	
 									<div class="filter-bar">
 										<!-- trigger btn -->
@@ -124,9 +125,21 @@
 											</div>
 										</div>
 									</div>
+									                
+                	<!--courses list start-->
+                	<div class="hidden-xs col-sm-2">
+										<div id="courses-list">
+											<ul class="nav">
+									    <% @course.faculty.courses.each do |course| %>
+									    	<li><%= nav_link course.name, course_subjects_path(course) %></li>
+									    <% end %>          
+									    </ul>
+										</div>
+									</div>
+									<!-- courses list end -->
 									
 									<!-- subjects list goes here -->
-	                <div id="subjects-list">
+	                <div id="subjects-list" class="col-xs-12 col-sm-10">
 										<%= render(@subjects) || '授業が見つかりません。' %>												
 									</div>
 									
