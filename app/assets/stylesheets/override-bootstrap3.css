@@ -55,3 +55,7 @@
 	box-shadow: none;
 	cursor: default;
 }
+
+.media {
+	position: relative;
+}

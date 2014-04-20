@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-  before_action :set_document, only: [:index, :new, :create]
+  before_action :set_document #set document for all actions, shallow: false
 
   # GET /comments
   # GET /comments.json
@@ -60,7 +60,8 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to comments_url }
+      format.html { redirect_to document_comments_path(@comment.document) }
+      format.js
       format.json { head :no_content }
     end
   end

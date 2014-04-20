@@ -350,10 +350,11 @@ $(document).on("page:change", function() {
 					});
 					return false;
 				});
+				
 				/*Remove focus on comment btn*/
 				$("#comment-btn").on("click", function() {
 					$(this).blur();
-				}); 			  	
+				}); 	
 
 		  }
 		}

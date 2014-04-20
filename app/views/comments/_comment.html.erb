@@ -6,4 +6,26 @@
       <h4 class="media-heading"><%= comment.user.username %></h4>
 			<%= sanitize simple_format(comment.content), tags: %w(br) %>
     </div>
+		<% if @user == comment.user %>
+    <div class="media-menu">
+			<%= link_to [:edit, comment.document, comment] do %>
+				<span class="glyphicon glyphicon-pencil"></span>
+			<% end %>
+			<%= link_to document_comment_path(comment.document, comment), method: :delete, data: { confirm: 'Are you sure?' }, remote: true do %>
+				<span class="glyphicon glyphicon-remove"></span>
+			<% end %>
+  	</div>
+		<% end %>
   </div>
+  
+<script>
+$(document).ready(function() {
+	/*For comment menu*/
+	$(".media").hover(function() {
+		$(this).find(".media-menu").css("display", "block");
+	}, function() {
+		$(this).find(".media-menu").css("display", "none");
+	});						
+}); 
+</script>
+
