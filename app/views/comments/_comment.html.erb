@@ -2,10 +2,14 @@
     <a class="pull-left" href="#">
 			<%= image_tag("avatar.png", class: 'media-object avatar')  %>
     </a>
+    <h4 class="media-heading"><%= comment.user.username %></h4>
     <div class="media-body">
-      <h4 class="media-heading"><%= comment.user.username %></h4>
 			<%= sanitize simple_format(comment.content), tags: %w(br) %>
+	    <div class="media-date">
+	    	<%= time_ago_in_words(comment.created_at) %> ago
+	  	</div>
     </div>
+
 		<% if @user == comment.user %>
     <div class="media-menu">
 			<%= link_to [:edit, comment.document, comment] do %>
@@ -16,6 +20,7 @@
 			<% end %>
   	</div>
 		<% end %>
+		
   </div>
   
 <script>

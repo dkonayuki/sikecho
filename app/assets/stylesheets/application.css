@@ -772,10 +772,12 @@ body {
 	position: absolute;
 	right: 0;
 	top: 0;
+	font-size: 10px;
 }
 
-.media:hover {
-	
+.media-date {
+	font-size: 10px;
+	color: #999;
 }
 
 .avatar {
