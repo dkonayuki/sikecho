@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
-  validates :email, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true, format: /@/
   validates :password_confirmation, presence: true, on: :create
+  validates :password, presence: true, on: :create, length: 6..20
   
   has_secure_password
     
@@ -21,6 +22,14 @@ class User < ActiveRecord::Base
   
   def name_kanji
     "#{first_name_kanji} #{last_name_kanji}"  
+  end
+  
+  def display_name
+    if self.nickname? 
+      self.nickname
+    else
+      self.username
+    end
   end
   
   def current_university

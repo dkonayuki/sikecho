@@ -11,7 +11,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :last_name
       t.string :last_name_kana
       t.string :last_name_kanji
-      t.string :avatar
+      t.integer :gender
       t.date :dob
       t.text :status
 

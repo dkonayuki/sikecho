@@ -95,7 +95,7 @@ class UsersController < ApplicationController
     @courses = Course.all
     
     respond_to do |format|
-      if @user.update(user_params) && @user.authenticate(user_params[:password_confirmation])
+      if @user.authenticate(user_params[:password_confirmation]) && @user.update(user_params)
         format.html { redirect_to @user, notice: 'User #{@user.username} was successfully updated.' }
         format.json { head :ok }
       else
@@ -129,6 +129,6 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.permit(:university_id, :faculty_id)
-      params.require(:user).permit(:username, :password, :password_confirmation, :email, educations_attributes: [:id, :university_id, :faculty_id, :course_id, :_destroy])
+      params.require(:user).permit(:username, :nickname, :password, :password_confirmation, :email, educations_attributes: [:id, :university_id, :faculty_id, :course_id, :_destroy])
     end
 end

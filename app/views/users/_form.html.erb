@@ -17,8 +17,16 @@
 				<%= image_tag("user.png")  %>
 			</div>
 			<div class="skc-box-desc">
-				<%= f.text_field :username, class: 'form-control', placeholder: 'ユーザー名:' %>
+				<% if isNew %>
+					<%= f.text_field :username, class: 'form-control', placeholder: 'ユーザー名:' %>
+				<% else %>
+					<h4><%= @user.username %></h4>
+				<% end %>
 				<hr />
+				<p>
+					<strong>ニックネーム:</strong>
+					<%= f.text_field :nickname, class: 'form-control' %>
+				</p>
 				<% if isNew %>
 				<p>
 					<strong>パスワード:</strong>
