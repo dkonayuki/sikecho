@@ -91,3 +91,7 @@
 	position: relative;
 	vertical-align: middle;
 }
+
+.thumbnail {
+	border-radius: 0;
+}
