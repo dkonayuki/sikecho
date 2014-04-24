@@ -23,6 +23,9 @@
 					<h4><%= @user.username %></h4>
 				<% end %>
 				<hr />
+				<% if !isNew %>
+				  <%= f.file_field :avatar %>
+				<% end %>
 				<p>
 					<strong>ニックネーム:</strong>
 					<%= f.text_field :nickname, class: 'form-control' %>

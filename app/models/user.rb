@@ -20,6 +20,13 @@ class User < ActiveRecord::Base
     s.key :education
   end
   
+  has_attached_file :avatar, styles: {thumbnail: ["60x60#", :jpg], small: ["150x150>", :jpg]}, #force type
+                              #local config
+                              url: "/uploads/users/:id/avatar/:style/:basename.:extension",
+                              path: ":rails_root/public/:url" #dont really need path
+                              
+  validates_attachment_content_type :avatar, content_type: ["image/jpg", "image/gif", "image/png", "image/jpeg"]
+    
   def name_kanji
     "#{first_name_kanji} #{last_name_kanji}"  
   end
