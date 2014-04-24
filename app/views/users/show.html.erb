@@ -2,7 +2,7 @@
 	<div class="skc-box">
 		<div class="skc-box-content">
 			<div class="skc-box-thumbnail">
-				<% if @user.avatar %>
+				<% if @user.avatar.exists? %>
 				<%= image_tag @user.avatar.url(:small) %>
 				<% else %>
 				<%= image_tag("user.png")  %>

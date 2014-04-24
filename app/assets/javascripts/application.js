@@ -25,6 +25,7 @@
 //= require jquery.magnific-popup.js
 //= require jquery.autosize
 //= require owl.carousel.js
+//= require fileinput.js
 //= require_tree .
 	  
 /*MaxWidth for ajax popup*/

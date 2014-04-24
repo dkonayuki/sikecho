@@ -94,6 +94,10 @@ class UsersController < ApplicationController
     @faculties = Faculty.all
     @courses = Course.all
     
+    if user_params[:avatar].blank? && @user.avatar.exists? 
+      @user.avatar.clear
+    end
+    
     respond_to do |format|
       if @user.authenticate(user_params[:password_confirmation]) && @user.update(user_params)
         format.html { redirect_to @user, notice: 'User #{@user.username} was successfully updated.' }
