@@ -1,7 +1,7 @@
 <%= form_for([@document, @document.comments.build], html: {id: 'new-comment-form', remote: true}) do |f| %>
   <div class="media">
     <a class="pull-left" href="#">
-			<%= image_tag("avatar.png", class: 'media-object avatar')  %>
+			<%= image_tag(@user.display_comment_image, class: 'media-object avatar')  %>
     </a>
     <div class="media-body">
 	    <%= f.text_area :content, class: 'form-control', id: 'comment-content' %>

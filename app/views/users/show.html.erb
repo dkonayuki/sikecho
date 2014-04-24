@@ -2,11 +2,7 @@
 	<div class="skc-box">
 		<div class="skc-box-content">
 			<div class="skc-box-thumbnail">
-				<% if @user.avatar.exists? %>
-				<%= image_tag @user.avatar.url(:small) %>
-				<% else %>
-				<%= image_tag("user.png")  %>
-				<% end %>
+				<%= image_tag(@user.display_profile_image) %>
 			</div>
 			<div class="skc-box-desc">
 				<h4><%= @user.username %></h4>

@@ -32,7 +32,9 @@
 				  <div class="fileinput-new thumbnail thumbnail-sm">
 				  </div>
 				  <div class="fileinput-preview fileinput-exists thumbnail thumbnail-preview-sm">
+				  <% if @user.avatar.exists? %>
 				  	<%= image_tag @user.avatar.url(:original) %>
+			  	<% end %>
 				  </div>
 				  <div>
 				    <span class="btn btn-default btn-file">

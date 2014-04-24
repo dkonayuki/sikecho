@@ -39,6 +39,22 @@ class User < ActiveRecord::Base
     end
   end
   
+  def display_profile_image
+    if self.avatar.exists?
+      self.avatar.url(:small)
+    else
+      'user.png'
+    end
+  end
+  
+  def display_comment_image
+    if self.avatar.exists?
+      self.avatar.url(:small)
+    else
+      'avatar.png'
+    end
+  end
+  
   def current_university
     Education.find(self.settings(:education).current).university
   end
