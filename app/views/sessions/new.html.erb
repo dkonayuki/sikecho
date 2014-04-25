@@ -1,13 +1,13 @@
-<% if flash[:alert]%>
-<p id="notice"><%= flash[:alert]%></p>
+<% if flash[:alert] %>
+<p id="notice"><%= flash[:alert] %></p>
 <% end %>
-<%= form_tag login_path, class: 'form-signin' do%>
+<%= form_tag login_path, class: 'form-signin' do %>
     <h2 class="form-signin-heading">Please sign in</h2>
-		<%= text_field_tag :username, params[:username], placeholder: 'Username', class: 'form-control'%>
-    <%= password_field_tag :password, params[:password], placeholder: 'Password', class: 'form-control'%>
+		<%= text_field_tag :username, params[:username], placeholder: 'Username', class: 'form-control' %>
+    <%= password_field_tag :password, params[:password], placeholder: 'Password', class: 'form-control' %>
     <label class="checkbox">
       <input type="checkbox" value="remember-me"> Remember me
     </label>
-    <%= submit_tag 'Sign in', class: 'btn btn-lg btn-primary btn-block'%>
-    <%= link_to 'Are you new here? Click to register.', new_user_path%>
+    <%= submit_tag 'Sign in', class: 'btn btn-lg btn-primary btn-block' %>
+    <%= link_to 'Are you new here? Click to register.', new_user_path %>
 <% end %>

@@ -67,12 +67,19 @@
 					<%= f.text_field :email, class: 'form-control' %>
 				</p>
 				<hr />
-				<h5>学歴</h5><br />
-				<%= f.fields_for :educations do | builder | %>
-					<%= render 'education_fields', f: builder %>		
-				<% end %>
-				<%= link_to_add_fields f, :educations, {class: 'btn btn-default'} do %>
-				<span class="glyphicon glyphicon-plus"></span>追加
+				<% if isNew %>
+				<p>
+					<strong>大学:</strong>
+					<%= select_tag :university, options_from_collection_for_select(@universities, "id", "name"), class: 'form-control selectpicker show-tick' %>
+				</p>
+				<% else %>
+					<h5>学歴</h5><br />
+					<%= f.fields_for :educations do | builder | %>
+						<%= render 'education_fields', f: builder %>		
+					<% end %>
+					<%= link_to_add_fields f, :educations, {class: 'btn btn-default'} do %>
+					<span class="glyphicon glyphicon-plus"></span>追加
+					<% end %>
 				<% end %>
 			</div>
 			<%= f.submit '登録', class: 'btn btn-success col-sm-2 col-sm-offset-5 col-xs-12 col-xs-offset-0'%>
@@ -86,7 +93,7 @@
 	function change_university() {
 		var university_id = $("#user_educations_university_id").val();
 		$.ajax({
-				url:"<%= url_for action: 'faculty'%>",	
+				url:"<%= url_for(action: 'faculty', controller: 'users') %>",	
 				data:'university_id=' + university_id,
 				dataType: "script"
 			}

@@ -34,7 +34,7 @@
 				<li><%= link_to '最新', @subject %></li>
 				<% @subject.versions.reverse.first(5).each do |version| %>
 					<li>
-						<%= link_to version_path(id: @subject.id, version_id: version.id) do %>
+						<%= link_to version_subject_path(id: @subject.id, version_id: version.id) do %>
 			        <%= version.created_at.to_date %>
 							<%= version.created_at.strftime("%I:%M%p") %>
 						<% end %>

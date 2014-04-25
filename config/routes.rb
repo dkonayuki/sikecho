@@ -1,31 +1,31 @@
 Shikechou::Application.routes.draw do
   resources :educations
 
-  get 'home/index'
-
   resources :teachers
 
   resources :universities, shallow: true do
     resources :faculties do
       resources :courses do
-        resources :subjects
+        resources :subjects do 
+          put 'inline' => 'subjects#inline', on: :member # on: :member will take :id not :subject_id, and path as inline_subject_path
+          get 'version/:version_id' => 'subjects#version', as: 'version', on: :member  # remember on: :collection
+        end
       end
     end
   end
-
-  #resources :subjects
+  #change semester when uni_year change
   get 'semester' => 'subjects#semester'
-  put 'subjects/:id/inline' => 'subjects#inline'
-  get 'subjects/:id/version/:version_id' => 'subjects#version', as: 'version'
     
-  resources :notes
-  #get 'notes/filter/:type', to: 'notes#filter', as: 'filter_notes'
+  resources :notes do
+    #get existed documents for note
+    get 'documents' => 'notes#documents', on: :member
+  end
   get 'tags' => 'application#tags'
-  get 'notes/:id/documents' => 'notes#documents'
 
   resources :documents do
     resources :comments
   end
+  #both post and patch 'documents' will upload
   patch 'documents' => 'documents#create'
 
   resources :users
@@ -39,13 +39,11 @@ Shikechou::Application.routes.draw do
   end
   
   controller :schedule do
+    delete 'schedule' => :destroy, as: 'schedule_destroy'
+    get 'schedule/index' => :index, as: :schedule
+    post 'schedule' => :create, as: 'schedule_create'
   end
-  delete 'schedule' => 'schedule#destroy', as: 'schedule_destroy'
-  get 'schedule/index' => 'schedule#index', as: :schedule
-  post 'schedule' => 'schedule#create', as: 'schedule_create'
-  
-  resources :schedule
-  
+
   get 'search' => 'search#search', as: 'search'
     
   # The priority is based upon order of creation: first created -> highest priority.

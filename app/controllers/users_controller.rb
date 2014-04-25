@@ -66,6 +66,10 @@ class UsersController < ApplicationController
     @courses = Course.all  
     
     @user = User.new(user_params)
+    #set firt time education
+    university = University.find(params[:university].to_i)
+    education = Education.new(university: university)
+    @user.educations << education
     
     respond_to do |format|
       if @user.save
@@ -132,7 +136,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.permit(:university_id, :faculty_id)
+      params.permit(:university_id, :faculty_id, :university)
       params.require(:user).permit(:username, :nickname, :password, :password_confirmation, :email, :avatar, educations_attributes: [:id, :university_id, :faculty_id, :course_id, :_destroy])
     end
 end

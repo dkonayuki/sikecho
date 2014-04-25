@@ -114,7 +114,7 @@ $(document).ready(function() {
 	function change_uni_year() {
 		var uni_year_id = $("#subject_uni_year_id").val();
 		$.ajax({
-				url:"<%= url_for action: 'semester'%>",	
+				url:"<%= url_for(action: 'semester', controller: 'subjects') %>",	
 				data:'uni_year_id=' + uni_year_id,
 			}
 		);
