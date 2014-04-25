@@ -25,33 +25,33 @@
 				<hr />
 				<% if !isNew %>
 				<% if @user.avatar.exists? %>
-				<div class="fileinput fileinput-exists" data-provides="fileinput">
-				<% else %>
-				<div class="fileinput fileinput-new" data-provides="fileinput">
-				<% end %>
-				  <div class="fileinput-new thumbnail thumbnail-sm">
-				  </div>
-				  <div class="fileinput-preview fileinput-exists thumbnail thumbnail-preview-sm">
-				  <% if @user.avatar.exists? %>
-				  	<%= image_tag @user.avatar.url(:original) %>
-			  	<% end %>
-				  </div>
-				  <div>
-				    <span class="btn btn-default btn-file">
-				    	<span class="fileinput-new">Select image</span>
-				    	<span class="fileinput-exists">Change</span>
-				  		<%= f.file_field :avatar %>
-			    	</span>
-				    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-				  </div>
-				</div>
-				<hr />
+					<div class="fileinput fileinput-exists" data-provides="fileinput">
+					<% else %>
+					<div class="fileinput fileinput-new" data-provides="fileinput">
+					<% end %>
+					  <div class="fileinput-new thumbnail thumbnail-sm">
+					  </div>
+					  <div class="fileinput-preview fileinput-exists thumbnail thumbnail-preview-sm">
+					  <% if @user.avatar.exists? %>
+					  	<%= image_tag @user.avatar.url(:original) %>
+				  	<% end %>
+					  </div>
+					  <div>
+					    <span class="btn btn-default btn-file">
+					    	<span class="fileinput-new">Select image</span>
+					    	<span class="fileinput-exists">Change</span>
+					  		<%= f.file_field :avatar %>
+				    	</span>
+					    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+					  </div>
+					</div>
+					<hr />
+					<p>
+						<strong>ニックネーム:</strong>
+						<%= f.text_field :nickname, class: 'form-control' %>
+					</p>
 				<% end %>
 
-				<p>
-					<strong>ニックネーム:</strong>
-					<%= f.text_field :nickname, class: 'form-control' %>
-				</p>
 				<% if isNew %>
 				<p>
 					<strong>パスワード:</strong>
