@@ -11,76 +11,56 @@
       </ul>
     </div>
   <% end %>
-	<div class="skc-box">
+	<div class="skc-box skc-box-lg">
 		<div class="skc-box-content">
 			<div class="skc-box-thumbnail">
 				<%= image_tag("user.png")  %>
 			</div>
 			<div class="skc-box-desc">
-				<% if isNew %>
-					<%= f.text_field :username, class: 'form-control', placeholder: 'ユーザー名:' %>
-				<% else %>
-					<h4><%= @user.username %></h4>
-				<% end %>
+				<h4><%= @user.username %></h4>
 				<hr />
-				<% if !isNew %>
 				<% if @user.avatar.exists? %>
-					<div class="fileinput fileinput-exists" data-provides="fileinput">
-					<% else %>
-					<div class="fileinput fileinput-new" data-provides="fileinput">
-					<% end %>
-					  <div class="fileinput-new thumbnail thumbnail-sm">
-					  </div>
-					  <div class="fileinput-preview fileinput-exists thumbnail thumbnail-preview-sm">
-					  <% if @user.avatar.exists? %>
-					  	<%= image_tag @user.avatar.url(:original) %>
-				  	<% end %>
-					  </div>
-					  <div>
-					    <span class="btn btn-default btn-file">
-					    	<span class="fileinput-new">Select image</span>
-					    	<span class="fileinput-exists">Change</span>
-					  		<%= f.file_field :avatar %>
-				    	</span>
-					    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-					  </div>
-					</div>
-					<hr />
-					<p>
-						<strong>ニックネーム:</strong>
-						<%= f.text_field :nickname, class: 'form-control' %>
-					</p>
+				<div class="fileinput fileinput-exists" data-provides="fileinput">
+				<% else %>
+				<div class="fileinput fileinput-new" data-provides="fileinput">
 				<% end %>
-
-				<% if isNew %>
+				  <div class="fileinput-new thumbnail thumbnail-sm">
+				  </div>
+				  <div class="fileinput-preview fileinput-exists thumbnail thumbnail-preview-sm">
+				  <% if @user.avatar.exists? %>
+				  	<%= image_tag @user.avatar.url(:original) %>
+			  	<% end %>
+				  </div>
+				  <div>
+				    <span class="btn btn-default btn-file">
+				    	<span class="fileinput-new">Select image</span>
+				    	<span class="fileinput-exists">Change</span>
+				  		<%= f.file_field :avatar %>
+			    	</span>
+				    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+				  </div>
+				</div>
+				<hr />
 				<p>
-					<strong>パスワード:</strong>
-					<%= f.password_field :password, class: 'form-control'%>
-				</p>
-				<% end %>
-				<p>
-					<strong>パスワード確認:</strong>
-					<%= f.password_field :password_confirmation, class: 'form-control'%>
+					<strong>ニックネーム:</strong>
+					<%= f.text_field :nickname, class: 'form-control form-control-inline' %>
 				</p>
 				<p>
 					<strong>メール:</strong>
-					<%= f.text_field :email, class: 'form-control' %>
+					<%= f.text_field :email, class: 'form-control form-control-inline' %>
 				</p>
 				<hr />
-				<% if isNew %>
-				<p>
-					<strong>大学:</strong>
-					<%= select_tag :university, options_from_collection_for_select(@universities, "id", "name"), class: 'form-control selectpicker show-tick' %>
-				</p>
-				<% else %>
-					<h5>学歴</h5><br />
-					<%= f.fields_for :educations do | builder | %>
-						<%= render 'education_fields', f: builder %>		
-					<% end %>
-					<%= link_to_add_fields f, :educations, {class: 'btn btn-default'} do %>
-					<span class="glyphicon glyphicon-plus"></span>追加
-					<% end %>
+				<h5>学歴</h5><br />
+				<%= render template: 'educations/index', locals: {isEditable: true} %>
+				<%= link_to new_user_education_path(@user), {class: 'btn btn-default education-popup'} do %>
+				<span class="glyphicon glyphicon-plus"></span>追加
 				<% end %>
+				<hr />
+				<p>
+					<strong>パスワード確認:</strong>
+					<%= f.password_field :password_confirmation, class: 'form-control form-control-inline'%>
+				</p>
+				<hr />
 			</div>
 			<%= f.submit '登録', class: 'btn btn-success col-sm-2 col-sm-offset-5 col-xs-12 col-xs-offset-0'%>
 			<br />
@@ -110,7 +90,6 @@
 	}
 	$('document').ready(function() {
 		$('.fileinput').fileinput();
-		$('.selectpicker').selectpicker();
 		$('#user_educations_university_id').on("change", change_university);
 		$('#user_educations_faculty_id').on("change", change_faculty);
 	});

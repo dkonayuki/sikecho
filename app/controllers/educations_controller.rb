@@ -1,5 +1,6 @@
 class EducationsController < ApplicationController
   before_action :set_education, only: [:show, :edit, :update, :destroy]
+  before_action :set_user
 
   # GET /educations
   # GET /educations.json
@@ -14,7 +15,9 @@ class EducationsController < ApplicationController
 
   # GET /educations/new
   def new
-    @education = Education.new
+    @education = @user.educations.build
+    @universities = University.all
+    @years = (Subject.MAX_YEAR_BEGIN..Subject.MAX_YEAR_END).to_a
   end
 
   # GET /educations/1/edit
@@ -66,9 +69,14 @@ class EducationsController < ApplicationController
     def set_education
       @education = Education.find(params[:id])
     end
+    
+    def set_user
+      @user = User.find(params[:user_id])
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def education_params
+      params.require(:user_id)
       params.require(:education).permit(:uni_year_id, :semester_id, :year, :university_id, :faculty_id, :course_id, :user_id)
     end
 end

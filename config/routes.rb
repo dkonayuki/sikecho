@@ -1,5 +1,4 @@
 Shikechou::Application.routes.draw do
-  resources :educations
 
   resources :teachers
 
@@ -28,7 +27,9 @@ Shikechou::Application.routes.draw do
   #both post and patch 'documents' will upload
   patch 'documents' => 'documents#create'
 
-  resources :users
+  resources :users do
+    resources :educations
+  end
   get 'faculty' => 'users#faculty'
   get 'course' => 'users#course'
 

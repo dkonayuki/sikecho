@@ -917,3 +917,21 @@ body {
 	margin-bottom: -1000px;
 	padding-bottom: 1000px;
 }
+
+/* Education page
+ ***************************************************************************/
+
+#education-table td, #education-table th {
+	text-align: center;
+}
+
+#education-edit {
+  position: relative;
+  background: #FFF;
+  padding: 15px;
+  width: auto;
+  max-width: 400px;
+  max-height: 600px;
+  overflow: auto;
+  margin: 20px auto;
+}

@@ -34,7 +34,7 @@
 		      <% else %>
 			      <% @note.documents.each do |document| %>
 			      	<% if document.file_type != '.pdf' %>
-			      		<%= link_to image_tag(document.upload.url(:small)), document, class: 'ajax-popup-link' %>
+			      		<%= link_to image_tag(document.upload.url(:small)), document, class: 'document-popup' %>
 		      		<% else %>
 		      			<%= link_to image_tag(document.upload.url(:small)), document.upload.url %>
 		      		<% end %>

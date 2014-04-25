@@ -44,15 +44,10 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     @universities = University.all
-    @faculties = Faculty.all
-    @courses = Course.all
   end
 
   # GET /users/1/edit
   def edit
-    @universities = University.all
-    @faculties = Faculty.all
-    @courses = Course.all    
     #@faculties = @user.university_id ? Faculty.where(university_id: @user.university.id).order(:name) : []
     #@courses = @user.faculty_id ? Course.where(faculty_id: @user.faculty.id).order(:name) : []
   end
@@ -62,8 +57,6 @@ class UsersController < ApplicationController
   def create
     #prepare previous info
     @universities = University.all
-    @faculties = Faculty.all
-    @courses = Course.all  
     
     @user = User.new(user_params)
     #set firt time education
@@ -93,11 +86,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    #prepare previous info
-    @universities = University.all
-    @faculties = Faculty.all
-    @courses = Course.all
-    
+    #destroy avatar if user remove
     if user_params[:avatar].blank? && @user.avatar.exists? 
       @user.avatar.clear
     end
@@ -137,6 +126,6 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.permit(:university_id, :faculty_id, :university)
-      params.require(:user).permit(:username, :nickname, :password, :password_confirmation, :email, :avatar, educations_attributes: [:id, :university_id, :faculty_id, :course_id, :_destroy])
+      params.require(:user).permit(:username, :nickname, :password, :password_confirmation, :email, :avatar)
     end
 end

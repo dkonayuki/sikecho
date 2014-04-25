@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
-    @comment = Comment.new
+    #need @document.comments.build at form because ajax-popup call index instead of new action
   end
 
   # GET /comments/1/edit

@@ -325,7 +325,7 @@ $(document).on("page:change", function() {
 	});
 
   /*For ajax popup link in show note page*/	
-  $('.ajax-popup-link').magnificPopup({
+  $('.document-popup').magnificPopup({
 	  type: 'ajax',
     callbacks: {
    		parseAjax: function( mfpResponse ) {
@@ -356,6 +356,21 @@ $(document).on("page:change", function() {
 				$("#comment-btn").on("click", function() {
 					$(this).blur();
 				}); 	
+
+		  }
+		}
+	});
+	
+	/*For ajax education popup in profile*/	
+  $('.education-popup').magnificPopup({
+	  type: 'ajax',
+    callbacks: {
+   		parseAjax: function( mfpResponse ) {
+        mfpResponse.data = $(mfpResponse.data).find('#education-edit');
+		  },
+	    ajaxContentAdded: function() {
+		    // Ajax content is loaded and appended to DOM
+				$('.selectpicker').selectpicker();
 
 		  }
 		}

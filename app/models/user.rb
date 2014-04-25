@@ -10,8 +10,6 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :educations, dependent: :destroy
 
-  accepts_nested_attributes_for :educations, allow_destroy: true
-  
   acts_as_reader
   
   has_settings do |s|

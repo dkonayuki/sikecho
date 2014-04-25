@@ -1,39 +1,48 @@
-<h1>Listing educations</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Uni year</th>
-      <th>Semester</th>
-      <th>Year</th>
-      <th>University</th>
-      <th>Faculty</th>
-      <th>Course</th>
-      <th>User</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @educations.each do |education| %>
-      <tr>
-        <td><%= education.uni_year_id %></td>
-        <td><%= education.semester_id %></td>
-        <td><%= education.year %></td>
-        <td><%= education.university_id %></td>
-        <td><%= education.faculty_id %></td>
-        <td><%= education.course_id %></td>
-        <td><%= education.user_id %></td>
-        <td><%= link_to 'Show', education %></td>
-        <td><%= link_to 'Edit', edit_education_path(education) %></td>
-        <td><%= link_to 'Destroy', education, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Education', new_education_path %>
+			<div id="education-table">
+				<table class="table table-bordered table-hover">
+			    <thead>
+			      <tr>
+			        <% if isEditable %>
+			        <th class="col-sm-2">年度</th>
+			        <th class="col-sm-1">学年</th>
+			        <th class="col-sm-1">学期</th>
+			        <th class="col-sm-2">学校</th>
+			        <th class="col-sm-2">学部・研究科</th>
+			        <th class="col-sm-2">学科・コース</th>
+			        <th class="col-sm-1"></th>
+			        <th class="col-sm-1"></th>
+			        <% else %>
+			        <th class="col-sm-2">年度</th>
+			        <th class="col-sm-1">学年</th>
+			        <th class="col-sm-1">学期</th>
+			        <th class="col-sm-3">学校</th>
+			        <th class="col-sm-2">学部・研究科</th>
+			        <th class="col-sm-2">学科・コース</th>
+			        <th class="col-sm-1"></th>
+			        <% end %>
+			      </tr>
+			    </thead>
+			    <tbody>
+			    	<% @user.educations.each do | education | %>
+			      <tr>
+			        <td><%= education.year unless education.year.blank? %></td>
+			        <td><%= education.uni_year.name unless education.uni_year.blank? %></td>
+			        <td><%= education.semester.name unless education.semester.blank? %></td>
+			        <td><%= education.university.name unless education.university.blank? %></td>
+			        <td><%= education.faculty.name unless education.faculty.blank? %></td>
+			        <td><%= education.course.name unless education.course.blank? %></td>
+			        <% if isEditable %>
+			        <td></td>
+			        <td></td>
+			        <% else %>
+			        <td>
+			        	<% if @user.settings(:education).current == education %>
+			        	●
+			        	<% end %>
+			        </td>
+			        <% end %>
+			      </tr>
+			      <% end %>
+			    </tbody>
+			  </table>
+			</div>

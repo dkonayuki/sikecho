@@ -1,5 +1,5 @@
 <div id="profile">
-	<div class="skc-box">
+	<div class="skc-box skc-box-lg">
 		<div class="skc-box-content">
 			<div class="skc-box-thumbnail">
 				<%= image_tag(@user.display_profile_image) %>
@@ -10,6 +10,10 @@
 				<p>
 					<strong>メール:</strong>
 					<%= @user.email %>
+				</p>
+				<p>
+					<strong>学歴:</strong>
+					<%= render template: 'educations/index', locals: {isEditable: false} %>
 				</p>
 				<hr />
 				<p>
