@@ -9,7 +9,7 @@ body {
 textarea {
   resize: none
 }
-  
+
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
@@ -70,4 +70,7 @@ div {
     font-size: 12px;
     list-style: square;
   }
+}
+.field_with_errors {
+  @extend .has-error;
 }

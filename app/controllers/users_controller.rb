@@ -30,8 +30,6 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @isEditable = true
-    #@faculties = @user.university_id ? Faculty.where(university_id: @user.university.id).order(:name) : []
-    #@courses = @user.faculty_id ? Course.where(faculty_id: @user.faculty.id).order(:name) : []
   end
 
   # POST /users
