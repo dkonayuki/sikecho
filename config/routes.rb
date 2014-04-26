@@ -12,15 +12,22 @@ Shikechou::Application.routes.draw do
       end
     end
   end
-  #change semester when uni_year change
-  get 'semester' => 'subjects#semester'
     
   resources :notes do
     #get existed documents for note
     get 'documents' => 'notes#documents', on: :member
   end
+  
   get 'tags' => 'application#tags'
-
+  #get faculties data
+  get 'faculties' => 'application#faculties'
+  #get courses data
+  get 'courses' => 'application#courses'
+  #get uni_year data
+  get 'uni_years' => 'application#uni_years'
+  #get semester data
+  get 'semesters' => 'application#semesters'
+  
   resources :documents do
     resources :comments
   end

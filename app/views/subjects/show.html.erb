@@ -69,7 +69,7 @@
 				<hr />
 				<p>
 					<strong>推奨学期:</strong>
-					<%= link_to "#{@subject.semester.uni_year.name}#{@subject.semester.name}", course_subjects_path(@subject.course, filter: '学年別', semester: @subject.semester.no, uni_year: @subject.semester.uni_year.no) %>
+					<%= link_to "#{@subject.semester.uni_year.name}#{@subject.semester.name}", course_subjects_path(@subject.course, filter: '学年別', semester: @subject.semester.id) %>
 				</p>
 				<p>
 					<strong>時間:</strong>

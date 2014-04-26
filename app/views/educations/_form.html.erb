@@ -1,5 +1,5 @@
 <div id="education-edit">
-	<%= form_for([@user, @education]) do |f| %>
+	<%= form_for([@user, @education], html: {id: 'education-form', remote: true}) do |f| %>
 	  <% if @education.errors.any? %>
 	    <div id="error_explanation">
 	      <h2><%= pluralize(@education.errors.count, "error") %> prohibited this education from being saved:</h2>
@@ -11,32 +11,52 @@
 	      </ul>
 	    </div>
 	  <% end %>
-	
-	  <div class="field">
-	    <%= f.label :uni_year_id %><br>
-	    <%= f.number_field :uni_year_id, class: 'form-control' %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :semester_id %><br>
-	    <%= f.number_field :semester_id %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :year %><br>
-	    <%= f.number_field :year %>
-	  </div>
-	  <div class="field">
+		<div class="field">
 	    学校:
-			<%= select_tag :university_id, options_from_collection_for_select(@universities, "id", "name"), class: 'form-control selectpicker show-tick', data: {width: 'auto'} %>
+	    <% if @education.university %>
+			<%= f.select :university_id, options_from_collection_for_select(@universities, "id", "name", selected: @education.university.id), {}, {class: 'form-control selectpicker show-tick', data: {width: 'auto'}} %>
+	    <% else %>
+			<%= f.select :university_id, options_from_collection_for_select(@universities, "id", "name"), {}, {class: 'form-control selectpicker show-tick', data: {width: 'auto'}} %>
+	  	<% end %>
 	  </div>
 	  <div class="field">
-	    <%= f.label :faculty_id %><br>
-	    <%= f.text_field :faculty_id %>
+	    学部・研究科:
+	    <% if @education.faculty %>
+			<%= f.select :faculty_id, options_from_collection_for_select(@faculties, "id", "name", selected: @education.faculty.id), {include_blank: true}, {class: 'form-control selectpicker show-tick', data: {width: 'auto'}} %>
+	    <% else %>
+			<%= f.select :faculty_id, options_from_collection_for_select(@faculties, "id", "name"), {include_blank: true}, {class: 'form-control selectpicker show-tick', data: {width: 'auto'}} %>
+	  	<% end %>
 	  </div>
 	  <div class="field">
-	    <%= f.label :course_id %><br>
-	    <%= f.number_field :course_id %>
+	    学科・コース:
+	    <% if @education.course %>
+			<%= f.select :course_id, options_from_collection_for_select(@courses, "id", "name", selected: @education.course.id), {include_blank: true}, {class: 'form-control selectpicker show-tick', data: {width: 'auto'}} %>
+	    <% else %>
+			<%= f.select :course_id, options_from_collection_for_select(@courses, "id", "name"), {include_blank: true}, {class: 'form-control selectpicker show-tick', data: {width: 'auto'}} %>
+	  	<% end %>
+	  </div>	  
+	  <div class="field">
+	    学年:
+	    <% if @education.uni_year %>
+			<%= f.select :uni_year_id, options_from_collection_for_select(@uni_years, "id", "name", selected: @education.uni_year.id), {include_blank: true}, {class: 'form-control selectpicker show-tick', data: {width: 'auto'}} %>
+	    <% else %>
+			<%= f.select :uni_year_id, options_from_collection_for_select(@uni_years, "id", "name"), {include_blank: true}, {class: 'form-control selectpicker show-tick', data: {width: 'auto'}} %>
+	  	<% end %>
 	  </div>
+	  <div class="field">
+	    学期:
+	    <% if @education.semester %>
+			<%= f.select :semester_id, options_from_collection_for_select(@semesters, "id", "name", selected: @education.semester.id), {include_blank: true}, {class: 'form-control selectpicker show-tick', data: {width: 'auto'}} %>
+	    <% else %>
+			<%= f.select :semester_id, options_from_collection_for_select(@semesters, "id", "name"), {include_blank: true}, {class: 'form-control selectpicker show-tick', data: {width: 'auto'}} %>
+	  	<% end %>
+	  </div>
+  	<div class="field">
+	    年度:
+	    <%= f.select :year, options_for_select(@years), {}, {class: 'form-control selectpicker show-tick', data: {width: 'auto'}} %>
+	  </div>	
 		<%= f.submit '登録', class: 'btn btn-success col-sm-2 col-sm-offset-5 col-xs-12 col-xs-offset-0'%>
 		<br />
+		<%= f.hidden_field :user_id, value: @user.id %>
 	<% end %>
 </div>

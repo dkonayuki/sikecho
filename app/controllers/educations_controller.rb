@@ -2,6 +2,8 @@ class EducationsController < ApplicationController
   before_action :set_education, only: [:show, :edit, :update, :destroy]
   before_action :set_user
 
+  include EducationsHelper
+
   # GET /educations
   # GET /educations.json
   def index
@@ -16,25 +18,27 @@ class EducationsController < ApplicationController
   # GET /educations/new
   def new
     @education = @user.educations.build
-    @universities = University.all
-    @years = (Subject.MAX_YEAR_BEGIN..Subject.MAX_YEAR_END).to_a
+    prepare_view_content
   end
-
+  
   # GET /educations/1/edit
   def edit
+    prepare_view_content
   end
 
   # POST /educations
   # POST /educations.json
   def create
     @education = Education.new(education_params)
+    @isEditable = true
 
     respond_to do |format|
       if @education.save
-        format.html { redirect_to @education, notice: 'Education was successfully created.' }
+        format.html
+        format.js
         format.json { render action: 'show', status: :created, location: @education }
       else
-        format.html { render action: 'new' }
+        format.html
         format.json { render json: @education.errors, status: :unprocessable_entity }
       end
     end
@@ -43,9 +47,12 @@ class EducationsController < ApplicationController
   # PATCH/PUT /educations/1
   # PATCH/PUT /educations/1.json
   def update
+    @isEditable = true
+
     respond_to do |format|
       if @education.update(education_params)
-        format.html { redirect_to @education, notice: 'Education was successfully updated.' }
+        format.html 
+        format.js
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -58,8 +65,11 @@ class EducationsController < ApplicationController
   # DELETE /educations/1.json
   def destroy
     @education.destroy
+    @isEditable = true
+    
     respond_to do |format|
-      format.html { redirect_to educations_url }
+      format.html
+      format.js
       format.json { head :no_content }
     end
   end
@@ -76,7 +86,7 @@ class EducationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def education_params
-      params.require(:user_id)
+      params.permit(:user_id, :university_id, :faculty_id)
       params.require(:education).permit(:uni_year_id, :semester_id, :year, :university_id, :faculty_id, :course_id, :user_id)
     end
 end

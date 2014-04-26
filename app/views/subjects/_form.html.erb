@@ -114,8 +114,22 @@ $(document).ready(function() {
 	function change_uni_year() {
 		var uni_year_id = $("#subject_uni_year_id").val();
 		$.ajax({
-				url:"<%= url_for(action: 'semester', controller: 'subjects') %>",	
+				url:"/semesters",	
 				data:'uni_year_id=' + uni_year_id,
+				dataType: "json",
+				success: function(data) {
+					//clear old select
+					$('#subject_semester_id').empty();
+					//add new data to faculty select
+					$('#subject_semester_id').append("<option value=''></option>");
+					$.each(data, function(key, value) {   
+				    $('#subject_semester_id')
+		          .append($("<option></option>")
+		          .attr("value",value.id)
+		          .text(value.name));
+					});
+					$('.selectpicker').selectpicker("refresh");
+				}
 			}
 		);
 	}

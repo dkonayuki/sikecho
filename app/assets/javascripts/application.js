@@ -361,21 +361,6 @@ $(document).on("page:change", function() {
 		}
 	});
 	
-	/*For ajax education popup in profile*/	
-  $('.education-popup').magnificPopup({
-	  type: 'ajax',
-    callbacks: {
-   		parseAjax: function( mfpResponse ) {
-        mfpResponse.data = $(mfpResponse.data).find('#education-edit');
-		  },
-	    ajaxContentAdded: function() {
-		    // Ajax content is loaded and appended to DOM
-				$('.selectpicker').selectpicker();
-
-		  }
-		}
-	});
-			
 	/*For endless page*/
 	if ($(".hidden-pagination").length) {
 		$(window).scroll(function(){

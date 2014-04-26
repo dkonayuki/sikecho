@@ -1,4 +1,0 @@
-$('#user_educations_faculty_id').html("<%=j options_from_collection_for_select(@faculties,"id","name", include_blank: true) %>");
-$('#user_educations_faculty_id').prepend("<option value=''></option>");
-$('#user_educations_course_id').html("<%=j options_from_collection_for_select(@courses,"id","name") %>");
-$('.selectpicker').selectpicker("refresh");

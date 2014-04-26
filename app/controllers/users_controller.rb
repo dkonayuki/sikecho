@@ -13,31 +13,12 @@ class UsersController < ApplicationController
       format.json { render json: @users }
     end
   end
-  
-  # get faculty list when university selection changed
-  def faculty
-    @faculties = Faculty.where(university_id: params[:university_id]).order(:name)
-    @courses = []
-    respond_to do |format|
-      format.js
-      format.html
-    end
-  end
-  
-  # get course list when faculty selection changed
-  def course
-    @courses = Course.where(faculty_id: params[:faculty_id]).order(:name)
-    respond_to do |format|
-      format.js
-      format.html
-    end
-  end
 
   # GET /users/1
   # GET /users/1.json
   def show
     get_schedule_content
-    @editable = true
+    @isEditable = false
   end
 
   # GET /users/new
@@ -48,6 +29,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @isEditable = true
     #@faculties = @user.university_id ? Faculty.where(university_id: @user.university.id).order(:name) : []
     #@courses = @user.faculty_id ? Course.where(faculty_id: @user.faculty.id).order(:name) : []
   end
@@ -86,10 +68,15 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    @isEditable = true
+    
     #destroy avatar if user remove
     if user_params[:avatar].blank? && @user.avatar.exists? 
       @user.avatar.clear
     end
+    
+    #update current education
+    @user.settings(:education).current = Education.find(params[:current])
     
     respond_to do |format|
       if @user.authenticate(user_params[:password_confirmation]) && @user.update(user_params)
@@ -125,7 +112,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.permit(:university_id, :faculty_id, :university)
+      params.permit(:university_id, :faculty_id, :university, :current)
       params.require(:user).permit(:username, :nickname, :password, :password_confirmation, :email, :avatar)
     end
 end

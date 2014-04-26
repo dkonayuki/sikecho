@@ -11,10 +11,9 @@
 					<strong>メール:</strong>
 					<%= @user.email %>
 				</p>
-				<p>
-					<strong>学歴:</strong>
-					<%= render template: 'educations/index', locals: {isEditable: false} %>
-				</p>
+				<hr />
+				<h5>学歴</h5><br />
+				<%= render template: 'educations/index' %>
 				<hr />
 				<p>
 					<% if @user == User.find_by_id(session[:user_id]) %>

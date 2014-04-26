@@ -93,17 +93,6 @@ class SubjectsController < ApplicationController
     end
   end
 
-  # get new semester list when uni_year changes
-  def semester
-    uni_year = UniYear.find_by_id(params[:uni_year_id])
-    @semesters = uni_year ? uni_year.semesters : []
- 
-    respond_to do |format|
-      format.js
-      format.html
-    end
-  end
-
   # GET /subjects/new
   def new
     @subject = @course.subjects.build

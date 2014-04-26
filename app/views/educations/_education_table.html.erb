@@ -1,0 +1,187 @@
+				<table class="table table-bordered table-hover">
+			    <thead>
+			      <tr>
+			        <% if @isEditable %>
+			        <th class="col-sm-2">年度</th>
+			        <th class="col-sm-1">学年</th>
+			        <th class="col-sm-1">学期</th>
+			        <th class="col-sm-2">学校</th>
+			        <th class="col-sm-2">学部・研究科</th>
+			        <th class="col-sm-2">学科・コース</th>
+			        <th class="col-sm-1"></th>
+			        <th class="col-sm-1"></th>
+			        <% else %>
+			        <th class="col-sm-2">年度</th>
+			        <th class="col-sm-1">学年</th>
+			        <th class="col-sm-1">学期</th>
+			        <th class="col-sm-3">学校</th>
+			        <th class="col-sm-2">学部・研究科</th>
+			        <th class="col-sm-2">学科・コース</th>
+			        <th class="col-sm-1"></th>
+			        <% end %>
+			      </tr>
+			    </thead>
+			    <tbody>
+			    	<% @user.educations.joins('LEFT OUTER JOIN uni_years ON uni_years.id = educations.uni_year_id')
+			    	.joins('LEFT OUTER JOIN semesters ON semesters.id = educations.semester_id')
+			    	.order('uni_years.no ASC, semesters.no ASC, created_at ASC').each do | education | %>
+			      <tr>
+			        <td><%= education.year unless education.year.blank? %></td>
+			        <td><%= education.uni_year.name unless education.uni_year.blank? %></td>
+			        <td><%= education.semester.name unless education.semester.blank? %></td>
+			        <td><%= education.university.name unless education.university.blank? %></td>
+			        <td><%= education.faculty.name unless education.faculty.blank? %></td>
+			        <td><%= education.course.name unless education.course.blank? %></td>
+			        <% if @isEditable %>
+			        <td>
+			        	<% if @user.settings(:education).current == education %>
+			        		<%= radio_button_tag 'current', education.id, true %>
+			        	<% else %>
+			        		<%= radio_button_tag 'current', education.id %>
+			        	<% end %>
+			        </td>
+			        <td>
+			        	<%= link_to [:edit, @user, education], class: 'education-popup' do %>
+      						<span class="glyphicon glyphicon-pencil"></span>
+    						<% end %>
+			        	<%= link_to [@user, education], method: :delete, data: { confirm: 'Are you sure?' }, remote: true do %>
+      						<span class="glyphicon glyphicon-remove"></span>
+			        	<% end %>
+			        </td>
+			        <% else %>
+			        <td>
+			        	<% if @user.settings(:education).current == education %>
+			        	●
+			        	<% end %>
+			        </td>
+			        <% end %>
+			      </tr>
+			      <% end %>
+			    </tbody>
+			  </table>
+			  <% if @isEditable %>
+					<%= link_to new_user_education_path(@user), {class: 'btn btn-default education-popup'} do %>
+					<span class="glyphicon glyphicon-plus"></span>追加
+					<% end %>
+				<% end %>
+<script>
+	/*For ajax education popup in profile*/	
+  $('.education-popup').magnificPopup({
+	  type: 'ajax',
+    callbacks: {
+   		parseAjax: function( mfpResponse ) {
+        mfpResponse.data = $(mfpResponse.data).find('#education-edit');
+		  },
+	    ajaxContentAdded: function() {
+		    // Ajax content is loaded and appended to DOM
+				$(".selectpicker").selectpicker();
+				$("#education-form").on("submit", function() {
+					$.ajax({
+						url: $(this).attr("action"),
+						dataType: "script",
+						data: $(this).serialize(),
+						type: "post",
+						success: function() {
+							//close popup after submit
+							$.magnificPopup.close();
+						}
+					});
+					return false;
+				});
+				
+				function change_university() {
+					//clear old select
+					$('#education_faculty_id').empty();
+					$('#education_course_id').empty();
+					$('#education_uni_year_id').empty();
+					$('#education_semester_id').empty();
+					var university_id = $("#education_university_id").val();
+					$.ajax({
+							url:"/faculties",	
+							data:'university_id=' + university_id,
+							dataType: "json",
+							success: function(data) {
+								//add new data to faculty select
+								$('#education_faculty_id').append("<option value=''></option>");
+								$.each(data, function(key, value) {   
+							    $('#education_faculty_id')
+					          .append($("<option></option>")
+					          .attr("value",value.id)
+					          .text(value.name));
+								});
+								$('.selectpicker').selectpicker("refresh");
+							}
+						}
+					);
+					$.ajax({
+							url:"/uni_years",	
+							data:'university_id=' + university_id,
+							dataType: "json",
+							success: function(data) {
+								//add new data to faculty select
+								$('#education_uni_year_id').append("<option value=''></option>");
+								$.each(data, function(key, value) {   
+							    $('#education_uni_year_id')
+					          .append($("<option></option>")
+					          .attr("value",value.id)
+					          .text(value.name));
+								});
+								$('.selectpicker').selectpicker("refresh");
+							}
+						}
+					);
+				}
+				
+				function change_faculty() {
+					//clear old select
+					$('#education_course_id').empty();
+					var faculty_id = $("#education_faculty_id").val();
+					$.ajax({
+							url:"/courses",	
+							data:'faculty_id=' + faculty_id,
+							dataType: "json",
+							success: function(data) {
+								//add new data to course select
+								$('#education_course_id').append("<option value=''></option>");
+								$.each(data, function(key, value) {   
+							    $('#education_course_id')
+					          .append($("<option></option>")
+					          .attr("value",value.id)
+					          .text(value.name));
+								});
+								$('.selectpicker').selectpicker("refresh");
+							}
+						}
+					);
+				}
+				
+				function change_uni_year() {
+					//clear old select
+					$('#education_semester_id').empty();
+					var uni_year_id = $("#education_uni_year_id").val();
+					$.ajax({
+							url:"/semesters",	
+							data:'uni_year_id=' + uni_year_id,
+							dataType: "json",
+							success: function(data) {
+								//add new data to faculty select
+								$('#education_semester_id').append("<option value=''></option>");
+								$.each(data, function(key, value) {   
+							    $('#education_semester_id')
+					          .append($("<option></option>")
+					          .attr("value",value.id)
+					          .text(value.name));
+								});
+								$('.selectpicker').selectpicker("refresh");
+							}
+						}
+					);
+				}
+				
+				$('#education_university_id').on("change", change_university);
+				$('#education_faculty_id').on("change", change_faculty);
+				$('#education_uni_year_id').on("change", change_uni_year);
+		  }
+		}
+	});
+</script>
