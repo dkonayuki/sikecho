@@ -7,6 +7,11 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by_username(params[:username])
+    #login by email
+    if user == nil
+      user = User.find_by_email(params[:username])
+    end
+    
     if user and user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect_to home_url
