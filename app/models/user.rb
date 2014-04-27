@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, authentication_keys: [:login]
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable, authentication_keys: [:login]
          
   validates :username, presence: true, length: 4..10, on: :create, uniqueness: { case_sensitive: false }
   
@@ -72,6 +72,10 @@ class User < ActiveRecord::Base
     else
       'avatar.png'
     end
+  end
+  
+  def current_education
+    
   end
   
   def current_university

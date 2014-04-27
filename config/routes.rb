@@ -1,7 +1,9 @@
 Shikechou::Application.routes.draw do
 
   #devise routes
-  devise_for :users, controllers: {sessions: "users/sessions", registrations: 'users/registrations'}, path_names: {sign_in: 'login', sign_out: 'logout'}
+  devise_for :users, 
+    controllers: {sessions: "users/sessions", registrations: 'users/registrations', confirmations: 'users/confirmations', passwords: 'users/passwords'}, 
+    path_names: {sign_in: 'login', sign_out: 'logout'}
   
   resources :teachers
 
