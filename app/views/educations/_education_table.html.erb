@@ -44,8 +44,10 @@
 			        	<%= link_to [:edit, @user, education], class: 'education-popup' do %>
       						<span class="glyphicon glyphicon-pencil"></span>
     						<% end %>
-			        	<%= link_to [@user, education], method: :delete, data: { confirm: 'Are you sure?' }, remote: true do %>
-      						<span class="glyphicon glyphicon-remove"></span>
+    						<% if @user.educations.count > 1 %>
+				        	<%= link_to [@user, education], method: :delete, data: { confirm: 'Are you sure?' }, remote: true do %>
+	      						<span class="glyphicon glyphicon-remove"></span>
+				        	<% end %>
 			        	<% end %>
 			        </td>
 			        <% else %>
