@@ -85,3 +85,5 @@ gem 'impressionist'
 
 #auto resize for textarea
 gem 'autosize-rails'
+
+gem 'unicorn', '~> 4.8.2'

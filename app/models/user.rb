@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  validates :username, presence: true, uniqueness: true, length: 4..10
+  validates :username, presence: true, uniqueness: true, length: 4..10, on: :create
   validates :email, presence: true, uniqueness: true, format: /@/
   validates :password_confirmation, presence: true, on: :create
   validates :password, presence: true, on: :create, length: 6..20
