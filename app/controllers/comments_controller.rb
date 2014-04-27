@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
   before_action :set_document #set document for all actions, shallow: false
+  before_action :set_user #set user for all actions, for comment menu working
 
   # GET /comments
   # GET /comments.json
@@ -26,7 +27,7 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = @document.comments.new(comment_params)
-    @comment.user = current_user
+    @comment.user = @user
 
     respond_to do |format|
       if @comment.save
@@ -68,6 +69,10 @@ class CommentsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_user
+      @user = current_user
+    end
+    
     def set_comment
       @comment = Comment.find(params[:id])
     end

@@ -16,15 +16,15 @@
 				<%= render template: 'educations/index' %>
 				<hr />
 				<p>
-					<% if @user == User.find_by_id(session[:user_id]) %>
+					<% if @user == current_user %>
 						<strong>時間割表:</strong>
 						<%= link_to image_tag("calendar.jpeg", class: 'calendar'), schedule_path %>
 		      <% end %>
 				</p>
 			</div>
-		  <% if @user == User.find_by_id(session[:user_id]) %>
+		  <% if @user == current_user %>
 	  		<div class="skc-box-menu">
-			  	<%= link_to edit_user_path(@user) do %>
+			  	<%= link_to edit_user_registration_path do %>
 			  	<span class="glyphicon glyphicon-pencil"></span>
 			  	<% end %>
 				</div>

@@ -1,10 +1,21 @@
 class User < ActiveRecord::Base
-  validates :username, presence: true, uniqueness: true, length: 4..10, on: :create
-  validates :email, presence: true, uniqueness: true, format: /@/
-  validates :password_confirmation, presence: true, on: :create
-  validates :password, presence: true, on: :create, length: 6..20
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable, authentication_keys: [:login]
+         
+  validates :username, presence: true, length: 4..10, on: :create, uniqueness: { case_sensitive: false }
   
-  has_secure_password
+  #validates :email, presence: true, uniqueness: true, format: /@/
+  #validates :password_confirmation, presence: true, on: :create
+  #validates :password, presence: true, on: :create, length: 6..20
+  #devise will validate email, password, password_confirmation
+  
+  #use devise instead
+  #has_secure_password
+  
+  #use both username and email for login
+  attr_accessor :login
     
   has_many :notes, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -24,6 +35,16 @@ class User < ActiveRecord::Base
                               path: ":rails_root/public/:url" #dont really need path
                               
   validates_attachment_content_type :avatar, content_type: ["image/jpg", "image/gif", "image/png", "image/jpeg"]
+  
+  #override for login with username - email
+  def self.find_first_by_auth_conditions(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions).where(["lower(username) = :value OR lower(email) = :value", { value: login.downcase }]).first
+    else
+      where(conditions).first
+    end
+  end
     
   def name_kanji
     "#{first_name_kanji} #{last_name_kanji}"  

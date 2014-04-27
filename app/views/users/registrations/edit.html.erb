@@ -1,0 +1,82 @@
+<div id="user-edit">
+	<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+	  <%= devise_error_messages! %>
+		<div class="skc-box skc-box-lg">
+			<div class="skc-box-content">
+				<div class="skc-box-thumbnail">
+					<%= image_tag("user.png")  %>
+				</div>
+				<div class="skc-box-desc">
+					<h4><%= resource.username %></h4>
+					<hr />
+					<% if resource.avatar.exists? %>
+					<div class="fileinput fileinput-exists" data-provides="fileinput">
+					<% else %>
+					<div class="fileinput fileinput-new" data-provides="fileinput">
+					<% end %>
+					  <div class="fileinput-new thumbnail thumbnail-sm">
+					  </div>
+					  <div class="fileinput-preview fileinput-exists thumbnail thumbnail-preview-sm">
+					  <% if resource.avatar.exists? %>
+					  	<%= image_tag resource.avatar.url(:original) %>
+				  	<% end %>
+					  </div>
+					  <div>
+					    <span class="btn btn-default btn-file">
+					    	<span class="fileinput-new">Select image</span>
+					    	<span class="fileinput-exists">Change</span>
+					  		<%= f.file_field :avatar %>
+				    	</span>
+					    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+					  </div>
+					</div>
+					<hr />
+					<p>
+						<strong>ニックネーム:</strong>
+						<%= f.text_field :nickname, class: 'form-control form-control-inline' %>
+					</p>
+					<p>
+						<strong>メール:</strong>
+						<%= f.email_field :email, class: 'form-control form-control-inline' %>
+					</p>
+						
+				  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+				    <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+				  <% end %>
+				  
+					<hr />
+					<h5>学歴</h5><br />
+					<%= render template: 'educations/index' %>
+					<hr />
+					
+					<p>
+						<strong>パスワード:</strong>
+						<%= f.password_field :password, class: 'form-control form-control-inline', autocomplete: "off" %>
+					</p>
+					<p>
+						<strong>パスワード確認:</strong>
+						<%= f.password_field :password_confirmation, class: 'form-control form-control-inline', autocomplete: "off" %>
+					</p>
+					<p>
+						<strong>現在のパスワード:</strong>
+						<%= f.password_field :current_password, class: 'form-control form-control-inline', autocomplete: "off" %>
+					</p>
+					<hr />
+				</div>
+				<%= f.submit '登録', class: 'btn btn-success col-sm-2 col-sm-offset-5 col-xs-12 col-xs-offset-0'%>
+				<br />
+			</div>
+		</div>
+			
+		<!-- 
+		<h3>Cancel my account</h3>
+		
+		<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p> -->
+	<% end %>
+</div>
+
+<script>
+	$('document').ready(function() {
+		$('.fileinput').fileinput();
+	});
+</script>

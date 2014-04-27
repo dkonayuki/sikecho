@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  skip_before_filter :authorize, only: [:new, :create, :faculty, :course]
-  before_filter :disable_nav, only: [:new, :create]
 
   # GET /users
   # GET /users.json
@@ -17,14 +15,12 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    get_schedule_content
     @isEditable = false
   end
 
   # GET /users/new
   def new
-    @user = User.new
-    @universities = University.all
+  #use registrations_controller
   end
 
   # GET /users/1/edit
@@ -35,61 +31,13 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    #prepare previous info
-    @universities = University.all
-    
-    @user = User.new(user_params)
-    #set firt time education
-    university = University.find(params[:university].to_i)
-    education = Education.new(university: university)
-    @user.educations << education
-    
-    respond_to do |format|
-      if @user.save
-        #login
-        session[:user_id] = @user.id
-        @user.settings(:education).current = @user.educations.first
-        @user.save!
-
-        format.html { redirect_to home_url, notice: 'User #{@user.username} was successfully created.' }
-        format.json { render json: @user, status: :created, location: @user }
-      else
-        #prepare faculty and course select
-        #@faculties = @user.university_id ? Faculty.where(university_id: @user.university.id).order(:name) : []
-        #@courses = @user.faculty_id ? Course.where(faculty_id: @user.faculty.id).order(:name) : []
-        format.html { render action: 'new' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
+  #use registrations_controller
   end
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    @isEditable = true
-    
-    #destroy avatar if user remove
-    if user_params[:avatar].blank? && @user.avatar.exists? 
-      @user.avatar.clear
-    end
-    
-    #update current education
-    @user.settings(:education).current = Education.find(params[:current])
-    
-    respond_to do |format|
-      if @user.authenticate(user_params[:password_confirmation]) && @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User #{@user.username} was successfully updated.' }
-        format.json { head :ok }
-      else
-        #custom message for password_confirmation
-        @user.errors.add(:password_confirmation, "doesn't match password.")
-        #prepare faculty and course select
-        #@faculties = @user.university_id ? Faculty.where(university_id: @user.university.id).order(:name) : []
-        #@courses = @user.faculty_id ? Course.where(faculty_id: @user.faculty.id).order(:name) : []
-        format.html { render action: 'edit' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
+  #use registrations_controller
   end
 
   # DELETE /users/1
@@ -110,7 +58,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.permit(:university_id, :faculty_id, :university, :current)
       params.require(:user).permit(:username, :nickname, :password, :password_confirmation, :email, :avatar)
     end
 end

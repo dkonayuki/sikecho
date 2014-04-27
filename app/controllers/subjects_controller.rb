@@ -67,6 +67,8 @@ class SubjectsController < ApplicationController
   # GET /subjects/1
   # GET /subjects/1.json
   def show
+    @user = current_user
+    
     if !params[:tag].blank?
       #filter in show subject page
       @notes = @subject.notes.tagged_with(params[:tag])
@@ -253,7 +255,7 @@ class SubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
-      params.permit(:name, :pk, :value, :tag, :filter, :semester, :uni_year_id, :teachers, :old_number, :version_id, :course_id, :page, :style)
+      params.permit(:name, :pk, :value, :tags, :filter, :semester, :uni_year_id, :teachers, :old_number, :version_id, :course_id, :page, :style)
       params.require(:subject).permit(:name, :description, :year, :place, :number_of_outlines, :semester_id, :uni_year_id, :course_id, periods_attributes: [:id, :time, :day, :_destroy])
     end
 end

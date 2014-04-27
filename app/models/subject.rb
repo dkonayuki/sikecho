@@ -24,7 +24,7 @@ class Subject < ActiveRecord::Base
     
   def self.search(search)
     if search
-      where('subjects.name LIKE ?', "%#{search}%")
+      where('subjects.name LIKE ?', "%#{search.downcase}%")
     else
       all
     end

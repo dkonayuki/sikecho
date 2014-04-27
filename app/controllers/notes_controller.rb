@@ -142,7 +142,9 @@ class NotesController < ApplicationController
 
   # PATCH/PUT /notes/1
   # PATCH/PUT /notes/1.json
-  def update        
+  def update    
+    @user = current_user
+    
     # update tags list
     tags = params[:tags].split(',')
     @note.tag_list = tags

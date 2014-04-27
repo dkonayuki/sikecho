@@ -1,5 +1,8 @@
 Shikechou::Application.routes.draw do
 
+  #devise routes
+  devise_for :users, controllers: {sessions: "users/sessions", registrations: 'users/registrations'}, path_names: {sign_in: 'login', sign_out: 'logout'}
+  
   resources :teachers
 
   resources :universities, shallow: true do
@@ -18,6 +21,7 @@ Shikechou::Application.routes.draw do
     get 'documents' => 'notes#documents', on: :member
   end
   
+  #get tags.json
   get 'tags' => 'application#tags'
   #get faculties data
   get 'faculties' => 'application#faculties'
@@ -36,14 +40,6 @@ Shikechou::Application.routes.draw do
 
   resources :users do
     resources :educations
-  end
-  get 'faculty' => 'users#faculty'
-  get 'course' => 'users#course'
-
-  controller :sessions do
-    get 'login' => :new
-    post 'login' => :create
-    delete 'logout' => :destroy
   end
   
   controller :schedule do
