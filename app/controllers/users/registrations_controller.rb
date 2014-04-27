@@ -33,11 +33,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   
   def after_update
     if resource.persisted? # user is created successfuly
-      #destroy avatar if user remove
-      if params[:avatar].blank? && resource.avatar.exists? 
-        resource.avatar.clear
-      end
-      
       #update current education
       resource.settings(:education).current = Education.find(params[:current])
       resource.save!
