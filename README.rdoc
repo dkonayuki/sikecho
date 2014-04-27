@@ -29,3 +29,5 @@ Start postgres server: postgres -D /usr/local/var/postgres
 Start unicorn server: unicorn -c config/unicorn.rb
 
 Start nginx: nginx 
+
+Start mailcatcher (for test: http://localhost:1080/): mailcatcher
