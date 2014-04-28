@@ -2,7 +2,7 @@
     <a class="pull-left" href="#">
 			<%= image_tag(comment.user.display_comment_image, class: 'media-object avatar')  %>
     </a>
-    <h4 class="media-heading"><%= comment.user.username %></h4>
+    <h4 class="media-heading"><%= comment.user.display_name %></h4>
     <div class="media-body">
 			<%= sanitize simple_format(comment.content), tags: %w(br) %>
 	    <div class="media-date">
