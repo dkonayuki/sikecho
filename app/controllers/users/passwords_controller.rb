@@ -1,6 +1,6 @@
 class Users::PasswordsController < Devise::PasswordsController
   
-  before_action :disable_nav, only: [:new, :edit]
+  before_action :disable_nav, only: [:new, :edit, :create]
   before_action :configure_permitted_parameters
 
   def configure_permitted_parameters

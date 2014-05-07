@@ -65,10 +65,8 @@ body {
 /*Navigation bar
  ===============================================================================================*/
 
-#logo:before {
-	content: "Shikechou";
-	color: #563d7c;
-	font-weight: bold;
+#logo {
+	width: 130px;
 }
 
 #nav-bar {
@@ -98,28 +96,52 @@ body {
 	margin-left: 15px;
 }
 
-@media (max-width: 767px) {
-	#logo {
-	  float: none !important;
-		margin: auto auto;
-		display: table;
-  }
+#navbar-collapse-1 {
+	float: left;
 }
 
-@media (min-width: 768px) {
-	#navbar-collapse-1 {
-		padding: 0 !important;
-	}
+#navbar-collapse-2 {
+	float: left;
 }
 
 #navbar-collapse-3 {
 	float: right;
 }
 
+@media (max-width: 767px) {
+	#logo {
+		float: none !important;
+		margin: auto auto;
+		display: block;
+  }
+	#navbar-collapse-1 {
+		float: none;
+		padding: 0 !important;
+	}
+	#navbar-collapse-2 {
+		float: none;
+	}
+}
+
+@media (min-width: 768px) {
+	#navbar-collapse-1, #navbar-collapse-2 {
+		padding: 0 !important;
+	}
+}
+
 .nav-calendar {
 	max-width: 30px;
 	margin-right: 20px;
 	margin-top: 10px;
+}
+
+.nav-mobile li {
+	display: inline-block !important;
+	padding: 0 !important;
+}
+
+.nav-mobile {
+	text-align: center;
 }
 
 /*Sign in page

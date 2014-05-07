@@ -95,3 +95,21 @@
 .thumbnail {
 	border-radius: 0;
 }
+
+.navbar-brand {
+	padding: 5px 15px;
+	height: 50px;
+}
+
+.navbar-nav > li > a {
+	padding-top: 20px;
+	padding-bottom: 10px;
+}
+
+.navbar-nav {
+	margin: 0;
+}
+
+.nav > li > a > img {
+	width: 50px;
+}

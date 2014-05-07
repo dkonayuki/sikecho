@@ -11,10 +11,55 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <%= link_to "", home_path, class: 'navbar-brand', id: 'logo' %>
+    <%= link_to image_tag("logo.png"), home_path, class: 'navbar-brand', id: 'logo' %>
   </div>
   
-	<!-- User info -->
+  <!-- Menu bar -->
+  <div class="collapse navbar-collapse" id="navbar-collapse-1">
+    <ul class="nav navbar-nav hidden-xs">
+      <li class="<%= 'active' if params[:controller] == 'subjects' %>"><%= link_to '授業', university_faculties_path(current_user.current_university) %></li>
+      <li class="<%= 'active' if params[:controller] == 'notes' %>">
+      	<%= link_to notes_path do %>
+	      	ノート
+	      	<% if Note.unread_by(current_user).count > 0 %>
+	      		<span class="badge badge-important"><%= Note.unread_by(current_user).count %></span>
+	      	<% end %>
+      	<% end %>
+    	</li>
+      <li class="<%= 'active' if params[:controller] == 'users' %>"><%= link_to 'プロフィール', current_user %></li>
+      <li id="log-out"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'visible-xs' %></li>
+    </ul>
+    
+    <ul class="nav navbar-nav visible-xs nav-mobile">
+      <li class="<%= 'active' if params[:controller] == 'subjects' %> col-xs-3"><%= link_to image_tag("lecture.png"), university_faculties_path(current_user.current_university) %></li>
+      <li class="<%= 'active' if params[:controller] == 'notes' %> col-xs-3">
+      	<%= link_to notes_path do %>
+	      	<%= image_tag("note.png") %>
+	      	<% if Note.unread_by(current_user).count > 0 %>
+	      		<span class="badge badge-important"><%= Note.unread_by(current_user).count %></span>
+	      	<% end %>
+      	<% end %>
+    	</li>
+      <li class="<%= 'active' if params[:controller] == 'users' %> col-xs-3"><%= link_to image_tag("user.png"), current_user %></li>
+      <li class="col-xs-3" id="log-out"><%= link_to image_tag("logout.png"), destroy_user_session_path, method: :delete, class: 'visible-xs' %></li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+  
+  <!-- Search bar -->
+  <div class="collapse navbar-collapse" id="navbar-collapse-2">
+	<%= form_tag search_path, class: "navbar-form navbar-left search-bar" do %>
+	  <div class="input-group">
+	    <%= text_field_tag :query, params[:query], class: 'form-control typeahead', placeholder: '検索' %>
+			<div class="input-group-btn">
+				<%= button_tag(type: "submit", class: "btn btn-success") do %>
+				  <i class="glyphicon glyphicon-search"></i>
+				<% end %>
+			</div>
+		</div>	    
+	<% end %>
+  </div><!-- /.navbar-collapse -->
+  
+  <!-- User info -->
 	<div class="collapse navbar-collapse hidden-xs" id="navbar-collapse-3">
 		<ul class="nav navbar-nav navbar-right">
     	<li class="dropdown">
@@ -28,47 +73,5 @@
       </li>
     </ul>
     <%= link_to image_tag("calendar.jpeg", class: 'nav-calendar'), schedule_path, class: "nav navbar-nav navbar-right" %>
-  </div><!-- /.navbar-collapse -->
-  
-  <!-- Menu bar -->
-  <div class="collapse navbar-collapse" id="navbar-collapse-1">
-    <ul class="nav navbar-nav">
-    	<!-- <li class="<%= 'active' if params[:controller] == 'home' %> hidden-sm"><%= link_to 'My Page', home_path %></li> -->
-      <li class="<%= 'active' if params[:controller] == 'subjects' %>"><%= link_to '授業', university_faculties_path(current_user.current_university) %></li>
-      <li class="<%= 'active' if params[:controller] == 'notes' %>">
-      	<%= link_to notes_path do %>
-	      	ノート
-	      	<% if Note.unread_by(current_user).count > 0 %>
-	      		<span class="badge badge-important"><%= Note.unread_by(current_user).count %></span>
-	      	<% end %>
-      	<% end %>
-    	</li>
-      <li class="<%= 'active' if params[:controller] == 'users' %>"><%= link_to 'プロフィール', current_user %></li>
-      <li id="log-out"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'visible-xs' %></li>
-    </ul>
-  	<%= form_tag search_path, class: "navbar-form navbar-left hidden-xs search-bar search-bar-slide" do %>
-  	  <div class="input-group">
-		    <%= text_field_tag :query, params[:query], class: 'form-control typeahead', placeholder: '検索' %>
-				<div class="input-group-btn">
-					<%= button_tag(type: "submit", class: "btn btn-success") do %>
-					  <i class="glyphicon glyphicon-search"></i>
-					<% end %>
-				</div>
-			</div>	    
-		<% end %>
-  </div><!-- /.navbar-collapse -->
-  
-  <!-- Search bar -->
-  <div class="collapse navbar-collapse" id="navbar-collapse-2">
-	<%= form_tag search_path, class: "navbar-form navbar-left visible-xs search-bar" do %>
-	  <div class="input-group">
-	    <%= text_field_tag :query, params[:query], class: 'form-control typeahead', placeholder: '検索' %>
-			<div class="input-group-btn">
-				<%= button_tag(type: "submit", class: "btn btn-success") do %>
-				  <i class="glyphicon glyphicon-search"></i>
-				<% end %>
-			</div>
-		</div>	    
-	<% end %>
   </div><!-- /.navbar-collapse -->
 </nav>
