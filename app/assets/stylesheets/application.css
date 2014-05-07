@@ -137,7 +137,7 @@ body {
 
 .nav-mobile li {
 	display: inline-block !important;
-	padding: 0 !important;
+	padding: 0 0 5px !important;
 }
 
 .nav-mobile {
