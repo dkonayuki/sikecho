@@ -3,7 +3,7 @@
 	<%= image_tag("logo.png", id: 'signin-logo') %>
 	<h4>勉強をラクラクに</h4>
 	</div>
-	<div class="signin-form-wrapper">
+	<div id="signin-form-wrapper">
       <div class="account-wall">
           <%= image_tag('avatar_default.png', class: 'profile-img') %>
         	<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-signin'}) do |f| %>

@@ -146,6 +146,37 @@ body {
 	text-align: center;
 }
 
+/*Sign up page
+ ===============================================================================================*/
+
+#signup-page {
+	background: #fff;
+	padding-bottom: 1000px;
+	margin-bottom: -1000px;
+}
+
+#signup-page h2 {
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 15px;
+}
+
+#signup-form-wrapper {
+	margin: 10px auto 40px;
+	max-width: 300px;
+	background: #f1f1f1;	
+	padding: 20px;
+}
+
+#signup-btn {
+	margin-top: 10px;
+}
+
+#login-btn {
+	margin-right: 20px;
+	margin-top: 10px;
+}
+
 /*Sign in page
  ===============================================================================================*/
 
@@ -169,7 +200,7 @@ body {
 	text-align: center;
 }
 
-.signin-form-wrapper {
+#signin-form-wrapper {
 	margin: 10px auto 40px;
 	max-width: 400px;
 }
