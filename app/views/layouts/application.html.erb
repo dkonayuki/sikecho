@@ -20,10 +20,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<div id="main" class="clear">
+	<div id="wrapper">
 		<%= render 'layouts/navbar' unless @disable_nav %>
-		<%= yield %>
+		<div id="main">
+			<%= yield %>
+		</div>
+		<%= render 'layouts/footer' unless @disable_footer %>
 	</div>
-	<%= render 'layouts/footer' unless @disable_nav %>
 </body>
 </html>

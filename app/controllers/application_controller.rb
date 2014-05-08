@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
     @disable_nav = true
   end
   
+  def disable_footer
+    @disable_footer = true
+  end
+  
   def set_no_cache
     response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
     response.headers["Pragma"] = "no-cache"

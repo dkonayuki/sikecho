@@ -17,8 +17,9 @@ class NotesController < ApplicationController
     end
     
     #process filter if has any
-    if params[:filter].blank? 
-      @notes = @user.notes
+    if params[:filter].blank?
+      #no filter, default: all
+      @notes = @user.current_university.notes
     else
       case params[:filter] 
       when '自分のノート'
@@ -38,7 +39,7 @@ class NotesController < ApplicationController
         @notes = @user.current_university.notes
       else
         #default
-        @notes = @user.notes
+        @notes = @user.current_university.notes
       end
     end
     
