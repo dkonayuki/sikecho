@@ -22,6 +22,9 @@ module Shikechou
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
     config.assets.enabled = true
     config.assets.debug = true
+    
+    #add asset path for favicon
+    config.assets.paths << "#{Rails.root}/app/assets/images/favicon"
     #config.quiet_assets = true
   end
 end

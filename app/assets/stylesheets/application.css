@@ -138,6 +138,11 @@ body {
 .nav-mobile li {
 	display: inline-block !important;
 	padding: 0 0 5px !important;
+	border-right: 1px solid #e7e7e7;
+}
+
+.nav-mobile li:last-child {
+	border: none;
 }
 
 .nav-mobile {
