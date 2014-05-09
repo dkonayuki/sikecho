@@ -4,10 +4,11 @@
 	<h4>勉強をラクラクに</h4>
 	</div>
 	<div id="signin-form-wrapper">
+			 			<%= devise_error_messages! %>
       <div class="account-wall">
           <%= image_tag('avatar_default.png', class: 'profile-img') %>
         	<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-signin'}) do |f| %>
-		
+
 					  <%= f.text_field :login, class: 'form-control', placeholder: 'EmailまたはID', autofocus: true %>
 				    <%= f.password_field :password, placeholder: 'パスワード', autocomplete: "off", class: 'form-control' %>
 					

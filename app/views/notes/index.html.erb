@@ -11,7 +11,14 @@
 	  <li><%= link_to 'すべて', notes_path(filter: 'すべて'), class: 'active' %></li>
 		<li><%= link_to '自分のノート', notes_path(filter: '自分のノート') %></li>
 		<li><%= link_to '授業のノート', notes_path(filter: '授業のノート') %></li>
-	  <li><%= link_to '新着ノート', notes_path(filter: '新着ノート') %></li>
+	  <li>
+	  	<%= link_to notes_path(filter: '新着ノート') do %>
+		  	新着ノート
+	    	<% if user_signed_in? && Note.unread_by(current_user).count > 0 %>
+	    		<span class="badge badge-important"><%= Note.unread_by(current_user).count %></span>
+	    	<% end %>
+	  	<% end %>
+	  </li>
 		</ul>
 	</div>
 	<div id="note-order-option">
