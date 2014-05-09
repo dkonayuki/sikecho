@@ -21,13 +21,12 @@
       <li class="<%= 'active' if params[:controller] == 'notes' %>">
       	<%= link_to notes_path do %>
 	      	ノート
-	      	<% if Note.unread_by(current_user).count > 0 %>
+	      	<% if user_signed_in? && Note.unread_by(current_user).count > 0 %>
 	      		<span class="badge badge-important"><%= Note.unread_by(current_user).count %></span>
 	      	<% end %>
       	<% end %>
     	</li>
       <li class="<%= 'active' if params[:controller] == 'users' %>"><%= link_to 'プロフィール', current_user %></li>
-      <li id="log-out"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'visible-xs' %></li>
     </ul>
     
     <ul class="nav navbar-nav visible-xs nav-mobile">
@@ -35,13 +34,17 @@
       <li class="<%= 'active' if params[:controller] == 'notes' %> col-xs-3">
       	<%= link_to notes_path do %>
 	      	<%= image_tag("note.png") %>
-	      	<% if Note.unread_by(current_user).count > 0 %>
+	      	<% if user_signed_in? && Note.unread_by(current_user).count > 0 %>
 	      		<span class="badge badge-important"><%= Note.unread_by(current_user).count %></span>
 	      	<% end %>
       	<% end %>
     	</li>
       <li class="<%= 'active' if params[:controller] == 'users' %> col-xs-3"><%= link_to image_tag("user.png"), current_user %></li>
-      <li class="col-xs-3" id="log-out"><%= link_to image_tag("logout.png"), destroy_user_session_path, method: :delete, class: 'visible-xs' %></li>
+      <% if user_signed_in? %>
+      <li class="col-xs-3"><%= link_to image_tag("logout.png"), destroy_user_session_path, method: :delete %></li>
+      <% else %>
+      <li class="col-xs-3"><%= link_to image_tag("login.png"), new_user_session_path %></li>
+      <% end %>
     </ul>
   </div><!-- /.navbar-collapse -->
   
@@ -59,6 +62,7 @@
 	<% end %>
   </div><!-- /.navbar-collapse -->
   
+  <% if user_signed_in? %>
   <!-- User info -->
 	<div class="collapse navbar-collapse hidden-xs" id="navbar-collapse-3">
 		<ul class="nav navbar-nav navbar-right">
@@ -74,4 +78,7 @@
     </ul>
     <%= link_to image_tag("calendar.jpeg", class: 'nav-calendar'), schedule_path, class: "nav navbar-nav navbar-right" %>
   </div><!-- /.navbar-collapse -->
+  <% else %>
+  <%= link_to "ログイン", new_user_session_path, class: 'btn btn-sm btn-orange navbar-right hidden-xs', id: 'login-btn' %>
+	<% end %>
 </nav>

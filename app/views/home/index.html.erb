@@ -1,4 +1,6 @@
 <div id="home">
+	
+	<% if user_signed_in? %>
 	<div id="home-schedule" class="col-sm-12 col-md-9">
 		<div class="skc-box skc-box-no-padding skc-box-lg">
 			<div class="skc-box-content">
@@ -41,4 +43,8 @@
 			</div>
 		</div>
 	</div>
+	
+	<% else %>
+  	<%= link_to "ログイン", new_user_session_path, class: 'btn btn-sm btn-orange navbar-right hidden-xs', id: 'login-btn' %>
+	<% end %>
 </div>
