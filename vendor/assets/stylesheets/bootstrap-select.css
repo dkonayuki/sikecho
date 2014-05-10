@@ -4,13 +4,15 @@
  *
  * Copyright 2013 bootstrap-select
  * Licensed under the MIT license
+ * 
+ * Custom: 15
  */
 
 .bootstrap-select.btn-group,
 .bootstrap-select.btn-group[class*="span"] {
     float: none;
     display: inline-block;
-    margin-bottom: 10px;
+    margin-bottom: 0;
     margin-left: 0;
 }
 .form-search .bootstrap-select.btn-group,

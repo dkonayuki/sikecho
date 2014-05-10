@@ -14,8 +14,8 @@
 	  <li>
 	  	<%= link_to notes_path(filter: '新着ノート') do %>
 		  	新着ノート
-	    	<% if user_signed_in? && Note.unread_by(current_user).count > 0 %>
-	    		<span class="badge badge-important"><%= Note.unread_by(current_user).count %></span>
+	    	<% if user_signed_in? && unread_notes_count > 0 %>
+	    		<span class="badge badge-important"><%= unread_notes_count %></span>
 	    	<% end %>
 	  	<% end %>
 	  </li>

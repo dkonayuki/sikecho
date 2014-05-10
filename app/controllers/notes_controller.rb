@@ -112,7 +112,7 @@ class NotesController < ApplicationController
     @subjects = @user.current_university.subjects
     
     #add subjects
-    @note.subjects = Subject.where(id: params[:subjects])
+    @note.subjects = Subject.where(id: params[:note][:subjects])
 
     #add relationship
     @note.user = @user
@@ -155,7 +155,7 @@ class NotesController < ApplicationController
     @subjects = @user.current_university.subjects
 
     #update subjects
-    @note.subjects = Subject.where(id: params[:subjects])
+    @note.subjects = Subject.where(id: params[:note][:subjects])
     
     #update document
     @note.documents = Document.where(id: params[:document_ids])
@@ -189,8 +189,8 @@ class NotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
-      params.permit(:document, :tags, :subjects, :filter, :subject_id, :document_ids, :page, :order)
-      params.require(:note).permit(:title, :content)
+      params.permit(:document, :tags, :filter, :subject_id, :document_ids, :page, :order)
+      params.require(:note).permit(:title, :content, :subjects)
     end
 
 end

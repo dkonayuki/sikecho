@@ -1,16 +1,5 @@
 <div id="subject-edit">
 	<%= form_for(shallow_args(@subject.course, @subject)) do |f| %>
-	  <% if @subject.errors.any? %>
-	    <div id="error_explanation">
-	      <h2><%= pluralize(@subject.errors.count, "error") %> prohibited this subject from being saved:</h2>
-	
-	      <ul>
-	      <% @subject.errors.full_messages.each do |msg| %>
-	        <li><%= msg %></li>
-	      <% end %>
-	      </ul>
-	    </div>
-	  <% end %>
 	  
 	<div class="skc-box skc-box-lg">
 			<div class="skc-box-content">
@@ -19,6 +8,13 @@
 				</div>
 				<div class="skc-box-title">
 	    		<%= f.text_area :name, class: 'form-control', rows: 1, placeholder: '授業名' %>
+	    		<% if @subject.errors[:name] %>
+	    			<ul>
+			      <% @subject.errors.full_messages_for(:name).each do |msg| %>
+			        <li class="error-msg"><%= msg %></li>
+			      <% end %>
+			      </ul>
+	    		<% end %>
 					<hr />
 		    </div>
 				<div class="skc-box-desc">
@@ -41,6 +37,13 @@
 						<% else %>
 						<%= f.select :uni_year_id	, options_from_collection_for_select(@uni_years,"id","name"), {include_blank: true}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
 						<% end %>
+		    		<% if @subject.errors[:uni_year_id] %>
+		    			<ul>
+				      <% @subject.errors.full_messages_for(:uni_year_id).each do |msg| %>
+				        <li class="error-msg"><%= msg %></li>
+				      <% end %>
+				      </ul>
+		    		<% end %>
 						<br/>
 						<strong>学期:</strong>
 						<% if @subject.semester %>
@@ -48,6 +51,13 @@
 						<% else %>
 						<%= f.select :semester_id, options_from_collection_for_select(@semesters,"id","name"), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
 						<% end %>
+		    		<% if @subject.errors[:semester_id] %>
+		    			<ul>
+				      <% @subject.errors.full_messages_for(:semester_id).each do |msg| %>
+				        <li class="error-msg"><%= msg %></li>
+				      <% end %>
+				      </ul>
+		    		<% end %>
 					</p>
 					<p>
 						<strong>年度:</strong>

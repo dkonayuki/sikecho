@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include ApplicationHelper
   include ScheduleHelper
+  include NotesHelper
   
   def disable_nav
     @disable_nav = true

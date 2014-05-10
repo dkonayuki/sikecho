@@ -1078,6 +1078,17 @@ body {
 /* Flash messages
  ***************************************************************************/
 
+.error-msg {
+	margin: .5em 0;
+	display: block;
+	color: #dd4b39;
+	line-height: 17px;
+}
+
+.form-error {
+  border: 1px solid #dd4b39 !important;
+}
+
 .alert-error {
     background-color: #f2dede;
     border-color: #eed3d7;

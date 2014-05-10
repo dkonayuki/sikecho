@@ -1,24 +1,19 @@
 <div id="note-edit">
 	<%= form_for @note, html: { multipart: true, id: 'note-form'} do |f| %>
-	  <% if @note.errors.any? %>
-	    <div id="error_explanation">
-	      <h2><%= pluralize(@note.errors.count, "error") %> prohibited this note from being saved:</h2>
-	
-	      <ul>
-	      <% @note.errors.full_messages.each do |msg| %>
-	        <li><%= msg %></li>
-	      <% end %>
-	      </ul>
-	    </div>
-	  <% end %>
-	  
 	<div class="skc-box skc-box-lg">
 		<div class="skc-box-content">
 			<div class="skc-box-thumbnail">
 				<%= image_tag("note.png")  %>
 			</div>
 			<div class="skc-box-desc">
-				<h4><%= f.text_area :title, class: 'form-control', rows: 1, placeholder: 'タイトル' %></h4>
+				<%= f.text_area :title, class: 'form-control', rows: 1, placeholder: 'タイトル' %>
+    		<% if @note.errors[:title] %>
+    			<ul>
+		      <% @note.errors.full_messages_for(:title).each do |msg| %>
+		        <li class="error-msg"><%= msg %></li>
+		      <% end %>
+		      </ul>
+    		<% end %>
 				<hr />
 				<p>
 					<strong>内容:</strong>
@@ -27,10 +22,17 @@
 				<p>
 					<strong>科目:</strong>
 					<% if @note.subjects %>
-						<%= select_tag :subjects, options_for_select(@subjects.map { |s| ["#{s.name}-#{s.year}", s.id]}, selected: @note.subjects.map { |s| s.id } ), class: 'form-control selectpicker show-tick', multiple: true, title: '' %>
+						<%= f.select :subjects, options_for_select(@subjects.map { |s| ["#{s.name}-#{s.year}", s.id]}, selected: @note.subjects.map { |s| s.id } ), {}, {class: 'form-control selectpicker show-tick', multiple: true, title: '', data: {width: '100%'}} %>
 					<% else %>
-			  		<%= select_tag :subjects, options_from_collection_for_select(@subjects,"id","name"), class: 'form-control selectpicker show-tick', multiple: true, title: '' %>
+			  		<%= f.select :subjects, options_from_collection_for_select(@subjects,"id","name"), {}, {class: 'form-control selectpicker show-tick', multiple: true, title: '', data: {width: '100%'}} %>
 					<% end %>
+	    		<% if @note.errors[:subjects] %>
+	    			<ul>
+			      <% @note.errors.full_messages_for(:subjects).each do |msg| %>
+			        <li class="error-msg"><%= msg %></li>
+			      <% end %>
+			      </ul>
+	    		<% end %>
 				</p>
 				<hr />
 				<p>
