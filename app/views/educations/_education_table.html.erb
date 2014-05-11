@@ -68,8 +68,24 @@
 					<%= link_to new_user_education_path(@user), {class: 'btn btn-default education-popup'} do %>
 					<span class="glyphicon glyphicon-plus"></span>追加
 					<% end %>
+					<%= link_to new_auto_user_educations_path(@user), {class: 'btn btn-default education-auto'} do %>
+					<span class="glyphicon glyphicon-plus"></span>自動追加
+					<% end %>
 				<% end %>
+				
 <script>
+$(document).ready(function(){
+	//auto generate new education base on the last education's infomations
+	$(".education-auto").on("click", function() {
+		$.ajax({
+			url: $(this).attr("href"),
+			dataType: "script",
+			type: "post"
+		});
+		return false;
+	});
+	
+	//delete education
 	$(".education-delete").on("click", function() {
 		// delete button: id of education -> data-id
 		// select tag: id of education -> value
@@ -82,8 +98,8 @@
 			
 			//get new education if user delete the current education
 			if (currentEducation.attr("value") == $(this).attr("data-id")) {
-				//new education will be the first education that is not the current education
-				newCurrentEducation = $("input[name='current'][value!=" + $(this).attr("data-id") + "]:first");
+				//new education will be the last education that is not the current education
+				newCurrentEducation = $("input[name='current'][value!=" + $(this).attr("data-id") + "]:last");
 				data = "new_education_id=" + newCurrentEducation.attr('value');
 			}
 			$.ajax({
@@ -220,5 +236,6 @@
 				$('#education_uni_year_id').on("change", change_uni_year);
 		  }
 		}
-	});
+	});	
+});
 </script>

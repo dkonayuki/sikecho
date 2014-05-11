@@ -41,7 +41,9 @@ Shikechou::Application.routes.draw do
   patch 'documents' => 'documents#create'
 
   resources :users do
-    resources :educations
+    resources :educations do
+      post '/new_auto' => 'educations#new_auto', on: :collection
+    end
   end
   
   controller :schedule do

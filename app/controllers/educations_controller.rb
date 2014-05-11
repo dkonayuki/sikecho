@@ -21,6 +21,35 @@ class EducationsController < ApplicationController
     prepare_view_content
   end
   
+  def new_auto
+    @education = @user.settings(:education).current.dup
+    
+    #increase year by 1
+    @education.year += 1
+    
+    #increase semester only semester exists
+    if @education.semester
+      semester = Semester.find_by_no(@education.semester.no + 1)
+      if semester 
+        @education.semester = semester
+      else
+        #increase uni_year if necessary
+        uni_year = UniYear.find_by_no(@education.uni_year.no + 1)
+        if uni_year
+          @education.uni_year = uni_year
+          @education.semester = uni_year.semesters.find_by_no(1)
+        end
+      end
+    end
+    
+    @education.save
+    @isEditable = true
+    
+    respond_to do |format|
+      format.js
+    end
+  end
+  
   # GET /educations/1/edit
   def edit
     prepare_view_content
