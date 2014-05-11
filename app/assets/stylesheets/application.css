@@ -79,13 +79,17 @@ body {
 	color: #262626 !important;
 }
 
-
-.search-bar-slide {
-	width: 245px !important;
-}
-
 #navbar-search {
 	padding: 7px 15px !important;
+}
+
+.search-bar {
+	width: auto;
+}
+@media (min-width: 768px) {
+	.search-bar {
+		width: 230px !important;
+	}
 }
 
 #navbar-menu {
