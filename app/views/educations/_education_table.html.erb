@@ -2,21 +2,23 @@
 			    <thead>
 			      <tr>
 			        <% if @isEditable %>
-			        <th class="col-sm-2">年度</th>
+			        <th class="col-sm-1">年度</th>
+			        <th class="col-sm-1">学年</th>
+			        <th class="col-sm-1">学期</th>
+			        <th class="col-sm-1">学校</th>
+			        <th class="col-sm-2">学部・研究科</th>
+			        <th class="col-sm-2">学科・コース</th>
+			        <th class="col-sm-2">授業数</th>
+			        <th class="col-sm-1"></th>
+			        <th class="col-sm-1"></th>
+			        <% else %>
+			        <th class="col-sm-1">年度</th>
 			        <th class="col-sm-1">学年</th>
 			        <th class="col-sm-1">学期</th>
 			        <th class="col-sm-2">学校</th>
 			        <th class="col-sm-2">学部・研究科</th>
 			        <th class="col-sm-2">学科・コース</th>
-			        <th class="col-sm-1"></th>
-			        <th class="col-sm-1"></th>
-			        <% else %>
-			        <th class="col-sm-2">年度</th>
-			        <th class="col-sm-1">学年</th>
-			        <th class="col-sm-1">学期</th>
-			        <th class="col-sm-3">学校</th>
-			        <th class="col-sm-2">学部・研究科</th>
-			        <th class="col-sm-2">学科・コース</th>
+			        <th class="col-sm-2">授業数</th>
 			        <th class="col-sm-1"></th>
 			        <% end %>
 			      </tr>
@@ -32,6 +34,7 @@
 			        <td><%= education.university.name unless education.university.blank? %></td>
 			        <td><%= education.faculty.name unless education.faculty.blank? %></td>
 			        <td><%= education.course.name unless education.course.blank? %></td>
+			        <td><%= education.subjects.count %></td>
 			        <% if @isEditable %>
 			        <td>
 			        	<% if @user.settings(:education).current == education %>
@@ -45,7 +48,7 @@
       						<span class="glyphicon glyphicon-pencil"></span>
     						<% end %>
     						<% if @user.educations.count > 1 %>
-				        	<%= link_to [@user, education], method: :delete, data: { confirm: 'Are you sure?' }, remote: true do %>
+				        	<%= link_to [@user, education], method: :delete, class: 'education-delete', data: {id: education.id} do %>
 	      						<span class="glyphicon glyphicon-remove"></span>
 				        	<% end %>
 			        	<% end %>
@@ -67,6 +70,38 @@
 					<% end %>
 				<% end %>
 <script>
+	$(".education-delete").on("click", function() {
+		// delete button: id of education -> data-id
+		// select tag: id of education -> value
+		
+		var answer = confirm("Are you sure?");
+		if (answer) {
+			var data;
+			var currentEducation = $("input[name='current'][checked='checked']");
+			var newCurrentEducation;
+			
+			//get new education if user delete the current education
+			if (currentEducation.attr("value") == $(this).attr("data-id")) {
+				//new education will be the first education that is not the current education
+				newCurrentEducation = $("input[name='current'][value!=" + $(this).attr("data-id") + "]:first");
+				data = "new_education_id=" + newCurrentEducation.attr('value');
+			}
+			$.ajax({
+				url: $(this).attr("href"),
+				dataType: "script",
+				data: data,
+				type: $(this).attr("data-method"),
+				success: function() {
+					if (newCurrentEducation) {
+						//set the new Education checked
+						newCurrentEducation.attr('checked', true);
+					}
+				}
+			});				
+		}
+		return false;
+	});
+
 	/*For ajax education popup in profile*/	
   $('.education-popup').magnificPopup({
 	  type: 'ajax',

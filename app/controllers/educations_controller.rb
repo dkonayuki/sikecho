@@ -67,6 +67,11 @@ class EducationsController < ApplicationController
     @education.destroy
     @isEditable = true
     
+    if !params[:new_education_id].blank?
+      @user.settings(:education).current = Education.find(params[:new_education_id].to_i)
+      @user.save!
+    end
+    
     respond_to do |format|
       format.html
       format.js
@@ -86,7 +91,7 @@ class EducationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def education_params
-      params.permit(:user_id, :university_id, :faculty_id)
+      params.permit(:user_id, :university_id, :faculty_id, :new_education_id)
       params.require(:education).permit(:uni_year_id, :semester_id, :year, :university_id, :faculty_id, :course_id, :user_id)
     end
 end
