@@ -4,7 +4,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
   
   after_action :create_first_education, only: [:create]
-  after_action :after_update, only: [:update]
 
   #override new action: sign up
   def new
@@ -28,14 +27,26 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #override update action
   def update
     @isEditable = true
-    super
-  end
-  
-  def after_update
-    if resource.persisted? # user is created successfuly
+    self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
+    prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
+
+    resource_updated = update_resource(resource, account_update_params)
+    yield resource if block_given?
+    if resource_updated
+      if is_flashing_format?
+        flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
+          :update_needs_confirmation : :updated
+        set_flash_message :notice, flash_key
+      end
       #update current education
       resource.settings(:education).current = Education.find(params[:current])
       resource.save!
+      
+      sign_in resource_name, resource, bypass: true
+      respond_with resource, location: after_update_path_for(resource)
+    else
+      clean_up_passwords resource
+      respond_with resource
     end
   end
   

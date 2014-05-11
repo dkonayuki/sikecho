@@ -49,16 +49,11 @@
 					<hr />
 					
 					<p>
-						<strong>パスワード:</strong>
-						<%= f.password_field :password, class: 'form-control form-control-inline', autocomplete: "off" %>
-					</p>
-					<p>
-						<strong>パスワード確認:</strong>
-						<%= f.password_field :password_confirmation, class: 'form-control form-control-inline', autocomplete: "off" %>
-					</p>
-					<p>
 						<strong>現在のパスワード:</strong>
 						<%= f.password_field :current_password, class: 'form-control form-control-inline', autocomplete: "off" %>
+						<a data-toggle="collapse" href="#collapsePassword">
+			        <span class="glyphicon glyphicon-lock"></span>
+			      </a>
 		    		<% if resource.errors[:current_password] %>
 		    			<ul>
 				      <% resource.errors.full_messages_for(:current_password).each do |msg| %>
@@ -67,7 +62,33 @@
 				      </ul>
 		    		<% end %>
 					</p>
-					<hr />
+				
+					<div class="collapse out" id="collapsePassword">
+						<p>
+							<strong>パスワード:</strong>
+							<%= f.password_field :password, class: 'form-control form-control-inline', autocomplete: "off" %>
+							<% if resource.errors[:password] %>
+			    			<ul>
+					      <% resource.errors.full_messages_for(:password).each do |msg| %>
+					        <li class="error-msg"><%= msg %></li>
+					      <% end %>
+					      </ul>
+			    		<% end %>
+						</p>
+						<p>
+							<strong>パスワード確認:</strong>
+							<%= f.password_field :password_confirmation, class: 'form-control form-control-inline', autocomplete: "off" %>
+							<% if resource.errors[:password_confirmation] %>
+			    			<ul>
+					      <% resource.errors.full_messages_for(:password_confirmation).each do |msg| %>
+					        <li class="error-msg"><%= msg %></li>
+					      <% end %>
+					      </ul>
+			    		<% end %>
+						</p>
+					</div>
+			
+				<hr />
 				</div>
 				<%= f.submit '登録', class: 'btn btn-success col-sm-2 col-sm-offset-5 col-xs-12 col-xs-offset-0'%>
 				<br />
