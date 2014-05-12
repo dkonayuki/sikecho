@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, authentication_keys: [:login]
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook], authentication_keys: [:login]
          
   validates :username, presence: true, length: 4..10, on: :create, uniqueness: { case_sensitive: false }
   
@@ -92,6 +92,39 @@ class User < ActiveRecord::Base
   
   def current_subjects
     Education.find(self.settings(:education).current).subjects
+  end
+  
+  # sign in
+  # find existed user, if not, create a new user
+  def self.find_for_facebook_oauth(auth)
+    where(auth.slice(:provider, :uid)).first_or_create do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+    end
+  end
+  
+  # add info from facebook session for new user b4 sign up
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["devise.facebook_data"]
+        user.email = data.info["email"] if user.email.blank?
+        user.username = data.info["name"] if user.username.blank?
+        user.uid = data["uid"]
+        user.provider = data["provider"]
+        if data.info["image"]
+          avatar_url = process_uri(data.info["image"])
+          user.avatar = avatar_url
+        end
+      end
+    end
+  end
+  
+  def self.process_uri(uri)
+    avatar_url = URI.parse(uri)
+    avatar_url.scheme = 'https'
+    avatar_url.to_s
   end
   
 end

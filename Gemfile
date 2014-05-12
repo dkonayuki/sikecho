@@ -89,3 +89,4 @@ gem 'autosize-rails'
 gem 'unicorn', '~> 4.8.2'
 
 gem 'devise'
+gem 'omniauth-facebook'
