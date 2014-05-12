@@ -184,6 +184,11 @@ body {
 /*Sign in page
  ===============================================================================================*/
 
+.fb-logo{
+	width: 40px;
+	margin-top: 10px;
+}
+
 #signin-logo {
 	width: 200px;
 	display: block;
