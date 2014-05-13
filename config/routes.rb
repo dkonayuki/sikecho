@@ -6,13 +6,13 @@ Shikechou::Application.routes.draw do
     path_names: {sign_in: 'login', sign_out: 'logout'}
   resources :teachers
 
-  resources :universities, shallow: true do
-    resources :faculties do
-      resources :courses do
-        resources :subjects do 
-          put 'inline' => 'subjects#inline', on: :member # on: :member will take :id not :subject_id, and path as inline_subject_path
-          get 'version/:version_id' => 'subjects#version', as: 'version', on: :member  # remember on: :collection
-        end
+  resources :universities
+  
+  resources :faculties, shallow: true do
+    resources :courses do
+      resources :subjects do 
+        put 'inline' => 'subjects#inline', on: :member # on: :member will take :id not :subject_id, and path as inline_subject_path
+        get 'version/:version_id' => 'subjects#version', as: 'version', on: :member  # remember on: :collection
       end
     end
   end
@@ -58,6 +58,7 @@ Shikechou::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+  get '', to: 'home#index', constraints: {subdomain: /.+/}
   root 'home#index'
 
   # Example of regular route:

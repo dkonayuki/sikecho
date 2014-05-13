@@ -35,4 +35,10 @@ module ApplicationHelper
   def shallow_args(parent, child)
     child.try(:new_record?) ? [parent, child] : child
   end
+  
+  # get subdomain as current university
+  def current_university
+    University.find_by_codename(request.subdomain)
+  end
+  
 end

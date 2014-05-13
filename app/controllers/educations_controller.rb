@@ -22,10 +22,10 @@ class EducationsController < ApplicationController
   end
   
   def new_auto
-    @education = @user.settings(:education).current.dup
+    @education = @user.current_education.dup
     
     #increase year by 1
-    @education.year += 1
+    @education.year += 1 if @education.year
     
     #increase semester only semester exists
     if @education.semester
@@ -97,7 +97,7 @@ class EducationsController < ApplicationController
     @isEditable = true
     
     if !params[:new_education_id].blank?
-      @user.settings(:education).current = Education.find(params[:new_education_id].to_i)
+      @user.current_education = Education.find(params[:new_education_id].to_i)
       @user.save!
     end
     

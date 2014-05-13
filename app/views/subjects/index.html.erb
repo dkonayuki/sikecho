@@ -113,7 +113,7 @@
 								<!--subject index page content goes here-->
 									<div id="subject-view-menu">
 										<div id="path-info">
-											<%= link_to @course.faculty.university.name, university_faculties_path(@course.faculty.university) %>
+											<%= link_to @course.faculty.university.name, faculties_path(@course.faculty.university) %>
 											<%= link_to @course.faculty.name, @course.faculty %>
 											<span><%= @course.name %></span>
 										</div>

@@ -8,6 +8,7 @@ class CreateEducations < ActiveRecord::Migration
       t.string :faculty_id
       t.integer :course_id
       t.integer :user_id
+      t.integer :current_user_id
 
       t.timestamps
     end

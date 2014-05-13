@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :set_no_cache
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
   
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -65,6 +65,18 @@ class ApplicationController < ActionController::Base
     respond_to do |format|
       format.json { render json: @semesters }
     end
+  end
+  
+  # redirect after sign in
+  def after_sign_in_path_for(resource)
+    #remember to use url for changing subdomain
+    root_url(subdomain: resource.current_education.university.codename)
+  end
+  
+  # Overwriting the sign_out redirect path method
+  def after_sign_out_path_for(resource_or_scope)
+    #remember to use url for changing subdomain
+    root_url
   end
 
   private :disable_nav

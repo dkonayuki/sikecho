@@ -20,13 +20,14 @@ class User < ActiveRecord::Base
   has_many :notes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :educations, dependent: :destroy
+  
+  has_one :current_education, class_name: 'Education', foreign_key: "current_user_id"
 
   acts_as_reader
   
   has_settings do |s|
     s.key :note, defaults: { order: :time }
     s.key :subject, defaults: { style: :all }
-    s.key :education
   end
   
   has_attached_file :avatar, styles: {thumbnail: ["60x60#", :jpg], small: ["150x150>", :jpg]}, #force type
@@ -74,24 +75,20 @@ class User < ActiveRecord::Base
     end
   end
   
-  def current_education
-    
-  end
-  
   def current_university
-    Education.find(self.settings(:education).current).university
+    self.current_education.university
   end
   
   def current_faculty
-    Education.find(self.settings(:education).current).faculty    
+    self.current_education.faculty    
   end
   
   def current_course
-    Education.find(self.settings(:education).current).course
+    self.current_education.course
   end
   
   def current_subjects
-    Education.find(self.settings(:education).current).subjects
+    self.current_education.subjects
   end
   
   # sign in

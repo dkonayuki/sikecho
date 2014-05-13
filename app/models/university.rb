@@ -4,6 +4,13 @@ class University < ActiveRecord::Base
   has_many :uni_years
   has_many :educations
   
+  has_attached_file :picture, styles: {thumbnail: "60x60#", small: "150x150>"}, 
+                              #local config
+                              url: "/uploads/universities/:id/picture/:style/:basename.:extension",
+                              path: ":rails_root/public/:url" #dont really need path
+                              
+  validates_attachment_content_type :picture, content_type: ["image/jpg", "image/gif", "image/png", "image/jpeg"]
+  
   def courses
     Course.where('faculty_id IN (?)', faculty_ids)
   end

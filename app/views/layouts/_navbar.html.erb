@@ -17,8 +17,8 @@
   <!-- Menu bar -->
   <div class="collapse navbar-collapse" id="navbar-collapse-1">
     <ul class="nav navbar-nav hidden-xs">
-      <li class="<%= 'active' if params[:controller] == 'subjects' %>"><%= link_to '授業', university_faculties_path(current_user.current_university) %></li>
-      <li class="<%= 'active' if params[:controller] == 'notes' %>">
+      <li class="<%= 'active' if params[:controller] == 'subjects' %>"><%= link_to '授業', faculties_path %></li>
+      <li class="<%= 'active' if params[:controller] == 'notes' %> <%= 'disabled' if !user_signed_in? %>">
       	<%= link_to notes_path do %>
 	      	ノート
 	      	<% if user_signed_in? && unread_notes_count > 0 %>
@@ -26,12 +26,12 @@
 	      	<% end %>
       	<% end %>
     	</li>
-      <li class="<%= 'active' if params[:controller] == 'users' %>"><%= link_to 'プロフィール', current_user %></li>
+      <li class="<%= 'active' if params[:controller] == 'users' %> <%= 'disabled' if !user_signed_in? %>"><%= link_to 'プロフィール', current_user %></li>
     </ul>
     
     <ul class="nav navbar-nav visible-xs nav-mobile">
-      <li class="<%= 'active' if params[:controller] == 'subjects' %> col-xs-3"><%= link_to image_tag("lecture.png"), university_faculties_path(current_user.current_university) %></li>
-      <li class="<%= 'active' if params[:controller] == 'notes' %> col-xs-3">
+      <li class="<%= 'active' if params[:controller] == 'subjects' %> col-xs-3"><%= link_to image_tag("lecture.png"), faculties_path %></li>
+      <li class="<%= 'active' if params[:controller] == 'notes' %> col-xs-3 <%= 'disabled' if !user_signed_in? %>">
       	<%= link_to notes_path do %>
 	      	<%= image_tag("note.png") %>
 	      	<% if user_signed_in? && unread_notes_count > 0 %>
@@ -39,7 +39,7 @@
 	      	<% end %>
       	<% end %>
     	</li>
-      <li class="<%= 'active' if params[:controller] == 'users' %> col-xs-3"><%= link_to image_tag("user.png"), current_user %></li>
+      <li class="<%= 'active' if params[:controller] == 'users' %> col-xs-3 <%= 'disabled' if !user_signed_in? %>"><%= link_to image_tag("user.png"), current_user %></li>
       <% if user_signed_in? %>
       <li class="col-xs-3"><%= link_to image_tag("logout.png"), destroy_user_session_path, method: :delete %></li>
       <% else %>
@@ -72,7 +72,7 @@
 					<li><%= link_to 'プロフィール', current_user %></li>
 					<li><%= link_to 'スケジュール', schedule_path %></li>           
 					<li class="divider"></li>
-    			<li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete%></li>
+    			<li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
         </ul>
       </li>
     </ul>

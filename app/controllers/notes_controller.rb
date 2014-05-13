@@ -137,7 +137,7 @@ class NotesController < ApplicationController
   def edit
     @user = current_user
     @subjects = @user.current_university.subjects
-    @note = Note.find( params[:id] )    
+    @note = Note.find(params[:id])
     @tags = @note.tag_list
   end
 

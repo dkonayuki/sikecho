@@ -3,8 +3,8 @@ class SearchController < ApplicationController
     @user = current_user
     
     #search subjects and notes
-    @subjects = @user.current_university.subjects.search(params[:query])
-    @notes = @user.current_university.notes.search(params[:query])
+    @subjects = current_university.subjects.search(params[:query])
+    @notes = current_university.notes.search(params[:query])
     
     #prepare instance variable for view
     @type = params[:type]
@@ -16,7 +16,7 @@ class SearchController < ApplicationController
     
     respond_to do |format|
       format.html 
-      format.js   
+      format.js
     end
   end
 end

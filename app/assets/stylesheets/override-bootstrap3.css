@@ -112,3 +112,8 @@
 .nav > li > a > img {
 	width: 30px;
 }
+
+.disabled {
+  pointer-events: none;
+	cursor: default;
+}

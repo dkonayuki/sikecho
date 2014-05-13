@@ -37,7 +37,7 @@
 			        <td><%= education.subjects.count %></td>
 			        <% if @isEditable %>
 			        <td>
-			        	<% if @user.settings(:education).current == education %>
+			        	<% if @user.current_education == education %>
 			        		<%= radio_button_tag 'current', education.id, true %>
 			        	<% else %>
 			        		<%= radio_button_tag 'current', education.id %>
@@ -55,7 +55,7 @@
 			        </td>
 			        <% else %>
 			        <td>
-			        	<% if @user.settings(:education).current == education %>
+			        	<% if @user.current_education == education %>
 			        	●
 			        	<% end %>
 			        </td>

@@ -29,11 +29,10 @@ class ScheduleController < ApplicationController
   # POST /schedule/:subject
   def create
     @user = current_user
-    education = Education.find(@user.settings(:education).current)
 
     #add new subject
     subject = Subject.find_by_id(params[:subject].to_i)
-    education.periods << subject.periods.to_a
+    @user.current_education.periods << subject.periods.to_a
     #need to fix @user.subjects << subject unless @user.subjects.include?(subject)
         
     #prepare view
@@ -54,10 +53,9 @@ class ScheduleController < ApplicationController
   # DELETE /schedule/:subject
   def destroy
     @user = current_user
-    education = Education.find(@user.settings(:education).current)
     
     #delete subject user relationship
-    education.periods.delete(Subject.find_by_id(params[:subject].to_i).periods)
+    @user.current_education.periods.delete(Subject.find_by_id(params[:subject].to_i).periods)
     
     #prepare view
     get_schedule_content

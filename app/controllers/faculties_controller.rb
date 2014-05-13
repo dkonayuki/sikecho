@@ -69,12 +69,13 @@ class FacultiesController < ApplicationController
     end
     
     def set_university
-      @university = University.find(params[:university_id])
+      #@university = University.find(params[:university_id])
+      @university = current_university
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def faculty_params
-      params.permit(:university_id)
+      #params.permit(:university_id)
       params.require(:faculty).permit(:name, :website)
     end
 end

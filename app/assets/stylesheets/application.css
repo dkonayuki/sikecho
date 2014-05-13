@@ -72,13 +72,6 @@ body {
 	margin-bottom: 0;
 }
 
-#nav-bar .nav > li > a:hover, #nav-bar .nav > li > a:focus {
-  -webkit-transition: border-color .218s;
-	transition: border-color .218s;
-	border-color: #427fed !important;
-	color: #262626 !important;
-}
-
 #navbar-search {
 	padding: 7px 15px !important;
 }

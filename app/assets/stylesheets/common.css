@@ -330,6 +330,7 @@ a:hover {
 	background-repeat: no-repeat;
 }
 
+/*google style checkbox */
 input[type=checkbox] {
 	-webkit-appearance: none;
 	display: inline-block;
@@ -358,3 +359,4 @@ input[type=checkbox]:checked::after {
 input[type=checkbox]:focus {
   outline: none;
 }
+
