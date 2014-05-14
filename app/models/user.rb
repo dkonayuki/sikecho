@@ -36,7 +36,8 @@ class User < ActiveRecord::Base
                               path: ":rails_root/public/:url" #dont really need path
                               
   validates_attachment_content_type :avatar, content_type: ["image/jpg", "image/gif", "image/png", "image/jpeg"]
-  
+  validates_attachment_size :avatar, in: 0..2.megabytes
+
   #override for login with username - email
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup

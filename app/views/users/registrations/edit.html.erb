@@ -28,6 +28,13 @@
 				    	</span>
 					    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
 					  </div>
+					  <% if resource.errors[:avatar] %>
+		    			<ul>
+				      <% resource.errors.full_messages_for(:avatar).each do |msg| %>
+				        <li class="error-msg"><%= msg %></li>
+				      <% end %>
+				      </ul>
+		    		<% end %>
 					</div>
 					<hr />
 					<p>
