@@ -113,7 +113,8 @@ class User < ActiveRecord::Base
         if data.info["image"]
           #get avatar from fb
           avatar_url = process_uri(data.info["image"])
-          user.avatar = avatar_url
+          #new open() for Spoof File Checks issue
+          user.avatar = open(avatar_url)
         end
       end
     end
