@@ -171,7 +171,7 @@ $(document).ready(function(){
 							data:'university_id=' + university_id,
 							dataType: "json",
 							success: function(data) {
-								//add new data to faculty select
+								//add new data to uni_year select
 								$('#education_uni_year_id').append("<option value=''></option>");
 								$.each(data, function(key, value) {   
 							    $('#education_uni_year_id')
@@ -217,8 +217,7 @@ $(document).ready(function(){
 							data:'uni_year_id=' + uni_year_id,
 							dataType: "json",
 							success: function(data) {
-								//add new data to faculty select
-								$('#education_semester_id').append("<option value=''></option>");
+								//add new data to semester select
 								$.each(data, function(key, value) {   
 							    $('#education_semester_id')
 					          .append($("<option></option>")

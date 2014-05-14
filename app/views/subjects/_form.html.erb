@@ -44,7 +44,6 @@
 				      <% end %>
 				      </ul>
 		    		<% end %>
-						<br/>
 						<strong>学期:</strong>
 						<% if @subject.semester %>
 						<%= f.select :semester_id, options_from_collection_for_select(@semesters,"id","name",selected: @subject.semester.id), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
@@ -130,8 +129,7 @@ $(document).ready(function() {
 				success: function(data) {
 					//clear old select
 					$('#subject_semester_id').empty();
-					//add new data to faculty select
-					$('#subject_semester_id').append("<option value=''></option>");
+					//add new data to semester select
 					$.each(data, function(key, value) {   
 				    $('#subject_semester_id')
 		          .append($("<option></option>")
