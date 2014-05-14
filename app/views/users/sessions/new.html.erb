@@ -10,7 +10,7 @@
 
 					  <%= f.text_field :login, class: 'form-control', placeholder: 'EmailまたはID', autofocus: true %>
 				    <%= f.password_field :password, placeholder: 'パスワード', autocomplete: "off", class: 'form-control' %>
-				    <% if !flash.empty? %>
+				    <% if flash[:alert] %>
 				      <ul>
 				  			<% flash.each do |name, msg| %>
 					        <li class="error-msg"><%= msg %></li>

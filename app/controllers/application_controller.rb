@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :set_no_cache
+  before_action :set_subdomain
   #before_action :authenticate_user!
   
   # Prevent CSRF attacks by raising an exception.
@@ -76,7 +77,14 @@ class ApplicationController < ActionController::Base
   # Overwriting the sign_out redirect path method
   def after_sign_out_path_for(resource_or_scope)
     #remember to use url for changing subdomain
-    root_url
+    root_url(subdomain: nil)
+  end
+  
+  # Always use the appropriate subdomain for user
+  def set_subdomain
+    if user_signed_in? && current_user.current_university != current_university
+      redirect_to subdomain: current_user.current_university.codename
+    end
   end
 
   private :disable_nav

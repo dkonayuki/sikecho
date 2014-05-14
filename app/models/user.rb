@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook], authentication_keys: [:login]
          
-  validates :username, presence: true, length: 4..10, on: :create, uniqueness: { case_sensitive: false }
+  validates :username, presence: true, length: 4..16, on: :create, uniqueness: { case_sensitive: false }
   
   #validates :email, presence: true, uniqueness: true, format: /@/
   #validates :password_confirmation, presence: true, on: :create
@@ -111,6 +111,7 @@ class User < ActiveRecord::Base
         user.uid = data["uid"]
         user.provider = data["provider"]
         if data.info["image"]
+          #get avatar from fb
           avatar_url = process_uri(data.info["image"])
           user.avatar = avatar_url
         end

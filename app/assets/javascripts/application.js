@@ -244,19 +244,6 @@ $(document).on("page:change", function() {
 		  dataType: "script"
 		});  
  	});
-
-	/*For search bar slide*/
-  $(".search-bar-slide input").focus(function() {
-  	$(this).animate({
-  		width : "+=70px"		
-  	}, 200);
-  });
-  
-  $(".search-bar-slide input").focusout(function() {
-  	$(this).animate({
-  		width : "-=70px"		
-  	}, 200);
-  });
   
   /*For search bar submit*/
   $(".search-bar").on("submit", function(){
