@@ -1,6 +1,8 @@
 class SubjectsController < ApplicationController
   before_action :set_subject, only: [:show, :edit, :update, :destroy, :inline, :version]
   before_action :set_course, only: [:index, :new, :create]
+  
+  # monitor view count
   impressionist actions: [:show]
 
   include SubjectsHelper
@@ -8,8 +10,6 @@ class SubjectsController < ApplicationController
   # GET /subjects
   # GET /subjects.json
   def index
-    @user = current_user
-    
     #custom show
     @show_semester = true
     
@@ -36,7 +36,9 @@ class SubjectsController < ApplicationController
       end
     end
     
+    @user = current_user
     if @user
+      #update settings style for subject
       if !params[:style].blank?
         @user.settings(:subject).style = params[:style].to_sym
         @user.save
@@ -69,7 +71,10 @@ class SubjectsController < ApplicationController
   # GET /subjects/1
   # GET /subjects/1.json
   def show
+    # need current_user's infos for schedule_menu
     @user = current_user
+    
+    @tags = @subject.tag_list
     
     if !params[:tag].blank?
       #filter in show subject page
@@ -83,7 +88,7 @@ class SubjectsController < ApplicationController
     
     # custom show
     @show_subject = false
-    @show_course = true 
+    @show_course = true
     
     # same subjects, need to change later
     @same_subjects = @subject.course.subjects.where(name: @subject.name).order('year DESC')

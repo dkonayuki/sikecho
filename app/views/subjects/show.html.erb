@@ -66,6 +66,7 @@
 	        <h4><%= @subject.name %></h4>
 	      </a>
 	    </div>
+			
 			<div class="skc-box-desc collapse in" id="collapseDescription">
 				<p>
 					<%= sanitize(@subject.description) %>
@@ -140,9 +141,18 @@
 			      <% end %>
 			    </tbody>
 			  </table>
+			</div><!-- end of box-desc -->
+			
+			<% if user_signed_in? %>
+			<div class="skc-box-menu">
+				<%= link_to edit_subject_path(@subject.id) do %>
+					<span class="glyphicon glyphicon-pencil"></span>
+				<% end %>
 			</div>
-		</div>
-	</div>
+			<% end %>
+			
+		</div><!-- end of box-content -->
+	</div><!-- end of skc-box -->
 	
 	
 	<!--for overview section -->
@@ -160,7 +170,18 @@
 		</div>
 	</div>
 	
+	<% if @tags.count > 0 %>
+	<br />
+	<h4>タグ:</h4>
+	<ul>
+		<% @tags.each do |tag| %>
+		<li class="label-tag"><%= tag %></li>
+		<% end %>
+	</ul>
+	<% end %>
+	
 	<% if @recommend_subjects.count > 0 %>
+	<br />
 	<h4>関連授業:</h4>
 	<div class="has-margin-lg">
 		<div class="owl-carousel text-center">

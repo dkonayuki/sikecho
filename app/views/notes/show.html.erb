@@ -44,6 +44,7 @@
 				<hr />
 				<%= text_area_tag 'tags', :tags, class: 'tag-input' %>
 			</div>
+			
 			<% if @note.user == @user %>
 			<div class="skc-box-menu">
 				<%= link_to edit_note_path(@note.id) do %>
@@ -54,6 +55,7 @@
 				<% end %>
 			</div>
 			<% end %>
+			
 		</div>
 	</div>
 </div>
