@@ -86,8 +86,7 @@ body {
 }
 
 #navbar-collapse-2 {
-/*float: left;*/ /* dont need float for auto resizing*/
-	max-width: 300px;
+	float: left;
 }
 
 #navbar-collapse-3 {
@@ -106,7 +105,7 @@ body {
 	}
 	#navbar-collapse-2 {
 		float: none;
-		max-width: 100%;
+		width: 100% !important;
 	}
 }
 
@@ -116,7 +115,8 @@ body {
 	}
 	#navbar-collapse-2 {
 		padding: 0 !important;
-		overflow: hidden !important;
+		overflow: visible !important;
+		max-width: 260px;
 	}
 }
 
@@ -1070,7 +1070,7 @@ body {
   width: auto;
   max-width: 400px;
   max-height: 600px;
-  overflow: auto;
+  overflow: visible;
   margin: 20px auto;
 }
 

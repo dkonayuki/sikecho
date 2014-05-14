@@ -107,6 +107,7 @@ class User < ActiveRecord::Base
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"]
+        puts data.info.inspect
         user.email = data.info["email"] if user.email.blank?
         user.username = data.info["name"] if user.username.blank?
         user.uid = data["uid"]

@@ -48,6 +48,20 @@
     </ul>
   </div><!-- /.navbar-collapse -->
   
+  <!-- Search bar -->
+  <div class="collapse navbar-collapse" id="navbar-collapse-2">
+	<%= form_tag search_path, class: "navbar-form navbar-left search-bar" do %>
+	  <div class="input-group">
+	    <%= text_field_tag :query, params[:query], class: 'form-control typeahead', placeholder: '検索' %>
+			<div class="input-group-btn">
+				<%= button_tag(type: "submit", class: "btn btn-success") do %>
+				  <i class="glyphicon glyphicon-search"></i>
+				<% end %>
+			</div>
+		</div>	    
+	<% end %>
+  </div><!-- /.navbar-collapse -->
+  
   <% if user_signed_in? %>
   <!-- User info -->
 	<div class="collapse navbar-collapse hidden-xs" id="navbar-collapse-3">
@@ -68,18 +82,4 @@
   <%= link_to "ログイン", new_user_session_path, class: 'btn btn-sm btn-orange navbar-right hidden-xs', id: 'login-btn' %>
 	<% end %>
 	
-  <!-- Search bar -->
-  <div class="collapse navbar-collapse" id="navbar-collapse-2">
-	<%= form_tag search_path, class: "navbar-form navbar-left search-bar" do %>
-	  <div class="input-group">
-	    <%= text_field_tag :query, params[:query], class: 'form-control typeahead', placeholder: '検索' %>
-			<div class="input-group-btn">
-				<%= button_tag(type: "submit", class: "btn btn-success") do %>
-				  <i class="glyphicon glyphicon-search"></i>
-				<% end %>
-			</div>
-		</div>	    
-	<% end %>
-  </div><!-- /.navbar-collapse -->
-  
 </nav>

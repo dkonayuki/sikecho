@@ -1,5 +1,5 @@
 <div id="education-edit">
-	<%= form_for([@user, @education], html: {id: 'education-form', remote: true}) do |f| %>
+	<%= form_for([@user, @education], html: {id: 'education-form', remote: true, class: 'clear'}) do |f| %>
 	  <% if @education.errors.any? %>
 	    <div id="error_explanation">
 	      <h2><%= pluralize(@education.errors.count, "error") %> prohibited this education from being saved:</h2>

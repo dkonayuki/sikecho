@@ -27,14 +27,16 @@
 //= require owl.carousel.js
 //= require fileinput.js
 //= require_tree .
-	  
+
 /*MaxWidth for ajax popup*/
 function setMaxWidth() {
 	if ($(window).width() >= 768) {
 		if ($("#document-content").length) {
 			$("#document-content").css("maxWidth", ( $("#show-document").width() - $("#document-comment-section").width() - 30 ) + "px"); //30 for scroolbar				
 		}
+		$("#navbar-collapse-2").css("width", $("#nav-bar").width() - $("#logo").innerWidth() - $("#navbar-collapse-1").width() - $("#navbar-collapse-3 ul").innerWidth() - 60 - 25 + "px");//25 for scroolbar	60 for calendar img and padding			
 	}
+	
 	if ($(".note-item").length) {
 		$(".note-title").css("maxWidth", ( $('.note-item').width() - $('.note-thumbnail').outerWidth(true) - 1 ) + "px" ); //outerWidth(true): include margin
 		$(".note-tags").css("maxWidth", ( $('.note-item').width() - $('.note-thumbnail').outerWidth(true) - $('.note-view').width() - 1 ) + "px" );

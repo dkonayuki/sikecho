@@ -32,5 +32,36 @@
 					<% end %>
       </div>
   </div>
-
 </div>
+<script>
+	$(document).ready(function() {
+		//add fb-root element
+	  $('body').prepend('<div id="fb-root"></div>');
+
+		$.ajax({
+		  url: "" + window.location.protocol + "//connect.facebook.net/en_US/all.js",
+		  dataType: 'script',
+		  cache: true
+		});
+		
+		window.fbAsyncInit = function() {
+		  FB.init({
+		    appId: '<%= ENV["FB_APP_ID"] %>',
+		    cookie: true
+		  });
+		};
+		
+		$('#fb-login').click(function(e) {
+		  e.preventDefault();
+		  FB.login((function(response) {
+		    if (response.authResponse) {
+		    	// callback for users
+		      return window.location = '/users/auth/facebook/callback';
+		    }
+		  }), {
+		  	// need email for sign up
+		    scope: "email"
+		  });
+		});
+	});
+</script>
