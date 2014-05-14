@@ -1,8 +1,36 @@
 <div id="footer">
  
 	<div class = "container">
-	        <p class = "navbar-text pull-left">Copyright © シケ帳</p>
-	        <a href = "#" class = "navbar-btn btn-danger btn pull-right">Contact Us</a>
+	        <p class="navbar-text pull-left">Copyright © シケ帳</p>
+	        <a href="#" class="navbar-btn btn-default btn btn-sm pull-right">
+	        	<span class="glyphicon glyphicon-question-sign"></span>
+	        	ヘルプ
+        	</a>
+        	<% if !@disable_uni_select && !user_signed_in? %>
+					<div class="btn-group pull-right dropup" id="university-select">
+					  <button type="button" class="btn navbar-btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+					    <span class="glyphicon glyphicon-home"></span>
+					    学校 
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" role="menu">
+					  	<% University.all.each do |university| %>
+					    <li><a href="#"><%= university.name %></a></li>
+					  	<% end %>
+					  </ul>
+					</div>
+					<% end %>
+					<div class="btn-group pull-right dropup" id="i18n-select">
+					  <button type="button" class="btn navbar-btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+					    <span class="glyphicon glyphicon-globe"></span>
+					    言語 
+					    <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" role="menu">
+					    <li><a href="#">日本語</a></li>
+					    <li><a href="#">English</a></li>
+					  </ul>
+					</div>
 	</div>
  
 </div>

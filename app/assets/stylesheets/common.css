@@ -258,6 +258,18 @@ a:hover {
 	border-bottom-color: #2C3E50;
 }
 
+.btn-pink {
+	color: #fff;
+	background-color: #e65d65;
+	border-bottom: 2px solid #e65d65;
+}
+
+.btn-pink:hover {
+	background-color: #f76e76;
+	color: #fff;
+	border-bottom-color: #d54c54;
+}
+
 .btn-blue {
 	color: #fff;
 	background-color: #3498DB;
@@ -291,7 +303,7 @@ a:hover {
 .btn-green:hover {
 	color: #fff;
 	background-color: #6dc96d;
-	border-bottom: 2px solid #4ba74b;	
+	border-bottom-color: #4ba74b;	
 }
 
 .label-navi {

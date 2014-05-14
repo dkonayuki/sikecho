@@ -2,6 +2,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   before_action :disable_nav, only: [:new, :create]
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :disable_university_select, only: [:new, :create]
   
   #override new action: sign up
   def new

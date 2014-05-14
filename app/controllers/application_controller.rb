@@ -18,6 +18,10 @@ class ApplicationController < ActionController::Base
     @disable_footer = true
   end
   
+  def disable_university_select
+    @disable_uni_select = true
+  end
+  
   def set_no_cache
     response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
     response.headers["Pragma"] = "no-cache"
@@ -86,7 +90,7 @@ class ApplicationController < ActionController::Base
       redirect_to subdomain: current_user.current_university.codename
     end
   end
-
+  
   private :disable_nav
 
 end

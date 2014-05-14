@@ -11,13 +11,13 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <%= link_to image_tag("logo.png"), home_path, class: 'navbar-brand', id: 'logo' %>
+    <%= link_to image_tag("logo.png"), home_url(subdomain: ''), class: 'navbar-brand', id: 'logo' %>
   </div>
   
   <!-- Menu bar -->
-  <div class="collapse navbar-collapse" id="navbar-collapse-1">
+  <div class="collapse navbar-collapse no-transition" id="navbar-collapse-1">
     <ul class="nav navbar-nav hidden-xs">
-      <li class="<%= 'active' if params[:controller] == 'subjects' %>"><%= link_to '授業', faculties_path %></li>
+      <li class="<%= 'active' if params[:controller] == 'subjects' %> <%= 'disabled' if request.subdomain == '' %>"><%= link_to '授業', faculties_path %></li>
       <li class="<%= 'active' if params[:controller] == 'notes' %> <%= 'disabled' if !user_signed_in? %>">
       	<%= link_to notes_path do %>
 	      	ノート
@@ -31,36 +31,52 @@
     
     <ul class="nav navbar-nav visible-xs nav-mobile">
       <li class="<%= 'active' if params[:controller] == 'subjects' %> col-xs-3"><%= link_to image_tag("lecture.png"), faculties_path %></li>
-      <li class="<%= 'active' if params[:controller] == 'notes' %> col-xs-3 <%= 'disabled' if !user_signed_in? %>">
-      	<%= link_to notes_path do %>
-	      	<%= image_tag("note.png") %>
-	      	<% if user_signed_in? && unread_notes_count > 0 %>
-	      		<span class="badge badge-important"><%= unread_notes_count %></span>
-	      	<% end %>
-      	<% end %>
-    	</li>
-      <li class="<%= 'active' if params[:controller] == 'users' %> col-xs-3 <%= 'disabled' if !user_signed_in? %>"><%= link_to image_tag("user.png"), current_user %></li>
       <% if user_signed_in? %>
-      <li class="col-xs-3"><%= link_to image_tag("logout.png"), destroy_user_session_path, method: :delete %></li>
+	      <li class="<%= 'active' if params[:controller] == 'notes' %> col-xs-3">
+	      	<%= link_to notes_path do %>
+		      	<%= image_tag("note.png") %>
+		      	<% if unread_notes_count > 0 %>
+		      		<span class="badge badge-important"><%= unread_notes_count %></span>
+		      	<% end %>
+	      	<% end %>
+	    	</li>
+	      <li class="<%= 'active' if params[:controller] == 'users' %> col-xs-3">
+	      	<%= link_to image_tag("user.png"), current_user %>
+      	</li>
+	      <li class="col-xs-3">
+	      	<%= link_to image_tag("logout.png"), destroy_user_session_path, method: :delete %>
+      	</li>
       <% else %>
-      <li class="col-xs-3"><%= link_to image_tag("login.png"), new_user_session_path %></li>
+	      <li class="<%= 'active' if params[:controller] == 'notes' %> col-xs-3 disabled">
+	      	<%= link_to notes_path do %>
+		      	<%= image_tag("note_disabled.png") %>
+	      	<% end %>
+	    	</li>
+	      <li class="<%= 'active' if params[:controller] == 'users' %> col-xs-3 disabled">
+	      	<%= link_to image_tag("user_disabled.png"), current_user %>
+      	</li>
+	      <li class="col-xs-3">
+	      	<%= link_to image_tag("login.png"), new_user_session_path %>
+      	</li>
       <% end %>
     </ul>
   </div><!-- /.navbar-collapse -->
   
   <!-- Search bar -->
-  <div class="collapse navbar-collapse" id="navbar-collapse-2">
-	<%= form_tag search_path, class: "navbar-form navbar-left search-bar" do %>
-	  <div class="input-group">
-	    <%= text_field_tag :query, params[:query], class: 'form-control typeahead', placeholder: '検索' %>
-			<div class="input-group-btn">
-				<%= button_tag(type: "submit", class: "btn btn-success") do %>
-				  <i class="glyphicon glyphicon-search"></i>
-				<% end %>
-			</div>
-		</div>	    
-	<% end %>
-  </div><!-- /.navbar-collapse -->
+  <% if user_signed_in? || request.subdomain != '' %>
+	  <div class="collapse navbar-collapse no-transition" id="navbar-collapse-2">
+		<%= form_tag search_path, class: "navbar-form navbar-left search-bar" do %>
+		  <div class="input-group">
+		    <%= text_field_tag :query, params[:query], class: 'form-control typeahead', placeholder: '検索' %>
+				<div class="input-group-btn">
+					<%= button_tag(type: "submit", class: "btn btn-success") do %>
+					  <i class="glyphicon glyphicon-search"></i>
+					<% end %>
+				</div>
+			</div>	    
+		<% end %>
+	  </div><!-- /.navbar-collapse -->
+  <% end %>
   
   <% if user_signed_in? %>
   <!-- User info -->
@@ -83,3 +99,46 @@
 	<% end %>
 	
 </nav>
+
+<script>
+	$(document).ready(function(){ 
+		  
+	  /*For search bar submit*/
+	  $(".search-bar").on("submit", function(){
+	  	window.location.href = "/search?query=" + $(this).find("#query").val() + "&type=授業";
+	  	return false;
+	  });
+		
+		/*For typeahead*/
+		var searchSource = function(query, cb) {
+		  var results = [];
+		  var subject_item = new Object();
+		  subject_item.value = "授業検索: " + "'" + query + "'";
+		  subject_item.url = "/search?query=" + query + "&type=授業";
+		  results.push(subject_item);
+		  
+		  <% if user_signed_in? %>
+		  var note_item = new Object();
+		  note_item.value = "ノート検索: " + "'" + query + "'";
+		  note_item.url = "/search?query=" + query + "&type=ノート";
+		  results.push(note_item);
+		  <% end %>
+		  
+		  cb(results);
+		};
+		
+		$(".typeahead").typeahead("destroy");
+		$(".typeahead").typeahead(null, {
+		  displayKey: "value",
+		  source: searchSource,
+		  templates: {
+		    suggestion: Handlebars.compile(
+		      "<p><strong>{{value}}</strong></p>"
+		    )
+		  }
+		});
+		$(".typeahead").on("typeahead:selected", function(event, item) {
+			window.location.href = item.url;
+		});
+	});
+</script>

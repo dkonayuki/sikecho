@@ -1115,3 +1115,14 @@ body {
     color: #468847;
     text-align: left;
  }
+ 
+ /* Footer
+ ***************************************************************************/
+
+#university-select {
+	margin-right: 10px;
+}
+
+#i18n-select {
+	margin-right: 10px;
+}

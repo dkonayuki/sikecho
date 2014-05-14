@@ -10,6 +10,7 @@
 	    </ul>
 		</div>
 		
+		<% if user_signed_in? %>
 		<div class="show-subject-menu" role="complementary" id="show-subject-schedule">
 			<%= render 'schedule_menu' %>
 		</div>
@@ -22,6 +23,8 @@
 	      <% end %>      
 	    </ul>
 		</div>
+		<% end %>
+		
 	</div>
 </div>
 
@@ -94,6 +97,8 @@
     			<% end %>
 				</p>
 			</div>
+			
+			<% if user_signed_in? %>
 			<div class="skc-box-menu">
 				<%= link_to edit_subject_path(@subject.id) do %>
 					<span class="glyphicon glyphicon-pencil"></span>
@@ -102,6 +107,7 @@
 					<span class="glyphicon glyphicon-remove"></span>
 				<% end %>
 			</div>
+			<% end %>
 		</div>
 	</div><!--end of skc-box-->
 	

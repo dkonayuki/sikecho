@@ -14,7 +14,7 @@
 						 		<div class="mp-level" data-level="2">
 									<h4 class="icon-year">学年別</h4>
 									<ul>
-										<% @user.current_university.uni_years.each do | uni_year | %>
+										<% current_university.uni_years.each do | uni_year | %>
 										<li class="icon-arrow">
 											<a><%= uni_year.name %></a>
 											<div class="mp-level" data-level="3">
@@ -36,7 +36,7 @@
 						 		<div class="mp-level" data-level="2">
 									<h4 class="icon-year">学部別</h4>
 									<ul>
-										<% @user.current_university.faculties.each do | faculty | %>
+										<% current_university.faculties.each do | faculty | %>
 										<li class="icon-arrow">
 											<a><%= faculty.name %></a>
 											<div class="mp-level" data-level="3">
@@ -52,7 +52,7 @@
 									</ul>
 								</div>
 						 	</li>　<!-- end of 学科 -->						 	
-							<% @user.current_university.subjects.tag_counts.order('count desc').limit(8).each do | tag | %>
+							<% current_university.subjects.tag_counts.order('count desc').limit(8).each do | tag | %>
 					  	<li><%= link_to tag.name, course_subjects_path(@course, filter: tag.name) %></li>
 							<% end %>
 							<li><%= link_to '全学年', course_subjects_path(@course) %></li>
@@ -72,16 +72,19 @@
 										<!-- trigger btn -->
 										<a href="#" id="pushmenu-trigger" class="visible-xs btn btn-default pull-left"><span class="glyphicon glyphicon-cog"></span></a>
 										
-									  <%= link_to new_course_subject_path(@course), class: 'btn btn-default', id:'new-subject-btn' do %>
-									  <span class="glyphicon glyphicon-plus-sign"></span>
+										<% if user_signed_in? %>
+										  <%= link_to new_course_subject_path(@course), class: 'btn btn-default', id:'new-subject-btn' do %>
+										  <span class="glyphicon glyphicon-plus-sign"></span>
+											<% end %>
 										<% end %>
+										
 									  <%= form_tag course_subjects_path(@course), method: :get, class: "filter-form has-padding", id: "filter-subject" do %>
 									    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'ライブ検索', autocorrect: "off", autocapitalize: "off" %>
 										<% end %>
 										
 										<ul class="hidden-xs filter-menu">
 											<li><%= nav_link '全学年', course_subjects_path(@course, filter: '全学年') %></li>										
-										  <%  @user.current_university.subjects.tag_counts.order('count desc').limit(4).each do | tag | %>
+										  <% current_university.subjects.tag_counts.order('count desc').limit(4).each do | tag | %>
 									  	<li><%= nav_link tag.name, course_subjects_path(@course, filter: tag.name) %></li>
 											<% end %>
 								
@@ -93,7 +96,7 @@
 									<div id="sub-filter-bar" class="hidden-xs">
 										<div class="outer-center"> <!-- outer center and inner center are needed for center divs with unknown width -->
 								    	<div id="sub-filter-bar-inner" class="inner-center">
-								    		<% @user.current_university.uni_years.each do | uni_year | %>
+								    		<% current_university.uni_years.each do | uni_year | %>
 												<div>
 													<h4><%= uni_year.name %></h4>
 													<ul>
@@ -117,6 +120,8 @@
 											<%= link_to @course.faculty.name, @course.faculty %>
 											<span><%= @course.name %></span>
 										</div>
+										
+										<% if user_signed_in? %>
 										<div id="subject-order-option">
 											<div class="btn-group">
 											  <button data-type="all" class="btn btn-order <%= 'active' if @user.settings(:subject).style == :all %>">年</button>
@@ -124,6 +129,7 @@
 											  <button data-type="note_count" class="btn btn-order <%= 'active' if @user.settings(:subject).style == :note_count %>">の</button>
 											</div>
 										</div>
+										<% end %>
 									</div>
 									                
                 	<!--courses list start-->

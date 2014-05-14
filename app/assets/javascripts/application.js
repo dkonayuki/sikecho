@@ -246,40 +246,6 @@ $(document).on("page:change", function() {
 		  dataType: "script"
 		});  
  	});
-  
-  /*For search bar submit*/
-  $(".search-bar").on("submit", function(){
-  	window.location.href = "/search?query=" + $(this).find("#query").val() + "&type=授業";
-  	return false;
-  });
-	
-	/*For typeahead*/
-	var searchSource = function(query, cb) {
-	  var results = [];
-	  var subject_item = new Object();
-	  subject_item.value = "授業検索: " + "'" + query + "'";
-	  subject_item.url = "/search?query=" + query + "&type=授業";
-	  results.push(subject_item);
-	  var note_item = new Object();
-	  note_item.value = "ノート検索: " + "'" + query + "'";
-	  note_item.url = "/search?query=" + query + "&type=ノート";
-	  results.push(note_item);
-	  cb(results);
-	};
-	
-	$(".typeahead").typeahead("destroy");
-	$(".typeahead").typeahead(null, {
-	  displayKey: "value",
-	  source: searchSource,
-	  templates: {
-	    suggestion: Handlebars.compile(
-	      "<p><strong>{{value}}</strong></p>"
-	    )
-	  }
-	});
-	$(".typeahead").on("typeahead:selected", function(event, item) {
-		window.location.href = item.url;
-	});
 	
 	/*For edit subject form*/
 	$("#subject-edit").on("click", ".remove_fields", function() {

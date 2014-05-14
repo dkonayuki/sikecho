@@ -36,19 +36,21 @@ class SubjectsController < ApplicationController
       end
     end
     
-    if !params[:style].blank?
-      @user.settings(:subject).style = params[:style].to_sym
-      @user.save
-    end
-    
-    #reorder subjects list
-    case @user.settings(:subject).style
-    when :all
-      @subjects = @subjects.order('year DESC, view_count DESC')
-    when :semester
-      @subjects = @subjects.joins(:semester).joins(:uni_year).order('uni_years.no ASC, semesters.no ASC')
-    when :note_count
-      @subjects = @subjects.order('notes_count DESC')
+    if @user
+      if !params[:style].blank?
+        @user.settings(:subject).style = params[:style].to_sym
+        @user.save
+      end
+      
+      #reorder subjects list
+      case @user.settings(:subject).style
+      when :all
+        @subjects = @subjects.order('year DESC, view_count DESC')
+      when :semester
+        @subjects = @subjects.joins(:semester).joins(:uni_year).order('uni_years.no ASC, semesters.no ASC')
+      when :note_count
+        @subjects = @subjects.order('notes_count DESC')
+      end
     end
     
     #search subjects list
