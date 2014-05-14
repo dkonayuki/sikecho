@@ -154,7 +154,7 @@
 		</div><!-- end of box-content -->
 	</div><!-- end of skc-box -->
 	
-	
+	<% if user_signed_in? %>
 	<!--for overview section -->
  	<a name="notes"></a>
 	<div class="skc-box skc-box-no-padding skc-box-lg">
@@ -169,6 +169,7 @@
 			</div>
 		</div>
 	</div>
+	<% end %>
 	
 	<% if @tags.count > 0 %>
 	<br />

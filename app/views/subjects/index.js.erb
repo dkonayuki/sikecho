@@ -3,6 +3,6 @@
 	$('#subjects-list').append("<%=j render @subjects %>");
 	<% sleep 1 %>
 <% else %>
-	$('#subjects-list').html("<%=j render @subjects %>");
+	$('#subjects-list').html("<%=j render(@subjects) || '授業が見つかりません。' %>");
 <% end %>
 	$(".hidden-pagination").html("<%=j paginate @subjects %>")

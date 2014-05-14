@@ -28,7 +28,7 @@
 		  <button type="button" data-type="view" class="btn btn-default <%= 'active' if @user.settings(:note).order == :view %>"><span class="glyphicon glyphicon-eye-open"></span></button>
 		</div>
 	</div>
-	<div id="notes-list">
+	<div id="notes-list" class="text-center">
 		<%= render(@notes) || 'ノートが見つかりません。' %>
 	</div>
 	<div class="hidden-pagination">

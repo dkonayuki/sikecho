@@ -3,6 +3,6 @@
 	$('#notes-list').append("<%=j render @notes %>")
 	<% sleep 1 %>
 <% else %>
-	$('#notes-list').html("<%=j render @notes %>")
+	$('#notes-list').html("<%=j render(@notes) || 'ノートが見つかりません。' %>")
 <% end %>
 	$(".hidden-pagination").html("<%=j paginate @notes %>")
