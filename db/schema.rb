@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(version: 20140513135944) do
   end
 
   create_table "outlines", force: true do |t|
-    t.integer  "number"
+    t.integer  "no"
     t.date     "date"
     t.text     "content"
     t.integer  "subject_id"
@@ -159,10 +159,9 @@ ActiveRecord::Schema.define(version: 20140513135944) do
     t.integer  "semester_id"
     t.integer  "uni_year_id"
     t.integer  "course_id"
-    t.integer  "number_of_outlines"
     t.integer  "year"
-    t.integer  "view_count",         default: 0
-    t.integer  "notes_count",        default: 0
+    t.integer  "view_count",  default: 0
+    t.integer  "notes_count", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

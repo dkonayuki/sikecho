@@ -47,12 +47,12 @@ td_sub_name.each do | name |
   yearNo = 1 + rand(4)
   uni_year = todai.uni_years.find_by_no(yearNo)
   semester = uni_year.semesters.find_by_no(semesterNo)
-  sub = Subject.new(name: name, place: 'W300', description: td_desc, number_of_outlines: 15, year: 2014, course: kenkogakka, semester: semester, uni_year: uni_year)
+  sub = Subject.new(name: name, place: 'W300', description: td_desc, year: 2014, course: kenkogakka, semester: semester, uni_year: uni_year)
   sub.periods << Period.create(time: 1 + rand(Period.MAX_TIME), day: 1 + rand(Period.MAX_DAY))
   sub.teachers << td_sensei
   sub.tag_list.add(todai_sub_tags[rand(3)])
   (1..15).each do | j |
-    outline = Outline.create(number: j, content: '')
+    outline = Outline.create(no: j, content: '')
     sub.outlines << outline
   end
   sub.save
@@ -80,12 +80,12 @@ sub_name.each do | name |
   yearNo = 1 + rand(4)
   uni_year = tokodai.uni_years.find_by_no(yearNo)
   semester = uni_year.semesters.find_by_no(semesterNo)
-  sub = Subject.create(name: name, place: 'S421', description: description, number_of_outlines: 15, year: 2014, course: jouhou, semester: semester, uni_year: uni_year)
+  sub = Subject.create(name: name, place: 'S421', description: description, year: 2014, course: jouhou, semester: semester, uni_year: uni_year)
   sub.periods << Period.create(time: 1 + rand(Period.MAX_TIME), day: 1 + rand(Period.MAX_DAY))
   sub.teachers << sensei
   sub.tag_list.add(tokodai_sub_tags[rand(3)])
   (1..15).each do | j |
-    outline = Outline.create(number: j, content: '')
+    outline = Outline.create(no: j, content: '')
     sub.outlines << outline
   end
   sub.save

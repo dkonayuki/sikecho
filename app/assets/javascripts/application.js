@@ -43,12 +43,18 @@ function setMaxWidth() {
 	}
 }
 
+/*Scroll to anchor*/
+function scrollToAnchor(aid){
+  var aTag = $("a[name='"+ aid +"']");
+  $("html,body").animate({scrollTop: aTag.offset().top},"fast");
+}
+
 /*Define after ajax success*/
 function ajaxSuccess() {
 	/*For note dynamic max width*/
   setMaxWidth();
-	$( window ).on( "resize", setMaxWidth ); //Remove this if it's not needed. It will react when window changes size.
-	
+	$(window).on( "resize", setMaxWidth ); //Remove this if it's not needed. It will react when window changes size.
+
 	//load more items if needed
 	$(window).scroll();		
 }
@@ -116,20 +122,6 @@ $(document).on("page:change", function() {
   	return false;
 	});
 	
-	/*for anchor*/
-	function scrollToAnchor(aid){
-    var aTag = $("a[name='"+ aid +"']");
-    $("html,body").animate({scrollTop: aTag.offset().top},"fast");
-	}
-	$("#show-subject-overview a").on("click", function() {
-		var anchor = $(this).attr("href").replace("#",""); 
-		// the difference between this.href and jquery attr("href")
-		// $(this).attr("href") == #notes 
-		// this.href == http://localhost:8000/subjects/11#description 
-		scrollToAnchor(anchor);
-		return false;
-	});
-	
 	/*For fixed subject menu*/
 	if ($(".fixed-menu").length) {
 		var fixedMenuOffset = $(".fixed-menu").offset();
@@ -141,19 +133,6 @@ $(document).on("page:change", function() {
       }    
 		});		
 	}
-
-	/*For outline btn*/
-	$(".outline-btn").off("click").on("click", function() {
-		$.ajax({
-		  url: this.href,
-		  dataType: "script",
-		  success: function() {
-		  	ajaxSuccess();
-		  	scrollToAnchor("notes");
-		  }
-		});
-		return false;
-	});
 	
 	/*For live search*/
 	var timeout; // add delay time

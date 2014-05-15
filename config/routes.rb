@@ -13,6 +13,7 @@ Shikechou::Application.routes.draw do
       resources :subjects do 
         put 'inline' => 'subjects#inline', on: :member # on: :member will take :id not :subject_id, and path as inline_subject_path
         get 'version/:version_id' => 'subjects#version', as: 'version', on: :member  # remember on: :collection
+        get 'outline' => 'subjects#outline', on: :member
       end
     end
   end

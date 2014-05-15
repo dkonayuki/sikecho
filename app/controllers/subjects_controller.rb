@@ -1,5 +1,5 @@
 class SubjectsController < ApplicationController
-  before_action :set_subject, only: [:show, :edit, :update, :destroy, :inline, :version]
+  before_action :set_subject, only: [:show, :edit, :update, :destroy, :inline, :version, :outline]
   before_action :set_course, only: [:index, :new, :create]
   
   # monitor view count
@@ -130,11 +130,6 @@ class SubjectsController < ApplicationController
     tags_text = Moji.zen_to_han(params[:tags])
     tags = tags_text.split(',')
     @subject.tag_list = tags
-        
-    (1..@subject.number_of_outlines).each do | i |
-      outline = Outline.new(number: i)
-      @subject.outlines << outline
-    end
 
     respond_to do |format|
       if @subject.save
@@ -149,18 +144,36 @@ class SubjectsController < ApplicationController
     end
   end
   
+  #outline for form
+  def outline
+    #add outlines
+    new_number = params[:number_of_outlines].to_i
+    old_number = @subject.outlines.count
+    if old_number > new_number
+      #delete old outlines
+      @subject.outlines.where('no > ?', new_number).destroy_all
+    else
+      #add new outlines
+      old_number = old_number + 1
+      (old_number..new_number).each do | i |
+        outline = Outline.new(no: i)
+        @subject.outlines << outline
+      end
+    end   
+  end
+  
   #inline in syllabus
   def inline
     # for inline edit
     case params[:name].to_s
     when 'date'
       #search in array 
-      outline = @subject.outlines.find_by_number(params[:pk])
+      outline = @subject.outlines.find_by_no(params[:pk])
       outline.date = DateTime.strptime(params[:value], '%Y-%m-%d') unless params[:value].blank?
       outline.save
     when 'content'
       #search in array 
-      outline = @subject.outlines.find_by_number(params[:pk])
+      outline = @subject.outlines.find_by_no(params[:pk])
       outline.content = params[:value]
       outline.save
     else
@@ -212,21 +225,6 @@ class SubjectsController < ApplicationController
     #add teachers
     @subject.teachers = Teacher.where(id: params[:teachers])
     
-    #add outlines
-    new_number = subject_params[:number_of_outlines].to_i
-    old_number = params[:old_number].to_i
-    if old_number > new_number
-      #delete old outlines
-      @subject.outlines.where('number > ?', new_number).destroy_all
-    else
-      #add new outlines
-      old_number = old_number + 1
-      (old_number..new_number).each do | i |
-        outline = Outline.new(number: i)
-        @subject.outlines << outline
-      end
-    end
-    
     respond_to do |format|
       if @subject.update(subject_params)
         format.html { redirect_to @subject, notice: 'Subject was successfully updated.' }
@@ -262,7 +260,7 @@ class SubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
-      params.permit(:name, :pk, :value, :tags, :filter, :semester, :uni_year_id, :teachers, :old_number, :version_id, :course_id, :page, :style)
-      params.require(:subject).permit(:name, :description, :year, :place, :number_of_outlines, :semester_id, :uni_year_id, :course_id, periods_attributes: [:id, :time, :day, :_destroy])
+      params.permit(:name, :pk, :value, :tags, :filter, :semester, :uni_year_id, :teachers, :version_id, :course_id, :page, :style, :number_of_outlines)
+      params.require(:subject).permit(:name, :description, :year, :place, :semester_id, :uni_year_id, :course_id, periods_attributes: [:id, :time, :day, :_destroy])
     end
 end

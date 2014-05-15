@@ -935,6 +935,11 @@ body {
 	height: 60px;
 }
 
+.avatar-xs {
+	width: 30px;
+	height: 30px;
+}
+
 #comment-content {
 	line-height: 1.7 !important;
 }

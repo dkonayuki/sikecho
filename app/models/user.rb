@@ -68,7 +68,7 @@ class User < ActiveRecord::Base
     end
   end
   
-  def display_comment_image
+  def display_comment_avatar
     if self.avatar.exists?
       self.avatar.url(:small)
     else

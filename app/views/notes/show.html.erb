@@ -10,6 +10,7 @@
 				<p>
 					<%= sanitize(@note.content) %>
 				</p>
+				<hr />
 				<p>
 					<strong>科目:</strong>
 					<ul>
@@ -19,8 +20,11 @@
 					</ul>
 				</p>
 				<p>
-					<strong>ユーザー:</strong>
-					<%= link_to @note.user.username, @note.user %>
+					<strong>作成者:</strong>
+					<%= link_to @note.user do %>
+					<%= image_tag(@note.user.display_comment_avatar, class: 'avatar-xs') %>
+					<%= @note.user.username %>
+					<% end %>
 				</p>
 				<p>
 					<strong>作成日:</strong>
@@ -57,7 +61,7 @@
 			<% end %>
 			
 		</div>
-	</div>
+	</div><!-- end of skc-box -->
 </div>
 <script>
 $(document).ready(function() {

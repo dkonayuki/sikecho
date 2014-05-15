@@ -1,2 +1,2 @@
-$("#collapseNotes").html("<%=j render @notes %>");
+$("#collapseNotes").html("<%=j render(@notes) || 'ノートがまだありません。'%>");
 $("#show-subject-schedule").html("<%=j render 'schedule_menu' %>");

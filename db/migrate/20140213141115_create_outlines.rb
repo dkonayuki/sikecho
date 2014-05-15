@@ -1,7 +1,7 @@
 class CreateOutlines < ActiveRecord::Migration
   def change
     create_table :outlines do |t|
-      t.integer :number
+      t.integer :no
       t.date :date
       t.text :content
       t.integer :subject_id

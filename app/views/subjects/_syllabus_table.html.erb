@@ -1,0 +1,23 @@
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th class="col-xs-2 col-sm-1">回数</th>
+      <th class="col-xs-3 col-sm-3">日付</th>
+      <th class="col-xs-7 col-sm-9">内容</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @subject.outlines.order('no ASC').each do | outline | %>
+    <tr>
+      <td><%= link_to "#{outline.no}", subject_path(tag: "#{outline.no}回目"), class: 'outline-btn' %></td>
+      <% if editable %>
+      <td><a href="#" data-type="date" data-viewformat="yyyy-mm-dd" data-pk="<%= outline.no %>" class="outline-date"><%= outline.date %></a></td>
+      <td><a href="#" data-pk="<%= outline.no %>" class="outline-content"><%= sanitize(outline.content) %></a></td>
+      <% else %>
+      <td><%= outline.date %></td>
+      <td><%= sanitize(outline.content) %></td>
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

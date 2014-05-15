@@ -56,7 +56,7 @@
 	
   <!--for overview section -->
 	<a name="description"></a>
-	<div class="skc-box skc-box-no-padding skc-box-lg" id="show-subject-desc">
+	<div class="skc-box skc-box-no-padding skc-box-lg" id="subject-card">
 		<div class="skc-box-content">
 			<div class="skc-box-thumbnail">
 				<%= image_tag("lecture.png")  %>
@@ -115,7 +115,7 @@
 	
   <!--for overview section -->
  	<a name="syllabus"></a>
-	<div class="skc-box skc-box-no-padding skc-box-lg">
+	<div class="skc-box skc-box-no-padding skc-box-lg" id="syllabus-card">
 		<div class="skc-box-content">
 			<div class="skc-box-title-no-margin">
 				<a data-toggle="collapse" href="#collapseSyllabus">
@@ -123,29 +123,12 @@
 	      </a>
 	    </div>
 			<div class="skc-box-desc skc-box-desc-no-margin collapse out" id="collapseSyllabus">
-				<table class="table table-bordered table-hover">
-			    <thead>
-			      <tr>
-			        <th class="col-xs-2 col-sm-1">回数</th>
-			        <th class="col-xs-3 col-sm-3">日付</th>
-			        <th class="col-xs-7 col-sm-9">内容</th>
-			      </tr>
-			    </thead>
-			    <tbody>
-			    	<% @subject.outlines.order('number ASC').each do | outline | %>
-			      <tr>
-			        <td><%= link_to "#{outline.number}", subject_path(tag: "#{outline.number}回目"), class: 'outline-btn' %></td>
-			        <td><a href="#" data-type="date" data-viewformat="yyyy-mm-dd" data-pk="<%= outline.number %>" class="outline-date"><%= outline.date %></a></td>
-			        <td><a href="#" data-pk="<%= outline.number %>" class="outline-content"><%= sanitize(outline.content) %></a></td>
-			      </tr>
-			      <% end %>
-			    </tbody>
-			  </table>
+				<%= render 'syllabus_table', editable: false %>
 			</div><!-- end of box-desc -->
 			
 			<% if user_signed_in? %>
 			<div class="skc-box-menu">
-				<%= link_to edit_subject_path(@subject.id) do %>
+				<%= link_to edit_subject_path(@subject.id, anchor: "syllabus") do %>
 					<span class="glyphicon glyphicon-pencil"></span>
 				<% end %>
 			</div>
@@ -157,7 +140,7 @@
 	<% if user_signed_in? %>
 	<!--for overview section -->
  	<a name="notes"></a>
-	<div class="skc-box skc-box-no-padding skc-box-lg">
+	<div class="skc-box skc-box-no-padding skc-box-lg" id="notes-card">
 		<div class="skc-box-content">
 			<div class="skc-box-title-no-margin">
 				<a data-toggle="collapse" href="#collapseNotes">
@@ -193,51 +176,59 @@
 	
 </div>
 <script>
-	//turn to inline mode
-	$.fn.editable.defaults.mode = 'inline';
-	$.fn.editable.defaults.ajaxOptions = {dataType: 'json', type: "PUT"};
-	$(document).ready(function() {			
-			$('.outline-date').editable({
-			    format: 'yyyy-mm-dd', //for sending value
-			    name: 'date',
-			    url: '/subjects/<%= @subject.id %>/inline',
-          showbuttons: 'bottom'
+	$(document).ready(function() {
+		
+		/*for anchor*/
+		$("#show-subject-overview a").on("click", function() {
+			var anchor = $(this).attr("href").replace("#",""); 
+			// the difference between this.href and jquery attr("href")
+			// $(this).attr("href") == #notes 
+			// this.href == http://localhost:8000/subjects/11#description 
+			scrollToAnchor(anchor);
+			return false;
+		});
+		
+		/*For outline btn*/
+		$(".outline-btn").off("click").on("click", function() {
+			$.ajax({
+			  url: this.href,
+			  dataType: "script",
+			  success: function() {
+			  	ajaxSuccess();
+			  	scrollToAnchor("notes");
+			  }
 			});
-			
-			$('.outline-content').editable({
-			    type: 'textarea',
-			    name: 'content',
-			    url: '/subjects/<%= @subject.id %>/inline',
-          showbuttons: 'bottom'
-			});
-	});
+			return false;
+		});
+		
 		/*For schedule add btn in show subject page*/
 		/*Need selector on a to ensure binding on dynamically elements */
-	$("#show-subject-schedule").on("click", "a", function() {
-		$.ajax({
-			url: this.href,
-			type: this.getAttribute("data-method"),
-			dataType: "script",
-			success: function() {
-				$.getScript("/subjects/<%= @subject.id %>", null);
-				//need to get script in order to refresh menu
-			}
+		$("#show-subject-schedule").on("click", "a", function() {
+			$.ajax({
+				url: this.href,
+				type: this.getAttribute("data-method"),
+				dataType: "script",
+				success: function() {
+					$.getScript("/subjects/<%= @subject.id %>", null);
+					//need to get script in order to refresh menu
+				}
+			});
+			return false;
 		});
-		return false;
-	});
-	
-	$(".owl-carousel").owlCarousel({
-		items : 4,
-    itemsDesktop : [1199,3],
-    itemsDesktopSmall : [980,2],
-    itemsTablet: [768,2],
-    itemsTabletSmall: false,
-    itemsMobile : [479,1],
-		navigation:true,
-    navigationText: [
-      "<span class='glyphicon glyphicon-chevron-left'></span>",
-      "<span class='glyphicon glyphicon-chevron-right'></span>"
-      ],
+		
+		$(".owl-carousel").owlCarousel({
+			items : 4,
+	    itemsDesktop : [1199,3],
+	    itemsDesktopSmall : [980,2],
+	    itemsTablet: [768,2],
+	    itemsTabletSmall: false,
+	    itemsMobile : [479,1],
+			navigation:true,
+	    navigationText: [
+	      "<span class='glyphicon glyphicon-chevron-left'></span>",
+	      "<span class='glyphicon glyphicon-chevron-right'></span>"
+	      ],
+		});
 	});
 
 </script>

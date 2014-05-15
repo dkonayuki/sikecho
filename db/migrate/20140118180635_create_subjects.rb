@@ -8,7 +8,6 @@ class CreateSubjects < ActiveRecord::Migration
       t.integer :semester_id
       t.integer :uni_year_id
       t.integer :course_id
-      t.integer :number_of_outlines
       t.integer :year
       t.integer :view_count, default: 0
       t.integer :notes_count, default: 0

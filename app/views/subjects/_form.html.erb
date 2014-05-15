@@ -78,9 +78,11 @@
 						<%= select_tag :teachers, options_for_select(@teachers.map { |t| [t.name_kanji, t.id] }), class: 'selectpicker show-tick', data: {width: 'auto'}, multiple: true, title: '' %>
 						<% end %>
 					</p>
+					
 					<hr />
+					
 					<p>
-						<h5>時間割</h5><br />
+						<h5>時間割</h5>
 						<%= f.fields_for :periods do | builder | %>
 							<%= render 'period_fields', f: builder %>		
 						<% end %>
@@ -88,16 +90,22 @@
 						<span class="glyphicon glyphicon-plus"></span>追加
 						<% end %>
 					</p>
+					
 					<hr />
+					
+ 					<a name="syllabus"></a>
 					<p>
-						<strong>シラバス:</strong>
-						<% if @subject.number_of_outlines %>
-						<%= f.select :number_of_outlines, options_for_select(@number_of_outlines_list, selected: @subject.number_of_outlines), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
-						<%= hidden_field_tag "old_number", @subject.number_of_outlines %>
+						<h5>シラバス</h5>
+						<% if @subject.outlines.count > 0 %>
+						<%= select_tag :number_of_outlines, options_for_select(@number_of_outlines_list, selected: @subject.outlines.count), class: 'selectpicker show-tick', data: {width: 'auto', link: outline_subject_path}, id: 'number-of-outlines-select' %>
 						<% else %>
-						<%= f.select :number_of_outlines, options_for_select(@number_of_outlines_list), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<%= select_tag :number_of_outlines, options_for_select(@number_of_outlines_list), class: 'selectpicker show-tick', data: {width: 'auto'}, id: 'number-of-outlines-select' %>
 						<% end %>
+						<div id="syllabus-table">
+						<%= render 'syllabus_table', editable: true %>
+						</div>
 					</p>
+					
 					<div class='tag-form'>
 						<div class='tag-menu'>
 				   		<div class="btn btn-primary btn-xs tag-menu-btn">ゼミ</div>
@@ -117,92 +125,133 @@
 </div>
 
 <script>
-$(document).ready(function() {
-
-	$("#subject-description").wysihtml5({locale: "en-US"});
-	function change_uni_year() {
-		var uni_year_id = $("#subject_uni_year_id").val();
-		$.ajax({
-				url:"/semesters",	
-				data:'uni_year_id=' + uni_year_id,
-				dataType: "json",
-				success: function(data) {
-					//clear old select
-					$('#subject_semester_id').empty();
-					//add new data to semester select
-					$.each(data, function(key, value) {   
-				    $('#subject_semester_id')
-		          .append($("<option></option>")
-		          .attr("value",value.id)
-		          .text(value.name));
-					});
-					$('.selectpicker').selectpicker("refresh");
-				}
-			}
-		);
+	//turn to inline mode
+	$.fn.editable.defaults.mode = 'inline';
+	$.fn.editable.defaults.ajaxOptions = {dataType: 'json', type: "PUT"};
+	
+	function enableInlineEdit() {
+		//edit inline
+		$('.outline-date').editable({
+	    format: 'yyyy-mm-dd', //for sending value
+	    name: 'date',
+	    url: '/subjects/<%= @subject.id %>/inline',
+	    showbuttons: 'bottom'
+		});
+		
+		$('.outline-content').editable({
+	    type: 'textarea',
+	    name: 'content',
+	    url: '/subjects/<%= @subject.id %>/inline',
+	    showbuttons: 'bottom'
+		});
 	}
 	
-	$('.selectpicker').selectpicker();
-	$('#subject_uni_year_id').on("change", change_uni_year);
+	$(document).ready(function() {
 	
-	// instantiate the bloodhound suggestion engine
-	var tags = new Bloodhound({
-	  datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.name); },
-	  queryTokenizer: Bloodhound.tokenizers.whitespace,
-	  limit: 5,
-	  prefetch: {
-	  	ttl: 0,
-	    url: '/tags.json',
-	    filter: function(list) {
-	      return $.map(list, function(tag) { return { name: tag.name }; });
-	    }
-	  }
-	});
-	 
-	// initialize the bloodhound suggestion engine
-	tags.initialize();
+		function change_uni_year() {
+			var uni_year_id = $("#subject_uni_year_id").val();
+			$.ajax({
+					url:"/semesters",	
+					data:'uni_year_id=' + uni_year_id,
+					dataType: "json",
+					success: function(data) {
+						//clear old select
+						$('#subject_semester_id').empty();
+						//add new data to semester select
+						$.each(data, function(key, value) {   
+					    $('#subject_semester_id')
+			          .append($("<option></option>")
+			          .attr("value",value.id)
+			          .text(value.name));
+						});
+						$('.selectpicker').selectpicker("refresh");
+					}
+				}
+			);
+		}
+		
+		$("#subject-description").wysihtml5({locale: "en-US"});
+		$('.selectpicker').selectpicker();
+		$('#subject_uni_year_id').on("change", change_uni_year);
+		
+		// instantiate the bloodhound suggestion engine
+		var tags = new Bloodhound({
+		  datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.name); },
+		  queryTokenizer: Bloodhound.tokenizers.whitespace,
+		  limit: 5,
+		  prefetch: {
+		  	ttl: 0,
+		    url: '/tags.json',
+		    filter: function(list) {
+		      return $.map(list, function(tag) { return { name: tag.name }; });
+		    }
+		  }
+		});
+		 
+		// initialize the bloodhound suggestion engine
+		tags.initialize();
+		
+		//initiate tagsinput	
+		$('.tag-input').tagsinput({
+			tagClass: function(item) {
+		    switch (item) {
+		    	case 'ゼミ': return 'label label-danger';
+		      case '通年': return 'label label-warning';
+		      case '集中講義': return 'label label-success';
+		      default: return 'label label-info';
+		    }
+	  	},
+			confirmKeys: [13, 9]
+		});
 	
-	//initiate tagsinput	
-	$('.tag-input').tagsinput({
-		tagClass: function(item) {
-	    switch (item) {
-	    	case 'ゼミ': return 'label label-danger';
-	      case '通年': return 'label label-warning';
-	      case '集中講義': return 'label label-success';
-	      default: return 'label label-info';
-	    }
-  	},
-		confirmKeys: [13, 9]
-	});
-
-	$('.tag-input').tagsinput('input').typeahead(null, {
-		// instantiate the typeahead UI
-		  displayKey: 'name',
- 			source: tags.ttAdapter()
-	}).bind('typeahead:selected', $.proxy(function (obj, datum) {  
-	  this.tagsinput('add', datum.value);
-	  //this.tagsinput('input').typeahead('val','');
-	}, $('.tag-input')));
-	
-	//menu bar
-	$('.tag-menu-btn').on('click', function() {
-		$('.tag-input').tagsinput('add', this.innerHTML );
-	});
-	$('#remove-all').on('click', function() {
-		$('.tag-input').tagsinput('removeAll');
-	});
-	
-	//fix for left over text
-	$('.bootstrap-tagsinput input').blur(function() {
-		$(this).val('');
-	});
-	
-	//add old tags if exist
-	<% if @tags != nil %>
-		<% @tags.each do |tag| %>
-				$('.tag-input').tagsinput('add', "<%= tag %>" );
+		$('.tag-input').tagsinput('input').typeahead(null, {
+			// instantiate the typeahead UI
+			  displayKey: 'name',
+	 			source: tags.ttAdapter()
+		}).bind('typeahead:selected', $.proxy(function (obj, datum) {  
+		  this.tagsinput('add', datum.value);
+		  //this.tagsinput('input').typeahead('val','');
+		}, $('.tag-input')));
+		
+		//menu bar
+		$('.tag-menu-btn').on('click', function() {
+			$('.tag-input').tagsinput('add', this.innerHTML );
+		});
+		$('#remove-all').on('click', function() {
+			$('.tag-input').tagsinput('removeAll');
+		});
+		
+		//fix for left over text
+		$('.bootstrap-tagsinput input').blur(function() {
+			$(this).val('');
+		});
+		
+		//add old tags if exist
+		<% if @tags != nil %>
+			<% @tags.each do |tag| %>
+					$('.tag-input').tagsinput('add', "<%= tag %>" );
+			<% end %>
 		<% end %>
-	<% end %>
-	
-});
+		
+		/*for anchor*/
+		var anchor = window.location.hash.replace("#", "")
+		if (anchor != "") {
+			scrollToAnchor(anchor);
+		}
+		
+		$('#number-of-outlines-select').on("change", function() {
+			$.ajax({
+			  url: $(this).data("link"),
+			  data: "number_of_outlines=" + $(this).val(),
+			  dataType: "script",
+			  success: function() {
+	  			//edit inline
+					enableInlineEdit();
+			  }
+			});
+		});
+		
+		//edit inline
+		enableInlineEdit();
+	});
 </script>
