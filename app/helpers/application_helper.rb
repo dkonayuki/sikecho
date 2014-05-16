@@ -40,5 +40,10 @@ module ApplicationHelper
   def current_university
     University.find_by_codename(request.subdomain)
   end
+    
+  # check if admin login
+  def current_admin
+    current_user && current_user.admin
+  end
   
 end

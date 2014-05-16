@@ -1153,6 +1153,7 @@ body {
 .uni-thumbnail {
 	float: left;
 	height: 100%;
+	max-width: 106px;
 }
 
 .uni-thumbnail img {
