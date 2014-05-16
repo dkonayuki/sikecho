@@ -24,6 +24,8 @@ owl carousel 1.3.2
 
 fileinput.js v3.1.2
 
+masonry v3.1.5
+
 Start postgres server: postgres -D /usr/local/var/postgres
 
 Start unicorn server: unicorn -c config/unicorn.rb
