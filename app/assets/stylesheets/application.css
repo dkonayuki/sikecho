@@ -1118,6 +1118,95 @@ body {
     text-align: left;
  }
  
+ /* university
+ ***************************************************************************/
+
+.logo {
+	width: 200px;
+}
+
+.logo-thumbnail {
+	width: 60px;
+	height: 60px;
+}
+
+#universities-list {
+	margin-top: 20px;
+	padding: 15px;
+	margin: 0 auto;
+}
+
+.uni-item {
+	background: #fff;
+	width: 300px;
+	height: 120px;
+	padding: 5px 5px;
+	display: inline-block;
+	margin-bottom: 10px;
+	border: 2px solid transparent;
+}
+
+.uni-item:hover {
+	border-color: #F39C12;
+}
+
+.uni-thumbnail {
+	float: left;
+	height: 100%;
+}
+
+.uni-thumbnail img {
+	max-height: 100%;
+}
+
+.uni-desc {
+	padding-left: 120px;
+	height: 100%;
+	position: relative;
+}
+
+.uni-name {
+	font-size: 20px;
+	padding-top: 15px;
+}
+
+.uni-meta {
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	width: 165px;
+}
+
+.uni-meta span {
+	padding-left: 5px;
+	font-size: 11px;
+	color: #999;
+}
+
+.uni-meta hr {
+	margin-bottom: 8px !important;
+}
+
+.uni-meta-thumbnail {
+	width: 16px;
+	width: 16px;
+}
+
+.uni-note {
+	display: inline-table;
+	width: 33%;
+}
+
+.uni-subject {
+	display: inline-table;
+	width: 30%;
+}
+
+.uni-user {
+	display: inline-table;
+	width: 33%;
+}
+
  /* Footer
  ***************************************************************************/
 

@@ -14,6 +14,7 @@
   <strong>Website:</strong>
   <%= @university.website %>
 </p>
+<%= image_tag(@university.display_logo_original, class: 'logo') %>
 
 <%= link_to 'Edit', edit_university_path(@university) %> |
 <%= link_to 'Back', universities_path %>

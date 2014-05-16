@@ -17,7 +17,7 @@
   <!-- Menu bar -->
   <div class="collapse navbar-collapse no-transition" id="navbar-collapse-1">
     <ul class="nav navbar-nav hidden-xs">
-      <li class="<%= 'active' if params[:controller] == 'subjects' %> <%= 'disabled' if request.subdomain == '' %>"><%= link_to '授業', faculties_path %></li>
+      <li class="<%= 'active' if params[:controller] == 'subjects' %> <%= 'disabled' if current_university == nil %>"><%= link_to '授業', faculties_path %></li>
       <li class="<%= 'active' if params[:controller] == 'notes' %> <%= 'disabled' if !user_signed_in? %>">
       	<%= link_to notes_path do %>
 	      	ノート
@@ -63,7 +63,7 @@
   </div><!-- /.navbar-collapse -->
   
   <!-- Search bar -->
-  <% if user_signed_in? || request.subdomain != '' %>
+  <% if user_signed_in? || current_university != nil %>
 	  <div class="collapse navbar-collapse no-transition" id="navbar-collapse-2">
 		<%= form_tag search_path, class: "navbar-form navbar-left search-bar" do %>
 		  <div class="input-group">

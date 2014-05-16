@@ -10,12 +10,17 @@
 					<div class="btn-group pull-right dropup" id="university-select">
 					  <button type="button" class="btn navbar-btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
 					    <span class="glyphicon glyphicon-home"></span>
-					    学校 
+					    学校
+					    <% if current_university != nil %>
+					    :<strong><%= current_university.name %></strong>
+					    <% end %>
 					    <span class="caret"></span>
 					  </button>
 					  <ul class="dropdown-menu" role="menu">
 					  	<% University.all.each do |university| %>
-					    <li><a href="#"><%= university.name %></a></li>
+					    <li class="<%= 'active' if current_university != nil && current_university.name == university.name %>">
+					    	<%= link_to university.name, root_url(subdomain: university.codename) %>
+				    	</li>
 					  	<% end %>
 					  </ul>
 					</div>
@@ -23,11 +28,11 @@
 					<div class="btn-group pull-right dropup" id="i18n-select">
 					  <button type="button" class="btn navbar-btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
 					    <span class="glyphicon glyphicon-globe"></span>
-					    言語 
+					    言語:<strong>日本語</strong>
 					    <span class="caret"></span>
 					  </button>
 					  <ul class="dropdown-menu" role="menu">
-					    <li><a href="#">日本語</a></li>
+					    <li class="active"><a href="#">日本語</a></li>
 					    <li><a href="#">English</a></li>
 					  </ul>
 					</div>

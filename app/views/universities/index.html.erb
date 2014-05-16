@@ -1,8 +1,10 @@
+<!-- 
 <h1>Listing universities</h1>
 
 <table>
   <thead>
     <tr>
+    	<th>Picture</th>
       <th>Name</th>
       <th>Address</th>
       <th>Website</th>
@@ -15,6 +17,7 @@
   <tbody>
     <% @universities.each do |university| %>
       <tr>
+      	<td><%= image_tag(university.display_logo_thumbnail, class: 'logo-thumbnail') %></td>
         <td><%= university.name %></td>
         <td><%= university.address %></td>
         <td><%= university.website %></td>
@@ -29,3 +32,46 @@
 <br>
 
 <%= link_to 'New University', new_university_path %>
+-->
+<div id="universities-list" class="clear">
+<% @universities.each do |university| %>
+	<%= link_to root_url(subdomain: university.codename) do %>
+		<div class="uni-item">
+			<div class="uni-thumbnail">
+				<%= image_tag(university.display_logo_original) %>
+			</div>
+			<div class="uni-desc">
+				<div class="uni-name">
+					<%= university.name %>
+				</div>
+				<div class="uni-meta">
+					<hr />
+					<div class="uni-user">
+						<%= image_tag('user.png', class: 'uni-meta-thumbnail') %>
+						<span><%= university.users.count %></span>
+					</div>
+					<div class="uni-note">
+						<%= image_tag('note.png', class: 'uni-meta-thumbnail') %>
+						<span><%= university.notes.count %></span>
+					</div>
+					<div class="uni-subject">
+						<%= image_tag('lecture.png', class: 'uni-meta-thumbnail') %>
+						<span><%= university.subjects.count %></span>
+					</div>
+				</div>
+			</div>
+		</div> <!-- end of uni-item -->
+	<% end %>
+<% end %>
+</div>
+<script>
+	$(document).ready(function() {
+		var container = document.querySelector('#universities-list');
+		var msnry = new Masonry( container, {
+		  // options
+		  "gutter": 10,
+		  "isFitWidth": true,
+		  itemSelector: '.uni-item'
+		});
+	});
+</script>

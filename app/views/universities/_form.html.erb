@@ -23,6 +23,36 @@
     <%= f.label :website %><br>
     <%= f.text_field :website %>
   </div>
+  
+  <% if @university.logo.exists? %>
+	<div class="fileinput fileinput-exists" data-provides="fileinput">
+	<% else %>
+	<div class="fileinput fileinput-new" data-provides="fileinput">
+	<% end %>
+	  <div class="fileinput-new thumbnail thumbnail-sm">
+	  </div>
+	  <div class="fileinput-preview fileinput-exists thumbnail thumbnail-preview-sm">
+	  <% if @university.logo.exists? %>
+	  	<%= image_tag @university.logo.url(:original) %>
+  	<% end %>
+	  </div>
+	  <div>
+	    <span class="btn btn-default btn-file">
+	    	<span class="fileinput-new">Select image</span>
+	    	<span class="fileinput-exists">Change</span>
+	  		<%= f.file_field :logo %>
+    	</span>
+	    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+	  </div>
+	  <% if @university.errors[:logo] %>
+			<ul>
+      <% @university.errors.full_messages_for(:logo).each do |msg| %>
+        <li class="error-msg"><%= msg %></li>
+      <% end %>
+      </ul>
+		<% end %>
+	</div>
+	
   <div class="actions">
     <%= f.submit %>
   </div>

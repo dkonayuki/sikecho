@@ -26,6 +26,7 @@
 //= require jquery.autosize
 //= require owl.carousel.js
 //= require fileinput.js
+//= require masonry.pkgd.js
 //= require_tree .
 
 /*MaxWidth for ajax popup*/

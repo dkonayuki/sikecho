@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
   end
   
   def display_profile_image
-    if self.avatar.exists?
+    if self.avatar.present? && self.avatar.url(:small).present?
       self.avatar.url(:small)
     else
       'user.png'
@@ -69,7 +69,7 @@ class User < ActiveRecord::Base
   end
   
   def display_comment_avatar
-    if self.avatar.exists?
+    if self.avatar.present? && self.avatar.url(:small).present?
       self.avatar.url(:small)
     else
       'avatar.png'
