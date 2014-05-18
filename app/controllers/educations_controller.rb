@@ -25,9 +25,6 @@ class EducationsController < ApplicationController
   def new_auto
     @education = @user.current_education.dup
     
-    #increase year by 1
-    @education.year += 1 if @education.year
-    
     #increase semester only semester exists
     if @education.semester
       semester = Semester.find_by_no(@education.semester.no + 1)
@@ -36,14 +33,23 @@ class EducationsController < ApplicationController
       else
         #increase uni_year if necessary
         uni_year = UniYear.find_by_no(@education.uni_year.no + 1)
+            
+        #increase year by 1
+        @education.year += 1 if @education.year
+
         if uni_year
           @education.uni_year = uni_year
           @education.semester = uni_year.semesters.find_by_no(1)
+        else
+          #semester remains the same for the last year
+          @education.semester = @education.uni_year.semesters.find_by_no(1)      
         end
       end
     end
     
     @education.save
+    @user.current_education = @education
+    @user.save!
     @isEditable = true
     
     respond_to do |format|
