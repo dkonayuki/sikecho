@@ -96,7 +96,7 @@ class NotesController < ApplicationController
     if !params[:subject_id].blank? 
       @note.subjects << Subject.find(params[:subject_id])
     end
-    @subjects = @user.current_university.subjects
+    @subjects = @user.current_university.subjects.order('notes_count DESC, year DESC')
   end
 
   # POST /notes
