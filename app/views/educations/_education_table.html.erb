@@ -150,7 +150,7 @@ $(document).ready(function(){
 					$('#education_semester_id').empty();
 					var university_id = $("#education_university_id").val();
 					$.ajax({
-							url:"/faculties",	
+							url:"/faculties_list",	
 							data:'university_id=' + university_id,
 							dataType: "json",
 							success: function(data) {

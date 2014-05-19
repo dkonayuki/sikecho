@@ -28,7 +28,8 @@ Shikechou::Application.routes.draw do
   #get tags.json
   get 'tags' => 'application#tags'
   #get faculties data
-  get 'faculties' => 'application#faculties'
+  #use faculties_list instead of faculties
+  get 'faculties_list' => 'application#faculties'
   #get courses data
   get 'courses' => 'application#courses'
   #get uni_year data
