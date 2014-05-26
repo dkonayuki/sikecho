@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook], authentication_keys: [:login]
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook, :twitter], authentication_keys: [:login]
          
   validates :username, presence: true, length: 4..16, on: :create, uniqueness: { case_sensitive: false }
   
@@ -94,7 +94,7 @@ class User < ActiveRecord::Base
   
   # sign in
   # find existed user, if not, create a new user
-  def self.find_for_facebook_oauth(auth)
+  def self.find_for_provider_oauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
@@ -106,8 +106,7 @@ class User < ActiveRecord::Base
   # add info from facebook session for new user b4 sign up
   def self.new_with_session(params, session)
     super.tap do |user|
-      if data = session["devise.facebook_data"]
-        puts data.info.inspect
+      if data = session["devise.provider_data"]
         user.email = data.info["email"] if user.email.blank?
         user.username = data.info["name"] if user.username.blank?
         user.uid = data["uid"]
