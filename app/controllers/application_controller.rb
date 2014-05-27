@@ -75,8 +75,13 @@ class ApplicationController < ActionController::Base
   
   # redirect after sign in
   def after_sign_in_path_for(resource)
-    #remember to use url for changing subdomain
-    root_url(subdomain: resource.current_education.university.codename)
+    case resource
+    when User then
+      #remember to use url for changing subdomain
+      root_url(subdomain: resource.current_education.university.codename)
+    when Admin then
+      rails_admin_path
+    end
   end
   
   # Overwriting the sign_out redirect path method

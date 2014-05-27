@@ -1,11 +1,17 @@
 Shikechou::Application.routes.draw do
-
+  
+  #devise routes
+  devise_for :admins,
+    controllers: {sessions: "admins/sessions"}, 
+    path_names: {sign_in: 'login', sign_out: 'logout'}
+    
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   
   #devise routes
   devise_for :users, 
     controllers: {sessions: "users/sessions", registrations: 'users/registrations', confirmations: 'users/confirmations', passwords: 'users/passwords', omniauth_callbacks: "users/omniauth_callbacks"}, 
     path_names: {sign_in: 'login', sign_out: 'logout'}
+    
   resources :teachers
 
   resources :universities
