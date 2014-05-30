@@ -57,7 +57,8 @@ Shikechou::Application.routes.draw do
   
   controller :schedule do
     delete 'schedule' => :destroy, as: 'schedule_destroy'
-    get 'schedule/index' => :index, as: :schedule
+    get 'schedule/index' => :index
+    get 'schedule' => :index, as: :schedule
     post 'schedule' => :create, as: 'schedule_create'
   end
 
