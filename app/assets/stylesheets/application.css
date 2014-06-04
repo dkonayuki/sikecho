@@ -32,6 +32,16 @@
 	overflow: hidden;
 }
 
+::selection {
+	color: #fff;
+	background: #333;
+}
+
+::-moz-selection {
+	color: #fff;
+	background: #333;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 
