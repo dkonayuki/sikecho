@@ -339,6 +339,10 @@ body {
 	margin-top: 20px;
 }
 
+#pushmenu-trigger {
+	margin-right: 15px;
+}
+
 .note-item {
 	position: relative;
 	height: 72px;
@@ -852,10 +856,6 @@ body {
 
 .show-subject-menu .btn {
 	width: 100%;
-}
-
-#pushmenu-trigger {
-	margin-left: 15px;
 }
 
 #year-list {

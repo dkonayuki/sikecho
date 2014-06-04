@@ -1,179 +1,87 @@
-<div class="mp-container">
+
+<!--menu bar-->  	
+<div class="filter-bar">
+	
+	<% if user_signed_in? %>
+	  <%= link_to new_course_subject_path(@course), class: 'btn btn-default', id:'new-subject-btn' do %>
+	  <span class="glyphicon glyphicon-plus-sign"></span>
+		<% end %>
+	<% end %>
+	
+  <%= form_tag course_subjects_path(@course), method: :get, class: "filter-form has-padding", id: "filter-subject" do %>
+    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'ライブ検索', autocorrect: "off", autocapitalize: "off" %>
+	<% end %>
+	
+	<ul class="hidden-xs filter-menu">
+		<li><%= link_to '全学年', course_subjects_path(@course, filter: '全学年'), class: 'active' %></li>										
+	  <% current_university.subjects.tag_counts.order('count desc').limit(4).each do | tag | %>
+  	<li><%= link_to tag.name, course_subjects_path(@course, filter: tag.name) %></li>
+		<% end %>
+
+		<li><a href="#" id="sub-menu-trigger">学年別</a></li>
+	</ul>
+</div>
+<!-- end of menu bar -->
+<!--subbar for 学年別-->
+<div id="sub-filter-bar" class="hidden-xs">
+	<div class="outer-center"> <!-- outer center and inner center are needed for center divs with unknown width -->
+  	<div id="sub-filter-bar-inner" class="inner-center">
+  		<% current_university.uni_years.each do | uni_year | %>
+			<div>
+				<h4><%= uni_year.name %></h4>
+				<ul>
+					<% uni_year.semesters.each do | semester | %>
+					<li><%= link_to semester.name, course_subjects_path(@course, filter: '学年別', semester: semester.id), data: {id: semester.id} %></li>
+					<% end %>
+				</ul>
+			</div>
+			<% end %>
+		</div>
+  </div>
+  <div class="clear"></div>	
+</div>
+<!-- end of sub-bar -->
+
+<div id="subjects">
+	<!--subject index page content goes here-->
+	<div id="subject-view-menu">
+		<div id="path-info">
+			<%= link_to @course.faculty.university.name, faculties_path(@course.faculty.university) %>
+			<%= link_to @course.faculty.name, @course.faculty %>
+			<span><%= @course.name %></span>
+		</div>
 		
-    <!-- Push Wrapper -->
-    <div class="mp-pusher" id="mp-pusher">
- 
-        <!-- mp-menu -->
-        <nav id="mp-menu" class="mp-menu mp-overlap">
-					<div class="mp-level" data-level="1">
-						<h4 class="icon-menu">授業カテゴリ</h4>
-						 <ul>
-						 	<!-- 学年別　-->
-						 	<li class="icon-arrow fix-margin-bug">
-						 		<a>学年別</a>
-						 		<div class="mp-level" data-level="2">
-									<h4 class="icon-year">学年別</h4>
-									<ul>
-										<% current_university.uni_years.each do | uni_year | %>
-										<li class="icon-arrow">
-											<a><%= uni_year.name %></a>
-											<div class="mp-level" data-level="3">
-												<h4><%= uni_year.name %></h4>
-												<ul>
-													<% uni_year.semesters.each do | semester | %>
-													<li><%= link_to semester.name, course_subjects_path(@course, filter: '学年別', semester: semester.id) %></li>
-													<% end %>
-												</ul>
-											</div>
-										</li>
-										<% end %>
-									</ul>
-								</div>
-						 	</li>　<!-- end of 学年別 -->
-							<!-- 学科　-->
-						 	<li class="icon-arrow fix-margin-bug">
-						 		<a>学部</a>
-						 		<div class="mp-level" data-level="2">
-									<h4 class="icon-year">学部別</h4>
-									<ul>
-										<% current_university.faculties.each do | faculty | %>
-										<li class="icon-arrow">
-											<a><%= faculty.name %></a>
-											<div class="mp-level" data-level="3">
-												<h4><%= faculty.name %></h4>
-												<ul>
-													<% faculty.courses.each do | course | %>
-													<li><%= link_to course.name, course_subjects_path(@course) %></li>
-													<% end %>
-												</ul>
-											</div>
-										</li>
-										<% end %>
-									</ul>
-								</div>
-						 	</li>　<!-- end of 学科 -->						 	
-							<% current_university.subjects.tag_counts.order('count desc').limit(8).each do | tag | %>
-					  	<li><%= link_to tag.name, course_subjects_path(@course, filter: tag.name) %></li>
-							<% end %>
-							<li><%= link_to '全学年', course_subjects_path(@course) %></li>
+		<% if user_signed_in? %>
+		<div id="subject-order-option">
+			<div class="btn-group">
+			  <button data-type="all" class="btn btn-order <%= 'active' if @user.settings(:subject).style == :all %>">年</button>
+			  <button data-type="semester" class="btn btn-order <%= 'active' if @user.settings(:subject).style == :semester %>">期</button>
+			  <button data-type="note_count" class="btn btn-order <%= 'active' if @user.settings(:subject).style == :note_count %>">の</button>
+			</div>
+		</div>
+		<% end %>
+	</div>
+	                
+	<!--courses list start-->
+	<div class="hidden-xs col-sm-2">
+		<div id="courses-list">
+			<ul class="nav">
+	    <% @course.faculty.courses.each do |course| %>
+	    	<li><%= link_to course.name, course_subjects_path(course) %></li>
+	    <% end %>          
+	    </ul>
+		</div>
+	</div>
+	<!-- courses list end -->
+	
+	<!-- subjects list goes here -->
+	<div id="subjects-list" class="col-xs-12 col-sm-10">
+		<%= render(@subjects) || '授業が見つかりません。' %>												
+	</div>
+	
+	<!-- for endless pagaination -->
+	<div class="hidden-pagination">
+		<%= paginate @subjects %>										
+	</div>
 
-				  	</ul>
-							
-					</div>
-				</nav>
-        <!-- /mp-menu -->
-		
-        <div class="scroller"><!-- this is for emulating position fixed of the nav -->
-            <div class="scroller-inner">
-                <!-- site content goes here -->
-									
-	                <!--menu bar-->  	
-									<div class="filter-bar">
-										<!-- trigger btn -->
-										<a href="#" id="pushmenu-trigger" class="visible-xs btn btn-default pull-left"><span class="glyphicon glyphicon-cog"></span></a>
-										
-										<% if user_signed_in? %>
-										  <%= link_to new_course_subject_path(@course), class: 'btn btn-default', id:'new-subject-btn' do %>
-										  <span class="glyphicon glyphicon-plus-sign"></span>
-											<% end %>
-										<% end %>
-										
-									  <%= form_tag course_subjects_path(@course), method: :get, class: "filter-form has-padding", id: "filter-subject" do %>
-									    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'ライブ検索', autocorrect: "off", autocapitalize: "off" %>
-										<% end %>
-										
-										<ul class="hidden-xs filter-menu">
-											<li><%= nav_link '全学年', course_subjects_path(@course, filter: '全学年') %></li>										
-										  <% current_university.subjects.tag_counts.order('count desc').limit(4).each do | tag | %>
-									  	<li><%= nav_link tag.name, course_subjects_path(@course, filter: tag.name) %></li>
-											<% end %>
-								
-											<li><a href="#" id="sub-menu-trigger">学年別</a></li>
-										</ul>
-									</div>
-									<!-- end of menu bar -->
-									<!--subbar for 学年別-->
-									<div id="sub-filter-bar" class="hidden-xs">
-										<div class="outer-center"> <!-- outer center and inner center are needed for center divs with unknown width -->
-								    	<div id="sub-filter-bar-inner" class="inner-center">
-								    		<% current_university.uni_years.each do | uni_year | %>
-												<div>
-													<h4><%= uni_year.name %></h4>
-													<ul>
-														<% uni_year.semesters.each do | semester | %>
-														<li><%= nav_link semester.name, course_subjects_path(@course, filter: '学年別', semester: semester.id), data: {id: semester.id} %></li>
-														<% end %>
-													</ul>
-												</div>
-												<% end %>
-											</div>
-								    </div>
-								    <div class="clear"></div>	
-									</div>
-									<!-- end of sub-bar -->
-									
-                <div id="subjects">
-								<!--subject index page content goes here-->
-									<div id="subject-view-menu">
-										<div id="path-info">
-											<%= link_to @course.faculty.university.name, faculties_path(@course.faculty.university) %>
-											<%= link_to @course.faculty.name, @course.faculty %>
-											<span><%= @course.name %></span>
-										</div>
-										
-										<% if user_signed_in? %>
-										<div id="subject-order-option">
-											<div class="btn-group">
-											  <button data-type="all" class="btn btn-order <%= 'active' if @user.settings(:subject).style == :all %>">年</button>
-											  <button data-type="semester" class="btn btn-order <%= 'active' if @user.settings(:subject).style == :semester %>">期</button>
-											  <button data-type="note_count" class="btn btn-order <%= 'active' if @user.settings(:subject).style == :note_count %>">の</button>
-											</div>
-										</div>
-										<% end %>
-									</div>
-									                
-                	<!--courses list start-->
-                	<div class="hidden-xs col-sm-2">
-										<div id="courses-list">
-											<ul class="nav">
-									    <% @course.faculty.courses.each do |course| %>
-									    	<li><%= nav_link course.name, course_subjects_path(course) %></li>
-									    <% end %>          
-									    </ul>
-										</div>
-									</div>
-									<!-- courses list end -->
-									
-									<!-- subjects list goes here -->
-	                <div id="subjects-list" class="col-xs-12 col-sm-10">
-										<%= render(@subjects) || '授業が見つかりません。' %>												
-									</div>
-									
-									<!-- for endless pagaination -->
-									<div class="hidden-pagination">
-										<%= paginate @subjects %>										
-									</div>
-									
-								</div>
-            </div><!-- /scroller-inner -->
-        </div><!-- /scroller -->
- 
-    </div><!-- /pusher -->
-</div><!-- /mp-container -->
-
-<script>
-	$(document).ready(function() {
-		
-		// need to set active beside nav_link helper
-		new mlPushMenu( document.getElementById('mp-menu'), document.getElementById('pushmenu-trigger') );
-
-		filter = getParameterByName("filter");
-		if (filter == "学年別") {
-			$(".filter-bar a:contains('学年別')").attr("class", "active");
-		} else if (filter == "") {
-			//default
-			$(".filter-bar a:contains('全学年')").attr("class", "active");
-		}
-
-	});
-</script>
+</div>

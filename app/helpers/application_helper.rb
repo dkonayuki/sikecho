@@ -28,7 +28,11 @@ module ApplicationHelper
       html_options[:class] = class_name
     end
     
-    link_to link_text, link_path, html_options
+    if link_text.blank?
+      link_to('#', html_options, &block)
+    else
+      link_to link_text, link_path, html_options
+    end
   end
   
   #helper link for shallow= true

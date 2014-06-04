@@ -1,5 +1,40 @@
+
+<div class="mp-container">
+		
+    <!-- Push Wrapper -->
+    <div class="mp-pusher" id="mp-pusher">
+ 
+        <!-- mp-menu -->
+        <nav id="mp-menu" class="mp-menu mp-overlap">
+					<div class="mp-level" data-level="1">
+						<h4 class="icon-menu">ノートメニュー</h4>
+						 <ul>
+						  <li>
+						  	<%= link_to notes_path(filter: '新着ノート') do %>
+							  	新着ノート
+						    	<% if user_signed_in? && unread_notes_count > 0 %>
+						    		<span class="badge badge-important"><%= unread_notes_count %></span>
+						    	<% end %>
+						  	<% end %>
+						  </li>
+							<li><%= link_to '授業のノート', notes_path(filter: '授業のノート') %></li>
+							<li><%= link_to '自分のノート', notes_path(filter: '自分のノート') %></li>
+	  					<li><%= link_to 'すべて', notes_path(filter: 'すべて'), class: 'active' %></li>
+				  	</ul>
+					</div>
+				</nav>
+        <!-- /mp-menu -->
+		
+        <div class="scroller"><!-- this is for emulating position fixed of the nav -->
+            <div class="scroller-inner">
+                <!-- site content goes here -->
+                
 <div id="notes">
 	<div class="filter-bar">
+		
+		<!-- trigger btn -->
+		<a href="#" id="pushmenu-trigger" class="visible-xs btn btn-default pull-left"><span class="glyphicon glyphicon-cog"></span></a>
+		
 	  <%= link_to new_note_path, class: 'btn btn-default', id:'new-note-btn' do %>
 	  <span class="glyphicon glyphicon-plus-sign"></span>
 		<% end %>
@@ -8,7 +43,7 @@
 	    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'ライブ検索', autocorrect: "off", autocapitalize: "off" %>
 		<% end %>
 		<ul class="hidden-xs filter-menu">
-	  <li><%= link_to 'すべて', notes_path(filter: 'すべて'), class: 'active' %></li>
+	  <li><%= link_to 'すべて', notes_path(filter: 'すべて') %></li>
 		<li><%= link_to '自分のノート', notes_path(filter: '自分のノート') %></li>
 		<li><%= link_to '授業のノート', notes_path(filter: '授業のノート') %></li>
 	  <li>
@@ -35,3 +70,24 @@
 		<%= paginate @notes %>										
 	</div>
 </div>
+
+            </div><!-- /scroller-inner -->
+        </div><!-- /scroller -->
+ 
+    </div><!-- /pusher -->
+</div><!-- /mp-container -->
+
+<script>
+	$(document).ready(function() {
+		new mlPushMenu( document.getElementById('mp-menu'), document.getElementById('pushmenu-trigger') );
+		
+		// need to set active beside nav_link helper
+		filter = getParameterByName("filter");
+		if (filter == "") {
+			//default
+			$(".filter-bar a:contains('すべて')").attr("class", "active");
+		} else {
+			$(".filter-bar a:contains('" + filter + "')").attr("class", "active");
+		}
+	});
+</script>
