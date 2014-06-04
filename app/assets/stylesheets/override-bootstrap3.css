@@ -5,6 +5,12 @@
 	box-shadow: none;
 }
 
+.form-control {
+	outline: 0;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
 .navbar-header {
 	text-align: center;
 }

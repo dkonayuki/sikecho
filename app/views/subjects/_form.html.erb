@@ -97,13 +97,13 @@
 					<p>
 						<h5>シラバス</h5>
 						<% if @subject.outlines.count > 0 %>
-						<%= select_tag :number_of_outlines, options_for_select(@number_of_outlines_list, selected: @subject.outlines.count), class: 'selectpicker show-tick', data: {width: 'auto', link: outline_subject_path}, id: 'number-of-outlines-select' %>
+							<%= select_tag :number_of_outlines, options_for_select(@number_of_outlines_list, selected: @subject.outlines.count), class: 'selectpicker show-tick', data: {width: 'auto', link: outline_subject_path}, id: 'number-of-outlines-select' %>
+							<div id="syllabus-table">
+								<%= render 'syllabus_table', editable: true %>
+							</div>
 						<% else %>
-						<%= select_tag :number_of_outlines, options_for_select(@number_of_outlines_list), class: 'selectpicker show-tick', data: {width: 'auto'}, id: 'number-of-outlines-select' %>
+							<%= select_tag :number_of_outlines, options_for_select(@number_of_outlines_list), class: 'selectpicker show-tick', data: {width: 'auto'} %>
 						<% end %>
-						<div id="syllabus-table">
-						<%= render 'syllabus_table', editable: true %>
-						</div>
 					</p>
 					
 					<div class='tag-form'>

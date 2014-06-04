@@ -127,9 +127,15 @@ class SubjectsController < ApplicationController
     @subject.teachers = Teacher.where(id: params[:teachers])
     
     #convert full-width to half-width
-    tags_text = Moji.zen_to_han(params[:tags])
+    tags_text = Moji.normalize_zen_han(params[:tags])
     tags = tags_text.split(',')
     @subject.tag_list = tags
+    
+    #create first outlines
+    (1..params[:number_of_outlines].to_i).each do |i|
+      outline = Outline.new(no: i)
+      @subject.outlines << outline
+    end
 
     respond_to do |format|
       if @subject.save
@@ -155,7 +161,7 @@ class SubjectsController < ApplicationController
     else
       #add new outlines
       old_number = old_number + 1
-      (old_number..new_number).each do | i |
+      (old_number..new_number).each do |i|
         outline = Outline.new(no: i)
         @subject.outlines << outline
       end
@@ -218,8 +224,10 @@ class SubjectsController < ApplicationController
     
     @tags = @subject.tag_list
     
-    # update tags list
-    tags = params[:tags].split(',')
+    #update tags list
+    #convert full-width to half-width
+    tags_text = Moji.normalize_zen_han(params[:tags])
+    tags = tags_text.split(',')
     @subject.tag_list = tags
     
     #add teachers
