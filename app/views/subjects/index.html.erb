@@ -1,5 +1,4 @@
-
-<!--menu bar-->  	
+<!--menu bar
 <div class="filter-bar">
 	
 	<% if user_signed_in? %>
@@ -22,9 +21,9 @@
 	</ul>
 </div>
 <!-- end of menu bar -->
-<!--subbar for 学年別-->
+<!--subbar for 学年別
 <div id="sub-filter-bar" class="hidden-xs">
-	<div class="outer-center"> <!-- outer center and inner center are needed for center divs with unknown width -->
+	<div class="outer-center"> <!-- outer center and inner center are needed for center divs with unknown width 
   	<div id="sub-filter-bar-inner" class="inner-center">
   		<% current_university.uni_years.each do | uni_year | %>
 			<div>
@@ -43,7 +42,7 @@
 <!-- end of sub-bar -->
 
 <div id="subjects">
-	<!--subject index page content goes here-->
+	<!--subject index page content goes here
 	<div id="subject-view-menu">
 		<div id="path-info">
 			<%= link_to @course.faculty.university.name, faculties_path(@course.faculty.university) %>
@@ -60,9 +59,9 @@
 			</div>
 		</div>
 		<% end %>
-	</div>
+	</div>-->
 	                
-	<!--courses list start-->
+	<!--courses list start
 	<div class="hidden-xs col-sm-2">
 		<div id="courses-list">
 			<ul class="nav">
@@ -74,14 +73,29 @@
 	</div>
 	<!-- courses list end -->
 	
-	<!-- subjects list goes here -->
-	<div id="subjects-list" class="col-xs-12 col-sm-10">
-		<%= render(@subjects) || '授業が見つかりません。' %>												
-	</div>
-	
-	<!-- for endless pagaination -->
-	<div class="hidden-pagination">
-		<%= paginate @subjects %>										
+	<div id="subjects-content">
+		
+		<div id="subject-menu">
+			<% if user_signed_in? %>
+			  <%= link_to new_course_subject_path(@course), class: 'btn btn-default', id:'new-subject-btn' do %>
+			  <span class="glyphicon glyphicon-plus-sign"></span>
+				<% end %>
+			<% end %>
+			
+		  <%= form_tag course_subjects_path(@course), method: :get, class: "filter-form has-padding", id: "filter-subject" do %>
+		    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'ライブ検索', autocorrect: "off", autocapitalize: "off" %>
+			<% end %>
+		</div>
+		
+		<!-- subjects list goes here -->
+		<div id="subjects-list">
+			<%= render(@subjects) || '授業が見つかりません。' %>												
+		</div>
+		
+		<!-- for endless pagaination -->
+		<div class="hidden-pagination">
+			<%= paginate @subjects %>										
+		</div>		
 	</div>
 
 </div>

@@ -86,41 +86,13 @@ $(document).on("page:change", function() {
 
  	/*For filter menu active*/
  	$(".filter-menu li a").off("click").on("click", function() {
- 		if ($(this).attr("id") == "sub-menu-trigger") {
- 			$("#sub-filter-bar").toggle();
- 		}
- 		else {
- 			$.getScript(this.href, ajaxSuccess); 
-	  	$(".filter-menu li a").each(function() {
-	  		$(this).removeClass( "active" );
-	  	});
-	  	$("#sub-filter-bar li a").each(function() {
-  			$(this).removeClass( "active" );
-  		});
-	  	$(this).addClass("active");
-	  	$(".filter-form input").val("");
-	  	$("#sub-filter-bar").hide();
- 		}
-	  return false;
-	});
-	
- 	/*For sub filter menu active*/
- 	$("#sub-filter-bar li a").off("click").on("click", function() {
- 		$.getScript(this.href, function() {
-			//load more items if needed
-			$(window).scroll();		 			
- 		}); 
-		$(".filter-menu li a").each(function() {
-  		$(this).removeClass("active");
-  	});
-  	$("#sub-filter-bar li a").each(function() {
-  		$(this).removeClass("active");
+		$.getScript(this.href, ajaxSuccess); 
+  	$(".filter-menu li a").each(function() {
+  		$(this).removeClass( "active" );
   	});
   	$(this).addClass("active");
-		$("#sub-menu-trigger").addClass("active");
   	$(".filter-form input").val("");
-  	$("#sub-filter-bar").hide();
-  	return false;
+	  return false;
 	});
 	
 	/*For fixed subject menu*/

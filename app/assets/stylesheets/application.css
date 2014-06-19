@@ -556,6 +556,21 @@ body {
  ===============================================================================================*/
 
 #subjects {
+	max-width: 1000px;
+	margin: 20px auto;
+	padding: 20px;
+}
+
+#subjects-content {
+	background: #fff;
+}
+
+#subject-menu {
+	position: relative;
+	padding-top: 10px;
+	border-bottom: 1px solid #ddd;
+	height: 57px;
+	background-color: #fff;
 }
 
 #filter-subject {
