@@ -1,0 +1,40 @@
+<%= link_to subject, class: 'subject-item-line' do %>
+	<div class="subject-thumbnail-line">
+  		<%= image_tag("lecture.png") %>
+  </div> 
+	
+  <div class="subject-details-line">
+    <p class="subject-name-line"><%= subject.name %></p>
+		<p class="subject-teacher-line">
+    	<% subject.teachers.each do |teacher| %>
+    		<% if teacher != subject.teachers.first  %>
+    		・
+    		<% end %>
+    		<%= teacher.name_kanji %>
+  		<% end %>
+    </p>
+		<p class="subject-desc-line">
+			<%= strip_tags(subject.description) %>
+		</p>
+  </div>
+  <div class="subject-info-line">
+  	<div class="subject-notes-number-line">
+  		<span><%= subject.notes.count %></span>
+  		<%= image_tag("note.png") %>
+		</div>
+
+  	<% if @show_semester %>
+  		<div class="subject-course-line">
+      	<%= subject.semester.uni_year.name %><%= subject.semester.name %>
+    	</div>
+  	<% end %>
+    <% if @show_course %>
+      <div class="subject-course-line">
+      	<%= subject.course.name %>
+    	</div>
+  	<% end %>
+  	<div class="subject-year-line">
+			<%= subject.year %>
+		</div>
+	</div>
+<% end %>

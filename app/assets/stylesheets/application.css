@@ -32,6 +32,7 @@
 	overflow: hidden;
 }
 
+/*
 ::selection {
 	color: #fff;
 	background: #333;
@@ -40,7 +41,7 @@
 ::-moz-selection {
 	color: #fff;
 	background: #333;
-}
+}*/
 
 /* Sticky footer styles
 -------------------------------------------------- */
@@ -563,17 +564,27 @@ body {
 
 #subjects-content {
 	background: #fff;
+	padding: 20px;
 }
 
-#subject-menu {
+#subject-menu-top {
 	position: relative;
+	padding-bottom: 15px;
 	border-bottom: 1px solid #ddd;
 	background-color: #fff;
 }
 
 #filter-subject {
-	margin: 15px 10px;
 	max-width: 300px;
+}
+
+#new-subject-btn {
+	float: right;
+}
+@media (min-width: 768px) {
+  #new-subject-btn:after {
+    content: "新規授業";
+  } 
 }
 
 #path-info {
@@ -624,8 +635,17 @@ body {
 	color: #fff;
 }
 
+#subjects-list-container {
+	border-right: 1px solid #ddd;
+}
+@media (max-width: 767px) {
+  #subjects-list-container {
+  	border-right: none;
+  	border-top: 1px solid #ddd;
+  } 
+}
+
 #subjects-list {
-	text-align: center;
 }
 
 #subject-view-menu {
@@ -636,19 +656,8 @@ body {
 
 #subject-order-option {
 	position: absolute;
-	bottom: 0;
-	right: 0;
-}
-
-.btn-order {
-	font-size: 12px !important;
-	padding: 7px 12px !important;
-	background: none;
-	border-left: 1px solid #ddd !important;
-}
-
-.btn-order.active {
-	background: #ccc !important;
+	right: 15px;
+	top: 15px;
 }
 
 @media (max-width: 469px) {
@@ -781,9 +790,6 @@ body {
 	margin-bottom: 3px;
 }
 
-.subject-notes-number span {
-}
-
 .subject-badge {
 	position: absolute;
 	top: -4px;
@@ -814,17 +820,6 @@ body {
 #note-order-option {
 	text-align: center;
 	margin-top: 20px;
-}
-
-#new-subject-btn {
-float: right;
-margin-right: 15px;
-margin-top: 15px;
-}
-@media (min-width: 768px) {
-  #new-subject-btn:after {
-    content: "新規授業";
-  } 
 }
 
 .show-subject-menu {
@@ -865,6 +860,32 @@ margin-top: 15px;
 
 .hidden-pagination {
 	display: none;
+}
+
+.subject-notes-number-line img {
+	width: 11px;
+	height: 11px;
+}
+
+.subject-item-line {
+	height: 100px;
+	width: 100%;
+	display: block;
+}
+
+.subject-details-line {
+	float: left;
+}
+
+.subject-thumbnail-line {
+	float: left;
+	width: 120px;
+	height: 80px;
+	overflow: hidden;
+}
+
+.subject-info-line {
+	float: right;
 }
 
 /* Teacher page

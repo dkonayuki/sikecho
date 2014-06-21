@@ -73,9 +73,9 @@
 	</div>
 	<!-- courses list end -->
 	
-	<div id="subjects-content">
+	<div id="subjects-content" class="clear">
 		
-		<div id="subject-menu" class="clear">
+		<div id="subject-menu-top" class="clear">
 			<% if user_signed_in? %>
 			  <%= link_to new_course_subject_path(@course), class: 'btn btn-default', id:'new-subject-btn' do %>
 			  <span class="glyphicon glyphicon-plus-sign"></span>
@@ -86,16 +86,32 @@
 		    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'ライブ検索', autocorrect: "off", autocapitalize: "off" %>
 			<% end %>
 		</div>
+						
+		<div id="subject-menu-right" class="col-sm-3 col-xs-12 pull-right no-padding">
+			全学年
+		</div>	
 		
 		<!-- subjects list goes here -->
-		<div id="subjects-list">
-			<%= render(@subjects) || '授業が見つかりません。' %>												
+		<div id="subjects-list-container" class="col-sm-9 col-xs-12 no-padding">
+			<h3>授業</h3>
+			<div id="subject-order-option" class="clear">
+				<div class="btn-group">
+				  <button data-type="all" class="btn btn-default <%= 'active' if @user.settings(:subject).style == :all %>">年</button>
+				  <button data-type="semester" class="btn btn-default <%= 'active' if @user.settings(:subject).style == :semester %>">期</button>
+				  <button data-type="note_count" class="btn btn-default <%= 'active' if @user.settings(:subject).style == :note_count %>">の</button>
+				</div>
+			</div>
+			
+			<div id="subjects-list">
+				<%= render collection: @subjects, partial: 'subject_line', as: :subject || '授業が見つかりません。' %>		
+			</div>
+			
+			<!-- for endless pagaination -->
+			<div class="hidden-pagination">
+				<%= paginate @subjects %>										
+			</div>
 		</div>
-		
-		<!-- for endless pagaination -->
-		<div class="hidden-pagination">
-			<%= paginate @subjects %>										
-		</div>		
+
 	</div>
 
 </div>
