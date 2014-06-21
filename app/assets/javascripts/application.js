@@ -31,6 +31,8 @@
 
 /*MaxWidth for ajax popup*/
 function setMaxWidth() {
+	
+	//for desktop page
 	if ($(window).width() >= 768) {
 		if ($("#document-content").length) {
 			$("#document-content").css("maxWidth", ( $("#show-document").width() - $("#document-comment-section").width() - 30 ) + "px"); //30 for scroolbar				
@@ -41,6 +43,10 @@ function setMaxWidth() {
 	if ($(".note-item").length) {
 		$(".note-title").css("maxWidth", ( $('.note-item').width() - $('.note-thumbnail').outerWidth(true) - 1 ) + "px" ); //outerWidth(true): include margin
 		$(".note-tags").css("maxWidth", ( $('.note-item').width() - $('.note-thumbnail').outerWidth(true) - $('.note-view').width() - 1 ) + "px" );
+	}
+	
+	if ($("#filter-subject").length) {
+		$("#filter-subject").css("width", $("#subjects-content").width() - $("#new-subject-btn").outerWidth(true) - 40);
 	}
 }
 
@@ -112,9 +118,6 @@ $(document).on("page:change", function() {
 	$("#filter-subject input").keyup(function() {
 		window.clearTimeout(timeout); //clear delay
 		var data = $("#filter-subject").serialize() + "&filter=" + $(".filter-menu .active").text();
-		if ($("#sub-filter-bar .active").length) {
-			data += "&semester=" + $("#sub-filter-bar .active").data("id");
-		}
     timeout = window.setTimeout(function(){ //set a new delay, after an amount of time, ajax function will be called
 		  $.ajax({
 			  url: $("#filter-subject").attr("action"),
@@ -185,9 +188,6 @@ $(document).on("page:change", function() {
  		});
  		$(this).addClass("active");
 		var data = "filter=" + $(".filter-menu .active").text() + "&style=" + $(this).data("type");
-		if ($("#sub-filter-bar .active").length) {
-			data += "&semester=" + $("#sub-filter-bar .active").data("id");
-		}
 		if ($("#filter-subject #search").val() != "") {
 			data += "&search=" + $("#filter-subject #search").val();
 		}

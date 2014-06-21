@@ -75,7 +75,7 @@
 	
 	<div id="subjects-content">
 		
-		<div id="subject-menu">
+		<div id="subject-menu" class="clear">
 			<% if user_signed_in? %>
 			  <%= link_to new_course_subject_path(@course), class: 'btn btn-default', id:'new-subject-btn' do %>
 			  <span class="glyphicon glyphicon-plus-sign"></span>

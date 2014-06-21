@@ -558,7 +558,7 @@ body {
 #subjects {
 	max-width: 1000px;
 	margin: 20px auto;
-	padding: 20px;
+	padding: 0 20px;
 }
 
 #subjects-content {
@@ -567,14 +567,13 @@ body {
 
 #subject-menu {
 	position: relative;
-	padding-top: 10px;
 	border-bottom: 1px solid #ddd;
-	height: 57px;
 	background-color: #fff;
 }
 
 #filter-subject {
-	margin-left: 5px;
+	margin: 15px 10px;
+	max-width: 300px;
 }
 
 #path-info {
@@ -818,37 +817,14 @@ body {
 }
 
 #new-subject-btn {
-	float: right;
-	position: relative;
-	display: inline-block;
-	vertical-align: middle;
-	margin-right: 15px;
+float: right;
+margin-right: 15px;
+margin-top: 15px;
 }
 @media (min-width: 768px) {
   #new-subject-btn:after {
     content: "新規授業";
   } 
-}
-
-#sub-filter-bar {
-	padding-top: 10px;
-	border-bottom: 1px solid #ddd;
-	background-color: #fff;
-	display: none;
-}
-
-#sub-filter-bar-inner li a{
-	padding-left: 5px;
-	border-left: 3px solid transparent;
-}
-
-#sub-filter-bar-inner li a:hover, #sub-filter-bar-inner li .active {
-	border-color: #563d7c !important;
-}
-
-#sub-filter-bar-inner div {
-	display: inline-block;
-	margin-right: 40px;
 }
 
 .show-subject-menu {
