@@ -113,6 +113,25 @@ $(document).on("page:change", function() {
 		});		
 	}
 	
+	/*For subject menu*/
+	function reloadSubjectList() {
+		var data;
+		$("input[name=course][checked=checked]").each(function() {
+			console.log($(this).attr("value"));
+		});
+		/*$.ajax({
+			url: "/subjects",
+			data: data,
+			dataType: "script"
+		});*/
+	}
+	
+	$("#subject-menu-right input[type=checkbox]").change(function() {
+		cb = $(this);
+  	cb.attr("checked", cb.prop("checked"));
+		reloadSubjectList();
+	});
+	
 	/*For live search*/
 	var timeout; // add delay time
 	$("#filter-subject input").keyup(function() {

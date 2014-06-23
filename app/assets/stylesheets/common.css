@@ -45,7 +45,7 @@ img {
 #loading {
 	width: 30px;
 	height: 30px;
-	margin: 0 auto 10px;
+	margin: 20px auto 0;
 }
 
 a:hover {
@@ -350,6 +350,12 @@ a:hover {
 	margin: 3px 2px;
 }
 
+.label-xs {
+	padding: 4px 10px;
+	line-height: 15px;
+	font-size: 10px;
+}
+
 .subject-icon {
 	width: 20px;
 	height: 20px;
@@ -379,6 +385,7 @@ input[type=checkbox] {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	position: relative;
+	vertical-align: middle;
 }
 input[type=checkbox]:checked::after {
 	content: url('checkmark.png');
@@ -390,4 +397,3 @@ input[type=checkbox]:checked::after {
 input[type=checkbox]:focus {
   outline: none;
 }
-

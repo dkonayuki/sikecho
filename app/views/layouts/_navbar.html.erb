@@ -11,13 +11,13 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <%= link_to image_tag("logo.png"), home_url(subdomain: ''), class: 'navbar-brand', id: 'logo' %>
+    <%= link_to image_tag("logo.png"), root_url(subdomain: ''), class: 'navbar-brand', id: 'logo' %>
   </div>
   
   <!-- Menu bar -->
   <div class="collapse navbar-collapse no-transition" id="navbar-collapse-1">
     <ul class="nav navbar-nav hidden-xs">
-      <li class="<%= 'active' if params[:controller] == 'subjects' %> <%= 'disabled' if current_university == nil %>"><%= link_to '授業', faculties_path %></li>
+      <li class="<%= 'active' if params[:controller] == 'subjects' %> <%= 'disabled' if current_university == nil %>"><%= link_to '授業', subjects_path %></li>
       <li class="<%= 'active' if params[:controller] == 'notes' %> <%= 'disabled' if !user_signed_in? %>">
       	<%= link_to notes_path do %>
 	      	ノート

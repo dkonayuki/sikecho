@@ -2,6 +2,13 @@ class Subject < ActiveRecord::Base
   validates :name, presence: true
   validates :semester_id, presence: true
   validates :uni_year_id, presence: true
+  
+  has_attached_file :picture, styles: {small: "150x150>"}, 
+                              #local config
+                              url: "/uploads/subjects/:id/picture/:style/:basename.:extension",
+                              path: ":rails_root/public/:url" #dont really need path
+                              
+  validates_attachment_content_type :picture, content_type: ["image/jpg", "image/gif", "image/png", "image/jpeg"]
 
   has_many :notes_subjects
   has_many :notes, through: :notes_subjects
@@ -27,6 +34,14 @@ class Subject < ActiveRecord::Base
       where('subjects.name LIKE ?', "%#{search.downcase}%")
     else
       all
+    end
+  end
+  
+  def display_picture_small
+    if self.picture.present? && self.picture.url(:small).present?
+      self.picture.url(:small)
+    else
+      'lecture.png'
     end
   end
   

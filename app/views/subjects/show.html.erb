@@ -59,7 +59,7 @@
 	<div class="skc-box skc-box-no-padding skc-box-lg" id="subject-card">
 		<div class="skc-box-content">
 			<div class="skc-box-thumbnail">
-				<%= image_tag("lecture.png")  %>
+				<%= image_tag(@subject.display_picture_small)  %>
 			</div>
 			<div class="skc-box-title">
 				<a data-toggle="collapse" href="#collapseDescription">
@@ -74,7 +74,7 @@
 				<hr />
 				<p>
 					<strong>推奨学期:</strong>
-					<%= link_to "#{@subject.semester.uni_year.name}#{@subject.semester.name}", course_subjects_path(@subject.course, filter: '学年別', semester: @subject.semester.id) %>
+					<%= link_to "#{@subject.semester.uni_year.name}#{@subject.semester.name}", subjects_path(filter: '学年別', semester: @subject.semester.id) %>
 				</p>
 				<p>
 					<strong>時間:</strong>

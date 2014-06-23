@@ -61,7 +61,6 @@ end
 tokodai_sub_tags = ["通年","集中講義","ゼミ"]
 
 kougakubu = Faculty.create(name: "工学部", university: tokodai)
-gakubukyoutsu = Faculty.create(name: '学部共通', university: tokodai)
 jouhou = Course.create(name: '情報工学科', faculty: kougakubu)
 denden = Course.create(name: '電気電子学科', faculty: kougakubu)
 
