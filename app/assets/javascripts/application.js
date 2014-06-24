@@ -126,6 +126,7 @@ $(document).on("page:change", function() {
 		});*/
 	}
 	
+	
 	$("#subject-menu-right input[type=checkbox]").change(function() {
 		cb = $(this);
   	cb.attr("checked", cb.prop("checked"));
