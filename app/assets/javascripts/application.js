@@ -113,7 +113,6 @@ $(document).on("page:change", function() {
 		});		
 	}
 	
-
 	/*For subject menu*/
 	function reloadSubjectList() {
 		var data;
