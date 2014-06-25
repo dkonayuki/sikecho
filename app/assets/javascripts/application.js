@@ -113,42 +113,8 @@ $(document).on("page:change", function() {
 		});		
 	}
 	
-	/*For subject menu*/
-	function reloadSubjectList() {
-		var data;
-		$("input[name=course][checked=checked]").each(function() {
-			console.log($(this).attr("value"));
-		});
-		/*$.ajax({
-			url: "/subjects",
-			data: data,
-			dataType: "script"
-		});*/
-	}
-	
-	$("#subject-menu-right input[type=checkbox]").change(function() {
-		cb = $(this);
-  	cb.attr("checked", cb.prop("checked"));
-		reloadSubjectList();
-	});
-	
 	/*For live search*/
 	var timeout; // add delay time
-	$("#filter-subject input").keyup(function() {
-		window.clearTimeout(timeout); //clear delay
-		var data = $("#filter-subject").serialize() + "&filter=" + $(".filter-menu .active").text();
-    timeout = window.setTimeout(function(){ //set a new delay, after an amount of time, ajax function will be called
-		  $.ajax({
-			  url: $("#filter-subject").attr("action"),
-			  data: data, //default contenttype is url text
-			  success: null,
-			  dataType: "script"
-			});    
-		}, 500);
-
-		return false;
-	});
-  
   $("#filter-note input").keyup(function() {
 		window.clearTimeout(timeout); //clear delay
     timeout = window.setTimeout(function(){ //set a new delay, after an amount of time, ajax function will be called
@@ -198,24 +164,6 @@ $(document).on("page:change", function() {
 		  success: ajaxSuccess,
 		  dataType: "script"
 		});    
- 	});
- 	
- 	/*For subject order option*/
- 	$("#subject-order-option button").on("click", function() {
- 		$("#subject-order-option button").each(function() {
- 			$(this).removeClass("active");
- 		});
- 		$(this).addClass("active");
-		var data = "filter=" + $(".filter-menu .active").text() + "&style=" + $(this).data("type");
-		if ($("#filter-subject #search").val() != "") {
-			data += "&search=" + $("#filter-subject #search").val();
-		}
-	  $.ajax({
-		  url: $("#filter-subject").attr("action"),
-		  data: data ,//default contenttype is url text
-		  success: null,
-		  dataType: "script"
-		});  
  	});
 	
 	/*For edit subject form*/

@@ -340,7 +340,7 @@ a:hover {
 
 .label-tag {
 	background: #fff;
-	color: #aaa !important;
+	color: #aaa;
 	padding: 8px 20px;
 	line-height: 20px;
 	border: 1px solid #eee;
@@ -348,6 +348,16 @@ a:hover {
 	text-transform: uppercase;
 	display: inline-block;
 	margin: 3px 2px;
+}
+
+.label-tag.active {
+	background: whitesmoke;
+	color: #000;
+	border-color: #dddddd;
+}
+
+.label-tag:focus {
+	outline: none;
 }
 
 .label-xs {

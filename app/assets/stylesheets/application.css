@@ -994,6 +994,7 @@ body {
 
 .subject-menu-header span {
 	font-size: 16px;
+	vertical-align: middle;
 }
 
 #subject-menu-right {
@@ -1004,15 +1005,14 @@ body {
 	margin-left: 30px;
 }
 
-@media(max-width: 767px) {
-	#subject-menu-uni-year, #subject-menu-tag {
-	  -moz-column-count: 2;
-	  -moz-column-gap: 40px;
-	  -webkit-column-count: 2;
-	  -webkit-column-gap: 40px;
-	  column-count: 2;
-	  column-gap: 40px;	
-	}
+#subject-menu-year {
+	text-align: center;
+	max-width: 250px;
+	cursor: pointer; 
+}
+
+#subject-menu-year td {
+	vertical-align: middle;
 }
 
 /* Teacher page

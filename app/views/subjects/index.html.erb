@@ -33,7 +33,7 @@
 		<div id="subject-menu-right" class="col-sm-3 col-xs-12 pull-right">
 			
 			<div class="subject-menu-header">
-				<%= image_tag("temp.png") %>
+				<%= image_tag("faculty.png") %>
 				<span>学科</span>
 			</div>
 			<ul>
@@ -58,42 +58,35 @@
 			</ul>
 			
 			<div class="subject-menu-header">
-				<%= image_tag("temp.png") %>
+				<%= image_tag("year.png") %>
 				<span>学年</span>
 			</div>
-			<ul id="subject-menu-uni-year">
-				<li>
-					<%= check_box_tag :uni_year, 0, true %>
-					<span>全学年</span>
-				</li>
-			  <% @university.uni_years.each do |uni_year| %>
-		  	<li>
-		  		<%= check_box_tag :uni_year, uni_year.id %>
-		  		<span><%= uni_year.name %></span>
-		  		<ul>
-		  			<% uni_year.semesters.each do |semester| %>
-		  			<li>
-		  				<%= check_box_tag :semester, semester.id %>
-		  				<span><%= semester.name %></span>
-		  			</li>
-		  			<% end %>
-		  		</ul>
-	  		</li>
-				<% end %>
-			</ul>
+			<table class="table table-bordered" id="subject-menu-year">
+				<tr>
+					<td colspan="2" class="active" id="all-year">全学年</td>
+				</tr>
+				  <% @university.uni_years.each do |uni_year| %>
+						<% uni_year.semesters.each do |semester| %>
+				    <tr>
+				    	<% if semester == uni_year.semesters.first %>
+				    	<td rowspan="<%= uni_year.semesters.count %>" data-id="<%= uni_year.id %>" data-type="uni_year"><%= uni_year.name %></td>
+				    	<% end %>
+				    	<td data-id="<%= semester.id %>" data-type="semester" data-parent="<%= uni_year.id %>"><%= semester.name %></td>
+				    </tr>
+			    	<% end %>
+			    <% end %>
+			</table>
 			
 			<div class="subject-menu-header">
-				<%= image_tag("temp.png") %>
+				<%= image_tag("tag.png") %>
 				<span>タグ</span>
 			</div>
-			<ul id="subject-menu-tag">
+			<div id="subject-menu-tag">
 		  <% @university.subjects.tag_counts.order('count desc').limit(10).each do | tag | %>
-	  	<li>
-	  		<%= check_box_tag :tag, tag.id %>
-	  		<span><%= tag.name %></span>
-  		</li>
+	  		<button class="label-tag label-xs"><%= tag.name %></button>
 			<% end %>
-			</ul>
+			</div>
+			
 		</div>	
 		
 		<!-- subjects list goes here -->
@@ -122,3 +115,182 @@
 	</div>
 
 </div>
+<script>
+	$(document).ready(function() {
+			
+		/*For subject list*/
+		function reloadSubjectList() {
+			var data = new Object();
+			
+			var tags = [];
+			$("#subject-menu-tag button").each(function() {
+				if ($(this).hasClass("active")) {
+					tags.push($(this).text())
+				}
+			});
+			data.tags = tags;
+			
+			var semesters = [];
+			$("#subject-menu-year td[data-type=semester]").each(function() {
+				if ($(this).hasClass("active")) {
+					semesters.push($(this).data("id"));
+				}
+			})
+			data.semesters = semesters;
+			
+			/*$("input[type=checkbox][name=course][checked=checked]").each(function() {
+				console.log($(this).attr("value"));
+			});*/
+			
+			if ($("#filter-subject #search").val() != "") {
+				data.search = $("#filter-subject #search").val();
+			}
+			
+			$("#subject-order-option button").each(function() {
+				if ($(this).hasClass("active")) {
+					data.style = $(this).data("type");
+				}
+			});
+			
+			$.ajax({
+				url: "/subjects",
+				data: data,
+				dataType: "script",
+				contentType: "application/json"
+			});
+		}
+		
+		/*For faculty-course checkbox*/
+		$("#subject-menu-right input[type=checkbox]").change(function() {
+			var cb = $(this);
+	  	console.log(cb.prop("checked"));
+	  	/*faculty menu*/
+	  	if (cb.attr("name") == "faculty") {
+	  		/*all-faculty select box*/
+	  		if (cb.attr("value") == 0) {
+	  			/*true, uncheck all single-faculty select box*/
+	  			if (cb.prop("checked") == true) {
+	  				cb.attr("checked", cb.prop("checked"));
+	  				$("input[type=checkbox][name=faculty][value!=0]").each(function() {
+	  					cb.attr("checked", false);
+	  				});
+	  			} else {
+	  				/*false, do nothing*/
+	  				return false;
+	  			}
+	  		} else {
+	  			/*single-faculty select box*/
+	  			/*true, uncheck all-faculty select box*/
+		  		if ($(this).prop("checked") == true) {
+	  				cb.attr("checked", cb.prop("checked"));
+		  			var cball = $("input[type=checkbox][name=faculty][value=0]");
+		  			cball.attr("checked", false);
+		  		} else {
+		  			/*false, check if all-faculty select box */
+	  				cb.attr("checked", cb.prop("checked"));
+	  				var flag = false;
+		  		}
+	  		}
+	  	}
+			reloadSubjectList();
+		});
+		
+		/*For tag list*/
+		$("#subject-menu-tag button").on("click", function() {
+			$(this).toggleClass("active");
+			reloadSubjectList();
+		});
+		
+		/*For year-semester table*/
+		$.fn.nestedTable = function () {
+	    var semesters = $(this).find("td[data-type=semester]");
+	    var uni_years = $(this).find("td[data-type=uni_year]");
+	
+			var table = $(this);
+			
+			function checkAllYear() {
+				    	
+	    	//select the "all_year" cell
+	    	var all_year = table.find("#all-year");
+	    	var anyCellChecked = table.find("td[data-type=uni_year], td[data-type=semester]").hasClass("active");
+	    	
+	    	//toggle active class for all_year cell
+	    	if (anyCellChecked == true) {
+	    		all_year.removeClass("active");
+	    	} else {
+	    		all_year.addClass("active");
+	    	}
+			}
+	
+			//click on semester cell
+	    semesters.on("click", function() {
+	    	//toggle active
+				$(this).toggleClass("active");
+				
+				//select the "parent" uni_year
+	    	var uni_year = table.find("td[data-type=uni_year][data-id=" + $(this).data("parent") + "]");
+	    	var anySemesterChecked = table.find("td[data-type=semester][data-parent=" + $(this).data("parent") + "]").hasClass("active");
+	    	
+	    	//add active class if there is any checked semester
+	    	if (anySemesterChecked == true) {
+	    		uni_year.addClass("active");
+	    	} else {
+	    		uni_year.removeClass("active");
+	    	}
+	    	
+	    	checkAllYear();
+				reloadSubjectList();
+	    });
+	    
+	    //click on year cell
+	    uni_years.on("click", function() {
+	    	//toggle active
+				$(this).toggleClass("active");
+	
+				//add active class for all of semester if necessary
+				if ($(this).hasClass("active")) {
+					table.find("td[data-type=semester][data-parent=" + $(this).data("id") + "]").addClass("active");
+				} else {
+					table.find("td[data-type=semester][data-parent=" + $(this).data("id") + "]").removeClass("active");
+				}
+				
+	    	checkAllYear();
+				reloadSubjectList();
+	    });
+	    
+	    //click on all-year cell
+	    table.find("#all-year").on("click", function() {
+	    	if ($(this).hasClass("active")) {
+	    		return false;
+	    	} else {
+	    		$(this).addClass("active");
+	    		//remove all active class
+	    		table.find("td[data-type=uni_year], td[data-type=semester]").removeClass("active");
+	    	}
+				reloadSubjectList();
+	    });
+	    
+	    return $(this);
+		};
+		
+		/*initiate nested table*/
+		$("#subject-menu-year").nestedTable();
+		
+	 	/*For subject order option*/
+	 	$("#subject-order-option button").on("click", function() {
+	 		$("#subject-order-option button").each(function() {
+	 			$(this).removeClass("active");
+	 		});
+	 		$(this).addClass("active");
+			reloadSubjectList();
+	 	});
+	 	
+	 	/*For live search*/
+ 		var timeout; // add delay time
+		$("#filter-subject input").keyup(function() {
+			window.clearTimeout(timeout); //clear delay
+	    timeout = window.setTimeout(reloadSubjectList, 500);
+			return false;
+		});
+	});
+</script>

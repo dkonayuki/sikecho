@@ -14,24 +14,28 @@ class SubjectsController < ApplicationController
     if !params[:page].blank?
       @show_more = true
     end
+
+    #all
+    @subjects = @university.subjects  
     
-    if params[:filter].blank?
-      #all
-      @subjects = @university.subjects
-    else
+    #all filter options use OR  
+    if !params[:semesters].blank?
+      #filter semester
+      semesters = Semester.where(id: params[:semesters])
+      #filter from user's university
+      @subjects = @subjects.where(semester: semesters)    
+    end
+    
+    if !params[:tags].blank?
       #filter tag
-      case params[:filter]
-      when '全学年'
-        @subjects = @university.subjects
-      when '学年別'
-        #filter semester
-        semester = Semester.find(params[:semester].to_i)
-        #filter from user's university
-        @subjects = @university.subjects.where(semester: semester)
-      else
-        #default: filter with tag
-        @subjects = @university.subjects.tagged_with(params[:filter])
-      end
+      #@subjects = @subjects.tagged_with(params[:tags], any: true)
+      #temporal solution for the "for SELECT DISTINCT, ORDER BY expressions must appear in select list" issue
+      #need to add uni_years and semesters collumn into select operation
+      #because we need to use them to order later
+      @subjects = @subjects.select('distinct subjects.*, uni_years.no, semesters.no')
+      .joins(:semester).joins(:uni_year)
+      .joins("LEFT JOIN taggings on subjects.id = taggings.taggable_id")
+      .joins("LEFT JOIN tags on tags.id = taggings.tag_id").where('tags.name IN (?)', params[:tags])
     end
     
     @user = current_user
@@ -262,7 +266,7 @@ class SubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
-      params.permit(:name, :pk, :value, :tags, :filter, :semester, :uni_year_id, :teachers, :version_id, :course_id, :page, :style, :number_of_outlines)
+      params.permit(:name, :pk, :value, :tags, :filter, :semester, :teachers, :version_id, :page, :style, :number_of_outlines)
       params.require(:subject).permit(:name, :description, :year, :place, :semester_id, :uni_year_id, :course_id, :picture, periods_attributes: [:id, :time, :day, :_destroy])
     end
 end
