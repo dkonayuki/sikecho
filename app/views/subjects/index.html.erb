@@ -36,13 +36,13 @@
 				<%= image_tag("faculty.png") %>
 				<span>学科</span>
 			</div>
-			<ul>
+			<ul id="subject-menu-course">
 				<li>
-					<%= check_box_tag :faculty, 0, true %>
+					<%= check_box_tag "all-course", 0, true %>
 					<span>学部共通</span>
 				</li>
 				<% @university.faculties.each do |faculty| %>
-				<li>
+				<li class="faculty-item">
 					<%= check_box_tag :faculty, faculty.id %>
 					<span><%= faculty.name %></span>
 					<ul>
@@ -103,7 +103,7 @@
 			<% end %>
 			
 			<div id="subjects-list">
-				<%= render collection: @subjects, partial: 'subject_line', as: :subject || '授業が見つかりません。' %>		
+				<%= render collection: @subjects, partial: 'subject_line', as: :subject || content_tag(:div, '授業が見つかりません。', class: 'message') %>		
 			</div>
 			
 			<!-- for endless pagaination -->
@@ -122,6 +122,7 @@
 		function reloadSubjectList() {
 			var data = new Object();
 			
+			//get all active tags 
 			var tags = [];
 			$("#subject-menu-tag button").each(function() {
 				if ($(this).hasClass("active")) {
@@ -130,6 +131,7 @@
 			});
 			data.tags = tags;
 			
+			//get all checked semesters
 			var semesters = [];
 			$("#subject-menu-year td[data-type=semester]").each(function() {
 				if ($(this).hasClass("active")) {
@@ -138,20 +140,28 @@
 			})
 			data.semesters = semesters;
 			
-			/*$("input[type=checkbox][name=course][checked=checked]").each(function() {
-				console.log($(this).attr("value"));
-			});*/
+			//get all checked courses
+			var courses = [];
+			$("#subject-menu-course input[type=checkbox][name=course]").each(function() {
+				if ($(this).is(":checked")) {
+					courses.push($(this).val());
+				}
+			});
+			data.courses = courses;
 			
+			//check if search query is needed
 			if ($("#filter-subject #search").val() != "") {
 				data.search = $("#filter-subject #search").val();
 			}
 			
+			//check if order option is needed
 			$("#subject-order-option button").each(function() {
 				if ($(this).hasClass("active")) {
 					data.style = $(this).data("type");
 				}
 			});
 			
+			//get /subjects, execute as script
 			$.ajax({
 				url: "/subjects",
 				data: data,
@@ -160,40 +170,65 @@
 			});
 		}
 		
-		/*For faculty-course checkbox*/
-		$("#subject-menu-right input[type=checkbox]").change(function() {
-			var cb = $(this);
-	  	console.log(cb.prop("checked"));
-	  	/*faculty menu*/
-	  	if (cb.attr("name") == "faculty") {
-	  		/*all-faculty select box*/
-	  		if (cb.attr("value") == 0) {
-	  			/*true, uncheck all single-faculty select box*/
-	  			if (cb.prop("checked") == true) {
-	  				cb.attr("checked", cb.prop("checked"));
-	  				$("input[type=checkbox][name=faculty][value!=0]").each(function() {
-	  					cb.attr("checked", false);
-	  				});
-	  			} else {
-	  				/*false, do nothing*/
-	  				return false;
-	  			}
-	  		} else {
-	  			/*single-faculty select box*/
-	  			/*true, uncheck all-faculty select box*/
-		  		if ($(this).prop("checked") == true) {
-	  				cb.attr("checked", cb.prop("checked"));
-		  			var cball = $("input[type=checkbox][name=faculty][value=0]");
-		  			cball.attr("checked", false);
-		  		} else {
-		  			/*false, check if all-faculty select box */
-	  				cb.attr("checked", cb.prop("checked"));
-	  				var flag = false;
-		  		}
-	  		}
-	  	}
-			reloadSubjectList();
-		});
+		$.fn.nestedCheckbox = function () {
+	    var courses = $(this).find("input[type=checkbox][name=course]");
+	    var faculties = $(this).find("input[type=checkbox][name=faculty]");
+	
+			var mainList = $(this);
+			
+			function checkAllCourse() {
+				    	
+	    	//check the "all_course" box
+	    	var all_course = mainList.find("#all-course");
+	    	var anyBoxChecked = mainList.find("input[type=checkbox][name=faculty], input[type=checkbox][name=course]").is(":checked");
+
+	    	//toggle check for all_course box
+	    	all_course.prop("checked", !anyBoxChecked);
+			}
+	
+			//check course box
+	    courses.change(function() {
+				//select the "parent" faculty
+	    	var faculty = $(this).closest("li.faculty-item").find("input[type=checkbox][name=faculty]");
+	    	var anySemesterChecked = $(this).closest("ul").find("input[type=checkbox][name=course]").is(":checked");
+	    	
+	    	//toggle check for faculty box
+	    	faculty.prop("checked", anySemesterChecked);
+	    	
+	    	checkAllCourse();
+				reloadSubjectList();
+	    });
+	    
+	    //check faculty box
+	    faculties.change(function() {
+				//add active class for all of semester if necessary
+				$(this).closest("li.faculty-item").find("input[type=checkbox][name=course]").prop("checked", $(this).prop("checked"));
+				
+	    	checkAllCourse();
+				reloadSubjectList();
+	    });
+	    
+	    //check on all-course box
+	    mainList.find("#all-course").change(function() {
+	    	if ($(this).prop("checked")) {
+	    		//checkbox changed from false to true
+	    		//remove all checked courses box
+	    		mainList.find("input[type=checkbox][name=course], input[type=checkbox][name=faculty]").prop("checked", false);
+	    	} else {
+	    		//checkbox changed from true to false
+	    		//set back to true
+	    		$(this).prop("checked", true);
+	    		return false;
+	    	}
+				
+				reloadSubjectList();
+	    });
+	    
+	    return $(this);
+		};
+		
+		/*initiate nested checkbox list*/
+		$("#subject-menu-course").nestedCheckbox();
 		
 		/*For tag list*/
 		$("#subject-menu-tag button").on("click", function() {

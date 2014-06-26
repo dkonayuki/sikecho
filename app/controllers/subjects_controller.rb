@@ -19,10 +19,17 @@ class SubjectsController < ApplicationController
     @subjects = @university.subjects  
     
     #all filter options use OR  
+    if !params[:courses].blank?
+      #get courses
+      courses = Course.where(id: params[:courses])
+      #filter
+      @subjects = @subjects.where(course: courses)
+    end
+    
     if !params[:semesters].blank?
-      #filter semester
+      #get semesters
       semesters = Semester.where(id: params[:semesters])
-      #filter from user's university
+      #filter
       @subjects = @subjects.where(semester: semesters)    
     end
     
@@ -36,8 +43,9 @@ class SubjectsController < ApplicationController
       .joins(:semester).joins(:uni_year)
       .joins("LEFT JOIN taggings on subjects.id = taggings.taggable_id")
       .joins("LEFT JOIN tags on tags.id = taggings.tag_id").where('tags.name IN (?)', params[:tags])
-    end
+    end   
     
+    #order option
     @user = current_user
     if @user
       #update settings style for subject
@@ -266,7 +274,7 @@ class SubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
-      params.permit(:name, :pk, :value, :tags, :filter, :semester, :teachers, :version_id, :page, :style, :number_of_outlines)
+      params.permit(:name, :pk, :value, :tags, :filter, :semester, :teachers, :version_id, :page, :style, :number_of_outlines, :courses, :semesters)
       params.require(:subject).permit(:name, :description, :year, :place, :semester_id, :uni_year_id, :course_id, :picture, periods_attributes: [:id, :time, :day, :_destroy])
     end
 end
