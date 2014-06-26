@@ -310,6 +310,30 @@ a:hover {
 	border-bottom-color: #4ba74b;	
 }
 
+.btn-request {
+	color: #fff;
+	background-color: #34495E;
+	border-bottom: 2px solid #34495E;
+	display: block;
+	margin: 0 auto;
+	height: 100px;
+	border-radius: 4px;
+}
+
+.btn-request span {
+	font-size: 40px;
+}
+
+.btn-request:focus {
+	color: #fff;
+}
+
+.btn-request:hover {
+	background-color: #455A6F;
+	color: #fff;
+	border-bottom-color: #2C3E50;
+}
+
 .label-navi {
 	padding: 6px 15px;
 	font-size: 12px;
