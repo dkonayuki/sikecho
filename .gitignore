@@ -24,5 +24,6 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+/config/initializers/session_store.rb
 /config/unicorn.rb
 /config/app_environment_variables.rb
