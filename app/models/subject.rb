@@ -31,7 +31,10 @@ class Subject < ActiveRecord::Base
     
   def self.search(search)
     if search
-      where('subjects.name LIKE ?', "%#{search.downcase}%")
+      q = "%#{search.downcase}%"
+      where('subjects.name LIKE ?', q)
+      #select('distinct subjects.*').joins(:teachers)
+      #.where('subjects.name LIKE ? OR teachers.last_name_kanji LIKE ? OR teachers.first_name_kanji LIKE ?', q, q, q)
     else
       all
     end
