@@ -30,7 +30,15 @@
     </ul>
     
     <ul class="nav navbar-nav visible-xs nav-mobile">
-      <li class="<%= 'active' if params[:controller] == 'subjects' %> col-xs-3"><%= link_to image_tag("lecture.png"), faculties_path %></li>
+    	<% if current_university == nil %>
+      <li class="<%= 'active' if params[:controller] == 'subjects' %> col-xs-3 disabled">
+      	<%= link_to image_tag("lecture_disabled.png"), subjects_path %>
+    	</li>
+    	<% else %>
+      <li class="<%= 'active' if params[:controller] == 'subjects' %> col-xs-3">
+      	<%= link_to image_tag("lecture.png"), subjects_path %>
+    	</li>
+    	<% end %>
       <% if user_signed_in? %>
 	      <li class="<%= 'active' if params[:controller] == 'notes' %> col-xs-3">
 	      	<%= link_to notes_path do %>
