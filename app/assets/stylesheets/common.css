@@ -14,6 +14,12 @@ ul {
 	padding: 0px;
 }
 
+.notice {
+	font-size: 12px;
+	color: #888;
+	font-style: italic;
+}
+
 .no-padding {
 	padding: 0 !important;
 }
