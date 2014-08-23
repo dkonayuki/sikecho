@@ -13,7 +13,7 @@
   	</div>		
 	</div>
 	
-	<div class="subject-menu-line">
+	<div class="subject-menu-line" data-id="<%= subject.id %>">
 		<% if current_user.current_subjects.include?(subject) %>
   		<%= link_to schedule_destroy_path(subject: subject.id), method: :delete, class: 'btn btn-sm btn-default' do %>
     		<span class="glyphicon glyphicon-remove"></span>

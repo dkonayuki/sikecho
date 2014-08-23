@@ -327,5 +327,19 @@
 	    timeout = window.setTimeout(reloadSubjectList, 500);
 			return false;
 		});
+		
+		/*For dynamic schedule add btn*/
+		$("#subjects-list").on("click", ".subject-menu-line a", function() {
+			$.ajax({
+				url: this.href,
+				type: this.getAttribute("data-method"),
+				dataType: "script",
+				success: function() {
+					$.getScript("/subjects", null);
+					//need to get script in order to refresh menu
+				}
+			});
+			return false;
+		});
 	});
 </script>
