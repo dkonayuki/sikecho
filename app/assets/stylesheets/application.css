@@ -954,7 +954,7 @@ body {
 
 .subject-year-line {
 	text-align: center;
-	margin-top: 15px;
+	margin-top: 30px;
 	padding: 4px 10px 2px 15px;
 	font-size: 11px;
 	color: #797979;
@@ -976,9 +976,20 @@ body {
 	display: none;
 	float: right;
 	position: absolute;
-	right: 10px;
-	top: 10px;
+	right: 5px;
+	top: 5px;
 	font-size: 12px;
+}
+
+.cancel-text {
+	display: none;
+}
+
+.subject-menu-line-hover:hover .cancel-text {
+	display: inline-block;
+}
+.subject-menu-line-hover:hover .registered-text {
+	display: none;
 }
 
 .subject-menu-header {

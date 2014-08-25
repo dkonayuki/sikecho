@@ -280,6 +280,18 @@ a:hover {
 	border-bottom-color: #d54c54;
 }
 
+.btn-red {
+	color: #fff;
+	background-color: #c0392b;
+	border-bottom: 2px solid #c0392b;
+}
+
+.btn-red:hover {
+	background-color: #d14a3c;
+	color: #fff;
+	border-bottom-color: #b0281a;
+}
+
 .btn-blue {
 	color: #fff;
 	background-color: #3498DB;
@@ -388,6 +400,16 @@ a:hover {
 
 .label-tag:focus {
 	outline: none;
+}
+
+.label-inline {
+	display: inline-block;
+}
+
+.label-sm {
+	padding: 5px 10px;
+	line-height: 1.5;
+	font-size: 12px;
 }
 
 .label-xs {
