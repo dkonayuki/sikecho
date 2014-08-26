@@ -27,6 +27,8 @@
 //= require owl.carousel.js
 //= require fileinput.js
 //= require masonry.pkgd.js
+//= require notify.min.js
+//= require notify-bootstrap.js
 //= require_tree .
 
 /*MaxWidth for ajax popup*/

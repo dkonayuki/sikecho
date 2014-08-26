@@ -889,10 +889,6 @@ body {
 	border-color: #ddd;
 }
 
-.subject-item-line:hover .subject-menu-line {
-	display: block;
-}
-
 @media(max-width: 767px) {
 	.subject-item-line {
 		border-right: 1px solid transparent;
@@ -973,7 +969,6 @@ body {
 }
 
 .subject-menu-line {
-	display: none;
 	float: right;
 	position: absolute;
 	right: 5px;
@@ -985,11 +980,18 @@ body {
 	display: none;
 }
 
+.subject-menu-line-register {
+	display: none !important;
+}
+
 .subject-menu-line-hover:hover .cancel-text {
 	display: inline-block;
 }
 .subject-menu-line-hover:hover .registered-text {
 	display: none;
+}
+.subject-item-line:hover .subject-menu-line-register {
+	display: block !important;
 }
 
 .subject-menu-header {

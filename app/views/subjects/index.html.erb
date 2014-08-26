@@ -330,6 +330,20 @@
 		
 		/*For dynamic schedule add btn*/
 		$("#subjects-list").on("click", ".subject-menu-line a", function() {
+			//Set notification
+			if ($(this).attr("data-method") == "post") {
+				$.notify($(this).parent().data("name") + "を登録しました。", {
+					style: 'bootstrap',
+					className: 'success',
+					globalPosition: 'bottom right',
+				});
+			} else {
+				$.notify($(this).parent().data("name") + "を削除しました。", {
+					style: 'bootstrap',
+					className: 'info',
+					globalPosition: 'bottom right',
+				});
+			}
 			$.ajax({
 				url: this.href,
 				type: this.getAttribute("data-method"),
