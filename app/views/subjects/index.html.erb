@@ -175,9 +175,9 @@
 	    var faculties = $(this).find("input[type=checkbox][name=faculty]");
 	
 			var mainList = $(this);
-			
+
+			//refresh the all-course box			
 			function checkAllCourse() {
-				    	
 	    	//check the "all_course" box
 	    	var all_course = mainList.find("#all-course");
 	    	var anyBoxChecked = mainList.find("input[type=checkbox][name=faculty], input[type=checkbox][name=course]").is(":checked");
@@ -201,6 +201,13 @@
 	    
 	    //check faculty box
 	    faculties.change(function() {
+	    	//toggle courses list
+	    	if ($(this).prop("checked")) {
+	    		$(this).parent().find("ul").show();
+	    	} else {
+	    		$(this).parent().find("ul").hide();
+	    	}
+
 				//add active class for all of semester if necessary
 				$(this).closest("li.faculty-item").find("input[type=checkbox][name=course]").prop("checked", $(this).prop("checked"));
 				
