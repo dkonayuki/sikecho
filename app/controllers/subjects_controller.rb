@@ -11,12 +11,13 @@ class SubjectsController < ApplicationController
   def index
     @university = current_university
     
+    #if next url exists -> param page will exist
     if !params[:page].blank?
       @show_more = true
     end
 
     #all
-    @subjects = @university.subjects  
+    @subjects = @university.subjects
     
     #all filter options use OR  
     if !params[:courses].blank?
