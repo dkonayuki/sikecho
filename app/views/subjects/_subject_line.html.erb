@@ -13,6 +13,7 @@
   	</div>		
 	</div>
 	
+	<% if user_signed_in? %>
 	<div class="subject-menu-line" data-name="<%= subject.name %>">
 		<% if current_user.current_subjects.include?(subject) %>
   		<%= link_to schedule_destroy_path(subject: subject.id), method: :delete, class: 'btn btn-sm btn-red subject-menu-line-hover' do %>
@@ -25,6 +26,7 @@
     	<% end %>
   	<% end %> 
 	</div>
+	<% end %>
 	
   <div class="subject-details-line">
     <%= link_to subject, class: "subject-name-line" do %>

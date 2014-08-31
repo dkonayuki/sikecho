@@ -133,8 +133,13 @@ body {
 
 .nav-calendar {
 	max-width: 30px;
-	margin-right: 20px;
+	margin-right: 40px;
 	margin-top: 10px;
+}
+
+.nav-avatar {
+	height: 30px;
+	margin-top: -20px;
 }
 
 .nav-mobile li {
