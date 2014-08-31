@@ -1039,6 +1039,10 @@ body {
 	vertical-align: middle;
 }
 
+#subject-menu-tag {
+	margin-bottom: 15px;
+}
+
 div.message {
 	text-align: center;
 	padding-top: 20px;
