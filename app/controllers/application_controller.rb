@@ -10,6 +10,11 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   include ScheduleHelper
   include NotesHelper
+  
+  # redirect to 404 page
+  def not_found
+    render :file => 'public/404.html', :status => :not_found, :layout => false
+  end
 
   def disable_nav
     @disable_nav = true
