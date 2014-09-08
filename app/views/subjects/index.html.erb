@@ -345,27 +345,32 @@
 		
 		/*For dynamic schedule add btn*/
 		$("#subjects-list").on("click", ".subject-menu-line a", function() {
-			//Set notification
-			if ($(this).attr("data-method") == "post") {
-				$.notify($(this).parent().data("name") + "を登録しました。", {
-					style: 'bootstrap',
-					className: 'success',
-					globalPosition: 'bottom right',
-				});
-			} else {
-				$.notify($(this).parent().data("name") + "を削除しました。", {
-					style: 'bootstrap',
-					className: 'info',
-					globalPosition: 'bottom right',
-				});
-			}
+			var href = $(this).attr("href");
+			var dataMethod = $(this).attr("data-method");
+			var subjectName = $(this).parent().data("name");
+			
 			$.ajax({
-				url: this.href,
-				type: this.getAttribute("data-method"),
+				url: href,
+				type: dataMethod,
 				dataType: "script",
 				success: function() {
-					$.getScript("/subjects", null);
 					//need to get script in order to refresh menu
+					$.getScript("/subjects", null);
+					
+					//Set notification
+					if (dataMethod == "post") {
+						$.notify(subjectName + "を登録しました。", {
+							style: 'bootstrap',
+							className: 'success',
+							globalPosition: 'bottom right',
+						});
+					} else {
+						$.notify(subjectName + "を削除しました。", {
+							style: 'bootstrap',
+							className: 'info',
+							globalPosition: 'bottom right',
+						});
+					}
 				}
 			});
 			return false;
