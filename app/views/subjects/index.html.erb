@@ -348,26 +348,38 @@
 			var href = $(this).attr("href");
 			var dataMethod = $(this).attr("data-method");
 			var subjectName = $(this).parent().data("name");
-			var notifyImg = $('<img class="notify-img">'); 
-			notifyImg.attr("src", $(this).parent().data("img"));
+			var imgPath = $(this).parent().data("img");
 			
 			$.ajax({
 				url: href,
 				type: dataMethod,
 				dataType: "script",
 				success: function() {
-					//need to get script in order to refresh menu
-					$.getScript("/subjects", null);
+					//reload subject list
+					reloadSubjectList();
 					
 					//Set notification
 					if (dataMethod == "post") {
-						showNotification(notifyImg, subjectName, 'スケジュールに追加しました。');
+						$.gritter.add({
+							title: subjectName,
+							text: 'スケジュールに追加しました。',
+							image: imgPath,
+							sticky: false, 
+							time: 5000,
+						});
 					} else {
-						showNotification(notifyImg, subjectName, 'スケジュールから削除しました。');
+						$.gritter.add({
+							title: subjectName,
+							text: 'スケジュールから削除しました。',
+							image: imgPath,
+							sticky: false, 
+							time: 5000,
+						});
 					}
 				}
 			});
 			return false;
 		});
+
 	});
 </script>

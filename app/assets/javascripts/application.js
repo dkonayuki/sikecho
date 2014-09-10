@@ -27,8 +27,7 @@
 //= require owl.carousel.js
 //= require fileinput.js
 //= require masonry.pkgd.js
-//= require notify.min.js
-//= require notify-custom-theme.js
+//= require jquery.gritter.js
 //= require_tree .
 
 /*MaxWidth for ajax popup*/
@@ -82,19 +81,6 @@ function prepareFirstTime() {
 	/*For note dynamic max width first time*/
   setMaxWidth();
 	$( window ).on( "resize", setMaxWidth ); //Remove this if it's not needed. It will react when window changes size.		
-}
-
-/* show global notification function */
-function showNotification(img, title, desc) {
-	$.notify({
-	  title: title,
-	  desc: desc,
-	  img: img
-	}, {
-		autoHideDelay: 5000,
-		style: 'sikecho',
-		globalPosition: 'bottom right',
-	});
 }
 
 $(document).ready(function() {
