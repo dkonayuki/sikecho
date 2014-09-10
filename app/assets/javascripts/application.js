@@ -84,12 +84,24 @@ function prepareFirstTime() {
 	$( window ).on( "resize", setMaxWidth ); //Remove this if it's not needed. It will react when window changes size.		
 }
 
+/* show global notification function */
+function showNotification(img, title, desc) {
+	$.notify({
+	  title: title,
+	  desc: desc,
+	  img: img
+	}, {
+		autoHideDelay: 5000,
+		style: 'sikecho',
+		globalPosition: 'bottom right',
+	});
+}
+
 $(document).ready(function() {
 
 });
 	
 $(document).on("page:change", function() {
-	
 	prepareFirstTime();
 
  	/*For filter menu active*/

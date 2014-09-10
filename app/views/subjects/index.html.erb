@@ -342,7 +342,7 @@
 	    timeout = window.setTimeout(reloadSubjectList, 500);
 			return false;
 		});
-		
+
 		/*For dynamic schedule add btn*/
 		$("#subjects-list").on("click", ".subject-menu-line a", function() {
 			var href = $(this).attr("href");
@@ -361,25 +361,9 @@
 					
 					//Set notification
 					if (dataMethod == "post") {
-						$.notify({
-						  title: subjectName,
-						  desc: 'スケジュールに登録しました。',
-						  img: notifyImg
-						}, {
-							autoHideDelay: 5000,
-							style: 'sikecho',
-							globalPosition: 'bottom right',
-						});
+						showNotification(notifyImg, subjectName, 'スケジュールに追加しました。');
 					} else {
-						$.notify({
-						  title: subjectName,
-						  desc: 'スケジュールから削除しました。',
-						  img: notifyImg
-						}, {
-							autoHideDelay: 5000,
-							style: 'sikecho',
-							globalPosition: 'bottom right',
-						});
+						showNotification(notifyImg, subjectName, 'スケジュールから削除しました。');
 					}
 				}
 			});
