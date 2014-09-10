@@ -1,8 +1,10 @@
 == シケ帳
 
-Ruby version: 2.0.0p247
+Ruby version: 2.1.1p76
 
-Rails version: 4.0.2
+Rails version: 4.1.0
+
+Bootstrap: 3.2.0
 
 typeahead.js 0.10.1
 
