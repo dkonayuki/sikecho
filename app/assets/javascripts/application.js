@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require bootstrap
 //= require bootstrap-sprockets
 //= require bootstrap-select.js
 //= require bootstrap-tagsinput.js

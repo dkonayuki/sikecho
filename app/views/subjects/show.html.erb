@@ -11,7 +11,7 @@
 		</div>
 		
 		<% if user_signed_in? %>
-		<div class="show-subject-menu" role="complementary" id="show-subject-schedule">
+		<div class="show-subject-menu" role="complementary" id="show-subject-schedule" data-id="<%= @subject.id %>" data-name="<%= @subject.name %>" data-img="<%= image_path(@subject.display_picture_small) %>">
 			<%= render 'schedule_menu' %>
 		</div>
 		
@@ -204,13 +204,43 @@
 		/*For schedule add btn in show subject page*/
 		/*Need selector on a to ensure binding on dynamically elements */
 		$("#show-subject-schedule").on("click", "a", function() {
+			var href = $(this).attr("href");
+			var dataMethod = $(this).attr("data-method");
+			var subjectName = $("#show-subject-schedule").data("name");
+			var subjectID = $("#show-subject-schedule").data("id");
+			var notifyImg = $('<img class="notify-img">');
+			notifyImg.attr("src", $("#show-subject-schedule").data("img"));
+			
 			$.ajax({
-				url: this.href,
-				type: this.getAttribute("data-method"),
+				url: href,
+				type: dataMethod,
 				dataType: "script",
 				success: function() {
-					$.getScript("/subjects/<%= @subject.id %>", null);
 					//need to get script in order to refresh menu
+					$.getScript("/subjects/" + subjectID, null);
+
+					//Set notification
+					if (dataMethod == "post") {
+						$.notify({
+						  title: subjectName,
+						  desc: 'スケジュールに登録しました。',
+						  img: notifyImg
+						}, {
+							autoHideDelay: 5000,
+							style: 'sikecho',
+							globalPosition: 'bottom right',
+						});
+					} else {
+						$.notify({
+						  title: subjectName,
+						  desc: 'スケジュールから削除しました。',
+						  img: notifyImg
+						}, {
+							autoHideDelay: 5000,
+							style: 'sikecho',
+							globalPosition: 'bottom right',
+						});
+					}
 				}
 			});
 			return false;

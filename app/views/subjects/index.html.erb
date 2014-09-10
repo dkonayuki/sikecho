@@ -125,7 +125,7 @@
 </div>
 <script>
 	$(document).ready(function() {
-			
+
 		/*For subject list*/
 		function reloadSubjectList() {
 			var data = new Object();
@@ -350,7 +350,6 @@
 			var subjectName = $(this).parent().data("name");
 			var notifyImg = $('<img class="notify-img">'); 
 			notifyImg.attr("src", $(this).parent().data("img"));
-			console.log($(this).parent().data("img"));
 			
 			$.ajax({
 				url: href,
