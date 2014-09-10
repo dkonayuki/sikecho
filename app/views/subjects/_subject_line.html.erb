@@ -14,7 +14,7 @@
 	</div>
 	
 	<% if user_signed_in? %>
-	<div class="subject-menu-line" data-name="<%= subject.name %>">
+	<div class="subject-menu-line" data-name="<%= subject.name %>" data-img="<%= image_path(subject.display_picture_small) %>">
 		<% if current_user.current_subjects.include?(subject) %>
   		<%= link_to schedule_destroy_path(subject: subject.id), method: :delete, class: 'btn btn-sm btn-red subject-menu-line-hover' do %>
     		<span class="btn-text registered-text">登録済み</span>
@@ -24,7 +24,7 @@
     	<%= link_to schedule_create_path(subject: subject.id), method: :post, class: 'btn btn-sm btn-navi subject-menu-line-register' do %>
     		<span class="glyphicon glyphicon-plus-sign"></span>受講登録
     	<% end %>
-  	<% end %> 
+  	<% end %>
 	</div>
 	<% end %>
 	

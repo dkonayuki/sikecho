@@ -1,0 +1,63 @@
+.notifyjs-sikecho-base {
+	position: relative;
+	margin: 0 0 10px;
+	width: 300px;
+	height: 60px;
+	color: #333;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	font-size: 11px;
+}
+
+.notifyjs-sikecho-base .notify-title {
+	color: #222;
+	font-size: 12px;
+	line-height: 20px;
+	height: 20px;
+	font-weight: 600;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.notifyjs-sikecho-base .notify-content {
+	padding: 10px 10px;
+	height: 60px;
+	width: auto;
+	overflow: hidden;
+}
+
+.notifyjs-sikecho-base .notify-img-wrapper {
+	width: 60px;
+	height: 60px;
+	float: left;
+	overflow: hidden;
+}
+
+.notifyjs-sikecho-base .notify-img {
+	width: 100%;
+	min-height: 100%;
+}
+
+@media (max-width: 767px) {
+	.notifyjs-sikecho-base {
+		width: 200px;
+		height: 45px;
+		font-size: 9px;
+	}
+	
+	.notifyjs-sikecho-base .notify-content {
+		padding: 2px 5px;
+		height: 45px;
+	}
+	
+	.notifyjs-sikecho-base .notify-title {
+		font-size: 10px;
+	}
+	
+	.notifyjs-sikecho-base .notify-img-wrapper {
+		width: 45px;
+		height: 45px;
+	}
+}

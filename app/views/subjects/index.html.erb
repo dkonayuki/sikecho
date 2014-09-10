@@ -348,6 +348,9 @@
 			var href = $(this).attr("href");
 			var dataMethod = $(this).attr("data-method");
 			var subjectName = $(this).parent().data("name");
+			var notifyImg = $('<img class="notify-img">'); 
+			notifyImg.attr("src", $(this).parent().data("img"));
+			console.log($(this).parent().data("img"));
 			
 			$.ajax({
 				url: href,
@@ -359,15 +362,23 @@
 					
 					//Set notification
 					if (dataMethod == "post") {
-						$.notify(subjectName + "を登録しました。", {
-							style: 'bootstrap',
-							className: 'success',
+						$.notify({
+						  title: subjectName,
+						  desc: 'スケジュールに登録しました。',
+						  img: notifyImg
+						}, {
+							autoHideDelay: 5000,
+							style: 'sikecho',
 							globalPosition: 'bottom right',
 						});
 					} else {
-						$.notify(subjectName + "を削除しました。", {
-							style: 'bootstrap',
-							className: 'info',
+						$.notify({
+						  title: subjectName,
+						  desc: 'スケジュールから削除しました。',
+						  img: notifyImg
+						}, {
+							autoHideDelay: 5000,
+							style: 'sikecho',
 							globalPosition: 'bottom right',
 						});
 					}

@@ -29,7 +29,7 @@
 //= require fileinput.js
 //= require masonry.pkgd.js
 //= require notify.min.js
-//= require notify-bootstrap.js
+//= require notify-custom-theme.js
 //= require_tree .
 
 /*MaxWidth for ajax popup*/
