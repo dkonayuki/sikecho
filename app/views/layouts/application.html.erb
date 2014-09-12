@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= controller_name %> <%= action_name %>">
 	<div id="wrapper">
 		<%= render 'layouts/navbar' unless @disable_nav %>
 		<div id="main">
