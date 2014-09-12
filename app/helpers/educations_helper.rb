@@ -1,9 +1,9 @@
 module EducationsHelper
   def prepare_view_content
     @universities = University.all
-    @years = (Subject.MAX_YEAR_BEGIN..Subject.MAX_YEAR_END).to_a
-    @times = 1.upto(Period.MAX_TIME).to_a
-    @days = 1.upto(Period.MAX_DAY).to_a
+    @years = (Subject::MAX_YEAR_BEGIN..Subject::MAX_YEAR_END).to_a
+    @times = 1.upto(Period::MAX_TIME).to_a
+    @days = 1.upto(Period::MAX_DAY).to_a
     
     #@education is always created at 'new' action
     if @education.university

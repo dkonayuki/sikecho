@@ -8,10 +8,10 @@ module SubjectsHelper
       @semesters = []
     end
     @teachers = @user.current_university.teachers
-    @years = (Subject.MAX_YEAR_BEGIN..Subject.MAX_YEAR_END).to_a
-    @number_of_outlines_list = (1..15).to_a
-    @times = 1.upto(Period.MAX_TIME).to_a
-    @days = 1.upto(Period.MAX_DAY).to_a
+    @years = (Subject::MAX_YEAR_BEGIN..Subject::MAX_YEAR_END).to_a
+    @number_of_outlines_list = (1..Subject::MAX_OUTLINE).to_a
+    @times = 1.upto(Period::MAX_TIME).to_a
+    @days = 1.upto(Period::MAX_DAY).to_a
     @courses = @user.current_university.courses
   end
 end

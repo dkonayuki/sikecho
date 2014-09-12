@@ -28,6 +28,10 @@ class Subject < ActiveRecord::Base
   has_paper_trail only: [:description], on: [:update]
   
   is_impressionable counter_cache: true, column_name: :view_count, unique: :all
+  
+  MAX_OUTLINE = 30
+  MAX_YEAR_BEGIN = 2010
+  MAX_YEAR_END = 2020
     
   def self.search(search)
     if search
@@ -46,14 +50,6 @@ class Subject < ActiveRecord::Base
     else
       'lecture.png'
     end
-  end
-  
-  def self.MAX_YEAR_BEGIN
-    2012
-  end
-  
-  def self.MAX_YEAR_END
-    2016
   end
 
 end

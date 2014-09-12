@@ -18,11 +18,7 @@ class Period < ActiveRecord::Base
     %w(1 2 3 4 5 6 7 8)[time - 1]
   end
   
-  def self.MAX_TIME
-    7
-  end
-  
-  def self.MAX_DAY
-    6
-  end
+  MAX_TIME = 7
+  MAX_DAY = 6
+
 end
