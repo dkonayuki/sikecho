@@ -1,5 +1,5 @@
 class SubjectsController < ApplicationController
-  before_action :set_subject, only: [:show, :edit, :update, :destroy, :inline, :version, :outline]
+  before_action :set_subject, only: [:show, :edit, :update, :destroy, :inline, :version, :outline, :tags]
   
   # monitor view count
   impressionist actions: [:show]
@@ -224,6 +224,14 @@ class SubjectsController < ApplicationController
     @same_subjects = @subject.course.subjects.where(name: @subject.name)
     respond_to do |format|
       format.html { render action: 'show' }
+    end
+  end
+  
+  # for /tags.json
+  def tags
+    @tags = @subject.tag_list
+    respond_to do |format|
+      format.json { render json: @tags }
     end
   end
 

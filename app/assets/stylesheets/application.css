@@ -618,7 +618,7 @@ body {
 }
 
 .cell:hover {
-	background-color: whitesmoke;
+	background-color: #F5F5F5;
 }
 
 .previous-btn:before {
@@ -1094,7 +1094,7 @@ body {
 	padding: 15px;
 }
 
-#subject-menu-right ul {
+#subject-menu-course {
 	margin-left: 30px;
 }
 

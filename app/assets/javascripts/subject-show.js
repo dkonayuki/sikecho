@@ -77,5 +77,6 @@ $(document).on("page:change", function() {
 	      "<span class='glyphicon glyphicon-chevron-right'></span>"
 	      ],
 		});
-	});
+		
+	});//end of ready function
 });

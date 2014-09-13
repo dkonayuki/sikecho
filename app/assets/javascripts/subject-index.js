@@ -1,5 +1,6 @@
 $(document).on("page:change", function() {
 	$(".subjects.index").ready(function() {
+		$('.selectpicker').selectpicker();
 
 		/*For subject list*/
 		function reloadSubjectList() {
@@ -255,6 +256,6 @@ $(document).on("page:change", function() {
 			});
 			return false;
 		});
-
-	});
+		
+	}); //end of ready
 });

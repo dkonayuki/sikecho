@@ -25,11 +25,13 @@ Shikechou::Application.routes.draw do
     put 'inline' => 'subjects#inline', on: :member # on: :member will take :id not :subject_id, and path as inline_subject_path
     get 'version/:version_id' => 'subjects#version', as: 'version', on: :member  # remember on: :collection
     get 'outline' => 'subjects#outline', on: :member
+    get 'tags' => 'subjects#tags', on: :member
   end
     
   resources :notes do
     #get existed documents for note
     get 'documents' => 'notes#documents', on: :member
+    get 'tags' => 'notes#tags', on: :member
   end
   
   #get tags.json

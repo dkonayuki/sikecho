@@ -25,7 +25,7 @@
 		fade_in_speed: 'medium', // how fast notifications fade in
 		fade_out_speed: 1000, // how fast the notices fade out
 		time: 6000 // hang on the screen for...
-	}
+	};
 	
 	/**
 	* Add a gritter notification to the screen
@@ -44,7 +44,7 @@
 				
 		}
 		
-	}
+	};
 	
 	/**
 	* Remove a gritter notification from the screen
@@ -52,7 +52,7 @@
 	*/
 	$.gritter.remove = function(id, params){
 		Gritter.removeSpecific(id, params || {});
-	}
+	};
 	
 	/**
 	* Remove all notifications
@@ -60,7 +60,7 @@
 	*/
 	$.gritter.removeAll = function(params){
 		Gritter.stop(params || {});
-	}
+	};
 	
 	/**
 	* Big fat Gritter object
@@ -121,7 +121,7 @@
 			
 			// Assign callbacks
 			$(['before_open', 'after_open', 'before_close', 'after_close']).each(function(i, val){
-				Gritter['_' + val + '_' + number] = ($.isFunction(params[val])) ? params[val] : function(){}
+				Gritter['_' + val + '_' + number] = ($.isFunction(params[val])) ? params[val] : function(){};
 			});
 
 			// Reset
@@ -239,8 +239,8 @@
 				}, fade_out_speed, function(){
 					e.animate({ height: 0 }, 300, function(){
 						Gritter._countRemoveWrapper(unique_id, e, manual_close);
-					})
-				})
+					});
+				});
 				
 			}
 			else {
@@ -414,6 +414,6 @@
 		
 		}
 		
-	}
+	};
 	
 })(jQuery);

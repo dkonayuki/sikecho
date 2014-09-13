@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_action :set_note, only: [:show, :edit, :update, :destroy, :documents]
+  before_action :set_note, only: [:show, :edit, :update, :destroy, :documents, :tags]
   impressionist actions: [:show]
   before_action :authenticate_user!
 
@@ -140,6 +140,14 @@ class NotesController < ApplicationController
     @subjects = @user.current_university.subjects
     @note = Note.find(params[:id])
     @tags = @note.tag_list
+  end
+  
+  # GET /notes/1/tags.json
+  def tags
+    @tags = @note.tag_list
+    respond_to do |format|
+      format.json { render json: @tags }
+    end
   end
 
   # PATCH/PUT /notes/1

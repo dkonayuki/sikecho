@@ -181,3 +181,15 @@
 .tooltip.bottom-right .tooltip-arrow {
   border-bottom-color: #e67e22;
 }
+.modal-content {
+	border-radius: 0;
+}
+
+.radio input[type="radio"],
+.radio-inline input[type="radio"],
+.checkbox input[type="checkbox"],
+.checkbox-inline input[type="checkbox"] {
+  position: relative; 
+  margin-left: 5px; 
+  margin-right: 5px;
+}

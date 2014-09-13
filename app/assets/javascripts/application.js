@@ -29,6 +29,7 @@
 //= require masonry.pkgd.js
 //= require jquery.gritter.js
 //= require jquery.hovercard.js
+//= require jquery.readyselector.js
 //= require_tree .
 
 /*MaxWidth for ajax popup*/
