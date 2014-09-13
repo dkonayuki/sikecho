@@ -12,7 +12,7 @@ X-editable - v1.5.1 (custom)
 
 bootstrap tagsinput 0.3.9 (custom)
 
-bootstrap-select v1.4.3 
+bootstrap-select v1.6.2
 
 wysihtml5 v0.3.0 (custom)
 
