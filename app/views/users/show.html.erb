@@ -19,13 +19,13 @@
 					<hr />
 					<p>
 						<strong>時間割表:</strong>
-						<%= link_to image_tag("calendar.jpeg", class: 'calendar'), schedule_path %>
+						<%= link_to image_tag("calendar.jpeg", class: 'calendar'), schedule_path, class: 'has-tooltip', data: {placement: "right", toggle: "tooltip"}, title: "Schedule" %>
 					</p>
 	      <% end %>
 			</div>
 		  <% if @user == current_user %>
 	  		<div class="skc-box-menu">
-			  	<%= link_to edit_user_registration_path do %>
+			  	<%= link_to edit_user_registration_path, class: 'has-tooltip', data: {placement: "top", toggle: "tooltip"}, title: "Edit" do %>
 			  	<span class="glyphicon glyphicon-pencil"></span>
 			  	<% end %>
 				</div>

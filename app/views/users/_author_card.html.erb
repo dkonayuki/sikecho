@@ -1,0 +1,15 @@
+<div class="author">
+	<div class="author-img">
+	<%= link_to user do %>
+		<%= image_tag(user.display_comment_avatar, class: 'avatar-xs hovercard-target avatar-round') %>
+	<% end %>
+	</div>
+	<div class="author-content">
+		<div class="author-name">
+			<%= user.username %>
+		</div>
+		<div class="author-info">
+			<%= date.strftime("%Y-%m-%d") %>
+		</div>
+	</div>
+</div>

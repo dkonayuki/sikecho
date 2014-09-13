@@ -6,55 +6,38 @@
 			</div>
 			<div class="skc-box-desc">
 				<h4><%= @note.title %></h4>
+				<% if !@note.content.blank? %>
+					<p>
+						<%= sanitize(@note.content) %>
+					</p>
+				<% end %>
+				
 				<hr />
-				<p>
-					<%= sanitize(@note.content) %>
-				</p>
-				<hr />
-				<p>
-					<strong>科目:</strong>
-					<ul>
-						<% @note.subjects.each do |subject| %>
-						<li><span class="subject-icon"></span><%= link_to subject.name, subject %></li>
-						<% end %>						
-					</ul>
-				</p>
-				<p>
-					<strong>作成者:</strong>
-					<%= link_to @note.user do %>
-						<%= image_tag(@note.user.display_comment_avatar, class: 'avatar-xs hovercard-target') %>
+				<strong>資料:</strong>
+				<% if @note.documents.empty? %>
+	    	<dd>まだ資料がありません。</dd>
+	      <% else %>
+		      <% @note.documents.each do |document| %>
+		      	<% if document.file_type != '.pdf' %>
+		      		<%= link_to image_tag(document.upload.url(:small)), document, class: 'document-popup' %>
+	      		<% else %>
+	      			<%= link_to image_tag(document.upload.url(:small)), document.upload.url %>
+	      		<% end %>
 					<% end %>
-					
-					<div class="hovercard-content">
-						<%= render partial: 'users/user_hovercard', locals: {user: @note.user} %>		
-					</div>
-				</p>
-				<p>
-					<strong>作成日:</strong>
-					<%= @note.created_at %>
-				</p>
+				<% end %>
+								
 				<hr />
-				<p>
-					<strong>資料:</strong>
-					<% if @note.documents.empty? %>
-		    	<dd>まだ資料がありません。</dd>
-		      <% else %>
-			      <% @note.documents.each do |document| %>
-			      	<% if document.file_type != '.pdf' %>
-			      		<%= link_to image_tag(document.upload.url(:small)), document, class: 'document-popup' %>
-		      		<% else %>
-		      			<%= link_to image_tag(document.upload.url(:small)), document.upload.url %>
-		      		<% end %>
-						<% end %>
-					<% end %>
-				</p>
-				<hr />
-				<%= text_area_tag 'tags', :tags, class: 'tag-input' %>
+				<%= render partial: "users/author_card", locals: {user: @note.user, date: @note.created_at} %>				
+				<div class="hovercard-content">
+					<%= render partial: 'users/user_hovercard', locals: {user: @note.user} %>		
+				</div>
+								
 			</div>
 			
 			<% if @note.user == @user %>
 			<div class="skc-box-menu">
-				<%= link_to edit_note_path(@note.id) do %>
+				<a class="print has-tooltip" data-toggle="tooltip" data-placement="top" title="印刷"><span class="glyphicon glyphicon-print"></span></a>
+				<%= link_to edit_note_path(@note.id), class: 'has-tooltip', data: {toggle: "tooltip", placement: "top"}, title: "編集" do %>
 					<span class="glyphicon glyphicon-pencil"></span>
 				<% end %>
 				<%= link_to @note, method: :delete, data: { confirm: 'Are you sure?' } do %>
@@ -65,27 +48,32 @@
 			
 		</div>
 	</div><!-- end of skc-box -->
+	
+	<div id="note-subjects-list">
+		<% if @tags.count > 0 %>
+		<h4>タグ:</h4>
+		<ul>
+			<% @tags.each do |tag| %>
+			<li class="label-tag"><%= tag %></li>
+			<% end %>
+		</ul>
+		<% end %>
+	
+		<h4>関連授業:</h4>
+		<div class="has-margin-lg">
+			<div class="owl-carousel text-center">
+		  	<%= render collection: @note.subjects, partial: 'subjects/subject_xs', as: :subject %>
+			</div>
+		</div>
+	</div>
+	
 </div>
 <script>
 $(document).ready(function() {
-	
-	$('.tag-input').tagsinput({
-		tagClass: function(item) {
-	    switch (item) {
-	      case '試験対策': return 'label label-warning';
-	      case '過去問題': return 'label label-success';
-	      default: return 'label label-info';
-	    }
-  	},
-	  disable: 'true'
-	});
-	<% @tags.each do |tag| %>
-			$('.tag-input').tagsinput('add', "<%= tag %>" );
-	<% end %>
 
 	$(".hovercard-target").hovercard({
 		content: $(".hovercard-content")
 	});
-	
+
 });
 </script>

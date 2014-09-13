@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.all
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require bootstrap-select.js
@@ -21,7 +22,6 @@
 //= require wysihtml5
 //= require bootstrap-editable
 //= require jquery-fileupload
-//= require jquery.ui.all
 //= require jquery.magnific-popup.js
 //= require jquery.autosize
 //= require owl.carousel.js
@@ -254,5 +254,13 @@ $(document).on("page:change", function() {
 	    }   
 		});	
 	}
+	
+	/*For print button*/
+	$(".print").on("click", function() {
+		window.print();
+	});
+
+	/*For tooltip*/
+	$(".has-tooltip").tooltip();
 
 });

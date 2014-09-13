@@ -125,7 +125,7 @@ class NotesController < ApplicationController
       if @note.save
         # need to save b4 mark as read
         @note.mark_as_read! for: @user
-        format.html { redirect_to notes_url, notice: 'Note was successfully created.' }
+        format.html { redirect_to @note, notice: 'Note was successfully created.' }
         format.json { render action: 'show', status: :created, location: @note }
       else
         format.html { render action: 'new' }
@@ -163,7 +163,7 @@ class NotesController < ApplicationController
    
     respond_to do |format|
       if @note.update(note_params)
-        format.html { redirect_to notes_url, notice: 'Note was successfully updated.' }
+        format.html { redirect_to @note, notice: 'Note was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

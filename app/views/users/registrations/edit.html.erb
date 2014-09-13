@@ -60,7 +60,7 @@
 					<p>
 						<strong>現在のパスワード:</strong>
 						<%= f.password_field :current_password, class: 'form-control form-control-inline', autocomplete: "off" %>
-						<a data-toggle="collapse" href="#collapsePassword">
+						<a data-toggle="collapse" href="#collapsePassword" class="has-tooltip" data-toggle="tooltip" data-placement="right" title="Change password">
 			        <span class="glyphicon glyphicon-lock"></span>
 			      </a>
 		    		<% if resource.errors[:current_password] %>

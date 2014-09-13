@@ -459,3 +459,18 @@ input[type=checkbox]:checked::after {
 input[type=checkbox]:focus {
   outline: none;
 }
+
+
+.avatar {
+	width: 60px;
+	height: 60px;
+}
+
+.avatar-xs {
+	width: 35px;
+	height: 35px;
+}
+
+.avatar-round {
+	border-radius: 50%;
+}

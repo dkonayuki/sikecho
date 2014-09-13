@@ -102,7 +102,7 @@
 			
 			<% if user_signed_in? %>
 			<div class="skc-box-menu">
-				<%= link_to edit_subject_path(@subject.id) do %>
+				<%= link_to edit_subject_path(@subject.id), class: 'has-tooltip', data: {toggle: "tooltip", placement: "top"}, title: "Edit" do %>
 					<span class="glyphicon glyphicon-pencil"></span>
 				<% end %>
 				<%= link_to @subject, method: :delete, data: { confirm: 'Are you sure?' } do %>
@@ -128,7 +128,7 @@
 			
 			<% if user_signed_in? %>
 			<div class="skc-box-menu">
-				<%= link_to edit_subject_path(@subject.id, anchor: "syllabus") do %>
+				<%= link_to edit_subject_path(@subject.id, anchor: "syllabus"), class: 'has-tooltip', data: {toggle: "tooltip", placement: "top"}, title: "Edit" do %>
 					<span class="glyphicon glyphicon-pencil"></span>
 				<% end %>
 			</div>
