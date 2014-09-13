@@ -21,6 +21,8 @@
  *= require owl.carousel.css
  *= require owl.theme.css
  *= require jquery.gritter.css
+ *= require jquery.hovercard.css
+ *= require override-bootstrap3.css
  *= require_tree .
  * 
  */
@@ -520,6 +522,46 @@ body {
 
 .thumbnail-preview-sm img {
 	max-height: 140px;
+}
+
+.user-hovercard-item {
+	width: 100px;
+	height: 140px;
+	display: inline-block;
+}
+
+.user-hovercard-img {
+	width: 100px;
+	height: 100px;
+	overflow: hidden;
+	float: left;
+}
+
+.user-hovercard-img img {	
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.user-hovercard-content {
+	padding: 5px 10px;
+	overflow: hidden;
+	text-align: center;
+}
+
+.user-hovercard-name {
+	font-weight: 700;
+	font-size: 12px;
+}
+
+.user-hovercard-info {
+	font-size: 11px;
+	padding-top: 5px;
+}
+
+.user-hovercard-info img {
+	height: 14px;
+	width: 14px;
 }
 
 /*Schedule

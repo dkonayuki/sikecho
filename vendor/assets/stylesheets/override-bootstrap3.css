@@ -24,7 +24,7 @@
 	border-radius: 0;
 }
 
-.btn:focus {
+.btn:focus, .btn:active:focus, .btn.active:focus {
 	outline: none;
 }
 
@@ -58,6 +58,18 @@
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	cursor: default;
+}
+
+.btn-default:hover, .btn-default:focus {
+	color: #333333;
+	background-color: #fff;
+	border-color: #adadad;
+}
+
+.btn-default.active {
+	color: #333333;
+	background-color: #e6e6e6;
+	border-color: #adadad;
 }
 
 .media {

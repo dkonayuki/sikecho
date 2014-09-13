@@ -1,0 +1,15 @@
+<div class="user-hovercard-item">
+	<div class="user-hovercard-img">
+		<%= image_tag(user.display_profile_image) %>
+	</div>
+	<div class="user-hovercard-content">
+		<div class="user-hovercard-name">
+			<%= user.username %>
+		</div>
+		<div class="user-hovercard-info">
+			<%= link_to user do %>
+				<%= image_tag('user.png') %>
+			<% end %>
+		</div>
+	</div>
+</div>

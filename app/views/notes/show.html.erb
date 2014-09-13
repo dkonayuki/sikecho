@@ -2,7 +2,7 @@
 	<div class="skc-box skc-box-lg">
 		<div class="skc-box-content">
 			<div class="skc-box-thumbnail">
-				<%= image_tag("note.png")  %>
+				<%= image_tag("note.png") %>
 			</div>
 			<div class="skc-box-desc">
 				<h4><%= @note.title %></h4>
@@ -22,9 +22,12 @@
 				<p>
 					<strong>作成者:</strong>
 					<%= link_to @note.user do %>
-					<%= image_tag(@note.user.display_comment_avatar, class: 'avatar-xs') %>
-					<%= @note.user.username %>
+						<%= image_tag(@note.user.display_comment_avatar, class: 'avatar-xs hovercard-target') %>
 					<% end %>
+					
+					<div class="hovercard-content">
+						<%= render partial: 'users/user_hovercard', locals: {user: @note.user} %>		
+					</div>
 				</p>
 				<p>
 					<strong>作成日:</strong>
@@ -65,6 +68,7 @@
 </div>
 <script>
 $(document).ready(function() {
+	
 	$('.tag-input').tagsinput({
 		tagClass: function(item) {
 	    switch (item) {
@@ -78,6 +82,10 @@ $(document).ready(function() {
 	<% @tags.each do |tag| %>
 			$('.tag-input').tagsinput('add', "<%= tag %>" );
 	<% end %>
-		
+
+	$(".hovercard-target").hovercard({
+		content: $(".hovercard-content")
+	});
+	
 });
 </script>
