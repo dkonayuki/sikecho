@@ -1,5 +1,5 @@
 $(document).on("page:change", function() {
-	$(".subjects.edit").ready(function() {
+	$(".subjects.edit, .subjects.new").ready(function() {
 		//turn to inline mode
 		$.fn.editable.defaults.mode = 'inline';
 		$.fn.editable.defaults.ajaxOptions = {dataType: 'json', type: "PUT"};

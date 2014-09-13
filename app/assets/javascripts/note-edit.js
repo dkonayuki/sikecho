@@ -1,5 +1,5 @@
 $(document).on("page:change", function() {
-	$(".notes.edit").ready(function() {
+	$(".notes.edit, .notes.new").ready(function() {
 	
 		$("#edit-note-area").wysihtml5({locale: "en-US"});
 		$('.selectpicker').selectpicker();
