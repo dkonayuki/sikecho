@@ -74,7 +74,7 @@
 				<hr />
 				<p>
 					<strong>推奨学期:</strong>
-					<%= link_to "#{@subject.semester.uni_year.name}#{@subject.semester.name}", subjects_path(filter: '学年別', semester: @subject.semester.id) %>
+					<%= "#{@subject.semester.uni_year.name}#{@subject.semester.name}" %>
 				</p>
 				<p>
 					<strong>時間:</strong>

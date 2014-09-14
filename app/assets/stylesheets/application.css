@@ -794,7 +794,7 @@ body {
 }
 
 .subject-item-xs {
-	min-width: 200px;
+	min-width: 160px;
 	height: 170px;
 	background-color: #ffffff;
 	padding: 15px;
@@ -1316,7 +1316,6 @@ div.message {
 
 #universities-list {
 	margin-top: 20px;
-	padding: 15px;
 	margin: 0 auto;
 }
 
