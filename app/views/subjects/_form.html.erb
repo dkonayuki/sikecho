@@ -46,6 +46,7 @@
       </ul>
 		<% end %>
 	</div>
+					<hr />
 					<p>
 						<strong>概要:</strong>
 						<%= f.text_area :description, class: 'form-control', id: 'subject-description' %>
@@ -111,6 +112,29 @@
 					
 					<p>
 						<h5>時間割</h5>
+<table class="table table-bordered">
+	<tr class="hidden-xs">
+		<th></th>
+		<% 1.upto(Period::MAX_DAY).each do | d |%>
+		<th><%= Period.day_names(d) %></th>
+		<% end %>
+	</tr>
+	<tr class="visible-xs">
+		<th></th>
+		<% 1.upto(Period::MAX_DAY).each do | d |%>
+		<th><%= Period.day_names_short(d) %></th>
+		<% end %>
+	</tr>
+	<% 1.upto(Period::MAX_TIME).each do | t | %>
+	<tr>
+		<td class="period hidden-xs"><%= Period.time_names(t) %></td>
+		<td class="period visible-xs"><%= Period.time_names_short(t) %></td>
+		<% 1.upto(Period::MAX_DAY).each do | d | %>
+				<td class="cell"></td>
+		<% end %>
+	</tr>
+	<% end %>
+</table>
 						<%= f.fields_for :periods do | builder | %>
 							<%= render 'period_fields', f: builder %>		
 						<% end %>
@@ -151,3 +175,76 @@
 		
 	<% end %>
 </div>
+
+<script>
+		$("#subject-description").wysihtml5({locale: "en-US"});
+		var tags;		
+		// instantiate the bloodhound suggestion engine
+		tags = new Bloodhound({
+		  datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.name); },
+		  queryTokenizer: Bloodhound.tokenizers.whitespace,
+		  limit: 5,
+		  prefetch: {
+		  	ttl: 0,
+		    url: '/tags.json', // get tags from application controller
+		    filter: function(list) {
+		      return $.map(list, function(tag) { return { name: tag.name }; });
+		    }
+		  }
+		});
+		 
+		// initialize the bloodhound suggestion engine
+		tags.initialize();
+		
+		//initiate tagsinput	
+		$('.tag-input').tagsinput({
+			tagClass: function(item) {
+		    switch (item) {
+		    	case 'ゼミ': return 'label label-danger';
+		      case '通年': return 'label label-warning';
+		      case '集中講義': return 'label label-success';
+		      default: return 'label label-info';
+		    }
+	  	},
+			confirmKeys: [13, 9]
+		});
+	
+		$('.tag-input').tagsinput('input').typeahead(null, {
+			// instantiate the typeahead UI
+			  displayKey: 'name',
+	 			source: tags.ttAdapter()
+		}).bind('typeahead:selected', $.proxy(function (obj, datum) {  
+		  this.tagsinput('add', datum.value);
+		  //this.tagsinput('input').typeahead('val','');
+		}, $('.tag-input')));
+		
+		//menu bar
+		$('.tag-menu-btn').on('click', function() {
+			$('.tag-input').tagsinput('add', this.innerHTML );
+		});
+		$('#remove-all').on('click', function() {
+			$('.tag-input').tagsinput('removeAll');
+		});
+		
+		//fix for left over text
+		$('.bootstrap-tagsinput input').blur(function() {
+			$(this).val('');
+		});
+		
+		//add old tags if exist
+		/*getJSON is equivalent to 
+		$.ajax({
+		  dataType: "json",
+		  url: url,
+		  data: data,
+		  success: success
+		});*/
+		// url in ajax syntax: "/tags.json" for absolute url. "tags.json" for relative url.
+		if ($(".subjects").hasClass(".edit")) {
+			$.getJSON('tags.json', function(data, status) {
+			  $.each(data, function( key, val ) {
+			    $('.tag-input').tagsinput('add', val);
+			  });
+			});
+		}
+</script>

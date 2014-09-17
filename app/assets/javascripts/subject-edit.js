@@ -5,9 +5,7 @@ $(document).on("page:change", function() {
 		$.fn.editable.defaults.ajaxOptions = {dataType: 'json', type: "PUT"};
 		
 		var subjectID = $("#subject-edit").data("id");
-		var oldTags;
-		var tags;
-		
+
 		function enableInlineEdit() {
 			//edit inline
 			$('.outline-date').editable({
@@ -47,77 +45,8 @@ $(document).on("page:change", function() {
 			);
 		}
 		
-		$("#subject-description").wysihtml5({locale: "en-US"});
 		$('.selectpicker').selectpicker();
 		$('#subject_uni_year_id').on("change", change_uni_year);
-		
-		// instantiate the bloodhound suggestion engine
-		tags = new Bloodhound({
-		  datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.name); },
-		  queryTokenizer: Bloodhound.tokenizers.whitespace,
-		  limit: 5,
-		  prefetch: {
-		  	ttl: 0,
-		    url: '/tags.json', // get tags from application controller
-		    filter: function(list) {
-		      return $.map(list, function(tag) { return { name: tag.name }; });
-		    }
-		  }
-		});
-		 
-		// initialize the bloodhound suggestion engine
-		tags.initialize();
-		
-		//initiate tagsinput	
-		$('.tag-input').tagsinput({
-			tagClass: function(item) {
-		    switch (item) {
-		    	case 'ゼミ': return 'label label-danger';
-		      case '通年': return 'label label-warning';
-		      case '集中講義': return 'label label-success';
-		      default: return 'label label-info';
-		    }
-	  	},
-			confirmKeys: [13, 9]
-		});
-	
-		$('.tag-input').tagsinput('input').typeahead(null, {
-			// instantiate the typeahead UI
-			  displayKey: 'name',
-	 			source: tags.ttAdapter()
-		}).bind('typeahead:selected', $.proxy(function (obj, datum) {  
-		  this.tagsinput('add', datum.value);
-		  //this.tagsinput('input').typeahead('val','');
-		}, $('.tag-input')));
-		
-		//menu bar
-		$('.tag-menu-btn').on('click', function() {
-			$('.tag-input').tagsinput('add', this.innerHTML );
-		});
-		$('#remove-all').on('click', function() {
-			$('.tag-input').tagsinput('removeAll');
-		});
-		
-		//fix for left over text
-		$('.bootstrap-tagsinput input').blur(function() {
-			$(this).val('');
-		});
-		
-		//add old tags if exist
-		/*getJSON is equivalent to 
-		$.ajax({
-		  dataType: "json",
-		  url: url,
-		  data: data,
-		  success: success
-		});*/
-		// url in ajax syntax: "/tags.json" for absolute url. "tags.json" for relative url.
-		$.getJSON('tags.json', function(data) {
-  		//oldTags = jQuery.parseJSON(data);
-		  $.each( data, function( key, val ) {
-		    $('.tag-input').tagsinput('add', val);
-		  });
-		});
 		
 		/*for anchor*/
 		var anchor = window.location.hash.replace("#", "");
