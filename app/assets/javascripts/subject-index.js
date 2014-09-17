@@ -45,6 +45,10 @@ $(document).on("page:change", function() {
 				}
 			});
 			
+			//check if day/time select changed
+			data.day = ($("#subject-day .selectpicker option:selected").val());
+			data.time = $("#subject-time .selectpicker option:selected").val();
+			
 			//get /subjects, execute as script
 			$.ajax({
 				url: "/subjects",
@@ -255,6 +259,11 @@ $(document).on("page:change", function() {
 				}
 			});
 			return false;
+		});
+		
+		/*For day/time select*/
+		$('#subject-menu-week .selectpicker').on("change", function () {
+    	reloadSubjectList();
 		});
 		
 	}); //end of ready

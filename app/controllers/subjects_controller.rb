@@ -19,7 +19,7 @@ class SubjectsController < ApplicationController
     #all
     @subjects = @university.subjects
     
-    #all filter options use OR  
+    #filter courses, use OR  
     if !params[:courses].blank?
       #get courses
       courses = Course.where(id: params[:courses])
@@ -27,6 +27,7 @@ class SubjectsController < ApplicationController
       @subjects = @subjects.where(course: courses)
     end
     
+    #filter semesters, use OR
     if !params[:semesters].blank?
       #get semesters
       semesters = Semester.where(id: params[:semesters])
@@ -34,8 +35,20 @@ class SubjectsController < ApplicationController
       @subjects = @subjects.where(semester: semesters)    
     end
     
+    #filter day
+    if !params[:day].blank? && params[:day].to_i != 0
+      @subjects = @subjects
+      .joins(:periods).where('periods.day = ?', params[:day].to_i)
+    end
+    
+    #filter time
+    if !params[:time].blank? && params[:time].to_i != 0
+      @subjects = @subjects
+      .joins(:periods).where('periods.time = ?', params[:time].to_i)      
+    end
+
+    #filter tag, use OR
     if !params[:tags].blank?
-      #filter tag
       #@subjects = @subjects.tagged_with(params[:tags], any: true)
       #temporal solution for the "for SELECT DISTINCT, ORDER BY expressions must appear in select list" issue
       #need to add uni_years and semesters collumn into select operation
@@ -44,7 +57,7 @@ class SubjectsController < ApplicationController
       .joins(:semester).joins(:uni_year)
       .joins("LEFT JOIN taggings on subjects.id = taggings.taggable_id")
       .joins("LEFT JOIN tags on tags.id = taggings.tag_id").where('tags.name IN (?)', params[:tags])
-    end   
+    end
     
     #order option
     @user = current_user

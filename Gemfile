@@ -51,7 +51,7 @@ gem 'quiet_assets', group: :development
 gem 'rails_12factor', group: :production
 
 # add tag
-gem 'acts-as-taggable-on', '~> 3.0.1'
+gem 'acts-as-taggable-on', '~> 3.4.1'
 
 #bootstrap
 gem "bootstrap-sass", "~> 3.2.0"

@@ -193,3 +193,20 @@
   margin-left: 5px; 
   margin-right: 5px;
 }
+
+#subject-menu-week .dropdown-menu {
+	font-size: 12px;
+}
+#subject-menu-week .dropdown-menu li > a {
+	padding: 3px 23px;
+}
+a:focus {
+outline: none;
+}
+.bootstrap-select .btn:focus {
+	outline: none !important;
+}
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+	background: #444;
+	color: #fff;
+}

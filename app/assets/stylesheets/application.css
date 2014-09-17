@@ -1116,6 +1116,14 @@ body {
 	margin-bottom: 15px;
 }
 
+#subject-menu-week {
+	text-align: center;
+}
+
+#subject-menu-week #subject-day, #subject-menu-week #subject-time {
+	display: inline-block;
+}
+
 div.message {
 	text-align: center;
 	padding-top: 20px;

@@ -76,8 +76,12 @@
 				<span>曜日・時限</span>
 			</div>
 			<div id="subject-menu-week">
-				<%= select_tag :time, options_for_select(1.upto(Period::MAX_TIME).map { |t| [Period.time_names(t), t] }), class: 'selectpicker show-tick', data: {width: 'auto'}, title: '' %>
-				<%= select_tag :day, options_for_select(1.upto(Period::MAX_DAY).map { |d| [Period.day_names(d), d] }), class: 'selectpicker show-tick', data: {width: 'auto'}, title: '' %>
+				<div id="subject-time">
+					<%= select_tag :time, options_for_select(0.upto(Period::MAX_TIME).map { |t| [Period.time_names(t), t] }), class: 'selectpicker', data: {width: 'auto', style: 'btn-sm btn-default'}, title: '' %>
+				</div>
+				<div id="subject-day">
+					<%= select_tag :day, options_for_select(0.upto(Period::MAX_DAY).map { |d| [Period.day_names(d), d] }), class: 'selectpicker', data: {width: 'auto', style: 'btn-sm btn-default'}, title: '' %>
+				</div>
 			</div>
 			
 		</div>	
