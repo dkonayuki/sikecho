@@ -1,4 +1,4 @@
-<table class="table table-bordered">
+<table class="table table-bordered schedule-table">
 	<tr class="hidden-xs">
 		<th></th>
 		<% 1.upto(Period::MAX_DAY).each do | d |%>
@@ -16,12 +16,12 @@
 		<td class="period hidden-xs"><%= Period.time_names(t) %></td>
 		<td class="period visible-xs"><%= Period.time_names_short(t) %></td>
 		<% 1.upto(Period::MAX_DAY).each do | d | %>
-			<% if @periods[[d, t]].blank? %>
+			<% if periods[[d, t]].blank? %>
 				<td class="cell"></td>
 			<% else %>
 				<td class="cell">
 					<ul>
-						<% @periods[[d, t]].each do | subject | %>
+						<% periods[[d, t]].each do | subject | %>
 						<li><%= link_to subject.name, subject %></li>
 						<% end %>
 					</ul>					
@@ -32,15 +32,15 @@
 	<% end %>
 </table>
 <script>
-$(document).ready(function() {
-	
+	var query = $("#filter-schedule #search").val();
+
 	$("#schedule-table").droppable({
 		accept: ".subject-draggable",
     drop: function( event, ui ) {
       $.ajax ({
       	url: "/schedule/",
       	type: "post",
-      	data: {subject: ui.draggable[0].getAttribute("data-id"), page: "<%= @page %>", search: "<%= @search %>" },
+      	data: {subject: ui.draggable[0].getAttribute("data-id"), page: "<%= @page %>", search: query },
       	dataType: "script",
       });
     },
@@ -48,6 +48,5 @@ $(document).ready(function() {
     	
     }
 	});
-});
 
 </script>

@@ -167,22 +167,6 @@ $(document).on("page:change", function() {
 		  dataType: "script"
 		});    
  	});
-	
-	/*For edit user form*/
-	$("#user-edit").on("click", ".remove_fields", function() {
-		$(this).prev("input[type=hidden]").val("1");
-		$(this).closest("fieldset").hide();
-		return false;
-	});
-	$("#user-edit").on("click", ".add_fields", function() {
-		//need to generate unique id
-    time = new Date().getTime();
-    regexp = new RegExp($(this).data('id'), 'g');
-    $(this).before($(this).data('fields').replace(regexp, time));
-    //Refresh selectpicker
-		$('.selectpicker').selectpicker('refresh');
-		return false;
-	});
 
   /*For ajax popup link in show note page*/	
   $('.document-popup').magnificPopup({

@@ -45,7 +45,6 @@ $(document).on("page:change", function() {
 			);
 		}
 		
-		$('.selectpicker').selectpicker();
 		$('#subject_uni_year_id').on("change", change_uni_year);
 		
 		/*for anchor*/

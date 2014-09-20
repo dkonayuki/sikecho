@@ -465,10 +465,10 @@ body {
 	display: inline-block;
 	vertical-align: middle;
 }
-@media (min-width: 768px) {
-  #new-note-btn:after {
-    content: "新規ノート";
-  } 
+@media (max-width: 767px) {
+	#new-note-text {
+		display: none;
+	}
 }
 
 /*Show Note page
@@ -617,7 +617,7 @@ body {
 	margin: 0 auto;
 }
 
-.cell:hover {
+.schedule-table .cell:hover {
 	background-color: #F5F5F5;
 }
 
@@ -662,9 +662,9 @@ body {
 #new-subject-btn {
 	float: right;
 }
-@media (min-width: 768px) {
-  #new-subject-btn:after {
-    content: "新規授業";
+@media (max-width: 767px) {
+  #new-subject-text {
+    display: none;
   } 
 }
 

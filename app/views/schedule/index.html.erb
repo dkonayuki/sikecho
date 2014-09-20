@@ -13,7 +13,7 @@
 	<div id="schedule-content" class="col-sm-8 col-xs-12">
 		<h3>スケジュール</h3>
 		<div id="schedule-table">
-			<%= render 'schedule/schedule' %>
+			<%= render partial: 'schedule_table', locals: { periods: @periods } %>
 		</div>
 	</div>
 </div>

@@ -37,6 +37,7 @@
 		
 	  <%= link_to new_note_path, class: 'btn btn-default', id:'new-note-btn' do %>
 	  <span class="glyphicon glyphicon-plus-sign"></span>
+	  <span id="new-note-text">新規ノート</span>
 		<% end %>
 	
 	  <%= form_tag notes_path, method: :get, class: "filter-form", id: 'filter-note' do %>

@@ -112,29 +112,7 @@
 					
 					<p>
 						<h5>時間割</h5>
-<table class="table table-bordered">
-	<tr class="hidden-xs">
-		<th></th>
-		<% 1.upto(Period::MAX_DAY).each do | d |%>
-		<th><%= Period.day_names(d) %></th>
-		<% end %>
-	</tr>
-	<tr class="visible-xs">
-		<th></th>
-		<% 1.upto(Period::MAX_DAY).each do | d |%>
-		<th><%= Period.day_names_short(d) %></th>
-		<% end %>
-	</tr>
-	<% 1.upto(Period::MAX_TIME).each do | t | %>
-	<tr>
-		<td class="period hidden-xs"><%= Period.time_names(t) %></td>
-		<td class="period visible-xs"><%= Period.time_names_short(t) %></td>
-		<% 1.upto(Period::MAX_DAY).each do | d | %>
-				<td class="cell"></td>
-		<% end %>
-	</tr>
-	<% end %>
-</table>
+						<%= render 'schedule_table' %>
 						<%= f.fields_for :periods do | builder | %>
 							<%= render 'period_fields', f: builder %>		
 						<% end %>
@@ -177,6 +155,8 @@
 </div>
 
 <script>
+		$('.selectpicker').selectpicker();
+
 		$("#subject-description").wysihtml5({locale: "en-US"});
 		var tags;		
 		// instantiate the bloodhound suggestion engine
@@ -247,4 +227,19 @@
 			  });
 			});
 		}
+		
+		$("#subject-edit").on("click", ".remove_fields", function() {
+			$(this).prev("input[type=hidden]").val("1");
+			$(this).closest("fieldset").hide();
+			return false;
+		});
+		$("#subject-edit").on("click", ".add_fields", function() {
+			//need to generate unique id
+	    time = new Date().getTime();
+	    regexp = new RegExp($(this).data('id'), 'g');
+	    $(this).before($(this).data('fields').replace(regexp, time));
+	    //Refresh selectpicker
+			$('.selectpicker').selectpicker('refresh');
+			return false;
+		});
 </script>

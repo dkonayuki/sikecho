@@ -1,16 +1,1 @@
-  <div class="field">
-  	<%= label_tag :subject, '科目' %><br>
-  	<% if !isNew %>
-  	<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name", selected: @subject.id) %>
-  	<%= hidden_field_tag "old_subject", @subject.id %>
-  	<% else %>
-  	<%= select_tag :subject, options_from_collection_for_select(@subjects,"id","name") %>  	
-  	<% end %>
-  </div>
-  <div class="actions">
-    <%= submit_tag "登録", class: "btn btn-primary" %>
-    <%= link_to "キャンセル", schedule_path,  class: "btn btn-primary" %>
-    <% if !isNew %>
-    <%= link_to "削除", schedule_destroy_path(subject: @subject), class: "btn btn-warning" %>
-    <% end %>
-  </div>
+
