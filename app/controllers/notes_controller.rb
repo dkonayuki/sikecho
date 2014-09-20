@@ -2,6 +2,8 @@ class NotesController < ApplicationController
   before_action :set_note, only: [:show, :edit, :update, :destroy, :documents, :tags]
   impressionist actions: [:show]
   before_action :authenticate_user!
+    
+  include NotesHelper
 
   # GET /notes
   # GET /notes.json

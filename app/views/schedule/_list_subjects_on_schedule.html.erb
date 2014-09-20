@@ -1,6 +1,7 @@
 		<%= link_to_previous_page @subjects, '', remote: true, params: {search: @search}, class: 'previous-btn' %>
 		<%= link_to_next_page @subjects, '', remote: true, params: {search: @search}, class: 'next-btn' %>
-<ul data-page="<%= @page %>"><% puts @page %>
+		
+<ul data-page="<%= @page %>">
 <% @subjects.each do |subject| %>
 	<li class="subject-item subject-item-sm subject-draggable <%= @user.current_subjects.include?(subject)? 'active' : ''  %>" data-id="<%= subject.id %>">
       <div class="subject-details">

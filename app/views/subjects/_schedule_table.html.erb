@@ -16,12 +16,16 @@
 		<td class="period hidden-xs"><%= Period.time_names(t) %></td>
 		<td class="period visible-xs"><%= Period.time_names_short(t) %></td>
 		<% 1.upto(Period::MAX_DAY).each do |d| %>
+			<% if periods[ [d, t] ] %>
 				<td class="cell">
-					<span class="glyphicon glyphicon-plus"></span>
-					<span class="subject-table-add"><span class="glyphicon glyphicon-plus"></span></span>
-					<span class="subject-table-remove"><span class="glyphicon glyphicon-remove"></span></span>
 					<span class="subject-table-ok"><span class="glyphicon glyphicon-ok"></span></span>
+					<span class="subject-table-remove"><span class="glyphicon glyphicon-remove"></span></span>
 				</td>
+			<% else %>
+				<td class="cell">
+					<span class="subject-table-add"><span class="glyphicon glyphicon-plus"></span></span>
+				</td>
+			<% end %>
 		<% end %>
 	</tr>
 	<% end %>

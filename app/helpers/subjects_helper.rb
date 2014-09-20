@@ -13,5 +13,13 @@ module SubjectsHelper
     @times = 1.upto(Period::MAX_TIME).to_a
     @days = 1.upto(Period::MAX_DAY).to_a
     @courses = @user.current_university.courses
+    
+    #For schedule rendering
+    @periods = Hash.new
+    if @subject
+      @subject.periods.each do |p|
+        @periods[ [p.day, p.time] ] = true
+      end
+    end 
   end
 end

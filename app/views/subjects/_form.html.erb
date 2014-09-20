@@ -112,7 +112,7 @@
 					
 					<p>
 						<h5>時間割</h5>
-						<%= render 'schedule_table' %>
+						<%= render partial: 'schedule_table', locals: {periods: @periods} %>
 						<%= f.fields_for :periods do | builder | %>
 							<%= render 'period_fields', f: builder %>		
 						<% end %>

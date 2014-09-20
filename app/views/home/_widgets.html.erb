@@ -6,7 +6,7 @@
 	        <h4>スケジュール</h4>
 		    </div>
 				<div class="skc-box-desc-no-padding">
-					<%= render 'schedule/schedule' %>
+					<%= render partial: 'schedule/schedule_table', locals: {periods: @periods} %>
 				</div>
 			</div>
 		</div>

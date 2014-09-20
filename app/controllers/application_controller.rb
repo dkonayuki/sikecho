@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
   
   include ApplicationHelper
   include ScheduleHelper
-  include NotesHelper
   
   # redirect to 404 page
   def not_found
