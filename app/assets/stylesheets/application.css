@@ -1138,13 +1138,24 @@ div.message {
 }
 
 #subject-table .cell:hover {
-	background-color: #666;
+	background-color: #5cb85c;
 	color: #fff;
 }
 
 #subject-table .cell:active {
 	cursor: pointer;
-	background-color: #333;
+	background-color: #4ba74b;
+	color: #fff;
+}
+
+#subject-table .cell.active:hover {
+	background-color: #c0392b;
+	color: #fff;
+}
+
+#subject-table .cell.active:active {
+	cursor: pointer;
+	background-color: #b0281a;
 	color: #fff;
 }
 
@@ -1153,7 +1164,7 @@ div.message {
 }
 
 #subject-table .cell.active {
-  background-color: #666;
+  background-color: #5cb85c;
   color: #fff;	
 }
 
