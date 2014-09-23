@@ -1,5 +1,6 @@
 class SubjectsController < ApplicationController
   before_action :set_subject, only: [:show, :edit, :update, :destroy, :inline, :version, :outline, :tags, :periods]
+  before_action :authenticate_user!, only: [:edit, :update, :new, :create]
   
   # monitor view count
   impressionist actions: [:show]

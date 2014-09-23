@@ -51,7 +51,6 @@
 
 html,
 body {
-	background-color: #f1f1f1 !important;
   height: 100%;
   /* The html and body elements cannot have any padding or margin. */
 }

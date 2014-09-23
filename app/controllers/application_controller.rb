@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :set_no_cache
   before_action :set_subdomain
+  before_action :store_location
   #before_action :authenticate_user!
   
   # Prevent CSRF attacks by raising an exception.
@@ -77,12 +78,26 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  # store last url - this is needed for post-login redirect to whatever the user last visited.
+  def store_location
+    return unless request.get? 
+    if (request.path != "/users/login" &&
+        request.path != "/users/sign_up" &&
+        request.path != "/users/password/new" &&
+        request.path != "/users/password/edit" &&
+        request.path != "/users/confirmation" &&
+        request.path != "/users/logout" &&
+        !request.xhr?) # don't store ajax calls
+      session[:previous_url] = request.fullpath 
+    end
+  end
+  
   # redirect after sign in
   def after_sign_in_path_for(resource)
     case resource
     when User then
       #remember to use url for changing subdomain
-      root_url(subdomain: resource.current_education.university.codename)
+      session[:previous_url] || root_url(subdomain: resource.current_education.university.codename)
     when Admin then
       rails_admin_path
     end
