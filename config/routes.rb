@@ -26,6 +26,7 @@ Shikechou::Application.routes.draw do
     get 'version/:version_id' => 'subjects#version', as: 'version', on: :member  # remember on: :collection
     get 'outline' => 'subjects#outline', on: :member
     get 'tags' => 'subjects#tags', on: :member
+    get 'periods' => 'subjects#periods', on: :member
   end
     
   resources :notes do

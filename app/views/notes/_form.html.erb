@@ -1,4 +1,4 @@
-<div id="note-edit">
+<div id="note-edit" data-id="<%= @note.id %>">
 	<%= form_for @note, html: { multipart: true, id: 'note-form'} do |f| %>
 	<div class="skc-box skc-box-lg">
 		<div class="skc-box-content">
@@ -130,8 +130,9 @@
 		  success: success
 		});*/
 		// url in ajax syntax: "/tags.json" for absolute url. "tags.json" for relative url.
-		if ($(".notes").hasClass(".edit")) {
-			$.getJSON("tags.json", function(data) {
+		// however since rails using RESTFUL, update page has different url, so we need to specific the url
+		if ($(".notes").hasClass("edit") || $(".notes").hasClass("update")) {
+			$.getJSON("/notes/" + $("#note-edit").data("id") + "/tags.json", function(data, status) {
 				$.each(data, function(key, val) {
 					$(".tag-input").tagsinput("add", val);
 				});

@@ -1130,6 +1130,57 @@ div.message {
 	font-size: 18px;
 }
 
+/* Subject edit page
+ ===============================================================================================*/
+
+#subject-table {
+	text-align: center;
+}
+
+#subject-table .cell:hover {
+	background-color: #666;
+	color: #fff;
+}
+
+#subject-table .cell:active {
+	cursor: pointer;
+	background-color: #333;
+	color: #fff;
+}
+
+#subject-table .cell {
+	cursor: pointer;
+}
+
+#subject-table .cell.active {
+  background-color: #666;
+  color: #fff;	
+}
+
+#subject-table .cell .subject-table-add, #subject-table .cell .subject-table-remove, #subject-table .cell .subject-table-ok {
+	display: none;
+}
+
+#subject-table .cell:hover .subject-table-add {
+	display: block;
+}
+
+#subject-table .cell.active .subject-table-add, #subject-table .cell.active .subject-table-remove {
+	display: none;
+}
+
+#subject-table .cell.active .subject-table-ok {
+	display: block;
+}
+
+#subject-table .cell.active:hover .subject-table-remove {
+	display: block;
+}
+
+#subject-table .cell.active:hover .subject-table-ok {
+	display: none;
+}
+
 /* Teacher page
  ===============================================================================================*/
 

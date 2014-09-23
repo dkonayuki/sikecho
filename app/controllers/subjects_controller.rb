@@ -1,5 +1,5 @@
 class SubjectsController < ApplicationController
-  before_action :set_subject, only: [:show, :edit, :update, :destroy, :inline, :version, :outline, :tags]
+  before_action :set_subject, only: [:show, :edit, :update, :destroy, :inline, :version, :outline, :tags, :periods]
   
   # monitor view count
   impressionist actions: [:show]
@@ -136,8 +136,6 @@ class SubjectsController < ApplicationController
   # GET /subjects/1/edit
   def edit
     prepare_view_content
-    
-    @tags = @subject.tag_list
   end
 
   # POST /subjects
@@ -149,6 +147,14 @@ class SubjectsController < ApplicationController
     #create new subject
     @subject = Subject.new(subject_params)
     @subject.teachers = Teacher.where(id: params[:teachers])
+    
+    #add periods
+    if !params[:periods].blank?
+      params[:periods].each do |period_text|
+        period = period_text.split(',')
+        @subject.periods << Period.new(day: period[0], time: period[1])
+      end
+    end
     
     #convert full-width to half-width
     tags_text = Moji.normalize_zen_han(params[:tags])
@@ -247,6 +253,14 @@ class SubjectsController < ApplicationController
       format.json { render json: @tags }
     end
   end
+  
+  # for /periods.json
+  def periods
+    @periods = @subject.periods
+    respond_to do |format|
+      format.json { render json: @periods }
+    end
+  end
 
   # PATCH/PUT /subjects/1
   # PATCH/PUT /subjects/1.json
@@ -254,7 +268,13 @@ class SubjectsController < ApplicationController
     #prepare previous info
     prepare_view_content
     
-    @tags = @subject.tag_list
+    #update periods list
+    periods = Array.new
+    params[:periods].each do |period_text|
+      period = period_text.split(',')
+      periods << Period.new(day: period[0], time: period[1])
+    end
+    @subject.periods = periods
     
     #update tags list
     #convert full-width to half-width
@@ -296,7 +316,7 @@ class SubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
-      params.permit(:name, :pk, :value, :tags, :filter, :semester, :teachers, :version_id, :page, :style, :number_of_outlines, :courses, :semesters)
-      params.require(:subject).permit(:name, :description, :year, :place, :semester_id, :uni_year_id, :course_id, :picture, periods_attributes: [:id, :time, :day, :_destroy])
+      params.permit(:name, :pk, :value, :tags, :filter, :semester, :teachers, :version_id, :page, :style, :number_of_outlines, :courses, :semesters, :periods)
+      params.require(:subject).permit(:name, :description, :year, :place, :semester_id, :uni_year_id, :course_id, :picture)
     end
 end

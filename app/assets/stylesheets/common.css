@@ -14,6 +14,60 @@ ul {
 	padding: 0px;
 }
 
+textarea {
+  resize: none
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a {
+  color: #666;
+}
+a:hover {
+  color: #000;
+}
+
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #c00;
+    color: #fff;
+  }
+  ul li {
+    font-size: 12px;
+    list-style: square;
+  }
+}
+
 .notice {
 	font-size: 12px;
 	color: #888;
@@ -448,7 +502,7 @@ input[type=checkbox] {
 	position: relative;
 	vertical-align: middle;
 }
-input[type=checkbox]:checked::after {
+input[type=checkbox]:checked:after {
 	content: url('checkmark.png');
 	display: block;
 	position: absolute;

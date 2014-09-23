@@ -1,6 +1,5 @@
 class Period < ActiveRecord::Base
   belongs_to :subject
-  has_and_belongs_to_many :educations
   
   def self.day_names(day)
     %w(全て 月曜日 火曜日 水曜日 木曜日 金曜日 土曜日)[day]

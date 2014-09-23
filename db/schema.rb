@@ -72,9 +72,9 @@ ActiveRecord::Schema.define(version: 20140917092011) do
     t.datetime "updated_at"
   end
 
-  create_table "educations_periods", force: true do |t|
+  create_table "educations_subjects", force: true do |t|
     t.integer "education_id"
-    t.integer "period_id"
+    t.integer "subject_id"
   end
 
   create_table "faculties", force: true do |t|
