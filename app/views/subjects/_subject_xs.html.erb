@@ -14,7 +14,7 @@
 		<div class="subject-teacher">
     	<% subject.teachers.each do |teacher| %>
     		<% if teacher != subject.teachers.first  %>
-    		・
+    		&bull;
     		<% end %>
     		<%= teacher.name_kanji %>
   		<% end %>

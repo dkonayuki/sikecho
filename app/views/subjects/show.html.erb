@@ -80,7 +80,7 @@
 					<strong>時間:</strong>
 					<% @subject.periods.each do |period| %>
 						<% if period != @subject.periods.first %>
-						・
+						&bull;
 						<% end %>
 						<%= Period.time_names(period.time) %><%= Period.day_names(period.day) %>
 					<% end %>
@@ -93,7 +93,7 @@
 					<strong>教員:</strong>
 					<% @subject.teachers.each do |teacher| %>
 	      		<% if teacher != @subject.teachers.first  %>
-	      		・
+	      		&bull;
 	      		<% end %>
 						<%= link_to teacher.name_kanji, teacher %>
     			<% end %>
@@ -240,7 +240,7 @@
 			});
 			return false;
 		});
-		
+
 		$(".owl-carousel").owlCarousel({
 			items : 4,
 	    itemsDesktop : [1199,3],
@@ -254,6 +254,7 @@
 	      "<span class='glyphicon glyphicon-chevron-right'></span>"
 	      ],
 		});
+
 	});
 
 </script>

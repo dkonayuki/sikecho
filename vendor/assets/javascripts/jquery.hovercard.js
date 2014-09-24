@@ -1,10 +1,18 @@
 (function($) {
 	$.fn.hovercard = function (options) {
+		
 		var settings = $.extend({
 			//default values
-			content: 'hi'
+			content: '',
+			durationIn: 500,
+			durationOut: 500
 		}, options);
+		
 		var content = settings.content;
+		var durationIn = settings.durationIn;
+		var durationOut = settings.durationOut;
+		
+		//add content to body
 		content.detach();
 		$("body").append(content);
 		
@@ -15,7 +23,7 @@
 	    timeout = window.setTimeout(function() { //set a new delay
     		content.fadeTo(200, 0);
     		content.css("display", "none");
-			}, 500);
+			}, durationOut);
 		}
 
 		$(this).mousemove(function(e) {
@@ -30,7 +38,7 @@
 	      if (content.css("display") == "none") {
       		content.css(pos).fadeTo(200, 100);
 	      }
-			}, 500);
+			}, durationIn);
 			
 		});
 		

@@ -1,0 +1,20 @@
+<div class="subject-card" data-id="<%= subject.id %>">
+	<div class="subject-card-img">
+	<%= link_to subject do %>
+		<%= image_tag('lecture_invert.png', class: 'avatar-xs subject-hovercard-target') %>
+	<% end %>
+	</div>
+	<div class="subject-card-content">
+		<div class="subject-card-name">
+			<%= subject.name %>
+		</div>
+		<div class="subject-card-info">
+			<% subject.teachers.each do |teacher| %>
+				<% if teacher != subject.teachers.first %>
+				&bull;
+				<% end %>
+				<%= teacher.name_kanji %>
+			<% end %>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,21 @@
+<div class="subject-hovercard-item">
+	<div class="subject-hovercard-img">
+		<%= image_tag(subject.display_picture_small) %>
+	</div>
+	<div class="subject-hovercard-content">
+		<div class="subject-hovercard-name">
+			<%= subject.name %>
+		</div>
+		<div class="subject-hovercard-desc">
+			<%= subject.description %>
+		</div>
+		<div class="subject-hovercard-info">
+			<span class="label-blue label-xs"><%= subject.year %></span>
+			<span class="label-green label-xs">
+				<%= Period.day_names_short(subject.periods.first.day) %>
+				&bull;
+				<%= Period.time_names_short(subject.periods.first.time) %>
+			</span>
+		</div>
+	</div>
+</div>

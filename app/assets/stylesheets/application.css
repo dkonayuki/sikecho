@@ -490,6 +490,41 @@ body {
 	display: none;
 }
 
+.subject-card {
+	width: 200px;
+	height: 60px;
+	display: inline-block;
+	padding: 11px;
+	border: 1px solid #aaa;
+	border-radius: 4px;
+	margin: 5px;
+}
+
+.subject-card-img {
+	float: left;
+}
+
+.subject-card-content {
+	padding-left: 5px;
+	overflow: hidden;
+}
+
+.subject-card-name {
+	color: #E67E22;
+	font-size: 13px;
+	line-height: 16px;
+	height: 16px;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.subject-card-info {
+	font-size: 11px;
+	color: #888;
+}
+
 .author {
 	height: 35px;
 	width: 300px;
@@ -519,6 +554,8 @@ body {
 	max-width: 800px;
 	margin: 0 auto 20px;
 }
+
+
 
 /*User page
  *  ===============================================================================================*/
@@ -1128,10 +1165,57 @@ body {
 	display: inline-block;
 }
 
-div.message {
+.subject-hovercard {
+	width: 340px;
+	height: 120px;
+	display: inline-block;
+}
+
+.subject-hovercard-img {
+	width: 120px;
+	height: 120px;
+	overflow: hidden;
+	float: left;
+}
+
+.subject-hovercard-img img {	
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.subject-hovercard-content {
+	padding: 8px;
+	overflow: hidden;
+}
+
+.subject-hovercard-name {
 	text-align: center;
-	padding-top: 20px;
-	font-size: 18px;
+	font-weight: 700;
+	font-size: 15px;
+	line-height: 16px;
+	height: 16px;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+
+.subject-hovercard-desc {
+	font-size: 11px;
+	line-height: 16px;
+	height: 48px;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.subject-hovercard-info {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
 }
 
 /* Subject edit page

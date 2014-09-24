@@ -13,6 +13,14 @@
 				<% end %>
 				
 				<hr />
+				<% @note.subjects.each do |subject| %>
+				<%= render partial: "subjects/subject_card", locals: {subject: subject} %>
+				<div class="subject-hovercard hovercard" data-id="<%= subject.id %>">
+					<%= render partial: 'subjects/subject_hovercard', locals: {subject: subject} %>		
+				</div>
+				<% end %>
+				
+				<hr />
 				<strong>資料:</strong>
 				<% if @note.documents.empty? %>
 	    	<dd>まだ資料がありません。</dd>
@@ -28,7 +36,7 @@
 								
 				<hr />
 				<%= render partial: "users/author_card", locals: {user: @note.user, date: @note.created_at} %>				
-				<div class="hovercard-content">
+				<div class="author-hovercard hovercard">
 					<%= render partial: 'users/user_hovercard', locals: {user: @note.user} %>		
 				</div>
 								
@@ -64,8 +72,15 @@
 <script>
 $(document).ready(function() {
 
-	$(".hovercard-target").hovercard({
-		content: $(".hovercard-content")
+	$(".author-hovercard-target").hovercard({
+		content: $(".author-hovercard")
+	});
+	
+	$(".subject-hovercard-target").each(function() {
+		var id = $(this).parents(".subject-card").data("id");
+		$(this).hovercard({
+			content: $(".subject-hovercard[data-id='" + id + "']")
+		})
 	});
 
 });
