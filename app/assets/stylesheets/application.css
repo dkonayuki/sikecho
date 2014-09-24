@@ -515,9 +515,9 @@ body {
 	color: #888;
 }
 
-#note-subjects-list {
+#note-tags-list {
 	max-width: 800px;
-	margin: 0 auto;
+	margin: 0 auto 20px;
 }
 
 /*User page

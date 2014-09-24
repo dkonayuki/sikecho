@@ -49,7 +49,7 @@
 		</div>
 	</div><!-- end of skc-box -->
 	
-	<div id="note-subjects-list">
+	<div id="note-tags-list">
 		<% if @tags.count > 0 %>
 		<h4>タグ:</h4>
 		<ul>
@@ -58,13 +58,6 @@
 			<% end %>
 		</ul>
 		<% end %>
-	
-		<h4>関連授業:</h4>
-		<div class="has-margin-lg clear">
-			<div class="owl-carousel text-center">
-		  	<%= render collection: @note.subjects, partial: 'subjects/subject_xs', as: :subject %>
-			</div>
-		</div>
 	</div>
 	
 </div>
