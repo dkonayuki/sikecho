@@ -15,8 +15,11 @@
 	      <% if note.tag_list.include?('過去問題') %>
 	      	<span class="label label-success">過去問題</span>
 	      <% end %>
-	      <% if note.unread?(@user) %>
-	      	<span class="label label-danger">New</span>
+	      
+				<% if user_signed_in? %>
+		      <% if note.unread?(@user) %>
+		      	<span class="label label-danger">New</span>
+		      <% end %>
 	      <% end %>
       </div>
     </div>

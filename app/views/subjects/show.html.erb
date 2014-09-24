@@ -6,7 +6,7 @@
 			<ul class="nav">
 	      <li><a href="#description">概要</a></li>
 	      <li><a href="#syllabus">シラバス</a></li>
-	      <li><a href="#notes">ノート</a></li>         
+	      <li><a href="#notes">ノート</a></li>
 	    </ul>
 		</div>
 		
@@ -137,7 +137,6 @@
 		</div><!-- end of box-content -->
 	</div><!-- end of skc-box -->
 	
-	<% if user_signed_in? %>
 	<!--for overview section -->
  	<a name="notes"></a>
 	<div class="skc-box skc-box-no-padding skc-box-lg" id="notes-card">
@@ -152,6 +151,7 @@
 			</div>
 		</div>
 	</div>
+	<% if user_signed_in? %>
 	<% end %>
 	
 	<% if @tags.count > 0 %>
@@ -254,6 +254,18 @@
 	      "<span class='glyphicon glyphicon-chevron-right'></span>"
 	      ],
 		});
+
+		/*For fixed subject menu*/
+		if ($(".fixed-menu").length) {
+			var fixedMenuOffset = $(".fixed-menu").offset();
+			$(window).scroll(function(){
+	      if($(window).scrollTop() > fixedMenuOffset.top - 20){
+	      	$(".fixed-menu").css('position','fixed').css('top','0');
+	      } else {
+					$(".fixed-menu").css('position','static');
+	      }
+			});
+		}
 
 	});
 

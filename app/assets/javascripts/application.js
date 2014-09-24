@@ -104,18 +104,6 @@ $(document).on("page:change", function() {
 	  return false;
 	});
 	
-	/*For fixed subject menu*/
-	if ($(".fixed-menu").length) {
-		var fixedMenuOffset = $(".fixed-menu").offset();
-		$(window).scroll(function(){
-      if($(window).scrollTop() > fixedMenuOffset.top - 20){
-          $(".fixed-menu").css('position','fixed').css('top','0');
-      } else {
-          $(".fixed-menu").css('position','static');
-      }    
-		});		
-	}
-	
 	/*For live search*/
 	var timeout; // add delay time
   $("#filter-note input").keyup(function() {
