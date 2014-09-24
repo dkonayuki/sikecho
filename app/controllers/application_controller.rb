@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :set_no_cache
   before_action :set_subdomain
   before_action :store_location
+  before_action :set_locale
   #before_action :authenticate_user!
   
   # Prevent CSRF attacks by raising an exception.
@@ -14,6 +15,18 @@ class ApplicationController < ActionController::Base
   # redirect to 404 page
   def not_found
     render :file => 'public/404.html', :status => :not_found, :layout => false
+  end
+  
+  def set_locale
+    I18n.locale = params[:locale] if params[:locale].present?
+    # current_user.locale
+    # request.domain
+    # request.env["HTTP_ACCEPT_LANGUAGE"]
+    # request.remote_ip
+  end
+  
+  def default_url_options(options = {})
+    {locale: I18n.locale}
   end
 
   def disable_nav
@@ -117,5 +130,6 @@ class ApplicationController < ActionController::Base
   end
   
   private :disable_nav
+  private :set_locale
 
 end

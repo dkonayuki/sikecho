@@ -6,12 +6,12 @@
 			<% if user_signed_in? %>
 			  <%= link_to new_subject_path, class: 'btn btn-orange', id:'new-subject-btn' do %>
 			  <span class="glyphicon glyphicon-plus-sign"></span>
-			  <span id="new-subject-text">新規授業</span>
+			  <span id="new-subject-text"><%= t '.new_subject' %></span>
 				<% end %>
 			<% end %>
 			
 		  <%= form_tag subjects_path, method: :get, class: "filter-form has-padding", id: "filter-subject" do %>
-		    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: '授業検索', autocorrect: "off", autocapitalize: "off" %>
+		    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: t('.subject_search'), autocorrect: "off", autocapitalize: "off" %>
 			<% end %>
 		</div>
 						
@@ -19,12 +19,12 @@
 			
 			<div class="subject-menu-header">
 				<%= image_tag("faculty.png") %>
-				<span>学科</span>
+				<span><%= t 'faculty' %></span>
 			</div>
 			<ul id="subject-menu-course">
 				<li>
 					<%= check_box_tag "all-course", 0, true %>
-					<span>学部共通</span>
+					<span><%= t '.all_faculty' %></span>
 				</li>
 				<% @university.faculties.each do |faculty| %>
 				<li class="faculty-item">
@@ -44,11 +44,11 @@
 			
 			<div class="subject-menu-header">
 				<%= image_tag("uni_year.png") %>
-				<span>学年</span>
+				<span><%= t 'uni_year' %></span>
 			</div>
 			<table class="table table-bordered" id="subject-menu-year">
 				<tr>
-					<td colspan="2" class="active" id="all-year">全学年</td>
+					<td colspan="2" class="active" id="all-year"><%= t '.all_uni_year' %></td>
 				</tr>
 				  <% @university.uni_years.each do |uni_year| %>
 						<% uni_year.semesters.each do |semester| %>
@@ -64,7 +64,7 @@
 			
 			<div class="subject-menu-header">
 				<%= image_tag("tag.png") %>
-				<span>タグ</span>
+				<span><%= t 'tag' %></span>
 			</div>
 			<div id="subject-menu-tag">
 		  <% @university.subjects.tag_counts.order('count desc').limit(10).each do | tag | %>
@@ -74,7 +74,7 @@
 			
 			<div class="subject-menu-header">
 				<%= image_tag("week.png") %>
-				<span>曜日&bull;時限</span>
+				<span><%= t '.day' %>&bull;<%= t '.time' %></span>
 			</div>
 			<div id="subject-menu-week">
 				<div id="subject-time">
@@ -89,19 +89,19 @@
 		
 		<!-- subjects list goes here -->
 		<div id="subjects-list-container" class="col-sm-9 col-xs-12 no-padding">
-			<div id="subjects-list-title">授業</div>
+			<div id="subjects-list-title"><%= t 'subject_plural' %></div>
 			<% if user_signed_in? %>
 			<div id="subject-order-option" class="clear">
 				<div class="btn-group">
-				  <button data-type="all" class="btn btn-default <%= 'active' if @user.settings(:subject).style == :all %>">年</button>
-				  <button data-type="semester" class="btn btn-default <%= 'active' if @user.settings(:subject).style == :semester %>">期</button>
-				  <button data-type="note_count" class="btn btn-default <%= 'active' if @user.settings(:subject).style == :note_count %>">の</button>
+				  <button data-type="all" class="btn btn-default <%= 'active' if @user.settings(:subject).style == :all %>"><%= t 'y' %></button>
+				  <button data-type="semester" class="btn btn-default <%= 'active' if @user.settings(:subject).style == :semester %>"><%= t 's' %></button>
+				  <button data-type="note_count" class="btn btn-default <%= 'active' if @user.settings(:subject).style == :note_count %>"><%= t 'n' %></button>
 				</div>
 			</div>
 			<% end %>
 			
 			<div id="subjects-list">
-				<%= render collection: @subjects, partial: 'subject_line', as: :subject || content_tag(:div, '授業が見つかりません。', class: 'message') %>		
+				<%= render collection: @subjects, partial: 'subject_line', as: :subject || content_tag(:div, t('subject_not_found'), class: 'message') %>		
 			</div>
 			
 			<!-- for endless pagination -->

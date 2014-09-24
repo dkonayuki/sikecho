@@ -27,4 +27,9 @@ module ApplicationHelper
     University.find_by_codename(request.subdomain)
   end
   
+  def current_translations
+    @translations ||= I18n.backend.send(:translations)
+    @translations[I18n.locale].with_indifferent_access
+  end
+  
 end

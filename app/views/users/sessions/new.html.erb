@@ -8,8 +8,8 @@
           <%= image_tag('avatar_default.png', class: 'profile-img') %>
         	<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-signin'}) do |f| %>
 
-					  <%= f.text_field :login, class: 'form-control', placeholder: 'EmailまたはID', autofocus: true %>
-				    <%= f.password_field :password, placeholder: 'パスワード', autocomplete: "off", class: 'form-control' %>
+					  <%= f.text_field :login, class: 'form-control', placeholder: t('.login_placeholder'), autofocus: true %>
+				    <%= f.password_field :password, placeholder: t('.password_placeholder'), autocomplete: "off", class: 'form-control' %>
 				    <% if flash[:alert] %>
 				      <ul>
 				  			<% flash.each do |name, msg| %>
@@ -18,12 +18,12 @@
 				      </ul>
 				    <% end %>
 		    			
-					  <%= f.submit "ログイン", class: 'btn btn-lg btn-orange btn-block' %>
+					  <%= f.submit t(".login"), class: 'btn btn-lg btn-orange btn-block' %>
 					  
 					  <% if devise_mapping.rememberable? -%>
 					  <label>
 					    <%= f.check_box :remember_me, checked: true %> 
-					    <span>次回から自動的にログイン</span>
+					    <span><%= t ".remember_me" %></span>
 				    </label>
 					  <% end %>
 						<hr />

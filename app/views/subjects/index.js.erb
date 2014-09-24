@@ -3,6 +3,6 @@
 	$('#subjects-list').append("<%=j render collection: @subjects, partial: 'subject_line', as: :subject %>");
 	<% sleep 1 %>
 <% else %>
-	$('#subjects-list').html("<%=j render(collection: @subjects, partial: 'subject_line', as: :subject) || content_tag(:div, '授業が見つかりません。', class: 'message') %>");
+	$('#subjects-list').html("<%=j render(collection: @subjects, partial: 'subject_line', as: :subject) || content_tag(:div, t('subject_not_found'), class: 'message') %>");
 <% end %>
 	$(".hidden-pagination").html("<%=j paginate @subjects %>")

@@ -3,7 +3,7 @@
 		<div class="skc-box skc-box-no-padding skc-box-lg">
 			<div class="skc-box-content">
 				<div class="skc-box-title-no-margin">
-	        <h4>スケジュール</h4>
+	        <h4><%= t 'schedule' %></h4>
 		    </div>
 				<div class="skc-box-desc-no-padding">
 					<%= render partial: 'schedule/schedule_table', locals: {periods: @periods} %>
@@ -21,9 +21,9 @@
 					<%= image_tag("note.png")  %>
 				</div>
 				<div class="skc-box-desc">
-					<h4>ノート</h4>
+					<h4><%= t 'note' %></h4>
 					<p>
-						新着ノート: <%= Note.unread_by(@user).count %>
+						<%= t 'new_arrival_note' %>: <%= Note.unread_by(@user).count %>
 					</p>
 				</div>
 			</div>
@@ -37,9 +37,9 @@
 					<%= image_tag("lecture.png")  %>
 				</div>
 				<div class="skc-box-desc">
-					<h4>授業</h4>
+					<h4><%= t 'subject' %></h4>
 					<p>
-						授業数: <%= current_university.subjects.count %>
+						<%= t '.subject_number' %>: <%= current_university.subjects.count %>
 					</p>
 				</div>
 			</div>

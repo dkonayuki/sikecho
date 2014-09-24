@@ -5,8 +5,8 @@
 		<div id="search-menu">
 			<ul class="nav">
 	      <li>
-	      	<%= link_to search_path(query: @query, type: '授業') do %>   
-	      		授業	
+	      	<%= link_to search_path(query: @query, type: t('subject')) do %>   
+	      		<%= t 'subject' %>	
 		      	<% if @subjects.count > 0 %>
 		      		<span class="badge badge-sm badge-info pull-right"><%= @subjects.count %></span>
 		      	<% end %>
@@ -14,14 +14,14 @@
 	    	</li>
 	    	<% if user_signed_in? %>
 	      <li>
-	      	<%= link_to search_path(query: @query, type: 'ノート') do %>
-	      		ノート
+	      	<%= link_to search_path(query: @query, type: t('note')) do %>
+	      		<%= t 'note' %>
 		      	<% if @notes.to_a.count > 0 %>
 		      		<span class="badge badge-sm badge-info pull-right"><%= @notes.to_a.count %></span>
 		      	<% end %>
 	      	<% end %>
 	  		</li>
-	      <li><a href="#">教員</a></li>
+	      <li><a href="#"><%= t 'teacher' %></a></li>
 	      <% end %>     
 	    </ul>
 		</div>

@@ -17,41 +17,43 @@
   <!-- Menu bar -->
   <div class="collapse navbar-collapse no-transition" id="navbar-collapse-1">
     <ul class="nav navbar-nav hidden-xs">
-      <li class="<%= 'active' if params[:controller] == 'subjects' %> <%= 'disabled' if current_university == nil %>"><%= link_to '授業', subjects_path %></li>
+      <li class="<%= 'active' if params[:controller] == 'subjects' %> <%= 'disabled' if current_university == nil %>"><%= link_to t('.subject'), subjects_path %></li>
       <li class="<%= 'active' if params[:controller] == 'notes' %> <%= 'disabled' if current_university == nil %>">
       	<%= link_to notes_path do %>
-	      	ノート
+	      	<%= t '.note' %>
 	      	<% if user_signed_in? && unread_notes_count > 0 %>
 	      		<span class="badge badge-important"><%= unread_notes_count %></span>
 	      	<% end %>
       	<% end %>
     	</li>
-      <li class="<%= 'active' if params[:controller] == 'users' %> <%= 'disabled' if !user_signed_in? %>"><%= link_to 'プロフィール', current_user %></li>
+      <li class="<%= 'active' if params[:controller] == 'users' %> <%= 'disabled' if !user_signed_in? %>"><%= link_to t('.profile'), current_user %></li>
     </ul>
     
     <ul class="nav navbar-nav visible-xs nav-mobile">
+    	
     	<% if current_university == nil %>
-      <li class="<%= 'active' if params[:controller] == 'subjects' %> col-xs-3 disabled">
-      	<%= link_to image_tag("lecture_disabled.png"), subjects_path %>
-    	</li>
-    	<li class="<%= 'active' if params[:controller] == 'notes' %> col-xs-3">
-      	<%= link_to notes_path do %>
-	      	<%= image_tag("note.png") %>
-	      	<% if unread_notes_count > 0 %>
-	      		<span class="badge badge-important"><%= unread_notes_count %></span>
+	      <li class="<%= 'active' if params[:controller] == 'subjects' %> col-xs-3 disabled">
+	      	<%= link_to image_tag("lecture_disabled.png"), subjects_path %>
+	    	</li>
+	    	<li class="<%= 'active' if params[:controller] == 'notes' %> col-xs-3">
+	      	<%= link_to notes_path do %>
+		      	<%= image_tag("note.png") %>
+		      	<% if user_signed_in? && unread_notes_count > 0 %>
+		      		<span class="badge badge-important"><%= unread_notes_count %></span>
+		      	<% end %>
 	      	<% end %>
-      	<% end %>
-    	</li>
+	    	</li>
     	<% else %>
-      <li class="<%= 'active' if params[:controller] == 'subjects' %> col-xs-3">
-      	<%= link_to image_tag("lecture.png"), subjects_path %>
-    	</li>
-  	  <li class="<%= 'active' if params[:controller] == 'notes' %> col-xs-3">
-      	<%= link_to notes_path do %>
-	      	<%= image_tag("note.png") %>
-      	<% end %>
-    	</li>
+	      <li class="<%= 'active' if params[:controller] == 'subjects' %> col-xs-3">
+	      	<%= link_to image_tag("lecture.png"), subjects_path %>
+	    	</li>
+	  	  <li class="<%= 'active' if params[:controller] == 'notes' %> col-xs-3">
+	      	<%= link_to notes_path do %>
+		      	<%= image_tag("note.png") %>
+	      	<% end %>
+	    	</li>
     	<% end %>
+    	
       <% if user_signed_in? %>
 	      <li class="<%= 'active' if params[:controller] == 'users' %> col-xs-3">
 	      	<%= link_to image_tag("user.png"), current_user %>
@@ -75,7 +77,7 @@
 	  <div class="collapse navbar-collapse no-transition" id="navbar-collapse-2">
 		<%= form_tag search_path, class: "navbar-form navbar-left search-bar" do %>
 		  <div class="input-group">
-		    <%= text_field_tag :query, params[:query], class: 'form-control typeahead', placeholder: '検索' %>
+		    <%= text_field_tag :query, params[:query], class: 'form-control typeahead' %>
 				<div class="input-group-btn">
 					<%= button_tag(type: "submit", class: "btn btn-success") do %>
 					  <i class="glyphicon glyphicon-search"></i>
@@ -93,35 +95,36 @@
     	<li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= image_tag(current_user.display_profile_image, class: 'nav-avatar') %> <b class="caret"></b></a>
         <ul class="dropdown-menu">
-					<li><%= link_to 'プロフィール', current_user %></li>
-					<li><%= link_to 'スケジュール', schedule_path %></li>           
+					<li><%= link_to t('.profile'), current_user %></li>
+					<li><%= link_to t('.schedule'), schedule_path %></li>           
 					<li class="divider"></li>
-    			<li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+    			<li><%= link_to t('.logout'), destroy_user_session_path, method: :delete %></li>
         </ul>
       </li>
     </ul>
     <%= link_to image_tag("calendar.jpeg", class: 'nav-calendar'), schedule_path, class: "nav navbar-nav navbar-right" %>
   </div><!-- /.navbar-collapse -->
   <% else %>
-  <%= link_to "ログイン", new_user_session_path, class: 'btn btn-sm btn-orange navbar-right hidden-xs', id: 'login-btn' %>
+  <%= link_to t('.login'), new_user_session_path, class: 'btn btn-sm btn-orange navbar-right hidden-xs', id: 'login-btn' %>
 	<% end %>
 	
 </nav>
 
 <script>
 	$(document).ready(function(){ 
-		  
+
 	  /*For search bar submit*/
 	  $(".search-bar").on("submit", function(){
-	  	window.location.href = "/search?query=" + $(this).find("#query").val() + "&type=授業";
+	  	window.location.href = "/search?query=" + $(this).find("#query").val() + "&type=" + I18n["subject"];
 	  	return false;
 	  });
+	  console.log(I18n["subject"] + I18n["layouts"]["navbar"]["subject_search"]);
 		
 		/*For typeahead*/
 		var searchSource = function(query, cb) {
 		  var results = [];
 		  var subject_item = new Object();
-		  subject_item.value = "授業検索: " + "'" + query + "'";
+		  subject_item.value = I18n["layouts"]["navbar"]["subject_search"] + ": " + "'" + query + "'";
 		  subject_item.url = "/search?query=" + query + "&type=授業";
 		  results.push(subject_item);
 		  
