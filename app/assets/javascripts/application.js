@@ -30,6 +30,7 @@
 //= require jquery.gritter.js
 //= require jquery.hovercard.js
 //= require jquery.readyselector.js
+//= require chosen.jquery.js
 //= require_tree .
 
 /*MaxWidth for ajax popup*/

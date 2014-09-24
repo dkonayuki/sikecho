@@ -22,9 +22,9 @@
 				<p>
 					<strong>科目:</strong>
 					<% if @note.subjects %>
-						<%= f.select :subjects, options_for_select(@subjects.map { |s| ["#{s.name}-#{s.year}", s.id]}, selected: @note.subjects.map { |s| s.id } ), {}, {class: 'form-control selectpicker show-tick', multiple: true, title: '', data: {width: '100%'}} %>
+						<%= f.select :subjects, options_for_select(@subjects.map { |s| ["#{s.name}-#{s.year}", s.id]}, selected: @note.subjects.map { |s| s.id } ), {}, {class: 'form-control chosen-select', multiple: true, title: ''} %>
 					<% else %>
-			  		<%= f.select :subjects, options_from_collection_for_select(@subjects,"id","name"), {}, {class: 'form-control selectpicker show-tick', multiple: true, title: '', data: {width: '100%'}} %>
+			  		<%= f.select :subjects, options_from_collection_for_select(@subjects,"id","name"), {}, {class: 'form-control chosen-select', multiple: true, title: ''} %>
 					<% end %>
 	    		<% if @note.errors[:subjects] %>
 	    			<ul>
@@ -60,6 +60,7 @@
 </div>
 
 <script>
+		$(".chosen-select").chosen();
 		$('.selectpicker').selectpicker();
 
 		$("#edit-note-area").wysihtml5({locale: "en-US"});
