@@ -1,5 +1,5 @@
 class SubjectsController < ApplicationController
-  before_action :set_subject, only: [:show, :edit, :update, :destroy, :inline, :version, :outline, :tags, :periods]
+  before_action :set_subject, only: [:show, :edit, :update, :destroy, :inline, :version, :outline, :tags, :periods, :new_auto]
   before_action :authenticate_user!, only: [:edit, :update, :new, :create]
   
   # monitor view count
@@ -181,6 +181,22 @@ class SubjectsController < ApplicationController
     end
   end
   
+  # POST /subjects/:id/new_auto/:auto_type
+  def new_auto
+    #add 1 outline
+    if (params[:auto_type].to_i == 0)
+      outline = @subject.outlines.last.dup
+      if !outline.date.blank?
+        outline.date += 1.week
+      end
+      outline.no += 1
+      @subject.outlines << outline
+    elsif (params[:auto_type].to_i == 1)
+    #add all outlines
+
+    end
+  end
+  
   #outline for form
   def outline
     #add outlines
@@ -317,7 +333,7 @@ class SubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
-      params.permit(:name, :pk, :value, :tags, :filter, :semester, :teachers, :version_id, :page, :style, :number_of_outlines, :courses, :semesters, :periods)
+      params.permit(:name, :pk, :value, :tags, :filter, :semester, :teachers, :version_id, :page, :style, :number_of_outlines, :courses, :semesters, :periods, :auto_type)
       params.require(:subject).permit(:name, :description, :year, :place, :semester_id, :uni_year_id, :course_id, :picture)
     end
 end

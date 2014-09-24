@@ -27,6 +27,7 @@ Shikechou::Application.routes.draw do
     get 'outline' => 'subjects#outline', on: :member
     get 'tags' => 'subjects#tags', on: :member
     get 'periods' => 'subjects#periods', on: :member
+    post 'new_auto' => 'subjects#new_auto', on: :member
   end
     
   resources :notes do

@@ -7,8 +7,8 @@
 					<%= image_tag("lecture.png")  %>
 				</div>
 				<div class="skc-box-title">
-	    		<%= f.text_area :name, class: 'form-control', rows: 1, placeholder: '授業名' %>
-	    		<% if @subject.errors[:name] %>
+	    		<%= f.text_field :name, class: 'form-control', placeholder: '授業名', required: 'true' %>
+	    		<% if @subject.errors[:name].count > 0 %>
 	    			<ul>
 			      <% @subject.errors.full_messages_for(:name).each do |msg| %>
 			        <li class="error-msg"><%= msg %></li>
@@ -58,15 +58,22 @@
 						<% else %>
 						<%= f.select :course_id	, options_from_collection_for_select(@courses,"id","name"), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
 						<% end %>
+		    		<% if @subject.errors[:course_id].count > 0 %>
+		    			<ul>
+				      <% @subject.errors.full_messages_for(:course_id).each do |msg| %>
+				        <li class="error-msg"><%= msg %></li>
+				      <% end %>
+				      </ul>
+		    		<% end %>
 					</p>
 					<p>
 						<strong>学年:</strong>
 						<% if @subject.uni_year %>
-						<%= f.select :uni_year_id	, options_from_collection_for_select(@uni_years,"id","name", selected:@subject.uni_year.id), {include_blank: true}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<%= f.select :uni_year_id	, options_from_collection_for_select(@uni_years,"id","name", selected:@subject.uni_year.id), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
 						<% else %>
-						<%= f.select :uni_year_id	, options_from_collection_for_select(@uni_years,"id","name"), {include_blank: true}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<%= f.select :uni_year_id	, options_from_collection_for_select(@uni_years,"id","name"), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
 						<% end %>
-		    		<% if @subject.errors[:uni_year_id] %>
+		    		<% if @subject.errors[:uni_year_id].count > 0 %>
 		    			<ul>
 				      <% @subject.errors.full_messages_for(:uni_year_id).each do |msg| %>
 				        <li class="error-msg"><%= msg %></li>
@@ -79,7 +86,7 @@
 						<% else %>
 						<%= f.select :semester_id, options_from_collection_for_select(@semesters,"id","name"), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
 						<% end %>
-		    		<% if @subject.errors[:semester_id] %>
+		    		<% if @subject.errors[:semester_id].count > 0 %>
 		    			<ul>
 				      <% @subject.errors.full_messages_for(:semester_id).each do |msg| %>
 				        <li class="error-msg"><%= msg %></li>
@@ -122,11 +129,14 @@
 						<h5>シラバス</h5>
 						<% if @subject.outlines.count > 0 %>
 							<%= select_tag :number_of_outlines, options_for_select(@number_of_outlines_list, selected: @subject.outlines.count), class: 'selectpicker show-tick', data: {width: 'auto', link: outline_subject_path}, id: 'number-of-outlines-select' %>
+							<%= link_to new_auto_subject_path(auto_type: 0), {class: 'btn btn-default syllabus-auto', remote: true, method: :post} do %>
+								<span class="glyphicon glyphicon-plus"></span>
+							<% end %>
 							<div id="syllabus-table">
 								<%= render 'syllabus_table', editable: true %>
 							</div>
 						<% else %>
-							<%= select_tag :number_of_outlines, options_for_select(@number_of_outlines_list), class: 'selectpicker show-tick', data: {width: 'auto'} %>
+							<%= select_tag :number_of_outlines, options_for_select(@number_of_outlines_list, selected: Subject::DEFAULT_OUTLINE), class: 'selectpicker show-tick', data: {width: 'auto'} %>
 						<% end %>
 					</p>
 					
@@ -270,9 +280,11 @@
 				}
 			);
 		}
-		
+
 		$('#subject_uni_year_id').on("change", change_uni_year);
-		
+		//first time
+		change_uni_year();
+
 		/*for anchor*/
 		var anchor = window.location.hash.replace("#", "");
 		if (anchor != "") {

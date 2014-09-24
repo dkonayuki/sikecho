@@ -9,7 +9,7 @@
 	<div id="signup-form-wrapper">
 		<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 		  <label>ユーザー名:</label>
-			<%= f.text_field :username, class: 'form-control', autofocus: true %>
+			<%= f.text_field :username, class: 'form-control', autofocus: true, required: true %>
   		<% if resource.errors[:username] %>
   			<ul>
 	      <% resource.errors.full_messages_for(:username).each do |msg| %>
@@ -20,7 +20,7 @@
 			<br />
 
 			<label>パスワード:</label>
-			<%= f.password_field :password, class: 'form-control', autocomplete: "off" %>
+			<%= f.password_field :password, class: 'form-control', autocomplete: "off", required: true %>
   		<% if resource.errors[:password] %>
   			<ul>
 	      <% resource.errors.full_messages_for(:password).each do |msg| %>
@@ -31,7 +31,7 @@
 			<br />
 
 			<label>パスワード確認:</label>
-			<%= f.password_field :password_confirmation, class: 'form-control', autocomplete: "off" %>
+			<%= f.password_field :password_confirmation, class: 'form-control', autocomplete: "off", required: true %>
   		<% if resource.errors[:password_confirmation] %>
   			<ul>
 	      <% resource.errors.full_messages_for(:password_confirmation).each do |msg| %>
@@ -42,7 +42,7 @@
 			<br />
 
 			<label>メール:</label>
-			<%= f.email_field :email, class: 'form-control' %>
+			<%= f.email_field :email, class: 'form-control', placeholder: 'name@email.com', required: true %>
   		<% if resource.errors[:email] %>
   			<ul>
 	      <% resource.errors.full_messages_for(:email).each do |msg| %>

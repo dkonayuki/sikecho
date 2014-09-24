@@ -68,23 +68,14 @@
 					<%= link_to new_user_education_path(@user), {class: 'btn btn-default education-popup'} do %>
 					<span class="glyphicon glyphicon-plus"></span>追加
 					<% end %>
-					<%= link_to new_auto_user_educations_path(@user), {class: 'btn btn-default education-auto'} do %>
+					<%= link_to new_auto_user_educations_path(@user), {class: 'btn btn-default education-auto', remote: true, method: :post} do %>
 					<span class="glyphicon glyphicon-plus"></span>自動追加
 					<% end %>
 				<% end %>
 				
 <script>
 $(document).ready(function(){
-	//auto generate new education base on the last education's infomations
-	$(".education-auto").on("click", function() {
-		$.ajax({
-			url: $(this).attr("href"),
-			dataType: "script",
-			type: "post"
-		});
-		return false;
-	});
-	
+
 	//delete education
 	$(".education-delete").on("click", function() {
 		// delete button: id of education -> data-id

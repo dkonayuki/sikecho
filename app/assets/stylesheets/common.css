@@ -36,6 +36,21 @@ div.field, div.actions {
   margin-bottom: 10px;
 }
 
+::-webkit-input-placeholder { /* WebKit browsers */
+	color: #999 !important;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	color: #999 !important;
+	opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+	color: #999 !important;
+	opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+	color: #999 !important;
+}
+
 #notice {
   color: green;
 }

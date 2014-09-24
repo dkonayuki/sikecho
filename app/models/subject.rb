@@ -2,6 +2,7 @@ class Subject < ActiveRecord::Base
   validates :name, presence: true
   validates :semester_id, presence: true
   validates :uni_year_id, presence: true
+  validates :course, presence: true
   
   has_attached_file :picture, styles: {small: "150x150>"}, 
                               #local config
@@ -30,6 +31,7 @@ class Subject < ActiveRecord::Base
   
   is_impressionable counter_cache: true, column_name: :view_count, unique: :all
   
+  DEFAULT_OUTLINE = 12
   MAX_OUTLINE = 30
   MAX_YEAR_BEGIN = 2010
   MAX_YEAR_END = 2020

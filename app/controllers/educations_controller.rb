@@ -22,6 +22,7 @@ class EducationsController < ApplicationController
     prepare_view_content
   end
   
+  # POST /users/:user_id/educations/new_auto
   def new_auto
     @education = @user.current_education.dup
     
