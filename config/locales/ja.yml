@@ -262,6 +262,8 @@ ja:
   intensive_course: 集中講義
   clear: クリア
   tag_plural: タグ
+  subject_register_notification: スケジュールに追加しました
+  subject_remove_notification: スケジュールから削除しました
   
   home:
     widgets:

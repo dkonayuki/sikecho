@@ -104,58 +104,10 @@ $(document).on("page:change", function() {
 	  return false;
 	});
 	
-	/*For live search*/
-	var timeout; // add delay time
-  $("#filter-note input").keyup(function() {
-		window.clearTimeout(timeout); //clear delay
-    timeout = window.setTimeout(function(){ //set a new delay, after an amount of time, ajax function will be called
-		  $.ajax({
-			  url: $("#filter-note").attr("action"),
-			  data: $("#filter-note").serialize() + "&filter=" + $(".filter-menu .active").text(), //default contenttype is url text
-			  success: ajaxSuccess,
-			  dataType: "script"
-			});    
-		}, 500);
-
-		return false;
-  });
-  
-  $("#filter-schedule input").keyup(function() {
-		window.clearTimeout(timeout); //clear delay
-    timeout = window.setTimeout(function(){ //set a new delay, after an amount of time, ajax function will be called
-		  $.ajax({
-			  url: $("#filter-schedule").attr("action"),
-			  data: $("#filter-schedule").serialize(), //default contenttype is url text
-			  success: ajaxSuccess,
-			  dataType: "script"
-			});    
-		}, 500);
-
-		return false;
-  });
-  
   // disable enter key in filter form
   $(".filter-form").on("submit", function() {
 		return false; 
   });
-  
-  /*For note order option*/
- 	$("#note-order-option button").on("click", function() {
- 		$("#note-order-option button").each(function() {
- 			$(this).removeClass("active");
- 		});
- 		$(this).addClass("active");
- 		var data = "filter=" + $(".filter-menu .active").text() + "&order=" + $(this).data("type");
- 		if ($("#filter-note #search").val() != "") {
- 			data += "&search=" + $("#filter-note #search").val();
- 		}
-	  $.ajax({
-		  url: "/notes",
-		  data: data ,//default contenttype is url text
-		  success: ajaxSuccess,
-		  dataType: "script"
-		});    
- 	});
 
   /*For ajax popup link in show note page*/	
   $('.document-popup').magnificPopup({

@@ -166,8 +166,9 @@
 			data.time = $("#subject-time .selectpicker option:selected").val();
 			
 			//get /subjects, execute as script
+			//use current locale
 			$.ajax({
-				url: "/subjects",
+				url: "/" + I18n["meta"]["code"] + "/subjects",
 				data: data,
 				dataType: "script",
 				contentType: "application/json"
@@ -346,6 +347,8 @@
 			var subjectName = $(this).parent().data("name");
 			var imgPath = $(this).parent().data("img");
 			
+			//update schedule table, script file in here is not subjects/index.js.erb, 
+			//this file will be fired alter by reloadSubjectList()
 			$.ajax({
 				url: href,
 				type: dataMethod,
@@ -358,7 +361,7 @@
 					if (dataMethod == "post") {
 						$.gritter.add({
 							title: subjectName,
-							text: 'スケジュールに追加しました。',
+							text: I18n["subject_register_notification"],
 							image: imgPath,
 							sticky: false, 
 							time: 5000,
@@ -366,7 +369,7 @@
 					} else {
 						$.gritter.add({
 							title: subjectName,
-							text: 'スケジュールから削除しました。',
+							text: I18n["subject_remove_notification"],
 							image: imgPath,
 							sticky: false, 
 							time: 5000,

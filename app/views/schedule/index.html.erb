@@ -17,3 +17,27 @@
 		</div>
 	</div>
 </div>
+
+<script>
+$(document).on("ready", function() {
+	
+	/*For live search*/
+	var timeout; // add delay time
+
+  $("#filter-schedule input").keyup(function() {
+		window.clearTimeout(timeout); //clear delay
+    timeout = window.setTimeout(function(){ //set a new delay, after an amount of time, ajax function will be called
+		  $.ajax({
+			  url: $("#filter-schedule").attr("action"),
+			  data: $("#filter-schedule").serialize(), //default contenttype is url text
+			  success: ajaxSuccess,
+			  dataType: "script"
+			});    
+		}, 500);
+
+		return false;
+  });
+
+});
+
+</script>

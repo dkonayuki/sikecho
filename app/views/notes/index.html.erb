@@ -80,15 +80,52 @@
 
 <script>
 	$(document).ready(function() {
+		/*For live search*/
+		var timeout; // add delay time
+	  $("#filter-note input").keyup(function() {
+			window.clearTimeout(timeout); //clear delay
+	    timeout = window.setTimeout(function(){ //set a new delay, after an amount of time, ajax function will be called
+			  $.ajax({
+				  url: $("#filter-note").attr("action"),
+				  data: $("#filter-note").serialize() + "&filter=" + $(".filter-menu .active").text(), //default contenttype is url text
+				  success: ajaxSuccess,
+				  dataType: "script"
+				});    
+			}, 500);
+
+			return false;
+	  });
+
 		new mlPushMenu( document.getElementById('mp-menu'), document.getElementById('pushmenu-trigger') );
-		
+
 		// need to set active beside nav_link helper
-		filter = getParameterByName("filter");
+		var filter = getParameterByName("filter");
 		if (filter == "") {
 			//default
 			$(".filter-bar a:contains('すべて')").attr("class", "active");
 		} else {
 			$(".filter-bar a:contains('" + filter + "')").attr("class", "active");
 		}
+		  
+	  /*For note order option*/
+	 	$("#note-order-option button").on("click", function() {
+	 		$("#note-order-option button").each(function() {
+	 			$(this).removeClass("active");
+	 		});
+	 		$(this).addClass("active");
+	 		var data = "filter=" + $(".filter-menu .active").text() + "&order=" + $(this).data("type");
+	 		if ($("#filter-note #search").val() != "") {
+	 			data += "&search=" + $("#filter-note #search").val();
+	 		}
+	
+			//use current locale
+		  $.ajax({
+			  url: "/" + I18n["meta"]["code"] + "/notes",
+			  data: data ,//default contenttype is url text
+			  success: ajaxSuccess,
+			  dataType: "script"
+			});    
+	 	});
+		
 	});
 </script>
