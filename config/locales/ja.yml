@@ -8,6 +8,25 @@ ja:
     - 木
     - 金
     - 土
+    abbr_day_names_with_all:
+    - 全て
+    - 月
+    - 火
+    - 水
+    - 木
+    - 金
+    - 土
+    period_names:
+    - 全て
+    - 1時限
+    - 2時限
+    - 3時限
+    - 4時限
+    - 5時限
+    - 6時限
+    - 7時限
+    - 8時限
+    - 9時限
     abbr_month_names:
     -
     - 1月
@@ -194,6 +213,13 @@ ja:
     pm: 午後
   
   language_name: 日本語
+  username: ユーザー名
+  password: パスワード
+  password_confirmation: パスワード確認
+  email: Eメール
+  university: 大学
+  register: 登録
+  all_option: 全て
   note: ノート
   subject: 授業
   subject_plural: 授業
@@ -208,7 +234,7 @@ ja:
   y: 年
   s: 期
   n: の
-  subject_note_found: 授業が見つかりません
+  subject_not_found: 授業が見つかりません
   request_university: 新規大学をリクエストする
   home:
     widgets:
@@ -228,6 +254,9 @@ ja:
       search: 検索
       subject_search: 授業検索
   users:
+    registrations:
+      new:
+        title: アカウントを作成します
     sessions:
       new:
         login: ログイン

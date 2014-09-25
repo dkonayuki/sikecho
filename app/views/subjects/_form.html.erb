@@ -17,35 +17,38 @@
 	    		<% end %>
 					<hr />
 		    </div>
+		    
 				<div class="skc-box-desc">
-	<% if @subject.picture.exists? %>
-	<div class="fileinput fileinput-exists" data-provides="fileinput">
-	<% else %>
-	<div class="fileinput fileinput-new" data-provides="fileinput">
-	<% end %>
-	  <div class="fileinput-new thumbnail thumbnail-sm">
-	  </div>
-	  <div class="fileinput-preview fileinput-exists thumbnail thumbnail-preview-sm">
-	  <% if @subject.picture.exists? %>
-	  	<%= image_tag @subject.picture.url(:original) %>
-  	<% end %>
-	  </div>
-	  <div>
-	    <span class="btn btn-default btn-file">
-	    	<span class="fileinput-new">Select image</span>
-	    	<span class="fileinput-exists">Change</span>
-	  		<%= f.file_field :picture %>
-    	</span>
-	    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-	  </div>
-	  <% if @subject.errors[:picture] %>
-			<ul>
-      <% @subject.errors.full_messages_for(:picture).each do |msg| %>
-        <li class="error-msg"><%= msg %></li>
-      <% end %>
-      </ul>
-		<% end %>
-	</div>
+					
+					<% if @subject.picture.exists? %>
+					<div class="fileinput fileinput-exists" data-provides="fileinput">
+					<% else %>
+					<div class="fileinput fileinput-new" data-provides="fileinput">
+					<% end %>
+					  <div class="fileinput-new thumbnail thumbnail-sm">
+					  </div>
+					  <div class="fileinput-preview fileinput-exists thumbnail thumbnail-preview-sm">
+					  <% if @subject.picture.exists? %>
+					  	<%= image_tag @subject.picture.url(:original) %>
+				  	<% end %>
+					  </div>
+					  <div>
+					    <span class="btn btn-default btn-file">
+					    	<span class="fileinput-new">Select image</span>
+					    	<span class="fileinput-exists">Change</span>
+					  		<%= f.file_field :picture %>
+				    	</span>
+					    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+					  </div>
+					  <% if @subject.errors[:picture] %>
+							<ul>
+				      <% @subject.errors.full_messages_for(:picture).each do |msg| %>
+				        <li class="error-msg"><%= msg %></li>
+				      <% end %>
+				      </ul>
+						<% end %>
+					</div>
+					
 					<hr />
 					<p>
 						<strong>概要:</strong>
@@ -109,9 +112,9 @@
 					<p>
 						<strong>教員:</strong>
 						<% if @subject.teachers %>
-						<%= select_tag :teachers, options_for_select(@teachers.map { |t| [t.name_kanji, t.id] }, selected: @subject.teachers.map { |t| t.id }), class: 'selectpicker show-tick', data: {width: 'auto'}, multiple: true, title: '' %>
+						<%= select_tag :teachers, options_for_select(@teachers.map { |t| [t.name_kanji, t.id] }, selected: @subject.teachers.map { |t| t.id }), class: 'selectpicker show-tick', data: {width: 'auto', "live-search" => "true"}, multiple: true, title: '' %>
 						<% else %>
-						<%= select_tag :teachers, options_for_select(@teachers.map { |t| [t.name_kanji, t.id] }), class: 'selectpicker show-tick', data: {width: 'auto'}, multiple: true, title: '' %>
+						<%= select_tag :teachers, options_for_select(@teachers.map { |t| [t.name_kanji, t.id] }), class: 'selectpicker show-tick', data: {width: 'auto', "live-search" => "true"}, multiple: true, title: '' %>
 						<% end %>
 					</p>
 					
@@ -152,16 +155,19 @@
 			      	<span class="glyphicon glyphicon-chevron-right"></span>
 			      </div>
 					</div>
-				</div>
+					
+				</div><!-- end of skc-box-desc -->
 				<br />
 				<%= f.submit '登録', class: 'btn btn-success col-sm-2 col-sm-offset-5 col-xs-12 col-xs-offset-0' %>
-			</div>
-		</div>
+			</div><!-- end of skc-box-content -->
+		</div><!-- end of skc-box -->
 		
 	<% end %>
 </div>
 
 <script>
+	$(document).ready(function(){
+		
 		$('.selectpicker').selectpicker();
 
 		$("#subject-description").wysihtml5({locale: "en-US"});
@@ -305,5 +311,7 @@
 		
 		//edit inline
 		enableInlineEdit();
-
+	
+	});
+	
 </script>

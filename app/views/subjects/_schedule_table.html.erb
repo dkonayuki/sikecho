@@ -27,7 +27,7 @@
 </table>
 
 <script>
-		
+
 	//add old periods if exist
 	if ($(".subjects").hasClass("edit") || $(".subjects").hasClass("update")) {
 			$.getJSON("/subjects/" + $("#subject-edit").data("id") + "/periods.json", function(data, status) {

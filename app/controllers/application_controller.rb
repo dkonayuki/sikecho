@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :set_no_cache
   before_action :set_subdomain
-  before_action :store_location
   before_action :set_locale
   #before_action :authenticate_user!
   
@@ -19,6 +18,7 @@ class ApplicationController < ActionController::Base
   
   def set_locale
     I18n.locale = params[:locale] if params[:locale].present?
+    #I18n.locale = current_user.locale if user_signed_in?
     # current_user.locale
     # request.domain
     # request.env["HTTP_ACCEPT_LANGUAGE"]
@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   end
   
   def default_url_options(options = {})
-    {locale: I18n.locale}
+    options.merge({ :locale => I18n.locale })
   end
 
   def disable_nav
@@ -91,26 +91,13 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  # store last url - this is needed for post-login redirect to whatever the user last visited.
-  def store_location
-    return unless request.get? 
-    if (request.path != "/users/login" &&
-        request.path != "/users/sign_up" &&
-        request.path != "/users/password/new" &&
-        request.path != "/users/password/edit" &&
-        request.path != "/users/confirmation" &&
-        request.path != "/users/logout" &&
-        !request.xhr?) # don't store ajax calls
-      session[:previous_url] = request.fullpath 
-    end
-  end
-  
   # redirect after sign in
   def after_sign_in_path_for(resource)
     case resource
     when User then
       #remember to use url for changing subdomain
-      session[:previous_url] || root_url(subdomain: resource.current_education.university.codename)
+      #stored_location_for(resource) will store the last location b4 login
+      request.env['omniauth.origin'] || stored_location_for(resource) || root_url(subdomain: resource.current_education.university.codename)
     when Admin then
       rails_admin_path
     end

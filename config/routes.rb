@@ -6,6 +6,7 @@ Shikechou::Application.routes.draw do
     path_names: {sign_in: 'login', sign_out: 'logout'}
     
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  
   devise_for :users, skip: [:session, :password, :registration], controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   #using i18n
@@ -131,7 +132,7 @@ Shikechou::Application.routes.draw do
     #   end
   end
   # default locale
-  #match '*path', to: redirect('/#{I18n.default_locale}/%{path}')
-  #match '', to: redirect('/#{I18n.default_locale}')
+  #match '*path', to: redirect('/#{I18n.default_locale}/%{path}'), via: [:get, :post]
+  #match '', to: redirect('/#{I18n.default_locale}'), via: [:get, :post]
   
 end

@@ -29,6 +29,25 @@ en:
     - Thu
     - Fri
     - Sat
+    abbr_day_names_with_all:
+    - All
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    - Fri
+    - Sat
+    period_names:
+    - All
+    - 1st
+    - 2nd
+    - 3rd
+    - 4th
+    - 5th
+    - 6th
+    - 7th
+    - 8th
+    - 9th
     abbr_month_names:
     -
     - Jan
@@ -225,6 +244,13 @@ en:
     pm: pm
 
   language_name: English
+  username: Username
+  password: Password
+  password_confirmation: Password confirmation
+  email: Email
+  university: University
+  register: Register
+  all_option: All
   note: Note
   subject: Subject
   subject_plural: Subjects
@@ -239,7 +265,7 @@ en:
   y: Y
   s: S
   n: N
-  subject_note_found: Not found
+  subject_not_found: Not found
   request_university: Request new university
   home:
     widgets:
@@ -259,10 +285,13 @@ en:
       search: Search
       subject_search: Search subject 
   users:
+    registrations:
+      new:
+        title: Create new account
     sessions:
       new:
         login: Login
-        remember_me: Remember Me
+        remember_me: Remember me
         login_placeholder: Email or ID
         password_placeholder: Password
     shared:

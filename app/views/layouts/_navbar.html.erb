@@ -118,8 +118,7 @@
 	  	window.location.href = "/search?query=" + $(this).find("#query").val() + "&type=" + I18n["subject"];
 	  	return false;
 	  });
-	  console.log(I18n["subject"] + I18n["layouts"]["navbar"]["subject_search"]);
-		
+
 		/*For typeahead*/
 		var searchSource = function(query, cb) {
 		  var results = [];

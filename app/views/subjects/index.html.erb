@@ -78,14 +78,13 @@
 			</div>
 			<div id="subject-menu-week">
 				<div id="subject-time">
-					<%= select_tag :time, options_for_select(0.upto(Period::MAX_TIME).map { |t| [Period.time_names(t), t] }), class: 'selectpicker', data: {width: 'auto', style: 'btn-sm btn-default'}, title: '' %>
+					<%= select_tag :time, options_for_select(0.upto(Period::MAX_TIME).map { |t| [t('date.period_names')[t], t] }), class: 'selectpicker', data: {width: 'auto', style: 'btn-sm btn-default'}, title: '' %>
 				</div>
 				<div id="subject-day">
-					<%= select_tag :day, options_for_select(0.upto(Period::MAX_DAY).map { |d| [Period.day_names(d), d] }), class: 'selectpicker', data: {width: 'auto', style: 'btn-sm btn-default'}, title: '' %>
+					<%= select_tag :day, options_for_select(0.upto(Period::MAX_DAY).map { |d| [t('date.abbr_day_names_with_all')[d], d] }), class: 'selectpicker', data: {width: 'auto', style: 'btn-sm btn-default'}, title: '' %>
 				</div>
 			</div>
-			
-		</div>	
+		</div><!-- subject menu right -->
 		
 		<!-- subjects list goes here -->
 		<div id="subjects-list-container" class="col-sm-9 col-xs-12 no-padding">
@@ -115,6 +114,8 @@
 </div> <!-- end of subjects -->
 
 <script>
+	$(document).ready(function(){ 
+
 		$('.selectpicker').selectpicker();
 
 		/*For subject list*/
@@ -291,7 +292,7 @@
 	    uni_years.on("click", function() {
 	    	//toggle active
 				$(this).toggleClass("active");
-	
+
 				//add active class for all of semester if necessary
 				if ($(this).hasClass("active")) {
 					table.find("td[data-type=semester][data-parent=" + $(this).data("id") + "]").addClass("active");
@@ -380,4 +381,6 @@
 		$('#subject-menu-week .selectpicker').on("change", function () {
     	reloadSubjectList();
 		});
+		
+	});
 </script>
