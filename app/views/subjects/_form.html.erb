@@ -7,7 +7,7 @@
 					<%= image_tag("lecture.png")  %>
 				</div>
 				<div class="skc-box-title">
-	    		<%= f.text_field :name, class: 'form-control', placeholder: '授業名', required: 'true' %>
+	    		<%= f.text_field :name, class: 'form-control', placeholder: t('.subject_name'), required: 'true' %>
 	    		<% if @subject.errors[:name].count > 0 %>
 	    			<ul>
 			      <% @subject.errors.full_messages_for(:name).each do |msg| %>
@@ -34,11 +34,11 @@
 					  </div>
 					  <div>
 					    <span class="btn btn-default btn-file">
-					    	<span class="fileinput-new">Select image</span>
-					    	<span class="fileinput-exists">Change</span>
+					    	<span class="fileinput-new"><%= t('.select_image') %></span>
+					    	<span class="fileinput-exists"><%= t('.change_image') %></span>
 					  		<%= f.file_field :picture %>
 				    	</span>
-					    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+					    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><%= t('.remove_image') %></a>
 					  </div>
 					  <% if @subject.errors[:picture] %>
 							<ul>
@@ -51,11 +51,11 @@
 					
 					<hr />
 					<p>
-						<strong>概要:</strong>
+						<strong><%= t('.description') %>:</strong>
 						<%= f.text_area :description, class: 'form-control', id: 'subject-description' %>
 					</p>
 					<p>
-						<strong>所属学科:</strong>
+						<strong><%= t('.course') %>:</strong>
 						<% if @subject.course %>
 						<%= f.select :course_id	, options_from_collection_for_select(@courses,"id","name", selected: @subject.course.id), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
 						<% else %>
@@ -70,7 +70,7 @@
 		    		<% end %>
 					</p>
 					<p>
-						<strong>学年:</strong>
+						<strong><%= t('uni_year') %>:</strong>
 						<% if @subject.uni_year %>
 						<%= f.select :uni_year_id	, options_from_collection_for_select(@uni_years,"id","name", selected:@subject.uni_year.id), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
 						<% else %>
@@ -83,7 +83,7 @@
 				      <% end %>
 				      </ul>
 		    		<% end %>
-						<strong>学期:</strong>
+						<strong><%= t('semester') %>:</strong>
 						<% if @subject.semester %>
 						<%= f.select :semester_id, options_from_collection_for_select(@semesters,"id","name",selected: @subject.semester.id), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
 						<% else %>
@@ -98,7 +98,7 @@
 		    		<% end %>
 					</p>
 					<p>
-						<strong>年度:</strong>
+						<strong><%= t('year') %>:</strong>
 						<% if @subject.year %>
 						<%= f.select :year, options_for_select(@years, selected: @subject.year), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
 						<% else %>
@@ -106,11 +106,11 @@
 						<% end %>
 					</p>
 					<p>
-						<strong>講義室:</strong>
+						<strong><%= t('.place') %>:</strong>
 						<%= f.text_field :place, class: 'form-control form-control-inline' %>
 					</p>
 					<p>
-						<strong>教員:</strong>
+						<strong><%= t('teacher_plural') %>:</strong>
 						<% if @subject.teachers %>
 						<%= select_tag :teachers, options_for_select(@teachers.map { |t| [t.name_kanji, t.id] }, selected: @subject.teachers.map { |t| t.id }), class: 'selectpicker show-tick', data: {width: 'auto', "live-search" => "true"}, multiple: true, title: '' %>
 						<% else %>
@@ -121,7 +121,7 @@
 					<hr />
 					
 					<p>
-						<h5>時間割</h5>
+						<h5><%= t('.schedule') %></h5>
 						<%= render partial: 'schedule_table', locals: {periods: @periods} %>
 					</p>
 					
@@ -129,7 +129,7 @@
 					
  					<a name="syllabus"></a>
 					<p>
-						<h5>シラバス</h5>
+						<h5><%= t('syllabus') %></h5>
 						<% if @subject.outlines.count > 0 %>
 							<%= select_tag :number_of_outlines, options_for_select(@number_of_outlines_list, selected: @subject.outlines.count), class: 'selectpicker show-tick', data: {width: 'auto', link: outline_subject_path}, id: 'number-of-outlines-select' %>
 							<%= link_to new_auto_subject_path(auto_type: 0), {class: 'btn btn-default syllabus-auto', remote: true, method: :post} do %>
@@ -145,20 +145,21 @@
 					
 					<div class='tag-form'>
 						<div class='tag-menu'>
-				   		<div class="btn btn-primary btn-xs tag-menu-btn">ゼミ</div>
-				   		<div class="btn btn-primary btn-xs tag-menu-btn">通年</div>
-				   		<div class="btn btn-primary btn-xs tag-menu-btn">集中講義</div>
-				   		<div id="remove-all" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>クリア</div>
+				   		<div class="btn btn-primary btn-xs tag-menu-btn"><%= t('seminar') %></div>
+				   		<div class="btn btn-primary btn-xs tag-menu-btn"><%= t('all_year') %></div>
+				   		<div class="btn btn-primary btn-xs tag-menu-btn"><%= t('intensive_course') %></div>
+				   		<div id="remove-all" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span><%= t('clear') %></div>
 			      </div>
 			      <%= text_area_tag 'tags', nil, class: 'tag-input' %>
 			      <div class="tag-indicator">
 			      	<span class="glyphicon glyphicon-chevron-right"></span>
 			      </div>
+			      <div class="tag-form-title"><%= t('tag_plural') %></div>
 					</div>
 					
 				</div><!-- end of skc-box-desc -->
 				<br />
-				<%= f.submit '登録', class: 'btn btn-success col-sm-2 col-sm-offset-5 col-xs-12 col-xs-offset-0' %>
+				<%= f.submit t('register'), class: 'btn btn-success col-sm-2 col-sm-offset-5 col-xs-12 col-xs-offset-0' %>
 			</div><!-- end of skc-box-content -->
 		</div><!-- end of skc-box -->
 		
@@ -170,7 +171,7 @@
 		
 		$('.selectpicker').selectpicker();
 
-		$("#subject-description").wysihtml5({locale: "en-US"});
+		$("#subject-description").wysihtml5({locale: I18n["meta"]["code_country"]});
 		var tags;		
 		// instantiate the bloodhound suggestion engine
 		tags = new Bloodhound({
@@ -193,9 +194,9 @@
 		$('.tag-input').tagsinput({
 			tagClass: function(item) {
 		    switch (item) {
-		    	case 'ゼミ': return 'label label-danger';
-		      case '通年': return 'label label-warning';
-		      case '集中講義': return 'label label-success';
+		    	case I18n["seminar"]: return 'label label-danger';
+		      case I18n["all_year"]: return 'label label-warning';
+		      case I18n["intensive_course"]: return 'label label-success';
 		      default: return 'label label-info';
 		    }
 	  	},

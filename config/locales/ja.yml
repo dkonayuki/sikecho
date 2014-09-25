@@ -1,4 +1,8 @@
 ja:
+  meta:
+    language_name: 日本語
+    code: ja
+    code_country: ja-JP
   date:
     abbr_day_names:
     - 日
@@ -223,7 +227,6 @@ ja:
       short: ! '%y/%m/%d %H:%M'
     pm: 午後
   
-  language_name: 日本語
   username: ユーザー名
   password: パスワード
   password_confirmation: パスワード確認
@@ -250,6 +253,16 @@ ja:
   registered: 登録済み
   cancel_subject_registered: 受講解除
   register_subject: 受講登録
+  semester: 学期
+  year: 年度
+  teacher_plural: 教員
+  syllabus: シラバス
+  seminar: ゼミ
+  all_year: 通年
+  intensive_course: 集中講義
+  clear: クリア
+  tag_plural: タグ
+  
   home:
     widgets:
       subject_number: 授業数
@@ -288,3 +301,12 @@ ja:
       new_subject: 新規授業
       all_faculty: 学部共通
       all_uni_year: 全学年
+    form:
+      subject_name: 授業名
+      select_image: 画像選択
+      change_image: 変更
+      remove_image: 削除
+      description: 概要
+      course: 所属学科
+      place: 講義室
+      schedule: 時間割

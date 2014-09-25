@@ -20,6 +20,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  meta:
+    language_name: English
+    code: en
+    code_country: en-US
   date:
     abbr_day_names:
     - Sun
@@ -254,7 +258,6 @@ en:
       short: ! '%d %b %H:%M'
     pm: pm
 
-  language_name: English
   username: Username
   password: Password
   password_confirmation: Password confirmation
@@ -273,13 +276,23 @@ en:
   tag: Tag
   day: Day
   time: Time
-  y: Y
-  s: S
-  n: N
+  y: Year
+  s: Semester
+  n: Note
   subject_not_found: Not found
   request_university: Request new university
   registered: Registered
   cancel_subject_registered: Cancel
+  register_subject: Register
+  semester: Semester
+  year: Year
+  teacher_plural: Teachers
+  syllabus: Syllabus
+  seminar: Seminar
+  all_year: All year
+  intensive_course: Intensive course
+  clear: Clear
+  tag_plural: Tags
   home:
     widgets:
       subject_number: Subject number
@@ -318,3 +331,12 @@ en:
       new_subject: New subject
       all_faculty: All faculties
       all_uni_year: All School Years
+    form:
+      subject_name: Title
+      select_image: Select image
+      change_image: Change
+      remove_image: Remove
+      description: Description
+      course: Course
+      place: Place
+      schedule: Schedule

@@ -319,8 +319,7 @@ body {
 	border: 1px solid #ddd;
 }
 
-.tag-form:after {
-	content: "タグ";
+.tag-form-title {
 	position: absolute;
 	top: -1px;
 	left: -1px;
@@ -796,6 +795,12 @@ body {
 	.subject-thumbnail {
 		display: none !important;
 	}
+	#subject-order-option {
+		right: 0;
+	}
+	#subjects-list-title {
+		padding-left: 0;
+	}
 }
 
 .subject-item {
@@ -1008,17 +1013,20 @@ body {
 	border-color: #ddd;
 }
 
-@media(max-width: 767px) {
-	.subject-item-line {
-		border-right: 1px solid transparent;
-	}
-}
-
 .subject-details-line {
 	padding: 5px 15px;
 	width: auto;
 	height: 80px;
 	overflow: hidden;
+}
+
+@media(max-width: 767px) {
+	.subject-item-line {
+		border-right: 1px solid transparent;
+	}
+	.subject-details-line {
+		padding-left: 0;
+	}
 }
 
 .subject-thumbnail-line {
