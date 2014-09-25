@@ -14,7 +14,7 @@ ja:
 #      already_authenticated: 'You are already signed in.'
       inactive: 'アカウントがアクティベートされていません。'
 #      inactive: 'Your account was not activated yet.'
-      invalid: 'メールアドレスかパスワードが違います。'
+      invalid: 'IDかメールアドレスかパスワードが違います。'
 #      invalid: 'Invalid email or password.'
       invalid_token: '認証キーが不正です。'
 #      invalid_token: 'Invalid authentication token.'

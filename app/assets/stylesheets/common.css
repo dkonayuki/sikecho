@@ -417,14 +417,14 @@ a:hover {
 	font-size: 40px;
 }
 
-.btn-request:focus {
-	color: #fff;
-}
-
 .btn-request:hover {
 	background-color: #455A6F;
 	color: #fff;
 	border-bottom-color: #2C3E50;
+}
+
+.btn-orange:focus, .btn-green:focus, .btn-request:focus, .btn-navi:focus, .btn-blue:focus, .btn-red:focus, .btn-pink:focus {
+	color: #fff !important;
 }
 
 .label-navi {

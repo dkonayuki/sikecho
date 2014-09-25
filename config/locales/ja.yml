@@ -27,6 +27,17 @@ ja:
     - 7時限
     - 8時限
     - 9時限
+    abbr_period_names:
+    - 全て
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
     abbr_month_names:
     -
     - 1月
@@ -236,6 +247,9 @@ ja:
   n: の
   subject_not_found: 授業が見つかりません
   request_university: 新規大学をリクエストする
+  registered: 登録済み
+  cancel_subject_registered: 受講解除
+  register_subject: 受講登録
   home:
     widgets:
       subject_number: 授業数

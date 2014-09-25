@@ -2,19 +2,19 @@
 	<tr class="hidden-xs">
 		<th></th>
 		<% 1.upto(Period::MAX_DAY).each do | d |%>
-		<th><%= Period.day_names(d) %></th>
+		<th><%= t('date.day_names')[d] %></th>
 		<% end %>
 	</tr>
 	<tr class="visible-xs">
 		<th></th>
 		<% 1.upto(Period::MAX_DAY).each do | d |%>
-		<th><%= Period.day_names_short(d) %></th>
+		<th><%= t('date.abbr_day_names')[d] %></th>
 		<% end %>
 	</tr>
 	<% 1.upto(Period::MAX_TIME).each do | t | %>
 	<tr>
-		<td class="period hidden-xs"><%= Period.time_names(t) %></td>
-		<td class="period visible-xs"><%= Period.time_names_short(t) %></td>
+		<td class="period hidden-xs"><%= t('date.period_names')[t] %></td>
+		<td class="period visible-xs"><%= t('date.abbr_period_names')[t] %></td>
 		<% 1.upto(Period::MAX_DAY).each do | d | %>
 			<% if periods[[d, t]].blank? %>
 				<td class="cell"></td>

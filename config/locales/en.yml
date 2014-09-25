@@ -48,6 +48,17 @@ en:
     - 7th
     - 8th
     - 9th
+    abbr_period_names:
+    - All
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
     abbr_month_names:
     -
     - Jan
@@ -267,6 +278,8 @@ en:
   n: N
   subject_not_found: Not found
   request_university: Request new university
+  registered: Registered
+  cancel_subject_registered: Cancel
   home:
     widgets:
       subject_number: Subject number
