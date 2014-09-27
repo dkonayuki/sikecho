@@ -226,7 +226,12 @@ ja:
       long: ! '%Y年%m月%d日(%a) %H時%M分%S秒 %z'
       short: ! '%y/%m/%d %H:%M'
     pm: 午後
-  
+    
+  helpers:
+    submit:
+      create: "登録"
+      update: "更新"  
+        
   username: ユーザー名
   password: パスワード
   password_confirmation: パスワード確認
@@ -268,7 +273,18 @@ ja:
   ago: 前
   subject_search: 授業検索
   note_search: ノート検索
-  
+  add: 追加
+  latest: 最新
+  number: 回数
+  day2: 日付
+  content: 内容
+  description: 概要
+  edit: 編集
+  delete_confirm: 削除してよろしいですか。
+  print: 印刷
+  no_document: まだ資料がありません
+  profile: プロフィール
+ 
   home:
     widgets:
       subject_number: 授業数
@@ -317,6 +333,18 @@ ja:
       course: 所属学科
       place: 講義室
       schedule: 時間割
+      create: 登録
+    show:
+      summary: 要旨
+      recommend_semester: 推奨学期
+      period:
+        one: 時間
+        plural: 時間
+      place: 講義室
+      teacher:
+        one: 教員
+        plural: 教員
+      recommend_subject: 関連授業
   notes:
     index:
       note_menu: メニュー
@@ -324,3 +352,16 @@ ja:
       my_note: 自分のノート
       new_arrival_note: 新着ノート
       new_note: 新規ノート
+    show:
+      documents: 資料
+    form:
+      title: タイトル
+      content: 内容
+      subject:
+        one: 科目
+        plural: 科目
+      document: 資料
+      all_class: 全12回
+      prepare_exam: 試験対策
+      past_exam: 過去問題
+      clear: クリア

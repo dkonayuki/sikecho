@@ -7,7 +7,7 @@
 			<%= user.username %>
 		</div>
 		<div class="user-hovercard-info">
-			<%= link_to user, class: 'has-tooltip', data: {placement: "bottom", toggle: "tooltip"}, title: "プロフィール" do %>
+			<%= link_to user, class: 'has-tooltip', data: {placement: "bottom", toggle: "tooltip"}, title: t('profile') do %>
 				<%= image_tag('user.png') %>
 			<% end %>
 		</div>

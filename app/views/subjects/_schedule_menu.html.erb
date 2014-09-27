@@ -1,12 +1,12 @@
-<h4>授業</h4>
+<h4><%= t('subject') %></h4>
 	<ul class="nav">
 		<% if @user.current_subjects.include?(@subject) %>
   		<%= link_to schedule_destroy_path(subject: @subject.id), method: :delete, class: 'btn btn-blue' do %>
-    		<span class="glyphicon glyphicon-remove-sign"></span>受講解除
+    		<span class="glyphicon glyphicon-remove-sign"></span><%= t('cancel_subject_registered') %>
     	<% end %>
   	<% else %>
     	<%= link_to schedule_create_path(subject: @subject.id), method: :post, class: 'btn btn-blue' do %>
-    		<span class="glyphicon glyphicon-plus-sign"></span>受講登録
+    		<span class="glyphicon glyphicon-plus-sign"></span><%= t('register_subject') %>
     	<% end %>
   	<% end %>
   </ul>

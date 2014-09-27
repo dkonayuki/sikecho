@@ -1,6 +1,6 @@
 class Document < ActiveRecord::Base  
   
-  belongs_to :note  
+  belongs_to :note
   has_many :comments
   
   has_attached_file :upload, styles: {thumbnail: ["60x60#", :jpg], small: ["150x150>", :jpg]}, #force type

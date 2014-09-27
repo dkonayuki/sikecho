@@ -18,7 +18,6 @@
 #
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
-
 en:
   meta:
     language_name: English
@@ -257,7 +256,12 @@ en:
       long: ! '%B %d, %Y %H:%M'
       short: ! '%d %b %H:%M'
     pm: pm
-
+    
+  helpers:
+    submit:
+      create: "Create"
+      update: "Update"
+        
   username: Username
   password: Password
   password_confirmation: Password confirmation
@@ -299,7 +303,18 @@ en:
   ago: ' ago'
   subject_search: Search subject
   note_search: Search note
-    
+  add: Add
+  latest: Latest
+  number: No.
+  day2: Date
+  content: Content
+  description: Description
+  edit: Edit
+  delete_confirm: Are you sure?
+  print: Print
+  no_document: No document
+  profile: Profile
+          
   home:
     widgets:
       subject_number: Subject number
@@ -348,6 +363,18 @@ en:
       course: Course
       place: Place
       schedule: Schedule
+      create: Create
+    show:
+      summary: Summary
+      recommend_semester: Recommended semester
+      period:
+        one: Period
+        plural: Periods
+      place: Place
+      teacher:
+        one: Teacher
+        plural: Teachers
+      recommend_subject: Recommend subjects
   notes:
     index:
       note_menu: Menu
@@ -355,3 +382,16 @@ en:
       my_note: My notes
       new_arrival_note: New arrival notes
       new_note: New note
+    show:
+      documents: Documents
+    form:
+      title: Title
+      content: Content
+      subject:
+        one: Subject
+        plural: Subjects
+      document: Document
+      all_class: All 12 classes
+      prepare_exam: Exam Preparation
+      past_exam: Past Exam
+      clear: Clear

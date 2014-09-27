@@ -6,7 +6,7 @@
 				<%= image_tag("note.png")  %>
 			</div>
 			<div class="skc-box-desc">
-				<%= f.text_field :title, class: 'form-control', placeholder: 'タイトル', required: 'true' %>
+				<%= f.text_field :title, class: 'form-control', placeholder: t('.title'), required: 'true' %>
     		<% if @note.errors[:title] %>
     			<ul>
 		      <% @note.errors.full_messages_for(:title).each do |msg| %>
@@ -16,13 +16,19 @@
     		<% end %>
 				<hr />
 				<p>
-					<strong>内容:</strong>
+					<strong><%= t('.content') %>:</strong>
 					<%= f.text_area :content, class: 'form-control', id: 'edit-note-area' %>
 				</p>
 				<p>
-					<strong>科目:</strong>
+					<strong>
+						<% if @note.subjects.count == 1 %>
+						<%= t('.subject.one') %>:
+						<% else %>
+						<%= t('.subject.plural') %>:
+						<% end %>
+					</strong>
 					<% if @note.subjects %>
-						<%= f.select :subjects, options_for_select(@subjects.map { |s| ["#{s.name}-#{s.year}", s.id]}, selected: @note.subjects.map { |s| s.id } ), {}, {class: 'form-control chosen-select', multiple: true, title: ''} %>
+						<%= f.select :subjects, options_for_select(@subjects.map { |s| ["#{s.name}-#{s.year}", s.id]}, selected: @note.subjects.map { |s| s.id } ), {}, {class: 'form-control chosen-select', multiple: true, title: '', data: {placeholder: ' '}} %>
 					<% else %>
 			  		<%= f.select :subjects, options_from_collection_for_select(@subjects,"id","name"), {}, {class: 'form-control chosen-select', multiple: true, title: ''} %>
 					<% end %>
@@ -36,16 +42,16 @@
 				</p>
 				<hr />
 				<p>
-					<strong>資料:</strong>
+					<strong><%= t('.document') %>:</strong>
 	  			<%= render 'upload_form', note_id: @note.id %>
 				</p>
 				<hr />
 				<div class='tag-form'>
 					<div class='tag-menu'>
-			   		<div id="add-all" class="btn btn-primary btn-xs">全15回</div>
-			   		<div class="btn btn-primary btn-xs tag-menu-btn">試験対策</div>
-			   		<div class="btn btn-primary btn-xs tag-menu-btn">過去問題</div>
-			   		<div id="remove-all" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>クリア</div>
+			   		<div id="add-all" class="btn btn-primary btn-xs"><%= t('.all_class') %></div>
+			   		<div class="btn btn-primary btn-xs tag-menu-btn"><%= t('.prepare_exam') %></div>
+			   		<div class="btn btn-primary btn-xs tag-menu-btn"><%= t('.past_exam') %></div>
+			   		<div id="remove-all" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span><%= t('.clear') %></div>
 		      </div>
 		      <%= text_area_tag 'tags', nil, class: 'tag-input' %>
 		      <div class="tag-indicator">
@@ -55,7 +61,7 @@
 				</div>
 			</div>
 			<br />
-			<%= f.submit '登録', class: 'btn btn-success col-sm-2 col-sm-offset-5 col-xs-12 col-xs-offset-0' %>
+			<%= f.submit class: 'btn btn-success col-sm-2 col-sm-offset-5 col-xs-12 col-xs-offset-0' %>
 		</div>
 	</div>
 	

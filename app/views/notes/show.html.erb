@@ -21,9 +21,9 @@
 				<% end %>
 				
 				<hr />
-				<strong>資料:</strong>
+				<strong><%= t('.documents') %>:</strong>
 				<% if @note.documents.empty? %>
-	    	<dd>まだ資料がありません。</dd>
+	    	<dd><%= t('no_document') %></dd>
 	      <% else %>
 		      <% @note.documents.each do |document| %>
 		      	<% if document.file_type != '.pdf' %>
@@ -44,11 +44,11 @@
 			
 			<% if @note.user == @user %>
 			<div class="skc-box-menu">
-				<a href="#" class="print has-tooltip" data-toggle="tooltip" data-placement="top" title="印刷"><span class="glyphicon glyphicon-print"></span></a>
-				<%= link_to edit_note_path(@note.id), class: 'has-tooltip', data: {toggle: "tooltip", placement: "top"}, title: "編集" do %>
+				<a href="#" class="print has-tooltip" data-toggle="tooltip" data-placement="top" title="<%= t('print') %>"><span class="glyphicon glyphicon-print"></span></a>
+				<%= link_to edit_note_path(@note.id), class: 'has-tooltip', data: {toggle: "tooltip", placement: "top"}, title: t('edit') do %>
 					<span class="glyphicon glyphicon-pencil"></span>
 				<% end %>
-				<%= link_to @note, method: :delete, data: { confirm: 'Are you sure?' } do %>
+				<%= link_to @note, method: :delete, data: { confirm: t('delete_confirm') } do %>
 					<span class="glyphicon glyphicon-remove"></span>
 				<% end %>
 			</div>
@@ -59,7 +59,7 @@
 	
 	<div id="note-tags-list">
 		<% if @tags.count > 0 %>
-		<h4>タグ:</h4>
+		<h4><%= t('tag_plural') %></h4>
 		<ul>
 			<% @tags.each do |tag| %>
 			<li class="label-tag"><%= tag %></li>
