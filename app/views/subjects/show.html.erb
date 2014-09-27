@@ -82,7 +82,7 @@
 						<% if period != @subject.periods.first %>
 						&bull;
 						<% end %>
-						<%= Period.time_names(period.time) %><%= Period.day_names(period.day) %>
+						<%= t('date.day_names')[period.day] %>&bull;<%= t('date.period_names')[period.time] %>
 					<% end %>
 				</p>
 				<p>

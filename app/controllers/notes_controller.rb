@@ -31,10 +31,9 @@ class NotesController < ApplicationController
         #select distinct notes from crazy joins
         @notes = Note.select('distinct notes.*').joins('INNER JOIN notes_subjects ON notes.id = notes_subjects.note_id')
         .joins('INNER JOIN subjects ON subjects.id = notes_subjects.subject_id')
-        .joins('INNER JOIN periods ON periods.subject_id = subjects.id')
-        .joins('INNER JOIN educations_periods ON educations_periods.period_id = periods.id')
-        .joins('INNER JOIN educations ON educations.id = educations_periods.education_id')
-        .where('educations.id = ?', @user.id)
+        .joins('INNER JOIN educations_subjects ON educations_subjects.subject_id = subjects.id')
+        .joins('INNER JOIN educations ON educations.id = educations_subjects.education_id')
+        .where('educations.id = ?', @user.current_education.id)
 
       when '新着ノート'
         @notes = @user.current_university.notes.unread_by(@user)

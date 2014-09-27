@@ -352,16 +352,16 @@ body {
 }
 
 .note-item {
-	position: relative;
-	height: 72px;
+	height: 82px;
+	padding-top: 10px;
 	margin: 0 0 20px;
 	list-style: none;
+	border: 1px solid transparent;
 	border-bottom: 1px solid #eee;
 }
-@media (max-width: 767px) {
-  .note-item {
-  	padding-left: 0px !important;
-  }
+
+.note-item:hover {
+	border: 1px solid #2EC1FF;
 }
 
 .note-item img {
@@ -404,6 +404,11 @@ body {
 	font-size: 11px;
 }
 
+.note-tags .label {
+	margin-top: 2px;
+	display: inline-block;
+}
+
 .note-info {
 	float: right;
 	font-size: 11px;
@@ -411,7 +416,7 @@ body {
 }
 
 .note-time {
-	top: -14px;
+	top: 5px;
 	right: 10px;
 	position: absolute;
 }

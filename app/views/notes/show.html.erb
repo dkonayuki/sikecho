@@ -44,7 +44,7 @@
 			
 			<% if @note.user == @user %>
 			<div class="skc-box-menu">
-				<a class="print has-tooltip" data-toggle="tooltip" data-placement="top" title="印刷"><span class="glyphicon glyphicon-print"></span></a>
+				<a href="#" class="print has-tooltip" data-toggle="tooltip" data-placement="top" title="印刷"><span class="glyphicon glyphicon-print"></span></a>
 				<%= link_to edit_note_path(@note.id), class: 'has-tooltip', data: {toggle: "tooltip", placement: "top"}, title: "編集" do %>
 					<span class="glyphicon glyphicon-pencil"></span>
 				<% end %>
@@ -81,6 +81,12 @@ $(document).ready(function() {
 		$(this).hovercard({
 			content: $(".subject-hovercard[data-id='" + id + "']")
 		})
+	});
+	
+	/*For print button*/
+	$(".print").on("click", function() {
+		window.print();
+		return false;
 	});
 
 });

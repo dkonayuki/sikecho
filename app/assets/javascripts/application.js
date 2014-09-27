@@ -164,11 +164,6 @@ $(document).on("page:change", function() {
 	    }   
 		});	
 	}
-	
-	/*For print button*/
-	$(".print").on("click", function() {
-		window.print();
-	});
 
 	/*For tooltip*/
 	$(".has-tooltip").tooltip();

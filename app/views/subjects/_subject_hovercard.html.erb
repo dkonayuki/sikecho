@@ -14,9 +14,9 @@
 		<div class="subject-hovercard-info">
 			<span class="label-blue label-xs"><%= subject.year %></span>
 			<span class="label-green label-xs">
-				<%= Period.day_names_short(subject.periods.first.day) %>
+				<%= t('date.abbr_day_names')[subject.periods.first.day] %>
 				&bull;
-				<%= Period.time_names_short(subject.periods.first.time) %>
+				<%= t('date.abbr_period_names')[subject.periods.first.time] %>
 			</span>
 		</div>
 	</div>
