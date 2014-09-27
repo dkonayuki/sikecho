@@ -195,6 +195,9 @@ class SubjectsController < ApplicationController
     #add all outlines
 
     end
+    respond_to do |format|
+      format.js   
+    end
   end
   
   #outline for form
@@ -245,19 +248,33 @@ class SubjectsController < ApplicationController
   
   #display version
   def version
+    @user = current_user
+    
     #revert to previous version
     @subject = @subject.versions.find(params[:version_id]).reify
     
-    #prepare show information
+    @tags = @subject.tag_list
+    
     if !params[:tag].blank?
       #filter in show subject page
       @notes = @subject.notes.tagged_with(params[:tag])
     else
       @notes = @subject.notes
     end
-    # notes will not show subject name
+    
+    #order by view count
+    @notes = @notes.order('view_count DESC')
+    
+    # custom show
     @show_subject = false
-    @same_subjects = @subject.course.subjects.where(name: @subject.name)
+    @show_course = true
+    
+    # same subjects, need to change later
+    @same_subjects = @subject.course.subjects.where(name: @subject.name).order('year DESC')
+    
+    # recommend subjects
+    @recommend_subjects = @subject.course.subjects.where('semester_id = ? AND id != ?', @subject.semester, @subject.id).order('view_count DESC, notes_count DESC').limit(8)
+    
     respond_to do |format|
       format.html { render action: 'show' }
     end

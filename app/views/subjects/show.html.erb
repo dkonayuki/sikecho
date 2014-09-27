@@ -88,7 +88,7 @@
 						<% if period != @subject.periods.first %>
 						&bull;
 						<% end %>
-						<%= t('date.day_names')[period.day] %>&bull;<%= t('date.period_names')[period.time] %>
+						<%= t('date.day_names')[period.day] %>-<%= t('date.period_names')[period.time] %>
 					<% end %>
 				</p>
 				<p>
@@ -228,7 +228,7 @@
 				dataType: "script",
 				success: function() {
 					//need to get script in order to refresh menu
-					$.getScript("/subjects/" + subjectID, null);
+					$.getScript("/" + I18n["meta"]["code"] + "/subjects/" + subjectID, null);
 
 					//Set notification
 					if (dataMethod == "post") {

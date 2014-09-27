@@ -132,7 +132,7 @@
 						<h5><%= t('syllabus') %></h5>
 						<% if @subject.outlines.count > 0 %>
 							<%= select_tag :number_of_outlines, options_for_select(@number_of_outlines_list, selected: @subject.outlines.count), class: 'selectpicker show-tick', data: {width: 'auto', link: outline_subject_path}, id: 'number-of-outlines-select' %>
-							<%= link_to new_auto_subject_path(auto_type: 0), {class: 'btn btn-default syllabus-auto', remote: true, method: :post} do %>
+							<%= link_to new_auto_subject_path(auto_type: 0), {class: 'btn btn-default syllabus-auto', id: 'new-auto-outline'} do %>
 								<span class="glyphicon glyphicon-plus"></span>
 							<% end %>
 							<div id="syllabus-table">
@@ -243,7 +243,7 @@
 			});
 		}
 		
-		//turn to inline mode
+		//turn on inline mode
 		$.fn.editable.defaults.mode = 'inline';
 		$.fn.editable.defaults.ajaxOptions = {dataType: 'json', type: "PUT"};
 		
@@ -297,8 +297,16 @@
 		if (anchor != "") {
 			scrollToAnchor(anchor);
 		}
+
+		/*Disable add btn when outline number is 30*/
+		var val = parseInt($('#number-of-outlines-select').val());
+		if (val == 30) {
+			$("#new-auto-outline").attr("disabled", true);
+		}
 		
+		/*Change outline number*/
 		$('#number-of-outlines-select').on("change", function() {
+			var val = parseInt($('#number-of-outlines-select').val());
 			$.ajax({
 			  url: $(this).data("link"),
 			  data: "number_of_outlines=" + $(this).val(),
@@ -306,8 +314,38 @@
 			  success: function() {
 	  			//edit inline
 					enableInlineEdit();
+					if (val < 30) {
+						$("#new-auto-outline").attr("disabled", false);
+					} else if (val == 30) {
+						$("#new-auto-outline").attr("disabled", true);
+					}
 			  }
 			});
+		});
+		
+		/*create new outline*/
+		$("#new-auto-outline").on("click", function() {
+			var val = parseInt($('#number-of-outlines-select').val());
+			
+			if (val < 30) {
+				$.ajax({
+					url: $(this).attr("href"),
+					dataType: "script",
+					type: "post",
+		      complete: function() {
+		  			//edit inline
+						enableInlineEdit();
+						val++;
+						$('#number-of-outlines-select').val(val);
+						$('.selectpicker').selectpicker("refresh");
+						if (val == 30) {
+							$("#new-auto-outline").attr("disabled", true);
+						}
+	    		}
+				});
+			}
+
+			return false;
 		});
 		
 		//edit inline
