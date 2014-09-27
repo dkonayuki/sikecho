@@ -15,7 +15,7 @@ class SearchController < ApplicationController
     @show_subject = true
     
     respond_to do |format|
-      format.html 
+      format.html
       format.js
     end
   end

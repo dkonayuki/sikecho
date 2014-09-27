@@ -5,7 +5,7 @@
 		<div id="search-menu">
 			<ul class="nav">
 	      <li>
-	      	<%= link_to search_path(query: @query, type: t('subject')) do %>   
+	      	<%= link_to search_path(query: @query, type: :subject) do %>   
 	      		<%= t 'subject' %>	
 		      	<% if @subjects.count > 0 %>
 		      		<span class="badge badge-sm badge-info pull-right"><%= @subjects.count %></span>
@@ -14,7 +14,7 @@
 	    	</li>
 	    	<% if user_signed_in? %>
 	      <li>
-	      	<%= link_to search_path(query: @query, type: t('note')) do %>
+	      	<%= link_to search_path(query: @query, type: :note) do %>
 	      		<%= t 'note' %>
 		      	<% if @notes.to_a.count > 0 %>
 		      		<span class="badge badge-sm badge-info pull-right"><%= @notes.to_a.count %></span>
@@ -29,12 +29,12 @@
 	<!-- search menu end -->
 	
 	<div class="col-xs-12 col-sm-10" id="result">
-    <h4><%= @type %></h4>
+    <h4><%= t(@type) %></h4>
 		<div id="result-content">
-			<% if @type == "授業" %>
-				<%= render(@subjects) || '授業が見つかりません。' %>
-			<% elsif @type == "ノート" %>
-				<%= render(@notes) || 'ノートが見つかりません。' %>
+			<% if @type == "subject" %>
+				<%= render(partial: 'subjects/subject', collection: @subjects, locals: {show_course: @show_course}) || t('subject_not_found') %>
+			<% elsif @type == "note" %>
+				<%= render(partial: 'notes/note', collection: @notes, locals: {show_subject: @show_subject}) || t('note_not_found') %>
 			<% end %>						
 		</div>
 	</div>

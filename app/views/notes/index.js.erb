@@ -1,8 +1,8 @@
 <% if @show_more %>
 	$("#notes-list #loading").remove();
-	$('#notes-list').append("<%=j render @notes %>")
+	$('#notes-list').append("<%=j render(partial: 'note', collection: @notes, locals: {show_subject: @show_subject}) || t('note_not_found') %>")
 	<% sleep 1 %>
 <% else %>
-	$('#notes-list').html("<%=j render(@notes) || 'ノートが見つかりません。' %>")
+	$('#notes-list').html("<%=j render(partial: 'note', collection: @notes, locals: {show_subject: @show_subject}) || t('note_not_found') %>")
 <% end %>
 	$(".hidden-pagination").html("<%=j paginate @notes %>")

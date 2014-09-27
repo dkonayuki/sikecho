@@ -279,7 +279,8 @@ en:
   y: Year
   s: Semester
   n: Note
-  subject_not_found: Not found
+  subject_not_found: Subject not found
+  note_not_found: Note not found
   request_university: Request new university
   registered: Registered
   cancel_subject_registered: Cancel
@@ -295,7 +296,10 @@ en:
   tag_plural: Tags
   subject_register_notification: Added to schedule
   subject_remove_notification: Removed from schedule
-  
+  ago: ' ago'
+  subject_search: Search subject
+  note_search: Search note
+    
   home:
     widgets:
       subject_number: Subject number
@@ -312,7 +316,8 @@ en:
       schedule: Schedule
       logout: Logout
       search: Search
-      subject_search: Search subject 
+      subject_search: Search subject
+      note_search: Search note
   users:
     registrations:
       new:
@@ -343,3 +348,10 @@ en:
       course: Course
       place: Place
       schedule: Schedule
+  notes:
+    index:
+      note_menu: Menu
+      registered_subjects_note: Registered notes
+      my_note: My notes
+      new_arrival_note: New arrival notes
+      new_note: New note

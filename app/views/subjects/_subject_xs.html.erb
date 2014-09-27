@@ -20,12 +20,12 @@
   		<% end %>
     </div>
     <div class="subject-badge">
-    	<% if @show_semester %>
+    	<% if defined?(show_semester) && show_semester %>
     		<div class="subject-course label-blue">
 	      	<%= subject.semester.uni_year.name %><%= subject.semester.name %>
       	</div>
     	<% end %>
-      <% if @show_course %>
+      <% if defined?(show_course) && show_course %>
 	      <div class="subject-course label-orange">
 	      	<%= subject.course.name %>
       	</div>

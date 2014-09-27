@@ -194,6 +194,10 @@
 	transition: background 0.3s, box-shadow 0.3s;
 }
 
+.mp-menu ul li > a.active {
+	border-right: 3px solid #563d7c;
+}
+
 .mp-menu ul li::before {
 	position: absolute;
 	left: 10px;

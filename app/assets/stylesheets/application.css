@@ -360,10 +360,6 @@ body {
 	border-bottom: 1px solid #eee;
 }
 
-.note-item:hover {
-	border: 1px solid #2EC1FF;
-}
-
 .note-item img {
   display: inline-block;
   margin: 0;
@@ -527,6 +523,7 @@ body {
 .subject-card-info {
 	font-size: 11px;
 	color: #888;
+	margin-top: 5px;
 }
 
 .author {

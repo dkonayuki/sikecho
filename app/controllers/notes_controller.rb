@@ -25,9 +25,9 @@ class NotesController < ApplicationController
       @notes = @user.current_university.notes
     else
       case params[:filter] 
-      when '自分のノート'
+      when 'my_note'
         @notes = @user.notes
-      when '授業のノート'
+      when 'registered_note'
         #select distinct notes from crazy joins
         @notes = Note.select('distinct notes.*').joins('INNER JOIN notes_subjects ON notes.id = notes_subjects.note_id')
         .joins('INNER JOIN subjects ON subjects.id = notes_subjects.subject_id')
@@ -35,9 +35,9 @@ class NotesController < ApplicationController
         .joins('INNER JOIN educations ON educations.id = educations_subjects.education_id')
         .where('educations.id = ?', @user.current_education.id)
 
-      when '新着ノート'
+      when 'new_arrival_note'
         @notes = @user.current_university.notes.unread_by(@user)
-      when 'すべて'
+      when 'all'
         @notes = @user.current_university.notes
       else
         #default

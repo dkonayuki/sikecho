@@ -1,36 +1,37 @@
 <div class="note-item col-xs-12 col-sm-11 col-sm-offset-1 col-md-5 col-md-offset-1">
-    <div class="note-thumbnail">
+  <div class="note-thumbnail">
+  </div>
+  <div class="note-details">
+    <div class="note-title"><%= link_to "#{note.title}", note %></div>
+    <div class="note-tags">
+      <% if defined?(show_subject) && show_subject %>
+	      <% note.subjects.order('year DESC, view_count DESC').first(5).each do |subject| %>
+		      <span class="label label-info"><%= subject.name %></span>
+	      <% end %>
+      <% end %>
+      <% if note.tag_list.include?('試験対策') %>
+      	<span class="label label-warning">試験対策</span>
+      <% end %>
+      <% if note.tag_list.include?('過去問題') %>
+      	<span class="label label-success">過去問題</span>
+      <% end %>
+      
+			<% if user_signed_in? %>
+	      <% if note.unread?(current_user) %>
+	      	<span class="label label-danger">New</span>
+	      <% end %>
+      <% end %>
     </div>
-    <div class="note-details">
-      <div class="note-title"><%= link_to "#{note.title}", note %></div>
-      <div class="note-tags">
-	      <% if @show_subject %>
-		      <% note.subjects.order('year DESC, view_count DESC').first(4).each do |subject| %>
-			      <span class="label label-info"><%= subject.name %></span>
-		      <% end %>
-	      <% end %>
-	      <% if note.tag_list.include?('試験対策') %>
-	      	<span class="label label-warning">試験対策</span>
-	      <% end %>
-	      <% if note.tag_list.include?('過去問題') %>
-	      	<span class="label label-success">過去問題</span>
-	      <% end %>
-	      
-				<% if user_signed_in? %>
-		      <% if note.unread?(@user) %>
-		      	<span class="label label-danger">New</span>
-		      <% end %>
-	      <% end %>
-      </div>
-    </div>
-    <div class="note-info">
-    	<div class="note-time">
-    		<%= time_ago_in_words(note.created_at) %> ago
-  		</div>
+  </div>
+  <div class="note-info">
+  	<div class="note-time">
+  		<%= time_ago_in_words(note.created_at) %><%= t('ago') %>
+		</div>
 
-    	<div class="note-view">
-  			<span class="glyphicon glyphicon-eye-open"></span>
-  			<%= note.impressionist_count %>
-			</div>
-  	</div>
+  	<div class="note-view">
+			<span class="glyphicon glyphicon-eye-open"></span>
+			<%= note.impressionist_count %>
+		</div>
+	</div>
+	
 </div>

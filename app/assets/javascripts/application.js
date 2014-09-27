@@ -92,17 +92,6 @@ $(document).ready(function() {
 	
 $(document).on("page:change", function() {
 	prepareFirstTime();
-
- 	/*For filter menu active*/
- 	$(".filter-menu li a").off("click").on("click", function() {
-		$.getScript(this.href, ajaxSuccess); 
-  	$(".filter-menu li a").each(function() {
-  		$(this).removeClass( "active" );
-  	});
-  	$(this).addClass("active");
-  	$(".filter-form input").val("");
-	  return false;
-	});
 	
   // disable enter key in filter form
   $(".filter-form").on("submit", function() {
@@ -145,25 +134,6 @@ $(document).on("page:change", function() {
 		  }
 		}
 	});
-	
-	/*For endless page*/
-	if ($(".hidden-pagination").length) {
-		$(window).scroll(function(){
-			url = $(".next a").attr("href");
-	    if (url && ($(window).scrollTop() > $(document).height() - $(window).height() - 50)) {
-	    	//disable pagination link
-	    	$(".pagination").text("fetching...");
-	    	//append loading.gif
-	  		if ($("#subjects-list").length) {
-	  			$('#subjects-list').append("<div id='loading'><img src='/assets/loading.gif'></div>");
-	  		}
-	  		if ($("#notes-list").length) {
-	  			$('#notes-list').append("<div id='loading'><img src='/assets/loading.gif'></div>");
-	  		}
-				$.getScript(url);
-	    }   
-		});	
-	}
 
 	/*For tooltip*/
 	$(".has-tooltip").tooltip();

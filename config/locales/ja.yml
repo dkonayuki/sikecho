@@ -249,6 +249,7 @@ ja:
   s: 期
   n: の
   subject_not_found: 授業が見つかりません
+  note_not_found: ノートが見つかりません
   request_university: 新規大学をリクエストする
   registered: 登録済み
   cancel_subject_registered: 受講解除
@@ -264,6 +265,9 @@ ja:
   tag_plural: タグ
   subject_register_notification: スケジュールに追加しました
   subject_remove_notification: スケジュールから削除しました
+  ago: 前
+  subject_search: 授業検索
+  note_search: ノート検索
   
   home:
     widgets:
@@ -282,6 +286,7 @@ ja:
       logout: ログアウト
       search: 検索
       subject_search: 授業検索
+      note_search: ノート検索
   users:
     registrations:
       new:
@@ -312,3 +317,10 @@ ja:
       course: 所属学科
       place: 講義室
       schedule: 時間割
+  notes:
+    index:
+      note_menu: メニュー
+      registered_subjects_note: 授業のノート
+      my_note: 自分のノート
+      new_arrival_note: 新着ノート
+      new_note: 新規ノート

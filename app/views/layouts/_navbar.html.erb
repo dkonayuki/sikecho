@@ -118,8 +118,9 @@
 	$(document).ready(function(){ 
 
 	  /*For search bar submit*/
-	  $(".search-bar").on("submit", function(){
-	  	window.location.href = "/search?query=" + $(this).find("#query").val() + "&type=" + I18n["subject"];
+	  $(".search-bar").on("submit", function() {
+	  	// default search is subject
+	  	window.location.href = "/" + I18n["meta"]["code"] + "/search?query=" + $(this).find("#query").val() + "&type=subject";
 	  	return false;
 	  });
 
@@ -128,15 +129,13 @@
 		  var results = [];
 		  var subject_item = new Object();
 		  subject_item.value = I18n["layouts"]["navbar"]["subject_search"] + ": " + "'" + query + "'";
-		  subject_item.url = "/search?query=" + query + "&type=授業";
+		  subject_item.url = "/" + I18n["meta"]["code"] + "/search?query=" + query + "&type=subject";
 		  results.push(subject_item);
 		  
-		  <% if user_signed_in? %>
 		  var note_item = new Object();
-		  note_item.value = "ノート検索: " + "'" + query + "'";
-		  note_item.url = "/search?query=" + query + "&type=ノート";
+		  note_item.value = I18n["layouts"]["navbar"]["note_search"] + ": " + "'" + query + "'";
+		  note_item.url = "/" + I18n["meta"]["code"] + "/search?query=" + query + "&type=note";
 		  results.push(note_item);
-		  <% end %>
 		  
 		  cb(results);
 		};

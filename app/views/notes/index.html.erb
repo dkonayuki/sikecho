@@ -7,19 +7,19 @@
         <!-- mp-menu -->
         <nav id="mp-menu" class="mp-menu mp-overlap">
 					<div class="mp-level" data-level="1">
-						<h4 class="icon-menu">ノートメニュー</h4>
+						<h4 class="icon-menu"><%= t('.note_menu') %></h4>
 						 <ul>
 						  <li>
-						  	<%= link_to notes_path(filter: '新着ノート') do %>
-							  	新着ノート
+						  	<%= link_to notes_path(filter: 'new_arrival_note'), data: {type: 'new_arrival_note'} do %>
+							  	<%= t('.new_arrival_note') %>
 						    	<% if unread_notes_count > 0 %>
 						    		<span class="badge badge-important"><%= unread_notes_count %></span>
 						    	<% end %>
 						  	<% end %>
 						  </li>
-							<li><%= link_to '授業のノート', notes_path(filter: '授業のノート') %></li>
-							<li><%= link_to '自分のノート', notes_path(filter: '自分のノート') %></li>
-	  					<li><%= link_to 'すべて', notes_path(filter: 'すべて'), class: 'active' %></li>
+							<li><%= link_to t('.registered_subjects_note'), notes_path(filter: 'registered_note'), data: {type: 'registered_note'} %></li>
+							<li><%= link_to t('.my_note'), notes_path(filter: 'my_note'), data: {type: 'my_note'} %></li>
+	  					<li><%= link_to t('all_option'), notes_path(filter: 'all'), data: {type: 'all'} %></li>
 				  	</ul>
 					</div>
 				</nav>
@@ -37,19 +37,19 @@
 		
 	  <%= link_to new_note_path, class: 'btn btn-default', id:'new-note-btn' do %>
 	  <span class="glyphicon glyphicon-plus-sign"></span>
-	  <span id="new-note-text">新規ノート</span>
+	  <span id="new-note-text"><%= t('.new_note') %></span>
 		<% end %>
 	
 	  <%= form_tag notes_path, method: :get, class: "filter-form", id: 'filter-note' do %>
-	    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'ライブ検索', autocorrect: "off", autocapitalize: "off" %>
+	    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: t('note_search'), autocorrect: "off", autocapitalize: "off" %>
 		<% end %>
 		<ul class="hidden-xs filter-menu">
-	  <li><%= link_to 'すべて', notes_path(filter: 'すべて') %></li>
-		<li><%= link_to '自分のノート', notes_path(filter: '自分のノート') %></li>
-		<li><%= link_to '授業のノート', notes_path(filter: '授業のノート') %></li>
+	  <li><%= link_to t('all_option'), notes_path(filter: 'all'), data: {type: 'all'} %></li>
+		<li><%= link_to t('.my_note'), notes_path(filter: 'my_note'), data: {type: 'my_note'} %></li>
+		<li><%= link_to t('.registered_subjects_note'), notes_path(filter: 'registered_note'), data: {type: 'registered_note'} %></li>
 	  <li>
-	  	<%= link_to notes_path(filter: '新着ノート') do %>
-		  	新着ノート
+	  	<%= link_to notes_path(filter: 'new_arrival_note'), data: {type: 'new_arrival_note'} do %>
+		  	<%= t('.new_arrival_note') %>
 	    	<% if unread_notes_count > 0 %>
 	    		<span class="badge badge-important"><%= unread_notes_count %></span>
 	    	<% end %>
@@ -65,7 +65,7 @@
 		</div>
 	</div>
 	<div id="notes-list" class="text-center">
-		<%= render(@notes) || 'ノートが見つかりません。' %>
+		<%= render(partial: 'note', collection: @notes, locals: {show_subject: @show_subject}) || t('note_not_found') %>
 	</div>
 	<div class="hidden-pagination">
 		<%= paginate @notes %>										
@@ -80,6 +80,7 @@
 
 <script>
 	$(document).ready(function() {
+
 		/*For live search*/
 		var timeout; // add delay time
 	  $("#filter-note input").keyup(function() {
@@ -90,23 +91,24 @@
 				  data: $("#filter-note").serialize() + "&filter=" + $(".filter-menu .active").text(), //default contenttype is url text
 				  success: ajaxSuccess,
 				  dataType: "script"
-				});    
+				});
 			}, 500);
 
 			return false;
 	  });
 
-		new mlPushMenu( document.getElementById('mp-menu'), document.getElementById('pushmenu-trigger') );
-
-		// need to set active beside nav_link helper
+		// need to set active class for filter menu
 		var filter = getParameterByName("filter");
 		if (filter == "") {
 			//default
-			$(".filter-bar a:contains('すべて')").attr("class", "active");
+			$(".filter-menu a[data-type='all']").addClass("active");
+			$("#mp-menu a[data-type='all']").addClass("active");
+			console.log($("#mp-menu a[data-type='all']"));
 		} else {
-			$(".filter-bar a:contains('" + filter + "')").attr("class", "active");
+			$(".filter-menu a[data-type='" + filter + "']").addClass("active");
+			$("#mp-menu a[data-type='" + filter + "']").addClass("active")
 		}
-		  
+
 	  /*For note order option*/
 	 	$("#note-order-option button").on("click", function() {
 	 		$("#note-order-option button").each(function() {
@@ -117,15 +119,56 @@
 	 		if ($("#filter-note #search").val() != "") {
 	 			data += "&search=" + $("#filter-note #search").val();
 	 		}
-	
-			//use current locale
+
 		  $.ajax({
+				//use current locale
 			  url: "/" + I18n["meta"]["code"] + "/notes",
 			  data: data ,//default contenttype is url text
 			  success: ajaxSuccess,
 			  dataType: "script"
-			});    
+			});
 	 	});
+	 	
+	 	/*For mobile push menu active*/
+		var pushMenu = new mlPushMenu( document.getElementById('mp-menu'), document.getElementById('pushmenu-trigger') );
+	 	$("#mp-menu li a").off("click").on("click", function() {
+			$.getScript(this.href, ajaxSuccess); 
+	  	$(".filter-form input").val("");
+	  	$("#mp-menu li a").each(function() {
+	  		$(this).removeClass("active");
+	  	});
+	  	$(this).addClass("active");
+	  	//close push menu
+	  	pushMenu._resetMenu();
+		  return false;
+		});
+	 	
+	 	/*For filter menu active*/
+	 	$(".filter-menu li a").off("click").on("click", function() {
+			$.getScript(this.href, ajaxSuccess); 
+	  	$(".filter-menu li a").each(function() {
+	  		$(this).removeClass("active");
+	  	});
+	  	$(this).addClass("active");
+	  	$(".filter-form input").val("");
+		  return false;
+		});
+		
+		/*For endless page*/
+		if ($(".hidden-pagination").length) {
+			$(window).scroll(function(){
+				url = $(".next a").attr("href");
+		    if (url && ($(window).scrollTop() > $(document).height() - $(window).height() - 50)) {
+		    	//disable pagination link
+		    	$(".pagination").text("fetching...");
+		    	//append loading.gif
+		  		if ($("#notes-list").length) {
+		  			$('#notes-list').append("<div id='loading'><img src='/assets/loading.gif'></div>");
+		  		}
+					$.getScript(url);
+		    }
+			});
+		}
 		
 	});
 </script>

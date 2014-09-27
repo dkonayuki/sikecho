@@ -147,7 +147,7 @@
 	      </a>
 	    </div>
 			<div class="skc-box-desc skc-box-desc-no-margin collapse in text-center" id="collapseNotes">
-				<%= render(@notes) || 'ノートがまだありません。' %>
+				<%= render(partial: 'notes/note', collection: @notes, locals: {show_subject: @show_subject}) || t('note_not_found') %>
 			</div>
 		</div>
 	</div>
@@ -169,7 +169,7 @@
 	<h4>関連授業:</h4>
 	<div class="has-margin-lg">
 		<div class="owl-carousel text-center">
-	  	<%= render collection: @recommend_subjects, partial: 'subject_xs', as: :subject %>
+	  	<%= render collection: @recommend_subjects, partial: 'subject_xs', as: :subject, locals: {show_course: @show_course} %>
 		</div>
 	</div>
 	<% end %>
@@ -222,7 +222,7 @@
 					if (dataMethod == "post") {
 						$.gritter.add({
 							title: subjectName,
-							text: 'スケジュールに追加しました。',
+							text: I18n["subject_register_notification"],
 							image: imgPath,
 							sticky: false, 
 							time: 5000,
@@ -230,7 +230,7 @@
 					} else {
 						$.gritter.add({
 							title: subjectName,
-							text: 'スケジュールから削除しました。',
+							text: I18n["subject_remove_notification"],
 							image: imgPath,
 							sticky: false, 
 							time: 5000,

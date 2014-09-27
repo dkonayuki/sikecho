@@ -385,5 +385,21 @@
     	reloadSubjectList();
 		});
 		
+		/*For endless page*/
+		if ($(".hidden-pagination").length) {
+			$(window).scroll(function(){
+				url = $(".next a").attr("href");
+		    if (url && ($(window).scrollTop() > $(document).height() - $(window).height() - 50)) {
+		    	//disable pagination link
+		    	$(".pagination").text("fetching...");
+		    	//append loading.gif
+		  		if ($("#subjects-list").length) {
+		  			$('#subjects-list').append("<div id='loading'><img src='/assets/loading.gif'></div>");
+		  		}
+					$.getScript(url);
+		    }
+			});
+		}
+		
 	});
 </script>
