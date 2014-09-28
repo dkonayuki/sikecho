@@ -28,8 +28,6 @@ fileinput.js v3.1.2
 
 masonry v3.1.5
 
-chosen v1.2.0 (custom)
-
 Start postgres server: postgres -D /usr/local/var/postgres
 
 Start unicorn server: unicorn -c config/unicorn.rb
