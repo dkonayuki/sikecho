@@ -51,12 +51,6 @@ Shikechou::Application.routes.draw do
     get 'uni_years' => 'application#uni_years'
     #get semester data
     get 'semesters' => 'application#semesters'
-    
-    resources :documents do
-      resources :comments
-    end
-    #both post and patch 'documents' will upload
-    patch 'documents' => 'documents#create'
   
     resources :users do
       resources :educations do
@@ -134,5 +128,10 @@ Shikechou::Application.routes.draw do
   # default locale
   #match '*path', to: redirect('/#{I18n.default_locale}/%{path}'), via: [:get, :post]
   #match '', to: redirect('/#{I18n.default_locale}'), via: [:get, :post]
-  
+     
+    resources :documents do
+      resources :comments
+    end
+    #both post and patch 'documents' will upload
+    patch 'documents' => 'documents#create' 
 end

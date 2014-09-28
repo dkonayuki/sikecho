@@ -365,3 +365,8 @@ ja:
       prepare_exam: 試験対策
       past_exam: 過去問題
       clear: クリア
+    upload_form:
+      add_file: ファイル追加
+      start_upload: アップロード
+      cancel_upload: キャンセル
+      delete: 削除

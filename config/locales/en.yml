@@ -259,8 +259,8 @@ en:
     
   helpers:
     submit:
-      create: "Create"
-      update: "Update"
+      create: Create
+      update: Update
         
   username: Username
   password: Password
@@ -395,3 +395,8 @@ en:
       prepare_exam: Exam Preparation
       past_exam: Past Exam
       clear: Clear
+    upload_form:
+      add_file: Add files . . .
+      start_upload: Start upload
+      cancel_upload: Cancel upload
+      delete: Delete

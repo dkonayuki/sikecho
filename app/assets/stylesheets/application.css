@@ -23,7 +23,7 @@
  *= require jquery.gritter.css
  *= require jquery.hovercard.css
  *= require override-bootstrap3.css
- *= require chosen.css
+ *= require override-jquery-upload.css
  *= require_tree .
  * 
  */

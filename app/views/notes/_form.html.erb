@@ -28,9 +28,9 @@
 						<% end %>
 					</strong>
 					<% if @note.subjects %>
-						<%= f.select :subjects, options_for_select(@subjects.map { |s| ["#{s.name}-#{s.year}", s.id]}, selected: @note.subjects.map { |s| s.id } ), {}, {class: 'form-control chosen-select', multiple: true, title: '', data: {placeholder: ' '}} %>
+						<%= f.select :subjects, options_for_select(@subjects.map { |s| ["#{s.name}-#{s.year}", s.id]}, selected: @note.subjects.map { |s| s.id } ), {}, {class: 'form-control selectpicker', multiple: true, title: '', data: {width: '100%', "live-search" => "true"}} %>
 					<% else %>
-			  		<%= f.select :subjects, options_from_collection_for_select(@subjects,"id","name"), {}, {class: 'form-control chosen-select', multiple: true, title: ''} %>
+			  		<%= f.select :subjects, options_from_collection_for_select(@subjects,"id","name"), {}, {class: 'form-control selectpicker', multiple: true, title: '', data: {width: '100%', "live-search" => "true"}} %>
 					<% end %>
 	    		<% if @note.errors[:subjects] %>
 	    			<ul>
@@ -72,10 +72,9 @@
 <script>
 	$(document).ready(function(){
 		
-		$(".chosen-select").chosen();
 		$('.selectpicker').selectpicker();
 
-		$("#edit-note-area").wysihtml5({locale: "en-US"});
+		$("#edit-note-area").wysihtml5({locale: I18n["meta"]["code_country"]});
 	
 		// instantiate the bloodhound suggestion engine
 		var tags = new Bloodhound({

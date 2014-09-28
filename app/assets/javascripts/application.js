@@ -22,6 +22,7 @@
 //= require wysihtml5
 //= require bootstrap-editable
 //= require jquery-fileupload
+//= require jquery.fileupload.locale.js
 //= require jquery.magnific-popup.js
 //= require jquery.autosize
 //= require owl.carousel.js
@@ -30,7 +31,6 @@
 //= require jquery.gritter.js
 //= require jquery.hovercard.js
 //= require jquery.readyselector.js
-//= require chosen.jquery.js
 //= require_tree .
 
 /*MaxWidth for ajax popup*/

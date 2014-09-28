@@ -455,6 +455,13 @@ a:hover {
 	background-color: #2980b9;
 }
 
+.label-red {
+	padding: 6px 15px;
+	font-size: 12px;	
+	color: #fff;
+	background-color: #c0392b;
+}
+
 .label-tag {
 	background: #fff;
 	color: #aaa;

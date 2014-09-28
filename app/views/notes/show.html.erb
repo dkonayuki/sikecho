@@ -27,9 +27,9 @@
 	      <% else %>
 		      <% @note.documents.each do |document| %>
 		      	<% if document.file_type != '.pdf' %>
-		      		<%= link_to image_tag(document.upload.url(:small)), document, class: 'document-popup' %>
+		      		<%= link_to image_tag(document.upload.url(:pdf_thumbnail)), document, class: 'document-popup' %>
 	      		<% else %>
-	      			<%= link_to image_tag(document.upload.url(:small)), document.upload.url %>
+	      			<%= link_to image_tag(document.upload.url(:pdf_thumbnail)), document.upload.url %>
 	      		<% end %>
 					<% end %>
 				<% end %>
