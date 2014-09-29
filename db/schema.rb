@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20140917092011) do
 
   create_table "documents", force: true do |t|
     t.integer  "note_id"
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "upload_file_name"

@@ -13,25 +13,26 @@ class Document < ActiveRecord::Base
   include Rails.application.routes.url_helpers
     
   def to_jq_upload
-    puts self.file_type
     if self.file_type == '.pdf'
     {
       "id" => self.id,
+      "title" => self.title,
       "name" => read_attribute(:upload_file_name),
       "size" => read_attribute(:upload_file_size),
       "url" => upload.url(:original),
       "thumbnail_url" => upload.url(:pdf_thumbnail),
-      "delete_url" => document_path(self),
+      "delete_url" => document_path(self, locale: I18n.locale),
       "delete_type" => "DELETE" 
     }
     else
     {
       "id" => self.id,
+      "title" => self.title,
       "name" => read_attribute(:upload_file_name),
       "size" => read_attribute(:upload_file_size),
       "url" => upload.url(:original),
       "thumbnail_url" => upload.url(:thumbnail),
-      "delete_url" => document_path(self),
+      "delete_url" => document_path(self, locale: I18n.locale),
       "delete_type" => "DELETE" 
     }
     end

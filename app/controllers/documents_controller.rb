@@ -23,12 +23,29 @@ class DocumentsController < ApplicationController
   # GET /documents/1/edit
   def edit
   end
+  
+  # PUT /documents/inline
+  def inline
+    @document = Document.find(params[:pk])
+    @document.title = params[:value]
+    
+    respond_to do |format|
+      if @document.save
+        format.html { redirect_to @document }
+        format.json { render json: @document, status: :ok } # 204 No Content
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @document.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # POST /documents
   # POST /documents.json
   # PATH /documents
   def create
     @document = Document.new(upload: params[:upload])
+    @document.title = params[:title]
             
     respond_to do |format|
       if @document.save
@@ -83,7 +100,7 @@ class DocumentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.permit(:upload)
+      params.permit(:upload, :title, :pk, :value)
       params.require(:document).permit(:note_id)
     end
 end

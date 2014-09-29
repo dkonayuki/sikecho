@@ -1,4 +1,4 @@
-.files .name * {
+.files .name {
 	max-width: 150px;
 }
 .files .preview * {
@@ -9,7 +9,6 @@
 }
 @media (min-width: 768px) {
   .files .name * {
-    display: inline-block;
     word-wrap: break-word; 
   }
 
@@ -35,7 +34,6 @@
   }
 
   .files .name * {
-    display: inline-block;
     word-wrap: break-word; 
   }
 
@@ -50,7 +48,6 @@
 }
 @media (max-width: 479px) {
 	.files .name * {
-    display: inline-block;
     word-wrap: break-word; 
   }
   .files .progress {

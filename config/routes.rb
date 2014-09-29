@@ -64,7 +64,12 @@ Shikechou::Application.routes.draw do
       get 'schedule' => :index, as: :schedule
       post 'schedule' => :create, as: 'schedule_create'
     end
-  
+    
+    resources :documents do
+      put 'inline' => 'documents#inline', on: :collection
+      resources :comments
+    end
+      
     get 'search' => 'search#search', as: 'search'
       
     # The priority is based upon order of creation: first created -> highest priority.
@@ -129,9 +134,4 @@ Shikechou::Application.routes.draw do
   #match '*path', to: redirect('/#{I18n.default_locale}/%{path}'), via: [:get, :post]
   #match '', to: redirect('/#{I18n.default_locale}'), via: [:get, :post]
      
-    resources :documents do
-      resources :comments
-    end
-    #both post and patch 'documents' will upload
-    patch 'documents' => 'documents#create' 
 end

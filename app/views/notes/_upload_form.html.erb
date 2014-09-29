@@ -33,7 +33,7 @@
   <!-- The loading indicator is shown during image processing -->
   <div class="fileupload-loading"></div>
   <!-- The table listing the files available for upload/download -->
-  <table class="table"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
+  <table id="upload-table" class="table"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
   </table>
 
 </div>
@@ -43,7 +43,9 @@
   {% for (var i=0, file; file=o.files[i]; i++) { %}
   <tr class="template-upload fade">
     <td class="preview"><span class="fade"></span></td>
-    <td class="name"><span>{%=file.name%}</span></td>
+    <td class="name">
+    	<a href="#" class="upload-document-name">{%=file.name%}</a>
+  	</td>
     <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
     {% if (file.error) { %}
     <td class="error" colspan="2"><span class="label-xs label-red">{%=locale_override[I18n["meta"]["code"]].fileupload.error%}</span> {%=locale_override[I18n["meta"]["code"]].fileupload.errors[file.error] || file.error%}</td>
@@ -75,15 +77,15 @@
     <tr class="template-download fade">
       {% if (file.error) { %}
         <td></td>
-        <td class="name"><span>{%=file.name%}</span></td>
+        <td class="name"><span>{%=file.title%}</span></td>
         <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
         <td class="error" colspan="2"><span class="label label-important">{%=locale_override[I18n["meta"]["code"]].fileupload.error%} </span> {%=locale_override[I18n["meta"]["code"]].fileupload.errors[file.error] || file.error%}</td>
         {% } else { %}
         <td class="preview">{% if (file.thumbnail_url) { %}
-          <a href="{%=file.url%}" title="{%=file.name%}" rel="gallery" download="{%=file.name%}"><img src="{%=file.thumbnail_url%}"></a>
+          <a href="{%=file.url%}" title="{%=file.title%}" rel="gallery" download="{%=file.name%}"><img src="{%=file.thumbnail_url%}"></a>
           {% } %}</td>
         <td class="name">
-          <a href="{%=file.url%}" title="{%=file.name%}" rel="{%=file.thumbnail_url&&'gallery'%}" download="{%=file.name%}">{%=file.name%}</a>
+    			<a href="#" data-pk="{%= file.id %}" class="download-document-name">{%=file.title%}</a>
         </td>
         <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
         <td colspan="2"></td>
@@ -105,6 +107,7 @@
       $('#fileupload').fileupload({
       	url: "/documents",
       	type: "post",
+      	formData: {title: ""},
         maxFileSize: 3000000,
         acceptFileTypes: /(\.|\/)(gif|jpe?g|png|pdf)$/i
       });
@@ -112,8 +115,9 @@
       // Upload done, add newly created document id to document_ids
       $("#fileupload").bind('fileuploaddone', function (e, data) {
   		  $("#fileupload").append("<input id='document_ids' multiple='true' name='document_ids[]' type='hidden' value=" + data.result.files[0].id + ">");
-  		  //console.log(data.result.files[0].id);
-      });
+  		  //console.log(data.context.find(".upload-document-name"));
+  		  //data.context.find(".upload-document-name").attr("data-pk", data.result.files[0].id);
+		  });
       
       // Destroyed event, remove deleted document id from documents_ids
       $('#fileupload').bind('fileuploaddestroyed', function (e, data) {
@@ -121,7 +125,7 @@
       	$("#fileupload :input[value=" + data.url.split('/').pop() + "]").remove();
     	});
 
-			// Uploading individual process, disable submit btn
+			// Uploading individual process
       $('#fileupload').bind('fileuploadprogress', function (e, data) {
       	 $("#note-form :input[type='submit']").prop("disabled", true);
          var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -131,11 +135,25 @@
 			// Uploading global process, disable submit btn
       $('#fileupload').bind('fileuploadprogressall', function (e, data) {
     		 var progress = parseInt(data.loaded / data.total * 100, 10);
-    		 console.log(progress);
       	 $("#note-form :input[type='submit']").prop("disabled", true);
     		 $('#global-progress-bar').css('width', progress + '%');
       });
+      
+   		// File added callback
+   		$('#fileupload').bind('fileuploadadded', function (e, data) {
+  		  enableInlineEdit();
+   		});
    		
+   		// File uploaded callback
+	    $('#fileupload').bind('fileuploadcompleted', function (e, data) {
+  		  enableInlineEdit();
+    	})
+
+   		// get title from name text
+   		$('#fileupload').bind('fileuploadsubmit', function (e, data) {
+  		  data.formData = {title: data.context.find(".upload-document-name").text()}
+			});
+
    		// Uploading process finished
    		$('#fileupload').bind('fileuploadstop', function (e) {
   		  $("#note-form :input[type='submit']").prop("disabled", false);
@@ -149,7 +167,6 @@
 	        fu._adjustMaxNumberOfFiles(-files.length);
 	        
 	        //Add to document_ids when start
-	        console.log(files);
 	        files.forEach(function(file) {
   		  		$("#fileupload").append("<input id='document_ids' multiple='true' name='document_ids[]' type='hidden' value=" + file.id + ">");
 	        });
@@ -163,5 +180,40 @@
 	        $('#loading').remove();
 	      });
 			<% end %>
+			
+			//turn on inline mode
+			$.fn.editable.defaults.mode = 'inline';
+			$.fn.editable.defaults.ajaxOptions = {dataType: 'json', type: "PUT"};
+			
+		function enableInlineEdit() {
+			$(".upload-document-name").editable({
+				type: 'text',
+		    showbuttons: 'bottom'
+			});
+			$(".download-document-name").editable({
+				type: 'text',
+		    url: '/documents/inline',
+		    showbuttons: 'bottom'
+			});
+		}
+		/*
+		var subjectID = $("#subject-edit").data("id");
+
+		function enableInlineEdit() {
+			//edit inline
+			$('.outline-date').editable({
+		    format: 'yyyy-mm-dd', //for sending value
+		    name: 'date',
+		    url: '/subjects/' + subjectID + '/inline',
+		    showbuttons: 'bottom'
+			});
+			
+			$('.outline-content').editable({
+		    type: 'textarea',
+		    name: 'content',
+		    url: '/subjects/' + subjectID + '/inline',
+		    showbuttons: 'bottom'
+			});
+		}*/
   });
 </script>
