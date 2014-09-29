@@ -4,7 +4,11 @@ class Teacher < ActiveRecord::Base
   has_and_belongs_to_many :subjects
   
   def name_kanji
-    "#{first_name_kanji} #{last_name_kanji}"  
+    "#{last_name_kanji} #{first_name_kanji}"  
+  end
+  
+  def name_en
+    "#{first_name} #{first_name}"
   end
   
 end

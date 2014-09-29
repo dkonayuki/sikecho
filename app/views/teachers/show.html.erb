@@ -5,7 +5,13 @@
 				<%= image_tag("user.png") %>
 			</div>
 			<div class="skc-box-desc">
-				<h4><%= @teacher.name_kanji %></h4>
+				<h4>
+					<% if I18n.locale == :en %>
+						<%= @teacher.name_en %>
+					<% else %>
+						<%= @teacher.name_kanji %>
+					<% end %>
+				</h4>
 				<hr />
 				<p>
 					<strong><%= t('email') %>:</strong>
