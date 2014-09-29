@@ -93,7 +93,7 @@
   width: 100%;
 }
 .bootstrap-select.btn-group .dropdown-menu {
-  width: 100%;
+  min-width: 100%;
   overflow-x: auto;
   z-index: 2000;
   -webkit-box-sizing: border-box;

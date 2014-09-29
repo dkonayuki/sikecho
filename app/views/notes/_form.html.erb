@@ -19,7 +19,7 @@
 					<strong><%= t('.content') %>:</strong>
 					<%= f.text_area :content, class: 'form-control', id: 'edit-note-area' %>
 				</p>
-				<p>
+				<p id="note-subjects-select">
 					<strong>
 						<% if @note.subjects.count == 1 %>
 						<%= t('.subject.one') %>:
