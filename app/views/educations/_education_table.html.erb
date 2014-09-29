@@ -2,23 +2,23 @@
 			    <thead>
 			      <tr>
 			        <% if @isEditable %>
-			        <th class="col-sm-1">年度</th>
-			        <th class="col-sm-1">学年</th>
-			        <th class="col-sm-1">学期</th>
-			        <th class="col-sm-1">学校</th>
-			        <th class="col-sm-2">学部&bull;研究科</th>
-			        <th class="col-sm-2">学科&bull;コース</th>
-			        <th class="col-sm-2">授業数</th>
+			        <th class="col-sm-1"><%= t('year') %></th>
+			        <th class="col-sm-1"><%= t('uni_year') %></th>
+			        <th class="col-sm-1"><%= t('semester') %></th>
+			        <th class="col-sm-1"><%= t('university') %></th>
+			        <th class="col-sm-2"><%= raw t('.faculty') %></th>
+			        <th class="col-sm-2"><%= raw t('.course') %></th>
+			        <th class="col-sm-2"><%= t('.subject_number') %></th>
 			        <th class="col-sm-1"></th>
 			        <th class="col-sm-1"></th>
 			        <% else %>
-			        <th class="col-sm-1">年度</th>
-			        <th class="col-sm-1">学年</th>
-			        <th class="col-sm-1">学期</th>
-			        <th class="col-sm-2">学校</th>
-			        <th class="col-sm-2">学部&bull;研究科</th>
-			        <th class="col-sm-2">学科&bull;コース</th>
-			        <th class="col-sm-2">授業数</th>
+			        <th class="col-sm-1"><%= t('year') %></th>
+			        <th class="col-sm-1"><%= t('uni_year') %></th>
+			        <th class="col-sm-1"><%= t('semester') %></th>
+			        <th class="col-sm-2"><%= t('university') %></th>
+			        <th class="col-sm-2"><%= raw t('.faculty') %></th>
+			        <th class="col-sm-2"><%= raw t('.course') %></th>
+			        <th class="col-sm-2"><%= t('.subject_number') %></th>
 			        <th class="col-sm-1"></th>
 			        <% end %>
 			      </tr>
@@ -66,10 +66,10 @@
 			  </table>
 			  <% if @isEditable %>
 					<%= link_to new_user_education_path(@user), {class: 'btn btn-default education-popup'} do %>
-					<span class="glyphicon glyphicon-plus"></span>追加
+					<span class="glyphicon glyphicon-plus"></span><%= t('.add') %>
 					<% end %>
 					<%= link_to new_auto_user_educations_path(@user), {class: 'btn btn-default education-auto', remote: true, method: :post} do %>
-					<span class="glyphicon glyphicon-plus"></span>自動追加
+					<span class="glyphicon glyphicon-plus"></span><%= t('.auto_add') %>
 					<% end %>
 				<% end %>
 				
@@ -81,7 +81,7 @@ $(document).ready(function(){
 		// delete button: id of education -> data-id
 		// select tag: id of education -> value
 		
-		var answer = confirm("Are you sure?");
+		var answer = confirm(I18n["delete_confirm"]);
 		if (answer) {
 			var data;
 			var currentEducation = $("input[name='current'][checked='checked']");

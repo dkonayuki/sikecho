@@ -275,7 +275,10 @@ en:
   new_arrival_note: New arrival note
   schedule: Schedule
   teacher: Teacher
-  faculty: Faculty
+  course1: Course
+  course2: Course
+  faculty1: Faculty
+  faculty2: Faculty
   uni_year: School Year
   tag: Tag
   day: Day
@@ -314,7 +317,8 @@ en:
   print: Print
   no_document: No document
   profile: Profile
-          
+  nickname: Nickname
+
   home:
     widgets:
       subject_number: Subject number
@@ -337,6 +341,13 @@ en:
     registrations:
       new:
         title: Create new account
+      edit:
+        select_image: Select image
+        change_image: Change
+        remove_image: Remove
+        education: Educations
+        current_password: Current password
+        change_password: Change current password
     sessions:
       new:
         login: Login
@@ -348,6 +359,10 @@ en:
         sign_in: Sign in
         sign_up: Sign up
         forgot_password: Forgot your password?
+    show:
+      education: Educations
+      notice1: Please select your current education
+      schedule: Schedule
   subjects:
     index:
       subject_search: Search subject
@@ -400,3 +415,20 @@ en:
       start_upload: Start upload
       cancel_upload: Cancel upload
       delete: Delete
+  comments:
+    form:
+      comment: Comment
+  educations:
+    education_table:
+      faculty: Faculty
+      course: Course
+      subject_number: Subject Number
+      add: Add
+      auto_add: Add automatically
+  teachers:
+    show:
+      university: University
+      course: Course
+      lab: Laboratory
+      lab_url: Laboratory URL
+      subjects: Subjects

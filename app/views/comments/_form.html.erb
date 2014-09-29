@@ -7,7 +7,7 @@
 	    <%= f.text_area :content, class: 'form-control', id: 'comment-content' %>
     </div>
     <%= button_tag class: 'btn btn-green', id: 'comment-btn', type: 'submit' do %>
-	    <span class="glyphicon glyphicon-comment"></span>コメントする
+	    <span class="glyphicon glyphicon-comment"></span><%= t('.comment') %>
     <% end %>
   </div>
 <% end %>

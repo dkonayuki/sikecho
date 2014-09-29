@@ -6,28 +6,17 @@
     <div class="media-body">
 			<%= sanitize simple_format(comment.content), tags: %w(br) %>
 	    <div class="media-date">
-	    	<%= time_ago_in_words(comment.created_at) %> ago
+	    	<%= time_ago_in_words(comment.created_at) %><%= t('ago') %>
 	  	</div>
     </div>
 
 		<% if @user == comment.user %>
     <div class="media-menu">
-			<%= link_to document_comment_path(comment.document, comment), method: :delete, data: { confirm: 'Are you sure?' }, remote: true do %>
+			<%= link_to document_comment_path(comment.document, comment), method: :delete, data: { confirm: t('delete_confirm') }, remote: true do %>
 				<span class="glyphicon glyphicon-remove"></span>
 			<% end %>
   	</div>
 		<% end %>
 		
   </div>
-  
-<script>
-$(document).ready(function() {
-	/*For comment menu*/
-	$(".media").hover(function() {
-		$(this).find(".media-menu").css("display", "block");
-	}, function() {
-		$(this).find(".media-menu").css("display", "none");
-	});						
-}); 
-</script>
 

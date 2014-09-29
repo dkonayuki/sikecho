@@ -245,7 +245,10 @@ ja:
   new_arrival_note: 新着ノート
   schedule: スケジュール
   teacher: 教員
-  faculty: 学科
+  course1: 学科
+  course2: コース
+  faculty1: 学部
+  faculty2: 研究科
   uni_year: 学年
   tag: タグ
   day: 曜日
@@ -284,6 +287,7 @@ ja:
   print: 印刷
   no_document: まだ資料がありません
   profile: プロフィール
+  nickname: ニックネーム
  
   home:
     widgets:
@@ -307,6 +311,13 @@ ja:
     registrations:
       new:
         title: アカウントを作成します
+      edit:
+        select_image: 画像選択
+        change_image: 変更
+        remove_image: 削除
+        education: 学歴
+        current_password: 現在のパスワード
+        change_password: パスワード変更
     sessions:
       new:
         login: ログイン
@@ -318,6 +329,10 @@ ja:
         sign_in: サインイン
         sign_up: ID登録
         forgot_password: パスワードをお忘れですか？
+    show:
+      education: 学歴
+      notice1: 現在有効な学歴のラジオボタンをOnにしてください
+      schedule: 時間割表
   subjects:
     index:
       subject_search: 授業検索
@@ -370,3 +385,20 @@ ja:
       start_upload: アップロード
       cancel_upload: キャンセル
       delete: 削除
+  comments:
+    form:
+      comment: コメント
+  educations:
+    education_table:
+      faculty: 学部&bull;研究科
+      course: 学科&bull;コース
+      subject_number: 授業数
+      add: 追加
+      auto_add: 自動追加
+  teachers:
+    show:
+      university: 所属大学
+      course: 所属学科
+      lab: 研究室
+      lab_url: 研究室URL
+      subjects: 担当講義

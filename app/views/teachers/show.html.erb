@@ -8,30 +8,30 @@
 				<h4><%= @teacher.name_kanji %></h4>
 				<hr />
 				<p>
-					<strong>メール:</strong>
+					<strong><%= t('email') %>:</strong>
 					<%= @teacher.email %>
 				</p>
 				<p>
-					<strong>所属大学:</strong>
+					<strong><%= t('.university') %>:</strong>
 					<%= link_to @teacher.university.name, faculties_path(@teacher.university) %>
 				</p>
 				<p>
-					<strong>所属学科:</strong>
+					<strong><%= t('.course') %>:</strong>
 					<%= link_to @teacher.faculty.name, @teacher.faculty %>
 				</p>
 				<p>
-					<strong>研究室:</strong>
+					<strong><%= t('.lab') %>:</strong>
 					<%= @teacher.lab %>
 				</p>
 				<p>
-					<strong>研究室URL:</strong>
+					<strong><%= t('.lab_url') %>:</strong>
 					<%= @teacher.lab_url %>
 				</p>
 			</div>
 			<hr />
 			<div class="text-center">
 				<p>
-					<strong>担当講義</strong>
+					<strong><%= t('.sujects') %></strong>
 				</p>			
 	    		<%= render @subjects %>
 			</div>

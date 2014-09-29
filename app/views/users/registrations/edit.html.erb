@@ -23,11 +23,11 @@
 					  </div>
 					  <div>
 					    <span class="btn btn-default btn-file">
-					    	<span class="fileinput-new">Select image</span>
-					    	<span class="fileinput-exists">Change</span>
+					    	<span class="fileinput-new"><%= t('.select_image') %></span>
+					    	<span class="fileinput-exists"><%= t('.change_image') %></span>
 					  		<%= f.file_field :avatar %>
 				    	</span>
-					    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+					    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><%= t('.remove_image') %></a>
 					  </div>
 					  <% if resource.errors[:avatar] %>
 		    			<ul>
@@ -40,11 +40,11 @@
 					
 					<hr />
 					<p>
-						<strong>ニックネーム:</strong>
+						<strong><%= t('nickname') %>:</strong>
 						<%= f.text_field :nickname, class: 'form-control form-control-inline' %>
 					</p>				
 					<p>
-						<strong>メール:</strong>
+						<strong><%= t('email') %>:</strong>
 						<%= f.email_field :email, class: 'form-control form-control-inline' %>
 					</p>
 						
@@ -53,14 +53,14 @@
 				  <% end %>
 				  
 					<hr />
-					<h5>学歴</h5><br />
+					<h5><%= t('.education') %></h5><br />
 					<%= render template: 'educations/index' %>
 					<hr />
 					
 					<p>
-						<strong>現在のパスワード:</strong>
+						<strong><%= t('.current_password') %>:</strong>
 						<%= f.password_field :current_password, class: 'form-control form-control-inline', autocomplete: "off", required: true %>
-						<a data-toggle="collapse" href="#collapsePassword" class="has-tooltip" data-toggle="tooltip" data-placement="right" title="Change password">
+						<a data-toggle="collapse" href="#collapsePassword" class="has-tooltip" data-toggle="tooltip" data-placement="right" title="<%= t('.change_password') %> ">
 			        <span class="glyphicon glyphicon-lock"></span>
 			      </a>
 		    		<% if resource.errors[:current_password] %>
@@ -74,7 +74,7 @@
 				
 					<div class="collapse out" id="collapsePassword">
 						<p>
-							<strong>パスワード:</strong>
+							<strong><%= t('password') %>:</strong>
 							<%= f.password_field :password, class: 'form-control form-control-inline', autocomplete: "off" %>
 							<% if resource.errors[:password] %>
 			    			<ul>
@@ -85,7 +85,7 @@
 			    		<% end %>
 						</p>
 						<p>
-							<strong>パスワード確認:</strong>
+							<strong><%= t('password_confirmation') %>:</strong>
 							<%= f.password_field :password_confirmation, class: 'form-control form-control-inline', autocomplete: "off" %>
 							<% if resource.errors[:password_confirmation] %>
 			    			<ul>
@@ -99,7 +99,7 @@
 			
 				<hr />
 				</div>
-				<%= f.submit '登録', class: 'btn btn-success col-sm-2 col-sm-offset-5 col-xs-12 col-xs-offset-0'%>
+				<%= f.submit class: 'btn btn-success col-sm-2 col-sm-offset-5 col-xs-12 col-xs-offset-0'%>
 				<br />
 			</div>
 		</div>

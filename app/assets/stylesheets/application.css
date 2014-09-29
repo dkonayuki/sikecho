@@ -1351,6 +1351,10 @@ body {
 	margin-right: 5px;
 }
 
+.media:hover .media-menu {
+	display: block;
+}
+
 .media-menu {
 	display: none;
 	position: absolute;
