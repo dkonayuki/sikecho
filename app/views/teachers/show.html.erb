@@ -19,11 +19,11 @@
 				</p>
 				<p>
 					<strong><%= t('.university') %>:</strong>
-					<%= link_to @teacher.university.name, faculties_path(@teacher.university) %>
+					<%= @teacher.university.name %>
 				</p>
 				<p>
 					<strong><%= t('.course') %>:</strong>
-					<%= link_to @teacher.faculty.name, @teacher.faculty %>
+					<%= @teacher.faculty.name %>
 				</p>
 				<p>
 					<strong><%= t('.lab') %>:</strong>

@@ -60,6 +60,9 @@ GEM
       multipart-post (>= 1.2, < 3)
     font-awesome-rails (4.1.0.0)
       railties (>= 3.2, < 5.0)
+    globalize (4.0.2)
+      activemodel (>= 4.0.0, < 5)
+      activerecord (>= 4.0.0, < 5)
     haml (4.0.5)
       tilt
     hashie (2.1.1)
@@ -234,6 +237,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.2.0)
   coffee-rails (~> 4.0.0)
   devise
+  globalize (~> 4.0.2)
   impressionist
   jbuilder (~> 1.2)
   jquery-fileupload-rails

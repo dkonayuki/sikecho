@@ -93,3 +93,6 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 
 gem 'rails_admin', '~> 0.6.2'
+
+#using globalize for university name translation table
+gem 'globalize', '~> 4.0.2'

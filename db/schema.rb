@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140917092011) do
+ActiveRecord::Schema.define(version: 20140929163637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -251,6 +251,17 @@ ActiveRecord::Schema.define(version: 20140917092011) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
   end
+
+  create_table "university_translations", force: true do |t|
+    t.integer  "university_id", null: false
+    t.string   "locale",        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+  end
+
+  add_index "university_translations", ["locale"], name: "index_university_translations_on_locale", using: :btree
+  add_index "university_translations", ["university_id"], name: "index_university_translations_on_university_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username"

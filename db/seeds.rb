@@ -14,7 +14,7 @@ Outline.destroy_all
 UniYear.destroy_all
 Semester.destroy_all
 
-tokodai = University.create(name: "東工大", address: "大岡山", website: "http://www.titech.ac.jp/", codename: "titech")
+tokodai = University.create(name: "東京工業大学", address: "大岡山", website: "http://www.titech.ac.jp/", codename: "titech")
 tkd_year_name = ["1年","2年","3年","4年"]
 i=1
 tkd_year_name.each do |year|
@@ -24,7 +24,7 @@ tkd_year_name.each do |year|
   semester2 = Semester.create(no: 2, name: "後期", uni_year: year)
 end
 
-todai = University.create(name: "東大", address: "東大前", website: "http://www.u-tokyo.ac.jp/", codename: "todai")
+todai = University.create(name: "東京大学", address: "東大前", website: "http://www.u-tokyo.ac.jp/", codename: "u-tokyo")
 td_year_name = ["教養1年","教養2年","後期1年","後期2年"]
 i=1
 td_year_name.each do |year|
@@ -64,9 +64,9 @@ kougakubu = Faculty.create(name: "工学部", university: tokodai)
 jouhou = Course.create(name: '情報工学科', faculty: kougakubu)
 denden = Course.create(name: '電気電子学科', faculty: kougakubu)
 
-sensei = Teacher.create(first_name_kanji: '順平', last_name_kanji: '林', faculty: kougakubu, university: tokodai)
-sensei2 = Teacher.create(first_name_kanji: '小林', last_name_kanji: '次郎', faculty: kougakubu, university: tokodai)
-sensei3 = Teacher.create(first_name_kanji: '篠田', last_name_kanji: '太郎', faculty: kougakubu, university: tokodai)
+sensei = Teacher.create(first_name: 'Junpei', last_name: 'Hayashi', first_name_kanji: '順平', last_name_kanji: '林', faculty: kougakubu, university: tokodai)
+sensei2 = Teacher.create(first_name: 'Jiro', last_name: 'Kobayashi', first_name_kanji: '次郎', last_name_kanji: '小林', faculty: kougakubu, university: tokodai)
+sensei3 = Teacher.create(first_name: 'Taro', last_name: 'Shinoda', first_name_kanji: '太郎', last_name_kanji: '篠田', faculty: kougakubu, university: tokodai)
 sub_name = ["フーリエ変換とラープラス変換","確率と統計","基礎集積回路","論理回路理論","計算基礎論","プログラミング第一","プログラミング第二",
     "プログラミング第三","プログラミング第四","数理論理学","オートマトンと言語","計算機論理設計","代数系と符号理論","離散構造とアルゴリズム",
      "計算機アーキテクチャ第一","計算機アーキテクチャ第二","オペレーティングシステム","数値計算法","電気回路基礎論","人工知能基礎論","コンパイラ構成",

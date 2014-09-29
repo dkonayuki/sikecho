@@ -4,6 +4,8 @@ class University < ActiveRecord::Base
   has_many :uni_years
   has_many :educations
   
+  translates :name
+  
   has_attached_file :logo, styles: {thumbnail: "60x60#", small: "150x150>"}, 
                               #local config
                               url: "/uploads/universities/:id/logo/:style/:basename.:extension",
