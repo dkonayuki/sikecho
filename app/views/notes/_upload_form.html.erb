@@ -171,13 +171,17 @@
   		  		$("#fileupload").append("<input id='document_ids' multiple='true' name='document_ids[]' type='hidden' value=" + file.id + ">");
 	        });
 	        
+	        //Render download file list
 	        template = fu._renderDownload(files)
 	          .appendTo($('#fileupload .files'));
+	        
+	        // need to reenable inline edit again
+	        enableInlineEdit();
+
 	        // Force reflow:
 	        fu._reflow = fu._transition && template.length &&
 	          template[0].offsetWidth;
 	        template.addClass('in');
-	        $('#loading').remove();
 	      });
 			<% end %>
 			
@@ -185,35 +189,16 @@
 			$.fn.editable.defaults.mode = 'inline';
 			$.fn.editable.defaults.ajaxOptions = {dataType: 'json', type: "PUT"};
 			
-		function enableInlineEdit() {
-			$(".upload-document-name").editable({
-				type: 'text',
-		    showbuttons: 'bottom'
-			});
-			$(".download-document-name").editable({
-				type: 'text',
-		    url: '/documents/inline',
-		    showbuttons: 'bottom'
-			});
-		}
-		/*
-		var subjectID = $("#subject-edit").data("id");
-
-		function enableInlineEdit() {
-			//edit inline
-			$('.outline-date').editable({
-		    format: 'yyyy-mm-dd', //for sending value
-		    name: 'date',
-		    url: '/subjects/' + subjectID + '/inline',
-		    showbuttons: 'bottom'
-			});
-			
-			$('.outline-content').editable({
-		    type: 'textarea',
-		    name: 'content',
-		    url: '/subjects/' + subjectID + '/inline',
-		    showbuttons: 'bottom'
-			});
-		}*/
+			function enableInlineEdit() {
+				$(".upload-document-name").editable({
+					type: 'text',
+			    showbuttons: 'bottom'
+				});
+				$(".download-document-name").editable({
+					type: 'text',
+			    url: '/documents/inline',
+			    showbuttons: 'bottom'
+				});
+			}
   });
 </script>
