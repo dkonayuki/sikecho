@@ -16,17 +16,14 @@
 		<td class="period hidden-xs"><%= t('date.period_names')[t] %></td>
 		<td class="period visible-xs"><%= t('date.abbr_period_names')[t] %></td>
 		<% 1.upto(Period::MAX_DAY).each do | d | %>
-			<% if periods[[d, t]].blank? %>
-				<td class="cell"></td>
-			<% else %>
-				<td class="cell">
-					<ul>
-						<% periods[[d, t]].each do | subject | %>
-						<li><%= link_to subject.name, subject %></li>
-						<% end %>
-					</ul>					
-				</td>
-			<% end %>
+			<td class="cell" data-day="<%= d %>" data-time="<%= t %>">
+				<!-- <ul>
+					<% periods[[d, t]].each do | subject | %>
+					<li><%= link_to subject.name, subject %></li>
+					<% end %>
+				</ul> -->			
+				<%= periods[[d, t]].count if periods[[d, t]].count > 0 %>
+			</td>
 		<% end %>
 	</tr>
 	<% end %>
@@ -37,7 +34,7 @@
 	$("#schedule-table").droppable({
 		accept: ".subject-draggable",
     drop: function( event, ui ) {
-      $.ajax ({
+      $.ajax({
       	url: "/schedule/",
       	type: "post",
       	data: {subject: ui.draggable[0].getAttribute("data-id"), page: "<%= @page %>", search: query },
@@ -45,8 +42,19 @@
       });
     },
     over: function( event, ui ) {
-    	
+
     }
+	});
+	
+	$("#schedule-table").on("click", ".cell", function() {
+		$.ajax({
+			url: "/schedule/subject",
+			dataType: "json",
+			data: {day: $(this).data("day"), time: $(this).data("time") },
+			success: function(data) {
+				console.log(data[0]);
+			}
+		})
 	});
 
 </script>

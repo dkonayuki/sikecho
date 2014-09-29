@@ -659,6 +659,10 @@ body {
 	margin: 0 auto;
 }
 
+.schedule-table {
+	text-align: center;
+}
+
 .schedule-table .cell:hover {
 	background-color: #F5F5F5;
 }
