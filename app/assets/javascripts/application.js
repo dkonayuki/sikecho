@@ -99,6 +99,8 @@ $(document).on("page:change", function() {
   });
 
 	/*For tooltip*/
-	$(".has-tooltip").tooltip();
+	$(".has-tooltip").tooltip({
+    'container':'body'
+  });
 
 });
