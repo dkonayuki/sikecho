@@ -3,12 +3,14 @@
 	outline: 0;
 	-webkit-box-shadow: none;
 	box-shadow: none;
+	-webkit-appearance: none;
 }
 
 .form-control {
 	outline: 0;
 	-webkit-box-shadow: none;
 	box-shadow: none;
+	-webkit-appearance: none;
 }
 
 .navbar-header {

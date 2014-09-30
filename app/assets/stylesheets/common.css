@@ -303,6 +303,9 @@ a:hover {
 	.skc-box-menu {
 		display: block;
 	}
+	.skc-box-content {
+		padding: 15px;
+	}
 }
 
 .skc-box-menu a {
