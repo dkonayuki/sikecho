@@ -83,6 +83,8 @@
 				      <% end %>
 				      </ul>
 		    		<% end %>
+	    		</p>
+	    		<p>
 						<strong><%= t('semester') %>:</strong>
 						<% if @subject.semester %>
 						<%= f.select :semester_id, options_from_collection_for_select(@semesters,"id","name",selected: @subject.semester.id), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
@@ -145,9 +147,9 @@
 					
 					<div class='tag-form'>
 						<div class='tag-menu'>
-				   		<div class="btn btn-primary btn-xs tag-menu-btn"><%= t('seminar') %></div>
-				   		<div class="btn btn-primary btn-xs tag-menu-btn"><%= t('all_year') %></div>
-				   		<div class="btn btn-primary btn-xs tag-menu-btn"><%= t('intensive_course') %></div>
+				   		<div class="btn btn-primary btn-xs tag-menu-btn hidden-xs"><%= t('seminar') %></div>
+				   		<div class="btn btn-primary btn-xs tag-menu-btn hidden-xs"><%= t('all_year') %></div>
+				   		<div class="btn btn-primary btn-xs tag-menu-btn hidden-xs"><%= t('intensive_course') %></div>
 				   		<div id="remove-all" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span><%= t('clear') %></div>
 			      </div>
 			      <%= text_area_tag 'tags', nil, class: 'tag-input' %>
