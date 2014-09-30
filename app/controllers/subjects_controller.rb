@@ -280,7 +280,7 @@ class SubjectsController < ApplicationController
     end
   end
   
-  # for /tags.json
+  # for /subjects/tags.json
   def tags
     @tags = @subject.tag_list
     respond_to do |format|
@@ -288,14 +288,14 @@ class SubjectsController < ApplicationController
     end
   end
   
-  # for /periods.json
+  # for GET /subjects/periods.json
   def periods
     @periods = @subject.periods
     respond_to do |format|
       format.json { render json: @periods }
     end
   end
-
+  
   # PATCH/PUT /subjects/1
   # PATCH/PUT /subjects/1.json
   def update

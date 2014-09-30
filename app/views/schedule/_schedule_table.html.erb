@@ -1,4 +1,4 @@
-<table class="table table-bordered schedule-table">
+<table class="table table-bordered" id="schedule-table">
 	<tr class="hidden-xs">
 		<th></th>
 		<% 1.upto(Period::MAX_DAY).each do | d |%>
@@ -17,44 +17,76 @@
 		<td class="period visible-xs"><%= t('date.abbr_period_names')[t] %></td>
 		<% 1.upto(Period::MAX_DAY).each do | d | %>
 			<td class="cell" data-day="<%= d %>" data-time="<%= t %>">
-				<!-- <ul>
-					<% periods[[d, t]].each do | subject | %>
-					<li><%= link_to subject.name, subject %></li>
-					<% end %>
-				</ul> -->			
-				<%= periods[[d, t]].count if periods[[d, t]].count > 0 %>
+				<% if periods[[d, t]].count > 0 %>
+				<span class="count label-navi label-xs visible-xs label-round"><%= periods[[d, t]].count %></span>
+				<span class="count label-navi hidden-xs label-round"><%= periods[[d, t]].count %></span>
+				<% end %>
+				<span class="plus glyphicon glyphicon-plus"></span>
+				<span class="open glyphicon glyphicon-folder-open"></span>
 			</td>
 		<% end %>
 	</tr>
 	<% end %>
 </table>
+
+<div id="list-subjects-by-period">
+	<%= render partial: 'schedule/list_subjects_by_period', locals: {subjects: {}, day: 1, time: 1} %>
+</div>
+
 <script>
+$(document).ready(function() {
+	
 	var query = $("#filter-schedule #search").val();
 
 	$("#schedule-table").droppable({
 		accept: ".subject-draggable",
     drop: function( event, ui ) {
       $.ajax({
-      	url: "/schedule/",
+      	url: "/" + I18n["meta"]["code"] + "/schedule/",
       	type: "post",
-      	data: {subject: ui.draggable[0].getAttribute("data-id"), page: "<%= @page %>", search: query },
+      	data: {subject_id: ui.draggable[0].getAttribute("data-id"), page: "<%= @page %>", search: query },
       	dataType: "script",
       });
     },
     over: function( event, ui ) {
-
+			$.ajax({
+				url: "/subjects/" + ui.draggable[0].getAttribute("data-id") + "/periods",
+				dataType: "json",
+				success: function(data) {
+					$.each(data, function(index, value) {
+						$("#schedule-table").find(".cell[data-day='" + value.day + "'][data-time='" + value.time + "']").addClass("hover");
+					});
+				}
+			})
+    },
+    out: function( event, ui ) {
+			$("#schedule-table .cell").removeClass("hover");
     }
 	});
 	
-	$("#schedule-table").on("click", ".cell", function() {
-		$.ajax({
-			url: "/schedule/subject",
-			dataType: "json",
-			data: {day: $(this).data("day"), time: $(this).data("time") },
-			success: function(data) {
-				console.log(data[0]);
-			}
-		})
-	});
+	$("#schedule-table").off().on("click", ".cell", function() {
+		$(".cell").not(this).removeClass("active");
+		if ($(this).find(".count").length) {
+			$(this).toggleClass("active");
+			var cell = $(this);
+			
+			$.ajax({
+				url: "/" + I18n["meta"]["code"] + "/schedule/list_subjects_by_period",
+				dataType: "script",
+				data: {day: $(this).data("day"), time: $(this).data("time") },
+				success: function() {
+					if (cell.hasClass("active")) {
+						$("#list-subjects-by-period").css("display", "block");
+					} else {
+						$("#list-subjects-by-period").css("display", "none");
+					}
+				}
+			})			
+		} else {
+			$("#list-subjects-by-period").css("display", "none");
+		}
 
+	});
+	
+});
 </script>

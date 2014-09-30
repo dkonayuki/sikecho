@@ -1,6 +1,6 @@
 class ScheduleController < ApplicationController
   
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :index, :new, :subject, :create]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :index, :new, :subjects, :create, :list_subjects_by_period]
   before_action :authenticate_user!
   
   def index
@@ -23,23 +23,38 @@ class ScheduleController < ApplicationController
     @subjects = @user.current_university.subjects.joins(:periods).where(periods: {day: params[:day].to_i, time: params[:time].to_i})
   end
   
-  # GET /schedule/subject.json
-  def subject
-    subjects = @user.current_subjects.joins(:periods).where(periods: {day: params[:day].to_i, time: params[:time].to_i})
-    respond_to do |format|
-      format.json { render json: subjects }
+  # GET /schedule/subjects.json
+  # GET /schedule/subjects.html
+  def subjects
+    @subjects = [] # equal to Array.new
+    
+    if !params[:subject_id].blank?
+      @subjects = Subject.find(params[:subject_id].to_i)
     end
+    
+    if !params[:day].blank? && !params[:time].blank?
+      @subjects = @user.current_subjects.joins(:periods).where(periods: {day: params[:day].to_i, time: params[:time].to_i})
+    end
+    
+    respond_to do |format|
+      format.json { render json: @subjects }
+    end
+  end
+  
+  def list_subjects_by_period
+    @list_subjects = @user.current_subjects.joins(:periods).where(periods: {day: params[:day].to_i, time: params[:time].to_i})
+    @day = params[:day].to_i
+    @time = params[:time].to_i
   end
   
   def edit
   end
   
-  # POST /schedule/:subject
+  # POST /schedule/:subject_id
   def create
     #add new subject
-    subject = Subject.find_by_id(params[:subject].to_i)
-    @user.current_education.subjects << subject
-    #need to fix @user.subjects << subject unless @user.subjects.include?(subject)
+    subject = Subject.find_by_id(params[:subject_id].to_i)
+    @user.current_education.subjects << subject unless @user.current_education.subjects.include?(subject)
         
     #prepare view
     get_schedule_content
@@ -53,15 +68,14 @@ class ScheduleController < ApplicationController
     end
   end
 
+  # GET /schedule/
   def update
   end
   
-  # DELETE /schedule/:subject
+  # DELETE /schedule/:subject_id
   def destroy
-    @user = current_user
-    
     #delete subject education relationship
-    @user.current_education.subjects.delete(Subject.find_by_id(params[:subject].to_i))
+    @user.current_education.subjects.delete(Subject.find_by_id(params[:subject_id].to_i))
     
     #prepare view
     get_schedule_content
@@ -83,6 +97,6 @@ class ScheduleController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def schedule_params
-      params.permit(:day, :time, :search, :page)
+      params.permit(:day, :time, :search, :page, :subject_id)
     end  
 end

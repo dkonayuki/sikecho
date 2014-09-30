@@ -474,6 +474,10 @@ a:hover {
 	margin: 3px 2px;
 }
 
+.label-round {
+	border-radius: 4px;
+}
+
 .label-tag.active {
 	background: whitesmoke;
 	color: #000;

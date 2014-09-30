@@ -63,7 +63,8 @@ Shikechou::Application.routes.draw do
       get 'schedule/index' => :index
       get 'schedule' => :index, as: :schedule
       post 'schedule' => :create, as: 'schedule_create'
-      get 'schedule/subject' => 'schedule#subject', as: 'schedule_subject' 
+      get 'schedule/subjects' => 'schedule#subjects', as: 'schedule_subjects'
+      get 'schedule/list_subjects_by_period' => 'schedule#list_subjects_by_period'
     end
     
     resources :documents do

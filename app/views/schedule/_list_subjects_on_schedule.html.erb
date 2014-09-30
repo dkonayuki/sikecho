@@ -18,20 +18,20 @@
 	      </div>
 	      <div class="subject-add label-white">
 	      	<% if @user.current_subjects.include?(subject) %>
-	      		<%= link_to schedule_destroy_path(subject: subject.id, search: @search, page: @page), method: :delete, remote: true do %>
+	      		<%= link_to schedule_destroy_path(subject_id: subject.id, search: @search, page: @page), method: :delete, remote: true do %>
 		      		<span class="glyphicon glyphicon-remove"></span>
 		      	<% end %>
 	      	<% else %>
-		      	<%= link_to schedule_create_path(subject: subject.id, search: @search, page: @page), method: :post, remote: true do %>
+		      	<%= link_to schedule_create_path(subject_id: subject.id, search: @search, page: @page), method: :post, remote: true do %>
 		      		<span class="glyphicon glyphicon-plus"></span>
 		      	<% end %>
 	      	<% end %>
       	</div>
       	<div class="subject-badge">
-		      <div class="subject-course label-orange">
+		      <div class="subject-course label-blue">
 		      	<%= subject.course.name %>
 	      	</div>
-	      	<div class="subject-year label-navi">
+	      	<div class="subject-year label-orange">
 						<%= subject.year %>
 					</div>
     		</div>

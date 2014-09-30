@@ -98,43 +98,6 @@ $(document).on("page:change", function() {
 		return false; 
   });
 
-  /*For ajax popup link in show note page*/	
-  $('.document-popup').magnificPopup({
-	  type: 'ajax',
-    callbacks: {
-   		parseAjax: function( mfpResponse ) {
-        mfpResponse.data = $(mfpResponse.data).find('#show-document');
-		  },
-	    ajaxContentAdded: function() {
-		    // Ajax content is loaded and appended to DOM
-				/* auto resize for textarea */
-			  $('textarea').autosize();
-			  	
-				ajaxSuccess();
-	
-				/*New comment*/
-				$("#new-comment-form").on("submit", function() {
-					$.ajax({
-					  url: $(this).attr("action"),
-					  dataType: "script",
-					  data: $(this).serialize(),
-					  type: "post",
-					  success: function() {
-					  	$("#comment-content").val("");
-					  }
-					});
-					return false;
-				});
-				
-				/*Remove focus on comment btn*/
-				$("#comment-btn").on("click", function() {
-					$(this).blur();
-				}); 	
-
-		  }
-		}
-	});
-
 	/*For tooltip*/
 	$(".has-tooltip").tooltip();
 

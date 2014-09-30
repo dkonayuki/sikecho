@@ -659,12 +659,35 @@ body {
 	margin: 0 auto;
 }
 
-.schedule-table {
+#schedule-table {
 	text-align: center;
+	table-layout: fixed;
 }
 
-.schedule-table .cell:hover {
-	background-color: #F5F5F5;
+#schedule-table .plus, #schedule-table .open {
+	display: none;
+}
+
+#schedule-table .cell.hover .count, #schedule-table .cell.hover .open {
+	display: none;
+}
+#schedule-table .cell.hover .plus {
+	display: block;
+}
+#schedule-table .cell.hover {
+	background: #566B7F;
+	color: #fff
+}
+
+#schedule-table .cell.active .count, #schedule-table .cell.active .plus {
+	display: none;
+}
+#schedule-table .cell.active .open {
+	display: block;
+}
+#schedule-table .cell.active {
+	background: #34495E;
+	color: #fff
 }
 
 .previous-btn:before {
@@ -675,6 +698,28 @@ body {
 .next-btn:before {
 	font-family: 'Glyphicons Halflings';
 	content: "\e080";
+}
+
+#list-subjects-by-period {
+	display: none;
+	margin: auto;
+	max-width: 300px;
+	border: 1px solid #34495E;
+}
+
+#list-subjects-period-header {
+	background: #34495E;
+	color: #fff;
+	padding: 8px;
+	text-align: center;
+}
+
+#list-subjects-period {
+	padding: 8px;
+}
+
+#list-subjects-period a {
+	display: block;
 }
 
 /* Subject page 
