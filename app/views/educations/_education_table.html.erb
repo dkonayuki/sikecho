@@ -2,24 +2,24 @@
 			    <thead>
 			      <tr>
 			        <% if @isEditable %>
-			        <th class="col-sm-1"><%= t('year') %></th>
-			        <th class="col-sm-1"><%= t('uni_year') %></th>
-			        <th class="col-sm-1"><%= t('semester') %></th>
-			        <th class="col-sm-1"><%= t('university') %></th>
-			        <th class="col-sm-2"><%= raw t('.faculty') %></th>
-			        <th class="col-sm-2"><%= raw t('.course') %></th>
-			        <th class="col-sm-2"><%= t('.subject_number') %></th>
-			        <th class="col-sm-1"></th>
-			        <th class="col-sm-1"></th>
+			        <th><%= t('year') %></th>
+			        <th><%= t('uni_year') %></th>
+			        <th><%= t('semester') %></th>
+			        <th><%= t('university') %></th>
+			        <th class="hidden-xs"><%= raw t('.faculty') %></th>
+			        <th class="hidden-xs"><%= raw t('.course') %></th>
+			        <th class="hidden-xs""><%= t('.subject_number') %></th>
+			        <th></th>
+			        <th></th>
 			        <% else %>
-			        <th class="col-sm-1"><%= t('year') %></th>
-			        <th class="col-sm-1"><%= t('uni_year') %></th>
-			        <th class="col-sm-1"><%= t('semester') %></th>
-			        <th class="col-sm-2"><%= t('university') %></th>
-			        <th class="col-sm-2"><%= raw t('.faculty') %></th>
-			        <th class="col-sm-2"><%= raw t('.course') %></th>
-			        <th class="col-sm-2"><%= t('.subject_number') %></th>
-			        <th class="col-sm-1"></th>
+			        <th><%= t('year') %></th>
+			        <th><%= t('uni_year') %></th>
+			        <th><%= t('semester') %></th>
+			        <th><%= t('university') %></th>
+			        <th class="hidden-xs"><%= raw t('.faculty') %></th>
+			        <th class="hidden-xs"><%= raw t('.course') %></th>
+			        <th class="hidden-xs"><%= t('.subject_number') %></th>
+			        <th></th>
 			        <% end %>
 			      </tr>
 			    </thead>
@@ -32,9 +32,9 @@
 			        <td><%= education.uni_year.name unless education.uni_year.blank? %></td>
 			        <td><%= education.semester.name unless education.semester.blank? %></td>
 			        <td><%= education.university.name unless education.university.blank? %></td>
-			        <td><%= education.faculty.name unless education.faculty.blank? %></td>
-			        <td><%= education.course.name unless education.course.blank? %></td>
-			        <td><%= education.subjects.count %></td>
+			        <td class="hidden-xs"><%= education.faculty.name unless education.faculty.blank? %></td>
+			        <td class="hidden-xs"><%= education.course.name unless education.course.blank? %></td>
+			        <td class="hidden-xs"><%= education.subjects.count %></td>
 			        <% if @isEditable %>
 			        <td>
 			        	<% if @user.current_education == education %>
@@ -56,7 +56,7 @@
 			        <% else %>
 			        <td>
 			        	<% if @user.current_education == education %>
-			        	●
+			        	&bull;
 			        	<% end %>
 			        </td>
 			        <% end %>

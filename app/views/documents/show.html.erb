@@ -2,6 +2,7 @@
 	<div id="document-content">
 		<%= image_tag(@document.upload.url(:original)) %>
 		<h4><%= @document.title %></h4>
+		<hr class="visible-xs" />
 	</div>
 	<div id="document-comment-section">
 		<%= render template: 'comments/index' %>

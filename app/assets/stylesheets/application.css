@@ -1412,6 +1412,12 @@ body {
 	font-size: 10px;
 }
 
+@media(max-width: 767px) {
+	.media-menu {
+		display: block;
+	}
+}
+
 .media-date {
 	font-size: 10px;
 	color: #999;
