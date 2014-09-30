@@ -2,6 +2,9 @@ class ApplicationController < ActionController::Base
   before_action :set_no_cache
   before_action :set_subdomain
   before_action :set_locale
+  
+  #Can't verify CSRF token authenticity issue
+  skip_before_action  :verify_authenticity_token
   #before_action :authenticate_user!
   
   # Prevent CSRF attacks by raising an exception.
@@ -13,7 +16,7 @@ class ApplicationController < ActionController::Base
   
   # redirect to 404 page
   def not_found
-    render :file => 'public/404.html', :status => :not_found, :layout => false
+    render file: 'public/404.html', status: :not_found, layout: false
   end
   
   def set_locale

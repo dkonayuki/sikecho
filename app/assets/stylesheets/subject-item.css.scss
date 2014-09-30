@@ -20,4 +20,5 @@ $lines-to-show: 4;
 .subject-item-xs .subject-desc {
   height: $font-size*$line-height*3; /* Fallback for non-webkit */
   -webkit-line-clamp: 3;
+  color: #666;
 }

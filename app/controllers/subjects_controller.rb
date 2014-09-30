@@ -119,7 +119,7 @@ class SubjectsController < ApplicationController
     @same_subjects = @subject.course.subjects.where(name: @subject.name).order('year DESC')
     
     # recommend subjects
-    @recommend_subjects = @subject.course.subjects.where('semester_id = ? AND id != ?', @subject.semester, @subject.id).order('view_count DESC, notes_count DESC').limit(8)
+    @recommend_subjects = @subject.course.subjects.where('semester_id = ? AND id != ?', @subject.semester, @subject.id).order('view_count DESC, notes_count DESC').limit(7)
     
     respond_to do |format|
       format.html 

@@ -15,19 +15,14 @@
 /* Styling Next and Prev buttons */
 
 .owl-theme .owl-controls .owl-buttons div{
-	color: #FFF;
+	color: #000;
 	display: inline-block;
 	zoom: 1;
-	*display: inline;/*IE7 life-saver */
 	margin: 5px;
 	padding: 3px 10px;
 	font-size: 12px;
-	-webkit-border-radius: 30px;
-	-moz-border-radius: 30px;
-	border-radius: 30px;
-	background: #869791;
-	filter: Alpha(Opacity=50);/*IE7 fix*/
-	opacity: 0.5;
+	border: 1px solid #ddd;
+	background: #fff;
 }
 /* Clickable class fix problem with hover on touch devices */
 /* Use it for non-touch hover action */
@@ -112,11 +107,41 @@
 }
  
 .owl-theme .owl-controls .owl-buttons .owl-prev{
-  left: -45px;
-  top: 55px; 
+	left: -45px;
+	top: 0;
+	height: 190px;
+	/* Internet Explorer 10 */
+	display:-ms-flexbox;
+	-ms-flex-pack:center;
+	-ms-flex-align:center;
+	
+	/* Firefox */
+	display:-moz-box;
+	-moz-box-pack:center;
+	-moz-box-align:center;
+	
+	/* Safari, Opera, and Chrome */
+	display:-webkit-box;
+	-webkit-box-pack:center;
+	-webkit-box-align:center;
 }
  
 .owl-theme .owl-controls .owl-buttons .owl-next{
   right: -45px;
-  top: 55px;
+	top: 0;
+	height: 190px;
+	/* Internet Explorer 10 */
+	display:-ms-flexbox;
+	-ms-flex-pack:center;
+	-ms-flex-align:center;
+	
+	/* Firefox */
+	display:-moz-box;
+	-moz-box-pack:center;
+	-moz-box-align:center;
+	
+	/* Safari, Opera, and Chrome */
+	display:-webkit-box;
+	-webkit-box-pack:center;
+	-webkit-box-align:center;
 }
