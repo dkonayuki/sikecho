@@ -1,9 +1,13 @@
+        <% if @isEditable %>
+					<p class="notice">*<%= t('.notice1') %></p>
+        <% end %>
+
 				<table class="table table-bordered table-hover">
 			    <thead>
 			      <tr>
 			        <% if @isEditable %>
 			        <th><%= t('year') %></th>
-			        <th><%= t('uni_year') %></th>
+			        <th class="hidden-xs"><%= t('uni_year') %></th>
 			        <th><%= t('semester') %></th>
 			        <th><%= t('university') %></th>
 			        <th class="hidden-xs"><%= raw t('.faculty') %></th>
@@ -13,7 +17,7 @@
 			        <th></th>
 			        <% else %>
 			        <th><%= t('year') %></th>
-			        <th><%= t('uni_year') %></th>
+			        <th class="hidden-xs"><%= t('uni_year') %></th>
 			        <th><%= t('semester') %></th>
 			        <th><%= t('university') %></th>
 			        <th class="hidden-xs"><%= raw t('.faculty') %></th>
@@ -29,7 +33,7 @@
 			    	.order('educations.year ASC, uni_years.no ASC, semesters.no ASC, created_at ASC').each do | education | %>
 			      <tr>
 			        <td><%= education.year unless education.year.blank? %></td>
-			        <td><%= education.uni_year.name unless education.uni_year.blank? %></td>
+			        <td class="hidden-xs"><%= education.uni_year.name unless education.uni_year.blank? %></td>
 			        <td><%= education.semester.name unless education.semester.blank? %></td>
 			        <td><%= education.university.name unless education.university.blank? %></td>
 			        <td class="hidden-xs"><%= education.faculty.name unless education.faculty.blank? %></td>
