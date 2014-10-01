@@ -8,7 +8,7 @@ class Teacher < ActiveRecord::Base
   end
   
   def name_en
-    "#{first_name} #{first_name}"
+    "#{first_name} #{last_name}"
   end
   
 end

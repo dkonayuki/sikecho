@@ -107,7 +107,11 @@
 	      		<% if teacher != @subject.teachers.first %>
 	      		&bull;
 	      		<% end %>
-						<%= link_to teacher.name_kanji, teacher %>
+						<% if I18n.locale == :en %>
+							<%= link_to teacher.name_en, teacher %>
+						<% else %>
+							<%= link_to teacher.name_kanji, teacher %>
+						<% end %>
     			<% end %>
 				</p>
 			</div>
