@@ -558,6 +558,8 @@ body {
 #note-tags-list {
 	max-width: 800px;
 	margin: 0 auto 20px;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
 
@@ -705,6 +707,7 @@ body {
 	margin: auto;
 	max-width: 300px;
 	border: 1px solid #34495E;
+	margin-bottom: 20px;
 }
 
 #list-subjects-period-header {
