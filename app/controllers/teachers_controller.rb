@@ -11,13 +11,9 @@ class TeachersController < ApplicationController
   # GET /teachers/1.json
   def show
     @subjects = @teacher.subjects
-    @subjects_by_year = Hash.new
-    @subjects.each do |subject|
-      if @subjects_by_year[subject.year] == nil
-        @subjects_by_year[subject.year] = Array.new
-      end
-      @subjects_by_year[subject.year] << subject
-    end
+    
+    # create hash of arrays from array by using group_by
+    @subjects_by_year = @subjects.group_by { |subject| subject.year }
   end
 
   # GET /teachers/new
