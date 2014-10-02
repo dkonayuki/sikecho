@@ -1453,6 +1453,7 @@ body {
 .document-preview img {
 	min-width: 100%;
 	min-height: 100%;
+	max-width: none;
 }
 
 .document-info {

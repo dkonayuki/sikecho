@@ -72,6 +72,7 @@
 .gritter-image {
     min-height: 100%;
     min-width: 100%;
+    max-width: none;
 }
 .gritter-close {
 		outline: none;
