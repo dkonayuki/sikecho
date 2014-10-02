@@ -16,7 +16,7 @@
 	      		<%= teacher.name_kanji %>
       		<% end %>
 	      </div>
-	      <div class="subject-add label-white">
+	      <div class="subject-add">
 	      	<% if @user.current_subjects.include?(subject) %>
 	      		<%= link_to schedule_destroy_path(subject_id: subject.id, search: @search, page: @page), method: :delete, remote: true do %>
 		      		<span class="glyphicon glyphicon-remove"></span>

@@ -34,13 +34,25 @@
 					<%= @teacher.lab_url %>
 				</p>
 			</div>
-			<hr />
-			<div class="text-center">
-				<p>
-					<strong><%= t('.sujects') %></strong>
-				</p>			
-	    		<%= render @subjects %>
-			</div>
-		</div>
-	</div>
+		</div><!-- end of skc-box-content -->
+	</div><!-- end of skc-box -->
+	
+	<% @subjects_by_year.keys.each do |year| %>
+	<div class="skc-box skc-box-lg">
+		<div class="skc-box-content">
+			<div class="skc-box-title-no-margin">
+				<a data-toggle="collapse" href="#<%= year %>" data-parent="#accordion">
+	        <h4><%= year %></h4>
+	      </a>
+	    </div>
+			<div class="skc-box-desc skc-box-desc-no-margin collapse out" id="<%= year %>">
+				<% @subjects_by_year[year].each do |subject| %>
+				<%= link_to subject.name, subject, class: 'label-white subject-by-year' %>
+				<% end %>
+			</div><!-- end of box-desc -->
+			
+		</div><!-- end of box-content -->
+	</div><!-- end of skc-box -->
+	<% end %>
+	
 </div>
