@@ -4,7 +4,7 @@ class Subject < ActiveRecord::Base
   validates :uni_year_id, presence: true
   validates :course, presence: true
   
-  has_attached_file :picture, styles: {small: "150x150>"}, 
+  has_attached_file :picture, styles: {thumbnail: "120x120#", small: "150x150^"}, 
                               #local config
                               url: "/uploads/subjects/:id/picture/:style/:basename.:extension",
                               path: ":rails_root/public/:url" #dont really need path
@@ -44,6 +44,14 @@ class Subject < ActiveRecord::Base
       #.where('subjects.name LIKE ? OR teachers.last_name_kanji LIKE ? OR teachers.first_name_kanji LIKE ?', q, q, q)
     else
       all
+    end
+  end
+  
+  def display_picture_thumbnail
+    if self.picture.present? && self.picture.url(:thumbnail).present?
+      self.picture.url(:thumbnail)
+    else
+      'lecture.png'
     end
   end
   
