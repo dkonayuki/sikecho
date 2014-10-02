@@ -1,6 +1,8 @@
 <div id="signin-page" class="clear">
 	<div id="signin-header">
-	<%= image_tag("logo.png", id: 'signin-logo') %>
+		<%= link_to root_url(subdomain: '') do %>
+			<%= image_tag("logo.png", id: 'signin-logo') %>
+		<% end %>
 	<h4>勉強をラクラクに</h4>
 	</div>
 	<div id="signin-form-wrapper">

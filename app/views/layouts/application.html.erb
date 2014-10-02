@@ -18,8 +18,13 @@
 	
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= csrf_meta_tags %>
+  
 </head>
 <body class="<%= controller_name %> <%= action_name %>">
+<script>
+// need to run before other scripts
+  window.I18n = <%= current_translations.to_json.html_safe %>;
+</script>
 	<div id="wrapper">
 		<%= render 'layouts/navbar' unless @disable_nav %>
 		<div id="main">
@@ -30,6 +35,3 @@
 </body>
 </html>
 
-<script>
-  window.I18n = <%= current_translations.to_json.html_safe %>;
-</script>
