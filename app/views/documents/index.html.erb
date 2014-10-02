@@ -1,27 +1,42 @@
-<h1>Listing documents</h1>
+<div id="documents-list" class="clear">
+  <%= render documents %>
+</div>
+<script>
+		
+  /*For ajax popup link in show note page*/	
+  $('.document-popup').magnificPopup({
+	  type: 'ajax',
+    callbacks: {
+   		parseAjax: function( mfpResponse ) {
+        mfpResponse.data = $(mfpResponse.data).find('#show-document');
+		  },
+	    ajaxContentAdded: function() {
+		    // Ajax content is loaded and appended to DOM
+				/* auto resize for textarea */
+			  $('textarea').autosize();
+			  	
+				ajaxSuccess();
 
-<table>
-  <thead>
-    <tr>
-      <th>Note</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+				/*New comment*/
+				$("#new-comment-form").on("submit", function() {
+					$.ajax({
+					  url: $(this).attr("action"),
+					  dataType: "script",
+					  data: $(this).serialize(),
+					  type: "post",
+					  success: function() {
+					  	$("#comment-content").val("");
+					  }
+					});
+					return false;
+				});
+				
+				/*Remove focus on comment btn*/
+				$("#comment-btn").on("click", function() {
+					$(this).blur();
+				});
 
-  <tbody>
-    <% @documents.each do |document| %>
-      <tr>
-        <td><%= document.note_id %></td>
-        <td><%= link_to 'Show', document %></td>
-        <td><%= link_to 'Edit', edit_document_path(document) %></td>
-        <td><%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Document', new_document_path %>
+		  }
+		}
+	});
+</script>

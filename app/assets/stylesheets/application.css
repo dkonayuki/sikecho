@@ -1434,6 +1434,58 @@ body {
 	line-height: 1.7 !important;
 }
 
+.document-item {
+	background: #fff;
+	width: 150px;
+	height: 150px;
+	display: inline-block;
+	margin-bottom: 10px;
+	border: 1px solid transparent;
+	position: relative;
+}
+
+.document-preview {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+
+.document-preview img {
+	min-width: 100%;
+	min-height: 100%;
+}
+
+.document-info {
+	display: none;
+	position: absolute;
+	padding: 5px;
+	bottom: 0;
+	z-index: 2;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	color: #fff;
+	background: rgba(0, 0, 0, 0.5);
+	font-size: 12px;
+	line-height: 18px;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+.document-item:hover {
+	border-color: #666;
+}
+
+.document-item:hover .document-info {
+	display: -webkit-box;
+}
+
+@media (max-width: 469px) {
+	.document-info {
+		display: -webkit-box;
+	}	
+}
+
 /* Faculty page
  ===============================================================================================*/
 

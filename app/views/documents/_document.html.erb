@@ -1,0 +1,12 @@
+<div class="document-item">
+	<div class="document-preview">
+		<% if document.file_type != '.pdf' %>
+			<%= link_to image_tag(document.upload.url(:small)), document, class: 'document-popup' %>
+		<% else %>
+			<%= link_to image_tag(document.upload.url(:pdf_thumbnail)), document.upload.url %>
+		<% end %>
+	</div>
+	<div class="document-info">
+		<%= document.title %>
+	</div>
+</div>

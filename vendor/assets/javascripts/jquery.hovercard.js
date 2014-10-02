@@ -4,6 +4,7 @@
 		var settings = $.extend({
 			//default values
 			content: '',
+			placement: 'bottom',
 			durationIn: 500,
 			durationOut: 500
 		}, options);
@@ -11,6 +12,7 @@
 		var content = settings.content;
 		var durationIn = settings.durationIn;
 		var durationOut = settings.durationOut;
+		var placement = settings.placement;
 		
 		//add content to body
 		content.detach();
@@ -29,11 +31,21 @@
 		$(this).mousemove(function(e) {
 			window.clearTimeout(timeout); //clear delay
 	    timeout = window.setTimeout(function() { //set a new delay
+	    	
+        // position of mouse
 	      var pos = {
-	        // position of mouse
-	        top: (e.pageY) + 'px',
-	        left: (e.pageX) + 'px'
+	        top: e.pageY,
+	        left: e.pageX
 	      };
+	      
+	      // position of content
+	      if (placement == "top") {
+	      	pos.top -= content.outerHeight();
+	      }
+
+				// add px unit
+				pos.top += 'px';
+				pos.left += 'px';
 
 	      if (content.css("display") == "none") {
       		content.css(pos).fadeTo(200, 100);

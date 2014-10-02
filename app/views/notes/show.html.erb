@@ -20,18 +20,9 @@
 				</div>
 				<% end %>
 				
+				<% if !@note.documents.empty? %>
 				<hr />
-				<strong><%= t('.documents') %>:</strong>
-				<% if @note.documents.empty? %>
-	    	<dd><%= t('no_document') %></dd>
-	      <% else %>
-		      <% @note.documents.each do |document| %>
-		      	<% if document.file_type != '.pdf' %>
-		      		<%= link_to image_tag(document.upload.url(:small)), document, class: 'document-popup' %>
-	      		<% else %>
-	      			<%= link_to image_tag(document.upload.url(:pdf_thumbnail)), document.upload.url %>
-	      		<% end %>
-					<% end %>
+				<%= render template: 'documents/index', locals: {documents: @note.documents} %>
 				<% end %>
 								
 				<hr />
@@ -73,7 +64,8 @@
 $(document).ready(function() {
 
 	$(".author-hovercard-target").hovercard({
-		content: $(".author-hovercard")
+		content: $(".author-hovercard"),
+		placement: "top"
 	});
 	
 	$(".subject-hovercard-target").each(function() {
@@ -89,43 +81,5 @@ $(document).ready(function() {
 		return false;
 	});
 	
-	
-  /*For ajax popup link in show note page*/	
-  $('.document-popup').magnificPopup({
-	  type: 'ajax',
-    callbacks: {
-   		parseAjax: function( mfpResponse ) {
-        mfpResponse.data = $(mfpResponse.data).find('#show-document');
-		  },
-	    ajaxContentAdded: function() {
-		    // Ajax content is loaded and appended to DOM
-				/* auto resize for textarea */
-			  $('textarea').autosize();
-			  	
-				ajaxSuccess();
-
-				/*New comment*/
-				$("#new-comment-form").on("submit", function() {
-					$.ajax({
-					  url: $(this).attr("action"),
-					  dataType: "script",
-					  data: $(this).serialize(),
-					  type: "post",
-					  success: function() {
-					  	$("#comment-content").val("");
-					  }
-					});
-					return false;
-				});
-				
-				/*Remove focus on comment btn*/
-				$("#comment-btn").on("click", function() {
-					$(this).blur();
-				});
-
-		  }
-		}
-	});
-
 });
 </script>

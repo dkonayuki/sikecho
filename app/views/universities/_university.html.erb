@@ -1,0 +1,27 @@
+	<%= link_to root_url(subdomain: university.codename) do %>
+		<div class="uni-item">
+			<div class="uni-thumbnail">
+				<%= image_tag(university.display_logo_original) %>
+			</div>
+			<div class="uni-desc">
+				<div class="uni-name">
+					<%= university.name %>
+				</div>
+				<div class="uni-meta">
+					<hr />
+					<div class="uni-user">
+						<%= image_tag('user.png', class: 'uni-meta-thumbnail') %>
+						<span><%= university.users.count %></span>
+					</div>
+					<div class="uni-note">
+						<%= image_tag('note.png', class: 'uni-meta-thumbnail') %>
+						<span><%= university.notes.count %></span>
+					</div>
+					<div class="uni-subject">
+						<%= image_tag('lecture.png', class: 'uni-meta-thumbnail') %>
+						<span><%= university.subjects.count %></span>
+					</div>
+				</div>
+			</div>
+		</div> <!-- end of uni-item -->
+	<% end %>
