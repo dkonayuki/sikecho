@@ -92,7 +92,7 @@ $(document).ready(function() {
 	
 $(document).on("page:change", function() {
 	prepareFirstTime();
-	
+
   // disable enter key in filter form
   $(".filter-form").on("submit", function() {
 		return false; 

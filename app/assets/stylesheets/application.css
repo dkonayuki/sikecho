@@ -36,6 +36,11 @@
 	overflow: hidden;
 }
 
+#menu-height-offset {
+	height: 51px;
+	display: block;
+}
+
 /*
 ::selection {
 	color: #fff;
@@ -60,12 +65,12 @@ body {
 #wrapper {
   min-height: 100%;
   height: auto;
-  padding-bottom: 60px;
+  padding-bottom: 50px;
 }
 
 /* Set the fixed height of the footer here */
 #footer {
-  height: 60px;
+  height: 50px;
   background-color: #fff;
   border-top: 1px solid #e7e7e7;
 	bottom: 0;
@@ -84,10 +89,15 @@ body {
 	border-radius: 0;
 	background-color: #fff;
 	margin-bottom: 0;
+	position: fixed;
+	width: 100%;
+	z-index: 3;
+	border: none;
+	border-bottom: 1px solid #e7e7e7;
 }
 
 #navbar-search {
-	padding: 7px 15px !important;
+	padding: 6px 15px !important;
 }
 
 #navbar-menu {
@@ -162,10 +172,17 @@ body {
 /*Sign up page
  ===============================================================================================*/
 
+#nav-bar-signup {
+	border-radius: 0;
+	background-color: #fff;
+	margin-bottom: 0;
+	width: 100%;
+	border: none;
+	border-bottom: 1px solid #e7e7e7;	
+}
+
 #signup-page {
 	background: #fff;
-	padding-bottom: 1000px;
-	margin-bottom: -1000px;
 }
 
 #signup-page h2 {
@@ -208,8 +225,6 @@ body {
 
 #signin-page {
 	background: #fff;
-	padding-bottom: 1000px;
-	margin-bottom: -1000px;
 }
 
 #signin-header {
@@ -342,9 +357,6 @@ body {
 	background: #fff;
 	overflow: hidden;
 	padding: 0 15px 0 15px;
-/*happy hacking for full height overlapping*/
-	padding-bottom: 1000px;
-	margin-bottom: -1000px;
 }
 
 #notes-list {
@@ -765,28 +777,6 @@ body {
   } 
 }
 
-#path-info {
-	font-size: 10px;
-}
-
-#path-info a {
-	display: inline-block;
-	color: #666;
-	text-decoration: none;
-	padding: 7px 14px 7px 8px;
-	background-image: url('path-arrow.png');
-	background-repeat: no-repeat;
-	background-position: 100% -28px;
-	background-size: 30px 187px;
-}
-#path-info span {
-	padding: 7px 14px 7px 8px;
-	color: #666;
-}
-
-#path-info a:hover {
-}
-
 #courses-list {
 	width: 150px;
 	background-color: #fff;
@@ -816,21 +806,31 @@ body {
 #subjects-list-container {
 }
 
-#subjects-list-title {
-	padding-left: 10px;
-	font-size: 24px;
-	padding-top: 20px;
-	padding-bottom: 10px;
-	font-weight: 500;
-	line-height: 1.1;
+#subjects-list-header {
+	padding: 10px;
 	border-right: 1px solid #ddd;
+	height: 55px;
 }
 
 @media(max-width: 767px) {
-	#subjects-list-title {
-		border-top: 1px solid #ddd;
+	#subjects-list-header {
 		border-right: none;
+		padding-left: 0;
+		padding-right: 0;
 	}
+}
+
+#subjects-list-title {
+	font-size: 24px;
+	font-weight: 500;
+	line-height: 1.1;
+	float: left;
+	margin-top: 10px;
+}
+
+#subject-order-option {
+	float: right;
+	height: 35px;
 }
 
 #subjects-list {
@@ -843,24 +843,12 @@ body {
 	border: 1px solid #ddd;
 }
 
-#subject-order-option {
-	position: absolute;
-	right: 15px;
-	top: 15px;
-}
-
 @media (max-width: 469px) {
 	.subject-item {
 		width: 90% !important;
 	}
 	.subject-thumbnail {
 		display: none !important;
-	}
-	#subject-order-option {
-		right: 0;
-	}
-	#subjects-list-title {
-		padding-left: 0;
 	}
 }
 
@@ -1017,43 +1005,6 @@ body {
 	margin-top: 20px;
 }
 
-.show-subject-menu {
-	width: 120px;
-	background-color: #fff;
-	padding: 10px;
-	margin-top: 20px;
-	box-shadow: 0 1px 2px rgba(0,0,0,.1);
-}
-
-.show-subject-menu > ul > li > a:hover, .show-subject-menu > ul > li > a:focus {
-	background-color: #555 !important;
-	color: #fff;
-}
-
-.show-subject-menu h4 {
-	font-size: 14px;
-	font-weight: bold;
-	text-align: center;
-}
-
-.show-subject-menu .btn {
-	width: 100%;
-}
-
-#year-list {
-	margin: 20px auto 10px;
-	max-width: 800px;
-}
-
-#year-list .year-item {
-	float: right;
-	margin-left: 10px;
-}
-
-#subject-edit {
-	margin-top: 20px;
-}
-
 .hidden-pagination {
 	display: none;
 }
@@ -1181,22 +1132,36 @@ body {
 	display: block !important;
 }
 
-.subject-menu-header {
-	padding: 10px;
-}
-
-.subject-menu-header img {
-	width: 25px;
-	height: 25px;
-}
-
-.subject-menu-header span {
-	font-size: 16px;
-	vertical-align: middle;
+#subject-filter-trigger {
+	float: left;
 }
 
 #subject-menu-right {
 	padding: 15px;
+	background: #fff;
+	max-width: 300px;
+	margin: 20px auto;
+	position: relative;
+}
+
+#subject-menu-close {
+	display: none;
+	width: 100%;
+	margin-top: 20px;	
+}
+
+.subject-menu-item-header {
+	padding: 10px;
+}
+
+.subject-menu-item-header img {
+	width: 25px;
+	height: 25px;
+}
+
+.subject-menu-item-header span {
+	font-size: 16px;
+	vertical-align: middle;
 }
 
 #subject-menu-course {
@@ -1285,6 +1250,51 @@ body {
 	bottom: 10px;
 	right: 10px;
 }
+
+/* Subject show page
+ ===============================================================================================*/
+
+.show-subject-menu {
+	width: 120px;
+	background-color: #fff;
+	padding: 10px;
+	margin-top: 10px;
+	box-shadow: 0 1px 2px rgba(0,0,0,.1);
+}
+
+.show-subject-menu > ul > li > a:hover, .show-subject-menu > ul > li > a:focus {
+	background-color: #555 !important;
+	color: #fff;
+}
+
+.show-subject-menu h4 {
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.show-subject-menu .btn {
+	width: 100%;
+}
+
+#year-list {
+	margin: 10px auto 10px;
+	max-width: 800px;
+}
+
+#year-list .year-item {
+	float: right;
+	margin-left: 10px;
+}
+
+#subject-edit {
+	margin-top: 20px;
+}
+
+.fixed-menu {
+	position: fixed;
+}
+
 
 /* Subject edit page
  ===============================================================================================*/
@@ -1537,8 +1547,6 @@ body {
 #search-page {
 	background: #fff;
 	overflow: hidden;
-	margin-bottom: -1000px;
-	padding-bottom: 1000px;
 }
 
 /* Education page

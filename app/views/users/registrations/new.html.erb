@@ -1,5 +1,5 @@
 <div id="signup-page" class="clear">
-	<nav class="navbar navbar-default" role="navigation" id="nav-bar">
+	<nav class="navbar navbar-default" role="navigation" id="nav-bar-signup">
 	  <div class="navbar-header">
 	    <%= link_to image_tag("logo.png"), home_path, class: 'navbar-brand', id: 'logo' %>
 	  </div>
@@ -61,5 +61,7 @@
 <script>
 	$(document).ready(function() {
 		$('.selectpicker').selectpicker();
+		$("body").css("background-color", "#fff");
+		$("#menu-height-offset").css("display", "none");
 	});
 </script>

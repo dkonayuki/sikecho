@@ -1,3 +1,4 @@
+<a name="top"></a>
 <div id="subjects">
 	
 	<div id="subjects-content" class="clear">
@@ -10,94 +11,101 @@
 				<% end %>
 			<% end %>
 			
-		  <%= form_tag subjects_path, method: :get, class: "filter-form has-padding", id: "filter-subject" do %>
+		  <%= form_tag subjects_path, method: :get, class: "filter-form", id: "filter-subject" do %>
 		    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: t('.subject_search'), autocorrect: "off", autocapitalize: "off" %>
 			<% end %>
 		</div>
-						
-		<div id="subject-menu-right" class="col-sm-3 col-xs-12 pull-right">
-			
-			<div class="subject-menu-header">
-				<%= image_tag("faculty.png") %>
-				<span><%= t 'course1' %></span>
-			</div>
-			<ul id="subject-menu-course">
-				<li>
-					<%= check_box_tag "all-course", 0, true %>
-					<span><%= t '.all_faculty' %></span>
-				</li>
-				<% @university.faculties.each do |faculty| %>
-				<li class="faculty-item">
-					<%= check_box_tag :faculty, faculty.id %>
-					<span><%= faculty.name %></span>
-					<ul>
-						<% faculty.courses.each do |course| %>
-						<li>
-							<%= check_box_tag :course, course.id %>
-							<span><%= course.name %></span>
-						</li>
-						<% end %>
-					</ul>
-				</li>
-				<% end %>
-			</ul>
-			
-			<div class="subject-menu-header">
-				<%= image_tag("uni_year.png") %>
-				<span><%= t 'uni_year' %></span>
-			</div>
-			<table class="table table-bordered" id="subject-menu-year">
-				<tr>
-					<td colspan="2" class="active" id="all-year"><%= t '.all_uni_year' %></td>
-				</tr>
-				  <% @university.uni_years.each do |uni_year| %>
-						<% uni_year.semesters.each do |semester| %>
-				    <tr>
-				    	<% if semester == uni_year.semesters.first %>
-				    	<td rowspan="<%= uni_year.semesters.count %>" data-id="<%= uni_year.id %>" data-type="uni_year"><%= uni_year.name %></td>
+
+		<div id="subject-menu-right" class="col-sm-3 col-xs-12 hidden-xs pull-right">
+				<div id="subject-menu-content">
+				<div class="subject-menu-item-header">
+					<%= image_tag("faculty.png") %>
+					<span><%= t 'course1' %></span>
+				</div>
+				<ul id="subject-menu-course">
+					<li>
+						<%= check_box_tag "all-course", 0, true %>
+						<span><%= t '.all_faculty' %></span>
+					</li>
+					<% @university.faculties.each do |faculty| %>
+					<li class="faculty-item">
+						<%= check_box_tag :faculty, faculty.id %>
+						<span><%= faculty.name %></span>
+						<ul>
+							<% faculty.courses.each do |course| %>
+							<li>
+								<%= check_box_tag :course, course.id %>
+								<span><%= course.name %></span>
+							</li>
+							<% end %>
+						</ul>
+					</li>
+					<% end %>
+				</ul>
+				
+				<div class="subject-menu-item-header">
+					<%= image_tag("uni_year.png") %>
+					<span><%= t 'uni_year' %></span>
+				</div>
+				<table class="table table-bordered" id="subject-menu-year">
+					<tr>
+						<td colspan="2" class="active" id="all-year"><%= t '.all_uni_year' %></td>
+					</tr>
+					  <% @university.uni_years.each do |uni_year| %>
+							<% uni_year.semesters.each do |semester| %>
+					    <tr>
+					    	<% if semester == uni_year.semesters.first %>
+					    	<td rowspan="<%= uni_year.semesters.count %>" data-id="<%= uni_year.id %>" data-type="uni_year"><%= uni_year.name %></td>
+					    	<% end %>
+					    	<td data-id="<%= semester.id %>" data-type="semester" data-parent="<%= uni_year.id %>"><%= semester.name %></td>
+					    </tr>
 				    	<% end %>
-				    	<td data-id="<%= semester.id %>" data-type="semester" data-parent="<%= uni_year.id %>"><%= semester.name %></td>
-				    </tr>
-			    	<% end %>
-			    <% end %>
-			</table>
-			
-			<div class="subject-menu-header">
-				<%= image_tag("tag.png") %>
-				<span><%= t 'tag' %></span>
-			</div>
-			<div id="subject-menu-tag">
-		  <% @university.subjects.tag_counts.order('count desc').limit(10).each do | tag | %>
-	  		<button class="label-tag label-xs"><%= tag.name %></button>
-			<% end %>
-			</div>
-			
-			<div class="subject-menu-header">
-				<%= image_tag("week.png") %>
-				<span><%= t 'day' %>&bull;<%= t 'time' %></span>
-			</div>
-			<div id="subject-menu-week">
-				<div id="subject-time">
-					<%= select_tag :time, options_for_select(0.upto(Period::MAX_TIME).map { |t| [t('date.period_names')[t], t] }), class: 'selectpicker', data: {width: 'auto', style: 'btn-sm btn-default'}, title: '' %>
+				    <% end %>
+				</table>
+				
+				<div class="subject-menu-item-header">
+					<%= image_tag("tag.png") %>
+					<span><%= t 'tag' %></span>
 				</div>
-				<div id="subject-day">
-					<%= select_tag :day, options_for_select(0.upto(Period::MAX_DAY).map { |d| [t('date.abbr_day_names_with_all')[d], d] }), class: 'selectpicker', data: {width: 'auto', style: 'btn-sm btn-default'}, title: '' %>
+				<div id="subject-menu-tag">
+			  <% @university.subjects.tag_counts.order('count desc').limit(10).each do | tag | %>
+		  		<button class="label-tag label-xs"><%= tag.name %></button>
+				<% end %>
 				</div>
-			</div>
+				
+				<div class="subject-menu-item-header">
+					<%= image_tag("week.png") %>
+					<span><%= t 'day' %>&bull;<%= t 'time' %></span>
+				</div>
+				<div id="subject-menu-week">
+					<div id="subject-time">
+						<%= select_tag :time, options_for_select(0.upto(Period::MAX_TIME).map { |t| [t('date.period_names')[t], t] }), class: 'selectpicker', data: {width: 'auto', style: 'btn-sm btn-default'}, title: '' %>
+					</div>
+					<div id="subject-day">
+						<%= select_tag :day, options_for_select(0.upto(Period::MAX_DAY).map { |d| [t('date.abbr_day_names_with_all')[d], d] }), class: 'selectpicker', data: {width: 'auto', style: 'btn-sm btn-default'}, title: '' %>
+					</div>
+				</div>
+				
+				<button id="subject-menu-close" class="btn btn-orange">OK</button>
+
+			</div><!-- end of subject menu content -->
 		</div><!-- subject menu right -->
 		
 		<!-- subjects list goes here -->
 		<div id="subjects-list-container" class="col-sm-9 col-xs-12 no-padding">
-			<div id="subjects-list-title"><%= t 'subject_plural' %></div>
-			<% if user_signed_in? %>
-			<div id="subject-order-option" class="clear">
-				<div class="btn-group">
-				  <button data-type="all" class="btn btn-default <%= 'active' if @user.settings(:subject).style == :all %>"><%= t 'y' %></button>
-				  <button data-type="semester" class="btn btn-default <%= 'active' if @user.settings(:subject).style == :semester %>"><%= t 's' %></button>
-				  <button data-type="note_count" class="btn btn-default <%= 'active' if @user.settings(:subject).style == :note_count %>"><%= t 'n' %></button>
+			<div id="subjects-list-header">
+				<div id="subjects-list-title" class="hidden-xs"><%= t 'subject_plural' %></div>
+				<a id="subject-filter-trigger" class="visible-xs btn btn-default"><span class="glyphicon glyphicon-th"></span></a>
+				<% if user_signed_in? %>
+				<div id="subject-order-option">
+					<div class="btn-group">
+					  <button data-type="all" class="btn btn-default <%= 'active' if @user.settings(:subject).style == :all %>"><%= t 'y' %></button>
+					  <button data-type="semester" class="btn btn-default <%= 'active' if @user.settings(:subject).style == :semester %>"><%= t 's' %></button>
+					  <button data-type="note_count" class="btn btn-default <%= 'active' if @user.settings(:subject).style == :note_count %>"><%= t 'n' %></button>
+					</div>
 				</div>
+				<% end %>
 			</div>
-			<% end %>
 			
 			<div id="subjects-list">
 				<%= render collection: @subjects, partial: 'subject_line', as: :subject || content_tag(:div, t('subject_not_found'), class: 'message') %>		
@@ -400,6 +408,30 @@
 		    }
 			});
 		}
+		
+		$("#subject-menu-close").on("click", function() {
+			$.magnificPopup.close(); // Close popup that is currently opened (shorthand)
+		});
+		
+		$('#subject-filter-trigger').magnificPopup({
+		  removalDelay: 300,
+		  items: {
+		      src: '#subject-menu-right',
+		      type: 'inline'
+		  },
+		  mainClass: "mfp-move-horizontal",
+		  callbacks: {
+			  beforeOpen: function() {
+			  	$("#subject-menu-right").removeClass().addClass("mfp-hide");
+			  	$("#subject-menu-close").css("display", "inline-block");
+			  },
+		    afterClose: function() {
+			  	$("#subject-menu-right").removeClass().addClass("col-sm-3 col-xs-12 hidden-xs pull-right");
+			  	$("#subject-menu-close").css("display", "none");
+			  },
+			}
+		});
+
 		
 	});
 </script>

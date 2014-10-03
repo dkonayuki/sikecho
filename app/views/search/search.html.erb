@@ -41,6 +41,8 @@
 </div>
 <script>
 	$(document).ready(function() {
+		$("body").css("background-color", "#fff");
+		
 		type = getParameterByName("type");
 		if (type != "") {
 			$("#search-menu a:contains('" + type + "')").attr("class", "active");
