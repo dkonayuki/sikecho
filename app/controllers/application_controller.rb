@@ -24,7 +24,6 @@ class ApplicationController < ActionController::Base
     if !params[:locale].blank?
       session[:locale] = params[:locale]
     end
-    puts 'locale'
     #I18n.locale = current_user.locale if user_signed_in?
     # current_user.locale
     # request.domain

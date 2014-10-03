@@ -369,6 +369,7 @@ en:
       new_subject: New subject
       all_faculty: All faculties
       all_uni_year: All School Years
+      popup_ok: OK
     form:
       subject_name: Title
       select_image: Select image

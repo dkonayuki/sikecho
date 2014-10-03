@@ -339,6 +339,7 @@ ja:
       new_subject: 新規授業
       all_faculty: 学部共通
       all_uni_year: 全学年
+      popup_ok: 絞り込む
     form:
       subject_name: 授業名
       select_image: 画像選択

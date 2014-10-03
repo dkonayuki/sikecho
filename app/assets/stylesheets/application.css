@@ -144,10 +144,14 @@ body {
 	}
 }
 
+#navbar-collapse-3 .dropdown-toggle {
+	padding: 25px 10px 5px;
+}
+
 .nav-calendar {
 	max-width: 30px;
 	margin-right: 40px;
-	margin-top: 10px;
+	margin-top: 15px;
 }
 
 .nav-avatar {
