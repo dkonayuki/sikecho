@@ -59,7 +59,7 @@
 		$('#fb-login').click(function(e) {
 		  e.preventDefault();
 		  if (navigator.userAgent.match('CriOS')) {
-    		window.open('https://www.facebook.com/dialog/oauth?client_id=' + FbAppId + '&redirect_uri=/users/auth/facebook/callback&scope=email', '', null);
+    		window.open('https://www.facebook.com/dialog/oauth?client_id=' + FbAppId + '&redirect_uri=' + document.domain + '/users/auth/facebook/callback' + '&scope=email', '', null);
 		  } else {
 			  FB.login((function(response) {
 			    if (response.authResponse) {
