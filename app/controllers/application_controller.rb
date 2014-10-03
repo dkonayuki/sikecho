@@ -20,7 +20,11 @@ class ApplicationController < ActionController::Base
   end
   
   def set_locale
-    I18n.locale = params[:locale] || I18n.default_locale
+    I18n.locale = params[:locale] || session[:locale] || I18n.default_locale
+    if !params[:locale].blank?
+      session[:locale] = params[:locale]
+    end
+    puts 'locale'
     #I18n.locale = current_user.locale if user_signed_in?
     # current_user.locale
     # request.domain
