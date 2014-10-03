@@ -24,6 +24,7 @@
 <script>
 // need to run before other scripts
   window.I18n = <%= current_translations.to_json.html_safe %>;
+  window.FbAppId = <%= ENV["FB_APP_ID"] %>
 </script>
 	<div id="wrapper">
 		<%= render 'layouts/navbar' unless @disable_nav %>
