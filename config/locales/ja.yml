@@ -329,6 +329,7 @@ ja:
         sign_in: サインイン
         sign_up: ID登録
         forgot_password: パスワードをお忘れですか？
+        not_receive_confirmation: 本登録確認メールの再送信
     show:
       education: 学歴
       notice1: 現在有効な学歴のラジオボタンをOnにしてください

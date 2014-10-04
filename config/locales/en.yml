@@ -359,6 +359,7 @@ en:
         sign_in: Sign in
         sign_up: Sign up
         forgot_password: Forgot your password?
+        not_receive_confirmation: Didn't receive confirmation instructions?
     show:
       education: Educations
       notice1: Please select your current education
