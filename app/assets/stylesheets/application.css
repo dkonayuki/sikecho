@@ -233,6 +233,11 @@ body {
 
 #signin-header {
 	padding-top: 25px;
+	text-align: center;
+}
+
+#signin-header a {
+	display: inline-block;
 }
 
 #signin-header h4 {

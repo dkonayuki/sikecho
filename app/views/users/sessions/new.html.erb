@@ -36,18 +36,18 @@
   </div>
 </div>
 <script>
-	$(document).ready(function() {
 		console.log("fired");
 
 		$("body").css("background-color", "#fff");
 
-		//add fb-root element
-	  $('body').prepend('<div id="fb-root"></div>');
-
 		$.ajax({
 		  url: "" + window.location.protocol + "//connect.facebook.net/en_US/all.js",
 		  dataType: 'script',
-		  cache: true
+		  cache: true,
+		  beforeSend: function() {
+				//add fb-root element
+			  $('body').prepend('<div id="fb-root"></div>');		  	
+		  }
 		});
 		
 		window.fbAsyncInit = function() {
@@ -55,26 +55,25 @@
 		    appId: FbAppId,
 		    cookie: true
 		  });
+		
+			$('#fb-login').off().on("click", function(e) {
+			  e.preventDefault();
+			  if (navigator.userAgent.match('CriOS')) {
+	    		window.open('https://www.facebook.com/dialog/oauth?client_id=' + FbAppId + '&redirect_uri=' + location.protocol + "//" + location.host + '/users/auth/facebook/callback' + '&scope=email', '', null);
+			  } else {
+				  FB.login((function(response) {
+				    if (response.authResponse) {
+				    	console.log("callback");
+				    	// callback for users
+				      return window.location = '/users/auth/facebook/callback';
+				    }
+				  }), {
+				  	// need email for sign up
+				    scope: "email"
+				  });
+			  }
+	
+			});
 		};
 		
-		$('#fb-login').click(function(e) {
-		  e.preventDefault();
-		  if (navigator.userAgent.match('CriOS')) {
-    		window.open('https://www.facebook.com/dialog/oauth?client_id=' + FbAppId + '&redirect_uri=' + location.protocol + "//" + location.host + '/users/auth/facebook/callback' + '&scope=email', '', null);
-		  } else {
-			  FB.login((function(response) {
-			    if (response.authResponse) {
-			    	console.log("callback");
-			    	// callback for users
-			      return window.location = '/users/auth/facebook/callback';
-			    }
-			  }), {
-			  	// need email for sign up
-			    scope: "email"
-			  });
-		  }
-
-		});
-		
-	});
 </script>
