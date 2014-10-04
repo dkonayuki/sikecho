@@ -34,10 +34,10 @@
 		  </button>
 		  <ul class="dropdown-menu" role="menu">
 		    <li class="<%= 'active' if I18n.locale == :ja %>">
-		    	<%= link_to "日本語", locale: nil %>
+		    	<%= link_to "日本語", locale: :ja %>
 	    	</li>
 		    <li class="<%= 'active' if I18n.locale == :en %>">
-		    	<%= link_to "English", locale: "en" %>
+		    	<%= link_to "English", locale: :en %>
 				</li>
 		  </ul>
 		</div>

@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook, :twitter], authentication_keys: [:login]
          
   validates :username, presence: true, length: 4..16, on: :create, uniqueness: { case_sensitive: false }
@@ -125,6 +125,11 @@ class User < ActiveRecord::Base
     avatar_url = URI.parse(uri)
     avatar_url.scheme = 'https'
     avatar_url.to_s
+  end
+  
+  protected
+  def confirmation_required?
+    false
   end
   
 end
