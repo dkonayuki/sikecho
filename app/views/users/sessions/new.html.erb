@@ -37,6 +37,7 @@
 </div>
 <script>
 	$(document).ready(function() {
+		console.log("fired");
 
 		$("body").css("background-color", "#fff");
 
@@ -63,6 +64,7 @@
 		  } else {
 			  FB.login((function(response) {
 			    if (response.authResponse) {
+			    	console.log("callback");
 			    	// callback for users
 			      return window.location = '/users/auth/facebook/callback';
 			    }
