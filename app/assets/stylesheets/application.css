@@ -97,11 +97,11 @@ body {
 }
 
 .search-bar .form-control {
-	border: 1px solid #E67E22;
+	border: 1px solid #34495E;
 }
 
 .search-bar .form-control:focus {
-	border: 1px solid #E67E22;
+	border: 1px solid #34495E;
 }
 
 #navbar-search {
