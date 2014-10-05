@@ -96,6 +96,14 @@ body {
 	border-bottom: 1px solid #e7e7e7;
 }
 
+.search-bar .form-control {
+	border: 1px solid #E67E22;
+}
+
+.search-bar .form-control:focus {
+	border: 1px solid #E67E22;
+}
+
 #navbar-search {
 	padding: 6px 15px !important;
 }
