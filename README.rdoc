@@ -6,7 +6,7 @@ Rails version: 4.1.0
 
 Bootstrap: 3.2.0
 
-typeahead.js 0.10.1
+typeahead.js 0.10.5
 
 X-editable - v1.5.1 (custom)
 
