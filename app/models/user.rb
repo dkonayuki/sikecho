@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   
   has_settings do |s|
     s.key :note, defaults: { order: :time }
-    s.key :subject, defaults: { style: :all }
+    s.key :subject, defaults: { order: :all }
   end
   
   has_attached_file :avatar, styles: {thumbnail: ["60x60#", :jpg], small: ["150x150>", :jpg]}, #force type

@@ -27,50 +27,50 @@
 		
         <div class="scroller"><!-- this is for emulating position fixed of the nav -->
             <div class="scroller-inner">
-                <!-- site content goes here -->
+            <!-- site content goes here -->
                 
-<div id="notes">
-	<div class="filter-bar">
-		
-		<!-- trigger btn -->
-		<a href="#" id="pushmenu-trigger" class="visible-xs btn btn-default pull-left"><span class="glyphicon glyphicon-cog"></span></a>
-		
-	  <%= link_to new_note_path, class: 'btn btn-default', id:'new-note-btn' do %>
-	  <span class="glyphicon glyphicon-plus-sign"></span>
-	  <span id="new-note-text"><%= t('.new_note') %></span>
-		<% end %>
-	
-	  <%= form_tag notes_path, method: :get, class: "filter-form", id: 'filter-note' do %>
-	    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: t('note_search'), autocorrect: "off", autocapitalize: "off" %>
-		<% end %>
-		<ul class="hidden-xs filter-menu">
-	  <li><%= link_to t('all_option'), notes_path(filter: 'all'), data: {type: 'all'} %></li>
-		<li><%= link_to t('.my_note'), notes_path(filter: 'my_note'), data: {type: 'my_note'} %></li>
-		<li><%= link_to t('.registered_subjects_note'), notes_path(filter: 'registered_note'), data: {type: 'registered_note'} %></li>
-	  <li>
-	  	<%= link_to notes_path(filter: 'new_arrival_note'), data: {type: 'new_arrival_note'} do %>
-		  	<%= t('.new_arrival_note') %>
-	    	<% if unread_notes_count > 0 %>
-	    		<span class="badge badge-important"><%= unread_notes_count %></span>
-	    	<% end %>
-	  	<% end %>
-	  </li>
-		</ul>
-	</div>
-	<div id="note-order-option">
-		<div class="btn-group">
-		  <button type="button" data-type="alphabet" class="btn btn-default <%= 'active' if @user.settings(:note).order == :alphabet %>"><span class="glyphicon glyphicon-font"></span></button>
-		  <button type="button" data-type="time" class="btn btn-default <%= 'active' if @user.settings(:note).order == :time %>"><span class="glyphicon glyphicon-time"></span></button>
-		  <button type="button" data-type="view" class="btn btn-default <%= 'active' if @user.settings(:note).order == :view %>"><span class="glyphicon glyphicon-eye-open"></span></button>
-		</div>
-	</div>
-	<div id="notes-list" class="text-center">
-		<%= render(partial: 'note', collection: @notes, locals: {show_subject: @show_subject}) || t('note_not_found') %>
-	</div>
-	<div class="hidden-pagination">
-		<%= paginate @notes %>										
-	</div>
-</div>
+						<div id="notes">
+							<div class="filter-bar">
+								
+								<!-- trigger btn -->
+								<a href="#" id="pushmenu-trigger" class="visible-xs btn btn-default pull-left"><span class="glyphicon glyphicon-cog"></span></a>
+								
+							  <%= link_to new_note_path, class: 'btn btn-default', id:'new-note-btn' do %>
+							  <span class="glyphicon glyphicon-plus-sign"></span>
+							  <span id="new-note-text"><%= t('.new_note') %></span>
+								<% end %>
+							
+							  <%= form_tag notes_path, method: :get, class: "filter-form", id: 'filter-note' do %>
+							    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: t('note_search'), autocorrect: "off", autocapitalize: "off" %>
+								<% end %>
+								<ul class="hidden-xs filter-menu">
+							  <li><%= link_to t('all_option'), notes_path(filter: 'all'), data: {type: 'all'} %></li>
+								<li><%= link_to t('.my_note'), notes_path(filter: 'my_note'), data: {type: 'my_note'} %></li>
+								<li><%= link_to t('.registered_subjects_note'), notes_path(filter: 'registered_note'), data: {type: 'registered_note'} %></li>
+							  <li>
+							  	<%= link_to notes_path(filter: 'new_arrival_note'), data: {type: 'new_arrival_note'} do %>
+								  	<%= t('.new_arrival_note') %>
+							    	<% if unread_notes_count > 0 %>
+							    		<span class="badge badge-important"><%= unread_notes_count %></span>
+							    	<% end %>
+							  	<% end %>
+							  </li>
+								</ul>
+							</div>
+							<div id="note-order-option">
+								<div class="btn-group">
+								  <button type="button" data-type="alphabet" class="btn btn-default <%= 'active' if @user.settings(:note).order == :alphabet %>"><span class="glyphicon glyphicon-font"></span></button>
+								  <button type="button" data-type="time" class="btn btn-default <%= 'active' if @user.settings(:note).order == :time %>"><span class="glyphicon glyphicon-time"></span></button>
+								  <button type="button" data-type="view" class="btn btn-default <%= 'active' if @user.settings(:note).order == :view %>"><span class="glyphicon glyphicon-eye-open"></span></button>
+								</div>
+							</div>
+							<div id="notes-list" class="text-center">
+								<%= render(partial: 'note', collection: @notes, locals: {show_subject: @show_subject}) || t('note_not_found') %>
+							</div>
+							<div class="hidden-pagination">
+								<%= paginate @notes %>										
+							</div>
+						</div><!-- end of notes div -->
 
             </div><!-- /scroller-inner -->
         </div><!-- /scroller -->
@@ -79,36 +79,68 @@
 </div><!-- /mp-container -->
 
 <script>
+	
+/*for notes list reload*/
+function reloadNoteList() {
+	var data = new Object();
+	
+	//add filter
+	data.filter = $(".filter-menu .active").data("type");
+	
+	//check if order option is needed
+	$("#note-order-option button").each(function() {
+		if ($(this).hasClass("active")) {
+			data.order = $(this).data("type");
+		}
+	});
+	
+	//check if search query
+	if ($("#filter-note #search").val() != "") {
+		data.search = $("#filter-note #search").val();
+	}
+
+  $.ajax({
+		//use current locale
+	  url: "/" + I18n["meta"]["code"] + "/notes",
+	  data: data,
+	  success: ajaxSuccess,
+	  dataType: "script",
+		contentType: "application/json"
+	});
+	
+	//replace current url, compatiable with turbolinks
+  window.history.replaceState({ turbolinks: true }, "", "/" + I18n["meta"]["code"] + "/notes?" + decodeURIComponent($.param(data, false)));
+	//for pushState
+	//window.history.pushState({ turbolinks: true, position: window.history.state.position + 1 }, '', page_tab);
+}
+
+function prepareLoad() {
+
+	// need to set active class for filter menu
+	var filter = getParameterByName("filter");
+	if (filter == null) {
+		//default
+		$(".filter-menu a[data-type='all']").addClass("active");
+		$("#mp-menu a[data-type='all']").addClass("active");
+	} else {
+		$(".filter-menu a[data-type='" + filter + "']").addClass("active");
+		$("#mp-menu a[data-type='" + filter + "']").addClass("active")
+	}
+}
+
 	$(document).ready(function() {
 		
 		$("body").css("background-color", "#fff");
+		prepareLoad();
 
 		/*For live search*/
 		var timeout; // add delay time
 	  $("#filter-note input").keyup(function() {
 			window.clearTimeout(timeout); //clear delay
-	    timeout = window.setTimeout(function(){ //set a new delay, after an amount of time, ajax function will be called
-			  $.ajax({
-				  url: $("#filter-note").attr("action"),
-				  data: $("#filter-note").serialize() + "&filter=" + $(".filter-menu .active").text(), //default contenttype is url text
-				  success: ajaxSuccess,
-				  dataType: "script"
-				});
-			}, 500);
+	    timeout = window.setTimeout(reloadNoteList, 500);
 
 			return false;
 	  });
-
-		// need to set active class for filter menu
-		var filter = getParameterByName("filter");
-		if (filter == "") {
-			//default
-			$(".filter-menu a[data-type='all']").addClass("active");
-			$("#mp-menu a[data-type='all']").addClass("active");
-		} else {
-			$(".filter-menu a[data-type='" + filter + "']").addClass("active");
-			$("#mp-menu a[data-type='" + filter + "']").addClass("active")
-		}
 
 	  /*For note order option*/
 	 	$("#note-order-option button").on("click", function() {
@@ -116,42 +148,39 @@
 	 			$(this).removeClass("active");
 	 		});
 	 		$(this).addClass("active");
-	 		var data = "filter=" + $(".filter-menu .active").text() + "&order=" + $(this).data("type");
-	 		if ($("#filter-note #search").val() != "") {
-	 			data += "&search=" + $("#filter-note #search").val();
-	 		}
-
-		  $.ajax({
-				//use current locale
-			  url: "/" + I18n["meta"]["code"] + "/notes",
-			  data: data ,//default contenttype is url text
-			  success: ajaxSuccess,
-			  dataType: "script"
-			});
+			reloadNoteList();
 	 	});
 	 	
 	 	/*For mobile push menu active*/
 		var pushMenu = new mlPushMenu( document.getElementById('mp-menu'), document.getElementById('pushmenu-trigger') );
 	 	$("#mp-menu li a").off("click").on("click", function() {
-			$.getScript(this.href, ajaxSuccess); 
-	  	$(".filter-form input").val("");
 	  	$("#mp-menu li a").each(function() {
 	  		$(this).removeClass("active");
 	  	});
 	  	$(this).addClass("active");
+	  	$(".filter-menu li a").each(function() {
+	  		$(this).removeClass("active");
+	  	});
+	  	$(".filter-menu li a[data-type=" + $(this).data("type") + "]").addClass("active");
 	  	//close push menu
 	  	pushMenu._resetMenu();
+	  	
+	  	reloadNoteList();
 		  return false;
 		});
 	 	
 	 	/*For filter menu active*/
 	 	$(".filter-menu li a").off("click").on("click", function() {
-			$.getScript(this.href, ajaxSuccess); 
 	  	$(".filter-menu li a").each(function() {
 	  		$(this).removeClass("active");
 	  	});
 	  	$(this).addClass("active");
-	  	$(".filter-form input").val("");
+	  	$("#mp-menu li a").each(function() {
+	  		$(this).removeClass("active");
+	  	});
+	  	$("#mp-menu li a[data-type=" + $(this).data("type") + "]").addClass("active");
+	  	
+	  	reloadNoteList();
 		  return false;
 		});
 		
@@ -172,4 +201,5 @@
 		}
 		
 	});
+
 </script>

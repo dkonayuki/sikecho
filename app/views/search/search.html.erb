@@ -44,7 +44,7 @@
 		$("body").css("background-color", "#fff");
 		
 		type = getParameterByName("type");
-		if (type != "") {
+		if (type != null) {
 			$("#search-menu a:contains('" + type + "')").attr("class", "active");
 		} else if (filter == "") {
 			//default

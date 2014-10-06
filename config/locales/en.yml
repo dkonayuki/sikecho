@@ -369,7 +369,7 @@ en:
       subject_search: Search subject
       new_subject: New subject
       all_faculty: All faculties
-      all_uni_year: All School Years
+      all_semester: All Semesters
       popup_ok: OK
     form:
       subject_name: Title

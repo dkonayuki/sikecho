@@ -1193,13 +1193,13 @@ body {
 	display: none;
 }
 
-#subject-menu-year {
+#subject-menu-semester {
 	text-align: center;
 	max-width: 250px;
 	cursor: pointer; 
 }
 
-#subject-menu-year td {
+#subject-menu-semester td {
 	vertical-align: middle;
 }
 

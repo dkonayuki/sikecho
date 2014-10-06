@@ -70,11 +70,33 @@ function ajaxSuccess() {
 	$(window).scroll();		
 }
 
-function getParameterByName(name) {
-  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-      results = regex.exec(location.search);
-  return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+function getParameterByName(key,target){
+	var values = [];
+	if(!target){
+    target = location.href;
+	}
+	
+	key = key.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+	
+	var pattern = key + '=([^&#]+)';
+	var o_reg = new RegExp(pattern,'ig');
+	while(true){
+    var matches = o_reg.exec(target);
+    if(matches && matches[1]){
+      values.push(decodeURIComponent(matches[1]));
+    }
+    else{
+      break;
+    }
+	}
+	
+	if(!values.length){
+		return null;   
+	}
+	else {
+		return values;
+	}
+
 }
 
 function prepareFirstTime() {
@@ -102,5 +124,5 @@ $(document).on("page:change", function() {
 	$(".has-tooltip").tooltip({
     'container':'body'
   });
-
+  
 });
