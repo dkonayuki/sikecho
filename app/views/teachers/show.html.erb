@@ -6,11 +6,7 @@
 			</div>
 			<div class="skc-box-desc">
 				<h4>
-					<% if I18n.locale == :en %>
-						<%= @teacher.name_en %>
-					<% else %>
-						<%= @teacher.name_kanji %>
-					<% end %>
+					<%= @teacher.full_name %>
 				</h4>
 				<hr />
 				<p>

@@ -11,4 +11,8 @@ class Teacher < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
   
+  def full_name
+    I18n.locale == :ja ? name_kanji : name_en
+  end
+  
 end

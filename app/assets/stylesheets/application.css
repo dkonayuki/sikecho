@@ -104,6 +104,10 @@ body {
 	border: 1px solid #34495E;
 }
 
+.search-bar .tt-dropdown-menu .tt-suggestion {
+  padding: 0 2px 0 5px;
+}
+
 #navbar-search {
 	padding: 6px 15px !important;
 }
@@ -180,6 +184,43 @@ body {
 .nav-mobile {
 	text-align: center;
 }
+
+.subject-typeahead-item {
+	padding: 0;
+}
+
+.subject-typeahead-item img {
+	height: 40px;
+	width: 40px;
+	float: left;
+	padding: 2px;
+}
+
+.subject-typeahead-content {
+	padding: 5px 2px 5px 5px;
+	width: auto;
+	height: 40px;
+	overflow: hidden;
+}
+
+.subject-typeahead-name {
+	color: #222;
+	font-size: 12px;
+	line-height: 16px;
+	height: 16px;
+	font-weight: 600;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.subject-typeahead-info {
+	font-size: 10px;
+	color: #999;
+	line-height: 16px;
+}
+
 
 /*Sign up page
  ===============================================================================================*/

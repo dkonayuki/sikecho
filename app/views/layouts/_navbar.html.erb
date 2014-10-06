@@ -81,7 +81,7 @@
 	  <div class="collapse navbar-collapse no-transition" id="navbar-collapse-2">
 		<%= form_tag search_path, class: "navbar-form navbar-left search-bar" do %>
 		  <div class="input-group">
-		    <%= text_field_tag :query, params[:query], class: 'form-control typeahead' %>
+		    <%= text_field_tag :search, params[:search], class: 'form-control typeahead' %>
 				<div class="input-group-btn">
 					<%= button_tag(type: "submit", class: "btn btn-search") do %>
 					  <i class="glyphicon glyphicon-search"></i>
@@ -120,12 +120,41 @@
 	  /*For search bar submit*/
 	  $(".search-bar").on("submit", function() {
 	  	// default search is subject
-	  	window.location.href = "/" + I18n["meta"]["code"] + "/search?query=" + $(this).find("#query").val() + "&type=subject";
+	  	//window.location.href = "/" + I18n["meta"]["code"] + "/search?query=" + $(this).find("#query").val() + "&type=subject";
+	  	window.location.href = "/" + I18n["meta"]["code"] + "/subjects?search=" + $(this).find("#search").val();
 	  	return false;
 	  });
+	  
+	  var subjectsList = new Bloodhound({
+		  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+		  queryTokenizer: Bloodhound.tokenizers.whitespace,
+		  //prefetch: '/subjects.json',
+		  remote: '/search?q=%QUERY'
+		});
+		subjectsList.initialize();
+		 
+		//$(".typeahead").typeahead("destroy");
+		$('.typeahead').typeahead(null, {
+		  displayKey: 'name',
+		  source: subjectsList.ttAdapter(),
+		  templates: {
+				//empty: ,
+		    suggestion: Handlebars.compile(
+		      "<div class='subject-typeahead-item'>" +
+			      "<a href={{typeahead_subject_path}}>" +
+				      "<img src='{{typeahead_thumbnail}}'></img>" +
+				      "<div class='subject-typeahead-content'>" +
+				      	"<div class='subject-typeahead-name'>{{name}}</div>" +
+				      	"<div class='subject-typeahead-info'>{{teachers.0.full_name}}</div>" +
+				      "</div>" +
+			      "</a>" +
+		      "</div>"
+		    )
+		  }
+		});
 
 		/*For typeahead*/
-		var searchSource = function(query, cb) {
+		/*var searchSource = function(query, cb) {
 		  var results = [];
 		  var subject_item = new Object();
 		  subject_item.value = I18n["layouts"]["navbar"]["subject_search"] + ": " + "'" + query + "'";
@@ -152,6 +181,6 @@
 		});
 		$(".typeahead").on("typeahead:selected", function(event, item) {
 			window.location.href = item.url;
-		});
+		});*/
 	});
 </script>

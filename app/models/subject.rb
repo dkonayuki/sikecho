@@ -1,4 +1,7 @@
 class Subject < ActiveRecord::Base
+  #for subject_path
+  include Rails.application.routes.url_helpers
+
   validates :name, presence: true
   validates :semester_id, presence: true
   validates :uni_year_id, presence: true
@@ -35,7 +38,7 @@ class Subject < ActiveRecord::Base
   MAX_OUTLINE = 30
   MAX_YEAR_BEGIN = 2010
   MAX_YEAR_END = 2020
-    
+  
   def self.search(search)
     if search
       q = "%#{search.downcase}%"
@@ -48,19 +51,31 @@ class Subject < ActiveRecord::Base
   end
   
   def display_picture_thumbnail
-    if self.picture.present? && self.picture.url(:thumbnail).present?
-      self.picture.url(:thumbnail)
+    if picture.present? && picture.url(:thumbnail).present?
+      picture.url(:thumbnail)
     else
-      'lecture.png'
+      ActionController::Base.helpers.asset_path('lecture.png')
     end
   end
   
   def display_picture_small
-    if self.picture.present? && self.picture.url(:small).present?
-      self.picture.url(:small)
+    if picture.present? && picture.url(:small).present?
+      picture.url(:small)
     else
-      'lecture.png'
+      ActionController::Base.helpers.asset_path('lecture.png')
     end
+  end
+  
+  def typeahead_thumbnail
+    if picture.present? && picture.url(:thumbnail).present?
+      picture.url(:thumbnail)
+    else
+      ActionController::Base.helpers.asset_path('lecture.png')
+    end
+  end
+  
+  def typeahead_subject_path
+    subject_path(self, locale: I18n.locale)
   end
 
 end

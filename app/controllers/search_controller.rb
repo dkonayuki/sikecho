@@ -2,21 +2,20 @@ class SearchController < ApplicationController
   def search
     @user = current_user
     
-    #search subjects and notes
-    @subjects = current_university.subjects.search(params[:query])
-    @notes = current_university.notes.search(params[:query])
-    
-    #prepare instance variable for view
-    @type = params[:type]
-    @query = params[:query]
+    #search subjects
+    @subjects = current_university.subjects.search(params[:q]).limit(7)
     
     #custom show
     @show_course = true
-    @show_subject = true
     
     respond_to do |format|
       format.html
       format.js
+      format.json { render json: @subjects.to_json(only: [:name], 
+          methods: [:typeahead_thumbnail, :typeahead_subject_path], 
+          include: {teachers: {only: [], methods: [:full_name]}}
+          )
+        }
     end
   end
 end

@@ -37,7 +37,8 @@
 $(document).ready(function() {
 	
 	var query = $("#filter-schedule #search").val();
-
+	
+	/*set dropable for schedule table*/
 	$("#schedule-table").droppable({
 		accept: ".subject-draggable",
     drop: function( event, ui ) {
@@ -48,6 +49,7 @@ $(document).ready(function() {
       	dataType: "script",
       });
     },
+    // period cell will be highlighted during mouse over
     over: function( event, ui ) {
 			$.ajax({
 				url: "/subjects/" + ui.draggable[0].getAttribute("data-id") + "/periods",
@@ -64,6 +66,8 @@ $(document).ready(function() {
     }
 	});
 	
+	
+	/*get subjects list by period when click on cell*/
 	$("#schedule-table").off().on("click", ".cell", function() {
 		$(".cell").not(this).removeClass("active");
 		if ($(this).find(".count").length) {
@@ -81,7 +85,7 @@ $(document).ready(function() {
 						$("#list-subjects-by-period").css("display", "none");
 					}
 				}
-			})			
+			});
 		} else {
 			$("#list-subjects-by-period").css("display", "none");
 		}

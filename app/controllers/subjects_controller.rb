@@ -72,7 +72,7 @@ class SubjectsController < ApplicationController
       #reorder subjects list
       case @user.settings(:subject).order
       when :all
-        @subjects = @subjects.order('year DESC, view_count DESC')
+        @subjects = @subjects.order('year DESC, name ASC, view_count DESC')
       when :semester
         @subjects = @subjects.joins(:semester).joins(:uni_year).order('uni_years.no ASC, semesters.no ASC')
       when :note_count
@@ -123,7 +123,7 @@ class SubjectsController < ApplicationController
     
     respond_to do |format|
       format.html 
-      format.js   
+      format.js
     end
   end
 

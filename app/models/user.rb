@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
     if self.avatar.present? && self.avatar.url(:small).present?
       self.avatar.url(:small)
     else
-      'user.png'
+      ActionController::Base.helpers.asset_path('user.png')
     end
   end
   
@@ -72,7 +72,7 @@ class User < ActiveRecord::Base
     if self.avatar.present? && self.avatar.url(:small).present?
       self.avatar.url(:small)
     else
-      'avatar.png'
+      ActionController::Base.helpers.asset_path('avatar.png')
     end
   end
   

@@ -13,10 +13,10 @@ class Document < ActiveRecord::Base
   include Rails.application.routes.url_helpers
     
   def to_jq_upload
-    if self.file_type == '.pdf'
+    if file_type == '.pdf'
     {
-      "id" => self.id,
-      "title" => self.title,
+      "id" => id,
+      "title" => title,
       "name" => read_attribute(:upload_file_name),
       "size" => read_attribute(:upload_file_size),
       "url" => upload.url(:original),
@@ -26,8 +26,8 @@ class Document < ActiveRecord::Base
     }
     else
     {
-      "id" => self.id,
-      "title" => self.title,
+      "id" => id,
+      "title" => title,
       "name" => read_attribute(:upload_file_name),
       "size" => read_attribute(:upload_file_size),
       "url" => upload.url(:original),

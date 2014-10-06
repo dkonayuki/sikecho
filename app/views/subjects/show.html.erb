@@ -11,7 +11,7 @@
 		</div>
 		
 		<% if user_signed_in? %>
-		<div class="show-subject-menu" role="complementary" id="show-subject-schedule" data-id="<%= @subject.id %>" data-name="<%= @subject.name %>" data-img="<%= image_path(@subject.display_picture_small) %>">
+		<div class="show-subject-menu" role="complementary" id="show-subject-schedule" data-id="<%= @subject.id %>" data-name="<%= @subject.name %>" data-img="<%= @subject.display_picture_small %>">
 			<%= render 'schedule_menu' %>
 		</div>
 		
@@ -107,11 +107,7 @@
 	      		<% if teacher != @subject.teachers.first %>
 	      		&bull;
 	      		<% end %>
-						<% if I18n.locale == :en %>
-							<%= link_to teacher.name_en, teacher %>
-						<% else %>
-							<%= link_to teacher.name_kanji, teacher %>
-						<% end %>
+						<%= link_to teacher.full_name, teacher %>
     			<% end %>
 				</p>
 			</div>

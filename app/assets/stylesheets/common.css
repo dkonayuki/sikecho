@@ -302,6 +302,8 @@ a:hover {
 @media (max-width: 767px) {
 	.skc-box-menu {
 		display: block;
+		top: 10px;
+		right: 10px;
 	}
 	.skc-box-content {
 		padding: 15px;
