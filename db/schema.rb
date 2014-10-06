@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140929163637) do
+ActiveRecord::Schema.define(version: 20141006180250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,6 +150,19 @@ ActiveRecord::Schema.define(version: 20140929163637) do
   end
 
   add_index "read_marks", ["user_id", "readable_type", "readable_id"], name: "index_read_marks_on_user_id_and_readable_type_and_readable_id", using: :btree
+
+  create_table "requests", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "address"
+    t.string   "website"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+  end
 
   create_table "semesters", force: true do |t|
     t.integer  "no"
