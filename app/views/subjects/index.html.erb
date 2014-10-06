@@ -105,14 +105,14 @@
 				</div>
 				<% end %>
 			</div>
-			
 			<div id="subjects-list">
-				<%= render collection: @subjects, partial: 'subject_line', as: :subject || content_tag(:div, t('subject_not_found'), class: 'message') %>		
+			<% puts @subjects.inspect %>
+				<%= render(collection: @subjects, partial: 'subject_line', as: :subject) || content_tag(:div, t('subject_not_found'), class: 'message') %>		
 			</div>
 			
 			<!-- for endless pagination -->
 			<div class="hidden-pagination">
-				<%= paginate @subjects %>										
+				<%= paginate @subjects %>
 			</div>
 		</div>
 
