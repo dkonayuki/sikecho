@@ -193,7 +193,7 @@ body {
 	height: 40px;
 	width: 40px;
 	float: left;
-	padding: 2px;
+	padding: 4px;
 }
 
 .subject-typeahead-content {
@@ -205,7 +205,7 @@ body {
 
 .subject-typeahead-name {
 	color: #222;
-	font-size: 12px;
+	font-size: 11px;
 	line-height: 16px;
 	height: 16px;
 	font-weight: 600;
@@ -216,7 +216,7 @@ body {
 }
 
 .subject-typeahead-info {
-	font-size: 10px;
+	font-size: 9px;
 	color: #999;
 	line-height: 16px;
 }
