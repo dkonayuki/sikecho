@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook, :twitter], authentication_keys: [:login]
+  
+  before_validation :strip_blanks
+  #after_validation :strip_blanks
          
   validates :username, presence: true, length: 4..16, on: :create, uniqueness: { case_sensitive: false }
   
@@ -130,6 +133,11 @@ class User < ActiveRecord::Base
   protected
   def confirmation_required?
     false
+  end
+  
+  def strip_blanks
+    self.username = self.username.strip
+    self.email = self.email.strip
   end
   
 end
