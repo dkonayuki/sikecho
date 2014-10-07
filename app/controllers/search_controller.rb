@@ -11,7 +11,7 @@ class SearchController < ApplicationController
     respond_to do |format|
       format.html
       format.js
-      format.json { render json: @subjects.to_json(only: [:name], 
+      format.json { render json: @subjects.to_json(only: [:name, :year], 
           methods: [:typeahead_thumbnail, :typeahead_subject_path], 
           include: {teachers: {only: [], methods: [:full_name]}}
           )
