@@ -136,8 +136,8 @@ class User < ActiveRecord::Base
   end
   
   def strip_blanks
-    self.username = self.username.strip
-    self.email = self.email.strip
+    self.username = self.username.strip if !self.username.blank?
+    self.email = self.email.strip if !self.email.blank?
   end
   
 end
