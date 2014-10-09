@@ -161,7 +161,7 @@ body {
 }
 
 .nav-calendar {
-	max-width: 30px;
+	max-width: 25px;
 	margin-right: 40px;
 	margin-top: 15px;
 }
@@ -1215,6 +1215,7 @@ body {
 .subject-menu-item-header img {
 	width: 25px;
 	height: 25px;
+	margin-right: 3px;
 }
 
 .subject-menu-item-header span {
