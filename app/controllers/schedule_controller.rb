@@ -53,7 +53,7 @@ class ScheduleController < ApplicationController
     
     respond_to do |format|    
       format.html { redirect_to schedule_path }
-      format.js { render status: status }
+      format.js
       format.json { render json: {status: status } }
     end
   end
