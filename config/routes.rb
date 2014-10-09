@@ -1,5 +1,9 @@
 Shikechou::Application.routes.draw do
   
+  get 'requests/new'
+
+  get 'requests/create'
+
   get 'request/new'
 
   get 'request/create'
@@ -68,6 +72,10 @@ Shikechou::Application.routes.draw do
       get 'schedule' => :index, as: :schedule
       post 'schedule' => :create, as: 'schedule_create'
       get 'schedule/list_subjects_by_period' => 'schedule#list_subjects_by_period'
+    end
+    
+    resources :requests do
+      
     end
     
     resources :documents do
