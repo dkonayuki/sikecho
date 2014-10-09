@@ -23,24 +23,7 @@ class ScheduleController < ApplicationController
     @subjects = @user.current_university.subjects.joins(:periods).where(periods: {day: params[:day].to_i, time: params[:time].to_i})
   end
   
-  # GET /schedule/subjects.json
-  # GET /schedule/subjects.html
-  def subjects
-    @subjects = [] # equal to Array.new
-    
-    if !params[:subject_id].blank?
-      @subjects = Subject.find(params[:subject_id].to_i)
-    end
-    
-    if !params[:day].blank? && !params[:time].blank?
-      @subjects = @user.current_subjects.joins(:periods).where(periods: {day: params[:day].to_i, time: params[:time].to_i})
-    end
-    
-    respond_to do |format|
-      format.json { render json: @subjects }
-    end
-  end
-  
+  # GET /schedule/list_subjects_by_period
   def list_subjects_by_period
     @list_subjects = @user.current_subjects.joins(:periods).where(periods: {day: params[:day].to_i, time: params[:time].to_i})
     @day = params[:day].to_i
@@ -54,7 +37,13 @@ class ScheduleController < ApplicationController
   def create
     #add new subject
     subject = Subject.find_by_id(params[:subject_id].to_i)
-    @user.current_education.subjects << subject unless @user.current_education.subjects.include?(subject)
+    
+    if @user.current_education.subjects.include?(subject) || !@user.current_university.subjects.include?(subject)
+      status = :error
+    else
+      @user.current_education.subjects << subject unless @user.current_education.subjects.include?(subject)
+      status = :ok    
+    end
         
     #prepare view
     get_schedule_content
@@ -64,7 +53,8 @@ class ScheduleController < ApplicationController
     
     respond_to do |format|    
       format.html { redirect_to schedule_path }
-      format.js 
+      format.js { render status: status }
+      format.json { render json: {status: status } }
     end
   end
 
@@ -74,8 +64,15 @@ class ScheduleController < ApplicationController
   
   # DELETE /schedule/:subject_id
   def destroy
+    subject = Subject.find_by_id(params[:subject_id].to_i)
+    
     #delete subject education relationship
-    @user.current_education.subjects.delete(Subject.find_by_id(params[:subject_id].to_i))
+    if @user.current_education.subjects.include?(subject)
+      @user.current_education.subjects.delete(subject)
+      status = :ok
+    else
+      status = :error
+    end
     
     #prepare view
     get_schedule_content
@@ -86,6 +83,7 @@ class ScheduleController < ApplicationController
     respond_to do |format|    
       format.html { redirect_to schedule_path }
       format.js
+      format.json { render json: {status: status } }
     end
   end
   
