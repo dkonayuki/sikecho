@@ -4,17 +4,19 @@
     <p class="navbar-text pull-left hidden-xs"><%= t '.copyright' %></p>
     <a href="http://help.sikecho.com" class="navbar-btn btn-default btn btn-sm pull-right">
     	<span class="glyphicon glyphicon-question-sign"></span>
-    	<%= t '.help' %>
+    	<span class="hidden-xs"><%= t '.help' %></span>
   	</a>
   	<% if !@disable_uni_select && !user_signed_in? %>
 		<div class="btn-group pull-right dropup" id="university-select">
 		  <button type="button" class="btn navbar-btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
 		    <span class="glyphicon glyphicon-home"></span>
-		    <% if current_university != nil %>
-		    <strong><%= current_university.name %></strong>
-		    <% else %>
-		    <%= t '.university' %>
-		    <% end %>
+		    <span class="hidden-xs">
+			    <% if current_university != nil %>
+			    <strong><%= current_university.name %></strong>
+			    <% else %>
+			    <%= t '.university' %>
+			    <% end %>
+		    </span>
 		    <span class="caret"></span>
 		  </button>
 		  <ul class="dropdown-menu" role="menu">
@@ -29,7 +31,7 @@
 		<div class="btn-group pull-right dropup" id="i18n-select">
 		  <button type="button" class="btn navbar-btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
 		    <span class="glyphicon glyphicon-globe"></span>
-		    <%= t 'meta.language_name' %>
+		    <span class="hidden-xs"><%= t 'meta.language_name' %></span>
 		    <span class="caret"></span>
 		  </button>
 		  <ul class="dropdown-menu" role="menu">

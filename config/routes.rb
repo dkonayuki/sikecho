@@ -1,5 +1,9 @@
 Shikechou::Application.routes.draw do
   
+  get 'request/new'
+
+  get 'request/create'
+
   #devise routes
   devise_for :admins,
     controllers: {sessions: "admins/sessions"}, 
