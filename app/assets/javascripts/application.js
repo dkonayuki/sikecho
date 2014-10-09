@@ -111,7 +111,7 @@ function prepareFirstTime() {
 $(document).ready(function() {
 
 });
-	
+
 $(document).on("page:change", function() {
 	prepareFirstTime();
 

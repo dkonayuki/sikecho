@@ -1,9 +1,8 @@
-
 $(document).on("page:load ready", function() {
+
 	$(".subjects.edit, .subjects.new").ready(function() {
 
 		$('.selectpicker').selectpicker();
-  window['rangy'].initialized = false;
 
 		$("#subject-description").wysihtml5({locale: I18n["meta"]["code_country"]});
 		var tags;		
