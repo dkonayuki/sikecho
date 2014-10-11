@@ -4,7 +4,17 @@ class RequestsController < ApplicationController
   end
 
   def create
-    @request = Request.new(request_params)
+    #check if request university existed
+    @request = Request.find_by_name(request_params[:name].strip)
+    
+    #add count or create new request
+    if @request == nil
+      @request = Request.new(request_params)
+    else
+      @request.count += 1
+    end
+    
+    #render only json
     if @request.save
       render json: {success: true}
     else 

@@ -153,6 +153,7 @@ ActiveRecord::Schema.define(version: 20141006180250) do
 
   create_table "requests", force: true do |t|
     t.integer  "user_id"
+    t.integer  "count",             default: 1
     t.string   "name"
     t.string   "address"
     t.string   "website"
