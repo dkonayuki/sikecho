@@ -221,13 +221,13 @@ class SubjectsController < ApplicationController
   #inline in syllabus
   def inline
     # for inline edit
-    case params[:name].to_s
-    when 'date'
+    case params[:name].to_sym
+    when :date
       #search in array 
       outline = @subject.outlines.find_by_no(params[:pk])
       outline.date = DateTime.strptime(params[:value], '%Y-%m-%d') unless params[:value].blank?
       outline.save
-    when 'content'
+    when :content
       #search in array 
       outline = @subject.outlines.find_by_no(params[:pk])
       outline.content = params[:value]

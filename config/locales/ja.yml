@@ -231,7 +231,8 @@ ja:
     submit:
       create: "登録"
       update: "更新"  
-        
+  
+  error: エラーが発生しました
   username: ユーザー名
   password: パスワード
   password_confirmation: パスワード確認
@@ -404,3 +405,10 @@ ja:
       lab: 研究室
       lab_url: 研究室URL
       subjects: 担当講義
+  requests:
+    new:
+      request_title: リクエスト
+    form:
+      name: 大学名
+      address: 住所
+      website: ウェブサイト

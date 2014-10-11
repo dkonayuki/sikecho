@@ -1762,6 +1762,20 @@ body {
 	width: 33%;
 }
 
+#new-request {
+	background: #fff;
+	max-width: 300px;
+	margin: auto;
+	padding: 15px;
+}
+
+#new-request-title {
+	font-size: 20px;
+	font-weight: 700;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
  /* Footer
  ***************************************************************************/
 

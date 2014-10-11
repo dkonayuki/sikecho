@@ -6,5 +6,6 @@ class Request < ActiveRecord::Base
                             url: "/uploads/requests/:id/logo/:style/:basename.:extension",
                             path: ":rails_root/public/:url" #dont really need path
   validates_attachment_content_type :logo, content_type: ["image/jpg", "image/gif", "image/png", "image/jpeg"]
+  validates :name, presence: true
                             
 end

@@ -435,3 +435,10 @@ en:
       lab: Laboratory
       lab_url: Laboratory URL
       subjects: Subjects
+  requests:
+    new:
+      request_title: Send a request
+    form:
+      name: Name
+      address: Address
+      website: Website
