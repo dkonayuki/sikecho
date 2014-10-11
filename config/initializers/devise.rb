@@ -4,8 +4,8 @@ Devise.setup do |config|
   
   require "omniauth-facebook"
   #OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development? 
-  config.omniauth :facebook, ENV['FB_APP_ID'], ENV['FB_APP_SECRET'], {image_size: 'large', provider_ignores_state: true}
-  config.omniauth :twitter, ENV['TWITTER_APP_KEY'], ENV['TWITTER_APP_SECRET'], {image_size: 'large', provider_ignores_state: true}
+  config.omniauth :facebook, ENV['FB_APP_ID'], ENV['FB_APP_SECRET'], image_size: 'large', provider_ignores_state: true
+  config.omniauth :twitter, ENV['TWITTER_APP_KEY'], ENV['TWITTER_APP_SECRET'], image_size: 'large', provider_ignores_state: true
   
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
@@ -216,7 +216,7 @@ Devise.setup do |config|
 
   # Set this configuration to false if you want /users/sign_out to sign out
   # only the current scope. By default, Devise signs out all scopes.
-  # config.sign_out_all_scopes = true
+  config.sign_out_all_scopes = false
 
   # ==> Navigation configuration
   # Lists the formats that should be treated as navigational. Formats like

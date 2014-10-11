@@ -102,6 +102,8 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     case resource
     when User then
+      #store session user for gmail style login
+      session[:user_id] = current_user.id
       #remember to use url for changing subdomain
       #stored_location_for(resource) will store the last location b4 login
       request.env['omniauth.origin'] || stored_location_for(resource) || root_url(subdomain: resource.current_education.university.codename)

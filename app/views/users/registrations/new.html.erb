@@ -42,7 +42,7 @@
 			<br />
 
 			<label><%= t 'email' %>:</label>
-			<%= f.email_field :email, class: 'form-control', placeholder: 'name@email.com', required: true %>
+			<%= f.email_field :email, class: 'form-control', placeholder: 'name@email.com', required: true, disabled: (!resource.email.blank?) %>
   		<% if resource.errors[:email] %>
   			<ul>
 	      <% resource.errors.full_messages_for(:email).each do |msg| %>

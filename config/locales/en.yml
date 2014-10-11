@@ -361,6 +361,7 @@ en:
         sign_up: Sign up
         forgot_password: Forgot your password?
         not_receive_confirmation: Didn't receive confirmation instructions?
+        login_diferent_account: Login with a different account
     show:
       education: Educations
       notice1: Please select your current education

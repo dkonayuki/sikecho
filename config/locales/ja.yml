@@ -331,6 +331,7 @@ ja:
         sign_up: ID登録
         forgot_password: パスワードをお忘れですか？
         not_receive_confirmation: 本登録確認メールの再送信
+        login_diferent_account: 別のアカウントでログイン
     show:
       education: 学歴
       notice1: 現在有効な学歴のラジオボタンをOnにしてください

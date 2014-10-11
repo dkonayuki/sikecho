@@ -6,33 +6,43 @@
 	<h4>勉強をラクラクに</h4>
 	</div>
 	<div id="signin-form-wrapper">
-      <div class="account-wall">
-          <%= image_tag('avatar_default.png', class: 'profile-img') %>
-        	<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-signin'}) do |f| %>
+    <div class="account-wall">
+    	
+    	<% if @session_user %>
+      	<%= image_tag(@session_user.display_profile_image, class: 'profile-img') %>
+    	<% else %>
+      	<%= image_tag('avatar_default.png', class: 'profile-img') %>
+      <% end %>
+      
+    	<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-signin'}) do |f| %>
 
-					  <%= f.text_field :login, class: 'form-control', placeholder: t('.login_placeholder'), autofocus: true %>
-				    <%= f.password_field :password, placeholder: t('.password_placeholder'), autocomplete: "off", class: 'form-control' %>
-				    <% if flash[:alert] %>
-				      <ul>
-				  			<% flash.each do |name, msg| %>
-					        <li class="error-msg"><%= msg %></li>
-					    	<% end %>
-				      </ul>
-				    <% end %>
-		    			
-					  <%= f.submit t(".login"), class: 'btn btn-lg btn-orange btn-block' %>
-					  
-					  <% if devise_mapping.rememberable? -%>
-					  <label>
-					    <%= f.check_box :remember_me, checked: true %> 
-					    <span><%= t ".remember_me" %></span>
-				    </label>
-					  <% end %>
-						<hr />
-					  <%= render "users/shared/links" %>
-					
-					<% end %>
-      </div>
+	    	<% if @session_user %>
+				  <%= f.text_field :login, class: 'form-control', placeholder: t('.login_placeholder'), value: @session_user.username, disabled: true %>
+			  <% else %>
+				  <%= f.text_field :login, class: 'form-control', placeholder: t('.login_placeholder'), autofocus: true %>
+			  <% end %>
+		    <%= f.password_field :password, placeholder: t('.password_placeholder'), autocomplete: "off", class: 'form-control' %>
+		    <% if flash[:alert] %>
+		      <ul>
+		  			<% flash.each do |name, msg| %>
+			        <li class="error-msg"><%= msg %></li>
+			    	<% end %>
+		      </ul>
+		    <% end %>
+    			
+			  <%= f.submit t(".login"), class: 'btn btn-lg btn-orange btn-block' %>
+			  
+			  <% if devise_mapping.rememberable? -%>
+			  <label>
+			    <%= f.check_box :remember_me, checked: true %> 
+			    <span><%= t ".remember_me" %></span>
+		    </label>
+			  <% end %>
+				<hr />
+			  <%= render "users/shared/links" %>
+			
+			<% end %>
+    </div>
   </div>
 </div>
 <script>
