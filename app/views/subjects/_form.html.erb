@@ -134,13 +134,14 @@
 						<h5><%= t('syllabus') %></h5>
 						<% if @subject.outlines.count > 0 %>
 							<%= select_tag :number_of_outlines, options_for_select(@number_of_outlines_list, selected: @subject.outlines.count), class: 'selectpicker show-tick', data: {width: 'auto', link: outline_subject_path}, id: 'number-of-outlines-select' %>
-							<%= link_to new_auto_subject_path(auto_type: 0), {class: 'btn btn-default syllabus-auto', id: 'new-auto-outline'} do %>
+							<%= link_to new_auto_subject_path(auto_type: 0), {class: 'btn btn-default syllabus-auto has-tooltip', id: 'new-auto-outline', data: {toggle: "tooltip", placement: "top", title: t('.auto_add')} } do %>
 								<span class="glyphicon glyphicon-plus"></span>
 							<% end %>
 							<div id="syllabus-table">
 								<%= render 'syllabus_table', editable: true %>
 							</div>
 						<% else %>
+							<p class="notice">*<%= t('.notice1') %></p>
 							<%= select_tag :number_of_outlines, options_for_select(@number_of_outlines_list, selected: Subject::DEFAULT_OUTLINE), class: 'selectpicker show-tick', data: {width: 'auto'} %>
 						<% end %>
 					</p>

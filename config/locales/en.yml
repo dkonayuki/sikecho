@@ -349,6 +349,7 @@ en:
         education: Educations
         current_password: Current password
         change_password: Change current password
+        notice1: Nickname for comment feature
     sessions:
       new:
         login: Login
@@ -382,6 +383,8 @@ en:
       place: Place
       schedule: Schedule
       create: Create
+      notice1: Please select the number of classes. Content of classes can be added later.
+      auto_add: Add class automatically
     show:
       summary: Summary
       recommend_semester: Recommended semester

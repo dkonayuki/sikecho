@@ -40,11 +40,14 @@
 					
 					<hr />
 					<p>
-						<strong><%= t('nickname') %>:</strong>
+						<strong><%= t('nickname') %></strong>
+						<span class="glyphicon glyphicon-question-sign notice-popup has-tooltip" data-toggle="tooltip" data-placement="top" title="<%= t('.notice1') %>"></span>
+						:
 						<%= f.text_field :nickname, class: 'form-control form-control-inline' %>
 					</p>				
 					<p>
-						<strong><%= t('email') %>:</strong>
+						<strong><%= t('email') %></strong>
+						:
 						<%= f.email_field :email, class: 'form-control form-control-inline' %>
 					</p>
 						

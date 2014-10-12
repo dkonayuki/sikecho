@@ -319,6 +319,7 @@ ja:
         education: 学歴
         current_password: 現在のパスワード
         change_password: パスワード変更
+        notice1: コメント用のニックネーム
     sessions:
       new:
         login: ログイン
@@ -352,6 +353,8 @@ ja:
       place: 講義室
       schedule: 時間割
       create: 登録
+      notice1: 授業回数を選択してください。内容は後で変更できます。
+      auto_add: 自動的に追加する
     show:
       summary: 要旨
       recommend_semester: 推奨学期
