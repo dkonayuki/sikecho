@@ -364,7 +364,6 @@ en:
         login_diferent_account: Login with a different account
     show:
       education: Educations
-      notice1: Please select your current education
       schedule: Schedule
   subjects:
     index:
@@ -429,6 +428,7 @@ en:
       subject_number: Subject Number
       add: Add
       auto_add: Add automatically
+      notice1: Please select your current education
   teachers:
     show:
       university: University

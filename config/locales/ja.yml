@@ -334,7 +334,6 @@ ja:
         login_diferent_account: 別のアカウントでログイン
     show:
       education: 学歴
-      notice1: 現在有効な学歴のラジオボタンをOnにしてください
       schedule: 時間割表
   subjects:
     index:
@@ -399,6 +398,7 @@ ja:
       subject_number: 授業数
       add: 追加
       auto_add: 自動追加
+      notice1: 現在有効な学歴のラジオボタンをOnにしてください
   teachers:
     show:
       university: 所属大学
