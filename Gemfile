@@ -92,6 +92,7 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 
+gem 'cancan'
 gem 'rails_admin', '~> 0.6.2'
 
 #using globalize for university name translation table

@@ -27,10 +27,30 @@ module ApplicationHelper
     University.find_by_codename(request.subdomain)
   end
   
+  def current_admin
+    if current_user
+      current_user.role.to_sym == :admin ? true : false
+    else
+      false
+    end
+  end
+  
   # get current language for js
   def current_translations
     @translations ||= I18n.backend.send(:translations)
     @translations[I18n.locale].with_indifferent_access
+  end
+  
+  def disable_nav
+    @disable_nav = true
+  end
+  
+  def disable_footer
+    @disable_footer = true
+  end
+  
+  def disable_university_select
+    @disable_uni_select = true
   end
   
 end

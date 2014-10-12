@@ -33,7 +33,7 @@
 								
 			</div>
 			
-			<% if @note.user == @user %>
+			<% if @note.user == @user || (can? :update, @note) %>
 			<div class="skc-box-menu">
 				<a href="#" class="print has-tooltip" data-toggle="tooltip" data-placement="top" title="<%= t('print') %>"><span class="glyphicon glyphicon-print"></span></a>
 				<%= link_to edit_note_path(@note.id), class: 'has-tooltip', data: {toggle: "tooltip", placement: "top"}, title: t('edit') do %>

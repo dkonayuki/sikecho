@@ -1,6 +1,6 @@
 $(document).on("page:load ready", function() {
 
-	$(".subjects.edit, .subjects.new").ready(function() {
+	$(".subjects.edit, .subjects.new, .subjects.create, .subjects.update").ready(function() {
 
 		$('.selectpicker').selectpicker();
 

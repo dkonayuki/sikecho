@@ -117,8 +117,10 @@
 				<%= link_to edit_subject_path(@subject.id), class: 'has-tooltip', data: {toggle: "tooltip", placement: "top"}, title: t('edit') do %>
 					<span class="glyphicon glyphicon-pencil"></span>
 				<% end %>
-				<%= link_to @subject, method: :delete, data: { confirm: t('delete_confirm') } do %>
-					<span class="glyphicon glyphicon-remove"></span>
+				<% if can? :destroy, @subject %>
+					<%= link_to @subject, method: :delete, data: { confirm: t('delete_confirm') } do %>
+						<span class="glyphicon glyphicon-remove"></span>
+					<% end %>
 				<% end %>
 			</div>
 			<% end %>

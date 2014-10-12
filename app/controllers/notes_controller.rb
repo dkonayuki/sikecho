@@ -138,6 +138,10 @@ class NotesController < ApplicationController
   # GET /notes/1/edit
   def edit
     @user = current_user
+    
+    # authorize mod or admin only
+    authorize! :update, @note unless @note.user == @user
+
     @subjects = @user.current_university.subjects
     @note = Note.find(params[:id])
     @tags = @note.tag_list
@@ -153,7 +157,7 @@ class NotesController < ApplicationController
 
   # PATCH/PUT /notes/1
   # PATCH/PUT /notes/1.json
-  def update    
+  def update
     @user = current_user
     
     # update tags list

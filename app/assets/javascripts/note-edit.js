@@ -1,5 +1,5 @@
 $(document).on("page:load ready", function() {
-	$(".notes.edit, .notes.new").ready(function() {
+	$(".notes.edit, .notes.new, .notes.create, .notes.update").ready(function() {
 
 		$('.selectpicker').selectpicker();
 

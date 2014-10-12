@@ -136,6 +136,9 @@ class SubjectsController < ApplicationController
 
   # GET /subjects/1/edit
   def edit
+    #authorize
+    authorize! :update, @subject
+
     prepare_view_content
   end
 
@@ -335,6 +338,9 @@ class SubjectsController < ApplicationController
   # DELETE /subjects/1
   # DELETE /subjects/1.json
   def destroy
+    #authorize
+    authorize! :destroy, @subject
+    
     @subject.destroy
     respond_to do |format|
       format.html { redirect_to subjects_path }

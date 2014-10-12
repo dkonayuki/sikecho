@@ -14,9 +14,20 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   include ScheduleHelper
   
+  # handle unauthorized access
+  rescue_from CanCan::AccessDenied do |exception|
+    render file: "#{Rails.root}/public/422.html", :status => 403, layout: false
+    #redirect_to new_user_session_url, alert: exception.message
+  end
+  
   # redirect to 404 page
   def not_found
     render file: 'public/404.html', status: :not_found, layout: false
+  end
+  
+  # handle record not found
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    not_found
   end
   
   def set_locale
@@ -34,18 +45,6 @@ class ApplicationController < ActionController::Base
   def default_url_options(options = {})
     options.merge({ locale: ((I18n.locale == I18n.default_locale) ? nil : I18n.locale) })
     #options.merge({ locale: I18n.locale})
-  end
-
-  def disable_nav
-    @disable_nav = true
-  end
-  
-  def disable_footer
-    @disable_footer = true
-  end
-  
-  def disable_university_select
-    @disable_uni_select = true
   end
   
   def set_no_cache

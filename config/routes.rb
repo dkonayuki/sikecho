@@ -8,11 +8,6 @@ Shikechou::Application.routes.draw do
 
   get 'request/create'
 
-  #devise routes
-  devise_for :admins,
-    controllers: {sessions: "admins/sessions"}, 
-    path_names: {sign_in: 'login', sign_out: 'logout'}
-    
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   
   devise_for :users, skip: [:session, :password, :registration], controllers: { omniauth_callbacks: "users/omniauth_callbacks" }

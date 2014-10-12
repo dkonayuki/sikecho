@@ -21,7 +21,7 @@ class Subject < ActiveRecord::Base
 
   has_and_belongs_to_many :teachers
   has_and_belongs_to_many :educations
-    
+
   belongs_to :course
   belongs_to :semester
   belongs_to :uni_year
