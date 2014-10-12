@@ -91,6 +91,7 @@ gem 'unicorn', '~> 4.8.2'
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
+gem "omniauth-google-oauth2"
 
 gem 'cancan'
 gem 'rails_admin', '~> 0.6.2'

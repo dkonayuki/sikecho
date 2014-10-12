@@ -6,6 +6,7 @@ Devise.setup do |config|
   #OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development? 
   config.omniauth :facebook, ENV['FB_APP_ID'], ENV['FB_APP_SECRET'], image_size: 'large', provider_ignores_state: true
   config.omniauth :twitter, ENV['TWITTER_APP_KEY'], ENV['TWITTER_APP_SECRET'], image_size: 'large', provider_ignores_state: true
+  config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], image_size: 100
   
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing

@@ -118,6 +118,9 @@ GEM
       rack (~> 1.0)
     omniauth-facebook (1.6.0)
       omniauth-oauth2 (~> 1.1)
+    omniauth-google-oauth2 (0.2.5)
+      omniauth (> 1.0)
+      omniauth-oauth2 (~> 1.1)
     omniauth-oauth (1.0.1)
       oauth
       omniauth (~> 1.0)
@@ -249,6 +252,7 @@ DEPENDENCIES
   ledermann-rails-settings
   moji (~> 1.6)
   omniauth-facebook
+  omniauth-google-oauth2
   omniauth-twitter
   paper_trail (~> 3.0.0)
   paperclip (~> 4.1)

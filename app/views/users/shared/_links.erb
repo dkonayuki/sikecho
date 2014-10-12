@@ -23,13 +23,17 @@
 <% end -%>
 
 <%- if devise_mapping.omniauthable? %>
+<div id="provider-wrapper">
   <%- resource_class.omniauth_providers.each do |provider| %>
 	  <% if provider.to_s == 'facebook' %>
 	  	<%= link_to image_tag('fb.png', class: 'provider-logo'), omniauth_authorize_path(resource_name, provider), id: 'fb-login' %>
 	  <% elsif provider.to_s == 'twitter' %>
 	  	<%= link_to image_tag('twitter.png', class: 'provider-logo'), omniauth_authorize_path(resource_name, provider), id: 'twitter-login' %>
+	  <% elsif provider.to_s == 'google_oauth2' %>
+	  	<%= link_to image_tag('google.png', class: 'provider-logo'), omniauth_authorize_path(resource_name, provider), id: 'google-login' %>
 	  <% else %>
     	<%= link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider) %><br />
     <% end %>
   <% end -%>
+</div>
 <% end -%>
