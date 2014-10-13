@@ -196,6 +196,7 @@
 
 .mp-menu ul li > a.active {
 	border-right: 3px solid #563d7c;
+	font-weight: 700;
 }
 
 .mp-menu ul li::before {

@@ -3,39 +3,34 @@
 		
 <ul data-page="<%= @page %>">
 <% @subjects.each do |subject| %>
-	<li class="subject-item subject-item-sm subject-draggable <%= @user.current_subjects.include?(subject)? 'active' : ''  %>" data-id="<%= subject.id %>">
-      <div class="subject-details">
-	      <p class="subject-name">	<%= link_to subject.name, subject %></p>
-      </div>
-      <div class="subject-info">
-				<div class="subject-teacher-left">
-	      	<% subject.teachers.each do |teacher| %>
-	      		<% if teacher != subject.teachers.first  %>
-	      		&bull;
-	      		<% end %>
-	      		<%= teacher.name_kanji %>
-      		<% end %>
-	      </div>
-	      <div class="subject-add">
-	      	<% if @user.current_subjects.include?(subject) %>
-	      		<%= link_to schedule_destroy_path(subject_id: subject.id, search: @search, page: @page), method: :delete, remote: true do %>
-		      		<span class="glyphicon glyphicon-remove"></span>
-		      	<% end %>
-	      	<% else %>
-		      	<%= link_to schedule_create_path(subject_id: subject.id, search: @search, page: @page), method: :post, remote: true do %>
-		      		<span class="glyphicon glyphicon-plus"></span>
-		      	<% end %>
+	<li class="subject-schedule-item subject-draggable <%= @user.current_subjects.include?(subject)? 'active' : ''  %>" data-id="<%= subject.id %>">
+      
+		<div class="subject-schedule-img">
+		<%= link_to subject do %>
+			<%= image_tag(subject.display_picture_small) %>
+		<% end %>
+		</div>
+		<div class="subject-schedule-content">
+			<div class="subject-schedule-name">
+				<%= subject.name %>
+			</div>
+  		<div class="subject-schedule-info">
+  			<%= subject.teachers.first.full_name %>
+  			&bull;
+  			<%= subject.year %>
+			</div>
+      <div class="subject-add">
+      	<% if @user.current_subjects.include?(subject) %>
+      		<%= link_to schedule_destroy_path(subject_id: subject.id, search: @search, page: @page), method: :delete, remote: true do %>
+	      		<span class="glyphicon glyphicon-remove"></span>
 	      	<% end %>
-      	</div>
-      	<div class="subject-badge">
-		      <div class="subject-course label-blue">
-		      	<%= subject.course.name %>
-	      	</div>
-	      	<div class="subject-year label-orange">
-						<%= subject.year %>
-					</div>
-    		</div>
+      	<% else %>
+	      	<%= link_to schedule_create_path(subject_id: subject.id, search: @search, page: @page), method: :post, remote: true do %>
+	      		<span class="glyphicon glyphicon-plus"></span>
+	      	<% end %>
+      	<% end %>
     	</div>
+		</div>
  	</li>
 <% end %>
 </ul>

@@ -8,6 +8,9 @@ class ScheduleController < ApplicationController
     get_schedule_content
     @subjects = @user.current_university.subjects.search(params[:search]).page(params[:page]).per(4)
     
+    #default order option
+    @subjects = @subjects.order('year DESC, name ASC, view_count DESC')
+    
     #for add/remove consistency
     @search = params[:search]
     @page = params[:page]
@@ -48,6 +51,11 @@ class ScheduleController < ApplicationController
     #prepare view
     get_schedule_content
     @subjects = @user.current_university.subjects.search(params[:search]).page(params[:page]).per(4)
+    
+    #default order option
+    @subjects = @subjects.order('year DESC, name ASC, view_count DESC')
+    
+    #for add/remove consistency
     @search = params[:search]
     @page = params[:page]
     
@@ -77,9 +85,14 @@ class ScheduleController < ApplicationController
     #prepare view
     get_schedule_content
     @subjects = @user.current_university.subjects.search(params[:search]).page(params[:page]).per(4)
+    
+    #default order option
+    @subjects = @subjects.order('year DESC, name ASC, view_count DESC')
+    
+    #for add/remove consistency
     @search = params[:search]
     @page = params[:page]
-    
+        
     respond_to do |format|    
       format.html { redirect_to schedule_path }
       format.js

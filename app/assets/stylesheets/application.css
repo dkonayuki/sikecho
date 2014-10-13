@@ -525,6 +525,7 @@ body {
 
 .filter-menu a:hover, .filter-menu .active {
 	border-color: #563d7c;
+	font-weight: 700;
 }
 
 .filter-menu a {
@@ -732,6 +733,13 @@ body {
 /*Schedule
  ===============================================================================================*/
 
+#filter-schedule {
+	width: 100%;
+	max-width: 250px;
+	margin: 0 auto;
+	float: none;
+}
+
 #schedule {
 	padding-top: 20px;
 	background-color: #fff;
@@ -833,6 +841,58 @@ body {
 
 #list-subjects-period a {
 	display: block;
+}
+
+.subject-schedule-item {
+	width: 230px;
+	height: 62px;
+	display: inline-block;
+	margin: 5px;
+	border: 1px solid #ddd;
+}
+
+.subject-schedule-img {
+	float: left;
+	width: 60px;
+	height: 60px;
+	overflow: hidden;
+	padding: 10px;
+}
+
+.subject-schedule-img img {	
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.subject-schedule-content {
+	padding: 10px 10px 0 0;
+	overflow: hidden;
+}
+
+.subject-schedule-name {
+	text-align: left;
+	font-size: 15px;
+	line-height: 16px;
+	height: 16px;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+
+.subject-schedule-info {
+	text-align: left;
+	font-size: 10px;
+	padding-right: 25px;
+	color: #888;
+	line-height: 16px;
+	height: 16px;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
 }
 
 /* Subject page 
