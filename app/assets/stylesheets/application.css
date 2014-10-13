@@ -632,7 +632,17 @@ body {
 	padding-right: 15px;
 }
 
+#note-tags-list-header {
+	margin-bottom: 5px;
+}
 
+#note-tags-list-header img {
+	width: 45px;
+}
+
+#note-tags-list-header span {
+	font-size: 18px;
+}
 
 /*User page
  *  ===============================================================================================*/
@@ -1388,7 +1398,6 @@ body {
 .show-subject-header {
 	margin-bottom: 5px;
 }
-
 .show-subject-header img {
 	width: 45px;
 }

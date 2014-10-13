@@ -396,6 +396,7 @@ en:
         one: Teacher
         plural: Teachers
       recommend_subject: Recommend subjects
+      notice1: Click on No.1,2,3.. to display relevant notes.
   notes:
     index:
       note_menu: Menu

@@ -366,6 +366,7 @@ ja:
         one: 教員
         plural: 教員
       recommend_subject: 関連授業
+      notice1: 回数ボタンをクリックすると該当するノートが表示されます。
   notes:
     index:
       note_menu: メニュー

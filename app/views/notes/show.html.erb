@@ -50,7 +50,10 @@
 	
 	<div id="note-tags-list">
 		<% if @tags.count > 0 %>
-		<h4><%= t('tag_plural') %></h4>
+		<div id="note-tags-list-header">
+			<%= image_tag('subject-tag.png') %>
+			<span><%= t('tag_plural') %></span>
+		</div>
 		<ul>
 			<% @tags.each do |tag| %>
 			<li class="label-tag"><%= tag %></li>
