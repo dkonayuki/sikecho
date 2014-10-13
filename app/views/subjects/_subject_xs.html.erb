@@ -1,6 +1,8 @@
-<%= link_to subject, class: 'subject-item-xs' do %>	
+<div class='subject-item-xs'>	
   <div class="subject-details">
+  	<%= link_to subject do %>
     <p class="subject-name"><%= subject.name %></p>
+    <% end %>
     <hr class="hr-narrow" />
 		<p class="subject-desc">
 			<%= strip_tags(subject.description) %>
@@ -35,4 +37,4 @@
 			</div>
   	</div>
 	</div>
-<% end %>
+</div>

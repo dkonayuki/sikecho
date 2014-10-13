@@ -45,7 +45,7 @@ $(document).on("page:load ready", function() {
 		
 		//menu bar
 		$('#add-all').on('click', function() {
-			for (var i=1;i<=15;i++)
+			for (var i=1;i<=12;i++)
 			{ 
 				$('.tag-input').tagsinput('add', i);
 			}

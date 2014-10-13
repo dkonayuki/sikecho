@@ -1,7 +1,7 @@
 <!-- sidebar -->
-<div class="hidden-xs col-md-2 col-sm-2 sidebar-offcanvas" role="navigation">
+<div id="show-subject-menu" class="hidden-xs" role="navigation">
 	<div class="fixed-menu">
-		<div class="show-subject-menu" role="complementary" id="show-subject-overview">
+		<div class="show-subject-menu-item" role="complementary" id="show-subject-overview">
 			<h4><%= t('.summary') %></h4>
 			<ul class="nav">
 	      <li><a href="#description"><%= t('description') %></a></li>
@@ -11,11 +11,11 @@
 		</div>
 		
 		<% if user_signed_in? %>
-		<div class="show-subject-menu" role="complementary" id="show-subject-schedule" data-id="<%= @subject.id %>" data-name="<%= @subject.name %>" data-img="<%= @subject.display_picture_small %>">
+		<div class="show-subject-menu-item" role="complementary" id="show-subject-schedule" data-id="<%= @subject.id %>" data-name="<%= @subject.name %>" data-img="<%= @subject.display_picture_small %>">
 			<%= render 'schedule_menu' %>
 		</div>
 		
-		<div class="show-subject-menu" role="complementary" id="show-subject-notes">
+		<div class="show-subject-menu-item" role="complementary" id="show-subject-notes">
 			<h4><%= t('note') %></h4>
 			<ul class="nav">     
 	      <%= link_to new_note_path(subject_id: @subject.id), class: 'btn btn-orange' do %>  
@@ -29,7 +29,7 @@
 </div>
 
 <!-- main part -->
-<div id="show-subject" class="col-sm-10 col-xs-12">
+<div id="show-subject">
 	<ul id="year-list" class="clear">
 		<li class="dropdown year-item">
 			<a data-toggle="dropdown" class="btn btn-navi btn-sm dropdown-toggle"><span class="glyphicon glyphicon-cog"></span></a>
@@ -165,12 +165,13 @@
 			</div>
 		</div>
 	</div>
-	<% if user_signed_in? %>
-	<% end %>
 	
 	<% if @tags.count > 0 %>
 	<br />
-	<h4><%= t('tag_plural') %></h4>
+	<div class="show-subject-header">
+		<%= image_tag('subject-tag.png') %>
+		<span><%= t('tag_plural') %>:</span>
+	</div>
 	<ul>
 		<% @tags.each do |tag| %>
 		<li class="label-tag"><%= tag %></li>
@@ -180,7 +181,10 @@
 	
 	<% if @recommend_subjects.count > 0 %>
 	<br />
-	<h4><%= t('.recommend_subject')%>:</h4>
+	<div class="show-subject-header">
+		<%= image_tag('subject-recommend.png') %>
+		<span><%= t('.recommend_subject')%>:</span>
+	</div>
 	<div class="has-margin-lg">
 		<div class="owl-carousel text-center">
 	  	<%= render collection: @recommend_subjects, partial: 'subject_xs', as: :subject, locals: {show_course: @show_course} %>
@@ -188,4 +192,4 @@
 	</div>
 	<% end %>
 	
-</div>
+</div><!-- end of show-subject -->
