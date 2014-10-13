@@ -221,6 +221,10 @@ body {
 	line-height: 16px;
 }
 
+#user-info-dropdown img {
+	width: 25px;
+	margin-right: 5px;
+}
 
 /*Sign up page
  ===============================================================================================*/
@@ -727,11 +731,27 @@ body {
 
 /*Schedule
  ===============================================================================================*/
+
 #schedule {
 	padding-top: 20px;
 	background-color: #fff;
 	padding-bottom: 2000px;
 	margin-bottom: -2000px;
+}
+
+#schedule-content-header {
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+#schedule-content-header img {
+	width: 40px;
+	margin-right: 5px;
+}
+
+#schedule-content-header span {
+	font-size: 18px;
+	font-weight: 700;
 }
 
 #schedule-sub-list {
@@ -942,7 +962,8 @@ body {
 .subject-item-sm {
 	border-color: #ddd;
 	width: 225px;
-	height: 110px;	
+	height: 90px;
+	padding-top: 20px;
 }
 
 .subject-item-sm .subject-name {
