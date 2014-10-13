@@ -14,7 +14,7 @@
       <td><a href="#" data-type="date" data-viewformat="yyyy-mm-dd" data-pk="<%= outline.no %>" class="outline-date"><%= outline.date %></a></td>
       <td><a href="#" data-pk="<%= outline.no %>" class="outline-content"><%= sanitize(outline.content) %></a></td>
       <% else %>
-      <td><%= link_to "#{outline.no}", subject_path(tag: "#{outline.no}回目"), class: 'outline-btn' %></td>
+      <td><%= link_to "#{outline.no}", subject_path(tag: outline.no), class: 'outline-btn' %></td>
       <td><%= outline.date %></td>
       <td><%= sanitize(outline.content) %></td>
       <% end %>

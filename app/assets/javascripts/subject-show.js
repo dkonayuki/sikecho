@@ -14,7 +14,7 @@ $(document).on("page:load ready", function() {
 		/*For outline btn*/
 		$(".outline-btn").on("click", function() {
 			$.ajax({
-			  url: this.href,
+			  url: $(this).attr("href"),
 			  dataType: "script",
 			  success: function() {
 			  	ajaxSuccess();

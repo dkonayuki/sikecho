@@ -26,8 +26,8 @@ $(document).on("page:load ready", function() {
 		$('.tag-input').tagsinput({
 			tagClass: function(item) {
 		    switch (item) {
-		      case '試験対策': return 'label label-warning';
-		      case '過去問題': return 'label label-success';
+		      case I18n["notes"]["form"]["prepare_exam"]: return 'label label-warning';
+		      case I18n["notes"]["form"]["past_exam"]: return 'label label-success';
 		      default: return 'label label-info';
 		    }
 	  	},
@@ -47,7 +47,7 @@ $(document).on("page:load ready", function() {
 		$('#add-all').on('click', function() {
 			for (var i=1;i<=15;i++)
 			{ 
-				$('.tag-input').tagsinput('add', i + '回目' );
+				$('.tag-input').tagsinput('add', i);
 			}
 		});
 		$('.tag-menu-btn').on('click', function() {

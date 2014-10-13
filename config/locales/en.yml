@@ -414,13 +414,16 @@ en:
       document: Document
       all_class: All 12 classes
       prepare_exam: Exam Preparation
-      past_exam: Past Exam
+      past_exam: Past Exams
       clear: Clear
     upload_form:
       add_file: Add files . . .
       start_upload: Start upload
       cancel_upload: Cancel upload
       delete: Delete
+    note_line:
+      prepare_exam: Exam Preparation
+      past_exam: Past Exams
   comments:
     form:
       comment: Comment

@@ -57,7 +57,7 @@ function setMaxWidth() {
 /*Scroll to anchor*/
 function scrollToAnchor(aid){
   var aTag = $("a[name='"+ aid +"']");
-  $("html,body").animate({scrollTop: aTag.offset().top},"fast");
+  $("html,body").animate({ scrollTop: aTag.offset().top - 51 }, "fast");
 }
 
 /*Define after ajax success*/

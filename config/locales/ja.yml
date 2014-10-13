@@ -391,6 +391,9 @@ ja:
       start_upload: アップロード
       cancel_upload: キャンセル
       delete: 削除
+    note_line:
+      prepare_exam: 試験対策
+      past_exam: 過去問題
   comments:
     form:
       comment: コメント

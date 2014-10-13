@@ -1,2 +1,2 @@
-$("#collapseNotes").html("<%=j render(partial: 'notes/note', collection: @notes, locals: {show_subject: @show_subject}) || t('note_not_found') %>");
+$("#collapseNotes").html("<%=j render(partial: 'notes/note_line', collection: @notes, as: :note) || t('note_not_found') %>");
 $("#show-subject-schedule").html("<%=j render 'schedule_menu' %>");

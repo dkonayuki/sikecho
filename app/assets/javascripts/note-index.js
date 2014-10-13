@@ -111,9 +111,7 @@ $(document).on("page:load ready", function() {
 		    	//disable pagination link
 		    	$(".pagination").text("fetching...");
 		    	//append loading.gif
-		  		if ($("#notes-list").length) {
-		  			$('#notes-list').append("<div id='loading'><img src='/assets/loading.gif'></div>");
-		  		}
+	  			$('#notes-list').append("<div id='loading'><img src='/assets/loading.gif'></div>");
 					$.getScript(url);
 		    }
 			});

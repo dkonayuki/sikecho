@@ -351,9 +351,7 @@ $(document).on("page:load ready", function() {
 		    	//disable pagination link
 		    	$(".pagination").text("fetching...");
 		    	//append loading.gif
-		  		if ($("#subjects-list").length) {
-		  			$('#subjects-list').append("<div id='loading'><img src='/assets/loading.gif'></div>");
-		  		}
+	  			$('#subjects-list').append("<div id='loading'><img src='/assets/loading.gif'></div>");
 					$.getScript(url);
 		    }
 			});
