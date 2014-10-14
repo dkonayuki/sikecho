@@ -525,7 +525,6 @@ body {
 
 .filter-menu a:hover, .filter-menu .active {
 	border-color: #563d7c;
-	font-weight: 700;
 }
 
 .filter-menu a {
