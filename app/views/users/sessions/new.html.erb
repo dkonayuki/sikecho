@@ -17,7 +17,7 @@
     	<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-signin'}) do |f| %>
 
 	    	<% if @session_user %>
-				  <%= f.text_field :login, class: 'form-control', placeholder: t('.login_placeholder'), value: @session_user.username, disabled: true %>
+				  <%= f.text_field :login, class: 'form-control', placeholder: t('.login_placeholder'), value: @session_user.username, readonly: true %>
 			  <% else %>
 				  <%= f.text_field :login, class: 'form-control', placeholder: t('.login_placeholder'), autofocus: true %>
 			  <% end %>
@@ -54,7 +54,7 @@
 		  cache: true,
 		  beforeSend: function() {
 				//add fb-root element
-			  $('body').prepend('<div id="fb-root"></div>');		  	
+			  $('body').prepend('<div id="fb-root"></div>');
 		  }
 		});
 		
