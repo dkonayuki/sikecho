@@ -1,4 +1,4 @@
-/* Magnific Popup CSS custom: 123,124,125,136, 370-end */ 
+/* Magnific Popup CSS custom: 10,11,12,123,124,125,136, 370-end */ 
 .mfp-bg {
   top: 0;
   left: 0;
@@ -7,9 +7,9 @@
   z-index: 1042;
   overflow: hidden;
   position: fixed;
-  background: #0b0b0b;
-  opacity: 0.8;
-  filter: alpha(opacity=80); }
+	background: #3d464d;
+	opacity: 0.6;
+  filter: alpha(opacity=60); }
 
 .mfp-wrap {
   top: 0;

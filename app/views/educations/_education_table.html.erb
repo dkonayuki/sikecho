@@ -116,6 +116,8 @@ $(document).ready(function(){
 	/*For ajax education popup in profile*/	
   $('.education-popup').magnificPopup({
 	  type: 'ajax',
+	  removalDelay: 300,
+	  mainClass: 'mfp-zoom-in',
     callbacks: {
    		parseAjax: function( mfpResponse ) {
         mfpResponse.data = $(mfpResponse.data).find('#education-edit');

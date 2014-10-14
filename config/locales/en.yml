@@ -436,6 +436,10 @@ en:
       add: Add
       auto_add: Add automatically
       notice1: Please select your current education
+    form:
+      header: New Education
+      faculty: Faculty
+      course: Course
   teachers:
     show:
       university: University

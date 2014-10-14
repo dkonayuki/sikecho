@@ -406,6 +406,10 @@ ja:
       add: 追加
       auto_add: 自動追加
       notice1: 現在有効な学歴のラジオボタンをOnにしてください
+    form:
+      header: 新しい学歴を作成する
+      faculty: 学部&bull;研究科
+      course: 学科&bull;コース
   teachers:
     show:
       university: 所属大学
