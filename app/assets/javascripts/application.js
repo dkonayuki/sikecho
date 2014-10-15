@@ -52,6 +52,10 @@ function setMaxWidth() {
 	if ($("#filter-subject").length) {
 		$("#filter-subject").css("width", $("#subjects-content").width() - $("#new-subject-btn").outerWidth(true) - 40);
 	}
+	
+	if ($("#filter-note").length) {
+		$("#filter-note").css("width", $("#notes").width() - $("#pushmenu-trigger").outerWidth(true) - $("#new-note-btn").outerWidth(true) - 40);
+	}
 }
 
 /*Scroll to anchor*/

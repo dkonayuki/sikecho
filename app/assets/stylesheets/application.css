@@ -429,6 +429,10 @@ body {
 	margin-right: 15px;
 }
 
+#filter-note {
+	max-width: 220px;
+}
+
 .note-item {
 	height: 82px;
 	padding-top: 10px;
