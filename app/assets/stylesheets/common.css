@@ -4,11 +4,11 @@
 
 body {
 	background-color: #f1f1f1;
- 	font-family: 'lato', sans-serif, verdana, arial, helvetica !important;
+ 	font-family: 'lato', "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, sans-serif !important;
 }
 
 p, ol, ul, td {
- 	font-family: 'lato', sans-serif, verdana, arial, helvetica !important; 
+ 	font-family: 'lato', "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, sans-serif !important;
 }
 
 ul {
