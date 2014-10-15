@@ -26,7 +26,7 @@ $(document).on("page:load ready", function() {
 		
 		/*For schedule add btn in show subject page*/
 		/*Need selector on a to ensure binding on dynamically elements */
-		$("#show-subject-schedule").on("click", "a", function() {
+		$("#show-subject-schedule").add("#show-subject-schedule-mobile").on("click", "a", function() {
 			var href = $(this).attr("href");
 			var dataMethod = $(this).attr("data-method");
 			var subjectName = $("#show-subject-schedule").data("name");
@@ -74,7 +74,8 @@ $(document).on("page:load ready", function() {
 			});
 			return false;
 		});
-
+		
+		//for recommender subjects
 		$(".owl-carousel").owlCarousel({
 			items : 4,
 	    itemsDesktop : [1199,3],

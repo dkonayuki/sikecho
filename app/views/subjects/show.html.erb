@@ -1,6 +1,5 @@
 <!-- sidebar -->
 <div id="show-subject-menu" class="hidden-xs" role="navigation">
-	<div class="fixed-menu">
 		<div class="show-subject-menu-item" role="complementary" id="show-subject-overview">
 			<h4><%= t('.summary') %></h4>
 			<ul class="nav">
@@ -25,7 +24,6 @@
 		</div>
 		<% end %>
 		
-	</div>
 </div>
 
 <!-- main part -->
@@ -33,7 +31,21 @@
 	<ul id="year-list" class="clear">
 		<li class="dropdown year-item">
 			<a data-toggle="dropdown" class="btn btn-navi btn-sm dropdown-toggle"><span class="glyphicon glyphicon-cog"></span></a>
-			<ul class="dropdown-menu pull-right">
+			<ul class="dropdown-menu pull-right" id="show-subject-dropdown">
+				
+				<% if user_signed_in? %>
+					<li class="visible-xs" id="show-subject-schedule-mobile">
+						<%= render 'schedule_menu_mobile' %>
+			  	</li>
+			  	<li class="visible-xs">
+			      <%= link_to new_note_path(subject_id: @subject.id) do %>  
+	      			<%= image_tag('note_color.png') %>
+			      	<%= t('add') %>
+			      <% end %>
+		      </li>
+					<li class="divider visible-xs"></li>
+				<% end %>
+				
 				<li><%= link_to t('latest'), @subject %></li>
 				<% @subject.versions.reverse.first(5).each do |version| %>
 					<li>
@@ -183,7 +195,7 @@
 	<% if @recommend_subjects.count > 0 %>
 	<br />
 	<div class="show-subject-header">
-		<%= image_tag('subject-recommend.png') %>
+		<%= image_tag('subject_recommend.png') %>
 		<span><%= t('.recommend_subject')%>:</span>
 	</div>
 	<div class="has-margin-lg">

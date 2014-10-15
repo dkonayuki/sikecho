@@ -1423,15 +1423,8 @@ body {
 }
 
 #show-subject-menu {
-	width: 150px;
 	margin-left: 10px;
-}
-
-@media(max-width: 767px) {
-	#show-subject {
-		width: auto;
-		float: none;
-	}	
+	position: fixed;
 }
 
 .show-subject-menu-item {
@@ -1457,6 +1450,17 @@ body {
 	width: 100%;
 }
 
+@media(max-width: 767px) {
+	#show-subject {
+		width: auto;
+		float: none;
+	}
+}
+
+#show-subject-dropdown img {
+	width: 25px;
+}
+
 #year-list {
 	margin: 10px auto 10px;
 	max-width: 800px;
@@ -1469,10 +1473,6 @@ body {
 
 #subject-edit {
 	margin-top: 20px;
-}
-
-.fixed-menu {
-	position: fixed;
 }
 
 .show-subject-header {

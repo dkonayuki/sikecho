@@ -34,10 +34,19 @@
  	</li>
 <% end %>
 </ul>
+
 <script>
+
+	//activate draggable on table
   $(".subject-draggable").draggable({
     revert: true,
     revertDuration: 0,
     stack: ".subject-draggable"
   });
+  
+  // remove focus for better mobile experience
+  $(".subject-add a").on("click", function() {
+  	$(this).blur();
+  });
+  
 </script>

@@ -101,20 +101,20 @@
         <ul class="dropdown-menu" id="user-info-dropdown">
 					<li>
 						<%= link_to current_user do %>
-							<%= image_tag('user-profile.png') %>
+							<%= image_tag('user_profile.png') %>
 							<%= t('.profile') %>
 						<% end %>
 					</li>
 					<li>
 						<%= link_to schedule_path do %>
-							<%= image_tag('user-schedule.png') %>
+							<%= image_tag('user_schedule.png') %>
 							<%= t('.schedule') %>
 						<% end %>
 					</li>
 					<li class="divider"></li>
     			<li>
     				<%= link_to destroy_user_session_path, method: :delete do %>
-    					<%= image_tag('user-logout.png') %>
+    					<%= image_tag('user_logout.png') %>
     					<%= t('.logout') %>
     				<% end %>
     			</li>

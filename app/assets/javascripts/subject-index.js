@@ -47,7 +47,7 @@ function prepareLoadSubjectPage() {
 	$('select[name=day]').val(dayParam);
 	var timeParam = getParameterByName("time");
 	$('select[name=time]').val(timeParam);
-	$('.selectpicker').selectpicker('refresh')
+	$('.selectpicker').selectpicker('refresh');
 	
 	//filter search is automatically loaded
 	//order option is automatically loaded
@@ -347,9 +347,11 @@ $(document).on("page:load ready", function() {
 		if ($(".hidden-pagination").length) {
 			$(window).scroll(function(){
 				url = $(".next a").attr("href");
+				//need url so it won't be called multiple times
 		    if (url && ($(window).scrollTop() > $(document).height() - $(window).height() - 50)) {
 		    	//disable pagination link
 		    	$(".pagination").text("fetching...");
+
 		    	//append loading.gif
 	  			$('#subjects-list').append("<div id='loading'><img src='/assets/loading.gif'></div>");
 					$.getScript(url);
