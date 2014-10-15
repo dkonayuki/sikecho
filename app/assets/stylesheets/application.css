@@ -780,6 +780,7 @@ body {
 }
 
 #schedule-table {
+	font-size: 13px;
 	text-align: center;
 	table-layout: fixed;
 }
