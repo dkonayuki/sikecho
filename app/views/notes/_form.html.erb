@@ -6,7 +6,7 @@
 				<%= image_tag("note.png")  %>
 			</div>
 			<div class="skc-box-desc">
-				<%= f.text_field :title, class: 'form-control', placeholder: t('.title'), required: 'true', autofocus: true %>
+				<%= f.text_field :title, class: 'form-control', placeholder: t('.title'), required: 'true' %>
     		<% if @note.errors[:title] %>
     			<ul>
 		      <% @note.errors.full_messages_for(:title).each do |msg| %>
