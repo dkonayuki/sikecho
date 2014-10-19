@@ -1,2 +1,2 @@
-$("#schedule-table-wrapper").html("<%=j render partial: 'schedule_table', locals: { periods: @periods } %>")
+$("#schedule-table-wrapper").html("<%=j render partial: 'schedule_table', locals: { periods: @periods, view_option: @view_option } %>")
 $("#schedule-sub-list").html("<%=j render 'list_subjects_on_schedule' %>")

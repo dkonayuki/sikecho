@@ -6,9 +6,9 @@ class HomeController < ApplicationController
       @university = current_university
     end
 
+    #for @user in view
     if user_signed_in? 
       @user = current_user
-      get_schedule_content
     end
   end
 end

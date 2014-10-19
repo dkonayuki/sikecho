@@ -270,6 +270,7 @@ en:
   university: University
   register: Register
   all_option: All
+  all: All
   note: Note
   subject: Subject
   subject_plural: Subjects

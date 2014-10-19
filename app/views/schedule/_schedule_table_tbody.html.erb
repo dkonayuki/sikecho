@@ -1,0 +1,31 @@
+<% if view_option == 0 %>
+	<% 1.upto(Period::MAX_TIME).each do | t | %>
+	<tr>
+		<td class="period"><%= t('date.abbr_period_names')[t] %></td>
+		<% 1.upto(Period::MAX_DAY).each do | d | %>
+			<td class="cell" data-day="<%= d %>" data-time="<%= t %>">
+				<div class="details-count">
+					<% if periods[[d, t]].count > 0 %>
+						<span class="count"><%= periods[[d, t]].count %></span>
+					<% end %>
+					<span class="plus glyphicon glyphicon-plus"></span>
+				</div>
+			</td>
+		<% end %>
+	</tr>
+	<% end %>
+<% else %>
+	<% d = view_option %>
+	<% 1.upto(Period::MAX_TIME).each do | t | %>
+	<tr>
+		<td class="period"><%= t('date.abbr_period_names')[t] %></td>
+		<td class="cell" colspan="6">
+			<% if periods[[d, t]].count > 0 %>
+				<div class="details">
+					<%= render collection: periods[[d, t]], partial: 'subjects/subject_tag', as: :subject %>
+				</div>
+			<% end %>
+		</td>
+	</tr>
+	<% end %>
+<% end %>

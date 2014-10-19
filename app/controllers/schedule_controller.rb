@@ -14,6 +14,7 @@ class ScheduleController < ApplicationController
     #for add/remove consistency
     @search = params[:search]
     @page = params[:page]
+    @view_option = params[:view_option].to_i || 0
     
     respond_to do |format|
       format.html 
@@ -23,14 +24,16 @@ class ScheduleController < ApplicationController
 
   # GET /schedule/new
   def new
-    @subjects = @user.current_university.subjects.joins(:periods).where(periods: {day: params[:day].to_i, time: params[:time].to_i})
   end
   
-  # GET /schedule/list_subjects_by_period
-  def list_subjects_by_period
-    @list_subjects = @user.current_subjects.joins(:periods).where(periods: {day: params[:day].to_i, time: params[:time].to_i})
-    @day = params[:day].to_i
-    @time = params[:time].to_i
+  # GET /schedule/view_option
+  def view_option
+    @view_option = params[:view_option].to_i
+    get_schedule_content
+     
+    respond_to do |format|
+      format.js
+    end
   end
   
   def edit
@@ -54,10 +57,11 @@ class ScheduleController < ApplicationController
     
     #default order option
     @subjects = @subjects.order('year DESC, name ASC, view_count DESC')
-    
+
     #for add/remove consistency
     @search = params[:search]
     @page = params[:page]
+    @view_option = params[:view_option].to_i || 0
     
     respond_to do |format|    
       format.html { redirect_to schedule_path }
@@ -92,7 +96,8 @@ class ScheduleController < ApplicationController
     #for add/remove consistency
     @search = params[:search]
     @page = params[:page]
-        
+    @view_option = params[:view_option].to_i || 0
+    
     respond_to do |format|    
       format.html { redirect_to schedule_path }
       format.js
@@ -108,6 +113,6 @@ class ScheduleController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def schedule_params
-      params.permit(:day, :time, :search, :page, :subject_id)
+      params.permit(:day, :time, :search, :page, :subject_id, :view_option)
     end  
 end

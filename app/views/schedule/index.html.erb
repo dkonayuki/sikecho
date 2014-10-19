@@ -1,5 +1,14 @@
 <div id="schedule" class="clear">
-	<div id="schedule-menu" class="col-sm-4 col-xs-12">
+<div id="schedule-content" class="col-sm-8 col-xs-12 pull-right">
+		<div id="schedule-content-header">
+			<%= image_tag('user_schedule.png') %>
+			<span><%= t('schedule') %></span>
+		</div>
+		<div id="schedule-table-wrapper">
+			<%= render partial: 'schedule_table', locals: { periods: @periods, view_option: @view_option } %>
+		</div>
+	</div>
+	<div id="schedule-menu" class="col-sm-4 col-xs-12 pull-left">
 		<div class="filter-bar">
 			<%= form_tag schedule_path, method: :get, class: 'filter-form', id: 'filter-schedule' do %>
 		    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: t('subject_search'), autocorrect: "off", autocapitalize: "off" %>
@@ -10,33 +19,4 @@
 			<%= render 'list_subjects_on_schedule' %>
 		</div>
 	</div>
-	<div id="schedule-content" class="col-sm-8 col-xs-12">
-		<div id="schedule-content-header">
-			<%= image_tag('user_schedule.png') %>
-			<span><%= t('schedule') %></span>
-		</div>
-		<div id="schedule-table-wrapper">
-			<%= render partial: 'schedule_table', locals: { periods: @periods } %>
-		</div>
-	</div>
 </div>
-
-<script>
-	/*For live search*/
-	var timeout; // add delay time
-
-  $("#filter-schedule input").keyup(function() {
-		window.clearTimeout(timeout); //clear delay
-    timeout = window.setTimeout(function(){ //set a new delay, after an amount of time, ajax function will be called
-		  $.ajax({
-			  url: $("#filter-schedule").attr("action"),
-			  data: $("#filter-schedule").serialize(), //default contenttype is url text
-			  success: ajaxSuccess,
-			  dataType: "script"
-			});
-		}, 500);
-
-		return false;
-  });
-
-</script>

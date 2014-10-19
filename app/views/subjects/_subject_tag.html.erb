@@ -1,0 +1,6 @@
+<div class="subject-tag-item" data-id="<%= subject.id %>">
+	<%= link_to subject.name, subject %>
+	<%= link_to schedule_destroy_path(subject_id: subject.id), method: :delete, remote: true, class: 'subject-remove' do %>
+		<span class="glyphicon glyphicon-remove"></span>
+	<% end %>
+</div>

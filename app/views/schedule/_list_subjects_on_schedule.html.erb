@@ -1,6 +1,6 @@
 		<%= link_to_previous_page @subjects, '', remote: true, params: {search: @search}, class: 'previous-btn' %>
 		<%= link_to_next_page @subjects, '', remote: true, params: {search: @search}, class: 'next-btn' %>
-		
+
 <ul data-page="<%= @page %>">
 <% @subjects.each do |subject| %>
 	<li class="subject-schedule-item subject-draggable <%= @user.current_subjects.include?(subject)? 'active' : ''  %>" data-id="<%= subject.id %>">
@@ -35,13 +35,3 @@
 <% end %>
 </ul>
 
-<script>
-
-	//activate draggable on table
-  $(".subject-draggable").draggable({
-    revert: true,
-    revertDuration: 0,
-    stack: ".subject-draggable"
-  });
-  
-</script>

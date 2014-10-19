@@ -1,18 +1,4 @@
-<% if user_signed_in? %>
-	<div id="home-schedule" class="col-sm-12 col-md-9">
-		<div class="skc-box skc-box-no-padding skc-box-lg">
-			<div class="skc-box-content">
-				<div class="skc-box-title-no-margin">
-	        <h4><%= t 'schedule' %></h4>
-		    </div>
-				<div class="skc-box-desc-no-padding">
-					<%= render partial: 'schedule/schedule_table', locals: {periods: @periods} %>
-				</div>
-			</div>
-		</div>
-	</div>
-<% end %>
-	<div id="home-widget" class="col-sm-12 col-md-3">
+	<div id="home-widget" class="col-sm-12">
 		
 		<% if user_signed_in? %>
 		<div class="skc-box skc-box-sm skc-box-no-padding">

@@ -784,34 +784,87 @@ body {
 }
 
 #schedule-table {
-	text-align: center;
 	table-layout: fixed;
+	font-size: 12px;
 }
 
-#schedule-table .plus, #schedule-table .open {
+#schedule-table td {
+	padding: 0;
+	height: 40px;
+}
+
+#schedule-table th {
+	cursor: pointer;
+	font-size: 14px;
+	border: none;
+	text-align: center;
+}
+
+#schedule-table th.active {
+	background: none;
+}
+
+#schedule-table th span {
+	width: 26px;
+	height: 26px;
+	display: inline-block;
+	border-radius: 50%;
+	padding: 3px 6px;
+	font-weight: normal;
+	color: #aaa;
+}
+
+#schedule-table th.active span {
+	background: #d64635;
+	color: #fff;
+}
+
+#schedule-table .period {
+	text-align: center;
+	border: none;
+	color: #aaa;
+	line-height: 40px;
+}
+
+#schedule-table tr td {
+	border: 1px solid #dddddd;
+}
+
+#schedule-table .plus {
 	display: none;
 }
 
-#schedule-table .cell.hover .count, #schedule-table .cell.hover .open {
+#schedule-table .cell.hover .count {
 	display: none;
 }
 #schedule-table .cell.hover .plus {
-	display: block;
+	display: inline-block;
 }
 #schedule-table .cell.hover {
-	background: #566B7F;
-	color: #fff
+	background: #46d4f4;
+	color: #fff;
 }
 
-#schedule-table .cell.active .count, #schedule-table .cell.active .plus {
-	display: none;
+#schedule-table .details-count {
+	height: 100%;
+	text-align: center;
+	line-height: 38px;
 }
-#schedule-table .cell.active .open {
-	display: block;
+
+#schedule-table .count {
+	padding: 3px 8px;
+	background: #24b2f2;
+	color: #fff;
+	border-radius: 3px;
+	cursor: pointer;
 }
-#schedule-table .cell.active {
-	background: #34495E;
-	color: #fff
+
+#schedule-table .count:hover {
+	background: #46d4f4;
+}
+
+#schedule-table .details {
+	padding: 5px;
 }
 
 .previous-btn:before {
@@ -824,29 +877,8 @@ body {
 	content: "\e080";
 }
 
-#list-subjects-by-period {
-	display: none;
-	margin: auto;
-	max-width: 300px;
-	border: 1px solid #34495E;
-}
-
-#list-subjects-period-header {
-	background: #34495E;
-	color: #fff;
-	padding: 8px;
-	text-align: center;
-}
-
-#list-subjects-period {
-	padding: 8px;
-}
-
-#list-subjects-period a {
-	display: block;
-}
-
 .subject-schedule-item {
+	background: #fff;
 	width: 230px;
 	height: 62px;
 	display: inline-block;
@@ -896,6 +928,10 @@ body {
 	-webkit-line-clamp: 1;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
+}
+
+.subject-draggable {
+	position: relative;
 }
 
 /* Subject page 
@@ -1291,6 +1327,26 @@ body {
 	display: block !important;
 }
 
+.subject-tag-item {
+	display: inline-block;
+	margin: 5px;
+}
+
+.subject-tag-item a {
+	color: #fff;
+	padding: 3px 6px;
+	background: #24b2f2;	
+}
+
+.subject-tag-item a:hover {
+	background: #46d4f4;
+	color: #fff;
+}
+
+.subject-tag-item a:last-child {
+	margin-left: -2px;
+}
+
 #subject-filter-trigger {
 	float: left;
 }
@@ -1526,7 +1582,9 @@ body {
 
 #subject-table .cell.active {
   background-color: #5cb85c;
-  color: #fff;	
+  color: #fff;
+  border-top: none;
+	border-bottom: none;
 }
 
 #subject-table .cell .subject-table-add, #subject-table .cell .subject-table-remove, #subject-table .cell .subject-table-ok {

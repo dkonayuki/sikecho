@@ -27,7 +27,7 @@ $(document).on("page:load ready", function() {
 		$('.tag-input').tagsinput({
 			tagClass: function(item) {
 		    switch (item) {
-		    	case I18n["seminar"]: return 'label label-danger';
+		    	case I18n["seminar"]: return 'label label-primary';
 		      case I18n["all_year"]: return 'label label-warning';
 		      case I18n["intensive_course"]: return 'label label-success';
 		      default: return 'label label-info';
