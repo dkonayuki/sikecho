@@ -404,6 +404,11 @@ ja:
     note_line:
       prepare_exam: 試験対策
       past_exam: 過去問題
+      new: 新着
+    note:
+      prepare_exam: 試験対策
+      past_exam: 過去問題
+      new: 新着
   comments:
     form:
       comment: コメント

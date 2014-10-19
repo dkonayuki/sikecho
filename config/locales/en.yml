@@ -434,6 +434,11 @@ en:
     note_line:
       prepare_exam: Exam Preparation
       past_exam: Past Exams
+      new: New
+    note:
+      prepare_exam: Exam Preparation
+      past_exam: Past Exams
+      new: New
   comments:
     form:
       comment: Comment
