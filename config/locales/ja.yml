@@ -4,6 +4,14 @@ ja:
     code: ja
     code_country: ja-JP
   date:
+    short_day_names:
+    - 日
+    - 月
+    - 火
+    - 水
+    - 木
+    - 金
+    - 土
     abbr_day_names:
     - 日
     - 月

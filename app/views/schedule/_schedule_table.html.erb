@@ -3,7 +3,9 @@
 		<tr>
 			<th class="<%= 'active' if view_option == 0 %>" data-day=0><span><%= t('all') %></span></th>
 			<% 1.upto(Period::MAX_DAY).each do |d| %>
-			<th class="<%= 'active' if view_option == d %>" data-day="<%= d %>"><span><%= t('date.abbr_day_names')[d] %></span></th>
+			<th class="<%= 'active' if view_option == d %>" data-day="<%= d %>">
+				<span><%= t('date.short_day_names')[d] %></span>
+			</th>
 			<% end %>
 		</tr>
 	</thead>

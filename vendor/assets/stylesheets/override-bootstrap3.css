@@ -17,6 +17,21 @@ table {
 	font-size: 13px;
 }
 
+@media (max-width: 469px) {
+	.visible-xxs {
+		display: block;
+	}
+	.hidden-xxs {
+		display: none;
+	}
+}
+
+@media (min-width: 470px) {
+	.visible-xxs {
+		display: none;
+	}
+}
+
 .navbar-header {
 	text-align: center;
 }

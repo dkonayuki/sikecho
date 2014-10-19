@@ -24,6 +24,14 @@ en:
     code: en
     code_country: en-US
   date:
+    short_day_names:
+    - S
+    - M
+    - T
+    - W
+    - T
+    - F
+    - S
     abbr_day_names:
     - Sun
     - Mon
