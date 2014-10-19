@@ -167,35 +167,16 @@
 		    )
 		  }
 		});
-
-		/*For typeahead*/
-		/*var searchSource = function(query, cb) {
-		  var results = [];
-		  var subject_item = new Object();
-		  subject_item.value = I18n["layouts"]["navbar"]["subject_search"] + ": " + "'" + query + "'";
-		  subject_item.url = "/" + I18n["meta"]["code"] + "/search?query=" + query + "&type=subject";
-		  results.push(subject_item);
-		  
-		  var note_item = new Object();
-		  note_item.value = I18n["layouts"]["navbar"]["note_search"] + ": " + "'" + query + "'";
-		  note_item.url = "/" + I18n["meta"]["code"] + "/search?query=" + query + "&type=note";
-		  results.push(note_item);
-		  
-		  cb(results);
-		};
 		
-		$(".typeahead").typeahead("destroy");
-		$(".typeahead").typeahead(null, {
-		  displayKey: "value",
-		  source: searchSource,
-		  templates: {
-		    suggestion: Handlebars.compile(
-		      "<p><strong>{{value}}</strong></p>"
-		    )
-		  }
-		});
-		$(".typeahead").on("typeahead:selected", function(event, item) {
-			window.location.href = item.url;
-		});*/
+		/*Fix keyboard focus on iphone*/
+	  if (navigator.userAgent.match('CriOS')) {
+			$("input").not(".search-bar #search").on('focus', function() {
+		    $("#nav-bar").css("position", "absolute");
+			});
+			$("input").not(".search-bar #search").on('blur', function() {
+		    $("#nav-bar").css("position", "fixed");
+			})
+		}
+
 	});
 </script>

@@ -66,6 +66,7 @@
 		
 			$('#fb-login').on("click", function(e) {
 			  e.preventDefault();
+			  //fix bug on ios chrome
 			  if (navigator.userAgent.match('CriOS')) {
 	    		window.open('https://www.facebook.com/dialog/oauth?client_id=' + FbAppId + '&redirect_uri=' + location.protocol + "//" + location.host + '/users/auth/facebook/callback' + '&scope=email', '', null);
 			  } else {
