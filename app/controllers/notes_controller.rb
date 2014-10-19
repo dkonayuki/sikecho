@@ -19,6 +19,13 @@ class NotesController < ApplicationController
       @show_more = true
     end
     
+    #get registered_notes for unread count
+    @registered_notes = Note.select('distinct notes.*').joins('INNER JOIN notes_subjects ON notes.id = notes_subjects.note_id')
+      .joins('INNER JOIN subjects ON subjects.id = notes_subjects.subject_id')
+      .joins('INNER JOIN educations_subjects ON educations_subjects.subject_id = subjects.id')
+      .joins('INNER JOIN educations ON educations.id = educations_subjects.education_id')
+      .where('educations.id = ?', @user.current_education.id)
+    
     #process filter if has any
     if params[:filter].blank?
       #no filter, default: all
@@ -29,14 +36,10 @@ class NotesController < ApplicationController
         @notes = @user.notes
       when :registered_note
         #select distinct notes from crazy joins
-        @notes = Note.select('distinct notes.*').joins('INNER JOIN notes_subjects ON notes.id = notes_subjects.note_id')
-        .joins('INNER JOIN subjects ON subjects.id = notes_subjects.subject_id')
-        .joins('INNER JOIN educations_subjects ON educations_subjects.subject_id = subjects.id')
-        .joins('INNER JOIN educations ON educations.id = educations_subjects.education_id')
-        .where('educations.id = ?', @user.current_education.id)
+        @notes = @registered_notes
 
       when :new_arrival_note
-        @notes = @user.current_university.notes.unread_by(@user)
+        @notes = @registered_notes.unread_by(@user)
       when :all
         @notes = @user.current_university.notes
       else
@@ -49,6 +52,7 @@ class NotesController < ApplicationController
       @user.settings(:note).order = params[:order].to_sym
       @user.save
     end
+    
     #reorder
     case @user.settings(:note).order
     when :alphabet

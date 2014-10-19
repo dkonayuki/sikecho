@@ -137,11 +137,11 @@ a:hover {
 }
 
 .badge-important {
-	background-color: #b94a48 !important;
+	background-color: #b94a48;
 }
 
 .badge-info {
-	background-color: #3498DB !important;
+	background-color: #3498DB;
 }
 
 .badge-sm {
