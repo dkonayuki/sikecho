@@ -182,6 +182,32 @@ $(document).on("page:load ready", function() {
 		});
 		
 		//edit inline
-		enableInlineEdit();			
+		enableInlineEdit();
+		
+		/*For schedule table*/
+		//add old periods if exist
+		if ($(".subjects").hasClass("edit") || $(".subjects").hasClass("update")) {
+				$.getJSON("/subjects/" + $("#subject-edit").data("id") + "/periods.json", function(data, status) {
+			  $.each(data, function( key, val ) {
+			  	$("#subject-table .cell[data-day='" + val.day + "'][data-time='" + val.time + "']").addClass("active");
+	  			$("#subject-table").append("<input id='periods' multiple='true' name='periods[]' type='hidden' value=" + [val.day, val.time] + ">");
+			  });
+			});
+		}
+	
+		//add btn
+		$("#subject-table").on("click", ".cell .subject-table-add", function() {
+			var cell = $(this).parent();
+			$("#subject-table").append("<input id='periods' multiple='true' name='periods[]' type='hidden' value=" + [cell.data("day"), cell.data("time")] + ">");
+			cell.addClass("active");
+		});
+		
+		//remove btn
+		$("#subject-table").on("click", ".cell.active .subject-table-remove", function() {
+			var cell = $(this).parent();
+			$("#subject-table input[value='" + [cell.data("day"), cell.data("time")] + "']").remove();
+			cell.removeClass("active");
+		});
+			
 	});//end of ready function
 });

@@ -24,6 +24,7 @@
  *= require jquery.hovercard.css
  *= require override-bootstrap3.css
  *= require override-jquery-upload.css
+ *= require animate.css
  *= require_tree .
  * 
  */

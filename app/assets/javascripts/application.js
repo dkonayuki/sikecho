@@ -104,19 +104,18 @@ function getParameterByName(key,target){
 }
 
 function prepareFirstTime() {
-	//first time
-	$(window).scroll();	
+	//Remove this if it's not needed. It will react when window changes size.
+	$( window ).on( "resize", setMaxWidth );
 	
 	/*For note dynamic max width first time*/
-  setMaxWidth();
-	$( window ).on( "resize", setMaxWidth ); //Remove this if it's not needed. It will react when window changes size.		
+	$(window).scroll();	
 }
 
 $(document).ready(function() {
 
 });
 
-$(document).on("page:change", function() {
+$(document).on("page:load ready", function() {
 	prepareFirstTime();
 
   // disable enter key in filter form
@@ -129,4 +128,50 @@ $(document).on("page:change", function() {
     'container':'body'
   });
   
+  /*For search bar submit on navbar*/
+  $(".search-bar").on("submit", function() {
+  	// default search is subject
+  	//window.location.href = "/" + I18n["meta"]["code"] + "/search?query=" + $(this).find("#query").val() + "&type=subject";
+  	window.location.href = "/" + I18n["meta"]["code"] + "/subjects?search=" + $(this).find("#search").val();
+  	return false;
+  });
+  
+  var subjectsList = new Bloodhound({
+	  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+	  queryTokenizer: Bloodhound.tokenizers.whitespace,
+	  //prefetch: '/subjects.json',
+	  remote: '/search?q=%QUERY'
+	});
+	subjectsList.initialize();
+	
+	//$(".typeahead").typeahead("destroy");
+	$('.typeahead').typeahead(null, {
+	  displayKey: 'name',
+	  source: subjectsList.ttAdapter(),
+	  templates: {
+			//empty: ,
+	    suggestion: Handlebars.compile(
+	      "<div class='subject-typeahead-item'>" +
+		      "<a href={{typeahead_subject_path}}>" +
+			      "<img src='{{typeahead_thumbnail}}'></img>" +
+			      "<div class='subject-typeahead-content'>" +
+			      	"<div class='subject-typeahead-name'>{{name}}</div>" +
+			      	"<div class='subject-typeahead-info'>{{teachers.0.full_name}} &bull; {{year}}</div>" +
+			      "</div>" +
+		      "</a>" +
+	      "</div>"
+	    )
+	  }
+	});
+	
+	/*Fix keyboard focus on iphone*/
+  if (navigator.userAgent.match('CriOS')) {
+		$("input").not(".search-bar #search").on('focus', function() {
+	    $("#nav-bar").css("position", "absolute");
+		});
+		$("input").not(".search-bar #search").on('blur', function() {
+	    $("#nav-bar").css("position", "fixed");
+		});
+	}
+	
 });

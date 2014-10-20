@@ -91,7 +91,7 @@ $(document).on("page:load ready", function() {
 	
 	  $("#filter-schedule input").keyup(function() {
 			window.clearTimeout(timeout); //clear delay
-	    timeout = window.setTimeout(function(){ //set a new delay, after an amount of time, ajax function will be called
+	    timeout = window.setTimeout(function() { //set a new delay, after an amount of time, ajax function will be called
 			  $.ajax({
 				  url: $("#filter-schedule").attr("action"),
 				  data: $("#filter-schedule").serialize(), //default contenttype is url text
@@ -101,6 +101,20 @@ $(document).on("page:load ready", function() {
 			}, 500);
 	
 			return false;
+	  });
+	  
+	  /*For prev and next page btn animation*/
+	  $("#schedule-sub-list").on("click", ".previous-btn", function() {
+	  	$.getScript($(this).attr("href"), function() {
+	  		$(".subject-schedule-item").addClass("fadeInLeft animated short");
+	  	});
+	  	return false;
+	  });
+	  $("#schedule-sub-list").on("click", ".next-btn", function() {
+	  	$.getScript($(this).attr("href"), function() {
+	  		$(".subject-schedule-item").addClass("fadeInRight animated short");
+	  	});
+	  	return false;
 	  });
 	  
 	});//end of ready function
