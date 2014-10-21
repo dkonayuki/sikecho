@@ -4,12 +4,14 @@ class Ability
   def initialize(user)
     can :read, :all                   # allow everyone to read everything
     can :update, Subject              # guess user will be redirected to login page because of notes and subjects controller
-    if user.role == 'admin'
-      can :access, :rails_admin       # only allow admin users to access Rails Admin
-      can :dashboard                  # allow access to dashboard
-      can :manage, :all
-    elsif user.role == 'mod'
-      can :manage, :all               # allow mod to manage
+    if user
+      if user.role == 'admin'
+        can :access, :rails_admin     # only allow admin users to access Rails Admin
+        can :dashboard                # allow access to dashboard
+        can :manage, :all
+      elsif user.role == 'mod'
+        can :manage, :all             # allow mod to manage
+      end
     end
     # Define abilities for the passed in user here. For example:
     #
