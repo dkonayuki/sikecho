@@ -163,8 +163,14 @@ body {
 
 .nav-calendar {
 	max-width: 25px;
-	margin-right: 40px;
-	margin-top: 15px;
+	margin-right: 20px !important;
+	margin-top: 15px !important;
+}
+
+.nav-notification {
+	max-width: 35px;
+	margin-right: 10px !important;
+	margin-top: 10px !important;
 }
 
 .nav-avatar {
@@ -184,6 +190,7 @@ body {
 
 .nav-mobile {
 	text-align: center;
+	margin: 0 !important;
 }
 
 .subject-typeahead-item {
