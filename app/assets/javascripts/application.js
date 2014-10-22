@@ -50,7 +50,7 @@ function setMaxWidth() {
 	}
 	
 	if ($(".subject-recommend-item").length) {
-		$(".subject-recommend-info").css("maxWidth", ( $('.subject-recommend-item').width() - 1) + "px" );
+		$(".subject-recommend-info").css("maxWidth", ( $('.subject-recommend-item').width() - 10) + "px" );
 	}
 	
 	if ($("#filter-subject").length) {
