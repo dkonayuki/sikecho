@@ -109,7 +109,7 @@
 .owl-theme .owl-controls .owl-buttons .owl-prev{
 	left: -45px;
 	top: 0;
-	height: 190px;
+	height: 130px;
 	/* Internet Explorer 10 */
 	display:-ms-flexbox;
 	-ms-flex-pack:center;
@@ -129,7 +129,7 @@
 .owl-theme .owl-controls .owl-buttons .owl-next{
   right: -45px;
 	top: 0;
-	height: 190px;
+	height: 130px;
 	/* Internet Explorer 10 */
 	display:-ms-flexbox;
 	-ms-flex-pack:center;

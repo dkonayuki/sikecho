@@ -60,6 +60,7 @@ table {
 .label {
 	padding: 3px 7px;
 	border-radius: 0;
+	font-weight: normal;
 }
 
 .form-control-inline {

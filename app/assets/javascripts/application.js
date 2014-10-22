@@ -49,6 +49,10 @@ function setMaxWidth() {
 		$(".note-tags").css("maxWidth", ( $('.note-item').width() - $('.note-thumbnail').outerWidth(true) - $('.note-view').width() - 1 ) + "px" );
 	}
 	
+	if ($(".subject-recommend-item").length) {
+		$(".subject-recommend-info").css("maxWidth", ( $('.subject-recommend-item').width() - 1) + "px" );
+	}
+	
 	if ($("#filter-subject").length) {
 		$("#filter-subject").css("width", $("#subjects-content").width() - $("#new-subject-btn").outerWidth(true) - 40);
 	}
@@ -108,7 +112,8 @@ function prepareFirstTime() {
 	$( window ).on( "resize", setMaxWidth );
 	
 	/*For note dynamic max width first time*/
-	$(window).scroll();	
+	$(window).scroll();
+	setMaxWidth();
 }
 
 $(document).ready(function() {

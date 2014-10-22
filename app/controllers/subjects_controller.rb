@@ -116,9 +116,6 @@ class SubjectsController < ApplicationController
     #order by view count
     @notes = @notes.order('view_count DESC')
     
-    # custom show
-    @show_course = true
-    
     # same subjects, need to change later
     @same_subjects = @subject.course.subjects.where(name: @subject.name).order('year DESC')
     

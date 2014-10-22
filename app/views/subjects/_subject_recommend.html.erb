@@ -1,0 +1,24 @@
+<div class="subject-recommend-item">
+	<div class="subject-recommend-img">
+	<%= link_to subject do %>
+		<%= image_tag(subject.display_picture_small) %>
+	<% end %>
+	</div>
+	<div class="subject-recommend-content">
+		<div class="subject-recommend-name">
+			<%= subject.name %>
+		</div>
+		<div class="subject-recommend-desc">
+			<%= subject.description %>
+		</div>
+		<div class="subject-recommend-info">
+			<span class="label-orange label-xs"><%= subject.course.name %></span>
+			<span class="label label-info label-xs"><%= subject.year %></span>
+			<span class="label-green label-xs">
+				<%= t('date.abbr_day_names')[subject.periods.first.day] %>
+				&bull;
+				<%= t('date.abbr_period_names')[subject.periods.first.time] %>
+			</span>
+		</div>
+	</div>
+</div>

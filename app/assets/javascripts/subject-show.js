@@ -83,7 +83,8 @@ $(document).on("page:load ready", function() {
 	    itemsTablet: [768,2],
 	    itemsTabletSmall: false,
 	    itemsMobile : [479,1],
-			navigation:true,
+			navigation: true,
+			pagination: false,
 	    navigationText: [
 	      "<span class='glyphicon glyphicon-chevron-left'></span>",
 	      "<span class='glyphicon glyphicon-chevron-right'></span>"
