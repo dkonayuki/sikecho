@@ -1511,8 +1511,8 @@ body {
 }
 
 .subject-recommend-img {
-	width: 90px;
-	height: 90px;
+	width: 80px;
+	height: 80px;
 	padding: 5px;
 	overflow: hidden;
 	float: left;
@@ -1525,7 +1525,7 @@ body {
 }
 
 .subject-recommend-content {
-	padding: 8px;
+	padding: 8px 2px;
 	overflow: hidden;
 }
 
