@@ -18,8 +18,10 @@ module ApplicationHelper
   end
   
   #helper link for broadcast
-  def broadcast(channel, &block)
-    message = {channel: channel, data: capture(&block), ext: {auth_token: FAYE_TOKEN}}
+  def broadcast(channel, content=nil, &block)
+    #priority to block if given
+    data = block_given? ? capture(&block) : content
+    message = {channel: channel, data: data, ext: {auth_token: FAYE_TOKEN}}
     uri = URI.parse(faye_server_url)
     Net::HTTP.post_form(uri, message: message.to_json)
   end

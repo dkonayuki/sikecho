@@ -13,6 +13,12 @@ class Note < ActiveRecord::Base
   
   is_impressionable counter_cache: true, column_name: :view_count, unique: :all
   
+  #after_create do |note|
+    #note.subjects.each do |subject|
+      #broadcast('/subjects/#{subject.id}', )
+    #end
+  #end
+  
   def self.search(search)
     if search
       #where('title LIKE ?', "%#{search}%")
