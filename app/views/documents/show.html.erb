@@ -1,4 +1,4 @@
-<div id="show-document" class="clear">
+<div id="show-document" class="clear" data-id="<%= @document.id %>">
 	<div id="document-content">
 		<%= image_tag(@document.upload.url(:original)) %>
 		<h4><%= @document.title %></h4>

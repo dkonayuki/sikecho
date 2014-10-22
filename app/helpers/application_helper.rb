@@ -17,6 +17,18 @@ module ApplicationHelper
     end
   end
   
+  #helper link for broadcast
+  def broadcast(channel, &block)
+    message = {channel: channel, data: capture(&block), ext: {auth_token: FAYE_TOKEN}}
+    uri = URI.parse(faye_server_url)
+    Net::HTTP.post_form(uri, message: message.to_json)
+  end
+  
+  #faye server url
+  def faye_server_url
+    "#{request.protocol}#{request.host}:9292/faye"
+  end
+  
   #helper link for shallow= true
   def shallow_args(parent, child)
     child.try(:new_record?) ? [parent, child] : child

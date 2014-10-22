@@ -63,26 +63,3 @@
 	</div>
 	
 </div>
-<script>
-$(document).ready(function() {
-
-	$(".author-hovercard-target").hovercard({
-		content: $(".author-hovercard"),
-		placement: "top"
-	});
-	
-	$(".subject-hovercard-target").each(function() {
-		var id = $(this).parents(".subject-card").data("id");
-		$(this).hovercard({
-			content: $(".subject-hovercard[data-id='" + id + "']")
-		})
-	});
-	
-	/*For print button*/
-	$(".print").on("click", function() {
-		window.print();
-		return false;
-	});
-	
-});
-</script>

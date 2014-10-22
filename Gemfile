@@ -99,3 +99,6 @@ gem 'rails_admin', '~> 0.6.2'
 #using globalize for university name translation table
 gem 'globalize', '~> 4.0.2'
 #gem 'bootstrap-wysihtml5-rails'
+
+gem 'faye'
+gem 'thin'

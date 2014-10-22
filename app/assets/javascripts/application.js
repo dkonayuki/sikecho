@@ -66,8 +66,8 @@ function scrollToAnchor(aid){
 
 /*Define after ajax success*/
 function ajaxSuccess() {
+	
 	/*For note dynamic max width*/
-  setMaxWidth();
 	$(window).on( "resize", setMaxWidth ); //Remove this if it's not needed. It will react when window changes size.
 
 	//load more items if needed
