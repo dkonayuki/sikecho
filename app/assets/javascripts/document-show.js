@@ -24,7 +24,6 @@ function prepareComments() {
 	faye.subscribe("/documents/" + documentID, function(data) {
 		//execute js
 		eval(data);
-		console.log(data);
 	});
 };
 		
