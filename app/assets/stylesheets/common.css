@@ -178,6 +178,12 @@ a:hover {
 	font-style: italic;
 }
 
+.skc-box {
+	margin: 0 auto;
+	padding: 0 15px 20px;
+	max-width: 600px;
+}
+
 @media (max-width: 767px) {
 	.skc-box-thumbnail {
 		display: none;
@@ -193,13 +199,8 @@ a:hover {
 	}
 	.skc-box {
 		width: 100%;
+		padding: 0 10px 20px;
 	}
-}
-
-.skc-box {
-	margin: 0 auto;
-	padding: 0 15px 20px;
-	max-width: 600px;
 }
 
 .skc-box:hover .skc-box-menu {

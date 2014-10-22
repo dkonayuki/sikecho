@@ -964,6 +964,15 @@ body {
 	box-sizing: border-box;
 }
 
+@media (max-width: 767px) {
+	#subjects {
+		padding: 0 10px;
+	}
+	#subjects-content {
+		padding: 10px 10px 20px;
+	}
+}
+
 #subject-menu-top {
 	position: relative;
 	padding-bottom: 15px;
