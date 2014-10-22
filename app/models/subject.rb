@@ -1,6 +1,8 @@
 class Subject < ActiveRecord::Base
   #for subject_path
   include Rails.application.routes.url_helpers
+  #for custom activity
+  include PublicActivity::Common
 
   validates :name, presence: true
   validates :semester_id, presence: true
@@ -30,8 +32,10 @@ class Subject < ActiveRecord::Base
   
   acts_as_taggable_on :tags
   
+  #versioning
   has_paper_trail only: [:description], on: [:update]
   
+  #count tracking
   is_impressionable counter_cache: true, column_name: :view_count, unique: :all
   
   DEFAULT_OUTLINE = 12

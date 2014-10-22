@@ -1,0 +1,8 @@
+<div id="activities">
+	<% @activities.each do |activity| %>
+	  <div class="activity">
+	    <%= link_to activity.owner.username, activity.owner if activity.owner %>
+	    <%= render_activity activity %>
+	  </div>
+	<% end %>
+</div>

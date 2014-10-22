@@ -1,4 +1,7 @@
 class Note < ActiveRecord::Base
+  #for custom activity
+  include PublicActivity::Common
+  
   validates :title, presence: true
   validates :subjects, presence: true
 
@@ -9,6 +12,7 @@ class Note < ActiveRecord::Base
   
   acts_as_taggable_on :tags
   
+  #unread - read checking
   acts_as_readable on: :created_at
   
   is_impressionable counter_cache: true, column_name: :view_count, unique: :all

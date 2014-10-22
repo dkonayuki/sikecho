@@ -19,13 +19,6 @@ class NotesController < ApplicationController
       @show_more = true
     end
     
-    #get registered_notes for unread count
-    @registered_notes = Note.select('distinct notes.*').joins('INNER JOIN notes_subjects ON notes.id = notes_subjects.note_id')
-      .joins('INNER JOIN subjects ON subjects.id = notes_subjects.subject_id')
-      .joins('INNER JOIN educations_subjects ON educations_subjects.subject_id = subjects.id')
-      .joins('INNER JOIN educations ON educations.id = educations_subjects.education_id')
-      .where('educations.id = ?', @user.current_education.id)
-    
     #process filter if has any
     if params[:filter].blank?
       #no filter, default: all
@@ -35,11 +28,9 @@ class NotesController < ApplicationController
       when :my_note
         @notes = @user.notes
       when :registered_note
-        #select distinct notes from crazy joins
-        @notes = @registered_notes
-
+        @notes = @user.registered_notes
       when :new_arrival_note
-        @notes = @registered_notes.unread_by(@user)
+        @notes = @user.registered_notes.unread_by(@user)
       when :all
         @notes = @user.current_university.notes
       else
@@ -130,6 +121,10 @@ class NotesController < ApplicationController
       if @note.save
         # need to save b4 mark as read
         @note.mark_as_read! for: @user
+        
+        #create activity for new feeds
+        @note.create_activity :create, owner: current_user
+        
         format.html { redirect_to @note, notice: 'Note was successfully created.' }
         format.json { render action: 'show', status: :created, location: @note }
       else
@@ -180,6 +175,10 @@ class NotesController < ApplicationController
    
     respond_to do |format|
       if @note.update(note_params)
+                
+        #create activity for new feeds
+        @note.create_activity :update, owner: current_user
+        
         format.html { redirect_to @note, notice: 'Note was successfully updated.' }
         format.json { head :no_content }
       else
@@ -193,6 +192,10 @@ class NotesController < ApplicationController
   # DELETE /notes/1.json
   def destroy
     @note.destroy
+            
+    #create activity for new feeds
+    @note.create_activity :destroy, owner: current_user
+    
     respond_to do |format|
       format.html { redirect_to :notes }
       format.json { head :no_content }

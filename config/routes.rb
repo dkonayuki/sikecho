@@ -1,13 +1,5 @@
 Shikechou::Application.routes.draw do
   
-  get 'requests/new'
-
-  get 'requests/create'
-
-  get 'request/new'
-
-  get 'request/create'
-
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   
   devise_for :users, skip: [:session, :password, :registration], controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
@@ -69,9 +61,9 @@ Shikechou::Application.routes.draw do
       get 'schedule/view_option' => 'schedule#view_option'
     end
     
-    resources :requests do
+    resources :requests
       
-    end
+    resources :activities
     
     resources :documents do
       put 'inline' => 'documents#inline', on: :collection

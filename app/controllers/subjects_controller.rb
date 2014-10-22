@@ -177,6 +177,8 @@ class SubjectsController < ApplicationController
 
     respond_to do |format|
       if @subject.save
+        #create activity for new feeds
+        @subject.create_activity :create, owner: current_user
         format.html { redirect_to @subject, notice: 'Subject was successfully created.' }
         format.json { render action: 'show', status: :created, location: @subject }
       else
@@ -328,6 +330,8 @@ class SubjectsController < ApplicationController
     
     respond_to do |format|
       if @subject.update(subject_params)
+        #create activity for new feeds
+        @subject.create_activity :update, owner: current_user
         format.html { redirect_to @subject, notice: 'Subject was successfully updated.' }
         format.json { render json: @subject, status: :ok } # 204 No Content
       else
@@ -346,6 +350,8 @@ class SubjectsController < ApplicationController
     authorize! :destroy, @subject
     
     @subject.destroy
+    #create activity for new feeds
+    @subject.create_activity :destroy, owner: current_user
     respond_to do |format|
       format.html { redirect_to subjects_path }
       format.json { head :no_content }

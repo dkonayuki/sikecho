@@ -93,12 +93,19 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem "omniauth-google-oauth2"
 
+#for admin-mod-user feature
 gem 'cancan'
 gem 'rails_admin', '~> 0.6.2'
 
 #using globalize for university name translation table
 gem 'globalize', '~> 4.0.2'
+
+#wysihtml5 still has bug
 #gem 'bootstrap-wysihtml5-rails'
 
+#pub/sub feature
 gem 'faye'
 gem 'thin'
+
+# new feeds
+gem 'public_activity'
