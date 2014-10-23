@@ -22,7 +22,7 @@
 		  <ul class="dropdown-menu" role="menu">
 		  	<% University.all.each do |university| %>
 		    <li class="<%= 'active' if current_university != nil && current_university.name == university.name %>">
-		    	<%= link_to university.name, root_url(subdomain: university.codename) %>
+		    	<%= link_to university.name, subjects_url(subdomain: university.codename) %>
 	    	</li>
 		  	<% end %>
 		  </ul>
