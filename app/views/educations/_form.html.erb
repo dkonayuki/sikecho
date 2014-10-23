@@ -1,7 +1,3 @@
-<div id="education-edit">
-	<div id="education-header">
-		<%= t('.header') %>
-	</div>
 	<div id="education-content">
 		<%= form_for([@user, @education], html: {id: 'education-form', remote: true, class: 'clear'}) do |f| %>
 		  <% if @education.errors.any? %>
@@ -17,9 +13,9 @@
 		  <p>
 		    <%= t('university') %>:
 		    <% if @education.university %>
-				<%= f.select :university_id, options_from_collection_for_select(@universities, "id", "name", selected: @education.university.id), {}, {class: 'form-control selectpicker show-tick', data: {width: 'auto'}} %>
+				<%= f.select :university_id, options_from_collection_for_select(@universities, "id", "name", selected: @education.university.id), {}, {class: 'form-control selectpicker show-tick', data: {width: 'auto'}, disabled: (isNew == true) ? false : true} %>
 		    <% else %>
-				<%= f.select :university_id, options_from_collection_for_select(@universities, "id", "name"), {}, {class: 'form-control selectpicker show-tick', data: {width: 'auto'}} %>
+				<%= f.select :university_id, options_from_collection_for_select(@universities, "id", "name"), {}, {class: 'form-control selectpicker show-tick', data: {width: 'auto'}, disabled: (isNew == true) ? false : true} %>
 		  	<% end %>
 	  	</p>
 	  	<p>
@@ -63,4 +59,3 @@
 			<%= f.hidden_field :user_id, value: @user.id %>
 		<% end %>
 	</div>
-</div>

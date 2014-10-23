@@ -1,3 +1,7 @@
-<h1>Editing education</h1>
+<div id="education-edit">
+	<div id="education-header">
+		<%= t('.header') %>
+	</div>
+<%= render partial: 'form', locals: {isNew: false} %>
 
-<%= render 'form' %>
+</div>

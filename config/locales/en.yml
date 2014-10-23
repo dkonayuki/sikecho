@@ -451,9 +451,12 @@ en:
       auto_add: Add automatically
       notice1: Please select your current education
     form:
-      header: New Education
       faculty: Faculty
       course: Course
+    new:
+      header: Add a new Education
+    edit:
+      header: Edit Education
   teachers:
     show:
       university: University

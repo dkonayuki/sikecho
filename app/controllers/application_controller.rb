@@ -119,7 +119,7 @@ class ApplicationController < ActionController::Base
   
   # Always use the appropriate subdomain for user
   def set_subdomain
-    if user_signed_in? && current_user.current_university != current_university
+    if user_signed_in? && current_university == nil
       redirect_to subdomain: current_user.current_university.codename
     end
   end

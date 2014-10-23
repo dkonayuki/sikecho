@@ -12,7 +12,7 @@
       <span class="icon-bar"></span>
     </button>
     <% if user_signed_in? %>
-    	<%= link_to image_tag("logo.png"), root_path, class: 'navbar-brand', id: 'logo' %>
+    	<%= link_to image_tag("logo.png"), root_url(subdomain: current_user.current_university.codename), class: 'navbar-brand', id: 'logo' %>
     <% else %>
     	<%= link_to image_tag("logo.png"), root_url(subdomain: ''), class: 'navbar-brand', id: 'logo' %>
     <% end %>
