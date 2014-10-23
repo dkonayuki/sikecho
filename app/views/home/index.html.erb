@@ -1,5 +1,5 @@
 <div id="home">
-	<% if current_university == nil %>
+	<% if !user_signed_in? %>
 		<%= render template: 'universities/index' %>
 	<% else %>
 		<%= render template: 'activities/index' %>
