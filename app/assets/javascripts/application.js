@@ -31,6 +31,8 @@
 //= require jquery.gritter.js
 //= require jquery.hovercard.js
 //= require jquery.readyselector.js
+//= require modernizr.custom.js
+//= require mlpushmenu.js
 //= require_tree .
 
 /*MaxWidth for ajax popup*/
@@ -78,6 +80,7 @@ function ajaxSuccess() {
 	$(window).scroll();		
 }
 
+/*get url params*/
 function getParameterByName(key,target){
 	var values = [];
 	if(!target){

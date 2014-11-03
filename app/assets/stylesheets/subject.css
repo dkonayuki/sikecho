@@ -1,0 +1,589 @@
+/* Subject page 
+ ===============================================================================================*/
+
+#subjects {
+	max-width: 1000px;
+	margin: 20px auto;
+	padding: 0 20px;
+}
+
+#subjects-content {
+	background: #fff;
+	padding: 20px 20px 30px;
+	box-shadow: 0 1px 2px rgba(0,0,0,.1);
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+@media (max-width: 767px) {
+	#subjects {
+		padding: 0 10px;
+	}
+	#subjects-content {
+		padding: 10px 10px 20px;
+	}
+}
+
+#subject-menu-top {
+	position: relative;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #ddd;
+	background-color: #fff;
+}
+
+#filter-subject {
+	max-width: 300px;
+}
+
+#new-subject-btn {
+	float: right;
+}
+@media (max-width: 767px) {
+  #new-subject-text {
+    display: none;
+  } 
+}
+
+#courses-list {
+	width: 150px;
+	background-color: #fff;
+	padding: 10px 5px;
+	display: block;
+	margin: 0 auto;
+	border: 5px solid #e2e5e8;	
+}
+
+#courses-list li {
+}
+
+#courses-list a {
+	padding: 10px 10px !important;
+}
+
+#courses-list > ul > li > a:hover {
+	background-color: #999 !important;
+	color: #fff;	
+}
+
+#courses-list > ul > li > a:focus, #courses-list ul li .active {
+	background-color: #555 !important;
+	color: #fff;
+}
+
+#subjects-list-container {
+}
+
+#subjects-list-header {
+	padding: 10px;
+	border-right: 1px solid #ddd;
+	height: 55px;
+}
+
+@media(max-width: 767px) {
+	#subjects-list-header {
+		border-right: none;
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+#subjects-list-title {
+	font-size: 24px;
+	font-weight: 500;
+	line-height: 1.1;
+	float: left;
+	margin-top: 10px;
+}
+
+#subject-order-option {
+	float: right;
+	height: 35px;
+}
+
+#subjects-list {
+	border-top: 1px solid #ddd;
+}
+
+#subject-view-menu {
+	position: relative;
+	margin: 20px;
+	border: 1px solid #ddd;
+}
+
+#note-order-option {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.hidden-pagination {
+	display: none;
+}
+
+.subject-item-line {
+	position: relative;
+	height: 100px;
+	width: 100%;
+	display: block;
+	padding: 10px 0 10px 10px;
+	border-bottom: 1px solid #ddd;
+	border-left: 1px solid transparent;
+	border-right: 1px solid #ddd;
+}
+
+.subject-item-line:hover {
+	background-color: rgba(0,0,0,0.05);
+	border-color: #ddd;
+}
+
+.subject-details-line {
+	padding: 5px 15px;
+	width: auto;
+	height: 80px;
+	overflow: hidden;
+}
+
+@media(max-width: 767px) {
+	.subject-item-line {
+		border-right: 1px solid transparent;
+	}
+	.subject-details-line {
+		padding-left: 0;
+	}
+}
+
+.subject-thumbnail-line {
+	float: left;
+	width: 120px;
+	height: 80px;
+	-webkit-box-shadow: 0 0 2px 0 rgba(0,0,0,0.45);
+	box-shadow: 0 0 2px 0 rgba(0,0,0,0.45);
+	overflow: hidden;
+}
+
+.subject-thumbnail-line img {
+}
+
+.subject-desc-line {
+	font-size: 12px;
+	line-height: 18px;
+	height: 36px;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+.subject-teacher-line {
+	font-size: 12px;
+	color: #999;
+	line-height: 20px;
+}
+
+.subject-name-line {
+	color: #222;
+	font-size: 16px;
+	line-height: 20px;
+	height: 20px;
+	font-weight: 600;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.subject-info-line {
+	float: right;
+	height: 80px;
+	font-size: 12px;
+}
+
+.subject-year-line {
+	text-align: center;
+	margin-top: 30px;
+	padding: 4px 10px 2px 15px;
+	font-size: 11px;
+	color: #797979;
+	background-color: #EBEBEB;
+	border-right: 3px solid #2980b9;
+}
+
+.subject-course-line {
+	text-align: center;
+	margin-top: 1px;
+	padding: 4px 10px 2px 15px;
+	font-size: 11px;
+	color: #797979;
+	background-color: #EBEBEB;
+	border-right: 3px solid #5cb85c;
+}
+
+.subject-menu-line {
+	float: right;
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	font-size: 12px;
+}
+
+.cancel-text {
+	display: none;
+}
+
+.subject-menu-line-register {
+	display: none !important;
+}
+
+.subject-menu-line-hover:hover .cancel-text {
+	display: inline-block;
+}
+.subject-menu-line-hover:hover .registered-text {
+	display: none;
+}
+.subject-item-line:hover .subject-menu-line-register {
+	display: block !important;
+}
+
+.subject-tag-item {
+	display: inline-block;
+	margin: 5px;
+}
+
+.subject-tag-item a {
+	color: #fff;
+	padding: 3px 6px;
+	background: #24b2f2;	
+}
+
+.subject-tag-item a:hover {
+	background: #46d4f4;
+	color: #fff;
+}
+
+.subject-tag-item a:last-child {
+	margin-left: -2px;
+}
+
+#subject-filter-trigger {
+	float: left;
+}
+
+#subject-menu-right {
+	padding: 15px;
+	background: #fff;
+	max-width: 300px;
+	position: relative;
+}
+
+@media(max-width: 767px) {
+	#subject-menu-right {
+		margin: 20px auto;
+	}
+}
+
+#subject-menu-close {
+	display: none;
+	width: 100%;
+	margin-top: 20px;	
+}
+
+.subject-menu-item-header {
+	padding: 10px;
+}
+
+.subject-menu-item-header img {
+	width: 25px;
+	height: 25px;
+	margin-right: 3px;
+}
+
+.subject-menu-item-header span {
+	font-size: 16px;
+	vertical-align: middle;
+}
+
+#subject-menu-course {
+	margin-left: 30px;
+}
+
+#subject-menu-course ul {
+	margin-left: 17px;
+}
+
+.faculty-item ul {
+	display: none;
+}
+
+#subject-menu-semester {
+	text-align: center;
+	max-width: 250px;
+	cursor: pointer; 
+}
+
+#subject-menu-semester td {
+	vertical-align: middle;
+}
+
+#subject-menu-tag {
+	margin-bottom: 15px;
+}
+
+#subject-menu-week {
+	text-align: center;
+}
+
+#subject-menu-week #subject-day, #subject-menu-week #subject-time {
+	display: inline-block;
+}
+
+.subject-hovercard {
+	width: 340px;
+	height: 120px;
+	display: inline-block;
+}
+
+.subject-hovercard-img {
+	width: 120px;
+	height: 120px;
+	overflow: hidden;
+	float: left;
+}
+
+.subject-hovercard-img img {	
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.subject-hovercard-content {
+	padding: 8px;
+	overflow: hidden;
+}
+
+.subject-hovercard-name {
+	text-align: center;
+	font-weight: 700;
+	font-size: 15px;
+	line-height: 16px;
+	height: 16px;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+
+.subject-hovercard-desc {
+	font-size: 11px;
+	line-height: 16px;
+	height: 48px;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.subject-hovercard-info {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+}
+
+/* Subject show page
+ ===============================================================================================*/
+
+#show-subject {
+	width: 75%;
+	margin-right: 15px;
+	margin-left: 15px;
+	float: right;	
+}
+
+#show-subject-menu {
+	margin-left: 10px;
+	position: fixed;
+}
+
+.show-subject-menu-item {
+	width: 120px;
+	background-color: #fff;
+	padding: 10px;
+	margin-top: 10px;
+	box-shadow: 0 1px 2px rgba(0,0,0,.1);
+}
+
+.show-subject-menu-item > ul > li > a:hover, .show-subject-menu-item > ul > li > a:focus {
+	background-color: #555 !important;
+	color: #fff;
+}
+
+.show-subject-menu-item h4 {
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.show-subject-menu-item .btn {
+	width: 100%;
+}
+
+@media(max-width: 767px) {
+	#show-subject {
+		width: auto;
+		float: none;
+	}
+}
+
+#show-subject-dropdown img {
+	width: 25px;
+}
+
+#year-list {
+	margin: 10px auto 10px;
+	max-width: 800px;
+}
+
+#year-list .year-item {
+	float: right;
+	margin-left: 10px;
+}
+
+#subject-edit {
+	margin-top: 20px;
+}
+
+.show-subject-header {
+	margin-bottom: 5px;
+}
+.show-subject-header img {
+	width: 45px;
+}
+
+.show-subject-header span {
+	font-size: 18px;
+}
+
+.subject-recommend-item {
+	height: 120px;
+	margin: 10px;
+	padding: 5px;
+	background: #fff;
+}
+
+.subject-recommend-img {
+	width: 70px;
+	height: 70px;
+	margin: 5px;
+	overflow: hidden;
+	float: left;
+}
+
+.subject-recommend-img img {	
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.subject-recommend-content {
+	padding: 8px 2px;
+	overflow: hidden;
+}
+
+.subject-recommend-name {
+	text-align: center;
+	font-weight: 700;
+	font-size: 15px;
+	line-height: 16px;
+	height: 16px;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+
+.subject-recommend-desc {
+	text-align: left;
+	font-size: 11px;
+	line-height: 16px;
+	height: 48px;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.subject-recommend-info {
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+	overflow: hidden;
+	height: 20px;
+}
+
+/* Subject edit page
+ ===============================================================================================*/
+
+#subject-table {
+	text-align: center;
+	table-layout: fixed;
+}
+
+#subject-table .cell:hover {
+	background-color: #5cb85c;
+	color: #fff;
+}
+
+#subject-table .cell:active {
+	cursor: pointer;
+	background-color: #4ba74b;
+	color: #fff;
+}
+
+#subject-table .cell.active:hover {
+	background-color: #c0392b;
+	color: #fff;
+}
+
+#subject-table .cell.active:active {
+	cursor: pointer;
+	background-color: #b0281a;
+	color: #fff;
+}
+
+#subject-table .cell {
+	cursor: pointer;
+}
+
+#subject-table .cell.active {
+  background-color: #5cb85c;
+  color: #fff;
+  border-top: none;
+	border-bottom: none;
+}
+
+#subject-table .cell .subject-table-add, #subject-table .cell .subject-table-remove, #subject-table .cell .subject-table-ok {
+	display: none;
+}
+
+#subject-table .cell:hover .subject-table-add {
+	display: block;
+}
+
+#subject-table .cell.active .subject-table-add, #subject-table .cell.active .subject-table-remove {
+	display: none;
+}
+
+#subject-table .cell.active .subject-table-ok {
+	display: block;
+}
+
+#subject-table .cell.active:hover .subject-table-remove {
+	display: block;
+}
+
+#subject-table .cell.active:hover .subject-table-ok {
+	display: none;
+}
+
+#syllabus-table {
+	margin-top: 10px;
+}

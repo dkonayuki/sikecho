@@ -1,0 +1,11 @@
+/* Teacher page
+ ===============================================================================================*/
+
+#show-teacher {
+	margin-top: 20px;
+}
+
+#show-teacher .subject-by-year {
+	margin-bottom: 3px;
+	display: inline-block;
+}

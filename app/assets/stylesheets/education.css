@@ -1,0 +1,31 @@
+/* Education page
+ ***************************************************************************/
+
+#education-table td, #education-table th {
+	text-align: center;
+}
+
+#education-edit {
+  position: relative;
+  background: #FFF;
+  width: auto;
+  max-width: 400px;
+  max-height: 600px;
+  overflow: visible;
+  margin: 20px auto;
+  border-radius: 3px;
+}
+
+#education-header {
+	padding: 20px 32px;
+	border-bottom: 1px solid #e5e5e5;
+	font-size: 18px;
+}
+
+#education-content {
+	line-height: 1.8em;
+	font-size: 13px;
+	padding: 20px 32px;
+	background: #f6f9fc;
+  border-radius: 3px;
+}

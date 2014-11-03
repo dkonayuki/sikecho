@@ -1,0 +1,190 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrapper {
+  min-height: 100%;
+  height: auto;
+  padding-bottom: 50px;
+}
+
+/* Set the fixed height of the footer here */
+#footer {
+  height: 50px;
+  background-color: #fff;
+  border-top: 1px solid #e7e7e7;
+	bottom: 0;
+	position: absolute;
+	width: 100%;
+}
+
+/*Navigation bar
+ ===============================================================================================*/
+
+#logo {
+	width: 130px;
+}
+
+#nav-bar {
+	border-radius: 0;
+	background-color: #fff;
+	margin-bottom: 0;
+	position: fixed;
+	width: 100%;
+	z-index: 3;
+	border: none;
+	border-bottom: 1px solid #e7e7e7;
+}
+
+.search-bar .form-control {
+	border: 2px solid #76d17f;
+}
+
+.search-bar .form-control:focus {
+	border-color: #41b34d;
+}
+
+.search-bar .tt-dropdown-menu .tt-suggestion {
+  padding: 0 2px 0 5px;
+}
+
+#navbar-search {
+	padding: 6px 15px !important;
+}
+
+#navbar-menu {
+	margin-right: 0 !important;
+	margin-left: 15px;
+}
+
+#navbar-collapse-1 {
+	float: left;
+}
+
+#navbar-collapse-2 {
+	float: left;
+}
+
+#navbar-collapse-3 {
+	float: right;
+}
+
+@media (max-width: 767px) {
+	#logo {
+		float: none !important;
+		margin: auto auto;
+		display: block;
+  }
+	#navbar-collapse-1 {
+		float: none;
+		padding: 0 !important;
+	}
+	#navbar-collapse-2 {
+		float: none;
+		width: 100% !important;
+	}
+}
+
+@media (min-width: 768px) {
+	#navbar-collapse-1 {
+		padding: 0 !important;
+	}
+	#navbar-collapse-2 {
+		padding: 0 !important;
+		overflow: visible !important;
+		max-width: 260px;
+	}
+}
+
+#navbar-collapse-3 .dropdown-toggle {
+	padding: 25px 10px 5px;
+}
+
+.nav-calendar {
+	max-width: 25px;
+	margin-right: 20px !important;
+	margin-top: 15px !important;
+}
+
+.nav-notification {
+	max-width: 35px;
+	margin-right: 10px !important;
+	margin-top: 10px !important;
+}
+
+.nav-avatar {
+	height: 30px;
+	margin-top: -20px;
+}
+
+.nav-mobile li {
+	display: inline-block !important;
+	padding: 0 !important;
+	border-right: 1px solid #e7e7e7;
+}
+
+.nav-mobile li:last-child {
+	border: none;
+}
+
+.nav-mobile {
+	text-align: center;
+	margin: 0 !important;
+}
+
+.subject-typeahead-item {
+	padding: 0;
+}
+
+.subject-typeahead-item img {
+	height: 40px;
+	width: 40px;
+	float: left;
+	padding: 4px;
+}
+
+.subject-typeahead-content {
+	padding: 5px 2px 5px 5px;
+	width: auto;
+	height: 40px;
+	overflow: hidden;
+}
+
+.subject-typeahead-name {
+	color: #222;
+	font-size: 11px;
+	line-height: 16px;
+	height: 16px;
+	font-weight: 600;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.subject-typeahead-info {
+	font-size: 9px;
+	color: #999;
+	line-height: 16px;
+}
+
+#user-info-dropdown img {
+	width: 25px;
+	margin-right: 5px;
+}
+
+/* Footer
+***************************************************************************/
+#university-select {
+	margin-right: 10px;
+}
+
+#i18n-select {
+	margin-right: 10px;
+}

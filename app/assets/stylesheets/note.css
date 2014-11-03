@@ -1,0 +1,277 @@
+
+/*New note page
+===============================================================================================*/
+
+#note-form {
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+.tag-menu {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+
+.tag-form {
+	position: relative;
+	padding: 30px 19px 10px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+}
+
+.tag-form-title {
+	position: absolute;
+	top: -1px;
+	left: -1px;
+	padding: 3px 7px;
+	font-size: 12px;
+	font-weight: bold;
+	background-color: #f5f5f5;
+	border: 1px solid #ddd;
+	color: #9da0a4;
+}
+
+#note-subjects-select .dropdown-menu {
+	max-width: 100%;
+}
+
+/*Note page
+===============================================================================================*/
+
+#notes {
+	background: #fff;
+	overflow: hidden;
+	padding: 0 15px 0 15px;
+}
+
+#notes-list {
+	margin-top: 20px;
+}
+
+#pushmenu-trigger {
+	margin-right: 15px;
+}
+
+#filter-note {
+	max-width: 220px;
+}
+
+.note-item {
+	height: 82px;
+	padding-top: 10px;
+	margin: 0 0 20px;
+	list-style: none;
+	border: 1px solid transparent;
+	border-bottom: 1px solid #eee;
+}
+
+.note-item img {
+  display: inline-block;
+  margin: 0;
+	height: 20px;
+}
+
+.note-thumbnail {
+	float: left;
+	height: 100%;
+	width: 20px;
+	margin-right: 10px;
+	margin-top: 3px;
+	background-image: url('note.png'); /* use background to preload */
+	background-size:20px 20px;
+	background-repeat:no-repeat;
+}
+
+.note-details {
+	float: left;
+}
+
+.note-title {
+	text-align: left;
+	font-size: 17px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	overflow: hidden;
+	word-wrap: break-word;
+	white-space: nowrap;
+	text-overflow: ellipsis; 
+}
+
+.note-title a {
+}
+
+.note-tags {
+	text-align: left;
+	font-size: 11px;
+}
+
+.note-tags .label {
+	margin-top: 2px;
+	display: inline-block;
+}
+
+.note-info {
+	float: right;
+	font-size: 11px;
+	color: #999999;
+}
+
+.note-time {
+	top: 5px;
+	right: 10px;
+	position: absolute;
+}
+
+.note-view {
+	bottom: 5px;
+	right: 10px;
+	position: absolute;
+}
+
+.filter-bar {
+	position: relative;
+	padding-top: 10px;
+	border-bottom: 1px solid #ddd;
+	height: 57px;
+	background-color: #fff;
+}
+
+.filter-menu {
+	float: right;
+	margin-top: 16px;
+}
+
+.filter-menu li {
+	float: right;
+	padding-right: 20px;
+}
+
+.filter-menu a {
+	border-bottom: 3px solid transparent;
+}
+
+.filter-menu a:hover, .filter-menu .active {
+	border-color: #563d7c;
+}
+
+.filter-menu a {
+	padding-bottom: 10px;
+}
+
+.filter-form {
+	margin: 0;
+	padding: 0;
+	float: left;
+}
+
+#new-note-btn {
+	float: right;
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+}
+@media (max-width: 767px) {
+	#new-note-text {
+		display: none;
+	}
+}
+
+/*Show Note page
+ *  ===============================================================================================*/
+
+#show-note {
+	margin-top: 20px;
+}
+
+#note-edit {
+	margin-top: 20px;
+}
+
+#note-edit-btn {
+	position: absolute;
+	top: 80px;
+	right: 20px;
+	padding: 6px 10px;
+	display: none;
+}
+
+.subject-card {
+	width: 200px;
+	height: 60px;
+	display: inline-block;
+	padding: 11px;
+	border: 1px solid #aaa;
+	border-radius: 4px;
+	margin: 5px;
+}
+
+.subject-card-img {
+	float: left;
+}
+
+.subject-card-content {
+	padding-left: 5px;
+	overflow: hidden;
+}
+
+.subject-card-name {
+	color: #E67E22;
+	font-size: 13px;
+	line-height: 16px;
+	height: 16px;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.subject-card-info {
+	font-size: 11px;
+	color: #888;
+	margin-top: 5px;
+}
+
+.author {
+	height: 35px;
+	width: 300px;
+	display: inline-block;
+}
+
+.author-img {
+	float: left;
+}
+
+.author-content {
+	padding-left: 5px;
+	overflow: hidden;
+}
+
+.author-name {
+	color: #E67E22;
+	font-size: 13px;
+}
+
+.author-info {
+	font-size: 11px;
+	color: #888;
+}
+
+#note-tags-list {
+	max-width: 800px;
+	margin: 0 auto 20px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+#note-tags-list-header {
+	margin-bottom: 5px;
+}
+
+#note-tags-list-header img {
+	width: 45px;
+}
+
+#note-tags-list-header span {
+	font-size: 18px;
+}

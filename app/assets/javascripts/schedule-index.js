@@ -1,6 +1,8 @@
 $(document).on("page:load ready", function() {
 	$(".schedule.index").ready(function() {
 		
+		$("body").css("background-color", "#fff");
+		
 		//activate draggable on table
 		$("#schedule-sub-list").on("mouseover", ".subject-draggable", function() {
 		  $(this).draggable({

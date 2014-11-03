@@ -1,0 +1,220 @@
+
+/*Sign up page
+ ===============================================================================================*/
+
+#nav-bar-signup {
+	border-radius: 0;
+	background-color: #fff;
+	margin-bottom: 0;
+	width: 100%;
+	border: none;
+	border-bottom: 1px solid #e7e7e7;	
+}
+
+#signup-page {
+	background: #fff;
+}
+
+#signup-page h2 {
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 15px;
+}
+
+#signup-form-wrapper {
+	margin: 10px auto 40px;
+	max-width: 300px;
+	background: #f1f1f1;	
+	padding: 20px;
+}
+
+#signup-btn {
+	margin-top: 10px;
+}
+
+#login-btn {
+	margin-right: 20px;
+	margin-top: 10px;
+}
+
+/*Sign in page
+ ===============================================================================================*/
+
+#provider-wrapper {
+	text-align: center;
+}
+
+.provider-logo{
+	width: 40px;
+	margin-top: 10px;
+	border-radius: 4px;
+	margin-right: 4px;
+}
+
+#signin-logo {
+	width: 200px;
+	display: block;
+	margin: 0 auto;
+}
+
+#signin-page {
+	background: #fff;
+}
+
+#signin-header {
+	padding-top: 25px;
+	text-align: center;
+}
+
+#signin-header a {
+	display: inline-block;
+}
+
+#signin-header h4 {
+	text-align: center;
+}
+
+#signin-form-wrapper {
+	margin: 10px auto 40px;
+	max-width: 400px;
+}
+
+.form-signin {
+	max-width: 330px;
+	margin: 0 auto;
+	padding: 15px;
+}
+.form-signin label {
+	font-weight: normal;
+	margin-top: 10px;
+}
+.form-signin .form-signin-heading,.form-signin .checkbox {
+	margin-bottom: 10px;
+}
+.form-signin .form-control {
+	position: relative;
+	font-size: 16px;
+	height: auto;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 10px;
+}
+.form-signin .form-control:focus {
+	z-index: 2;
+}
+.form-signin input[type="text"] {
+	margin-bottom: -1px;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.form-signin input[type="password"] {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+.account-wall {
+	margin: 20px 20px 0;
+	background-color: #f7f7f7;
+	-moz-box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+	-webkit-box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+	box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+	padding: 40px 0 20px;
+}
+.login-title {
+	color: #555;
+	font-size: 18px;
+	font-weight: 400; 
+	display:block;
+}
+.profile-img {
+	width: 96px;
+	height: 96px;
+	display: block;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	margin: 0 auto 10px;
+}
+.need-help {
+	margin-top: 10px;
+}
+.new-account { 
+	display: block;
+	margin-top: 10px;
+}
+
+
+/*User page
+ *  ===============================================================================================*/
+
+#profile {
+	margin: 20px auto 0;
+}
+
+#form-edit-profile {
+	max-width: 400px;
+	margin: 0 auto;
+}
+
+.calendar {
+	max-width: 40px;
+}
+
+#user-edit {
+	margin: 20px auto 0;
+}
+
+.thumbnail-sm {
+	width: 150px;
+	height: 150px;
+}
+
+.thumbnail-preview-sm {
+	max-width: 150px;
+	max-height: 150px; 
+}
+
+.thumbnail-preview-sm img {
+	max-height: 140px;
+}
+
+.user-hovercard-item {
+	width: 100px;
+	height: 140px;
+	display: inline-block;
+}
+
+.user-hovercard-img {
+	width: 100px;
+	height: 100px;
+	overflow: hidden;
+	float: left;
+}
+
+.user-hovercard-img img {	
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.user-hovercard-content {
+	padding: 5px 10px;
+	overflow: hidden;
+	text-align: center;
+}
+
+.user-hovercard-name {
+	font-weight: 700;
+	font-size: 12px;
+}
+
+.user-hovercard-info {
+	font-size: 11px;
+	padding-top: 5px;
+}
+
+.user-hovercard-info img {
+	height: 14px;
+	width: 14px;
+}
