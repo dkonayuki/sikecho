@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   
   #override edit action
   def edit
-    #authorize
+    #authorize cancan
     authorize! :edit, resource
     
     #education table is editable

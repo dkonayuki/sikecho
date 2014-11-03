@@ -2,6 +2,7 @@ class NotesController < ApplicationController
   before_action :set_note, only: [:show, :edit, :update, :destroy, :documents, :tags]
   impressionist actions: [:show]
   before_action :authenticate_user!
+  load_and_authorize_resource only: [:index, :show, :new, :edit, :destroy]
     
   include NotesHelper
 
@@ -88,6 +89,7 @@ class NotesController < ApplicationController
   def new
     @user = current_user
     @note = Note.new
+
     #create note from subject page, subject_id
     if !params[:subject_id].blank? 
       @note.subjects << Subject.find(params[:subject_id])
@@ -137,9 +139,6 @@ class NotesController < ApplicationController
   # GET /notes/1/edit
   def edit
     @user = current_user
-    
-    # authorize mod or admin only
-    authorize! :update, @note
 
     @subjects = @user.current_university.subjects
     @note = Note.find(params[:id])
@@ -191,9 +190,6 @@ class NotesController < ApplicationController
   # DELETE /notes/1
   # DELETE /notes/1.json
   def destroy
-    #authorize
-    authorize! :destroy, @note
-
     #delete the related activity
     @activity = PublicActivity::Activity.find_by_trackable_id(params[:id])
     @activity.destroy

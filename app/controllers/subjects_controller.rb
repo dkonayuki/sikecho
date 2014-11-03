@@ -1,6 +1,7 @@
 class SubjectsController < ApplicationController
   before_action :set_subject, only: [:show, :edit, :update, :destroy, :inline, :version, :outline, :tags, :periods, :new_auto]
   before_action :authenticate_user!, only: [:edit, :update, :new, :create]
+  load_and_authorize_resource only: [:new, :edit, :destroy]
   
   # monitor view count
   impressionist actions: [:show]
@@ -137,9 +138,6 @@ class SubjectsController < ApplicationController
 
   # GET /subjects/1/edit
   def edit
-    #authorize
-    authorize! :update, @subject
-
     prepare_view_content
   end
 
@@ -343,9 +341,6 @@ class SubjectsController < ApplicationController
   # DELETE /subjects/1
   # DELETE /subjects/1.json
   def destroy
-    #authorize
-    authorize! :destroy, @subject
-    
     #delete the related activity
     @activity = PublicActivity::Activity.find_by_trackable_id(params[:id])
     @activity.destroy
