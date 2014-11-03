@@ -408,6 +408,8 @@ en:
         plural: Teachers
       recommend_subject: Recommend subjects
       notice1: Click on No.1,2,3.. to display relevant notes.
+    subject_line:
+      year: ''
   notes:
     index:
       note_menu: Menu

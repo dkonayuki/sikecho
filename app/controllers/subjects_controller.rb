@@ -346,9 +346,11 @@ class SubjectsController < ApplicationController
     #authorize
     authorize! :destroy, @subject
     
+    #delete the related activity
+    @activity = PublicActivity::Activity.find_by_trackable_id(params[:id])
+    @activity.destroy
     @subject.destroy
-    #create activity for new feeds
-    @subject.create_activity :destroy, owner: current_user
+    
     respond_to do |format|
       format.html { redirect_to subjects_path }
       format.json { head :no_content }

@@ -22,32 +22,35 @@
   <div class="collapse navbar-collapse no-transition" id="navbar-collapse-1">
     <ul class="nav navbar-nav hidden-xs">
       <li class="<%= 'active' if params[:controller] == 'subjects' %> <%= 'disabled' if current_university == nil %>"><%= link_to t('.subject'), subjects_path %></li>
-      <li class="<%= 'active' if params[:controller] == 'notes' %> <%= 'disabled' if current_university == nil %>">
-      	<%= link_to notes_path do %>
-	      	<%= t '.note' %>
-	      	<% if user_signed_in? && unread_notes_count > 0 %>
-	      		<span class="badge badge-important"><%= unread_notes_count %></span>
+			<% if user_signed_in? && current_university == current_user.current_university %>
+	      <li class="<%= 'active' if params[:controller] == 'notes' %>">
+	      	<%= link_to notes_path do %>
+		      	<%= t '.note' %>
+		      	<% if unread_notes_count > 0 %>
+		      		<span class="badge badge-important"><%= unread_notes_count %></span>
+		      	<% end %>
 	      	<% end %>
-      	<% end %>
-    	</li>
-      <li class="<%= 'active' if params[:controller] == 'users' %> <%= 'disabled' if !user_signed_in? %>"><%= link_to t('.profile'), current_user %></li>
+	    	</li>
+	      <li class="<%= 'active' if params[:controller] == 'users' %>"><%= link_to t('.profile'), current_user %></li>
+			<% else %>
+	      <li class="<%= 'active' if params[:controller] == 'notes' %> disabled"><%= link_to t('.note'), notes_path %></li>
+	      <li class="<%= 'active' if params[:controller] == 'users' %> disabled"><%= link_to t('.profile'), current_user %></li>
+			<% end %>
     </ul>
     
     <ul class="nav navbar-nav visible-xs nav-mobile">
-    	
-    	<% if current_university == nil %>
-	      <li class="<%= 'active' if params[:controller] == 'subjects' %> col-xs-3 disabled">
+
+			<% if current_university == nil %>
+				<li class="<%= 'active' if params[:controller] == 'subjects' %> col-xs-3 disabled">
 	      	<%= link_to image_tag("lecture_disabled.png"), subjects_path %>
 	    	</li>
-	    	<li class="<%= 'active' if params[:controller] == 'notes' %> col-xs-3 disabled">
-	      	<%= link_to notes_path do %>
-		      	<%= image_tag("note_disabled.png") %>
-	      	<% end %>
-	    	</li>
     	<% else %>
-	      <li class="<%= 'active' if params[:controller] == 'subjects' %> col-xs-3">
+				<li class="<%= 'active' if params[:controller] == 'subjects' %> col-xs-3">
 	      	<%= link_to image_tag("lecture.png"), subjects_path %>
 	    	</li>
+    	<% end %>
+    	
+			<% if user_signed_in? && current_university == current_user.current_university %>
 	  	  <li class="<%= 'active' if params[:controller] == 'notes' %> col-xs-3">
 	      	<%= link_to notes_path do %>
 		      	<%= image_tag("note.png") %>
@@ -56,19 +59,25 @@
 		      	<% end %>
 	      	<% end %>
 	    	</li>
-    	<% end %>
-    	
-      <% if user_signed_in? %>
 	      <li class="<%= 'active' if params[:controller] == 'users' %> col-xs-3">
 	      	<%= link_to image_tag("user.png"), current_user %>
       	</li>
+    	<% else %>
+	    	<li class="<%= 'active' if params[:controller] == 'notes' %> col-xs-3 disabled">
+	      	<%= link_to notes_path do %>
+		      	<%= image_tag("note_disabled.png") %>
+	      	<% end %>
+	    	</li>
+	      <li class="<%= 'active' if params[:controller] == 'users' %> col-xs-3 disabled">
+	      	<%= link_to image_tag("user_disabled.png"), current_user %>
+      	</li>
+    	<% end %>
+    	
+      <% if user_signed_in? %>
 	      <li class="col-xs-3">
 	      	<%= link_to image_tag("logout.png"), destroy_user_session_path, method: :delete %>
       	</li>
       <% else %>
-	      <li class="<%= 'active' if params[:controller] == 'users' %> col-xs-3 disabled">
-	      	<%= link_to image_tag("user_disabled.png"), current_user %>
-      	</li>
 	      <li class="col-xs-3">
 	      	<%= link_to image_tag("login.png"), new_user_session_path %>
       	</li>

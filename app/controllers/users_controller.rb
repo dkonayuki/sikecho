@@ -16,7 +16,6 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @isEditable = false
   end
 
   # GET /users/new
@@ -26,7 +25,6 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @isEditable = true
   end
 
   # POST /users

@@ -22,6 +22,8 @@ class CommentsController < ApplicationController
 
   # GET /comments/1/edit
   def edit
+    #authorize
+    authorize! :update, @comment
   end
 
   # POST /comments
@@ -60,6 +62,9 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
+    #authorize
+    authorize! :destroy, @comment
+    
     @comment.destroy
     respond_to do |format|
       format.html { redirect_to document_comments_path(@comment.document) }

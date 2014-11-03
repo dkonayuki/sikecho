@@ -139,7 +139,7 @@ class NotesController < ApplicationController
     @user = current_user
     
     # authorize mod or admin only
-    authorize! :update, @note unless @note.user == @user
+    authorize! :update, @note
 
     @subjects = @user.current_university.subjects
     @note = Note.find(params[:id])
@@ -191,11 +191,14 @@ class NotesController < ApplicationController
   # DELETE /notes/1
   # DELETE /notes/1.json
   def destroy
+    #authorize
+    authorize! :destroy, @note
+
+    #delete the related activity
+    @activity = PublicActivity::Activity.find_by_trackable_id(params[:id])
+    @activity.destroy
     @note.destroy
             
-    #create activity for new feeds
-    @note.create_activity :destroy, owner: current_user
-    
     respond_to do |format|
       format.html { redirect_to :notes }
       format.json { head :no_content }

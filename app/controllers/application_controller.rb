@@ -126,7 +126,13 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  # override cancan's current_ability to pass the request param
+  def current_ability
+    @current_ability ||= Ability.new(current_user, request)
+  end
+  
   private :disable_nav
   private :set_locale
+  private :current_ability
 
 end

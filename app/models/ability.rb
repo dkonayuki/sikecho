@@ -1,10 +1,21 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
+  def initialize(user, request=nil)
     can :read, :all                   # allow everyone to read everything
-    can :update, Subject              # guess user will be redirected to login page because of notes and subjects controller
     if user
+      can :update, Subject do |subject| # allow user to update his university's subjects only
+        University.find_by_codename(request.subdomain) == user.current_university
+      end
+      
+      can :update, User do |u|       # only user can edit his profile
+        u == user
+      end
+      
+      can [:update, :destroy], [Note, Comment] do |t| # owner can edit
+        t.user == user
+      end
+      
       if user.role == 'admin'
         can :access, :rails_admin     # only allow admin users to access Rails Admin
         can :dashboard                # allow access to dashboard

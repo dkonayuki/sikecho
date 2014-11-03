@@ -9,11 +9,7 @@
 	    </ul>
 		</div>
 		
-		<% if user_signed_in? %>
-		<div class="show-subject-menu-item" role="complementary" id="show-subject-schedule" data-id="<%= @subject.id %>" data-name="<%= @subject.name %>" data-img="<%= @subject.display_picture_small %>">
-			<%= render 'schedule_menu' %>
-		</div>
-		
+		<% if user_signed_in? && current_university == current_user.current_university %>
 		<div class="show-subject-menu-item" role="complementary" id="show-subject-notes">
 			<h4><%= t('note') %></h4>
 			<ul class="nav">     
@@ -21,6 +17,9 @@
 	      <span class="glyphicon glyphicon-plus-sign"></span><%= t('add') %>
 	      <% end %>
 	    </ul>
+		</div>
+		<div class="show-subject-menu-item" role="complementary" id="show-subject-schedule" data-id="<%= @subject.id %>" data-name="<%= @subject.name %>" data-img="<%= @subject.display_picture_small %>">
+			<%= render 'schedule_menu' %>
 		</div>
 		<% end %>
 		
@@ -33,7 +32,7 @@
 			<a data-toggle="dropdown" class="btn btn-navi btn-sm dropdown-toggle"><span class="glyphicon glyphicon-cog"></span></a>
 			<ul class="dropdown-menu pull-right" id="show-subject-dropdown">
 				
-				<% if user_signed_in? %>
+				<% if user_signed_in? && current_university == current_user.current_university %>
 					<li class="visible-xs" id="show-subject-schedule-mobile">
 						<%= render 'schedule_menu_mobile' %>
 			  	</li>
@@ -124,10 +123,11 @@
 				</p>
 			</div>
 			
-			<% if user_signed_in? %>
 			<div class="skc-box-menu">
-				<%= link_to edit_subject_path(@subject.id), class: 'has-tooltip', data: {toggle: "tooltip", placement: "top"}, title: t('edit') do %>
-					<span class="glyphicon glyphicon-pencil"></span>
+				<% if can? :update, @subject %>
+					<%= link_to edit_subject_path(@subject.id), class: 'has-tooltip', data: {toggle: "tooltip", placement: "top"}, title: t('edit') do %>
+						<span class="glyphicon glyphicon-pencil"></span>
+					<% end %>
 				<% end %>
 				<% if can? :destroy, @subject %>
 					<%= link_to @subject, method: :delete, data: { confirm: t('delete_confirm') } do %>
@@ -135,7 +135,6 @@
 					<% end %>
 				<% end %>
 			</div>
-			<% end %>
 		</div>
 	</div><!--end of skc-box-->
 	
@@ -153,17 +152,18 @@
 				<%= render 'syllabus_table', editable: false %>
 			</div><!-- end of box-desc -->
 			
-			<% if user_signed_in? %>
 			<div class="skc-box-menu">
-				<%= link_to edit_subject_path(@subject.id, anchor: "syllabus"), class: 'has-tooltip', data: {toggle: "tooltip", placement: "top"}, title: t('edit') do %>
-					<span class="glyphicon glyphicon-pencil"></span>
+				<% if can? :update, @subject %>
+					<%= link_to edit_subject_path(@subject.id, anchor: "syllabus"), class: 'has-tooltip', data: {toggle: "tooltip", placement: "top"}, title: t('edit') do %>
+						<span class="glyphicon glyphicon-pencil"></span>
+					<% end %>
 				<% end %>
 			</div>
-			<% end %>
 			
 		</div><!-- end of box-content -->
 	</div><!-- end of skc-box -->
 	
+	<% if (user_signed_in? && current_university == current_user.current_university) || !user_signed_in? %>
 	<!--for overview section -->
  	<a name="notes"></a>
 	<div class="skc-box skc-box-no-padding skc-box-lg">
@@ -178,6 +178,7 @@
 			</div>
 		</div>
 	</div>
+	<% end %>
 	
 	<% if @tags.count > 0 %>
 	<br />

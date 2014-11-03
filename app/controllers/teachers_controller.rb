@@ -23,6 +23,8 @@ class TeachersController < ApplicationController
 
   # GET /teachers/1/edit
   def edit
+    #authorize
+    authorize! :edit, @teacher
   end
 
   # POST /teachers
@@ -58,7 +60,10 @@ class TeachersController < ApplicationController
   # DELETE /teachers/1
   # DELETE /teachers/1.json
   def destroy
+    #authorize
+    authorize! :destroy, @teacher
     @teacher.destroy
+    
     respond_to do |format|
       format.html { redirect_to teachers_url }
       format.json { head :no_content }

@@ -33,17 +33,19 @@
 								
 			</div>
 			
-			<% if @note.user == @user || (can? :update, @note) %>
 			<div class="skc-box-menu">
 				<a href="#" class="print has-tooltip" data-toggle="tooltip" data-placement="top" title="<%= t('print') %>"><span class="glyphicon glyphicon-print"></span></a>
-				<%= link_to edit_note_path(@note.id), class: 'has-tooltip', data: {toggle: "tooltip", placement: "top"}, title: t('edit') do %>
-					<span class="glyphicon glyphicon-pencil"></span>
+				<% if can? :update, @note %>
+					<%= link_to edit_note_path(@note.id), class: 'has-tooltip', data: {toggle: "tooltip", placement: "top"}, title: t('edit') do %>
+						<span class="glyphicon glyphicon-pencil"></span>
+					<% end %>
 				<% end %>
-				<%= link_to @note, method: :delete, data: { confirm: t('delete_confirm') } do %>
-					<span class="glyphicon glyphicon-remove"></span>
+				<% if can? :destroy, @note %>
+					<%= link_to @note, method: :delete, data: { confirm: t('delete_confirm') } do %>
+						<span class="glyphicon glyphicon-remove"></span>
+					<% end %>
 				<% end %>
 			</div>
-			<% end %>
 			
 		</div>
 	</div><!-- end of skc-box -->

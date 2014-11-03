@@ -19,6 +19,8 @@ class UniversitiesController < ApplicationController
 
   # GET /universities/1/edit
   def edit
+    #authorize
+    authorize! :edit, @university
   end
 
   # POST /universities
@@ -54,7 +56,10 @@ class UniversitiesController < ApplicationController
   # DELETE /universities/1
   # DELETE /universities/1.json
   def destroy
+    #authorize
+    authorize! :destroy, @university
     @university.destroy
+    
     respond_to do |format|
       format.html { redirect_to universities_url }
       format.json { head :no_content }

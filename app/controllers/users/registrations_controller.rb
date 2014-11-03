@@ -12,6 +12,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   
   #override edit action
   def edit
+    #authorize
+    authorize! :edit, resource
+    
     #education table is editable
     @isEditable = true
     super
