@@ -22,7 +22,8 @@ class Subject < ActiveRecord::Base
   has_many :periods, dependent: :destroy
 
   has_and_belongs_to_many :teachers
-  has_and_belongs_to_many :educations
+  has_many :educations, through: :registers
+  has_many :registers
 
   belongs_to :course
   belongs_to :semester

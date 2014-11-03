@@ -16,7 +16,7 @@ class Users::SessionsController < Devise::SessionsController
     else
       #check if session user existed
       if !session[:user_id].blank?
-        @session_user = User.find(session[:user_id])
+        @session_user = User.find_by_id(session[:user_id])
       end
     end
   end

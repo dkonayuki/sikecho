@@ -3,7 +3,7 @@
 
 <ul data-page="<%= @page %>">
 <% @subjects.each do |subject| %>
-	<li class="subject-schedule-item subject-draggable <%= @user.current_subjects.include?(subject)? 'active' : '' %>" data-id="<%= subject.id %>">
+	<li class="subject-schedule-item subject-draggable <%= @user.is_registered?(subject) ? 'active' : '' %>" data-id="<%= subject.id %>">
       
 		<div class="subject-schedule-img">
 		<%= link_to subject do %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141022161809) do
+ActiveRecord::Schema.define(version: 20141028075611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,11 +70,6 @@ ActiveRecord::Schema.define(version: 20141022161809) do
     t.integer  "current_user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "educations_subjects", force: true do |t|
-    t.integer "education_id"
-    t.integer "subject_id"
   end
 
   create_table "faculties", force: true do |t|
@@ -149,6 +144,12 @@ ActiveRecord::Schema.define(version: 20141022161809) do
   end
 
   add_index "read_marks", ["user_id", "readable_type", "readable_id"], name: "index_read_marks_on_user_id_and_readable_type_and_readable_id", using: :btree
+
+  create_table "registers", force: true do |t|
+    t.integer  "education_id"
+    t.integer  "subject_id"
+    t.datetime "created_at"
+  end
 
   create_table "requests", force: true do |t|
     t.integer  "user_id"

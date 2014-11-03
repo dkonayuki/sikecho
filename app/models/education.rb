@@ -6,7 +6,8 @@ class Education < ActiveRecord::Base
   belongs_to :uni_year
   belongs_to :semester
   
-  has_and_belongs_to_many :subjects
+  has_many :subjects, through: :registers
+  has_many :registers
   
   #def subjects
     #awesome hack for getting distinct subjects from education, 

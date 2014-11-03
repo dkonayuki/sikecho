@@ -95,12 +95,17 @@ class User < ActiveRecord::Base
     self.current_education.subjects
   end
   
+  def is_registered?(subject)
+    #ensure boolean return
+    !!self.current_subjects.include?(subject)
+  end
+  
   def registered_notes
     #select distinct notes from crazy joins
     Note.select('distinct notes.*').joins('INNER JOIN notes_subjects ON notes.id = notes_subjects.note_id')
       .joins('INNER JOIN subjects ON subjects.id = notes_subjects.subject_id')
-      .joins('INNER JOIN educations_subjects ON educations_subjects.subject_id = subjects.id')
-      .joins('INNER JOIN educations ON educations.id = educations_subjects.education_id')
+      .joins('INNER JOIN registers ON registers.subject_id = subjects.id')
+      .joins('INNER JOIN educations ON educations.id = registers.education_id')
       .where('educations.id = ?', self.current_education.id)
   end
   

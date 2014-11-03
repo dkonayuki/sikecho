@@ -44,13 +44,15 @@ class ScheduleController < ApplicationController
     #add new subject
     subject = Subject.find_by_id(params[:subject_id].to_i)
     
-    if @user.current_education.subjects.include?(subject) || !@user.current_university.subjects.include?(subject)
+    if @user.is_registered?(subject) || !@user.current_university.subjects.include?(subject)
       status = :error
     else
-      @user.current_education.subjects << subject unless @user.current_education.subjects.include?(subject)
-      status = :ok    
+      #add new subject with created_at time store in register table
+      #created_at attribute is automatically created
+      @user.current_education.registers.create(subject: subject)
+      status = :ok
     end
-        
+    
     #prepare view
     get_schedule_content
     @subjects = @user.current_university.subjects.search(params[:search]).page(params[:page]).per(4)
@@ -63,10 +65,10 @@ class ScheduleController < ApplicationController
     @page = params[:page]
     @view_option = params[:view_option].to_i || 0
     
-    respond_to do |format|    
+    respond_to do |format|
       format.html { redirect_to schedule_path }
       format.js
-      format.json { render json: {status: status } }
+      format.json { render json: { status: status } }
     end
   end
 
@@ -79,7 +81,7 @@ class ScheduleController < ApplicationController
     subject = Subject.find_by_id(params[:subject_id].to_i)
     
     #delete subject education relationship
-    if @user.current_education.subjects.include?(subject)
+    if @user.is_registered?(subject)
       @user.current_education.subjects.delete(subject)
       status = :ok
     else
