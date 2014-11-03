@@ -303,6 +303,8 @@ ja:
     widgets:
       subject_number: 授業数
   layouts:
+    application:
+      title: シケ帳
     footer:
       copyright: Copyright © シケ帳
       university: 学校

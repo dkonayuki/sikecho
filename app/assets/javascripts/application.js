@@ -32,6 +32,7 @@
 //= require jquery.hovercard.js
 //= require jquery.readyselector.js
 //= require modernizr.custom.js
+//= require classie.js
 //= require mlpushmenu.js
 //= require_tree .
 

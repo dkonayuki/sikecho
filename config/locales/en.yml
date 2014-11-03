@@ -333,6 +333,8 @@ en:
     widgets:
       subject_number: Subject number
   layouts:
+    application:
+      title: Sikecho
     footer:
       copyright: Copyright © Sikecho
       university: University
