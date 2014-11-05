@@ -190,6 +190,11 @@ body {
 .btn-search:focus {
 	color: #fff !important;
 }
+
+.navbar-nav > li {
+	font-size: 14px;	
+}
+
 /* Footer
 ***************************************************************************/
 #university-select {

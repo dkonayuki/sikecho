@@ -91,7 +91,7 @@
 }
 
 #subjects-list-title {
-	font-size: 24px;
+	font-size: 18px;
 	font-weight: 500;
 	line-height: 1.1;
 	float: left;
@@ -198,7 +198,7 @@
 
 .subject-name-line {
 	color: #222;
-	font-size: 16px;
+	font-size: 15px;
 	line-height: 20px;
 	height: 20px;
 	font-weight: 600;
@@ -347,7 +347,6 @@
 .subject-hovercard {
 	width: 340px;
 	height: 120px;
-	display: inline-block;
 }
 
 .subject-hovercard-img {
