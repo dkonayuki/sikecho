@@ -179,6 +179,17 @@ body {
 	margin-right: 5px;
 }
 
+.btn-search {
+	color: #fff;
+	background-color: #76d17f;
+}
+.btn-search:hover {
+	background-color: #41b34d;
+	color: #fff;
+}
+.btn-search:focus {
+	color: #fff !important;
+}
 /* Footer
 ***************************************************************************/
 #university-select {

@@ -95,7 +95,7 @@
 }
 
 .document-info {
-	display: none;
+	opacity: 0;
 	position: absolute;
 	padding: 5px;
 	bottom: 0;
@@ -109,14 +109,16 @@
 	line-height: 18px;
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
+	overflow: hidden;
+	display: -webkit-box;
+	transition-duration: 1s;
 }
 
 .document-item:hover {
-	border-color: #666;
 }
 
 .document-item:hover .document-info {
-	display: -webkit-box;
+	opacity: 1;
 }
 
 @media (max-width: 469px) {

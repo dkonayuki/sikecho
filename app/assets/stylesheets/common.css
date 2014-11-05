@@ -4,12 +4,13 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
 
 body {
+	font-size: 13px;
 	background-color: #f1f1f1;
- 	font-family: 'lato', "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, sans-serif !important;
+ 	font-family: 'lato', "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, sans-serif;
 }
 
 p, ol, ul, td {
- 	font-family: 'lato', "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, sans-serif !important;
+ 	font-family: 'lato', "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, sans-serif;
 }
 
 ul {
@@ -348,6 +349,7 @@ div.message {
 }
 
 .btn-white {
+	border-top: none;
 	color: #555E6B;
 	background-color: #fff;
 	border-bottom: 2px solid #fff;	
@@ -362,6 +364,7 @@ div.message {
 }
 
 .btn-navi {
+	border-top: none;
 	color: #fff;
 	background-color: #34495E;
 	border-bottom: 2px solid #34495E;
@@ -374,6 +377,7 @@ div.message {
 }
 
 .btn-pink {
+	border-top: none;
 	color: #fff;
 	background-color: #e65d65;
 	border-bottom: 2px solid #e65d65;
@@ -386,6 +390,7 @@ div.message {
 }
 
 .btn-red {
+	border-top: none;
 	color: #fff;
 	background-color: #c0392b;
 	border-bottom: 2px solid #c0392b;
@@ -398,6 +403,7 @@ div.message {
 }
 
 .btn-blue {
+	border-top: none;
 	color: #fff;
 	background-color: #3498DB;
 	border-bottom: 2px solid #3498DB;
@@ -410,6 +416,7 @@ div.message {
 }
 
 .btn-orange {
+	border-top: none;
 	color: #fff;
 	background-color: #E67E22;
 	border-bottom: 2px solid #E67E22;
@@ -422,6 +429,7 @@ div.message {
 }
 
 .btn-green {
+	border-top: none;
 	color: #fff;
 	background-color: #5cb85c;
 	border-bottom: 2px solid #5CB85C;	
@@ -434,6 +442,7 @@ div.message {
 }
 
 .btn-request {
+	border-top: none;
 	color: #fff;
 	background-color: #34495E;
 	border-bottom: 2px solid #34495E;
@@ -453,17 +462,7 @@ div.message {
 	border-bottom-color: #2C3E50;
 }
 
-.btn-search {
-	color: #fff;
-	background-color: #76d17f;
-}
-.btn-search:hover {
-	background-color: #41b34d;
-	color: #fff;
-}
-
-
-.btn-orange:focus, .btn-green:focus, .btn-request:focus, .btn-navi:focus, .btn-blue:focus, .btn-red:focus, .btn-pink:focus, .btn-search:focus {
+.btn-orange:focus, .btn-green:focus, .btn-request:focus, .btn-navi:focus, .btn-blue:focus, .btn-red:focus, .btn-pink:focus {
 	color: #fff !important;
 }
 

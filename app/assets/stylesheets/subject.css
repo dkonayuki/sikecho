@@ -82,8 +82,11 @@
 @media(max-width: 767px) {
 	#subjects-list-header {
 		border-right: none;
-		padding-left: 0;
-		padding-right: 0;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+	#subject-menu-top {
+		padding: 5px 5px 15px;
 	}
 }
 
@@ -142,12 +145,27 @@
 	overflow: hidden;
 }
 
+.subject-menu-line {
+	float: right;
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	font-size: 12px;
+}
+
+.subject-menu-line a {
+	font-size: 13px;
+}
+
 @media(max-width: 767px) {
 	.subject-item-line {
 		border-right: 1px solid transparent;
 	}
 	.subject-details-line {
 		padding-left: 0;
+	}
+	.subject-menu-line a {
+		font-size: 12px;
 	}
 }
 
@@ -214,14 +232,6 @@
 	color: #797979;
 	background-color: #EBEBEB;
 	border-right: 3px solid #5cb85c;
-}
-
-.subject-menu-line {
-	float: right;
-	position: absolute;
-	right: 5px;
-	top: 5px;
-	font-size: 12px;
 }
 
 .cancel-text {

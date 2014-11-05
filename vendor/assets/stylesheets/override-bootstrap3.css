@@ -7,14 +7,33 @@
 }
 
 .form-control {
+	font-size: 13px;
 	outline: 0;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	-webkit-appearance: none;
+	border-radius: 0;
 }
 
 table {
-	font-size: 13px;
+	font-size: 12px;
+}
+
+.btn {
+	font-size: 14px;
+	border-radius: 0;
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus {
+	outline: none;
+}
+
+.btn-sm {
+	font-size: 12px;
+}
+
+.btn-xs {
+	font-size: 11px;
 }
 
 @media (max-width: 469px) {
@@ -39,18 +58,6 @@ table {
 .dropdown-menu {
 	border-radius: 0;
 	box-shadow: none;
-}
-
-.btn {
-	border-radius: 0;
-}
-
-.btn:focus, .btn:active:focus, .btn.active:focus {
-	outline: none;
-}
-
-.form-control {
-	border-radius: 0;
 }
 
 .navbar-toggle {
