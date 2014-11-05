@@ -77,8 +77,8 @@ $(document).on("page:load ready", function() {
 		
 		//for recommender subjects
 		$(".owl-carousel").owlCarousel({
-			items : 4,
-	    itemsDesktop : [1199,3],
+			items : 3,
+	    itemsDesktop : [1199,2],
 	    itemsDesktopSmall : [980,2],
 	    itemsTablet: [768,2],
 	    itemsTabletSmall: false,

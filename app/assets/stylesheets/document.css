@@ -111,7 +111,7 @@
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 	display: -webkit-box;
-	transition-duration: 1s;
+	transition-duration: 0.3s;
 }
 
 .document-item:hover {
