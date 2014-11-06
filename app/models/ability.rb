@@ -2,22 +2,32 @@ class Ability
   include CanCan::Ability
 
   def initialize(user, request=nil)
-    can :read, Subject                # allow everyone to read Subject, and can read other pages if authorize is not called
+    can :read, Subject                                  # allow everyone to read Subject, and can read other pages if authorize is not called
+    
     if user
-      
       # if subdomain is from user's university
       # add many new abilities for user
-      if University.find_by_codename(request.subdomain) == user.current_university
-        can :read, Note               #read index
-        can :create, [Note, Subject]  # create note and subject only in user's university
-        can :update, Subject          # allow user to update his university's subjects only
-        can :update, User do |u|      # only user can edit his profile
+      if request != nil && University.find_by_codename(request.subdomain) == user.current_university
+        can :read, [Note, Teacher]                      # read everything relate to user's university
+        can :show, Document                             # only see document and comments
+        
+        can [:create, :update], Subject                 # allow user to update his university's subjects only
+        can :update, User do |u|                        # only user can edit his profile
           u == user
         end
         
+        can :create, [Note, Comment, Document]          # create note and comment only in user's university
         can [:update, :destroy], [Note, Comment] do |t| # owner can edit
           t.user == user
-        end      
+        end
+        can [:update, :destroy], Document do |d|        # owner can edit
+          d.note.user == user
+        end
+      end
+      
+      can :show, User                                   # see other users
+      can :manage, Education do |e|                     # only owner can manage his educations
+        e.user == user
       end
       
       if user.role == 'admin'

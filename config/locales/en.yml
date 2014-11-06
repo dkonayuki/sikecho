@@ -453,7 +453,6 @@ en:
       subject_number: Subject Number
       add: Add
       auto_add: Add automatically
-      notice1: Please select your current education
     form:
       faculty: Faculty
       course: Course
@@ -461,6 +460,8 @@ en:
       header: Add a new Education
     edit:
       header: Edit Education
+    index:
+      notice1: Please select your current education
   teachers:
     show:
       university: University

@@ -1,5 +1,7 @@
 class TeachersController < ApplicationController
   before_action :set_teacher, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  load_and_authorize_resource only: [:index, :show, :new, :edit, :destroy]
 
   # GET /teachers
   # GET /teachers.json
@@ -23,8 +25,6 @@ class TeachersController < ApplicationController
 
   # GET /teachers/1/edit
   def edit
-    #authorize
-    authorize! :edit, @teacher
   end
 
   # POST /teachers
@@ -60,8 +60,6 @@ class TeachersController < ApplicationController
   # DELETE /teachers/1
   # DELETE /teachers/1.json
   def destroy
-    #authorize
-    authorize! :destroy, @teacher
     @teacher.destroy
     
     respond_to do |format|

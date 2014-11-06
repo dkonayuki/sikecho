@@ -48,7 +48,7 @@ Shikechou::Application.routes.draw do
     get 'semesters' => 'application#semesters'
   
     resources :users do
-      resources :educations do
+      resources :educations, except: [:show] do
         post '/new_auto' => 'educations#new_auto', on: :collection
       end
     end
@@ -65,9 +65,9 @@ Shikechou::Application.routes.draw do
       
     resources :activities
     
-    resources :documents do
+    resources :documents, except: [:new, :edit] do
       put 'inline' => 'documents#inline', on: :collection
-      resources :comments
+      resources :comments, except: [:new, :edit]
     end
       
     get 'search' => 'search#search', as: 'search'

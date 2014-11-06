@@ -1,6 +1,7 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
   before_action :set_faculty, only: [:index, :new, :create]
+  load_and_authorize_resource only: [:index, :show, :new, :edit, :destroy]
 
   # GET /courses
   # GET /courses.json

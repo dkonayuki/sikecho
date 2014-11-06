@@ -1,6 +1,7 @@
 class FacultiesController < ApplicationController
   before_action :set_faculty, only: [:show, :edit, :update, :destroy]
   before_action :set_university, only: [:index, :new, :create]
+  load_and_authorize_resource only: [:index, :show, :new, :edit, :destroy]
 
   # GET /universities/:university_id/faculties
   # GET /universities/:university_id/faculties

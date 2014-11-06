@@ -1,5 +1,6 @@
 class UniversitiesController < ApplicationController
   before_action :set_university, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource only: [:index, :show, :new, :edit, :destroy]
 
   # GET /universities
   # GET /universities.json
@@ -19,8 +20,6 @@ class UniversitiesController < ApplicationController
 
   # GET /universities/1/edit
   def edit
-    #authorize
-    authorize! :edit, @university
   end
 
   # POST /universities
@@ -56,8 +55,6 @@ class UniversitiesController < ApplicationController
   # DELETE /universities/1
   # DELETE /universities/1.json
   def destroy
-    #authorize
-    authorize! :destroy, @university
     @university.destroy
     
     respond_to do |format|

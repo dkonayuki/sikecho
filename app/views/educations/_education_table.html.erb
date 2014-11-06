@@ -1,237 +1,66 @@
-        <% if @isEditable %>
-					<p class="notice">*<%= t('.notice1') %></p>
-        <% end %>
-
-				<table class="table table-bordered table-hover">
-			    <thead>
-			      <tr>
-			        <% if @isEditable %>
-			        <th><%= t('year') %></th>
-			        <th class="hidden-xs"><%= t('uni_year') %></th>
-			        <th><%= t('semester') %></th>
-			        <th><%= t('university') %></th>
-			        <th class="hidden-xs"><%= raw t('.faculty') %></th>
-			        <th class="hidden-xs"><%= raw t('.course') %></th>
-			        <th class="hidden-xs""><%= t('.subject_number') %></th>
-			        <th></th>
-			        <th></th>
-			        <% else %>
-			        <th><%= t('year') %></th>
-			        <th class="hidden-xs"><%= t('uni_year') %></th>
-			        <th><%= t('semester') %></th>
-			        <th><%= t('university') %></th>
-			        <th class="hidden-xs"><%= raw t('.faculty') %></th>
-			        <th class="hidden-xs"><%= raw t('.course') %></th>
-			        <th class="hidden-xs"><%= t('.subject_number') %></th>
-			        <th></th>
-			        <% end %>
-			      </tr>
-			    </thead>
-			    <tbody>
-			    	<% @user.educations.joins('LEFT OUTER JOIN uni_years ON uni_years.id = educations.uni_year_id')
-			    	.joins('LEFT OUTER JOIN semesters ON semesters.id = educations.semester_id')
-			    	.order('educations.year ASC, uni_years.no ASC, semesters.no ASC, created_at ASC').each do | education | %>
-			      <tr>
-			        <td><%= education.year unless education.year.blank? %></td>
-			        <td class="hidden-xs"><%= education.uni_year.name unless education.uni_year.blank? %></td>
-			        <td><%= education.semester.name unless education.semester.blank? %></td>
-			        <td><%= education.university.name unless education.university.blank? %></td>
-			        <td class="hidden-xs"><%= education.faculty.name unless education.faculty.blank? %></td>
-			        <td class="hidden-xs"><%= education.course.name unless education.course.blank? %></td>
-			        <td class="hidden-xs"><%= education.subjects.count %></td>
-			        <% if @isEditable %>
-			        <td>
-			        	<% if @user.current_education == education %>
-			        		<%= radio_button_tag 'current', education.id, true %>
-			        	<% else %>
-			        		<%= radio_button_tag 'current', education.id %>
-			        	<% end %>
-			        </td>
-			        <td>
-			        	<%= link_to [:edit, @user, education], class: 'education-popup' do %>
-      						<span class="glyphicon glyphicon-pencil"></span>
-    						<% end %>
-    						<% if @user.educations.count > 1 %>
-				        	<%= link_to [@user, education], method: :delete, class: 'education-delete', data: {id: education.id} do %>
-	      						<span class="glyphicon glyphicon-remove"></span>
-				        	<% end %>
-			        	<% end %>
-			        </td>
-			        <% else %>
-			        <td>
-			        	<% if @user.current_education == education %>
-			        	&bull;
-			        	<% end %>
-			        </td>
-			        <% end %>
-			      </tr>
-			      <% end %>
-			    </tbody>
-			  </table>
-			  <% if @isEditable %>
-					<%= link_to new_user_education_path(@user), {class: 'btn btn-default education-popup'} do %>
-					<span class="glyphicon glyphicon-plus"></span><%= t('.add') %>
-					<% end %>
-					<%= link_to new_auto_user_educations_path(@user), {class: 'btn btn-default education-auto', remote: true, method: :post} do %>
-					<span class="glyphicon glyphicon-plus"></span><%= t('.auto_add') %>
-					<% end %>
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <% if @isEditable %>
+      <th><%= t('year') %></th>
+      <th class="hidden-xs"><%= t('uni_year') %></th>
+      <th><%= t('semester') %></th>
+      <th><%= t('university') %></th>
+      <th class="hidden-xs"><%= raw t('.faculty') %></th>
+      <th class="hidden-xs"><%= raw t('.course') %></th>
+      <th class="hidden-xs""><%= t('.subject_number') %></th>
+      <th></th>
+      <th></th>
+      <% else %>
+      <th><%= t('year') %></th>
+      <th class="hidden-xs"><%= t('uni_year') %></th>
+      <th><%= t('semester') %></th>
+      <th><%= t('university') %></th>
+      <th class="hidden-xs"><%= raw t('.faculty') %></th>
+      <th class="hidden-xs"><%= raw t('.course') %></th>
+      <th class="hidden-xs"><%= t('.subject_number') %></th>
+      <th></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @user.educations.joins('LEFT OUTER JOIN uni_years ON uni_years.id = educations.uni_year_id')
+  	.joins('LEFT OUTER JOIN semesters ON semesters.id = educations.semester_id')
+  	.order('educations.year ASC, uni_years.no ASC, semesters.no ASC, created_at ASC').each do | education | %>
+    <tr>
+      <td><%= education.year unless education.year.blank? %></td>
+      <td class="hidden-xs"><%= education.uni_year.name unless education.uni_year.blank? %></td>
+      <td><%= education.semester.name unless education.semester.blank? %></td>
+      <td><%= education.university.name unless education.university.blank? %></td>
+      <td class="hidden-xs"><%= education.faculty.name unless education.faculty.blank? %></td>
+      <td class="hidden-xs"><%= education.course.name unless education.course.blank? %></td>
+      <td class="hidden-xs"><%= education.subjects.count %></td>
+      <% if @isEditable %>
+      <td>
+      	<% if @user.current_education == education %>
+      		<%= radio_button_tag 'current', education.id, true %>
+      	<% else %>
+      		<%= radio_button_tag 'current', education.id %>
+      	<% end %>
+      </td>
+      <td>
+      	<%= link_to [:edit, @user, education], class: 'education-popup' do %>
+					<span class="glyphicon glyphicon-pencil"></span>
 				<% end %>
-				
-<script>
-$(document).ready(function(){
-
-	//delete education
-	$(".education-delete").on("click", function() {
-		// delete button: id of education -> data-id
-		// select tag: id of education -> value
-		
-		var answer = confirm(I18n["delete_confirm"]);
-		if (answer) {
-			var data;
-			var currentEducation = $("input[name='current'][checked='checked']");
-			var newCurrentEducation;
-			
-			//get new education if user delete the current education
-			if (currentEducation.attr("value") == $(this).attr("data-id")) {
-				//new education will be the last education that is not the current education
-				newCurrentEducation = $("input[name='current'][value!=" + $(this).attr("data-id") + "]:last");
-				data = "new_education_id=" + newCurrentEducation.attr('value');
-			}
-			$.ajax({
-				url: $(this).attr("href"),
-				dataType: "script",
-				data: data,
-				type: $(this).attr("data-method"),
-				success: function() {
-					if (newCurrentEducation) {
-						//set the new Education checked
-						newCurrentEducation.attr('checked', true);
-					}
-				}
-			});
-		}
-		return false;
-	});
-
-	/*For ajax education popup in profile*/	
-  $('.education-popup').magnificPopup({
-	  type: 'ajax',
-	  removalDelay: 300,
-	  mainClass: 'mfp-zoom-in',
-    callbacks: {
-   		parseAjax: function( mfpResponse ) {
-        mfpResponse.data = $(mfpResponse.data).find('#education-edit');
-		  },
-	    ajaxContentAdded: function() {
-		    // Ajax content is loaded and appended to DOM
-				$(".selectpicker").selectpicker();
-				$("#education-form").on("submit", function() {
-					$.ajax({
-						url: $(this).attr("action"),
-						dataType: "script",
-						data: $(this).serialize(),
-						type: "post",
-						success: function() {
-							//close popup after submit
-							$.magnificPopup.close();
-						}
-					});
-					return false;
-				});
-				
-				function change_university() {
-					//clear old select
-					$('#education_faculty_id').empty();
-					$('#education_course_id').empty();
-					$('#education_uni_year_id').empty();
-					$('#education_semester_id').empty();
-					var university_id = $("#education_university_id").val();
-					$.ajax({
-							url:"/faculties_list",	
-							data:'university_id=' + university_id,
-							dataType: "json",
-							success: function(data) {
-								//add new data to faculty select
-								$('#education_faculty_id').append("<option value=''></option>");
-								$.each(data, function(key, value) {   
-							    $('#education_faculty_id')
-					          .append($("<option></option>")
-					          .attr("value",value.id)
-					          .text(value.name));
-								});
-								$('.selectpicker').selectpicker("refresh");
-							}
-						}
-					);
-					$.ajax({
-							url:"/uni_years",	
-							data:'university_id=' + university_id,
-							dataType: "json",
-							success: function(data) {
-								//add new data to uni_year select
-								$('#education_uni_year_id').append("<option value=''></option>");
-								$.each(data, function(key, value) {   
-							    $('#education_uni_year_id')
-					          .append($("<option></option>")
-					          .attr("value",value.id)
-					          .text(value.name));
-								});
-								$('.selectpicker').selectpicker("refresh");
-							}
-						}
-					);
-				}
-				
-				function change_faculty() {
-					//clear old select
-					$('#education_course_id').empty();
-					var faculty_id = $("#education_faculty_id").val();
-					$.ajax({
-							url:"/courses",	
-							data:'faculty_id=' + faculty_id,
-							dataType: "json",
-							success: function(data) {
-								//add new data to course select
-								$('#education_course_id').append("<option value=''></option>");
-								$.each(data, function(key, value) {   
-							    $('#education_course_id')
-					          .append($("<option></option>")
-					          .attr("value",value.id)
-					          .text(value.name));
-								});
-								$('.selectpicker').selectpicker("refresh");
-							}
-						}
-					);
-				}
-				
-				function change_uni_year() {
-					//clear old select
-					$('#education_semester_id').empty();
-					var uni_year_id = $("#education_uni_year_id").val();
-					$.ajax({
-							url:"/semesters",	
-							data:'uni_year_id=' + uni_year_id,
-							dataType: "json",
-							success: function(data) {
-								//add new data to semester select
-								$.each(data, function(key, value) {   
-							    $('#education_semester_id')
-					          .append($("<option></option>")
-					          .attr("value",value.id)
-					          .text(value.name));
-								});
-								$('.selectpicker').selectpicker("refresh");
-							}
-						}
-					);
-				}
-				
-				$('#education_university_id').on("change", change_university);
-				$('#education_faculty_id').on("change", change_faculty);
-				$('#education_uni_year_id').on("change", change_uni_year);
-		  }
-		}
-	});	
-});
-</script>
+				<% if @user.educations.count > 1 %>
+        	<%= link_to [@user, education], method: :delete, class: 'education-delete', data: {id: education.id} do %>
+						<span class="glyphicon glyphicon-remove"></span>
+        	<% end %>
+      	<% end %>
+      </td>
+      <% else %>
+      <td>
+      	<% if @user.current_education == education %>
+      	&bull;
+      	<% end %>
+      </td>
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

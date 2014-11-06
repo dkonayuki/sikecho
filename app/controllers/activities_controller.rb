@@ -1,4 +1,6 @@
 class ActivitiesController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
     @user = current_user
     @activities = PublicActivity::Activity.order('created_at desc')

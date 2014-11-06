@@ -1,7 +1,9 @@
 class EducationsController < ApplicationController
+  before_action :authenticate_user!
+  load_and_authorize_resource :user
+  load_and_authorize_resource :education, through: :user, only: [:index, :show, :new, :edit, :destroy]
   before_action :set_education, only: [:show, :edit, :update, :destroy]
   before_action :set_user
-  before_action :authenticate_user!
 
   include EducationsHelper
 
@@ -124,6 +126,7 @@ class EducationsController < ApplicationController
     
     def set_user
       @user = User.find(params[:user_id])
+      #@user = current_user
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
