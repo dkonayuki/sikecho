@@ -494,6 +494,13 @@ div.message {
 	background-color: #2980b9;
 }
 
+.label-lightblue {
+	padding: 6px 15px;
+	font-size: 12px;	
+	color: #fff;
+	background-color: #5bc0de;
+}
+
 .label-red {
 	padding: 6px 15px;
 	font-size: 12px;	

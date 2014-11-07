@@ -477,6 +477,15 @@
 	background: #fff;
 }
 
+.subject-recommend-item:hover .subject-recommend-info span {
+	background: #555;
+	color: #fff;
+}
+
+.subject-recommend-item:hover {
+	background-color: rgba(0,0,0,0.05);
+}
+
 .subject-recommend-img {
 	width: 70px;
 	height: 70px;
@@ -518,6 +527,7 @@
 	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
+	color: #666;
 }
 
 .subject-recommend-info {
