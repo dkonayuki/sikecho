@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :educations, dependent: :destroy
   
+  #has only one education
   has_one :current_education, class_name: 'Education', foreign_key: "current_user_id"
 
   acts_as_reader
@@ -55,6 +56,7 @@ class User < ActiveRecord::Base
     "#{first_name_kanji} #{last_name_kanji}"  
   end
   
+  #display nickname if exists
   def display_name
     if self.nickname? 
       self.nickname
@@ -63,6 +65,7 @@ class User < ActiveRecord::Base
     end
   end
   
+  #display avatar if exists
   def display_profile_image
     if self.avatar.present? && self.avatar.url(:small).present?
       self.avatar.url(:small)
@@ -71,6 +74,7 @@ class User < ActiveRecord::Base
     end
   end
   
+  #display avatar in comment section
   def display_comment_avatar
     if self.avatar.present? && self.avatar.url(:small).present?
       self.avatar.url(:small)
@@ -95,11 +99,13 @@ class User < ActiveRecord::Base
     self.current_education.subjects
   end
   
+  #check if subject is registered
   def is_registered?(subject)
     #ensure boolean return
     !!self.current_subjects.include?(subject)
   end
   
+  #return a collection of notes which are related to regitered subjects
   def registered_notes
     #select distinct notes from crazy joins
     Note.select('distinct notes.*').joins('INNER JOIN notes_subjects ON notes.id = notes_subjects.note_id')
@@ -138,6 +144,7 @@ class User < ActiveRecord::Base
     end
   end
   
+  #get url for fb profile image
   def self.process_uri(uri)
     avatar_url = URI.parse(uri)
     avatar_url.scheme = 'https'

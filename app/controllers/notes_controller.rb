@@ -1,8 +1,8 @@
 class NotesController < ApplicationController
   before_action :set_note, only: [:show, :edit, :update, :destroy, :documents, :tags]
-  impressionist actions: [:show]
+  impressionist actions: [:show] #for count number
   before_action :authenticate_user!
-  load_and_authorize_resource only: [:index, :show, :new, :edit, :destroy]
+  load_and_authorize_resource only: [:index, :show, :new, :edit, :destroy] #for ability
     
   include NotesHelper
 
