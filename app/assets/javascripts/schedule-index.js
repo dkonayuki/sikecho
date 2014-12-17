@@ -72,6 +72,7 @@ $(document).on("page:load ready", function() {
 		});
 		
 		/*click on remove button of subject tag*/
+		/*
 		$("#schedule-table-wrapper").on("click", ".subject-remove", function() {
 	  	//update query and page
 			var query = $("#filter-schedule #search").val();
@@ -86,7 +87,7 @@ $(document).on("page:load ready", function() {
 			});
 			
 			return false;
-		});
+		});*/
 		
 		/*For live search*/
 		var timeout; // add delay time

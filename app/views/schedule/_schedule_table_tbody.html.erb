@@ -6,7 +6,7 @@
 			<td class="cell" data-day="<%= d %>" data-time="<%= t %>">
 				<div class="details-count">
 					<% if periods[[d, t]].count > 0 %>
-						<span class="count"><%= periods[[d, t]].count %></span>
+						<span class="count"><%= periods[[d, t]].first.name.chars.first %></span>
 					<% end %>
 					<span class="plus glyphicon glyphicon-plus"></span>
 				</div>
