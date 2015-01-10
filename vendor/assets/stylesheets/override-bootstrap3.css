@@ -154,6 +154,13 @@ table {
 	width: 30px;
 }
 
+.navbar-toggle .icon-bar {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 1px;
+}
+
 .disabled {
   pointer-events: none;
 	cursor: default;
