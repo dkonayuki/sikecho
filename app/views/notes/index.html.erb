@@ -64,7 +64,7 @@
 								  <button type="button" data-type="view" class="btn btn-default <%= 'active' if @user.settings(:note).order == :view %>"><span class="glyphicon glyphicon-eye-open"></span></button>
 								</div>
 							</div>
-							<div id="notes-list" class="text-center">
+							<div id="notes-list" class="text-center row">
 								<%= render(partial: 'note', collection: @notes, locals: {show_subject: @show_subject}) || t('note_not_found') %>
 							</div>
 							<div class="hidden-pagination">

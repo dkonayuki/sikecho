@@ -24,6 +24,17 @@ $(document).on("page:load ready", function() {
 			return false;
 		});
 		
+		/*overview menu will change to absolute position when scroll to bottom*/
+    var menu = $("#show-subject-menu");
+    $(window).scroll(function () {
+    var scrollBottom = $(document).height() - $("#show-subject-menu").innerHeight() - $(window).scrollTop();
+      if (scrollBottom > 51 + 50 + 20) { // header: 51, footer: 50, margin from bottom: 20
+      	menu.removeClass("menu-absolute");
+      } else {
+      	menu.addClass("menu-absolute");
+      }
+    });
+		
 		/*For schedule add btn in show subject page*/
 		/*Need selector on a to ensure binding on dynamically elements */
 		$("#show-subject-schedule").add("#show-subject-schedule-mobile").on("click", "a", function() {

@@ -399,16 +399,21 @@
 /* Subject show page
  ===============================================================================================*/
 
+#show-subject-wrapper {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
 #show-subject {
-	width: 75%;
-	margin-right: 15px;
-	margin-left: 15px;
-	float: right;	
+	float: right;
 }
 
 #show-subject-menu {
-	margin-left: 10px;
 	position: fixed;
+}
+
+#show-subject-menu-inner {
+	max-width: 200px;
 }
 
 .show-subject-menu-item {
@@ -417,6 +422,7 @@
 	padding: 10px;
 	margin-top: 10px;
 	box-shadow: 0 1px 2px rgba(0,0,0,.1);
+	float: right;
 }
 
 .show-subject-menu-item > ul > li > a:hover, .show-subject-menu-item > ul > li > a:focus {
@@ -536,6 +542,11 @@
 	right: 20px;
 	overflow: hidden;
 	height: 20px;
+}
+
+.menu-absolute {
+	position: absolute !important;
+	bottom: 70px; /* 50 for footer, 20 for margin bot */
 }
 
 /* Subject edit page

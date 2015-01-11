@@ -1,209 +1,214 @@
-<!-- sidebar -->
-<div id="show-subject-menu" class="hidden-xs" role="navigation">
-		<div class="show-subject-menu-item" role="complementary" id="show-subject-overview">
-			<h4><%= t('.summary') %></h4>
-			<ul class="nav">
-	      <li><a href="#description"><%= t('description') %></a></li>
-	      <li><a href="#syllabus"><%= t('syllabus') %></a></li>
-	      <li><a href="#notes"><%= t('note') %></a></li>
-	    </ul>
-		</div>
-		
-		<% if user_signed_in? && current_university == current_user.current_university %>
-		<div class="show-subject-menu-item" role="complementary" id="show-subject-notes">
-			<h4><%= t('note') %></h4>
-			<ul class="nav">     
-	      <%= link_to new_note_path(subject_id: @subject.id), class: 'btn btn-orange' do %>  
-	      <span class="glyphicon glyphicon-plus-sign"></span><%= t('add') %>
-	      <% end %>
-	    </ul>
-		</div>
-		<div class="show-subject-menu-item" role="complementary" id="show-subject-schedule" data-id="<%= @subject.id %>" data-name="<%= @subject.name %>" data-img="<%= @subject.display_picture_small %>">
-			<%= render 'schedule_menu' %>
-		</div>
-		<% end %>
-		
-</div>
-
-<!-- main part -->
-<div id="show-subject">
-	<ul id="year-list" class="clear">
-		<li class="dropdown year-item">
-			<a data-toggle="dropdown" class="btn btn-navi btn-sm dropdown-toggle"><span class="glyphicon glyphicon-cog"></span></a>
-			<ul class="dropdown-menu pull-right" id="show-subject-dropdown">
-				
-				<% if user_signed_in? && current_university == current_user.current_university %>
-					<li class="visible-xs" id="show-subject-schedule-mobile">
-						<%= render 'schedule_menu_mobile' %>
-			  	</li>
-			  	<li class="visible-xs">
-			      <%= link_to new_note_path(subject_id: @subject.id) do %>  
-	      			<%= image_tag('note_color.png') %>
-			      	<%= t('add') %>
-			      <% end %>
-		      </li>
-					<li class="divider visible-xs"></li>
-				<% end %>
-				
-				<li><%= link_to t('latest'), @subject %></li>
-				<% @subject.versions.reverse.first(5).each do |version| %>
-					<li>
-						<%= link_to version_subject_path(id: @subject.id, version_id: version.id) do %>
-			        <%= version.created_at.to_date %>
-							<%= version.created_at.strftime("%I:%M%p") %>
-						<% end %>
-					</li>
-				<% end %>
-			</ul>
-		</li>
-		<% @same_subjects.each do |subject| %>
-			<% if subject.year == @subject.year %>
-				<li class="year-item"><span class="btn btn-white btn-sm active"><%= subject.year %></span></li>
-			<% else %>
-				<li class="year-item"><%= link_to subject.year, subject, class: "btn btn-navi btn-sm" %></li>
+<div id="show-subject-wrapper" class="row">
+	
+	<!-- sidebar -->
+	<div id="show-subject-menu" class="hidden-xs col-sm-3" role="navigation">
+		<div id="show-subject-menu-inner">
+			<div class="show-subject-menu-item" role="complementary" id="show-subject-overview">
+				<h4><%= t('.summary') %></h4>
+				<ul class="nav">
+		      <li><a href="#description"><%= t('description') %></a></li>
+		      <li><a href="#syllabus"><%= t('syllabus') %></a></li>
+		      <li><a href="#notes"><%= t('note') %></a></li>
+		    </ul>
+			</div>
+			
+			<% if user_signed_in? && current_university == current_user.current_university %>
+			<div class="show-subject-menu-item" role="complementary" id="show-subject-notes">
+				<h4><%= t('note') %></h4>
+				<ul class="nav">     
+		      <%= link_to new_note_path(subject_id: @subject.id), class: 'btn btn-orange' do %>  
+		      <span class="glyphicon glyphicon-plus-sign"></span><%= t('add') %>
+		      <% end %>
+		    </ul>
+			</div>
+			<div class="show-subject-menu-item" role="complementary" id="show-subject-schedule" data-id="<%= @subject.id %>" data-name="<%= @subject.name %>" data-img="<%= @subject.display_picture_small %>">
+				<%= render 'schedule_menu' %>
+			</div>
 			<% end %>
+		</div>
+	</div>
+	
+	<!-- main part -->
+	<div id="show-subject" class="col-sm-9 col-xs-12">
+		<ul id="year-list" class="clear">
+			<li class="dropdown year-item">
+				<a data-toggle="dropdown" class="btn btn-navi btn-sm dropdown-toggle"><span class="glyphicon glyphicon-cog"></span></a>
+				<ul class="dropdown-menu pull-right" id="show-subject-dropdown">
+					
+					<% if user_signed_in? && current_university == current_user.current_university %>
+						<li class="visible-xs" id="show-subject-schedule-mobile">
+							<%= render 'schedule_menu_mobile' %>
+				  	</li>
+				  	<li class="visible-xs">
+				      <%= link_to new_note_path(subject_id: @subject.id) do %>  
+		      			<%= image_tag('note_color.png') %>
+				      	<%= t('add') %>
+				      <% end %>
+			      </li>
+						<li class="divider visible-xs"></li>
+					<% end %>
+					
+					<li><%= link_to t('latest'), @subject %></li>
+					<% @subject.versions.reverse.first(5).each do |version| %>
+						<li>
+							<%= link_to version_subject_path(id: @subject.id, version_id: version.id) do %>
+				        <%= version.created_at.to_date %>
+								<%= version.created_at.strftime("%I:%M%p") %>
+							<% end %>
+						</li>
+					<% end %>
+				</ul>
+			</li>
+			<% @same_subjects.each do |subject| %>
+				<% if subject.year == @subject.year %>
+					<li class="year-item"><span class="btn btn-white btn-sm active"><%= subject.year %></span></li>
+				<% else %>
+					<li class="year-item"><%= link_to subject.year, subject, class: "btn btn-navi btn-sm" %></li>
+				<% end %>
+			<% end %>
+		</ul>
+		
+	  <!--for overview section -->
+		<a name="description"></a>
+		<div class="skc-box skc-box-no-padding skc-box-lg">
+			<div class="skc-box-content">
+				<div class="skc-box-thumbnail">
+					<%= image_tag(@subject.display_picture_small)  %>
+				</div>
+				<div class="skc-box-title">
+					<a data-toggle="collapse" href="#collapseDescription">
+		        <h4><%= @subject.name %></h4>
+		      </a>
+		    </div>
+				
+				<div class="skc-box-desc collapse in" id="collapseDescription">
+					<p>
+						<%= sanitize(@subject.description) %>
+					</p>
+					<hr />
+					<p>
+						<strong><%= t('.recommend_semester') %>:</strong>
+						<%= "#{@subject.semester.uni_year.name}#{@subject.semester.name}" %>
+					</p>
+					<p>
+						<strong>
+							<% if @subject.periods.count == 1 %>
+							<%= t('.period.one') %>:
+							<% else %>
+							<%= t('.period.plural') %>:
+							<% end %>
+						</strong>
+						<% @subject.periods.each do |period| %>
+							<% if period != @subject.periods.first %>
+							&bull;
+							<% end %>
+							<%= t('date.day_names')[period.day] %>-<%= t('date.period_names')[period.time] %>
+						<% end %>
+					</p>
+					<p>
+						<strong><%= t('.place') %>:</strong>
+						<%= @subject.place %>
+					</p>
+					<p>
+						<strong>
+							<% if @subject.teachers.count == 1 %>
+								<%= t('.teacher.one') %>:
+							<% else %>
+								<%= t('.teacher.plural') %>:
+							<% end %>
+						</strong>
+						<% @subject.teachers.each do |teacher| %>
+		      		<% if teacher != @subject.teachers.first %>
+		      		&bull;
+		      		<% end %>
+							<%= link_to teacher.full_name, teacher %>
+	    			<% end %>
+					</p>
+				</div>
+				
+				<div class="skc-box-menu">
+					<% if can? :update, @subject %>
+						<%= link_to edit_subject_path(@subject.id), class: 'has-tooltip', data: {toggle: "tooltip", placement: "top"}, title: t('edit') do %>
+							<span class="glyphicon glyphicon-pencil"></span>
+						<% end %>
+					<% end %>
+					<% if can? :destroy, @subject %>
+						<%= link_to @subject, method: :delete, data: { confirm: t('delete_confirm') } do %>
+							<span class="glyphicon glyphicon-remove"></span>
+						<% end %>
+					<% end %>
+				</div>
+			</div>
+		</div><!--end of skc-box-->
+		
+	  <!--for overview section -->
+	 	<a name="syllabus"></a>
+		<div class="skc-box skc-box-no-padding skc-box-lg">
+			<div class="skc-box-content">
+				<div class="skc-box-title-no-margin">
+					<a data-toggle="collapse" href="#collapseSyllabus">
+		        <h4><%= t('syllabus') %></h4>
+		      </a>
+		    </div>
+				<div class="skc-box-desc skc-box-desc-no-margin collapse out" id="collapseSyllabus">
+					<p class="notice">*<%= t('.notice1') %></p>
+					<%= render 'syllabus_table', editable: false %>
+				</div><!-- end of box-desc -->
+				
+				<div class="skc-box-menu">
+					<% if can? :update, @subject %>
+						<%= link_to edit_subject_path(@subject.id, anchor: "syllabus"), class: 'has-tooltip', data: {toggle: "tooltip", placement: "top"}, title: t('edit') do %>
+							<span class="glyphicon glyphicon-pencil"></span>
+						<% end %>
+					<% end %>
+				</div>
+				
+			</div><!-- end of box-content -->
+		</div><!-- end of skc-box -->
+		
+		<% if (user_signed_in? && current_university == current_user.current_university) || !user_signed_in? %>
+		<!--for overview section -->
+	 	<a name="notes"></a>
+		<div class="skc-box skc-box-no-padding skc-box-lg">
+			<div class="skc-box-content">
+				<div class="skc-box-title-no-margin">
+					<a data-toggle="collapse" href="#collapseNotes">
+		        <h4><%= t('note') %></h4>
+		      </a>
+		    </div>
+				<div class="skc-box-desc skc-box-desc-no-margin collapse in text-center" id="collapseNotes">
+					<%= render(partial: 'notes/note_line', collection: @notes, as: :note) || t('note_not_found') %>
+				</div>
+			</div>
+		</div>
 		<% end %>
-	</ul>
-	
-  <!--for overview section -->
-	<a name="description"></a>
-	<div class="skc-box skc-box-no-padding skc-box-lg">
-		<div class="skc-box-content">
-			<div class="skc-box-thumbnail">
-				<%= image_tag(@subject.display_picture_small)  %>
-			</div>
-			<div class="skc-box-title">
-				<a data-toggle="collapse" href="#collapseDescription">
-	        <h4><%= @subject.name %></h4>
-	      </a>
-	    </div>
-			
-			<div class="skc-box-desc collapse in" id="collapseDescription">
-				<p>
-					<%= sanitize(@subject.description) %>
-				</p>
-				<hr />
-				<p>
-					<strong><%= t('.recommend_semester') %>:</strong>
-					<%= "#{@subject.semester.uni_year.name}#{@subject.semester.name}" %>
-				</p>
-				<p>
-					<strong>
-						<% if @subject.periods.count == 1 %>
-						<%= t('.period.one') %>:
-						<% else %>
-						<%= t('.period.plural') %>:
-						<% end %>
-					</strong>
-					<% @subject.periods.each do |period| %>
-						<% if period != @subject.periods.first %>
-						&bull;
-						<% end %>
-						<%= t('date.day_names')[period.day] %>-<%= t('date.period_names')[period.time] %>
-					<% end %>
-				</p>
-				<p>
-					<strong><%= t('.place') %>:</strong>
-					<%= @subject.place %>
-				</p>
-				<p>
-					<strong>
-						<% if @subject.teachers.count == 1 %>
-							<%= t('.teacher.one') %>:
-						<% else %>
-							<%= t('.teacher.plural') %>:
-						<% end %>
-					</strong>
-					<% @subject.teachers.each do |teacher| %>
-	      		<% if teacher != @subject.teachers.first %>
-	      		&bull;
-	      		<% end %>
-						<%= link_to teacher.full_name, teacher %>
-    			<% end %>
-				</p>
-			</div>
-			
-			<div class="skc-box-menu">
-				<% if can? :update, @subject %>
-					<%= link_to edit_subject_path(@subject.id), class: 'has-tooltip', data: {toggle: "tooltip", placement: "top"}, title: t('edit') do %>
-						<span class="glyphicon glyphicon-pencil"></span>
-					<% end %>
-				<% end %>
-				<% if can? :destroy, @subject %>
-					<%= link_to @subject, method: :delete, data: { confirm: t('delete_confirm') } do %>
-						<span class="glyphicon glyphicon-remove"></span>
-					<% end %>
-				<% end %>
-			</div>
+		
+		<% if @tags.count > 0 %>
+		<br />
+		<div class="show-subject-header">
+			<%= image_tag('subject-tag.png') %>
+			<span><%= t('tag_plural') %>:</span>
 		</div>
-	</div><!--end of skc-box-->
-	
-  <!--for overview section -->
- 	<a name="syllabus"></a>
-	<div class="skc-box skc-box-no-padding skc-box-lg">
-		<div class="skc-box-content">
-			<div class="skc-box-title-no-margin">
-				<a data-toggle="collapse" href="#collapseSyllabus">
-	        <h4><%= t('syllabus') %></h4>
-	      </a>
-	    </div>
-			<div class="skc-box-desc skc-box-desc-no-margin collapse out" id="collapseSyllabus">
-				<p class="notice">*<%= t('.notice1') %></p>
-				<%= render 'syllabus_table', editable: false %>
-			</div><!-- end of box-desc -->
-			
-			<div class="skc-box-menu">
-				<% if can? :update, @subject %>
-					<%= link_to edit_subject_path(@subject.id, anchor: "syllabus"), class: 'has-tooltip', data: {toggle: "tooltip", placement: "top"}, title: t('edit') do %>
-						<span class="glyphicon glyphicon-pencil"></span>
-					<% end %>
-				<% end %>
-			</div>
-			
-		</div><!-- end of box-content -->
-	</div><!-- end of skc-box -->
-	
-	<% if (user_signed_in? && current_university == current_user.current_university) || !user_signed_in? %>
-	<!--for overview section -->
- 	<a name="notes"></a>
-	<div class="skc-box skc-box-no-padding skc-box-lg">
-		<div class="skc-box-content">
-			<div class="skc-box-title-no-margin">
-				<a data-toggle="collapse" href="#collapseNotes">
-	        <h4><%= t('note') %></h4>
-	      </a>
-	    </div>
-			<div class="skc-box-desc skc-box-desc-no-margin collapse in text-center" id="collapseNotes">
-				<%= render(partial: 'notes/note_line', collection: @notes, as: :note) || t('note_not_found') %>
-			</div>
-		</div>
-	</div>
-	<% end %>
-	
-	<% if @tags.count > 0 %>
-	<br />
-	<div class="show-subject-header">
-		<%= image_tag('subject-tag.png') %>
-		<span><%= t('tag_plural') %>:</span>
-	</div>
-	<ul>
-		<% @tags.each do |tag| %>
-		<li class="label-tag"><%= tag %></li>
+		<ul>
+			<% @tags.each do |tag| %>
+			<li class="label-tag"><%= tag %></li>
+			<% end %>
+		</ul>
 		<% end %>
-	</ul>
-	<% end %>
-	
-	<% if @recommend_subjects.count > 0 %>
-	<br />
-	<div class="show-subject-header">
-		<%= image_tag('subject_recommend.png') %>
-		<span><%= t('.recommend_subject')%>:</span>
-	</div>
-	<div class="has-margin-lg">
-		<div class="owl-carousel text-center">
-	  	<%= render collection: @recommend_subjects, partial: 'subject_recommend', as: :subject %>
+		
+		<% if @recommend_subjects.count > 0 %>
+		<br />
+		<div class="show-subject-header">
+			<%= image_tag('subject_recommend.png') %>
+			<span><%= t('.recommend_subject')%>:</span>
 		</div>
-	</div>
-	<% end %>
-	
-</div><!-- end of show-subject -->
+		<div class="has-margin-lg">
+			<div class="owl-carousel text-center">
+		  	<%= render collection: @recommend_subjects, partial: 'subject_recommend', as: :subject %>
+			</div>
+		</div>
+		<% end %>
+		
+	</div><!-- end of show-subject -->
+
+</div>

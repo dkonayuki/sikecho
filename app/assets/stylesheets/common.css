@@ -36,7 +36,7 @@ a {
   color: #666;
 }
 
-a:hover {
+a:hover, a:focus {
   color: #000;
   outline: 0;
   text-decoration: none !important;
