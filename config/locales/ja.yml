@@ -294,6 +294,8 @@ ja:
   description: 概要
   edit: 編集
   delete_confirm: 削除してよろしいですか。
+  subject_register_confirm: スケジュールに追加しますか。
+  subject_remove_confirm: スケジュールから削除しますか。
   print: 印刷
   no_document: まだ資料がありません
   profile: プロフィール

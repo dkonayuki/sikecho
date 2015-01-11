@@ -324,6 +324,8 @@ en:
   description: Description
   edit: Edit
   delete_confirm: Are you sure?
+  subject_register_confirm: Add to schedule?
+  subject_remove_confirm: Remove from schedule?
   print: Print
   no_document: No document
   profile: Profile
