@@ -100,7 +100,7 @@ GEM
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
-    jquery-fileupload-rails (0.4.1)
+    jquery-fileupload-rails (0.4.2)
       actionpack (>= 3.1)
       railties (>= 3.1)
     jquery-rails (3.1.0)
@@ -280,7 +280,7 @@ DEPENDENCIES
   globalize (~> 4.0.2)
   impressionist
   jbuilder (~> 1.2)
-  jquery-fileupload-rails
+  jquery-fileupload-rails (~> 0.4.2)
   jquery-rails (~> 3.1.0)
   jquery-ui-rails
   kaminari

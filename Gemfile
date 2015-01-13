@@ -63,7 +63,7 @@ gem "moji", "~> 1.6"
 gem 'unread'
 
 #for upload file
-gem 'jquery-fileupload-rails'
+gem 'jquery-fileupload-rails', "~> 0.4.2"
   
 gem 'paperclip', "~> 4.1"
 #gem 'aws-sdk', '~> 1.0'
