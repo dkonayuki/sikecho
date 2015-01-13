@@ -85,7 +85,10 @@ $(document).on("page:load ready", function() {
 		function enableInlineEdit() {
 			//edit inline
 			$('.outline-date').editable({
-		    format: 'yyyy-mm-dd', //for sending value
+		    format: 'yyyy-mm-dd', //format of value; add data-viewformat if viewformat is difference
+		    datepicker: {
+		    	language: I18n["meta"]["code"] //translations
+		    },
 		    name: 'date',
 		    url: '/subjects/' + subjectID + '/inline',
 		    showbuttons: 'bottom'
