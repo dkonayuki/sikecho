@@ -4,7 +4,7 @@ Shikechou::Application.routes.draw do
   
   devise_for :users, skip: [:session, :password, :registration], controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
-  #using i18n
+  #using i18n, scope locale with url path: /en/
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
     #devise routes
     devise_for :users, skip: [:omniauth_callbacks],

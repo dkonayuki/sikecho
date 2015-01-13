@@ -32,6 +32,7 @@ class ApplicationController < ActionController::Base
     not_found
   end
   
+  # set locale from params (#1), session (#2), otherwise use default locale in config/application.rb
   def set_locale
     I18n.locale = params[:locale] || session[:locale] || I18n.default_locale
     
@@ -44,6 +45,7 @@ class ApplicationController < ActionController::Base
     # request.remote_ip
   end
   
+  # remove /ja/ in url if ja is default locale
   def default_url_options(options = {})
     options.merge({ locale: ((I18n.locale == I18n.default_locale) ? nil : I18n.locale) })
     #options.merge({ locale: I18n.locale})
