@@ -1,34 +1,35 @@
 <div class="note-item col-xs-12 col-sm-6">
-  <div class="note-thumbnail">
-  </div>
-  <div class="note-details">
-    <div class="note-title"><%= link_to "#{note.title}", note %></div>
-    <div class="note-tags">
-    	<% note.tag_list.first(5).each do |tag| %>
-    		<% if tag == t('.prepare_exam') %>
-      		<span class="label label-warning"><%= t('.prepare_exam') %></span>
-    		<% elsif tag == t('.past_exam') %>
-      		<span class="label label-success"><%= t('.past_exam') %></span>
-    		<% else %>
-    			<span class="label label-info"><%= tag %></span>
-    		<% end %>
-    	<% end %>
-			<% if user_signed_in? %>
-	      <% if note.unread?(current_user) %>
-	      	<span class="label label-danger"><%= t('.new') %></span>
+	<div class="note-item-inner">
+	  <div class="note-thumbnail">
+	  </div>
+	  <div class="note-details">
+	    <div class="note-title"><%= link_to "#{note.title}", note %></div>
+	    <div class="note-tags">
+	    	<% note.tag_list.first(5).each do |tag| %>
+	    		<% if tag == t('.prepare_exam') %>
+	      		<span class="label label-warning"><%= t('.prepare_exam') %></span>
+	    		<% elsif tag == t('.past_exam') %>
+	      		<span class="label label-success"><%= t('.past_exam') %></span>
+	    		<% else %>
+	    			<span class="label label-info"><%= tag %></span>
+	    		<% end %>
+	    	<% end %>
+				<% if user_signed_in? %>
+		      <% if note.unread?(current_user) %>
+		      	<span class="label label-danger"><%= t('.new') %></span>
+		      <% end %>
 	      <% end %>
-      <% end %>
-    </div>
-  </div>
-  <div class="note-info">
-  	<div class="note-time">
-  		<%= time_ago_in_words(note.created_at) %><%= t('ago') %>
-		</div>
-
-  	<div class="note-view">
-			<span class="glyphicon glyphicon-eye-open"></span>
-			<%= note.impressionist_count %>
+	    </div>
+	  </div>
+	  <div class="note-info">
+	  	<div class="note-time">
+	  		<%= time_ago_in_words(note.created_at) %><%= t('ago') %>
+			</div>
+	
+	  	<div class="note-view">
+				<span class="glyphicon glyphicon-eye-open"></span>
+				<%= note.impressionist_count %>
+			</div>
 		</div>
 	</div>
-	
 </div>

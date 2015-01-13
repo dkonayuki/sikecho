@@ -419,15 +419,9 @@
 .show-subject-menu-item {
 	width: 120px;
 	background-color: #fff;
-	padding: 10px;
 	margin-top: 10px;
 	box-shadow: 0 1px 2px rgba(0,0,0,.1);
 	float: right;
-}
-
-.show-subject-menu-item > ul > li > a:hover, .show-subject-menu-item > ul > li > a:focus {
-	background-color: #555 !important;
-	color: #fff;
 }
 
 .show-subject-menu-item h4 {
@@ -438,6 +432,14 @@
 
 .show-subject-menu-item .btn {
 	width: 100%;
+}
+
+#show-subject-schedule:hover .cancel-text {
+	display: inline-block;
+}
+
+#show-subject-schedule:hover .registered-text {
+	display: none;
 }
 
 @media(max-width: 767px) {

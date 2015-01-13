@@ -369,6 +369,7 @@ ja:
       notice1: 授業回数を選択してください。内容は後で変更できます。
       auto_add: 自動的に追加する
     show:
+      add_new_note: ノート追加
       summary: 要旨
       recommend_semester: 推奨学期
       period:

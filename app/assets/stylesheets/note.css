@@ -59,11 +59,15 @@
 
 .note-item {
 	height: 82px;
-	padding-top: 10px;
 	margin-bottom: 20px;
 	list-style: none;
+}
+
+.note-item-inner {
 	border: 1px solid transparent;
-	border-bottom: 1px solid #eee;
+	border-bottom: 1px solid #eee;	
+	padding-top: 10px;
+	height: 100%;
 }
 
 .note-item img {
@@ -119,13 +123,13 @@
 
 .note-time {
 	top: 5px;
-	right: 10px;
+	right: 16px;
 	position: absolute;
 }
 
 .note-view {
 	bottom: 5px;
-	right: 10px;
+	right: 16px;
 	position: absolute;
 }
 

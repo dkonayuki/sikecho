@@ -399,6 +399,7 @@ en:
       notice1: Please select the number of classes. Content of classes can be added later.
       auto_add: Add class automatically
     show:
+      add_new_note: Add a new note
       summary: Summary
       recommend_semester: Recommended semester
       period:
