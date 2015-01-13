@@ -229,7 +229,7 @@ class SubjectsController < ApplicationController
     when :date
       #search in array 
       outline = @subject.outlines.find_by_no(params[:pk])
-      outline.date = DateTime.strptime(params[:value], '%Y-%m-%d') unless params[:value].blank?
+      outline.date = Date.strptime(params[:value], '%Y-%m-%d') unless params[:value].blank?
       outline.save
     when :content
       #search in array 
