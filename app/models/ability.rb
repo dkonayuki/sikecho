@@ -5,6 +5,21 @@ class Ability
     can :read, Subject                                  # allow everyone to read Subject, and can read other pages if authorize is not called
     
     if user
+      
+      if user.role == 'admin'
+        can :access, :rails_admin     # only allow admin users to access Rails Admin
+        can :dashboard                # allow access to dashboard: /admin
+        can :manage, :all
+      elsif user.role == 'mod'
+        can :manage, :all             # allow mod to manage
+      else
+        #normal user
+        can :show, User                                   # see other users
+        can :manage, Education do |e|                     # only owner can manage his educations
+          e.user == user
+        end
+      end
+      
       # if subdomain is from user's university
       # add many new abilities for user
       if request != nil && University.find_by_codename(request.subdomain) == user.current_university
@@ -24,20 +39,9 @@ class Ability
           d.note.user == user
         end
       end
-      
-      can :show, User                                   # see other users
-      can :manage, Education do |e|                     # only owner can manage his educations
-        e.user == user
-      end
-      
-      if user.role == 'admin'
-        can :access, :rails_admin     # only allow admin users to access Rails Admin
-        can :dashboard                # allow access to dashboard
-        can :manage, :all
-      elsif user.role == 'mod'
-        can :manage, :all             # allow mod to manage
-      end
+
     end
+    
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
