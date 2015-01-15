@@ -34,4 +34,41 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+  
+  # exclude these unnecessary model
+  config.excluded_models = ["Education", "Impression", "Outline", "NotesSubject", "Period", "Register", "Semester", "UniYear"]
+
+  # choose what to display in user
+  config.model 'User' do
+    edit do
+      field :username
+      field :nickname
+      field :email
+      field :first_name
+      field :first_name_kana
+      field :first_name_kanji
+      field :last_name
+      field :last_name_kana
+      field :last_name_kanji
+      field :gender
+      field :dob do
+        date_format :default
+      end
+      field :status
+      field :password
+      field :sign_in_count do
+        read_only true
+      end
+      field :created_at do
+        read_only true
+        date_format :default
+      end
+      field :updated_at do
+        read_only true
+        date_format :default
+      end
+      field :role
+    end
+  end
+  
 end
