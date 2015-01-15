@@ -7,6 +7,10 @@
  *
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
+ * 
+ * The order of css code will follow:
+ * #1 Codes in these listed files
+ * #2 Codes in stylesheets from a-z
  *
  *= require_self
  *= require main.scss

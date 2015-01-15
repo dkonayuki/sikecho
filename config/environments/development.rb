@@ -30,6 +30,8 @@ Shikechou::Application.configure do
   config.serve_static_assets = true
   #The available log levels are: :debug, :info, :warn, :error, :fatal, and :unknown, 
   config.log_level = :info
+  
+  #config.force_ssl = false
 
   config.action_mailer.default_url_options = { host: 'localhost:8000' }
   config.action_mailer.delivery_method = :smtp

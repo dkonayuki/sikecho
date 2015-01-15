@@ -252,6 +252,7 @@ function reloadSubjectList() {
 	//window.history.pushState({ turbolinks: true, position: window.history.state.position + 1 }, '', page_tab);
 }
 
+/*Main start here*/
 $(document).on("page:load ready", function() {
 	$(".subjects.index").ready(function() {
 		//prepare first time load

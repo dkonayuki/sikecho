@@ -1,3 +1,5 @@
+#faye settings file for pub/sub system
+#using thin as a sub-server handling pub/sub messages
 require 'faye'
 Faye::WebSocket.load_adapter('thin')
 require File.expand_path('../config/app_environment_variables.rb', __FILE__)

@@ -43,6 +43,7 @@
 							  <%= form_tag notes_path, method: :get, class: "filter-form", id: 'filter-note' do %>
 							    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: t('note_search'), autocorrect: "off", autocapitalize: "off" %>
 								<% end %>
+								
 								<ul class="hidden-xs filter-menu">
 								  <li><%= link_to t('all_option'), notes_path(filter: 'all'), data: {type: 'all'} %></li>
 									<li><%= link_to t('.my_note'), notes_path(filter: 'my_note'), data: {type: 'my_note'} %></li>

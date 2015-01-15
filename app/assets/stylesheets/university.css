@@ -15,14 +15,24 @@
 	margin: 0 auto;
 }
 
+#university-menu {
+	text-align: center;
+	padding: 15px;
+}
+
+#filter-university {
+	max-width: 300px;
+	margin: 0 auto;
+}
+
 .uni-item {
 	background: #fff;
-	width: 300px;
-	height: 120px;
+	width: 200px;
+	height: 60px;
 	padding: 5px 5px;
 	display: inline-block;
 	margin-bottom: 10px;
-	border: 2px solid #ddd;
+	border: 1px solid #ddd;
 }
 
 .uni-item:hover {
@@ -32,7 +42,6 @@
 .uni-thumbnail {
 	float: left;
 	height: 100%;
-	max-width: 106px;
 }
 
 .uni-thumbnail img {
@@ -40,14 +49,15 @@
 }
 
 .uni-desc {
-	padding-left: 120px;
+	padding-left: 51px;
 	height: 100%;
 	position: relative;
+	text-align: center;
 }
 
 .uni-name {
-	font-size: 20px;
-	padding-top: 7px;
+	font-size: 16px;
+	padding-top: 4px;
 }
 
 .uni-meta {
@@ -108,4 +118,26 @@
 	padding: 20px 32px;
 	background: #f6f9fc;
 	border-radius: 3px;
+}
+
+.btn-request {
+	border-top: none;
+	color: #fff;
+	background-color: #34495E;
+	border-bottom: 2px solid #34495E;
+	display: block;
+	margin: 0 auto 10px;
+	height: 60px;
+	max-width: 200px;
+	font-size: 12px;
+}
+
+.btn-request span {
+	font-size: 25px;
+}
+
+.btn-request:hover {
+	background-color: #455A6F;
+	color: #fff;
+	border-bottom-color: #2C3E50;
 }

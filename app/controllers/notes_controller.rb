@@ -72,7 +72,10 @@ class NotesController < ApplicationController
   # GET /notes/1.json
   def show
     @user = current_user
+    
+    #mark as read for impression gem
     @note.mark_as_read! for: @user
+    
     @tags = @note.tag_list
   end
   
