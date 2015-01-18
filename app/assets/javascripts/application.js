@@ -47,19 +47,23 @@ function setMaxWidth() {
 		$("#navbar-collapse-2").css("width", $("#nav-bar").width() - $("#logo").innerWidth() - $("#navbar-collapse-1").width() - $("#navbar-collapse-3 ul").innerWidth() - 60 - 25 + "px");//25 for scroolbar	60 for calendar img and padding			
 	}
 	
+	//set dynamic width for note item
 	if ($(".note-item").length) {
 		$(".note-title").css("maxWidth", ( $('.note-item').width() - $('.note-thumbnail').outerWidth(true) - 1 ) + "px" ); //outerWidth(true): include margin
 		$(".note-tags").css("maxWidth", ( $('.note-item').width() - $('.note-thumbnail').outerWidth(true) - $('.note-view').width() - 1 ) + "px" );
 	}
 	
+	//set dynamic width for subject recommend
 	if ($(".subject-recommend-item").length) {
 		$(".subject-recommend-info").css("maxWidth", ( $('.subject-recommend-item').width() - 10) + "px" );
 	}
 	
+	//search form will shrink when window size is too small. max-width = 200px
 	if ($("#filter-subject").length) {
 		$("#filter-subject").css("width", $("#subjects-content").width() - $("#new-subject-btn").outerWidth(true) - 40);
 	}
-	
+
+	//search form will shrink when window size is too small. max-width = 200px
 	if ($("#filter-note").length) {
 		$("#filter-note").css("width", $("#notes").width() - $("#pushmenu-trigger").outerWidth(true) - $("#new-note-btn").outerWidth(true) - 40);
 	}

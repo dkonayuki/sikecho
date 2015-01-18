@@ -4,6 +4,8 @@ class University < ActiveRecord::Base
   has_many :uni_years
   has_many :educations
   
+  #university's name will change accordingly with locale
+  #need to edit manually in other locale otherwise default name will be used
   translates :name
   
   has_attached_file :logo, styles: {thumbnail: "60x60#", small: "150x150>"}, 
@@ -12,6 +14,15 @@ class University < ActiveRecord::Base
                               path: ":rails_root/public/:url" #dont really need path
                               
   validates_attachment_content_type :logo, content_type: ["image/jpg", "image/gif", "image/png", "image/jpeg"]
+  
+  def self.search(search)
+    if search
+      q = "%#{search.downcase}%"
+      where('universities.name LIKE ?', q)
+    else
+      all
+    end
+  end
   
   def courses
     Course.where('faculty_id IN (?)', faculty_ids)

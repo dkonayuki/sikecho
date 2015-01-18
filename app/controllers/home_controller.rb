@@ -6,7 +6,7 @@ class HomeController < ApplicationController
       @activities = PublicActivity::Activity.order('created_at desc')
         .where('(trackable_id in (?) AND trackable_type = ?) OR (trackable_id in (?) AND trackable_type = ?)', @user.current_subjects.ids, 'Subject', @user.registered_notes.ids, 'Note')
     else
-      @universities = University.all
+      redirect_to universities_url
     end
   end
 end

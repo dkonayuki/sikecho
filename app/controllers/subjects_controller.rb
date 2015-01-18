@@ -360,7 +360,7 @@ class SubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
-      params.permit(:name, :pk, :value, :tags, :filter, :semester, :teachers, :version_id, :page, :order, :number_of_outlines, :courses, :semesters, :periods, :auto_type, :tag)
+      params.permit(:name, :pk, :value, :tags, :filter, :semester, :teachers, :version_id, :page, :order, :search, :number_of_outlines, :courses, :semesters, :periods, :auto_type, :tag)
       params.require(:subject).permit(:name, :description, :year, :place, :semester_id, :uni_year_id, :course_id, :picture)
     end
 end

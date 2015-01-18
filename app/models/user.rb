@@ -51,7 +51,11 @@ class User < ActiveRecord::Base
       where(conditions).first
     end
   end
-    
+  
+  # self.method is class method
+  # plain method is instance method
+  
+  #kanji name order
   def name_kanji
     "#{first_name_kanji} #{last_name_kanji}"  
   end

@@ -20,6 +20,10 @@
 	padding: 15px;
 }
 
+#filter-university input:focus {
+	border-color: #563d7c;
+}
+
 #filter-university {
 	max-width: 300px;
 	margin: 0 auto;

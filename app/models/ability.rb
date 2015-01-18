@@ -2,7 +2,8 @@ class Ability
   include CanCan::Ability
 
   def initialize(user, request=nil)
-    can :read, Subject                                  # allow everyone to read Subject, and can read other pages if authorize is not called
+    can :read, Subject                                  # allow everyone to view Subject :index and :show, and can read other pages if authorize is not called
+    can [:index], University          # allow first time user to see list of university
     
     if user
       

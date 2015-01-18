@@ -14,6 +14,7 @@ Shikechou::Application.routes.draw do
     resources :teachers
   
     resources :universities
+    #university will be used as subdomain. so faculty should not be nested inside university
     
     resources :faculties, shallow: true do
       resources :courses do

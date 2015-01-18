@@ -42,10 +42,50 @@ function prepareUniversities() {
 		  }
 		}
 	});
+	
+ 	/*For live search*/
+	var timeout; // add delay time
+	$("#filter-university input").keyup(function() {
+		window.clearTimeout(timeout); //clear delay
+    timeout = window.setTimeout(reloadUniversityList, 500);
+		return false;
+	});
+}
+
+/*for university list reload*/
+function reloadUniversityList() {
+	var data = new Object();
+	
+	/*
+	$("#note-order-option button").each(function() {
+		if ($(this).hasClass("active")) {
+			data.order = $(this).data("type");
+		}
+	});*/
+	
+	//check if search query
+	if ($("#filter-university #search").val() != "") {
+		data.search = $("#filter-university #search").val();
+	}
+
+  $.ajax({
+		//use current locale
+	  url: "/" + I18n["meta"]["code"] + "/universities",
+	  data: data,
+	  //success: ajaxSuccess,
+	  dataType: "script",
+		contentType: "application/json"
+	});
+	
+	//replace current url, compatiable with turbolinks
+  window.history.replaceState({ turbolinks: true }, "", "/" + I18n["meta"]["code"] + "/universities/" + decodeURIComponent($.param(data, false)));
+	//for pushState
+	//window.history.pushState({ turbolinks: true, position: window.history.state.position + 1 }, '', page_tab);
 }
 
 $(document).on("page:load ready", function() {
 	$(".universities.index").ready(function() {
+		$("body").css("background-color", "#fff");
 		prepareUniversities();
 	});
 });
