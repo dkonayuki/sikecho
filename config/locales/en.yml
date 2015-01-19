@@ -298,6 +298,7 @@ en:
   n: Note
   subject_not_found: Subject not found
   note_not_found: Note not found
+  university_not_found: University not found.
   request_university: Request new university
   registered: Registered
   cancel_subject_registered: Cancel
@@ -480,3 +481,14 @@ en:
       name: Name
       address: Address
       website: Website
+  universities:
+    index:
+      hokkaido: Hokkaido
+      tohoku: Tohoku
+      kanto: Kanto
+      tokai: Tokai
+      koshinetsu: Koshinetsu
+      kansai: Kansai
+      chugoku: Chugoku
+      shikoku: Shikoku
+      kyushu: Kyushu

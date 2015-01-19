@@ -1,0 +1,7 @@
+<%= render @universities %>
+<% if @universities.empty? %>
+	<div id="uni-not-found">
+		<%= t("university_not_found") %>
+		<%= link_to t("request_university"), new_request_path, id: 'uni-request-btn' %>
+	</div>
+<% end %>

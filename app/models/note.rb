@@ -29,7 +29,7 @@ class Note < ActiveRecord::Base
       q = "%#{search.downcase}%"
       select('distinct notes.*').joins("LEFT JOIN taggings on Notes.id = taggings.taggable_id")
       .joins("LEFT JOIN tags on tags.id = taggings.tag_id")
-      .where('title LIKE ? OR tags.name LIKE ?', q, q)
+      .where('lower(title) LIKE ? OR lower(tags.name) LIKE ?', q, q)
       #no more search by subject name
     else
       all

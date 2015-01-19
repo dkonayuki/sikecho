@@ -1,6 +1,11 @@
 /* university
  ***************************************************************************/
 
+#university-index {
+	margin: 15px;
+	padding-bottom: 15px;
+}
+
 .logo {
 	width: 200px;
 }
@@ -10,6 +15,146 @@
 	height: 60px;
 }
 
+.area-name {
+	position: absolute;
+	padding: 4px 8px;
+	cursor: pointer;
+}
+
+#area-name-hokkaido {
+	top: 20px;
+	right: 110px;
+	color: #01a0fb;
+	border: 1px solid #01a0fb;
+}
+
+#area-name-hokkaido.active {
+	color: #fff;
+	background: #00507d;
+	border-color: #00507d;
+}
+
+#area-name-tohoku {
+	top: 100px;
+	right: 105px;
+	color: #00ddf9;
+	border: 1px solid #00ddf9;
+}
+
+#area-name-tohoku.active {
+	color: #fff;
+	background: #006e7c;
+	border-color: #006e7c;
+}
+
+#area-name-kanto {
+	top: 210px;
+	left: 230px;
+	color: #01ca96;
+	border: 1px solid #01ca96;
+}
+
+#area-name-kanto.active {
+	color: #fff;
+	background: #00654b;
+	border-color: #00654b;
+}
+
+#area-name-tokai {
+	bottom: 45px;
+	left: 190px;
+	color: #2e8638;
+	border: 1px solid #2e8638;
+}
+
+#area-name-tokai.active {
+	color: #fff;
+	background: #17431c;
+	border-color: #17431c;
+}
+
+#area-name-koshinetsu {
+	top: 140px;
+	right: 135px;
+	color: #6adb55;
+	border: 1px solid #6adb55;
+}
+
+#area-name-koshinetsu.active {
+	color: #fff;
+	background: #356d2a;
+	border-color: #356d2a;
+}
+
+#area-name-kansai {
+	bottom: 10px;
+	left: 125px;
+	color: #faad13;
+	border: 1px solid #faad13;
+}
+
+#area-name-kansai.active {
+	color: #fff;
+	background: #7d5609;
+	border-color: #7d5609;
+}
+
+#area-name-chugoku {
+	bottom: 100px;
+	right: 180px;
+	color: #fc6c6b;
+	border: 1px solid #fc6c6b;
+}
+
+#area-name-chugoku.active {
+	color: #fff;
+	background: #7e3635;
+	border-color: #7e3635;
+}
+
+#area-name-shikoku {
+	bottom: -10px;
+	left: 50px;
+	color: #985fd4;
+	border: 1px solid #985fd4;
+}
+
+#area-name-shikoku.active {
+	color: #fff;
+	background: #4c2f6a;
+	border-color: #4c2f6a;
+}
+
+#area-name-kyushu {
+	bottom: 80px;
+	right: 250px;
+	color: #ff3b14;
+	border: 1px solid #ff3b14;
+}
+
+#area-name-kyushu.active {
+	color: #fff;
+	background: #7f1d0a;
+	border-color: #7f1d0a;
+}
+
+#japan-map {
+	position: relative;
+	width: 294px;
+	height: 324px;
+	margin: 10px auto;
+}
+
+#japan-map img {
+	width: 294px;
+	margin: 10px auto;
+	display: block;
+}
+
+#japan-map #map area {
+	cursor: pointer;
+}
+
 #universities-list {
 	margin-top: 20px;
 	margin: 0 auto;
@@ -17,7 +162,7 @@
 
 #university-menu {
 	text-align: center;
-	padding: 15px;
+	margin: 40px auto 20px;
 }
 
 #filter-university input:focus {
@@ -124,24 +269,11 @@
 	border-radius: 3px;
 }
 
-.btn-request {
-	border-top: none;
-	color: #fff;
-	background-color: #34495E;
-	border-bottom: 2px solid #34495E;
-	display: block;
-	margin: 0 auto 10px;
-	height: 60px;
-	max-width: 200px;
-	font-size: 12px;
+#uni-not-found {
+	text-align: center;
 }
 
-.btn-request span {
-	font-size: 25px;
-}
-
-.btn-request:hover {
-	background-color: #455A6F;
-	color: #fff;
-	border-bottom-color: #2C3E50;
+#uni-not-found a {
+	color: #563d7c;
+	font-style: italic;
 }

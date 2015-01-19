@@ -53,7 +53,7 @@
 			<br />
 
 			<label><%= t 'university' %>:</label>
-			<%= select_tag :university, options_from_collection_for_select(@universities, "id", "name"), class: 'form-control selectpicker show-tick', data: {"live-search" => "true"}, multiple: true, title: '' %>
+			<%= select_tag :university, options_from_collection_for_select(@universities, "id", "name"), class: 'form-control selectpicker show-tick', data: {"live-search" => "true"}, title: '' %>
 			<%= f.submit t('register'), class: 'btn btn-success btn-block', id: 'signup-btn' %>
 		<% end %>
 	</div>

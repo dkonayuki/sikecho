@@ -14,7 +14,7 @@
 	</div>
 	
 	<% if user_signed_in? && current_university == current_user.current_university %>
-	<div class="subject-menu-line" data-name="<%= subject.name %>" data-img="<%= image_path(subject.display_picture_small) %>">
+	<div class="subject-menu-line" data-name="<%= subject.name %>" data-img="<%= subject.display_picture_small %>">
 		<% if current_user.current_subjects.include?(subject) %>
   		<%= link_to schedule_destroy_path(subject_id: subject.id), method: :delete, class: 'btn btn-sm btn-red subject-menu-line-hover' do %>
     		<span class="btn-text registered-text"><%= t('registered') %></span>

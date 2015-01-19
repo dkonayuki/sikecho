@@ -47,7 +47,7 @@ class Subject < ActiveRecord::Base
   def self.search(search)
     if search
       q = "%#{search.downcase}%"
-      where('subjects.name LIKE ?', q)
+      where('lower(subjects.name) LIKE ?', q)
       #select('distinct subjects.*').joins(:teachers)
       #.where('subjects.name LIKE ? OR teachers.last_name_kanji LIKE ? OR teachers.first_name_kanji LIKE ?', q, q, q)
     else
@@ -71,6 +71,7 @@ class Subject < ActiveRecord::Base
     end
   end
   
+  # typeahead is for auto complete search bar
   def typeahead_thumbnail
     if picture.present? && picture.url(:thumbnail).present?
       picture.url(:thumbnail)

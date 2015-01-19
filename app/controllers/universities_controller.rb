@@ -6,6 +6,13 @@ class UniversitiesController < ApplicationController
   # GET /universities.json
   def index
     @universities = University.search(params[:search])
+    
+    #respond with js format, index.js.erb will be run
+    respond_to do |format|
+      format.html {}
+      format.js   {}
+      format.json { render json: @subjects, status: :ok }
+    end
   end
 
   # GET /universities/1

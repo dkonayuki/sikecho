@@ -33,17 +33,38 @@
 
 <%= link_to 'New University', new_university_path %>
 -->
-<div id="university-menu">
-	<%= form_tag notes_path, method: :get, id: 'filter-university' do %>
-	  <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: t('university_search'), autocorrect: "off", autocapitalize: "off" %>
-	<% end %>
+<div id="university-index">
+	<div id="japan-map">
+		<%= image_tag 'japan_map.png', usemap: '#map', id: 'japan-map-img' %>
+		<map id="map" name="map">
+			<area shape="poly" alt="hokkaido" data-id="1" coords="224,0,224,35,219,35,220,50,204,49,204,65,191,64,195,80,200,80,200,96,205,94,205,91,220,90,220,79,205,79,205,69,225,70,225,66,230,65,230,71,239,70,240,75,261,76,260,65,265,65,265,60,270,60,270,55,285,55,285,50,291,49,290,41,283,38,285,30,289,30,290,20,279,19,280,30,259,29,259,26,254,24,254,20,250,20,250,15,246,15,245,10,240,10,240,4,235,4,235,1,224,-1" />
+			<area shape="poly" alt="tohoku" data-id="2" coords="205,100,205,111,198,110,200,150,194,150,194,160,200,160,200,180,185,180,185,195,190,195,190,191,200,190,200,195,205,194,205,189,215,190,215,195,220,195,220,170,231,170,229,154,235,155,235,119,230,120,229,115,226,115,225,95,215,94,215,100,219,100,219,105,213,104,215,110,210,109,209,100,205,100" />
+			<area shape="poly" alt="kanto" data-id="3" coords="219,195,220,200,215,200,215,236,209,235,210,246,199,246,200,235,195,235,195,241,189,240,189,245,185,245,184,240,180,240,180,220,175,220,174,200,179,200,180,194,188,195,190,191,198,190,200,195,205,194,205,189,214,189,214,195,218,196" />
+			<area shape="poly" alt="tokai" data-id="4" coords="184,255,184,241,179,240,180,220,174,220,175,205,164,204,165,209,144,210,145,214,139,214,140,254,150,255,150,260,170,260,169,249,175,250,175,244,179,245,180,255" />
+			<area shape="poly" alt="koshinetsu" data-id="5" coords="120,235,120,239,140,240,139,214,145,214,145,209,164,209,165,205,175,204,174,199,179,199,180,195,185,195,185,179,200,180,200,160,194,161,195,165,189,165,190,175,184,175,185,180,178,180,180,189,175,189,174,178,174,169,170,170,170,179,174,179,175,189,175,196,170,195,170,199,150,199,150,195,154,194,155,189,140,189,139,210,135,210,135,220,129,219,130,224,124,224,124,234" />
+			<area shape="poly" alt="kansai" data-id="6" coords="144,274,144,265,139,265,139,239,120,239,119,234,88,235,91,255,115,255,115,269,110,269,109,260,100,260,100,269,109,269,110,275,114,275,115,281,126,281,125,275" />
+			<area shape="poly" alt="chugoku" data-id="7" coords="30,269,49,269,50,265,75,265,74,259,90,260,90,233,60,235,60,239,54,240,55,244,50,244,50,250,45,250,44,254,40,255,39,259,30,260" />
+			<area shape="poly" alt="shikoku" data-id="8" coords="95,290,95,280,100,280,100,270,95,270,94,264,79,264,80,275,75,274,74,269,59,269,59,280,54,280,54,295,74,295,75,285,85,285,85,289" />
+			<area shape="poly" alt="kyushu" data-id="9" coords="20,270,30,270,30,280,45,280,44,300,40,300,40,310,35,310,34,320,10,321,10,315,14,314,15,309,20,310,20,295,14,294,15,305,9,305,9,310,0,309,0,289,5,289,5,280,15,279,15,275,20,274,20,269" />
+		</map>
+		<span class="area-name" id="area-name-hokkaido" data-id="1"><%= t('.hokkaido') %></span>
+		<span class="area-name" id="area-name-tohoku" data-id="2"><%= t('.tohoku') %></span>
+		<span class="area-name" id="area-name-kanto" data-id="3"><%= t('.kanto') %></span>
+		<span class="area-name" id="area-name-tokai" data-id="4"><%= t('.tokai') %></span>
+		<span class="area-name" id="area-name-koshinetsu" data-id="5"><%= t('.koshinetsu') %></span>
+		<span class="area-name" id="area-name-kansai" data-id="6"><%= t('.kansai') %></span>
+		<span class="area-name" id="area-name-chugoku" data-id="7"><%= t('.chugoku') %></span>
+		<span class="area-name" id="area-name-shikoku" data-id="8"><%= t('.shikoku') %></span>
+		<span class="area-name" id="area-name-kyushu" data-id="9"><%= t('.kyushu') %></span>
+	</div>
+	<div id="university-menu">
+		<%= form_tag notes_path, method: :get, id: 'filter-university' do %>
+		  <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: t('university_search'), autocorrect: "off", autocapitalize: "off" %>
+		<% end %>
+	</div>
+	
+	<div id="universities-list" class="clear">
+		<%= render 'university_list' %>
+	</div>
 </div>
 
-<div id="universities-list" class="clear">
-	<%= render @universities %>
-</div>
-
-<%= link_to new_request_path, class: 'btn btn-request', id: 'uni-request-btn' do %>
-	<span class="glyphicon glyphicon-plus"></span><br />
-	<%= t('request_university') %>
-<% end %>

@@ -14,7 +14,7 @@ Outline.destroy_all
 UniYear.destroy_all
 Semester.destroy_all
 
-tokodai = University.create(name: "東京工業大学", address: "大岡山", website: "http://www.titech.ac.jp/", codename: "titech")
+tokodai = University.create(name: "東京工業大学", en_name: "Tokyo Institute of Technology", address: "大岡山", website: "http://www.titech.ac.jp/", codename: "titech")
 tkd_year_name = ["1年","2年","3年","4年"]
 i=1
 tkd_year_name.each do |year|
@@ -24,7 +24,7 @@ tkd_year_name.each do |year|
   semester2 = Semester.create(no: 2, name: "後期", uni_year: year)
 end
 
-todai = University.create(name: "東京大学", address: "東大前", website: "http://www.u-tokyo.ac.jp/", codename: "u-tokyo")
+todai = University.create(name: "東京大学", en_name: "Tokyo University", address: "東大前", website: "http://www.u-tokyo.ac.jp/", codename: "u-tokyo")
 td_year_name = ["教養1年","教養2年","後期1年","後期2年"]
 i=1
 td_year_name.each do |year|

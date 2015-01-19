@@ -1,5 +1,4 @@
-
-function prepareUniversities() {
+function prepareMasonry() {
 	var container = document.querySelector('#universities-list');
 	var msnry = new Masonry( container, {
 	  // options
@@ -7,6 +6,9 @@ function prepareUniversities() {
 	  "isFitWidth": true,
 	  itemSelector: '.uni-item'
 	});
+}
+
+function prepareUniversities() {
 	
   /*For ajax popup link*/	
   $('#uni-request-btn').magnificPopup({
@@ -52,16 +54,94 @@ function prepareUniversities() {
 	});
 }
 
+function prepareMap() {
+	
+	// array of map images
+	var mapImgs = new Array();
+	var defaultID = 0;
+	
+	// load other map area
+	for (i = 1; i <= 9; i++) {
+		mapImgs[i] = new Image();
+		mapImgs[i].src = "/assets/japan_map" + i + ".png";
+	}
+		
+	// get areaID first time from url
+	var areaID = getParameterByName("area");
+	if (areaID == null) {
+		// 0 is the default img
+		mapImgs[0] = new Image();
+		mapImgs[0].src = $("#japan-map-img").attr("src");
+	} else {
+		// update default image src
+		mapImgs[0] = new Image();
+		mapImgs[0].src = mapImgs[areaID].src;
+		defaultID = areaID;
+		
+		// add active class
+		$("#japan-map map area[data-id='" + areaID + "']").addClass("active");
+		$("#japan-map span[data-id='" + areaID + "']").addClass("active");
+	
+		// update the map first time
+		$("#japan-map-img").attr("src", mapImgs[0].src);
+	}
+
+	// mouse event over map areas
+	$("#japan-map map area").add("#japan-map span").mouseover(function() {
+		var areaID = $(this).data("id");
+		$("#japan-map-img").attr("src", mapImgs[areaID].src);
+		$("#japan-map span").each(function() {
+			$(this).removeClass("active");
+		});
+		$("#japan-map span[data-id='" + areaID + "']").addClass("active");
+	});
+	$("#japan-map map area").add("#japan-map span").mouseout(function() {
+		$("#japan-map-img").attr("src", mapImgs[0].src);
+		$("#japan-map span").each(function() {
+			$(this).removeClass("active");
+		});
+		$("#japan-map span[data-id='" + defaultID + "']").addClass("active");			
+	});
+	
+	// click on map area
+	$("#japan-map map area").add("#japan-map span").on("click", function() {
+		areaID = $(this).data("id");
+		defaultID = areaID;
+		
+		// update default image src
+		mapImgs[0].src = mapImgs[areaID].src;
+				
+		//remove other area active
+		$("#japan-map map area").each(function() {
+			$(this).removeClass("active");
+		});
+		$("#japan-map span").each(function() {
+			$(this).removeClass("active");
+		});
+		
+		// add active class
+		$("#japan-map map area[data-id='" + areaID + "']").addClass("active");
+		$("#japan-map span[data-id='" + areaID + "']").addClass("active");
+		
+		// update the map
+		$("#japan-map-img").attr("src", mapImgs[0].src);
+		
+		// reload list
+		reloadUniversityList();
+	});
+	
+}
+
 /*for university list reload*/
 function reloadUniversityList() {
 	var data = new Object();
-	
-	/*
-	$("#note-order-option button").each(function() {
+
+	//check for area selected
+	$("#japan-map map area").each(function() {
 		if ($(this).hasClass("active")) {
-			data.order = $(this).data("type");
+			data.area = $(this).data("id");
 		}
-	});*/
+	});	
 	
 	//check if search query
 	if ($("#filter-university #search").val() != "") {
@@ -72,20 +152,33 @@ function reloadUniversityList() {
 		//use current locale
 	  url: "/" + I18n["meta"]["code"] + "/universities",
 	  data: data,
-	  //success: ajaxSuccess,
+	  success: function() {
+	  	//run after js.erb file executed
+			prepareMasonry();
+	  },
 	  dataType: "script",
 		contentType: "application/json"
 	});
 	
 	//replace current url, compatiable with turbolinks
-  window.history.replaceState({ turbolinks: true }, "", "/" + I18n["meta"]["code"] + "/universities/" + decodeURIComponent($.param(data, false)));
+  window.history.replaceState({ turbolinks: true }, "", "/" + I18n["meta"]["code"] + "/universities?" + decodeURIComponent($.param(data, false)));
 	//for pushState
 	//window.history.pushState({ turbolinks: true, position: window.history.state.position + 1 }, '', page_tab);
 }
 
 $(document).on("page:load ready", function() {
 	$(".universities.index").ready(function() {
+		
+	  // disable enter key
+	  $("#filter-university").on("submit", function() {
+			return false; 
+	  });
+	  
 		$("body").css("background-color", "#fff");
+		
+		prepareMasonry();
 		prepareUniversities();
+		prepareMap();
+		
 	});
 });

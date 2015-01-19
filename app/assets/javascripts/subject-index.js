@@ -34,7 +34,6 @@ function prepareLoadSubjectPage() {
 	var tagsParam = getParameterByName("tags[]");
 	if (tagsParam != null) {
 
-		if (tagsParam[0] == 'ゼミ') console.log("aha");
 		$("#subject-menu-tag button").each(function() {
 			if ($.inArray($(this).text(), tagsParam) != -1) {
 				$(this).addClass("active");

@@ -268,6 +268,7 @@ ja:
   n: の
   subject_not_found: 授業が見つかりません
   note_not_found: ノートが見つかりません
+  university_not_found: 大学が見つかりません。
   request_university: 新規大学をリクエストする
   registered: 登録済み
   cancel_subject_registered: 受講解除
@@ -450,3 +451,14 @@ ja:
       name: 大学名
       address: 住所
       website: ウェブサイト
+  universities:
+    index:
+      hokkaido: 北海道
+      tohoku: 東北
+      kanto: 関東
+      tokai: 東海
+      koshinetsu: 甲信越
+      kansai: 関西
+      chugoku: 中国
+      shikoku: 四国
+      kyushu: 九州

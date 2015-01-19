@@ -6,7 +6,7 @@ class University < ActiveRecord::Base
   
   #university's name will change accordingly with locale
   #need to edit manually in other locale otherwise default name will be used
-  translates :name
+  #translates :name
   
   has_attached_file :logo, styles: {thumbnail: "60x60#", small: "150x150>"}, 
                               #local config
@@ -18,10 +18,14 @@ class University < ActiveRecord::Base
   def self.search(search)
     if search
       q = "%#{search.downcase}%"
-      where('universities.name LIKE ?', q)
+      where('lower(universities.name) LIKE ? OR lower(universities.en_name) LIKE ?', q, q)
     else
       all
     end
+  end
+  
+  def display_name
+    I18n.locale == :en ? en_name : name
   end
   
   def courses
