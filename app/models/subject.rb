@@ -29,8 +29,7 @@ class Subject < ActiveRecord::Base
   belongs_to :semester
   belongs_to :uni_year
   
-  accepts_nested_attributes_for :periods, allow_destroy: true
-  
+  #for tag
   acts_as_taggable_on :tags
   
   #versioning

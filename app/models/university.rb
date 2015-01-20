@@ -14,6 +14,10 @@ class University < ActiveRecord::Base
                               path: ":rails_root/public/:url" #dont really need path
                               
   validates_attachment_content_type :logo, content_type: ["image/jpg", "image/gif", "image/png", "image/jpeg"]
+
+  validates :name, presence: true, length: 2..16, uniqueness: { case_sensitive: false }
+  validates :codename, presence: true, length: 3..10, uniqueness: { case_sensitive: false }
+  validates :city, presence: true, length: 1..16
   
   def self.search(search)
     if search

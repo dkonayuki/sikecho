@@ -10,11 +10,13 @@ class Note < ActiveRecord::Base
   has_many :subjects, through: :notes_subjects
   has_many :documents, dependent: :destroy
   
+  #for tags
   acts_as_taggable_on :tags
   
   #unread - read checking
   acts_as_readable on: :created_at
   
+  #count tracking
   is_impressionable counter_cache: true, column_name: :view_count, unique: :all
   
   #after_create do |note|

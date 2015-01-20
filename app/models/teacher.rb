@@ -2,6 +2,9 @@ class Teacher < ActiveRecord::Base
   belongs_to :faculty
   belongs_to :university
   has_and_belongs_to_many :subjects
+
+  validates :first_name, presence: true, length: 1..16
+  validates :last_name, presence: true, length: 1..16
   
   def name_kanji
     "#{last_name_kanji} #{first_name_kanji}"  

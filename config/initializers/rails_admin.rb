@@ -36,7 +36,7 @@ RailsAdmin.config do |config|
   end
   
   # exclude these unnecessary model
-  config.excluded_models = ["Education", "Impression", "Outline", "NotesSubject", "Period", "Register", "Semester", "UniYear"]
+  config.excluded_models = ["Education", "Impression", "Outline", "NotesSubject", "Period", "Register"]
 
   # choose what to display in user
   config.model 'User' do

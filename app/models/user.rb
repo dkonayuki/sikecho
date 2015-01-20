@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
   
   before_validation :strip_blanks
   #after_validation :strip_blanks
-         
+
+  #validate username only on :create action because username will not be changed later
   validates :username, presence: true, length: 4..16, on: :create, uniqueness: { case_sensitive: false }
   
   #validates :email, presence: true, uniqueness: true, format: /@/
