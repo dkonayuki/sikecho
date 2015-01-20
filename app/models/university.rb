@@ -66,6 +66,15 @@ class University < ActiveRecord::Base
     end
   end
   
+  #for rails_admin, city field will use a select box instead of normal text
+  def city_enum
+    # Do not select any value, or add any blank field. RailsAdmin will do it for you.
+    ["Hokkaido", "Akita", "Aomori", "Fukushima", "Iwate", "Miyagi", "Yamagata", "Chiba", "Gunma", "Ibaraki", "Kanagawa", "Saitama", "Tochigi", "Tokyo",
+      "Fukui", "Ishikawa", "Nagano", "Niigata", "Toyama", "Yamanashi", "Aichi", "Gifu", "Shizuoka", "Mie", "Hyogo", "Kyoto", "Nara", "Osaka", "Shiga", "Wakayama",
+      "Hiroshima", "Okayama", "Shimane", "Tottori", "Yamaguchi", "Ehime", "Kagawa", "Kochi", "Tokushima", "Fukuoka", "Kagoshima", "Kumamoto", "Miyazaki", "Nagasaki", 
+      "Oita", "Saga"]
+  end
+  
   # constant hash for university model specifically
   def self.areas
     {

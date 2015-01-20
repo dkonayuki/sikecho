@@ -78,6 +78,8 @@ Shikechou::Application.routes.draw do
   
     # You can have the root of your site routed with "root"
     # root 'welcome#index'
+    
+    # url with subdomain will be redirected to home page
     get '', to: 'home#index', constraints: {subdomain: /.+/}
     root 'home#index'
     get 'home/index' => 'home#index', as: :home

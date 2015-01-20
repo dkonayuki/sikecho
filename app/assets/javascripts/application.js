@@ -145,10 +145,12 @@ $(document).on("page:load ready", function() {
   $(".search-bar").on("submit", function() {
   	// default search is subject
   	//window.location.href = "/" + I18n["meta"]["code"] + "/search?query=" + $(this).find("#query").val() + "&type=subject";
+  	//redirect to other page when submit
   	window.location.href = "/" + I18n["meta"]["code"] + "/subjects?search=" + $(this).find("#search").val();
   	return false;
   });
   
+  /*get subject list from search controller*/
   var subjectsList = new Bloodhound({
 	  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
 	  queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -157,6 +159,7 @@ $(document).on("page:load ready", function() {
 	});
 	subjectsList.initialize();
 	
+	/*Initiate typeahead*/
 	//$(".typeahead").typeahead("destroy");
 	$('.typeahead').typeahead(null, {
 	  displayKey: 'name',

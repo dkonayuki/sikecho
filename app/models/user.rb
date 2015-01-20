@@ -156,6 +156,12 @@ class User < ActiveRecord::Base
     avatar_url.to_s
   end
   
+  #for rails_admin, role field will use a select box instead of normal text
+  def role_enum
+    # Do not select any value, or add any blank field. RailsAdmin will do it for you.
+    ["admin", "mod", "user"]
+  end
+  
   protected
   def confirmation_required?
     false
