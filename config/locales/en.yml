@@ -483,6 +483,7 @@ en:
       website: Website
   universities:
     index:
+      all: All
       hokkaido: Hokkaido
       tohoku: Tohoku
       kanto: Kanto

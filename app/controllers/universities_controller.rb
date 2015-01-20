@@ -7,6 +7,10 @@ class UniversitiesController < ApplicationController
   def index
     @universities = University.search(params[:search])
     
+    if !params[:area].blank? && params[:area].to_i != 0
+      @universities = @universities.where('universities.city IN (?)', University.areas[params[:area].to_i])
+    end
+    
     #respond with js format, index.js.erb will be run
     respond_to do |format|
       format.html {}

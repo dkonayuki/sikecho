@@ -58,9 +58,11 @@ function prepareMap() {
 	
 	// array of map images
 	var mapImgs = new Array();
-	var defaultID = 0;
+	var defaultID;
 	
 	// load other map area
+	mapImgs[0] = new Image();
+	mapImgs[0].src = $("#japan-map-img").attr("src");
 	for (i = 1; i <= 9; i++) {
 		mapImgs[i] = new Image();
 		mapImgs[i].src = "/assets/japan_map" + i + ".png";
@@ -70,12 +72,9 @@ function prepareMap() {
 	var areaID = getParameterByName("area");
 	if (areaID == null) {
 		// 0 is the default img
-		mapImgs[0] = new Image();
-		mapImgs[0].src = $("#japan-map-img").attr("src");
+		defaultID = 0;
 	} else {
-		// update default image src
-		mapImgs[0] = new Image();
-		mapImgs[0].src = mapImgs[areaID].src;
+		// update default image
 		defaultID = areaID;
 		
 		// add active class
@@ -83,51 +82,66 @@ function prepareMap() {
 		$("#japan-map span[data-id='" + areaID + "']").addClass("active");
 	
 		// update the map first time
-		$("#japan-map-img").attr("src", mapImgs[0].src);
+		$("#japan-map-img").attr("src", mapImgs[areaID].src);
 	}
 
 	// mouse event over map areas
 	$("#japan-map map area").add("#japan-map span").mouseover(function() {
 		var areaID = $(this).data("id");
+		//update map
 		$("#japan-map-img").attr("src", mapImgs[areaID].src);
-		$("#japan-map span").each(function() {
-			$(this).removeClass("active");
-		});
-		$("#japan-map span[data-id='" + areaID + "']").addClass("active");
 	});
+	
+	//mouse out
 	$("#japan-map map area").add("#japan-map span").mouseout(function() {
-		$("#japan-map-img").attr("src", mapImgs[0].src);
-		$("#japan-map span").each(function() {
-			$(this).removeClass("active");
-		});
-		$("#japan-map span[data-id='" + defaultID + "']").addClass("active");			
+		//update map
+		$("#japan-map-img").attr("src", mapImgs[defaultID].src);
 	});
 	
 	// click on map area
 	$("#japan-map map area").add("#japan-map span").on("click", function() {
-		areaID = $(this).data("id");
-		defaultID = areaID;
+		if ($(this).hasClass("active")) {
+			//click on already active area, change to default map
+			defaultID = 0;
+			
+			//remove active area
+			$("#japan-map map area").each(function() {
+				$(this).removeClass("active");
+			});
+			$("#japan-map span").each(function() {
+				$(this).removeClass("active");
+			});
+			
+			// update the map
+			$("#japan-map-img").attr("src", mapImgs[0].src);
+			
+			// reload list
+			reloadUniversityList();			
+			
+		} else {
+			//click on new area
+			areaID = $(this).data("id");
+			defaultID = areaID;
+			
+			//remove other area active
+			$("#japan-map map area").each(function() {
+				$(this).removeClass("active");
+			});
+			$("#japan-map span").each(function() {
+				$(this).removeClass("active");
+			});
+			
+			// add active class
+			$("#japan-map map area[data-id='" + areaID + "']").addClass("active");
+			$("#japan-map span[data-id='" + areaID + "']").addClass("active");
+			
+			// update the map
+			$("#japan-map-img").attr("src", mapImgs[areaID].src);
+			
+			// reload list
+			reloadUniversityList();			
+		}
 		
-		// update default image src
-		mapImgs[0].src = mapImgs[areaID].src;
-				
-		//remove other area active
-		$("#japan-map map area").each(function() {
-			$(this).removeClass("active");
-		});
-		$("#japan-map span").each(function() {
-			$(this).removeClass("active");
-		});
-		
-		// add active class
-		$("#japan-map map area[data-id='" + areaID + "']").addClass("active");
-		$("#japan-map span[data-id='" + areaID + "']").addClass("active");
-		
-		// update the map
-		$("#japan-map-img").attr("src", mapImgs[0].src);
-		
-		// reload list
-		reloadUniversityList();
 	});
 	
 }

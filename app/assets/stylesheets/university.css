@@ -28,7 +28,7 @@
 	border: 1px solid #01a0fb;
 }
 
-#area-name-hokkaido.active {
+#area-name-hokkaido.active, #area-name-hokkaido:hover {
 	color: #fff;
 	background: #00507d;
 	border-color: #00507d;
@@ -41,7 +41,7 @@
 	border: 1px solid #00ddf9;
 }
 
-#area-name-tohoku.active {
+#area-name-tohoku.active, #area-name-tohoku:hover {
 	color: #fff;
 	background: #006e7c;
 	border-color: #006e7c;
@@ -54,7 +54,7 @@
 	border: 1px solid #01ca96;
 }
 
-#area-name-kanto.active {
+#area-name-kanto.active, #area-name-kanto:hover {
 	color: #fff;
 	background: #00654b;
 	border-color: #00654b;
@@ -67,7 +67,7 @@
 	border: 1px solid #2e8638;
 }
 
-#area-name-tokai.active {
+#area-name-tokai.active, #area-name-tokai:hover {
 	color: #fff;
 	background: #17431c;
 	border-color: #17431c;
@@ -80,7 +80,7 @@
 	border: 1px solid #6adb55;
 }
 
-#area-name-koshinetsu.active {
+#area-name-koshinetsu.active, #area-name-koshinetsu:hover {
 	color: #fff;
 	background: #356d2a;
 	border-color: #356d2a;
@@ -93,7 +93,7 @@
 	border: 1px solid #faad13;
 }
 
-#area-name-kansai.active {
+#area-name-kansai.active, #area-name-kansai:hover {
 	color: #fff;
 	background: #7d5609;
 	border-color: #7d5609;
@@ -106,7 +106,7 @@
 	border: 1px solid #fc6c6b;
 }
 
-#area-name-chugoku.active {
+#area-name-chugoku.active, #area-name-chugoku:hover {
 	color: #fff;
 	background: #7e3635;
 	border-color: #7e3635;
@@ -119,7 +119,7 @@
 	border: 1px solid #985fd4;
 }
 
-#area-name-shikoku.active {
+#area-name-shikoku.active, #area-name-shikoku:hover {
 	color: #fff;
 	background: #4c2f6a;
 	border-color: #4c2f6a;
@@ -132,7 +132,7 @@
 	border: 1px solid #ff3b14;
 }
 
-#area-name-kyushu.active {
+#area-name-kyushu.active, #area-name-kyushu:hover {
 	color: #fff;
 	background: #7f1d0a;
 	border-color: #7f1d0a;

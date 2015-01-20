@@ -62,4 +62,18 @@ class University < ActiveRecord::Base
     end
   end
   
+  def self.areas
+    {
+      1 => ["Hokkaido"], #hokkaido
+      2 => ["Akita", "Aomori", "Fukushima", "Iwate", "Miyagi", "Yamagata"], #tohoku
+      3 => ["Chiba", "Gunma", "Ibaraki", "Kanagawa", "Saitama", "Tochigi", "Tokyo"], #kanto
+      4 => ["Fukui", "Ishikawa", "Nagano", "Niigata", "Toyama", "Yamanashi"], #tokai
+      5 => ["Aichi", "Gifu", "Shizuoka", "Mie"], #koshinetsu
+      6 => ["Hyogo", "Kyoto", "Nara", "Osaka", "Shiga", "Wakayama"], #kansai
+      7 => ["Hiroshima", "Okayama", "Shimane", "Tottori", "Yamaguchi"], #chugoku
+      8 => ["Ehime", "Kagawa", "Kochi", "Tokushima"], #shikoku
+      9 => ["Fukuoka", "Kagoshima", "Kumamoto", "Miyazaki", "Nagasaki", "Oita", "Saga"] #kyushu
+    }
+  end
+  
 end
