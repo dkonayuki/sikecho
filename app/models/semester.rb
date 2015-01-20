@@ -1,7 +1,7 @@
 class Semester < ActiveRecord::Base
   
-  #maximum year number in university
-  MAX_NO = 8
+  #maximum semester number in one year
+  MAX_NO = 3
     
   validates :uni_year, presence: true
   validates :name, presence: true

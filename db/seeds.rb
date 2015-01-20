@@ -14,7 +14,7 @@ Outline.destroy_all
 UniYear.destroy_all
 Semester.destroy_all
 
-tokodai = University.create(name: "東京工業大学", en_name: "Tokyo Institute of Technology", address: "大岡山", website: "http://www.titech.ac.jp/", codename: "titech")
+tokodai = University.create(name: "東京工業大学", en_name: "Tokyo Institute of Technology", address: "大岡山", website: "http://www.titech.ac.jp/", codename: "titech", city: "Kumamoto")
 tkd_year_name = ["1年","2年","3年","4年"]
 i=1
 tkd_year_name.each do |year|
@@ -24,7 +24,7 @@ tkd_year_name.each do |year|
   semester2 = Semester.create(no: 2, name: "後期", uni_year: year)
 end
 
-todai = University.create(name: "東京大学", en_name: "Tokyo University", address: "東大前", website: "http://www.u-tokyo.ac.jp/", codename: "u-tokyo")
+todai = University.create(name: "東京大学", en_name: "Tokyo University", address: "東大前", website: "http://www.u-tokyo.ac.jp/", codename: "u-tokyo", city: "Tokyo")
 td_year_name = ["教養1年","教養2年","後期1年","後期2年"]
 i=1
 td_year_name.each do |year|
@@ -39,7 +39,7 @@ todai_sub_tags = ["通年","集中講義","ゼミ"]
 igakubu = Faculty.create(name: "医学部", university: todai)
 kenkogakka = Course.create(name: '健康総合科学科', faculty: igakubu)
 
-td_sensei = Teacher.create(first_name_kanji: '村田', last_name_kanji: '金子', faculty: igakubu, university: todai)
+td_sensei = Teacher.create(first_name: '村田', last_name: '金子', faculty: igakubu, university: todai)
 td_sub_name = ["英語一列","英語二列","数学1","数学2","力学","化学熱力学","生命科学","健康科学実習","基礎物理学"]
 td_desc = "毎週予習としてon campusを一課ずつ読んで出席し、授業ではビデオを見てちょっとした問題を解いて終わり。"
 td_sub_name.each do | name |
