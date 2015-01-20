@@ -7,7 +7,8 @@ class UniversitiesController < ApplicationController
   def index
     @universities = University.search(params[:search])
     
-    if !params[:area].blank? && params[:area].to_i != 0
+    if !params[:area].blank?
+      # select only university which has city in correct area
       @universities = @universities.where('universities.city IN (?)', University.areas[params[:area].to_i])
     end
     
@@ -15,7 +16,7 @@ class UniversitiesController < ApplicationController
     respond_to do |format|
       format.html {}
       format.js   {}
-      format.json { render json: @subjects, status: :ok }
+      format.json { render json: @universities, status: :ok }
     end
   end
 
@@ -82,7 +83,7 @@ class UniversitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def university_params
-      params.permit(:search)
+      params.permit(:search, :area)
       params.require(:university).permit(:name, :address, :website, :logo)
     end
 end

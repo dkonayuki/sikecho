@@ -62,6 +62,7 @@ class University < ActiveRecord::Base
     end
   end
   
+  # constant hash for university model specifically
   def self.areas
     {
       1 => ["Hokkaido"], #hokkaido
