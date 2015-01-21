@@ -18,11 +18,12 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
-    #need @document.comments.build at form because ajax-popup call index instead of new action
+    #need @comment = @document.comments.build at form or at document controller because ajax-popup call index instead of new action
   end
 
   # GET /comments/1/edit
   def edit
+    @id = params[:id]
   end
 
   # POST /comments
@@ -49,10 +50,11 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
-        format.json { head :no_content }
+        format.html
+        format.js
+        format.json { render action: 'show', status: :updated, location: @comment }
       else
-        format.html { render action: 'edit' }
+        format.html
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end

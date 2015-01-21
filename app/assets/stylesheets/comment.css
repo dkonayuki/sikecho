@@ -1,0 +1,44 @@
+#comment-form {
+}
+
+#comment-form .media {
+	margin-top: 0;
+}
+
+#comment-btn {
+	font-size: 10px;
+	padding: 4px 10px;
+	float: right;
+	margin-top: 5px;
+}
+
+#comment-btn span {
+	margin-right: 5px;
+}
+
+.media:hover .media-menu {
+	display: block;
+}
+
+.media-menu {
+	display: none;
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	font-size: 10px;
+}
+
+@media(max-width: 767px) {
+	.media-menu {
+		display: block;
+	}
+}
+
+.media-date {
+	font-size: 10px;
+	color: #999;
+}
+
+#comment-content {
+	line-height: 1.7 !important;
+}

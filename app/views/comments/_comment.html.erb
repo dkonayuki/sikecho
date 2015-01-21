@@ -1,4 +1,4 @@
-	<div class="media">
+	<div class="media" data-id="<%= comment.id %>">
     <a class="pull-left" href="#">
 			<%= image_tag(comment.user.display_comment_avatar, class: 'media-object avatar')  %>
     </a>
@@ -10,13 +10,18 @@
 	  	</div>
     </div>
 
-		<% if @user == comment.user %>
     <div class="media-menu">
+		<% if can? :update, comment %>
+			<%= link_to edit_document_comment_path(comment.document, comment), remote: true do %>
+				<span class="glyphicon glyphicon-pencil"></span>
+			<% end %>
+		<% end %>
+		<% if can? :update, comment %>
 			<%= link_to document_comment_path(comment.document, comment), method: :delete, data: { confirm: t('delete_confirm') }, remote: true do %>
 				<span class="glyphicon glyphicon-remove"></span>
 			<% end %>
-  	</div>
 		<% end %>
+  	</div>
 		
   </div>
 

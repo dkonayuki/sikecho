@@ -1,4 +1,4 @@
-<%= form_for([@document, @document.comments.build], html: {id: 'new-comment-form', remote: true}) do |f| %>
+<%= form_for([@document, @comment], html: {id: 'comment-form', remote: true}) do |f| %>
   <div class="media">
     <a class="pull-left" href="#">
 			<%= image_tag(@user.display_comment_avatar, class: 'media-object avatar')  %>

@@ -3,18 +3,18 @@ function prepareComments() {
   $('textarea').autosize();
 
 	/*New comment*/
-	$("#new-comment-form").on("submit", function() {
+	/*$("#comment-form").on("submit", function() {
 		$.ajax({
 		  url: $(this).attr("action"),
 		  dataType: "script",
 		  data: $(this).serialize(),
-		  type: "post",
+		  type: $(this).attr("data-method"),
 		  success: function() {
 		  	$("#comment-content").val("");
 		  }
 		});
 		return false;
-	});
+	});*/
 	
 	/*setting up faye for pub/sub*/
 	var documentID = $("#show-document").data("id");

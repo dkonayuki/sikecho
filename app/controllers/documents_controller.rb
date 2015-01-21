@@ -14,6 +14,9 @@ class DocumentsController < ApplicationController
   def show
     #prepare current user info for creating a new comment
     @user = current_user
+    
+    #prepare for comment form
+    @comment = @document.comments.build
   end
 
   # GET /documents/new

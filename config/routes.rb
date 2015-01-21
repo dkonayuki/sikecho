@@ -54,6 +54,8 @@ Shikechou::Application.routes.draw do
       end
     end
     
+    # there is only one schedule, no schedules
+    # so the routes will be a bit difference
     controller :schedule do
       delete 'schedule' => :destroy, as: 'schedule_destroy'
       get 'schedule/index' => :index
@@ -66,9 +68,10 @@ Shikechou::Application.routes.draw do
       
     resources :activities
     
+    # new and edit document process is handled in note page
     resources :documents, except: [:new, :edit] do
       put 'inline' => 'documents#inline', on: :collection
-      resources :comments, except: [:new, :edit]
+      resources :comments, except: [:new]
     end
       
     get 'search' => 'search#search', as: 'search'
