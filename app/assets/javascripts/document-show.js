@@ -3,7 +3,12 @@ function prepareComments() {
 	/* auto resize for textarea 
 	 * textarea will expand automatically when type in
 	 */
-  $('textarea').autosize();
+  $("textarea").autosize();
+  
+  $("#new-comment .comment-btn").prop("disabled", true);
+  $("#new-comment #comment-content").keyup(function() {
+	  $("#new-comment .comment-btn").prop("disabled", $(this).val() == "" ? true : false);
+  });
 	
 	/*setting up faye for pub/sub*/
 	var documentID = $("#show-document").data("id");

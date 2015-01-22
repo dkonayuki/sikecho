@@ -8,7 +8,10 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all
+    # index action is not called
+    # @comments collection will be retrieved in document controller 
+    # or view using document.comments
+    #@comments = Comment.all
   end
 
   # GET /comments/1
@@ -23,7 +26,6 @@ class CommentsController < ApplicationController
 
   # GET /comments/1/edit
   def edit
-    @id = params[:id]
   end
 
   # POST /comments
@@ -57,6 +59,7 @@ class CommentsController < ApplicationController
         format.json { render action: 'show', status: :updated, location: @comment }
       else
         format.html
+        format.js # execute js even when user delete content
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
@@ -65,6 +68,9 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
+    # need to pass @id to view so js can replace the correct comment in view
+    @id = params[:id]
+    
     @comment.destroy
     respond_to do |format|
       format.html { redirect_to document_comments_path(@comment.document) }
