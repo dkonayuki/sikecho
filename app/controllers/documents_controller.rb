@@ -15,8 +15,13 @@ class DocumentsController < ApplicationController
     #prepare current user info for creating a new comment
     @user = current_user
     
-    #prepare for comment form
+    #prepare for new comment form
     @comment = @document.comments.build
+    
+    #comment collection
+    @comments = @document.comments.order('created_at DESC')
+    
+    @comments = @comments.page(params[:page]).per(6)
   end
 
   # GET /documents/new
@@ -104,7 +109,7 @@ class DocumentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.permit(:upload, :title, :pk, :value)
+      params.permit(:upload, :title, :pk, :value, :page)
       params.require(:document).permit(:note_id)
     end
 end

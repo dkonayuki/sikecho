@@ -35,6 +35,8 @@ $(document).on("page:load ready", function() {
 		    ajaxContentAdded: function() {
 			    // Ajax content is loaded and appended to DOM
 					ajaxSuccess();
+					
+					// prepare comments from document-show.js
 					prepareComments();
 			  }
 			}

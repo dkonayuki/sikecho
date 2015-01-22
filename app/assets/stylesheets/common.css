@@ -164,6 +164,13 @@ div.message {
 	margin: 20px auto 0;
 }
 
+#loading-inline {
+	width: 17px;
+	height: 17px;
+	display: inline-block;
+	margin-left: 5px;
+}
+
 .badge-important {
 	background-color: #b94a48;
 }

@@ -448,7 +448,12 @@ en:
       prepare_exam: Exam Preparation
       past_exam: Past Exams
       new: New
+  documents:
+    show:
+      next: Load more comments...
   comments:
+    index:
+      next: Load more comments...
     form:
       create: Comment
       update: Update

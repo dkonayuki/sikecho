@@ -418,7 +418,12 @@ ja:
       prepare_exam: 試験対策
       past_exam: 過去問題
       new: 新着
+  documents:
+    show:
+      next: 他のコメントを見る
   comments:
+    index:
+      next: 他のコメントを見る
     form:
       create: コメント
       update: 更新

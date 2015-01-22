@@ -1,0 +1,16 @@
+<% sleep 1 %>
+$("#comments-pagination #loading").remove();
+$("#comments").append("<%=j render @comments %>");
+
+//update pagination
+$(".hidden-pagination").html("<%=j paginate @comments %>");
+
+var url = $(".hidden-pagination .next a").attr("href");
+if (url) {
+	//update next btn if pagination has next page
+	$("#comments-pagination").html("<%=j link_to_next_page @comments, t('.next'), remote: true, id: 'comment-next-page' %>");
+} else {
+	$("#comments-pagination").remove();
+}
+			
+	

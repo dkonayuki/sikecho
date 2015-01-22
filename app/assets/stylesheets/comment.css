@@ -23,6 +23,10 @@
 #comments {
 }
 
+#comments-pagination {
+	padding: 10px 5px;
+}
+
 .media:hover .media-menu {
 	display: block;
 }

@@ -11,7 +11,8 @@ class CommentsController < ApplicationController
     # index action is not called
     # @comments collection will be retrieved in document controller 
     # or view using document.comments
-    #@comments = Comment.all
+    
+    # kaminari pagination is also implemented in document show action
   end
 
   # GET /comments/1
