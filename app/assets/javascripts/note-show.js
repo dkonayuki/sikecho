@@ -20,6 +20,7 @@ $(document).on("page:load ready", function() {
 		});
 		
 	  /*For ajax popup link in show note page*/	
+	  var documentID;
 	  $('.document-popup').magnificPopup({
 	    // Delay in milliseconds before popup is removed
 		  removalDelay: 300,
@@ -38,7 +39,14 @@ $(document).on("page:load ready", function() {
 					
 					// prepare comments from document-show.js
 					prepareComments();
-			  }
+					
+					// remember documentID to unsubscribe later
+					documentID = $("#show-document").data("id");
+			  },
+			  close: function() {
+			  	// unsubscribe when closing popup
+					faye.unsubscribe("/documents/" + documentID);
+      	}
 			}
 		});
 		

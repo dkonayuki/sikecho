@@ -1,4 +1,4 @@
-<div class="document-item">
+<div class="document-item" data-id="<%= document.id %>">
 	<div class="document-preview">
 		<% if document.file_type != '.pdf' %>
 			<%= link_to image_tag(document.upload.url(:small)), document, class: 'document-popup' %>
