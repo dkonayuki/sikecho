@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   
   #Can't verify CSRF token authenticity issue
-  skip_before_action  :verify_authenticity_token
+  #skip_before_action  :verify_authenticity_token
   #before_action :authenticate_user!
   
   # Prevent CSRF attacks by raising an exception.
