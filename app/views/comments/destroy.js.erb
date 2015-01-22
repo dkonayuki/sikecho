@@ -1,3 +1,4 @@
 <% broadcast "/documents/#{@document.id}" do %>
-	$(".media[data-id='" + <%= @id %> + "']").remove();
+//destroy with animation
+	$(".media[data-id='" + <%= @id %> + "']").fadeOut("slow", function() {$(this).remove();});
 <% end %>
