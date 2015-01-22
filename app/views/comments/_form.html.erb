@@ -1,4 +1,7 @@
-<%= form_for([@document, @comment], html: {id: 'comment-form', remote: true}) do |f| %>
+<%= form_for([@document, @comment], html: {class: 'comment-form', remote: true, "data-id" => @comment.id}) do |f| %>
+<% if isNew.nil? %>
+	<% isNew = true %>
+<% end %>
   <div class="media">
     <a class="pull-left" href="#">
 			<%= image_tag(@user.display_comment_avatar, class: 'media-object avatar')  %>
@@ -6,8 +9,20 @@
     <div class="media-body">
 	    <%= f.text_area :content, class: 'form-control', id: 'comment-content' %>
     </div>
-    <%= button_tag class: 'btn btn-green', id: 'comment-btn', type: 'submit' do %>
-	    <span class="glyphicon glyphicon-comment"></span><%= t('.comment') %>
+    
+    <div class="comment-menu">
+    <% if isNew %>
+	    <%= button_tag class: 'btn btn-green comment-btn', type: 'submit' do %>
+		    <span class="glyphicon glyphicon-comment"></span><%= t('.create') %>
+	    <% end %>
+    <% else %>
+			<%= button_tag class: 'btn btn-blue comment-btn', type: 'submit', name: 'is_update', value: true do %>
+		    <span class="glyphicon glyphicon-pencil"></span><%= t('.update') %>
+	    <% end %>
+			<%= button_tag class: 'btn btn-orange comment-btn', type: 'submit', name: 'is_update', value: false do %>
+		    <span class="glyphicon glyphicon-remove"></span><%= t('.cancel') %>
+	    <% end %>
     <% end %>
+    </div>
   </div>
 <% end %>

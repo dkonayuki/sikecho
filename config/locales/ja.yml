@@ -420,7 +420,9 @@ ja:
       new: 新着
   comments:
     form:
-      comment: コメント
+      create: コメント
+      update: 更新
+      cancel: キャンセル
   educations:
     education_table:
       faculty: 学部&bull;研究科

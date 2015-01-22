@@ -1,1 +1,2 @@
-$(".media[data-id='" + <%= @id %> + "']").html("<%=j render 'form' %>");
+$(".media[data-id='" + <%= @id %> + "']").replaceWith("<%=j render partial: 'form', locals: {isNew: false} %>");
+$('textarea').autosize();

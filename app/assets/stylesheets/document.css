@@ -22,7 +22,6 @@
 #document-comment-section {
   width: 300px;
   float: right;
-  padding-top: 15px;
 }
 
 @media(max-width: 767px) {

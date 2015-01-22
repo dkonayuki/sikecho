@@ -450,7 +450,9 @@ en:
       new: New
   comments:
     form:
-      comment: Comment
+      create: Comment
+      update: Update
+      cancel: Cancel
   educations:
     education_table:
       faculty: Faculty

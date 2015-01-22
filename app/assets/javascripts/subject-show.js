@@ -61,7 +61,7 @@ $(document).on("page:load ready", function() {
 							//need to get script in order to refresh menu
 							$.getScript("/" + I18n["meta"]["code"] + "/subjects/" + subjectID, null);
 		
-							//Set notification
+							//Set notification depends on the button user clicked on
 							if (dataMethod == "post") {
 								$.gritter.add({
 									title: subjectName,

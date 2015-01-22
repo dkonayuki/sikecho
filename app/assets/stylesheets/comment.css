@@ -1,19 +1,26 @@
-#comment-form {
+.comment-form {
+	margin-top: 15px;
 }
 
-#comment-form .media {
+.comment-form .media {
 	margin-top: 0;
 }
 
-#comment-btn {
-	font-size: 10px;
-	padding: 4px 10px;
+.comment-menu {
 	float: right;
 	margin-top: 5px;
 }
 
-#comment-btn span {
+.comment-btn {
+	font-size: 10px;
+	padding: 4px 10px;
+}
+
+.comment-btn span {
 	margin-right: 5px;
+}
+
+#comments {
 }
 
 .media:hover .media-menu {
@@ -39,6 +46,7 @@
 	color: #999;
 }
 
+/*to fit avatar size*/
 #comment-content {
-	line-height: 1.7 !important;
+	line-height: 1.8 !important;
 }

@@ -49,7 +49,9 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1.json
   def update
     respond_to do |format|
-      if @comment.update(comment_params)
+      if !params[:is_update].nil? && params[:is_update] == 'false' # parameter is_update is string type
+        format.js # execute js file when fail to update or cancel btn clicked
+      elsif @comment.update(comment_params)
         format.html
         format.js
         format.json { render action: 'show', status: :updated, location: @comment }
@@ -81,13 +83,17 @@ class CommentsController < ApplicationController
       @comment = Comment.find(params[:id])
     end
 
+    # set @document for actions and views/js.erb file
     def set_document
       @document = Document.find(params[:document_id])  
     end
     
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.permit(:document_id)
+      # need :is_update parameter to distinguish whenever user clicked on update or cancel button
+      # :is_update is passed from additional button in form
+      # f.submit won't allow custom block content and additional parameter
+      params.permit(:document_id, :is_update)
       params.require(:comment).permit(:content)
     end
 end

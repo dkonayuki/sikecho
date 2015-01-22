@@ -1,20 +1,9 @@
 function prepareComments() {
-	/* auto resize for textarea */
+	
+	/* auto resize for textarea 
+	 * textarea will expand automatically when type in
+	 */
   $('textarea').autosize();
-
-	/*New comment*/
-	/*$("#comment-form").on("submit", function() {
-		$.ajax({
-		  url: $(this).attr("action"),
-		  dataType: "script",
-		  data: $(this).serialize(),
-		  type: $(this).attr("data-method"),
-		  success: function() {
-		  	$("#comment-content").val("");
-		  }
-		});
-		return false;
-	});*/
 	
 	/*setting up faye for pub/sub*/
 	var documentID = $("#show-document").data("id");
