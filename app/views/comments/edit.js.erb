@@ -2,10 +2,10 @@ $(".media[data-id='" + <%= @comment.id %> + "']").replaceWith("<%=j render parti
 
 $("textarea").autosize();
 
-/*Disable update btn if content is empty or not changed*/
-var prevText = "<%= @comment.content %>";
+/*Disable update btn if content is empty*/
 
 $(".comment-form[data-id='" + <%= @comment.id %> + "'] .comment-btn[value=true]").prop("disabled", true);
 $(".comment-form[data-id='" + <%= @comment.id %> + "'] #comment-content").keyup(function() {
-  $(".comment-form[data-id='" + <%= @comment.id %> + "'] .comment-btn[value=true]").prop("disabled", ($(this).val() == prevText || $(this).val() == "") ? true : false);
+  $(".comment-form[data-id='" + <%= @comment.id %> + "'] .comment-btn[value=true]").prop("disabled", 
+  	$(this).val() == "" ? true : false);
 });

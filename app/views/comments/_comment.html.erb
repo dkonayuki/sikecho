@@ -4,7 +4,7 @@
     </a>
     <h4 class="media-heading"><%= comment.user.display_name %></h4>
     <div class="media-body">
-			<%= sanitize simple_format(comment.content), tags: %w(br) %>
+			<%= sanitize simple_format(comment.content) %>
 	    <div class="media-date">
 	    	<%= time_ago_in_words(comment.created_at) %><%= t('ago') %>
 	  	</div>

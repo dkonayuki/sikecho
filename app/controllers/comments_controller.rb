@@ -27,6 +27,9 @@ class CommentsController < ApplicationController
 
   # GET /comments/1/edit
   def edit
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /comments
