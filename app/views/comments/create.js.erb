@@ -1,5 +1,9 @@
-<% broadcast "/documents/#{@document.id}" do %>
-// prepend with animation
-	$("<%=j render @comment %>").hide().prependTo("#comments").fadeIn("slow");
-	$("#new-comment #comment-content").val("");
+//if @success exists and is true
+<% if @success %>
+	<% broadcast "/documents/#{@document.id}" do %>
+		// prepend with animation
+		$("<%=j render @comment %>").hide().prependTo("#comments").fadeIn("slow");
+		$("#new-comment #comment-content").val("");
+		$("#new-comment .comment-btn").prop("disabled", true);
+	<% end %>
 <% end %>

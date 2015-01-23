@@ -40,10 +40,13 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
+        # use @success instead of passing json success
+        @success = true
         format.html
         format.js
         format.json { render action: 'show', status: :created, location: @comment }
       else
+        @success = false
         format.html
         format.js
         format.json { render json: @comment.errors, status: :unprocessable_entity }
@@ -58,10 +61,13 @@ class CommentsController < ApplicationController
       if !params[:is_update].nil? && params[:is_update] == 'false' # parameter is_update is string type
         format.js # execute js file when fail to update or cancel btn clicked
       elsif @comment.update(comment_params)
+        # use @success instead of passing json success
+        @success = true
         format.html
         format.js
         format.json { render action: 'show', status: :updated, location: @comment }
       else
+        @success = false
         format.html
         format.js # execute js even when user delete content
         format.json { render json: @comment.errors, status: :unprocessable_entity }

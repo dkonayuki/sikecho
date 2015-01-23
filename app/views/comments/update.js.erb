@@ -1,7 +1,9 @@
 //replace form with updated comment
-$(".comment-form[data-id='" + <%= @comment.id %> + "']").replaceWith("<%=j render @comment %>");
-
-//broadcast the updated comment
-<% broadcast "/documents/#{@document.id}" do %>
-	$(".media[data-id='" + <%= @comment.id %> + "']").replaceWith("<%=j render @comment %>");
+<% if @success %>
+	$(".comment-form[data-id='" + <%= @comment.id %> + "']").replaceWith("<%=j render @comment %>");
+	
+	//broadcast the updated comment
+	<% broadcast "/documents/#{@document.id}" do %>
+		$(".media[data-id='" + <%= @comment.id %> + "']").replaceWith("<%=j render @comment %>");
+	<% end %>
 <% end %>
