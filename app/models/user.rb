@@ -36,6 +36,9 @@ class User < ActiveRecord::Base
   end
   
   has_attached_file :avatar, styles: {thumbnail: ["60x60#", :jpg], small: ["150x150>", :jpg]}, #force type
+                              convert_options: {
+                                all: '-background white -flatten +matte'
+                              },
                               #local config
                               url: "/uploads/users/:id/avatar/:style/:basename.:extension",
                               path: ":rails_root/public/:url" #dont really need path

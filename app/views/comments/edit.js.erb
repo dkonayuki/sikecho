@@ -7,5 +7,5 @@ $("textarea").autosize();
 $(".comment-form[data-id='" + <%= @comment.id %> + "'] .comment-btn[value=true]").prop("disabled", true);
 $(".comment-form[data-id='" + <%= @comment.id %> + "'] #comment-content").keyup(function() {
   $(".comment-form[data-id='" + <%= @comment.id %> + "'] .comment-btn[value=true]").prop("disabled", 
-  	$(this).val() == "" ? true : false);
+  	(($(this).val().length >= 4) && ($(this).val().length <= 150)) ? false : true);
 });

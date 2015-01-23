@@ -8,7 +8,10 @@ class University < ActiveRecord::Base
   #need to edit manually in other locale otherwise default name will be used
   #translates :name
   
-  has_attached_file :logo, styles: {thumbnail: "60x60#", small: "150x150>"}, 
+  has_attached_file :logo, styles: {thumbnail: "60x60#", small: "150x150>"},
+                              convert_options: {
+                                all: '-background white -flatten +matte'
+                              },
                               #local config
                               url: "/uploads/universities/:id/logo/:style/:basename.:extension",
                               path: ":rails_root/public/:url" #dont really need path

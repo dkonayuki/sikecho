@@ -36,10 +36,11 @@
 
 .document-item {
 	background: #fff;
-	width: 150px;
-	height: 150px;
+	width: 100px;
+	height: 100px;
 	display: inline-block;
 	margin-bottom: 10px;
+	margin-right: 10px;
 	border: 1px solid transparent;
 	position: relative;
 }
@@ -53,7 +54,6 @@
 .document-preview img {
 	min-width: 100%;
 	min-height: 100%;
-	max-width: none;
 }
 
 .document-info {

@@ -7,7 +7,7 @@ function prepareComments() {
   
   $("#new-comment .comment-btn").prop("disabled", true);
   $("#new-comment #comment-content").keyup(function() {
-	  $("#new-comment .comment-btn").prop("disabled", $(this).val() == "" ? true : false);
+	  $("#new-comment .comment-btn").prop("disabled", (($(this).val().length >= 4) && ($(this).val().length <= 150)) ? false : true);
   });
 	
 	/*setting up faye for pub/sub*/

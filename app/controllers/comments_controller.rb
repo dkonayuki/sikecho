@@ -59,6 +59,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if !params[:is_update].nil? && params[:is_update] == 'false' # parameter is_update is string type
+        @success = true
         format.js # execute js file when fail to update or cancel btn clicked
       elsif @comment.update(comment_params)
         # use @success instead of passing json success
