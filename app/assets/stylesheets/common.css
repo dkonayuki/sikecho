@@ -376,6 +376,36 @@ div.message {
 	}
 }
 
+.skc-modal {
+	position: relative;
+	background: #FFF;
+	width: auto;
+	max-width: 400px;
+	max-height: 300px;
+	padding: 20px 30px;
+	margin: 20px auto;
+}
+
+.skc-modal-img img {
+	float: left;
+	width: 60px;
+	height: 60px;
+}
+
+.skc-modal-content {
+	padding-left: 20px;
+	width: auto;
+	overflow: hidden;
+}
+
+.skc-modal-content h4 {
+	font-size: 15px;
+}
+
+.skc-modal-menu {
+	float: right;
+}
+
 .btn-white {
 	border-top: none;
 	color: #555E6B;

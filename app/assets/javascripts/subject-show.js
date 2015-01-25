@@ -34,7 +34,7 @@ $(document).on("page:load ready", function() {
       	menu.addClass("menu-absolute");
       }
     });
-		
+    
 		/*For schedule add btn in show subject page*/
 		/*Need selector on a to ensure binding on dynamically elements */
 		$("#show-subject-schedule").add("#show-subject-schedule-mobile").on("click", "a", function() {
@@ -45,53 +45,65 @@ $(document).on("page:load ready", function() {
 			var subjectID = $("#show-subject-schedule").data("id");
 			var imgPath = $("#show-subject-schedule").data("img");
 			
-			if (dataMethod == "post") {
-				var r = confirm(I18n["subject_register_confirm"]);
-			} else {
-				var r = confirm(I18n["subject_remove_confirm"]);
-			}
+			/*Trigger magnific popup*/
+			$.magnificPopup.open({
+				showCloseBtn: false,
+			  removalDelay: 300,
+			  items: {
+		      src: dataMethod == "post" ? '#subject-schedule-register' : '#subject-schedule-remove',
+		      type: 'inline'
+			  },
+			  mainClass: "mfp-move-horizontal",
+			  callbacks: {
+		  		open: function() {
+				    $(".skc-modal").on("click", "a", function() {
+				    	$.magnificPopup.close();
+				    	if ($(this).data("skc-confirm") == "ok") {
+				    		$.ajax({
+									url: href,
+									type: dataMethod,
+									dataType: "json",
+									success: function(msg) {
+										if (msg.status == "ok") {
+											//need to get script in order to refresh menu
+											$.getScript("/" + I18n["meta"]["code"] + "/subjects/" + subjectID, null);
+						
+											//Set notification depends on the button user clicked on
+											if (dataMethod == "post") {
+												$.gritter.add({
+													title: subjectName,
+													text: I18n["subject_register_notification"],
+													image: imgPath,
+													sticky: false, 
+													time: 5000,
+												});
+											} else {
+												$.gritter.add({
+													title: subjectName,
+													text: I18n["subject_remove_notification"],
+													image: imgPath,
+													sticky: false, 
+													time: 5000,
+												});
+											}
+										} else {
+											$.gritter.add({
+												title: subjectName,
+												text: I18n["error"],
+												image: imgPath,
+												sticky: false, 
+												time: 5000,
+											});
+										}
+					
+									}
+								});
+				    	}
+				    });
+				  }
+				}
+			});
 			
-			if (r == true) {				
-				$.ajax({
-					url: href,
-					type: dataMethod,
-					dataType: "json",
-					success: function(msg) {
-						if (msg.status == "ok") {
-							//need to get script in order to refresh menu
-							$.getScript("/" + I18n["meta"]["code"] + "/subjects/" + subjectID, null);
-		
-							//Set notification depends on the button user clicked on
-							if (dataMethod == "post") {
-								$.gritter.add({
-									title: subjectName,
-									text: I18n["subject_register_notification"],
-									image: imgPath,
-									sticky: false, 
-									time: 5000,
-								});
-							} else {
-								$.gritter.add({
-									title: subjectName,
-									text: I18n["subject_remove_notification"],
-									image: imgPath,
-									sticky: false, 
-									time: 5000,
-								});
-							}
-						} else {
-							$.gritter.add({
-								title: subjectName,
-								text: I18n["error"],
-								image: imgPath,
-								sticky: false, 
-								time: 5000,
-							});
-						}
-	
-					}
-				});
-			}
 			return false;
 		});
 		
@@ -110,6 +122,6 @@ $(document).on("page:load ready", function() {
 	      "<span class='glyphicon glyphicon-chevron-right'></span>"
 	      ],
 		});
-
+		
 	});//end of ready function
 });

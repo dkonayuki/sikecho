@@ -190,4 +190,10 @@ $(document).on("page:load ready", function() {
 		});
 	}
 	
+	/*check if scrollbar exists*/
+	var hasScrollbar = window.innerWidth > document.documentElement.clientWidth;
+	if (hasScrollbar) {
+		
+	}
+	
 });
