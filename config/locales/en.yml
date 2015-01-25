@@ -303,6 +303,8 @@ en:
   registered: Registered
   cancel_subject_registered: Cancel
   register_subject: Register
+  ok: Ok
+  cancel: Cancel
   semester: Semester
   year: Year
   teacher_plural: Teachers

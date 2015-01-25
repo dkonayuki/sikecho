@@ -273,6 +273,8 @@ ja:
   registered: 登録済み
   cancel_subject_registered: 受講解除
   register_subject: 受講登録
+  ok: Ok
+  cancel: キャンセル
   semester: 学期
   year: 年度
   teacher_plural: 教員
