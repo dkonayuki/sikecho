@@ -1,11 +1,11 @@
 	<ul class="nav">
 		<% if @user.is_registered?(@subject) %>
-  		<%= link_to schedule_destroy_path(subject_id: @subject.id), method: :delete, class: 'btn btn-red btn-lg' do %>
+  		<%= link_to '', data: {method: :delete, href: schedule_destroy_path(subject_id: @subject.id)}, class: 'btn btn-red btn-lg' do %>
     		<span class="btn-text registered-text"><%= t('registered') %></span>
     		<span class="btn-text cancel-text"><span class="glyphicon glyphicon-remove-sign"></span><%= t('cancel_subject_registered') %></span>
     	<% end %>
   	<% else %>
-    	<%= link_to schedule_create_path(subject_id: @subject.id), method: :post, class: 'btn btn-navi btn-lg' do %>
+    	<%= link_to '', data: {method: :post, href: schedule_create_path(subject_id: @subject.id)}, class: 'btn btn-navi btn-lg' do %>
     		<span class="glyphicon glyphicon-plus-sign"></span><%= t('register_subject') %>
     	<% end %>
   	<% end %>

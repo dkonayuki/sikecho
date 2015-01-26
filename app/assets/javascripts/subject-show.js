@@ -38,9 +38,9 @@ $(document).on("page:load ready", function() {
 		/*For schedule add btn in show subject page*/
 		/*Need selector on a to ensure binding on dynamically elements */
 		$("#show-subject-schedule").add("#show-subject-schedule-mobile").on("click", "a", function() {
-
-			var href = $(this).attr("href");
-			var dataMethod = $(this).attr("data-method");
+			
+			var href = $(this).data("href");
+			var dataMethod = $(this).data("method");
 			var subjectName = $("#show-subject-schedule").data("name");
 			var subjectID = $("#show-subject-schedule").data("id");
 			var imgPath = $("#show-subject-schedule").data("img");
@@ -57,7 +57,6 @@ $(document).on("page:load ready", function() {
 			  callbacks: {
 		  		open: function() {
 				    $(".skc-modal").on("click", "a", function() {
-				    	$.magnificPopup.close();
 				    	if ($(this).data("skc-confirm") == "ok") {
 				    		$.ajax({
 									url: href,
@@ -99,6 +98,11 @@ $(document).on("page:load ready", function() {
 									}
 								});
 				    	}
+				    	
+				    	// close popup after btn click
+				    	$.magnificPopup.close();
+				    	// prevent default link
+				    	return false;
 				    });
 				  }
 				}
