@@ -36,6 +36,7 @@ function prepareComments() {
 		}
 		return false;
 	});
+	
 };
 		
 $(document).on("page:load ready", function() {

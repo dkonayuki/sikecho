@@ -53,10 +53,12 @@ $(document).on("page:load ready", function() {
 		      src: dataMethod == "post" ? '#subject-schedule-register' : '#subject-schedule-remove',
 		      type: 'inline'
 			  },
-			  mainClass: "mfp-move-horizontal",
+			  mainClass: "mfp-zoom-in",
 			  callbacks: {
 		  		open: function() {
 				    $(".skc-modal").on("click", "a", function() {
+				    	
+				    	// when user clicks on ok
 				    	if ($(this).data("skc-confirm") == "ok") {
 				    		$.ajax({
 									url: href,
@@ -86,6 +88,7 @@ $(document).on("page:load ready", function() {
 												});
 											}
 										} else {
+											// error from server
 											$.gritter.add({
 												title: subjectName,
 												text: I18n["error"],

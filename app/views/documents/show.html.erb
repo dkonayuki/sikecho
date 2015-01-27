@@ -3,8 +3,21 @@
 		<%= image_tag(@document.upload.url(:original)) %>
 		<h4><%= @document.title %></h4>
 		<hr class="visible-xs" />
+		<% if @prev %>
+			<%= link_to @prev, id: 'document-prev', class: 'document-navigation-btn' do %>
+				<span class="glyphicon glyphicon-chevron-left"></span>
+			<% end %>
+		<% end %>
+		<% if @next %>
+			<%= link_to @next, id: 'document-next', class: 'document-navigation-btn' do %>
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			<% end %>
+		<% end %>
 	</div>
-	<div id="document-comment-section">
-		<%= render template: 'comments/index' %>
+	<div id="document-comment-section" class="nano">
+		<div class="nano-content">
+			<%= render template: 'comments/index' %>
+		</div>
 	</div><!-- end of comment section -->
 </div><!-- end of show document -->
+

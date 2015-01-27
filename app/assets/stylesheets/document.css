@@ -12,11 +12,14 @@
 }
 
 #document-content {
-	max-width: 440px;
+	max-width: 435px;
 	width: 100%;
 	float: left;
 	text-align: center;
 	word-wrap: break-word;
+	position: relative;
+	padding-left: 25px;
+	padding-right: 25px;
 }
 
 #document-comment-section {
@@ -56,6 +59,26 @@
 	min-height: 100%;
 }
 
+.document-navigation-btn {
+	position: absolute;
+	display: none;	
+	font-size: 20px;
+}
+
+#document-prev {
+	left: 0;
+	top: 50%;
+}
+
+#document-next {
+	right: 0;
+	top: 50%;
+}
+
+#document-content:hover .document-navigation-btn {
+	display: block;
+}
+
 .document-info {
 	opacity: 0;
 	position: absolute;
@@ -84,7 +107,13 @@
 }
 
 @media (max-width: 469px) {
+	/* not remember why? */
 	.document-info {
 		display: -webkit-box;
+	}
+	
+	/* always display when window-size is small*/
+	.document-navigation-btn {
+		display: block;
 	}
 }

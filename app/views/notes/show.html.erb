@@ -22,7 +22,7 @@
 				
 				<% if !@note.documents.empty? %>
 				<hr />
-				<%= render template: 'documents/index', locals: {documents: @note.documents} %>
+				<%= render template: 'documents/index', locals: {documents: @note.documents.order('created_at ASC')} %>
 				<% end %>
 								
 				<hr />

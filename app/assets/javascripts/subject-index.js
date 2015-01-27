@@ -371,7 +371,7 @@ $(document).on("page:load ready", function() {
 		      src: '#subject-menu-right',
 		      type: 'inline'
 		  },
-		  mainClass: "mfp-move-horizontal",
+		  mainClass: "mfp-ltr",
 		  callbacks: {
 			  beforeOpen: function() {
 			  	$("#subject-menu-right").removeClass().addClass("mfp-hide");

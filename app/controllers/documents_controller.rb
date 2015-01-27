@@ -15,6 +15,14 @@ class DocumentsController < ApplicationController
     #prepare current user info for creating a new comment
     @user = current_user
     
+    #for prev/next navigation
+    documents = @document.note.documents.order('created_at ASC').select { |d| d.file_type != '.pdf' }
+    index = documents.index(@document)
+    @prev = index > 0 ? documents[index - 1] : nil
+    @next = index < documents.count - 1 ? documents[index + 1] : nil
+    #@prev = documents.where('created_at < ?', @document.created_at).first
+    #@next = documents.where('created_at > ?', @document.created_at).last
+
     #prepare for new comment form
     @comment = @document.comments.build
     

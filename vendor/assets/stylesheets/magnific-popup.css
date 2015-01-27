@@ -500,11 +500,11 @@ img.mfp-img {
 
 /* 
 
-====== Move-horizontal effect ======
+====== Left to right effect ======
 
 */
 
-.mfp-move-horizontal.mfp-bg {
+.mfp-ltr.mfp-bg {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
   opacity: 0;
@@ -515,17 +515,17 @@ img.mfp-img {
   -ms-transition: all 0.3s;
   transition: all 0.3s;
 }
-.mfp-move-horizontal.mfp-bg.mfp-ready {
+.mfp-ltr.mfp-bg.mfp-ready {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
   filter: alpha(opacity=80);
   opacity: 0.8;
 }
-.mfp-move-horizontal.mfp-bg.mfp-removing {
+.mfp-ltr.mfp-bg.mfp-removing {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
   opacity: 0;
 }
-.mfp-move-horizontal .mfp-content{
+.mfp-ltr .mfp-content{
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
   opacity: 0;
@@ -538,7 +538,7 @@ img.mfp-img {
 
   transform: translateX(-50px);
 }
-.mfp-move-horizontal.mfp-ready .mfp-content {
+.mfp-ltr.mfp-ready .mfp-content {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   filter: alpha(opacity=100);
   opacity: 1;
@@ -549,8 +549,66 @@ img.mfp-img {
   -ms-transform: scale(1);
   transform: scale(1);
 }
-.mfp-move-horizontal.mfp-removing .mfp-content {
+.mfp-ltr.mfp-removing .mfp-content {
   transform: translateX(50px);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+
+/* 
+
+====== Right to left effect ======
+
+*/
+
+.mfp-rtl.mfp-bg {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  opacity: 0;
+
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.mfp-rtl.mfp-bg.mfp-ready {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+  opacity: 0.8;
+}
+.mfp-rtl.mfp-bg.mfp-removing {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+.mfp-rtl .mfp-content{
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  opacity: 0;
+
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  transition: all 0.3s;
+
+  transform: translateX(50px);
+}
+.mfp-rtl.mfp-ready .mfp-content {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: alpha(opacity=100);
+  opacity: 1;
+
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -o-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+.mfp-rtl.mfp-removing .mfp-content {
+  transform: translateX(-50px);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
   opacity: 0;
