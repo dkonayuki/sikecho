@@ -1,6 +1,6 @@
 <%= form_for([@document, @comment], html: {class: 'comment-form', remote: true, "data-id" => @comment.id}) do |f| %>
-<% if isNew.nil? %>
-	<% isNew = true %>
+<% if (defined? is_new).nil? %>
+	<% is_new = true %>
 <% end %>
   <div class="media">
     <a class="pull-left" href="#">
@@ -11,7 +11,7 @@
     </div>
     
     <div class="comment-menu">
-    <% if isNew %>
+    <% if is_new %>
 	    <%= button_tag class: 'btn btn-green comment-btn', type: 'submit' do %>
 		    <span class="glyphicon glyphicon-comment"></span><%= t('.create') %>
 	    <% end %>

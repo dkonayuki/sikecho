@@ -1,3 +1,6 @@
+<% if (defined? is_new).nil? %>
+	<% is_new = true %>
+<% end %>
 	<div id="education-content">
 		<%= form_for([@user, @education], html: {id: 'education-form', remote: true, class: 'clear'}) do |f| %>
 		  <% if @education.errors.any? %>
@@ -13,9 +16,9 @@
 		  <p>
 		    <%= t('university') %>:
 		    <% if @education.university %>
-				<%= f.select :university_id, options_from_collection_for_select(@universities, "id", "name", selected: @education.university.id), {}, {class: 'form-control selectpicker show-tick', data: {width: 'auto'}, disabled: (isNew == true) ? false : true} %>
+				<%= f.select :university_id, options_from_collection_for_select(@universities, "id", "name", selected: @education.university.id), {}, {class: 'form-control selectpicker show-tick', data: {width: 'auto'}, disabled: (is_new == true) ? false : true} %>
 		    <% else %>
-				<%= f.select :university_id, options_from_collection_for_select(@universities, "id", "name"), {}, {class: 'form-control selectpicker show-tick', data: {width: 'auto'}, disabled: (isNew == true) ? false : true} %>
+				<%= f.select :university_id, options_from_collection_for_select(@universities, "id", "name"), {}, {class: 'form-control selectpicker show-tick', data: {width: 'auto'}, disabled: (is_new == true) ? false : true} %>
 		  	<% end %>
 	  	</p>
 	  	<p>

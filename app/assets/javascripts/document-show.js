@@ -1,5 +1,12 @@
 function prepareComments() {
 	
+	/* show more btn event*/
+	$("body").on("click", ".media-show-more", function() {
+		$(this).parent().hide();
+		$(this).parents(".media-content").find(".text-exposed-show").css("display", "block");
+		return false;
+	});
+	
 	/* auto resize for textarea 
 	 * textarea will expand automatically when type in
 	 */

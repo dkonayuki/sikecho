@@ -7,7 +7,19 @@
 	    <div class="media-date">
 	    	<%= time_ago_in_words(comment.created_at) %><%= t('ago') %>
 	  	</div>
-			<%= sanitize simple_format(comment.content) %>
+	  	<div class="media-content">
+	  		<% if comment.content.length > 50 %>
+	  		<span class="text-exposed-root">
+					<%= sanitize simple_format(truncate(comment.content, length: 50)) %>
+					<%= link_to t('.read_more'), '', class: 'media-show-more' %>
+	  		</span>
+	  		<span class="text-exposed-show">
+					<%= sanitize simple_format(comment.content) %>
+	  		</span>
+	  		<% else %>
+					<%= sanitize simple_format(comment.content) %>
+				<% end %>
+			</div>
     </div>
 
     <div class="media-menu">

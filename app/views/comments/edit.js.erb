@@ -1,4 +1,4 @@
-$(".media[data-id='" + <%= @comment.id %> + "']").replaceWith("<%=j render partial: 'form', locals: {isNew: false} %>");
+$(".media[data-id='" + <%= @comment.id %> + "']").replaceWith("<%=j render partial: 'form', locals: {is_new: false} %>");
 
 $("textarea").autosize();
 

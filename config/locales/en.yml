@@ -454,6 +454,8 @@ en:
     show:
       next: Load more comments...
   comments:
+    comment:
+      read_more: Read more
     index:
       next: Load more comments...
     form:

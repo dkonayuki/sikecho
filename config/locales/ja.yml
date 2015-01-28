@@ -424,6 +424,8 @@ ja:
     show:
       next: 他のコメントを見る
   comments:
+    comment:
+      read_more: 続きを見る
     index:
       next: 他のコメントを見る
     form:
