@@ -181,6 +181,38 @@
 	}
 }
 
+.note-navigation-item {
+	padding: 5px;
+}
+
+.note-navigation-thumbnail {
+	float: left;
+	width: 50px;
+	height: 50px;
+	overflow: hidden;
+}
+
+.note-navigation-content {
+	width: auto;
+	height: 50px;
+	overflow: hidden;
+	padding: 0 10px;
+}
+
+.note-navigation-title {
+	font-size: 14px;
+}
+
+.note-navigation-desc {
+	font-size: 11px;
+	line-height: 14px;
+	height: 28px;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
 /*Show Note page
  *  ===============================================================================================*/
 
@@ -278,4 +310,83 @@
 
 #note-tags-list-header span {
 	font-size: 18px;
+}
+
+#note-next {
+	position: fixed;
+	right: -141px;
+	top: 50%;
+	background: #fff;
+	width: 165px;
+	height: 60px;
+	border: 1px solid #ddd;
+	font-size: 20px;
+	transition: 0.5s;
+}
+
+#note-next .note-navigation-item {
+	transition: 0.5s;
+	opacity: 0;
+}
+
+#note-next i {
+	position: absolute;
+	left: 10px;
+	top: 20px;
+	transition: 0.5s;
+}
+
+#note-next:hover {
+	transition: 0.5s;
+	right: -1px;
+}
+
+#note-next:hover .note-navigation-item {
+	transition: 0.5s;
+	opacity: 1;
+}
+
+#note-next:hover i {
+	transition: 0.5s;
+	left: 150px;
+}
+
+#note-prev {
+	position: fixed;
+	left: -141px;
+	top: 50%;
+	background: #fff;
+	width: 165px;
+	height: 60px;
+	border: 1px solid #ddd;
+	font-size: 20px;
+	transition: 0.5s;
+}
+
+#note-prev .note-navigation-item {
+	transition: 0.5s;
+	padding-left: 20px;
+	opacity: 0;
+}
+
+#note-prev i {
+	position: absolute;
+	right: 10px;
+	top: 20px;
+	transition: 0.5s;
+}
+
+#note-prev:hover {
+	transition: 0.5s;
+	left: -1px;
+}
+
+#note-prev:hover .note-navigation-item {
+	transition: 0.5s;
+	opacity: 1;
+}
+
+#note-prev:hover i {
+	transition: 0.5s;
+	right: 150px;
 }

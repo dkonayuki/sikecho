@@ -30,6 +30,7 @@
  *= require override-jquery-upload.css
  *= require animate.css
  *= require pushmenu.css
+ *= require font-awesome
  *= require_tree .
  * 
  */

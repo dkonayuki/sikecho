@@ -64,4 +64,19 @@
 		<% end %>
 	</div>
 	
+	<div id="note-navigation">
+		<% if @next %>
+		<div id="note-next">
+			<i class="fa fa-angle-right"></i>
+			<%= render partial: 'note_navigation', locals: {note: @next} %>
+		</div>
+		<% end %>
+		<% if @prev %>
+		<div id="note-prev">
+			<i class="fa fa-angle-left"></i>
+			<%= render partial: 'note_navigation', locals: {note: @prev} %>
+		</div>
+		<% end %>
+	</div>
+	
 </div>

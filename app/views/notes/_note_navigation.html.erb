@@ -1,0 +1,11 @@
+<div class="note-navigation-item">
+	<%= link_to note, class: 'note-navigation-thumbnail' do %>
+	<%= image_tag(note.subjects.first.display_picture_thumbnail) %>
+	<% end %>
+	<div class="note-navigation-content">
+		<div class="note-navigation-title"><%= note.title %></div>
+		<div class="note-navigation-desc">
+			<%= note.content %>
+		</div>
+	</div>
+</div>

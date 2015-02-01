@@ -109,3 +109,5 @@ gem 'thin'
 
 # new feeds
 gem 'public_activity'
+
+gem 'font-awesome-rails'

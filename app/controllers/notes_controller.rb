@@ -76,6 +76,11 @@ class NotesController < ApplicationController
     #mark as read for impression gem
     @note.mark_as_read! for: @user
     
+    #get previous note, next note
+    notes = @note.subjects.first.notes
+    @prev = notes.where('created_at < ?', @note.created_at).first
+    @next = notes.where('created_at > ?', @note.created_at).last
+    
     @tags = @note.tag_list
   end
   

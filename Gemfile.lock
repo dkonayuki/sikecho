@@ -274,6 +274,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
   faye
+  font-awesome-rails
   impressionist
   jbuilder (~> 1.2)
   jquery-fileupload-rails (= 0.4.1)
