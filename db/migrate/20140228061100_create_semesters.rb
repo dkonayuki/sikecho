@@ -3,9 +3,9 @@ class CreateSemesters < ActiveRecord::Migration
     create_table :semesters do |t|
       t.integer :no
       t.string :name
-      t.integer :uni_year_id
+      t.references :uni_year, index: true
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

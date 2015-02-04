@@ -8,13 +8,13 @@ class CreateTeachers < ActiveRecord::Migration
       t.string :last_name_kana
       t.string :last_name_kanji
       t.text :role
-      t.integer :university_id
-      t.integer :faculty_id
+      t.references :university, index: true
+      t.references :faculty, index: true
       t.string :lab
       t.string :lab_url
       t.string :email
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

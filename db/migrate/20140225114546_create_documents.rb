@@ -1,10 +1,10 @@
 class CreateDocuments < ActiveRecord::Migration
   def change
     create_table :documents do |t|
-      t.integer :note_id
+      t.references :note, index: true
       t.string :title
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

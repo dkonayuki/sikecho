@@ -15,7 +15,7 @@ class CreateUsers < ActiveRecord::Migration
       t.date :dob
       t.text :status
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

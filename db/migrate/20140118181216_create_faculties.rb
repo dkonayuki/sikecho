@@ -3,9 +3,9 @@ class CreateFaculties < ActiveRecord::Migration
     create_table :faculties do |t|
       t.string :name
       t.string :website
-      t.integer :university_id
+      t.references :university, index: true
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

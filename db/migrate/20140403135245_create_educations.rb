@@ -1,16 +1,17 @@
 class CreateEducations < ActiveRecord::Migration
   def change
     create_table :educations do |t|
-      t.integer :uni_year_id
-      t.integer :semester_id
-      t.integer :year
-      t.integer :university_id
-      t.integer :faculty_id
-      t.integer :course_id
-      t.integer :user_id
-      t.integer :current_user_id
+      t.references :uni_year, index: true
+      t.references :semester, index: true
+      t.references :university, index: true
+      t.references :faculty, index: true
+      t.references :course, index: true
+      t.references :user, index: true
 
-      t.timestamps
+      t.integer :year
+      t.integer :current_user_id #need for has_one and has_many on the same model
+
+      t.timestamps null: false
     end
   end
 end

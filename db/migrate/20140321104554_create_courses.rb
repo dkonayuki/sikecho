@@ -2,9 +2,9 @@ class CreateCourses < ActiveRecord::Migration
   def change
     create_table :courses do |t|
       t.string :name
-      t.integer :faculty_id
+      t.references :faculty, index: true
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

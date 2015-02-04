@@ -3,9 +3,9 @@ class CreatePeriods < ActiveRecord::Migration
     create_table :periods do |t|
       t.integer :day
       t.integer :time
-      t.integer :subject_id
+      t.references :subject, index: true
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

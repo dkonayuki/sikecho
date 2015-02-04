@@ -4,9 +4,9 @@ class CreateOutlines < ActiveRecord::Migration
       t.integer :no
       t.date :date
       t.text :content
-      t.integer :subject_id
+      t.references :subject, index: true
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

@@ -3,9 +3,9 @@ class CreateUniYears < ActiveRecord::Migration
     create_table :uni_years do |t|
       t.integer :no
       t.string :name
-      t.integer :university_id
+      t.references :university, index: true
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

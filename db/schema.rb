@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150119121809) do
+ActiveRecord::Schema.define(version: 20150204163729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,48 +37,64 @@ ActiveRecord::Schema.define(version: 20150119121809) do
     t.integer  "user_id"
     t.integer  "document_id"
     t.text     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
+
+  add_index "comments", ["document_id"], name: "index_comments_on_document_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "courses", force: true do |t|
     t.string   "name"
     t.integer  "faculty_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
+  add_index "courses", ["faculty_id"], name: "index_courses_on_faculty_id", using: :btree
 
   create_table "documents", force: true do |t|
     t.integer  "note_id"
     t.string   "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.string   "upload_file_name"
     t.string   "upload_content_type"
     t.integer  "upload_file_size"
     t.datetime "upload_updated_at"
   end
 
+  add_index "documents", ["note_id"], name: "index_documents_on_note_id", using: :btree
+
   create_table "educations", force: true do |t|
     t.integer  "uni_year_id"
     t.integer  "semester_id"
-    t.integer  "year"
     t.integer  "university_id"
     t.integer  "faculty_id"
     t.integer  "course_id"
     t.integer  "user_id"
+    t.integer  "year"
     t.integer  "current_user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
+
+  add_index "educations", ["course_id"], name: "index_educations_on_course_id", using: :btree
+  add_index "educations", ["faculty_id"], name: "index_educations_on_faculty_id", using: :btree
+  add_index "educations", ["semester_id"], name: "index_educations_on_semester_id", using: :btree
+  add_index "educations", ["uni_year_id"], name: "index_educations_on_uni_year_id", using: :btree
+  add_index "educations", ["university_id"], name: "index_educations_on_university_id", using: :btree
+  add_index "educations", ["user_id"], name: "index_educations_on_user_id", using: :btree
 
   create_table "faculties", force: true do |t|
     t.string   "name"
     t.string   "website"
     t.integer  "university_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
+
+  add_index "faculties", ["university_id"], name: "index_faculties_on_university_id", using: :btree
 
   create_table "impressions", force: true do |t|
     t.string   "impressionable_type"
@@ -110,31 +126,40 @@ ActiveRecord::Schema.define(version: 20150119121809) do
     t.text     "content"
     t.integer  "user_id"
     t.integer  "view_count", default: 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
+
+  add_index "notes", ["user_id"], name: "index_notes_on_user_id", using: :btree
 
   create_table "notes_subjects", force: true do |t|
     t.integer "note_id"
     t.integer "subject_id"
   end
 
+  add_index "notes_subjects", ["note_id"], name: "index_notes_subjects_on_note_id", using: :btree
+  add_index "notes_subjects", ["subject_id"], name: "index_notes_subjects_on_subject_id", using: :btree
+
   create_table "outlines", force: true do |t|
     t.integer  "no"
     t.date     "date"
     t.text     "content"
     t.integer  "subject_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
+  add_index "outlines", ["subject_id"], name: "index_outlines_on_subject_id", using: :btree
 
   create_table "periods", force: true do |t|
     t.integer  "day"
     t.integer  "time"
     t.integer  "subject_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
+  add_index "periods", ["subject_id"], name: "index_periods_on_subject_id", using: :btree
 
   create_table "read_marks", force: true do |t|
     t.integer  "readable_id"
@@ -148,8 +173,13 @@ ActiveRecord::Schema.define(version: 20150119121809) do
   create_table "registers", force: true do |t|
     t.integer  "education_id"
     t.integer  "subject_id"
-    t.datetime "created_at"
+    t.datetime "register_time"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
+
+  add_index "registers", ["education_id"], name: "index_registers_on_education_id", using: :btree
+  add_index "registers", ["subject_id"], name: "index_registers_on_subject_id", using: :btree
 
   create_table "requests", force: true do |t|
     t.integer  "user_id"
@@ -157,21 +187,25 @@ ActiveRecord::Schema.define(version: 20150119121809) do
     t.string   "name"
     t.string   "address"
     t.string   "website"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
   end
 
+  add_index "requests", ["user_id"], name: "index_requests_on_user_id", using: :btree
+
   create_table "semesters", force: true do |t|
     t.integer  "no"
     t.string   "name"
     t.integer  "uni_year_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
+
+  add_index "semesters", ["uni_year_id"], name: "index_semesters_on_uni_year_id", using: :btree
 
   create_table "settings", force: true do |t|
     t.string   "var",         null: false
@@ -195,18 +229,25 @@ ActiveRecord::Schema.define(version: 20150119121809) do
     t.integer  "year"
     t.integer  "view_count",           default: 0
     t.integer  "notes_count",          default: 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
   end
 
+  add_index "subjects", ["course_id"], name: "index_subjects_on_course_id", using: :btree
+  add_index "subjects", ["semester_id"], name: "index_subjects_on_semester_id", using: :btree
+  add_index "subjects", ["uni_year_id"], name: "index_subjects_on_uni_year_id", using: :btree
+
   create_table "subjects_teachers", force: true do |t|
     t.integer "subject_id"
     t.integer "teacher_id"
   end
+
+  add_index "subjects_teachers", ["subject_id"], name: "index_subjects_teachers_on_subject_id", using: :btree
+  add_index "subjects_teachers", ["teacher_id"], name: "index_subjects_teachers_on_teacher_id", using: :btree
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
@@ -241,24 +282,29 @@ ActiveRecord::Schema.define(version: 20150119121809) do
     t.string   "lab"
     t.string   "lab_url"
     t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
+
+  add_index "teachers", ["faculty_id"], name: "index_teachers_on_faculty_id", using: :btree
+  add_index "teachers", ["university_id"], name: "index_teachers_on_university_id", using: :btree
 
   create_table "uni_years", force: true do |t|
     t.integer  "no"
     t.string   "name"
     t.integer  "university_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
+
+  add_index "uni_years", ["university_id"], name: "index_uni_years_on_university_id", using: :btree
 
   create_table "universities", force: true do |t|
     t.string   "name"
     t.string   "address"
     t.string   "website"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.string   "codename"
     t.string   "logo_file_name"
     t.string   "logo_content_type"
@@ -280,8 +326,8 @@ ActiveRecord::Schema.define(version: 20150119121809) do
     t.integer  "gender"
     t.date     "dob"
     t.text     "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -323,5 +369,15 @@ ActiveRecord::Schema.define(version: 20150119121809) do
   end
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
+
+  create_table "votes", force: true do |t|
+    t.integer "user_id"
+    t.integer "value"
+    t.integer "votable_id"
+    t.string  "votable_type"
+  end
+
+  add_index "votes", ["user_id"], name: "index_votes_on_user_id", using: :btree
+  add_index "votes", ["votable_id", "votable_type"], name: "index_votes_on_votable_id_and_votable_type", using: :btree
 
 end

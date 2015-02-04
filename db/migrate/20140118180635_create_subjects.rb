@@ -5,14 +5,14 @@ class CreateSubjects < ActiveRecord::Migration
       t.text :description
       t.integer :credit
       t.string :place
-      t.integer :semester_id
-      t.integer :uni_year_id
-      t.integer :course_id
+      t.references :semester, index: true
+      t.references :uni_year, index: true
+      t.references :course, index: true
       t.integer :year
       t.integer :view_count, default: 0
       t.integer :notes_count, default: 0
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end
