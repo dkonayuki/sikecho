@@ -47,6 +47,15 @@
 				<% end %>
 			</div>
 			
+			<div class="skc-box-vote">
+				<%= link_to like_note_path, method: :post, remote: true do %>
+					<span class="glyphicon glyphicon-thumbs-up"></span>
+				<% end %>
+				<%= link_to dislike_note_path, method: :post, remote: true do %>
+					<span class="glyphicon glyphicon-thumbs-down"></span>
+				<% end %>
+			</div>
+			
 		</div>
 	</div><!-- end of skc-box -->
 	

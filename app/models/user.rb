@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
   has_many :notes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :educations, dependent: :destroy
+  has_many :votes, dependent: :destroy
   
   #has only one education
   has_one :current_education, class_name: 'Education' , foreign_key: "current_user_id"

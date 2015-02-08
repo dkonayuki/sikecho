@@ -4,7 +4,6 @@ class CreateRegisters < ActiveRecord::Migration
       t.belongs_to :education, index: true
       t.belongs_to :subject, index: true
       t.datetime :register_time
-      t.timestamps null: false
     end
   end
 end

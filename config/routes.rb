@@ -34,6 +34,8 @@ Shikechou::Application.routes.draw do
       #get existed documents for note
       get 'documents' => 'notes#documents', on: :member
       get 'tags' => 'notes#tags', on: :member
+      post 'like' => 'notes#like', on: :member
+      post 'dislike' => 'notes#dislike', on: :member
     end
     
     #get tags.json

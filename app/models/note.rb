@@ -9,6 +9,7 @@ class Note < ActiveRecord::Base
   has_many :notes_subjects
   has_many :subjects, through: :notes_subjects
   has_many :documents, dependent: :destroy
+  has_many :votes, as: :votable
   
   #for tags
   acts_as_taggable_on :tags

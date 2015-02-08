@@ -174,8 +174,6 @@ ActiveRecord::Schema.define(version: 20150204163729) do
     t.integer  "education_id"
     t.integer  "subject_id"
     t.datetime "register_time"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
   end
 
   add_index "registers", ["education_id"], name: "index_registers_on_education_id", using: :btree
@@ -371,10 +369,12 @@ ActiveRecord::Schema.define(version: 20150204163729) do
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
   create_table "votes", force: true do |t|
-    t.integer "user_id"
-    t.integer "value"
-    t.integer "votable_id"
-    t.string  "votable_type"
+    t.integer  "user_id"
+    t.integer  "value",        default: 0
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "votes", ["user_id"], name: "index_votes_on_user_id", using: :btree

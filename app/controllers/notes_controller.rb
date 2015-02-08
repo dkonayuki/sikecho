@@ -76,6 +76,9 @@ class NotesController < ApplicationController
     #mark as read for impression gem
     @note.mark_as_read! for: @user
     
+    @like_count = @note.votes.where('value = ?', 1).count
+    p @like_count
+    
     #get previous note, next note
     notes = @note.subjects.first.notes
     @prev = notes.where('created_at < ?', @note.created_at).first
@@ -91,6 +94,16 @@ class NotesController < ApplicationController
       format.html
       format.json { render json: @note.documents.map{|d| d.to_jq_upload } }
     end
+  end
+  
+  # POST /notes/1/like
+  def like
+    
+  end
+  
+  # POST /notes/1/dislike
+  def dislike
+    
   end
 
   # GET /notes/new

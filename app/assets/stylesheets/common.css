@@ -406,6 +406,14 @@ div.message {
 	float: right;
 }
 
+.skc-box-vote {
+	font-size: 20px;
+	position: absolute;
+	color: #999;
+	right: 20px;
+	bottom: 10px;
+}
+
 .btn-white {
 	border-top: none;
 	color: #555E6B;
