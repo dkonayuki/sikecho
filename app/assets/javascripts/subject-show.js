@@ -37,7 +37,7 @@ $(document).on("page:load ready", function() {
     
 		/*For schedule add btn in show subject page*/
 		/*Need selector on a to ensure binding on dynamically elements */
-		$("#show-subject-schedule").add("#show-subject-schedule-mobile").on("click", "a", function() {
+		$("#show-subject-schedule").add("#show-subject-schedule-mobile").off().on("click", "a", function() {
 			
 			var href = $(this).data("href");
 			var dataMethod = $(this).data("method");
@@ -56,7 +56,7 @@ $(document).on("page:load ready", function() {
 			  mainClass: "mfp-zoom-in",
 			  callbacks: {
 		  		open: function() {
-				    $(".skc-modal").on("click", "a", function() {
+				    $(".skc-modal").off().on("click", "a", function() {
 				    	
 				    	// when user clicks on ok
 				    	if ($(this).data("skc-confirm") == "ok") {

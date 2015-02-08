@@ -1,0 +1,2 @@
+//update only 1 subject item
+$(".subject-item-line[data-id=" + <%= @subject.id %> + "]").replaceWith("<%=j render partial: 'subject_line', locals: { subject: @subject } %>")

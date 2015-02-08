@@ -1,4 +1,4 @@
-<div class='subject-item-line' %>
+<div class='subject-item-line' data-id="<%= subject.id %>" data-name="<%= subject.name %>" data-img="<%= subject.display_picture_small %>" %>
 	<%= link_to subject, class: "subject-thumbnail-line hidden-xs" do %>
   		<%= image_tag(subject.display_picture_thumbnail) %>
   <% end %> 
@@ -14,8 +14,8 @@
 	</div>
 	
 	<% if user_signed_in? && current_university == current_user.current_university %>
-	<div class="subject-menu-line" data-name="<%= subject.name %>" data-img="<%= subject.display_picture_small %>">
-		<% if current_user.current_subjects.include?(subject) %>
+	<div class="subject-menu-line">
+		<% if current_user.is_registered?(subject) %>
   		<%= link_to schedule_destroy_path(subject_id: subject.id), method: :delete, class: 'btn btn-sm btn-red subject-menu-line-hover' do %>
     		<span class="btn-text registered-text"><%= t('registered') %></span>
     		<span class="btn-text cancel-text"><span class="glyphicon glyphicon-remove-sign"></span><%= t('cancel_subject_registered') %></span>

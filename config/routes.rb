@@ -28,6 +28,7 @@ Shikechou::Application.routes.draw do
       get 'tags' => 'subjects#tags', on: :member
       get 'periods' => 'subjects#periods', on: :member
       post 'new_auto' => 'subjects#new_auto', on: :member
+      get 'reload/:id' => 'subjects#reload', on: :collection
     end
       
     resources :notes do
@@ -63,7 +64,7 @@ Shikechou::Application.routes.draw do
       get 'schedule/index' => :index
       get 'schedule' => :index, as: :schedule
       post 'schedule' => :create, as: 'schedule_create'
-      get 'schedule/view_option' => 'schedule#view_option'
+      get 'schedule/view_option' => 'schedule#view_option' # change style of table: week <-> day
     end
     
     resources :requests

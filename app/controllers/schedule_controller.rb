@@ -68,7 +68,7 @@ class ScheduleController < ApplicationController
     respond_to do |format|
       format.html { redirect_to schedule_path }
       format.js
-      format.json { render json: { status: status } }
+      format.json { render json: { status: status } } #for subject index and subject show page
     end
   end
 
@@ -103,7 +103,7 @@ class ScheduleController < ApplicationController
     respond_to do |format|    
       format.html { redirect_to schedule_path }
       format.js
-      format.json { render json: {status: status } }
+      format.json { render json: {status: status } } #for subject index and subject show page
     end
   end
   

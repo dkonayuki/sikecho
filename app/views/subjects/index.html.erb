@@ -119,3 +119,29 @@
 
 </div> <!-- end of subjects -->
 
+
+<!-- modal -->
+<div class="mfp-hide skc-modal" id="subject-schedule-register">
+	<div class="skc-modal-img">
+		<%= image_tag('calendar.png') %>
+	</div>
+	<div class="skc-modal-content">
+		<h4><%= t('subject_register_confirm') %></h4>
+		<div class="skc-modal-menu">
+			<%= link_to t('ok'), '', class: 'btn btn-sm btn-blue', data: {'skc-confirm' => 'ok'} %>
+			<%= link_to t('cancel'), '', class: 'btn btn-sm btn-red' %>
+		</div>
+	</div>
+</div>
+<div class="mfp-hide skc-modal" id="subject-schedule-remove">
+	<div class="skc-modal-img">
+		<%= image_tag('calendar.png') %>
+	</div>
+	<div class="skc-modal-content">
+		<h4><%= t('subject_remove_confirm') %></h4>
+		<div class="skc-modal-menu">
+			<%= link_to t('ok'), '', class: 'btn btn-sm btn-blue', data: {'skc-confirm' => 'ok'} %>
+			<%= link_to t('cancel'), '', class: 'btn btn-sm btn-red' %>
+		</div>
+	</div>
+</div>

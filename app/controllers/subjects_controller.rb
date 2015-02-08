@@ -1,5 +1,5 @@
 class SubjectsController < ApplicationController
-  before_action :set_subject, only: [:show, :edit, :update, :destroy, :inline, :version, :outline, :tags, :periods, :new_auto]
+  before_action :set_subject, only: [:show, :edit, :update, :destroy, :inline, :version, :outline, :tags, :periods, :new_auto, :reload]
   before_action :authenticate_user!, only: [:edit, :update, :new, :create]
   load_and_authorize_resource only: [:new, :edit, :destroy]
   
@@ -139,6 +139,13 @@ class SubjectsController < ApplicationController
   # GET /subjects/1/edit
   def edit
     prepare_view_content
+  end
+  
+  # GET /subjects/reload/1
+  def reload
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /subjects

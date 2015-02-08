@@ -98,12 +98,30 @@ class NotesController < ApplicationController
   
   # POST /notes/1/like
   def like
-    
+    get_vote
+    if @vote.value == 0
+      @vote.value = 1
+    elsif @vote.value == 1
+      @vote.value = 0
+    end
+    @vote.save
+    respond_to do |format|
+      format.js
+    end
   end
   
   # POST /notes/1/dislike
   def dislike
-    
+    get_vote
+    if @vote.value == 0
+      @vote.value = -1
+    elsif @vote.value == -1
+      @vote.value = 0
+    end
+    @vote.save
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /notes/new
@@ -223,6 +241,14 @@ class NotesController < ApplicationController
   end
 
   private
+    def get_vote
+      @vote = @note.votes.find(current_user)
+      unless @vote
+        @vote = Vote.create(user: current_user, value: 0)
+        @note.votes << @vote
+      end
+    end
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_note
       # only show note belongs to appropriate subdomain/university

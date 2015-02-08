@@ -289,52 +289,79 @@ $(document).on("page:load ready", function() {
 
 		/*For dynamic schedule add btn*/
 		$("#subjects-list").on("click", ".subject-menu-line a", function() {
-			var href = $(this).attr("href");
-			var dataMethod = $(this).attr("data-method");
-			var subjectName = $(this).parent().data("name");
-			var imgPath = $(this).parent().data("img");
 			
-			//update schedule table, script file in here is not subjects/index.js.erb, 
-			//this file will be fired alter by reloadSubjectList()
-			$.ajax({
-				url: href,
-				type: dataMethod,
-				dataType: "json",
-				success: function(msg) {
-					if (msg.status == "ok") {
-						//reload subject list
-						reloadSubjectList();
+			var href = $(this).attr("href");
+			var dataMethod = $(this).data("method");
+			var subjectName = $(this).parents(".subject-item-line").data("name");
+			var subjectID = $(this).parents(".subject-item-line").data("id");
+			var imgPath = $(this).parents(".subject-item-line").data("img");
+			
+			/*Trigger magnific popup*/
+			$.magnificPopup.open({
+				showCloseBtn: false,
+			  removalDelay: 300,
+			  items: {
+		      src: dataMethod == "post" ? '#subject-schedule-register' : '#subject-schedule-remove',
+		      type: 'inline'
+			  },
+			  mainClass: "mfp-zoom-in",
+			  callbacks: {
+		  		open: function() {
+				    $(".skc-modal").off().on("click", "a", function() {
+				    	
+				    	// when user clicks on ok
+				    	if ($(this).data("skc-confirm") == "ok") {
+				    		$.ajax({
+									url: href,
+									type: dataMethod,
+									dataType: "json",
+									success: function(msg) {
+										if (msg.status == "ok") {
+											//need to get script in order to reload appropriate subject item
+											$.getScript("/" + I18n["meta"]["code"] + "/subjects/reload/" + subjectID, null);
 						
-						//Set notification
-						if (dataMethod == "post") {
-							$.gritter.add({
-								title: subjectName,
-								text: I18n["subject_register_notification"],
-								image: imgPath,
-								sticky: false, 
-								time: 5000,
-							});
-						} else {
-							$.gritter.add({
-								title: subjectName,
-								text: I18n["subject_remove_notification"],
-								image: imgPath,
-								sticky: false, 
-								time: 5000,
-							});
-						}
-					} else {
-						$.gritter.add({
-							title: subjectName,
-							text: I18n["error"],
-							image: imgPath,
-							sticky: false, 
-							time: 5000,
-						});
-					}
-
+											//Set notification depends on the button user clicked on
+											if (dataMethod == "post") {
+												$.gritter.add({
+													title: subjectName,
+													text: I18n["subject_register_notification"],
+													image: imgPath,
+													sticky: false, 
+													time: 5000,
+												});
+											} else {
+												$.gritter.add({
+													title: subjectName,
+													text: I18n["subject_remove_notification"],
+													image: imgPath,
+													sticky: false, 
+													time: 5000,
+												});
+											}
+										} else {
+											// error from server
+											$.gritter.add({
+												title: subjectName,
+												text: I18n["error"],
+												image: imgPath,
+												sticky: false, 
+												time: 5000,
+											});
+										}
+					
+									}
+								});
+				    	}
+				    	
+				    	// close popup after btn click
+				    	$.magnificPopup.close();
+				    	// prevent default link
+				    	return false;
+				    });
+				  }
 				}
 			});
+			
 			return false;
 		});
 		
