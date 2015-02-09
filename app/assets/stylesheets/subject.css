@@ -396,6 +396,43 @@
 	right: 10px;
 }
 
+
+.subject-card {
+	width: 200px;
+	height: 58px;
+	display: inline-block;
+	padding: 10px;
+	border: 1px solid #eee;
+	margin: 5px;
+	background: #fff;
+}
+
+.subject-card-img {
+	float: left;
+}
+
+.subject-card-content {
+	padding-left: 8px;
+	overflow: hidden;
+}
+
+.subject-card-name {
+	color: #E67E22;
+	font-size: 13px;
+	line-height: 16px;
+	height: 16px;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.subject-card-info {
+	font-size: 11px;
+	color: #888;
+	margin-top: 5px;
+}
+
 /* Subject show page
  ===============================================================================================*/
 
@@ -465,17 +502,6 @@
 
 #subject-edit {
 	margin-top: 20px;
-}
-
-.show-subject-header {
-	margin-bottom: 5px;
-}
-.show-subject-header img {
-	width: 45px;
-}
-
-.show-subject-header span {
-	font-size: 18px;
 }
 
 .subject-recommend-item {

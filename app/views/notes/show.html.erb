@@ -1,5 +1,5 @@
 <div id="show-note">
-	<div class="skc-box skc-box-lg">
+	<div class="skc-box skc-box-lg skc-box-no-padding">
 		<div class="skc-box-content">
 			<div class="skc-box-thumbnail">
 				<%= image_tag("note.png") %>
@@ -12,17 +12,9 @@
 					</p>
 				<% end %>
 				
-				<hr />
-				<% @note.subjects.each do |subject| %>
-				<%= render partial: "subjects/subject_card", locals: {subject: subject} %>
-				<div class="subject-hovercard hovercard" data-id="<%= subject.id %>">
-					<%= render partial: 'subjects/subject_hovercard', locals: {subject: subject} %>		
-				</div>
-				<% end %>
-				
 				<% if !@note.documents.empty? %>
-				<hr />
-				<%= render template: 'documents/index', locals: {documents: @note.documents.order('created_at ASC')} %>
+					<hr />
+					<%= render template: 'documents/index', locals: {documents: @note.documents.order('created_at ASC')} %>
 				<% end %>
 								
 				<hr />
@@ -59,9 +51,22 @@
 		</div>
 	</div><!-- end of skc-box -->
 	
+	<div id="note-subject-list">
+		<div class="header">		
+			<%= image_tag('lecture_color.png') %>
+			<span><%= t('subject_plural') %></span>
+		</div>
+		<% @note.subjects.each do |subject| %>
+			<%= render partial: "subjects/subject_card", locals: {subject: subject} %>
+			<div class="subject-hovercard hovercard" data-id="<%= subject.id %>">
+				<%= render partial: 'subjects/subject_hovercard', locals: {subject: subject} %>		
+			</div>
+		<% end %>
+	</div>
+				
 	<div id="note-tags-list">
 		<% if @tags.count > 0 %>
-		<div id="note-tags-list-header">
+		<div class="header">
 			<%= image_tag('subject-tag.png') %>
 			<span><%= t('tag_plural') %></span>
 		</div>

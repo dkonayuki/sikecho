@@ -314,6 +314,7 @@ en:
   intensive_course: Intensive course
   clear: Clear
   tag_plural: Tags
+  subject_plural: Subjects
   subject_register_notification: Added to schedule
   subject_remove_notification: Removed from schedule
   ago: ' ago'

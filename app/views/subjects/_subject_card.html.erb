@@ -1,7 +1,7 @@
 <div class="subject-card" data-id="<%= subject.id %>">
 	<div class="subject-card-img">
 	<%= link_to subject do %>
-		<%= image_tag('lecture_invert.png', class: 'avatar-xs subject-hovercard-target') %>
+		<%= image_tag(subject.display_picture_thumbnail, class: 'avatar-xs subject-hovercard-target') %>
 	<% end %>
 	</div>
 	<div class="subject-card-content">

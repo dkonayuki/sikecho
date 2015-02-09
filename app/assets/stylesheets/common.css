@@ -414,6 +414,18 @@ div.message {
 	bottom: 10px;
 }
 
+.header {
+	margin-bottom: 5px;
+}
+
+.header img {
+	width: 45px;
+}
+
+.header span {
+	font-size: 18px;
+}
+
 .btn-white {
 	border-top: none;
 	color: #555E6B;

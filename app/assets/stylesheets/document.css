@@ -18,8 +18,6 @@
 	text-align: center;
 	word-wrap: break-word;
 	position: relative;
-	padding-left: 25px;
-	padding-right: 25px;
 }
 
 #document-comment-section {
@@ -61,22 +59,44 @@
 
 .document-navigation-btn {
 	position: absolute;
+	font-size: 25px;
+	width: 20%;
+	min-width: 80px;
+	height: 100%;
+	background: rgba(255,255,255,0);
+}
+
+.document-navigation-btn span {
+	top: 50%;
+	position: absolute;
 	display: none;	
-	font-size: 20px;
+}
+
+.document-navigation-btn:hover {
+	background: rgba(255,255,255,0.3);
+}
+
+.document-navigation-btn:hover span {
+	display: block;
+	color: #555;
 }
 
 #document-prev {
 	left: 0;
-	top: 50%;
+	top: 0;
+}
+
+#document-prev span {
+	left: 25px;
 }
 
 #document-next {
 	right: 0;
-	top: 50%;
+	top: 0;
 }
 
-#document-content:hover .document-navigation-btn {
-	display: block;
+#document-next span {
+	right: 25px;
 }
 
 .document-info {
@@ -110,11 +130,6 @@
 	/* not remember why? */
 	.document-info {
 		display: -webkit-box;
-	}
-	
-	/* always display when window-size is small*/
-	.document-navigation-btn {
-		display: block;
 	}
 }
 
