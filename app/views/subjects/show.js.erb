@@ -1,3 +1,3 @@
 $("#collapseNotes").html("<%=j render(partial: 'notes/note_line', collection: @notes, as: :note) || t('note_not_found') %>");
-$("#show-subject-schedule").html("<%=j render 'schedule_menu' %>");
-$("#show-subject-schedule-mobile").html("<%=j render 'schedule_menu_mobile' %>");
+$("#show-subject-schedule").html("<%=j render partial: 'schedule_menu', locals: {subject: @subject} %>");
+$("#show-subject-schedule-mobile").html("<%=j render partial: 'schedule_menu_mobile', locals: {subject: @subject} %>");

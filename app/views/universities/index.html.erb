@@ -64,7 +64,7 @@
 	</div>
 	
 	<div id="universities-list" class="clear">
-		<%= render 'university_list' %>
+		<%= render partial: 'university_list', locals: {universities: @universities} %>
 	</div>
 </div>
 

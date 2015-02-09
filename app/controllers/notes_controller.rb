@@ -1,10 +1,10 @@
 class NotesController < ApplicationController
-  before_action :set_note, only: [:show, :edit, :update, :destroy, :documents, :tags]
+  before_action :set_note, only: [:show, :edit, :update, :destroy, :documents, :tags, :like, :dislike]
   impressionist actions: [:show] #for count number
   before_action :authenticate_user!
   load_and_authorize_resource only: [:index, :show, :new, :edit, :destroy] #for ability
     
-  include NotesHelper
+  include NotesHelper # need this to use helper method in view
 
   # GET /notes
   # GET /notes.json
@@ -76,8 +76,10 @@ class NotesController < ApplicationController
     #mark as read for impression gem
     @note.mark_as_read! for: @user
     
-    @like_count = @note.votes.where('value = ?', 1).count
-    p @like_count
+    #get information for note like/dislike menu
+    @vote = get_vote
+    @like_number = @note.votes.where('value = ?', 1).count
+    @dislike_number = @note.votes.where('value = ?', -1).count
     
     #get previous note, next note
     notes = @note.subjects.first.notes
@@ -98,13 +100,19 @@ class NotesController < ApplicationController
   
   # POST /notes/1/like
   def like
-    get_vote
-    if @vote.value == 0
-      @vote.value = 1
-    elsif @vote.value == 1
+    @vote = get_vote
+    
+    if @vote.value == 1
       @vote.value = 0
+    else
+      @vote.value = 1
     end
     @vote.save
+    
+    #get information for note like/dislike menu
+    @like_number = @note.votes.where('value = ?', 1).count
+    @dislike_number = @note.votes.where('value = ?', -1).count
+    
     respond_to do |format|
       format.js
     end
@@ -112,13 +120,19 @@ class NotesController < ApplicationController
   
   # POST /notes/1/dislike
   def dislike
-    get_vote
-    if @vote.value == 0
-      @vote.value = -1
-    elsif @vote.value == -1
+    @vote = get_vote
+    
+    if @vote.value == -1
       @vote.value = 0
+    else
+      @vote.value = -1
     end
     @vote.save
+    
+    #get information for note like/dislike menu
+    @like_number = @note.votes.where('value = ?', 1).count
+    @dislike_number = @note.votes.where('value = ?', -1).count
+    
     respond_to do |format|
       format.js
     end
@@ -242,11 +256,13 @@ class NotesController < ApplicationController
 
   private
     def get_vote
-      @vote = @note.votes.find(current_user)
-      unless @vote
-        @vote = Vote.create(user: current_user, value: 0)
-        @note.votes << @vote
+      vote = @note.votes.find_by_user_id(current_user.id)
+      unless vote
+        # have no idea why this doesn't work: vote = Vote.create(user: current_user, value: 0)
+        vote = Vote.create(user_id: current_user.id, value: 0)
+        @note.votes << vote
       end
+      vote
     end
   
     # Use callbacks to share common setup or constraints between actions.

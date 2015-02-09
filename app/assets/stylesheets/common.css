@@ -414,6 +414,21 @@ div.message {
 	bottom: 10px;
 }
 
+.skc-box-vote a:first-child {
+	margin-right: 10px;
+}
+
+.skc-box-vote a.active {
+	color: #c0392b;
+}
+
+.skc-box-vote .vote-number {
+	font-size: 11px;
+	vertical-align: middle;
+	display: inline-block;
+	margin-bottom: 5px;
+}
+
 .header {
 	margin-bottom: 5px;
 }

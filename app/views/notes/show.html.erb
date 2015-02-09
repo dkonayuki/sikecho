@@ -14,7 +14,9 @@
 				
 				<% if !@note.documents.empty? %>
 					<hr />
-					<%= render template: 'documents/index', locals: {documents: @note.documents.order('created_at ASC')} %>
+					<div id="note-documents-list" class="clear">
+					  <%= render @note.documents.order('created_at ASC') %>
+					</div>
 				<% end %>
 								
 				<hr />
@@ -40,12 +42,7 @@
 			</div>
 			
 			<div class="skc-box-vote">
-				<%= link_to like_note_path, method: :post, remote: true do %>
-					<span class="glyphicon glyphicon-thumbs-up"></span>
-				<% end %>
-				<%= link_to dislike_note_path, method: :post, remote: true do %>
-					<span class="glyphicon glyphicon-thumbs-down"></span>
-				<% end %>
+				<%= render partial: "note_vote_menu", locals: {note: @note, vote: @vote, like_number: @like_number, dislike_number: @dislike_number} %>
 			</div>
 			
 		</div>

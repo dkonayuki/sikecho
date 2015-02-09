@@ -1,14 +1,1 @@
-		<div id="new-comment">
-			<%= render partial: 'comments/form', locals: {is_new: true} %>
-		</div>
-		<div id="comments">
-			<%= render @comments %>
-		</div>
-		<div id="comments-pagination">
-			<% if !@comments.last_page? %>
-				<%= link_to_next_page @comments, t('.next'), remote: true, id: 'comment-next-page' %>
-			<% end %>
-		</div>
-		<div class="hidden-pagination">
-			<%= paginate @comments %>										
-		</div>
+<!-- not use -->

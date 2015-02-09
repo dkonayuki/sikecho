@@ -6,7 +6,7 @@ class DocumentsController < ApplicationController
   # GET /documents
   # GET /documents.json
   def index
-    @documents = Document.all
+    #@documents = Document.all
   end
 
   # GET /documents/1

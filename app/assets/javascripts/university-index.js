@@ -45,13 +45,6 @@ function prepareUniversities() {
 		}
 	});
 	
- 	/*For live search*/
-	var timeout; // add delay time
-	$("#filter-university input").keyup(function() {
-		window.clearTimeout(timeout); //clear delay
-    timeout = window.setTimeout(reloadUniversityList, 500);
-		return false;
-	});
 }
 
 function prepareMap() {
@@ -169,6 +162,7 @@ function reloadUniversityList() {
 	  success: function() {
 	  	//run after js.erb file executed
 			prepareMasonry();
+			prepareUniversities();
 	  },
 	  dataType: "script",
 		contentType: "application/json"
@@ -189,6 +183,14 @@ $(document).on("page:load ready", function() {
 	  });
 	  
 		$("body").css("background-color", "#fff");
+		
+	 	/*For live search*/
+		var timeout; // add delay time
+		$("#filter-university input").keyup(function() {
+			window.clearTimeout(timeout); //clear delay
+	    timeout = window.setTimeout(reloadUniversityList, 500);
+			return false;
+		});
 		
 		prepareMasonry();
 		prepareUniversities();

@@ -1,1 +1,1 @@
-$('#universities-list').html("<%=j render('university_list') %>");
+$('#universities-list').html("<%=j render partial: 'university_list', locals: {universities: @universities} %>");

@@ -15,7 +15,7 @@
 				
 				<% if user_signed_in? && current_university == current_user.current_university %>
 				<div id="show-subject-schedule" data-id="<%= @subject.id %>" data-name="<%= @subject.name %>" data-img="<%= @subject.display_picture_small %>">
-					<%= render 'schedule_menu' %>
+					<%= render partial: 'schedule_menu', locals: {subject: @subject} %>
 				</div>
 				<% end %>
 			</div>
@@ -32,7 +32,7 @@
 					<!-- mobile menu -->
 					<% if user_signed_in? && current_university == current_user.current_university %>
 						<li class="visible-xs" id="show-subject-schedule-mobile">
-							<%= render 'schedule_menu_mobile' %>
+							<%= render partial: 'schedule_menu_mobile', locals: {subject: @subject} %>
 				  	</li>
 				  	<li class="visible-xs">
 				      <%= link_to new_note_path(subject_id: @subject.id) do %>  
