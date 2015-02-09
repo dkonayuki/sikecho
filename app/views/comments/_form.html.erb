@@ -1,4 +1,4 @@
-<%= form_for([@document, @comment], html: {class: 'comment-form', remote: true, "data-id" => @comment.id}) do |f| %>
+<%= form_for([@commentable, @comment], html: {class: 'comment-form', remote: true, "data-id" => @comment.id}) do |f| %>
 <% if (defined? is_new).nil? %>
 	<% is_new = true %>
 <% end %>

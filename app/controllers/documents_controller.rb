@@ -24,7 +24,8 @@ class DocumentsController < ApplicationController
     #@next = documents.where('created_at > ?', @document.created_at).last
 
     #prepare for new comment form
-    @comment = @document.comments.build
+    @comment = @document.comments.build # need build instead of new, because the relationship between comment and document is needed
+    @commentable = @document
     
     #comment collection
     @comments = @document.comments.order('created_at DESC')

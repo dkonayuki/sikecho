@@ -35,13 +35,14 @@ ActiveRecord::Schema.define(version: 20150204163729) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
-    t.integer  "document_id"
     t.text     "content"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
-  add_index "comments", ["document_id"], name: "index_comments_on_document_id", using: :btree
+  add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "courses", force: true do |t|

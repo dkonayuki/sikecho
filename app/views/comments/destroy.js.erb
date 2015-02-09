@@ -1,4 +1,4 @@
-<% broadcast "/documents/#{@document.id}" do %>
+<% broadcast "/#{@commentable.class.name.underscore.pluralize}/#{@commentable.id}" do %>
 //destroy with animation
 	$(".media[data-id='" + <%= @id %> + "']").fadeOut("slow", function() {$(this).remove();});
 <% end %>

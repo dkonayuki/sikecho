@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-  before_action :set_document #set document for all actions, shallow: false
+  before_action :set_commentable #set commentable for all actions, shallow: false
   before_action :set_user #set user for all actions, for comment menu working
   before_action :authenticate_user!
   load_and_authorize_resource only: [:index, :show, :new, :edit, :destroy]
@@ -9,10 +9,10 @@ class CommentsController < ApplicationController
   # GET /comments.json
   def index
     # index action is not called
-    # @comments collection will be retrieved in document controller 
-    # or view using document.comments
+    # @comments collection will be retrieved in commentable controller (for instance: document)
+    # or view using @commentable.comments
     
-    # kaminari pagination is also implemented in document show action
+    # kaminari pagination is also implemented in commentable show action
   end
 
   # GET /comments/1
@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
-    #need @comment = @document.comments.build at form or at document controller because ajax-popup call index instead of new action
+    #need @comment = @commentable.comments.build at form or at commentable controller because ajax-popup call index instead of new action
   end
 
   # GET /comments/1/edit
@@ -35,7 +35,7 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @comment = @document.comments.new(comment_params)
+    @comment = @commentable.comments.new(comment_params)
     @comment.user = @user
 
     respond_to do |format|
@@ -84,7 +84,7 @@ class CommentsController < ApplicationController
     
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to document_comments_path(@comment.document) }
+      format.html {}
       format.js
       format.json { head :no_content }
     end
@@ -101,8 +101,13 @@ class CommentsController < ApplicationController
     end
 
     # set @document for actions and views/js.erb file
-    def set_document
-      @document = Document.find(params[:document_id])  
+    def set_commentable
+      # user can only comment on Document at the momment
+      # comment on subject and note can be implemented later, remember to add routes and params.permit
+      # klass will detect the class passed in params, for instance, klass = Document
+      klass = [Subject, Note, Document].detect { |c| params["#{c.name.underscore}_id"] }
+      # find commentable in klass model
+      @commentable = klass.find(params["#{klass.name.underscore}_id"])
     end
     
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -110,7 +115,7 @@ class CommentsController < ApplicationController
       # need :is_update parameter to distinguish whenever user clicked on update or cancel button
       # :is_update is passed from additional button in form
       # f.submit won't allow custom block content and additional parameter
-      params.permit(:document_id, :is_update)
+      params.permit(:document_id, :is_update, :id)
       params.require(:comment).permit(:content)
     end
 end

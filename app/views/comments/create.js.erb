@@ -1,6 +1,6 @@
 //if @success exists and is true
 <% if @success %>
-	<% broadcast "/documents/#{@document.id}" do %>
+	<% broadcast "/#{@commentable.class.name.underscore.pluralize}/#{@commentable.id}" do %>
 		// prepend with animation
 		$("<%=j render @comment %>").hide().prependTo("#comments").fadeIn("slow");
 		$("#new-comment #comment-content").val("");

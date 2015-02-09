@@ -24,12 +24,12 @@
 
     <div class="media-menu">
 		<% if can? :update, comment %>
-			<%= link_to edit_document_comment_path(comment.document, comment), remote: true do %>
+			<%= link_to [:edit, comment.commentable, comment], remote: true do %>
 				<span class="glyphicon glyphicon-pencil"></span>
 			<% end %>
 		<% end %>
 		<% if can? :update, comment %>
-			<%= link_to document_comment_path(comment.document, comment), method: :delete, data: { confirm: t('delete_confirm') }, remote: true do %>
+			<%= link_to [comment.commentable, comment], method: :delete, data: { confirm: t('delete_confirm') }, remote: true do %>
 				<span class="glyphicon glyphicon-remove"></span>
 			<% end %>
 		<% end %>
