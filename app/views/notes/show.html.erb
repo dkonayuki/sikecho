@@ -40,7 +40,12 @@
 					<% end %>
 				<% end %>
 			</div>
-			
+			<div class="skc-box-star">
+				<%= link_to '' do %>
+					<i class="fa fa-star-o"></i>
+					<i class="fa fa-star"></i>
+				<% end %>
+			</div>
 			<div class="skc-box-vote">
 				<%= render partial: "note_vote_menu", locals: {note: @note, vote: @vote, like_number: @like_number, dislike_number: @dislike_number} %>
 			</div>

@@ -82,13 +82,11 @@
 	width: 20px;
 	margin-right: 10px;
 	margin-top: 3px;
-	background-image: url('note.png'); /* use background to preload */
-	background-size:20px 20px;
-	background-repeat:no-repeat;
 }
 
 .note-details {
-	float: left;
+	width: auto;
+	overflow: hidden;
 }
 
 .note-title {
@@ -108,6 +106,8 @@
 .note-tags {
 	text-align: left;
 	font-size: 11px;
+	height: 34px;
+	overflow: hidden;
 }
 
 .note-tags .label {
@@ -122,15 +122,17 @@
 }
 
 .note-time {
-	top: 5px;
-	right: 16px;
-	position: absolute;
 }
 
 .note-view {
-	bottom: 5px;
-	right: 16px;
-	position: absolute;
+	margin-top: 35px;
+}
+
+@media (max-width: 469px) {
+	.note-item {
+		width: 100%;
+		margin-left: 0;
+	}
 }
 
 .filter-bar {

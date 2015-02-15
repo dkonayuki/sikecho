@@ -406,6 +406,14 @@ div.message {
 	float: right;
 }
 
+.skc-box-star {
+	position: absolute;
+	right: 20px;
+	bottom: 40px;
+	font-size: 20px;
+	color: #999;
+}
+
 .skc-box-vote {
 	font-size: 16px;
 	position: absolute;
