@@ -409,9 +409,12 @@ div.message {
 .skc-box-star {
 	position: absolute;
 	right: 20px;
-	bottom: 40px;
+	bottom: 35px;
 	font-size: 20px;
-	color: #999;
+}
+
+.skc-box-star a.active {
+	color: #c0392b;
 }
 
 .skc-box-vote {

@@ -1,0 +1,9 @@
+<% if is_starred == 1 %>
+	<%= link_to star_note_path(star: 0), method: :post, remote: true, class: 'active' do %>
+		<i class="fa fa-star"></i>
+	<% end %>
+<% else %>
+	<%= link_to star_note_path(star: 1), method: :post, remote: true do %>
+		<i class="fa fa-star-o"></i>
+	<% end %>
+<% end %>

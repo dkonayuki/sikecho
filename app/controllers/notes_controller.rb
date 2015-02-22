@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_action :set_note, only: [:show, :edit, :update, :destroy, :documents, :tags, :like, :dislike]
+  before_action :set_note, only: [:show, :edit, :update, :destroy, :documents, :tags, :like, :dislike, :star]
   impressionist actions: [:show] #for count number
   before_action :authenticate_user!
   load_and_authorize_resource only: [:index, :show, :new, :edit, :destroy] #for ability
@@ -81,6 +81,14 @@ class NotesController < ApplicationController
     @like_number = @note.votes.where('value = ?', 1).count
     @dislike_number = @note.votes.where('value = ?', -1).count
     
+    #get favorite information
+    favorite = @note.favorites.find_by_user_id(current_user.id)
+    if favorite
+      @is_starred = 1
+    else
+      @is_starred = 0
+    end
+    
     #get previous note, next note
     notes = @note.subjects.first.notes
     @prev = notes.where('created_at < ?', @note.created_at).first
@@ -137,6 +145,25 @@ class NotesController < ApplicationController
       format.js
     end
   end
+  
+  # POST /notes/1/star
+  def star
+    @user = current_user
+    @is_starred = 1
+    
+    favorite = @note.favorites.find_by_user_id(current_user.id)
+    if favorite
+      if params[:star].to_i == 0
+        favorite.destroy
+        @is_starred = 0
+      end
+    else
+      if params[:star].to_i == 1
+        favorite = @note.favorites.create(user: @user)
+        @is_starred = 1
+      end
+    end
+  end
 
   # GET /notes/new
   def new
@@ -156,6 +183,7 @@ class NotesController < ApplicationController
     #convert full-width to half-width
     tags_text = Moji.zen_to_han(params[:tags])
     tags = tags_text.split(',')
+    
     @user = current_user
     @note = Note.new(note_params)
     @note.tag_list = tags
@@ -255,6 +283,7 @@ class NotesController < ApplicationController
   end
 
   private
+    # create vote if not existed
     def get_vote
       vote = @note.votes.find_by_user_id(current_user.id)
       unless vote
@@ -264,7 +293,7 @@ class NotesController < ApplicationController
       end
       vote
     end
-  
+    
     # Use callbacks to share common setup or constraints between actions.
     def set_note
       # only show note belongs to appropriate subdomain/university
@@ -273,7 +302,7 @@ class NotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
-      params.permit(:document, :tags, :filter, :subject_id, :document_ids, :page, :order, :search)
+      params.permit(:document, :tags, :filter, :subject_id, :document_ids, :page, :order, :search, :star)
       params.require(:note).permit(:title, :content, :subjects)
     end
 

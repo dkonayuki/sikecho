@@ -28,6 +28,7 @@ Shikechou::Application.routes.draw do
       get 'tags' => 'subjects#tags', on: :member
       get 'periods' => 'subjects#periods', on: :member
       post 'new_auto' => 'subjects#new_auto', on: :member
+      # need to reload 1 subject when register btn clicked.
       get 'reload/:id' => 'subjects#reload', on: :collection
     end
       
@@ -37,6 +38,7 @@ Shikechou::Application.routes.draw do
       get 'tags' => 'notes#tags', on: :member
       post 'like' => 'notes#like', on: :member
       post 'dislike' => 'notes#dislike', on: :member
+      post 'star' => 'notes#star', on: :member
     end
     
     #get tags.json
@@ -76,7 +78,8 @@ Shikechou::Application.routes.draw do
       put 'inline' => 'documents#inline', on: :collection
       resources :comments, except: [:new]
     end
-      
+    
+    # routes for search in header
     get 'search' => 'search#search', as: 'search'
       
     # The priority is based upon order of creation: first created -> highest priority.
