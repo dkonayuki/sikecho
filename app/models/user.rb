@@ -119,8 +119,8 @@ class User < ActiveRecord::Base
   #return a collection of notes which are related to regitered subjects
   def registered_notes
     #select distinct notes from crazy joins
-    Note.select('distinct notes.*').joins('INNER JOIN notes_subjects ON notes.id = notes_subjects.note_id')
-      .joins('INNER JOIN subjects ON subjects.id = notes_subjects.subject_id')
+    # joins(:subjects) is equivalent to .joins('INNER JOIN notes_subjects ON notes.id = notes_subjects.note_id').joins('INNER JOIN subjects ON subjects.id = notes_subjects.subject_id')
+    Note.select('distinct notes.*').joins(:subjects)
       .joins('INNER JOIN registers ON registers.subject_id = subjects.id')
       .joins('INNER JOIN educations ON educations.id = registers.education_id')
       .where('educations.id = ?', self.current_education.id)

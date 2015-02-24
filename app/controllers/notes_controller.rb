@@ -32,6 +32,12 @@ class NotesController < ApplicationController
         @notes = @user.registered_notes
       when :new_arrival_note
         @notes = @user.registered_notes.unread_by(@user)
+      when :favorite
+        #use sql join instead of scope because a collection of notes is needed for further processing
+        @notes = Note.select('distinct notes.*')
+        .joins('INNER JOIN favorites ON favorites.favoritable_id = notes.id')
+        .joins('INNER JOIN users ON users.id = favorites.user_id')
+        .where('users.id = ? AND favorites.favoritable_type = ?', @user.id, 'Note')
       when :all
         @notes = @user.current_university.notes
       else

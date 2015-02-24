@@ -420,6 +420,7 @@ en:
       year: ''
   notes:
     index:
+      favorite: Starred
       note_menu: Menu
       registered_subjects_note: Registered notes
       my_note: My notes

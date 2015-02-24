@@ -9,6 +9,7 @@
 					<div class="mp-level" data-level="1">
 						<h4 class="icon-menu"><%= t('.note_menu') %></h4>
 						 <ul>
+							<li><%= link_to t('.favorite'), notes_path(filter: 'favorite'), data: {type: 'favorite'} %></li>
 						  <li>
 						  	<%= link_to notes_path(filter: 'new_arrival_note'), data: {type: 'new_arrival_note'} do %>
 							  	<%= t('.new_arrival_note') %>
@@ -56,6 +57,7 @@
 								    	<% end %>
 								  	<% end %>
 								  </li>
+	  							<li><%= link_to t('.favorite'), notes_path(filter: 'favorite'), data: {type: 'favorite'} %></li>
 								</ul>
 							</div>
 							<div id="note-order-option">

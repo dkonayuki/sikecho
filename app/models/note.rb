@@ -32,8 +32,8 @@ class Note < ActiveRecord::Base
     if search
       #where('title LIKE ?', "%#{search}%")
       q = "%#{search.downcase}%"
-      select('distinct notes.*').joins("LEFT JOIN taggings on Notes.id = taggings.taggable_id")
-      .joins("LEFT JOIN tags on tags.id = taggings.tag_id")
+      select('distinct notes.*').joins("LEFT JOIN taggings ON notes.id = taggings.taggable_id")
+      .joins("LEFT JOIN tags ON tags.id = taggings.tag_id")
       .where('lower(title) LIKE ? OR lower(tags.name) LIKE ?', q, q)
       #no more search by subject name
     else

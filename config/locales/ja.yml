@@ -390,6 +390,7 @@ ja:
       year: 年
   notes:
     index:
+      favorite: お気に入り
       note_menu: メニュー
       registered_subjects_note: 授業のノート
       my_note: 自分のノート

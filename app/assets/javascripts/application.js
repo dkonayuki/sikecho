@@ -57,9 +57,10 @@ function setMaxWidth() {
 		$("#filter-subject").css("width", $("#subjects-content").width() - $("#new-subject-btn").outerWidth(true) - 40);
 	}
 
-	//search form will shrink when window size is too small. max-width = 200px
+	//search form will shrink when window size is too small. max-width = 220px
+	//15px is for space between search form and new note btn
 	if ($("#filter-note").length) {
-		$("#filter-note").css("width", $("#notes").width() - $("#pushmenu-trigger").outerWidth(true) - $("#new-note-btn").outerWidth(true) - 40);
+		$("#filter-note").css("width", $(".filter-bar").width() - $("#pushmenu-trigger").outerWidth(true) - $(".filter-menu").width() - $("#new-note-btn").outerWidth(true) - 15);
 	}
 }
 
