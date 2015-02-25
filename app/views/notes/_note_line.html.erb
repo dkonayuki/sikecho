@@ -1,7 +1,23 @@
 <div class="note-item col-xs-12 col-sm-6">
 	<div class="note-item-inner">
+		
 	  <div class="note-thumbnail">
+	  	<%= link_to note do %>
+	  		<%= image_tag('note.png') %>
+  		<% end %>
 	  </div>
+	  
+	  <div class="note-info">
+	  	<div class="note-time">
+	  		<%= time_ago_in_words(note.created_at) %><%= t('ago') %>
+			</div>
+	
+	  	<div class="note-view">
+				<span class="glyphicon glyphicon-eye-open"></span>
+				<%= note.impressionist_count %>
+			</div>
+		</div>
+		
 	  <div class="note-details">
 	    <div class="note-title"><%= link_to "#{note.title}", note %></div>
 	    <div class="note-tags">
@@ -21,15 +37,6 @@
 	      <% end %>
 	    </div>
 	  </div>
-	  <div class="note-info">
-	  	<div class="note-time">
-	  		<%= time_ago_in_words(note.created_at) %><%= t('ago') %>
-			</div>
-	
-	  	<div class="note-view">
-				<span class="glyphicon glyphicon-eye-open"></span>
-				<%= note.impressionist_count %>
-			</div>
-		</div>
+	  
 	</div>
 </div>

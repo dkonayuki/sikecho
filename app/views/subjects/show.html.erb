@@ -25,9 +25,9 @@
 	<!-- main part -->
 	<div id="show-subject" class="col-sm-9 col-xs-12">
 		<ul id="year-list" class="clear">
-			<li class="dropdown year-item">
+			<div class="dropdown" id="show-subject-dropdown">
 				<a data-toggle="dropdown" class="btn btn-navi btn-sm dropdown-toggle"><span class="glyphicon glyphicon-cog"></span></a>
-				<ul class="dropdown-menu pull-right" id="show-subject-dropdown">
+				<ul class="dropdown-menu pull-right" id="show-subject-dropdown-list">
 					
 					<!-- mobile menu -->
 					<% if user_signed_in? && current_university == current_user.current_university %>
@@ -53,7 +53,7 @@
 						</li>
 					<% end %>
 				</ul>
-			</li>
+			</div>
 			<% @same_subjects.each do |subject| %>
 				<% if subject.year == @subject.year %>
 					<li class="year-item"><span class="btn btn-white btn-sm active"><%= subject.year %></span></li>
@@ -206,7 +206,7 @@
 		<% if @recommend_subjects.count > 0 %>
 		<br />
 		<div class="header">
-			<%= image_tag('subject_recommend.png') %>
+			<%= image_tag('lecture_color.png') %>
 			<span><%= t('.recommend_subject')%>:</span>
 		</div>
 		<div class="has-margin-lg">

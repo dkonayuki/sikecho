@@ -1,6 +1,6 @@
 class Favorite < ActiveRecord::Base
   # to use @user.favorites.notes
-  #scope :notes, -> { where(favoritable_type: 'Note') }
+  scope :notes, -> { where(favoritable_type: 'Note') }
 
   belongs_to :user
   

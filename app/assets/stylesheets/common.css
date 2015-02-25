@@ -95,6 +95,16 @@ div.message {
 	font-size: 18px;
 }
 
+.search-form {
+	margin: 0;
+	padding: 0;
+	float: left;
+}
+
+.hidden-pagination {
+	display: none;
+}
+
 #notice {
   color: green;
 }
@@ -177,6 +187,14 @@ div.message {
 
 .badge-info {
 	background-color: #3498DB;
+}
+
+.badge-orange {
+	background-color: #c0392b;
+}
+
+.badge-navi {
+	background-color: #34495E;
 }
 
 .badge-sm {

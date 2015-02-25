@@ -10,7 +10,7 @@
 				<% end %>
 			<% end %>
 			
-		  <%= form_tag subjects_path, method: :get, class: "filter-form", id: "filter-subject" do %>
+		  <%= form_tag subjects_path, method: :get, class: "search-form", id: "subject-search" do %>
 		    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: t('.subject_search'), autocorrect: "off", autocapitalize: "off" %>
 			<% end %>
 		</div>

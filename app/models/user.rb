@@ -33,6 +33,7 @@ class User < ActiveRecord::Base
 
   acts_as_reader
   
+  #settings, store in user model
   has_settings do |s|
     s.key :note, defaults: { order: :time }
     s.key :subject, defaults: { order: :all }

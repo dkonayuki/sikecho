@@ -1,7 +1,7 @@
 /*Schedule
  ===============================================================================================*/
 
-#filter-schedule {
+#schedule-search {
 	width: 100%;
 	max-width: 250px;
 	margin: 0 auto;
@@ -28,6 +28,12 @@
 	font-weight: 700;
 }
 
+#schedule-search-form {
+	position: relative;
+	margin-top: 10px;
+	background-color: #fff;
+}
+
 #schedule-sub-list {
 	margin-top: 10px;
 	text-align: center;
@@ -37,9 +43,8 @@
 	background-color: #eee;
 }
 
-#form-schedule {
-	max-width: 400px;
-	margin: 0 auto;
+#schedule-menu {
+	margin-bottom: 10px;
 }
 
 #schedule-table-wrapper {

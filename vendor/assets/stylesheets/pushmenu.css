@@ -199,6 +199,10 @@
 	font-weight: 700;
 }
 
+.mp-menu ul li > a img {
+	width: 30px;
+}
+
 .mp-menu ul li::before {
 	position: absolute;
 	left: 10px;

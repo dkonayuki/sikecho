@@ -19,7 +19,7 @@ $(document).on("page:load ready", function() {
 	    drop: function( event, ui ) {
 	    	
 	    	//update query and page
-	  		var query = $("#filter-schedule #search").val();
+	  		var query = $("#schedule-search #search").val();
 				var page = $("#schedule-sub-list ul").data("page");
 				
 	      $.ajax({
@@ -75,7 +75,7 @@ $(document).on("page:load ready", function() {
 		/*
 		$("#schedule-table-wrapper").on("click", ".subject-remove", function() {
 	  	//update query and page
-			var query = $("#filter-schedule #search").val();
+			var query = $("#schedule-search #search").val();
 			var page = $("#schedule-sub-list ul").data("page");
 			var day = $("#schedule-table th.active").data("day");
 			
@@ -92,12 +92,12 @@ $(document).on("page:load ready", function() {
 		/*For live search*/
 		var timeout; // add delay time
 	
-	  $("#filter-schedule input").keyup(function() {
+	  $("#schedule-search input").keyup(function() {
 			window.clearTimeout(timeout); //clear delay
 	    timeout = window.setTimeout(function() { //set a new delay, after an amount of time, ajax function will be called
 			  $.ajax({
-				  url: $("#filter-schedule").attr("action"),
-				  data: $("#filter-schedule").serialize(), //default contenttype is url text
+				  url: $("#schedule-search").attr("action"),
+				  data: $("#schedule-search").serialize(), //default contenttype is url text
 				  success: ajaxSuccess,
 				  dataType: "script"
 				});

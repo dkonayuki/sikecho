@@ -7,6 +7,7 @@
 ._*
 /public/uploads/*
 /public/system/*
+/public/assets/*
 
 # for eclipse
 .project

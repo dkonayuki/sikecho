@@ -54,7 +54,7 @@ gem 'rails_12factor', group: :production
 gem 'acts-as-taggable-on', '~> 3.4.1'
 
 #bootstrap
-gem "bootstrap-sass", "~> 3.2.0"
+gem 'bootstrap-sass', '~> 3.3.3'
 
 #gem moji for japanese character
 gem "moji", "~> 1.6"

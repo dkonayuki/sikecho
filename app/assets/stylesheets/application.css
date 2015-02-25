@@ -17,7 +17,7 @@
  *= require bootstrap-select.css
  *= require bootstrap-tagsinput.css
  *= require wysihtml5
- *= require jquery.ui.all
+ *= require jquery-ui
  *= require bootstrap3-typeahead.css
  *= require jquery.fileupload-ui
  *= require bootstrap-editable

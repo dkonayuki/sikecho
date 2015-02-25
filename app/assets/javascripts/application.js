@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.all
+//= require jquery-ui
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require bootstrap-select.js
@@ -53,14 +53,14 @@ function setMaxWidth() {
 	}
 	
 	//search form will shrink when window size is too small. max-width = 200px
-	if ($("#filter-subject").length) {
-		$("#filter-subject").css("width", $("#subjects-content").width() - $("#new-subject-btn").outerWidth(true) - 40);
+	if ($("#subject-search").length) {
+		$("#subject-search").css("width", $("#subjects-content").width() - $("#new-subject-btn").outerWidth(true) - 40);
 	}
 
 	//search form will shrink when window size is too small. max-width = 220px
 	//15px is for space between search form and new note btn
-	if ($("#filter-note").length) {
-		$("#filter-note").css("width", $(".filter-bar").width() - $("#pushmenu-trigger").outerWidth(true) - $(".filter-menu").width() - $("#new-note-btn").outerWidth(true) - 15);
+	if ($("#note-search").length) {
+		$("#note-search").css("width", $("#note-menu").width() - $("#pushmenu-trigger").outerWidth(true) - $(".filter-menu").width() - $("#new-note-btn").outerWidth(true) - 15);
 	}
 }
 
@@ -127,7 +127,7 @@ $(document).on("page:load ready", function() {
 	prepareFirstTime();
 	
   // disable enter key in filter form
-  $(".filter-form").on("submit", function() {
+  $(".search-form").on("submit", function() {
 		return false; 
   });
 

@@ -221,8 +221,8 @@ function reloadSubjectList() {
 	data.courses = courses;
 	
 	//check if search query is needed
-	if ($("#filter-subject #search").val() != "") {
-		data.search = $("#filter-subject #search").val();
+	if ($("#subject-search #search").val() != "") {
+		data.search = $("#subject-search #search").val();
 	}
 	
 	//check if order option is needed
@@ -281,7 +281,7 @@ $(document).on("page:load ready", function() {
 	 	
 	 	/*For live search*/
  		var timeout; // add delay time
-		$("#filter-subject input").keyup(function() {
+		$("#subject-search input").keyup(function() {
 			window.clearTimeout(timeout); //clear delay
 	    timeout = window.setTimeout(reloadSubjectList, 500);
 			return false;

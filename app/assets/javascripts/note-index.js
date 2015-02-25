@@ -14,8 +14,8 @@ function reloadNoteList() {
 	});
 	
 	//check if search query
-	if ($("#filter-note #search").val() != "") {
-		data.search = $("#filter-note #search").val();
+	if ($("#note-search #search").val() != "") {
+		data.search = $("#note-search #search").val();
 	}
 
   $.ajax({
@@ -44,6 +44,7 @@ function prepareLoadNotePage() {
 		$(".filter-menu a[data-type='" + filter + "']").addClass("active");
 		$("#mp-menu a[data-type='" + filter + "']").addClass("active");
 	}
+	// dont need to check order options from js because user settings is used in view/model
 }
 
 $(document).on("page:load ready", function() {
@@ -54,7 +55,7 @@ $(document).on("page:load ready", function() {
 
 		/*For live search*/
 		var timeout; // add delay time
-	  $("#filter-note input").keyup(function() {
+	  $("#note-search input").keyup(function() {
 			window.clearTimeout(timeout); //clear delay
 	    timeout = window.setTimeout(reloadNoteList, 500);
 
