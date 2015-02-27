@@ -69,7 +69,7 @@ class NotesController < ApplicationController
     @notes = @notes.search(params[:search])
     
     #paginate @notes
-    @notes = @notes.page(params[:page]).per(4)
+    @notes = @notes.page(params[:page]).per(20)
     
     case @user.settings(:note).layout
     when :all
