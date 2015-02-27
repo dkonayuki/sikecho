@@ -363,13 +363,13 @@ $(document).on("page:load ready", function() {
 		});
 		
 		/*For endless page*/
-		if ($(".hidden-pagination").length) {
+		if ($("#subjects .hidden-pagination").length) {
 			$(window).scroll(function(){
-				url = $(".next a").attr("href");
+				url = $("#subjects .next a").attr("href");
 				//need url so it won't be called multiple times
 		    if (url && ($(window).scrollTop() > $(document).height() - $(window).height() - 50)) {
 		    	//disable pagination link
-		    	$(".pagination").text("fetching...");
+		    	$("#subjects .pagination").text("fetching...");
 
 		    	//append loading.gif
 	  			$('#subjects-list').append("<div id='loading'><img src='/assets/loading.gif'></div>");

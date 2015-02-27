@@ -114,12 +114,12 @@ $(document).on("page:load ready", function() {
 		});
 		
 		/*For endless page*/
-		if ($(".hidden-pagination").length) {
+		if ($("#notes .hidden-pagination").length) {
 			$(window).scroll(function(){
-				url = $(".next a").attr("href");
+				url = $("#notes .next a").attr("href");
 		    if (url && ($(window).scrollTop() > $(document).height() - $(window).height() - 50)) {
 		    	//disable pagination link
-		    	$(".pagination").text("fetching...");
+		    	$("#notes .pagination").text("fetching...");
 		    	//append loading.gif
 	  			$('#notes-list').append("<div id='loading'><img src='/assets/loading.gif'></div>");
 					$.getScript(url);

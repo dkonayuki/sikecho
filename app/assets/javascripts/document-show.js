@@ -32,7 +32,7 @@ function prepareComments() {
 	
 	/*For comment pagination*/
 	$("#comments-pagination").on("click", "#comment-next-page", function() {
-		var url = $(".hidden-pagination .next a").attr("href");
+		var url = $("#show-document .hidden-pagination .next a").attr("href");
 		if (url) {
 			// hide pagination in case user click too many times
     	$(".pagination").text("fetching...");
