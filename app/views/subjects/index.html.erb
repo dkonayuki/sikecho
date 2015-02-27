@@ -78,10 +78,10 @@
 				</div>
 				<div id="subject-menu-week">
 					<div id="subject-time">
-						<%= select_tag :time, options_for_select(0.upto(Period::MAX_TIME).map { |t| [t('date.period_names')[t], t] }), class: 'selectpicker', data: {width: 'auto', style: 'btn-sm btn-default'}, title: '' %>
+						<%= select_tag :time, options_for_select(0.upto(Period::MAX_TIME).map { |t| [t('date.period_names')[t], t] }), class: 'selectpicker select-youtube', data: {width: 'auto', style: 'btn-sm btn-default'}, title: '' %>
 					</div>
 					<div id="subject-day">
-						<%= select_tag :day, options_for_select(0.upto(Period::MAX_DAY).map { |d| [t('date.abbr_day_names_with_all')[d], d] }), class: 'selectpicker', data: {width: 'auto', style: 'btn-sm btn-default'}, title: '' %>
+						<%= select_tag :day, options_for_select(0.upto(Period::MAX_DAY).map { |d| [t('date.abbr_day_names_with_all')[d], d] }), class: 'selectpicker select-youtube', data: {width: 'auto', style: 'btn-sm btn-default'}, title: '' %>
 					</div>
 				</div>
 				
@@ -96,13 +96,14 @@
 				<div id="subjects-list-title" class="hidden-xs"><%= t 'subject_plural' %></div>
 				<a id="subject-filter-trigger" class="visible-xs btn btn-default"><span class="glyphicon glyphicon-th"></span></a>
 				<% if user_signed_in? %>
-				<div id="subject-order-option">
-					<div class="btn-group">
-					  <button data-type="all" class="btn btn-default <%= 'active' if @user.settings(:subject).order == :all %>"><%= t 'y' %></button>
-					  <button data-type="semester" class="btn btn-default <%= 'active' if @user.settings(:subject).order == :semester %>"><%= t 's' %></button>
-					  <button data-type="note_count" class="btn btn-default <%= 'active' if @user.settings(:subject).order == :note_count %>"><%= t 'n' %></button>
+					<div id="subject-order-option">
+						<span id="subject-order-header"><%= t('.sort') %>:</span>
+						<select class="selectpicker select-youtube" data-width="auto" data-style="btn-sm btn-default">
+					    <option value="all" <%= 'selected' if @user.settings(:subject).order == :all %>><%= t '.sort_by_year' %></option>
+					    <option value="semester" <%= 'selected' if @user.settings(:subject).order == :semester %>><%= t '.sort_by_semester' %></option>
+					    <option value="note_count" <%= 'selected' if @user.settings(:subject).order == :note_count %>><%= t '.sort_by_note' %></option>
+					  </select>
 					</div>
-				</div>
 				<% end %>
 			</div>
 			<div id="subjects-list">

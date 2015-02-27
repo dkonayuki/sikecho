@@ -435,7 +435,11 @@
         selectClone.remove();
 
         // Set width to whatever's larger, button title or longest option
-        this.$newElement.css('width', Math.max(parseInt(ulWidth), parseInt(btnWidth)) + 'px');
+        var menuWidth = Math.max(parseInt(ulWidth), parseInt(btnWidth));
+        this.$newElement.css('width', menuWidth + 'px');
+        
+        // set menu width to fit
+        this.$menu.css('width', menuWidth + 'px');
       } else if (this.options.width == 'fit') {
         // Remove inline min-width so width can be changed from 'auto'
         this.$menu.css('min-width', '');

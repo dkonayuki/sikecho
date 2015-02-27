@@ -1,4 +1,4 @@
-<% if current_user.is_registered?(subject) %>
+<% if subject.is_registered?(current_user) %>
 	<%= link_to '', data: {method: :delete, href: schedule_destroy_path(subject_id: subject.id)} do %>
 		<%= image_tag('lecture_color.png') %>
 		<%= t('cancel_subject_registered') %>

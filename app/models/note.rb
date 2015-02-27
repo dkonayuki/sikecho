@@ -41,4 +41,8 @@ class Note < ActiveRecord::Base
     end
   end
   
+  def is_favorited?(user)
+    user.favorited?(self)
+  end
+  
 end

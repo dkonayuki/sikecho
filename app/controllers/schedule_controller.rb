@@ -44,7 +44,7 @@ class ScheduleController < ApplicationController
     #add new subject
     subject = Subject.find_by_id(params[:subject_id].to_i)
     
-    if @user.is_registered?(subject) || !@user.current_university.subjects.include?(subject)
+    if @user.registered?(subject) || !@user.current_university.subjects.include?(subject)
       status = :error
     else
       #add new subject with created_at time store in register table
@@ -81,7 +81,7 @@ class ScheduleController < ApplicationController
     subject = Subject.find_by_id(params[:subject_id].to_i)
     
     #delete subject education relationship
-    if @user.is_registered?(subject)
+    if @user.registered?(subject)
       @user.current_education.subjects.delete(subject)
       status = :ok
     else

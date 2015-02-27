@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   
   #settings, store in user model
   has_settings do |s|
-    s.key :note, defaults: { order: :time }
+    s.key :note, defaults: { order: :time, layout: :all }
     s.key :subject, defaults: { order: :all }
   end
   
@@ -112,9 +112,23 @@ class User < ActiveRecord::Base
   end
   
   #check if subject is registered
-  def is_registered?(subject)
+  def registered?(subject)
     #ensure boolean return
     !!self.current_subjects.include?(subject)
+  end
+  
+  def favorited_notes
+    #use sql join instead of scope because a collection of notes is needed for further processing
+    Note.select('distinct notes.*')
+        .joins('INNER JOIN favorites ON favorites.favoritable_id = notes.id')
+        .joins('INNER JOIN users ON users.id = favorites.user_id')
+        .where('users.id = ? AND favorites.favoritable_type = ?', self.id, 'Note')
+  end
+  
+  #check if note is favorited
+  def favorited?(note)
+    #ensure boolean return
+    !!self.favorited_notes.include?(note)
   end
   
   #return a collection of notes which are related to regitered subjects

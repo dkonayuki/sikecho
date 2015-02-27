@@ -82,5 +82,9 @@ class Subject < ActiveRecord::Base
   def typeahead_subject_path
     subject_path(self, locale: I18n.locale)
   end
+  
+  def is_registered?(user)
+    user.registered?(self)
+  end
 
 end

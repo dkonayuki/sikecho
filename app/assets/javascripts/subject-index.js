@@ -226,15 +226,11 @@ function reloadSubjectList() {
 	}
 	
 	//check if order option is needed
-	$("#subject-order-option button").each(function() {
-		if ($(this).hasClass("active")) {
-			data.order = $(this).data("type");
-		}
-	});
+	data.order = $("#subject-order-option select.selectpicker option:selected").val();
 	
 	//check if day/time select changed
-	data.day = ($("#subject-day .selectpicker option:selected").val());
-	data.time = $("#subject-time .selectpicker option:selected").val();
+	data.day = $("#subject-day select.selectpicker option:selected").val();
+	data.time = $("#subject-time select.selectpicker option:selected").val();
 	
 	//get /subjects, execute as script
 	//use current locale
@@ -271,13 +267,9 @@ $(document).on("page:load ready", function() {
 		$("#subject-menu-semester").nestedTable();
 		
 	 	/*For subject order option*/
-	 	$("#subject-order-option button").on("click", function() {
-	 		$("#subject-order-option button").each(function() {
-	 			$(this).removeClass("active");
-	 		});
-	 		$(this).addClass("active");
-			reloadSubjectList();
-	 	});
+		$('#subject-order-option .selectpicker').on("change", function () {
+    	reloadSubjectList();
+		});
 	 	
 	 	/*For live search*/
  		var timeout; // add delay time

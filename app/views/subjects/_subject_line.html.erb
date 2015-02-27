@@ -15,7 +15,7 @@
 	
 	<% if user_signed_in? && current_university == current_user.current_university %>
 	<div class="subject-menu-line">
-		<% if current_user.is_registered?(subject) %>
+		<% if subject.is_registered?(current_user) %>
   		<%= link_to schedule_destroy_path(subject_id: subject.id), method: :delete, class: 'btn btn-sm btn-red subject-menu-line-hover' do %>
     		<span class="btn-text registered-text"><%= t('registered') %></span>
     		<span class="btn-text cancel-text"><span class="glyphicon glyphicon-remove-sign"></span><%= t('cancel_subject_registered') %></span>

@@ -176,7 +176,7 @@
 			    </div>
 			    
 					<div class="skc-box-desc skc-box-desc-no-margin collapse in text-center row" id="collapseNotes">
-						<%= render(partial: 'notes/note_line', collection: @notes, as: :note) || t('note_not_found') %>
+						<%= render(partial: 'notes/note_sm', collection: @notes, as: :note, locals: {show_subject: false}) || t('note_not_found') %>
 					</div>
 					
 					<div class="skc-box-inside-menu">

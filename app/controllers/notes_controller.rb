@@ -13,7 +13,6 @@ class NotesController < ApplicationController
     
     #custom show
     @show_notice = true
-    @show_subject = true
     
     #enable endless page only params has :page
     if !params[:page].blank?
@@ -33,11 +32,7 @@ class NotesController < ApplicationController
       when :new_arrival_note
         @notes = @user.registered_notes.unread_by(@user)
       when :favorite
-        #use sql join instead of scope because a collection of notes is needed for further processing
-        @notes = Note.select('distinct notes.*')
-        .joins('INNER JOIN favorites ON favorites.favoritable_id = notes.id')
-        .joins('INNER JOIN users ON users.id = favorites.user_id')
-        .where('users.id = ? AND favorites.favoritable_type = ?', @user.id, 'Note')
+        @notes = @user.favorited_notes
       when :all
         @notes = @user.current_university.notes
       else
@@ -46,8 +41,15 @@ class NotesController < ApplicationController
       end
     end
     
+    #set order
     if !params[:order].blank?
       @user.settings(:note).order = params[:order].to_sym
+      @user.save
+    end
+    
+    #set layout
+    if !params[:layout].blank?
+      @user.settings(:note).layout = params[:layout].to_sym
       @user.save
     end
     
@@ -55,16 +57,30 @@ class NotesController < ApplicationController
     case @user.settings(:note).order
     when :alphabet
       @notes = @notes.order('title ASC')
-    when :time
+    when :new
       @notes = @notes.order('created_at DESC')
+    when :old
+      @notes = @notes.order('created_at ASC')
     when :view
       @notes = @notes.order('view_count DESC')
     end
     
     #search
     @notes = @notes.search(params[:search])
+    
     #paginate @notes
-    @notes = @notes.page(params[:page]).per(12)
+    p @notes.count
+    @notes = @notes.page(params[:page]).per(16)
+    p @notes.page(1).per(16).size
+    
+    case @user.settings(:note).layout
+    when :all
+      @layout = :all
+    when :lecture
+      # create hash of arrays from array by using group_by
+      @notes_by_subject = @notes.group_by { |note| note.subjects }
+      @layout = :lecture
+    end
     
     #respond with js format, index.js.erb will be run
     respond_to do |format|
@@ -308,7 +324,7 @@ class NotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
-      params.permit(:document, :tags, :filter, :subject_id, :document_ids, :page, :order, :search, :star)
+      params.permit(:document, :tags, :filter, :subject_id, :document_ids, :page, :order, :layout, :search, :star)
       params.require(:note).permit(:title, :content, :subjects)
     end
 

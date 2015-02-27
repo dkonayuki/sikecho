@@ -94,31 +94,27 @@
 							</div><!-- end of note-menu -->
 							
 							<div id="note-menu-sub">
-								<div id="note-style-option">
-									<div class="dropdown" id="note-style-option-dropdown">
-										<a data-toggle="dropdown" class="dropdown-toggle"><span class="glyphicon glyphicon-option-vertical"></span></a>
-										<ul class="dropdown-menu pull-right" id="note-style-list">
-											<li>
-												<div class="btn-group">
-												  <button type="button" data-type="time" class="btn btn-default"><span class="glyphicon glyphicon-th"></span>asdf</button>
-												  <button type="button" data-type="view" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span></span>asdf</button>
-												</div>
-											</li>
-										</ul>
-										
-									</div>
-								</div>
-								<div id="note-order-option">
+								<div id="note-layout-option">
 									<div class="btn-group">
-									  <button type="button" data-type="alphabet" class="btn btn-default <%= 'active' if @user.settings(:note).order == :alphabet %>"><span class="glyphicon glyphicon-font"></span></button>
-									  <button type="button" data-type="time" class="btn btn-default <%= 'active' if @user.settings(:note).order == :time %>"><span class="glyphicon glyphicon-time"></span></button>
-									  <button type="button" data-type="view" class="btn btn-default <%= 'active' if @user.settings(:note).order == :view %>"><span class="glyphicon glyphicon-eye-open"></span></button>
+									  <button type="button" data-type="all" class="btn btn-xs btn-default <%= 'active' if @user.settings(:note).layout == :all %>"><span class="glyphicon glyphicon-th"></span></button>
+									  <button type="button" data-type="lecture" class="btn btn-xs btn-default <%= 'active' if @user.settings(:note).layout == :lecture %>"><span class="glyphicon glyphicon-th-list"></span></button>
 									</div>
 								</div>
+								
+								<div id="note-order-option">
+									<span id="note-order-header"><%= t('.sort') %>:</span>
+									<select class="selectpicker select-youtube" data-width="auto" data-style="btn-sm btn-default">
+								    <option value="alphabet" <%= 'selected' if @user.settings(:note).order == :alphabet %>><%= t '.sort_by_alphabet' %></option>
+								    <option value="new" <%= 'selected' if @user.settings(:note).order == :new %>><%= t '.sort_by_time_new' %></option>
+								    <option value="old" <%= 'selected' if @user.settings(:note).order == :old %>><%= t '.sort_by_time_old' %></option>
+								    <option value="view" <%= 'selected' if @user.settings(:note).order == :view %>><%= t '.sort_by_view' %></option>
+								  </select>
+								</div>
+								
 							</div>
 
 							<div id="notes-list" class="text-center row">
-								<%= render(partial: 'note', collection: @notes, locals: {show_subject: @show_subject}) || t('note_not_found') %>
+								<%= render 'note_list' %>
 							</div>
 							<div class="hidden-pagination">
 								<%= paginate @notes %>										

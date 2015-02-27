@@ -2,9 +2,9 @@
 	//wait 1s for loading img show up
 	<% sleep 1 %>
 	$("#notes-list #loading").remove();
-	$('#notes-list').append("<%=j render(partial: 'note', collection: @notes, locals: {show_subject: @show_subject}) || t('note_not_found') %>");
+	$('#notes-list').append("<%=j render 'note_list' %>");
 <% else %> //user changed filter settings
-	$('#notes-list').html("<%=j render(partial: 'note', collection: @notes, locals: {show_subject: @show_subject}) || t('note_not_found') %>");
+	$('#notes-list').html("<%=j render 'note_list' %>");
 <% end %>
 
 //update pagination

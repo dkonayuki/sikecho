@@ -1,7 +1,4 @@
 <%= form_for([@commentable, @comment], html: {class: 'comment-form', remote: true, "data-id" => @comment.id}) do |f| %>
-<% if (defined? is_new).nil? %>
-	<% is_new = true %>
-<% end %>
   <div class="media">
     <a class="pull-left" href="#">
 			<%= image_tag(@user.display_comment_avatar, class: 'media-object avatar')  %>
@@ -11,7 +8,7 @@
     </div>
     
     <div class="comment-menu">
-    <% if is_new %>
+    <% if defined?(is_new) && is_new %>
 	    <%= button_tag class: 'btn btn-green comment-btn', type: 'submit' do %>
 		    <span class="glyphicon glyphicon-comment"></span><%= t('.create') %>
 	    <% end %>

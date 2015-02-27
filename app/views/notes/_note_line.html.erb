@@ -1,4 +1,4 @@
-<div class="note-item col-xs-12 col-sm-6">
+<div class="note-item-line">
 	<div class="note-item-inner">
 		
 	  <div class="note-thumbnail">
@@ -19,7 +19,13 @@
 		</div>
 		
 	  <div class="note-details">
-	    <div class="note-title"><%= link_to "#{note.title}", note %></div>
+	    <div class="note-title"><%= link_to "#{note.title}", note %>
+				<% if user_signed_in? %>
+		    	<% if note.is_favorited?(current_user) %>
+		    	<i class="fa fa-star"></i>
+		    	<% end %>
+	    	<% end %>
+    	</div>
 	    <div class="note-tags">
 	    	<% note.tag_list.first(5).each do |tag| %>
 	    		<% if tag == t('.prepare_exam') %>

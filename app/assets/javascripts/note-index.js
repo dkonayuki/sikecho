@@ -7,9 +7,12 @@ function reloadNoteList() {
 	data.filter = $(".filter-menu .active").data("type");
 	
 	//check if order option is needed
-	$("#note-order-option button").each(function() {
+	data.order = $("#note-order-option select.selectpicker option:selected").val();
+	
+	//check layout option
+	$("#note-layout-option button").each(function() {
 		if ($(this).hasClass("active")) {
-			data.order = $(this).data("type");
+			data.layout = $(this).data("type");
 		}
 	});
 	
@@ -51,6 +54,7 @@ $(document).on("page:load ready", function() {
 	$(".notes.index").ready(function() {
 		
 		$("body").css("background-color", "#fff");
+		$('.selectpicker').selectpicker();
 		prepareLoadNotePage();
 
 		/*For live search*/
@@ -63,8 +67,13 @@ $(document).on("page:load ready", function() {
 	  });
 
 	  /*For note order option*/
-	 	$("#note-order-option button").on("click", function() {
-	 		$("#note-order-option button").each(function() {
+		$('#note-order-option .selectpicker').on("change", function () {
+    	reloadNoteList();
+		});
+		
+		/*For note layout option*/
+	 	$("#note-layout-option button").on("click", function() {
+	 		$("#note-layout-option button").each(function() {
 	 			$(this).removeClass("active");
 	 		});
 	 		$(this).addClass("active");
@@ -108,6 +117,7 @@ $(document).on("page:load ready", function() {
 		if ($(".hidden-pagination").length) {
 			$(window).scroll(function(){
 				url = $(".next a").attr("href");
+				console.log(url);
 		    if (url && ($(window).scrollTop() > $(document).height() - $(window).height() - 50)) {
 		    	//disable pagination link
 		    	$(".pagination").text("fetching...");

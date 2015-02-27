@@ -1,4 +1,4 @@
-<div class="note-item col-xs-6 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1">
+<div class="note-item col-xs-12 col-sm-6">
 	<div class="note-item-inner">
 		
 	  <div class="note-thumbnail">
@@ -19,7 +19,7 @@
 		</div>
 		
 	  <div class="note-details">
-	    <div class="note-title"><%= link_to note.title, note %>
+	    <div class="note-title"><%= link_to "#{note.title}", note %>
 				<% if user_signed_in? %>
 		    	<% if note.is_favorited?(current_user) %>
 		    	<i class="fa fa-star"></i>
@@ -32,21 +32,22 @@
 			      <span class="label label-info"><%= subject.name %></span>
 		      <% end %>
 	      <% end %>
-	      
-	      <% if note.tag_list.include?(t('.prepare_exam')) %>
-	      	<span class="label label-warning"><%= t('.prepare_exam') %></span>
-	      <% end %>
-	      <% if note.tag_list.include?(t('.past_exam')) %>
-	      	<span class="label label-success"><%= t('.past_exam') %></span>
-	      <% end %>
-	      
+	    	<% note.tag_list.first(5).each do |tag| %>
+	    		<% if tag == t('.prepare_exam') %>
+	      		<span class="label label-warning"><%= t('.prepare_exam') %></span>
+	    		<% elsif tag == t('.past_exam') %>
+	      		<span class="label label-success"><%= t('.past_exam') %></span>
+	    		<% else %>
+	    			<span class="label label-info"><%= tag %></span>
+	    		<% end %>
+	    	<% end %>
 				<% if user_signed_in? %>
 		      <% if note.unread?(current_user) %>
-		      	<span class="label label-danger"><%= t('.new')%></span>
+		      	<span class="label label-danger"><%= t('.new') %></span>
 		      <% end %>
 	      <% end %>
 	    </div>
 	  </div>
-
+	  
 	</div>
 </div>

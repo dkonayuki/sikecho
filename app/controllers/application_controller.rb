@@ -47,10 +47,12 @@ class ApplicationController < ActionController::Base
   
   # remove /ja/ in url if ja is default locale
   def default_url_options(options = {})
+    # use merge to keep current params
     options.merge({ locale: ((I18n.locale == I18n.default_locale) ? nil : I18n.locale) })
     #options.merge({ locale: I18n.locale})
   end
   
+  # will not save cache, when user press back after logout, browser will no longer be able to redirect to logined page
   def set_no_cache
     response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
     response.headers["Pragma"] = "no-cache"

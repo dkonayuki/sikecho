@@ -263,9 +263,6 @@ ja:
   tag: タグ
   day: 曜日
   period: 時限
-  y: 年
-  s: 期
-  n: の
   subject_not_found: 授業が見つかりません
   note_not_found: ノートが見つかりません
   university_not_found: 大学が見つかりません。
@@ -361,6 +358,10 @@ ja:
       all_faculty: 学部共通
       all_semester: 全学年
       popup_ok: 絞り込む
+      sort_by_year: 年度
+      sort_by_semester: 学期
+      sort_by_note: ノート
+      sort: 並び替え
     form:
       subject_name: 授業名
       select_image: 画像選択
@@ -396,6 +397,11 @@ ja:
       my_note: 自分のノート
       new_arrival_note: 新着ノート
       new_note: 新規ノート
+      sort: 並び替え
+      sort_by_alphabet: アルファベット順
+      sort_by_time_new: 新しい順
+      sort_by_time_old: 古い順
+      sort_by_view: 閲覧数
     show:
       documents: 資料
     form:

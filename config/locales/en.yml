@@ -293,9 +293,6 @@ en:
   tag: Tag
   day: Day
   period: Period
-  y: Year
-  s: Semester
-  n: Note
   subject_not_found: Subject not found
   note_not_found: Note not found
   university_not_found: University not found.
@@ -391,6 +388,10 @@ en:
       all_faculty: All faculties
       all_semester: All Semesters
       popup_ok: OK
+      sort_by_year: Year
+      sort_by_semester: Semester
+      sort_by_note: Note
+      sort: Sort
     form:
       subject_name: Title
       select_image: Select image
@@ -426,6 +427,11 @@ en:
       my_note: My notes
       new_arrival_note: New arrival notes
       new_note: New note
+      sort: Sort
+      sort_by_alphabet: Alphabet
+      sort_by_time_new: Newest
+      sort_by_time_old: Oldest
+      sort_by_view: Popular
     show:
       documents: Documents
     form:

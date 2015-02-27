@@ -42,11 +42,10 @@
 #notes {
 	background: #fff;
 	overflow: hidden;
-	padding: 0 15px 0 15px;
+	padding: 0 15px 30px 15px;
 }
 
 #notes-list {
-	margin-top: 20px;
 }
 
 #pushmenu-trigger {
@@ -71,21 +70,19 @@
 #note-menu-sub {
 	position: relative;
 	margin-top: 15px;
+	height: 40px;
 }
 
-#note-style-option {
-	position: absolute;
-	right: 0;
-	top: 0;
-	font-size: 16px;
-}
-
-#note-style-list {
-	min-width: 0px;
+#note-layout-option {
+	float: right;
 }
 
 #note-order-option {
-	text-align: center;
+}
+
+#note-order-header {
+	color: #999;
+	margin-right: 5px;
 }
 
 .filter-menu {
@@ -283,15 +280,14 @@
  *  ===============================================================================================*/
 
 .note-item {
-	height: 82px;
-	margin-bottom: 20px;
+	height: 90px;
 	list-style: none;
 }
 
 .note-item-inner {
 	border: 1px solid transparent;
 	border-bottom: 1px solid #eee;	
-	padding-top: 10px;
+	padding-top: 15px;
 	height: 100%;
 }
 

@@ -1,5 +1,5 @@
 	<ul class="nav">
-		<% if current_user.is_registered?(subject) %>
+		<% if subject.is_registered?(current_user) %>
   		<%= link_to '', data: {method: :delete, href: schedule_destroy_path(subject_id: subject.id)}, class: 'btn btn-red btn-lg' do %>
     		<span class="btn-text registered-text"><%= t('registered') %></span>
     		<span class="btn-text cancel-text"><span class="glyphicon glyphicon-remove-sign"></span><%= t('cancel_subject_registered') %></span>
