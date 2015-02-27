@@ -117,7 +117,6 @@ $(document).on("page:load ready", function() {
 		if ($(".hidden-pagination").length) {
 			$(window).scroll(function(){
 				url = $(".next a").attr("href");
-				console.log(url);
 		    if (url && ($(window).scrollTop() > $(document).height() - $(window).height() - 50)) {
 		    	//disable pagination link
 		    	$(".pagination").text("fetching...");

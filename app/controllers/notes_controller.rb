@@ -70,8 +70,8 @@ class NotesController < ApplicationController
     
     #paginate @notes
     p @notes.count
-    @notes = @notes.page(params[:page]).per(16)
-    p @notes.page(1).per(16).size
+    @notes = @notes.page(params[:page]).per(12)
+    p @notes.total_count
     
     case @user.settings(:note).layout
     when :all
