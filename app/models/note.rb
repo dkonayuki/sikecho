@@ -41,8 +41,19 @@ class Note < ActiveRecord::Base
     end
   end
   
+  #check favorite
   def is_favorited?(user)
     user.favorited?(self)
+  end
+  
+  #get like number
+  def like_number
+    self.votes.where('value = ?', 1).count
+  end
+  
+  #get dislike number
+  def dislike_number
+    self.votes.where('value = ?', -1).count
   end
   
 end

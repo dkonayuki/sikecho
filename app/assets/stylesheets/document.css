@@ -136,3 +136,14 @@
 .text-exposed-show {
 	display: none;
 }
+
+.document-item-sm {
+	background: #fff;
+	width: 70px;
+	height: 70px;
+	display: inline-block;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	border: 1px solid transparent;
+	position: relative;
+}

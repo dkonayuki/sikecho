@@ -69,16 +69,14 @@ class NotesController < ApplicationController
     @notes = @notes.search(params[:search])
     
     #paginate @notes
-    p @notes.count
-    @notes = @notes.page(params[:page]).per(12)
-    p @notes.total_count
+    @notes = @notes.page(params[:page]).per(20)
     
     case @user.settings(:note).layout
     when :all
       @layout = :all
     when :lecture
       # create hash of arrays from array by using group_by
-      @notes_by_subject = @notes.group_by { |note| note.subjects }
+      @notes_by_subject = @notes.group_by { |note| note.subjects.first }
       @layout = :lecture
     end
     
@@ -100,8 +98,6 @@ class NotesController < ApplicationController
     
     #get information for note like/dislike menu
     @vote = get_vote
-    @like_number = @note.votes.where('value = ?', 1).count
-    @dislike_number = @note.votes.where('value = ?', -1).count
     
     #get favorite information
     favorite = @note.favorites.find_by_user_id(current_user.id)
@@ -139,10 +135,6 @@ class NotesController < ApplicationController
     end
     @vote.save
     
-    #get information for note like/dislike menu
-    @like_number = @note.votes.where('value = ?', 1).count
-    @dislike_number = @note.votes.where('value = ?', -1).count
-    
     respond_to do |format|
       format.js
     end
@@ -158,10 +150,6 @@ class NotesController < ApplicationController
       @vote.value = -1
     end
     @vote.save
-    
-    #get information for note like/dislike menu
-    @like_number = @note.votes.where('value = ?', 1).count
-    @dislike_number = @note.votes.where('value = ?', -1).count
     
     respond_to do |format|
       format.js

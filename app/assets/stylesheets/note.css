@@ -42,7 +42,8 @@
 #notes {
 	background: #fff;
 	overflow: hidden;
-	padding: 0 15px 30px 15px;
+	padding: 0 15px 10px 15px;
+	margin-bottom: 20px;
 }
 
 #notes-list {
@@ -105,6 +106,30 @@
 
 .filter-menu a {
 	padding-bottom: 10px;
+}
+
+.subject-group {
+	margin: 15px auto 20px;
+	max-width: 750px;
+	padding: 10px;
+	border: 1px solid #ddd;
+	position: relative;
+}
+
+@media (max-width: 767px) {
+	.subject-group {
+		margin: 15px 20px 20px;
+	}
+}
+
+.subject-group-header {
+	position: absolute;
+	top: -10px;
+	left: 20px;
+	padding: 2px 7px;
+	background: #fff;
+	border: 1px solid #ddd;
+	color: #34495E;
 }
 
 #new-note-btn {
@@ -287,7 +312,7 @@
 .note-item-inner {
 	border: 1px solid transparent;
 	border-bottom: 1px solid #eee;	
-	padding-top: 15px;
+	padding-top: 10px;
 	height: 100%;
 }
 
@@ -346,13 +371,49 @@
 }
 
 .note-view {
-	margin-top: 35px;
+	margin-top: 40px;
 	text-align: right;
 }
 
 @media (max-width: 469px) {
 	.note-item {
 		width: 100%;
-		margin-left: 0;
 	}
+}
+
+.note-item-line {
+	height: 90px;
+	margin-top: 5px;
+}
+
+.note-line-documents-list {
+	float: right;
+	max-width: 300px;
+	height: 100%;
+	overflow: hidden;
+	margin-right: 10px;
+}
+@media (max-width: 767px) {
+	.note-line-documents-list {
+		max-width: 170px;
+		margin-right: 0;
+	}
+}
+@media (max-width: 469px) {
+	.note-line-documents-list {
+		display: none;
+	}
+}
+
+.note-item-line .note-view {
+	margin-top: 3px;
+	text-align: right;
+}
+.note-item-line .note-comment {
+	margin-top: 3px;
+	text-align: right;
+}
+.note-item-line .note-vote {
+	margin-top: 3px;
+	text-align: right;
 }

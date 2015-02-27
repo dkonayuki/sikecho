@@ -6,7 +6,7 @@
 	</div>
 	<div class="subject-card-content">
 		<div class="subject-card-name">
-			<%= subject.name %>
+			<%= link_to subject.name, subject %>
 		</div>
 		<div class="subject-card-info">
 			<% subject.teachers.each do |teacher| %>

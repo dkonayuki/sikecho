@@ -284,7 +284,7 @@ DEPENDENCIES
   jquery-fileupload-rails (= 0.4.1)
   jquery-rails (~> 3.1.0)
   jquery-ui-rails
-  kaminari (~> 0.14.1)
+  kaminari (= 0.14.1)
   ledermann-rails-settings
   moji (~> 1.6)
   omniauth-facebook

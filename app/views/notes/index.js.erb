@@ -1,6 +1,4 @@
 <% if @show_more %> //user scrolled down to see more
-	//wait 1s for loading img show up
-	<% sleep 1 %>
 	$("#notes-list #loading").remove();
 	$('#notes-list').append("<%=j render 'note_list' %>");
 <% else %> //user changed filter settings

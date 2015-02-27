@@ -11,13 +11,34 @@
 	  	<div class="note-time">
 	  		<%= time_ago_in_words(note.created_at) %><%= t('ago') %>
 			</div>
-	
+			<div class="note-comment">
+				<i class="fa fa-comment"></i>
+				<span>
+					<% if note.documents.count == 0 %>
+					0
+					<% else %>
+						<%= note.documents.map{|d| d.comments.count}.sum %>
+					<% end %> 
+				</span>
+			</div>
+			<div class="note-vote">
+				<i class="fa fa-heart"></i>
+				<span><%= note.like_number - note.dislike_number %></span>
+			</div>
+				
 	  	<div class="note-view">
 				<span class="glyphicon glyphicon-eye-open"></span>
 				<%= note.impressionist_count %>
 			</div>
+
 		</div>
 		
+		<% if !note.documents.empty? %>
+			<div class="note-line-documents-list">
+			  <%= render(partial: 'documents/document_sm', collection: note.documents.order('created_at ASC').limit(4), as: :document) %>
+			</div>
+		<% end %>
+						
 	  <div class="note-details">
 	    <div class="note-title"><%= link_to "#{note.title}", note %>
 				<% if user_signed_in? %>
@@ -42,6 +63,7 @@
 		      <% end %>
 	      <% end %>
 	    </div>
+	    
 	  </div>
 	  
 	</div>

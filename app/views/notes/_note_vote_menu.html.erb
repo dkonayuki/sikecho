@@ -1,8 +1,8 @@
 <%= link_to like_note_path, method: :post, remote: true, class: (vote.value == 1 ? 'active' : '') do %>
 	<span class="glyphicon glyphicon-thumbs-up"></span>
-	<span class="vote-number"><%= like_number %></span>
+	<span class="vote-number"><%= note.like_number %></span>
 <% end %>
 <%= link_to dislike_note_path, method: :post, remote: true, class: (vote.value == -1 ? 'active' : '') do %>
 	<span class="glyphicon glyphicon-thumbs-down"></span>
-	<span class="vote-number"><%= dislike_number %></span>
+	<span class="vote-number"><%= note.dislike_number %></span>
 <% end %>

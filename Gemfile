@@ -72,7 +72,8 @@ gem 'paperclip', "~> 4.1"
 gem 'paper_trail', '~> 3.0.0'
 
 #for pagination
-gem 'kaminari'
+#kaminari 0.16.3 has a bug with incorrect count
+gem 'kaminari', '0.14.1'
 
 #for jquery ui
 gem 'jquery-ui-rails'
