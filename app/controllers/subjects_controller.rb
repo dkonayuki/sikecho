@@ -72,6 +72,8 @@ class SubjectsController < ApplicationController
       end
       
       #reorder subjects list
+      # need to perform order to return relation class for further processing
+      # array will not work
       case @user.settings(:subject).order
       when :all
         @subjects = @subjects.order('year DESC, name ASC, view_count DESC')
@@ -87,7 +89,11 @@ class SubjectsController < ApplicationController
     
     #search subjects list
     @subjects = @subjects.search(params[:search])
+    
     #paginate @subjects
+    # only work on collection proxy or relation
+    # page method from kaminari
+    # return relation (associationrelation)
     @subjects = @subjects.page(params[:page]).per(12)
     
     #respond with js format, index.js.erb will be run

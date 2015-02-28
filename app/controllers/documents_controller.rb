@@ -30,6 +30,10 @@ class DocumentsController < ApplicationController
     #comment collection
     @comments = @document.comments.order('created_at DESC')
     
+    #paginate @comments
+    # only work on collection proxy or relation
+    # page method from kaminari
+    # return relation (associationrelation)
     @comments = @comments.page(params[:page]).per(6)
   end
 

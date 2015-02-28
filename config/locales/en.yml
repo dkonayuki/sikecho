@@ -432,6 +432,8 @@ en:
       sort_by_time_new: Newest
       sort_by_time_old: Oldest
       sort_by_view: Popular
+      sort_by_rating: Rating
+      sort_by_comment: Comment
     show:
       documents: Documents
     form:

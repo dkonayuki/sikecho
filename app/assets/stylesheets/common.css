@@ -95,6 +95,11 @@ div.message {
 	font-size: 18px;
 }
 
+div.message-sm {
+	text-align: center;
+	font-size: 13px;
+}
+
 .search-form {
 	margin: 0;
 	padding: 0;

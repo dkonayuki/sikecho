@@ -63,12 +63,20 @@ class NotesController < ApplicationController
       @notes = @notes.order('created_at ASC')
     when :view
       @notes = @notes.order('view_count DESC')
+    when :rating
+      #TO DO
+      @notes = @notes.order()
+    when :comment
+      #TO DO
     end
     
     #search
     @notes = @notes.search(params[:search])
     
     #paginate @notes
+    # only work on collection proxy or relation
+    # page method from kaminari
+    # return relation (associationrelation)
     @notes = @notes.page(params[:page]).per(20)
     
     case @user.settings(:note).layout

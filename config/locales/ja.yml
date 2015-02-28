@@ -402,6 +402,8 @@ ja:
       sort_by_time_new: 新しい順
       sort_by_time_old: 古い順
       sort_by_view: 閲覧数
+      sort_by_rating: 評価が高い
+      sort_by_comment: コメントが多い
     show:
       documents: 資料
     form:

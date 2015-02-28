@@ -1,4 +1,7 @@
 class Favorite < ActiveRecord::Base
+  # favorite is equivalent to star/starred
+  # basically the same thing
+  
   # to use @user.favorites.notes
   scope :notes, -> { where(favoritable_type: 'Note') }
 

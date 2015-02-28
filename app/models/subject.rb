@@ -35,7 +35,7 @@ class Subject < ActiveRecord::Base
   #versioning
   has_paper_trail only: [:description], on: [:update]
   
-  #count tracking
+  #count tracking, use column view_count to reorder
   is_impressionable counter_cache: true, column_name: :view_count, unique: :all
   
   DEFAULT_OUTLINE = 12
@@ -43,6 +43,9 @@ class Subject < ActiveRecord::Base
   MAX_YEAR_BEGIN = 2010
   MAX_YEAR_END = 2020
   
+  # class method, run on collection proxy, relation
+  # collection proxy example: subject.notes
+  # relation example: Subject.all
   def self.search(search)
     if search
       q = "%#{search.downcase}%"

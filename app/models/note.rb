@@ -19,7 +19,7 @@ class Note < ActiveRecord::Base
   #unread - read checking
   acts_as_readable on: :created_at
   
-  #count tracking
+  #count tracking, add counter_cache collumn
   is_impressionable counter_cache: true, column_name: :view_count, unique: :all
   
   #after_create do |note|
@@ -28,6 +28,9 @@ class Note < ActiveRecord::Base
     #end
   #end
   
+  # class method, run on collection proxy, relation
+  # collection proxy example: subject.notes
+  # relation example: Subject.all
   def self.search(search)
     if search
       #where('title LIKE ?', "%#{search}%")
@@ -54,6 +57,15 @@ class Note < ActiveRecord::Base
   #get dislike number
   def dislike_number
     self.votes.where('value = ?', -1).count
+  end
+  
+  #get rating
+  def rating
+    like_number - dislike_number
+  end
+  
+  def comments_count
+    self.documents.map{|d| d.comments.count}.sum
   end
   
 end
