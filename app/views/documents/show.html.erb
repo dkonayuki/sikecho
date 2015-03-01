@@ -1,4 +1,5 @@
 <div id="show-document" class="clear" data-id="<%= @document.id %>">
+	
 	<div id="document-content">
 		<%= image_tag(@document.upload.url(:original)) %>
 		
@@ -15,6 +16,7 @@
 			<% end %>
 		<% end %>
 	</div>
+	
 	<div id="document-comment-section">
 		<div>
 			<div id="new-comment">
@@ -33,5 +35,6 @@
 			</div>
 		</div>
 	</div><!-- end of comment section -->
+	
 </div><!-- end of show document -->
 

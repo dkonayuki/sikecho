@@ -1,3 +1,5 @@
+<!-- need to put kaminari pagination links to this partial layout -->
+<!-- @page and @search will be passed automatically -->
 		<%= link_to_previous_page @subjects, '', remote: true, params: {search: @search}, class: 'previous-btn' %>
 		<%= link_to_next_page @subjects, '', remote: true, params: {search: @search}, class: 'next-btn' %>
 
@@ -36,6 +38,6 @@
 				</div>
 		 	</li>
 		<% end %>
-<% end %>
+	<% end %>
 </ul>
 

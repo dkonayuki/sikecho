@@ -638,6 +638,9 @@ div.message-sm {
 	text-transform: uppercase;
 	display: inline-block;
 	margin: 3px 2px;
+	max-width: 300px;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .label-round {

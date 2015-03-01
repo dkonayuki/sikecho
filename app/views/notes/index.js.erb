@@ -1,8 +1,8 @@
 <% if @show_more %> //user scrolled down to see more
 	$("#notes-list #loading").remove();
-	$('#notes-list').append("<%=j render 'note_list' %>");
+	$("#notes-list").append("<%=j render partial: 'note_list', locals: {notes: @notes, layout: @layout, notes_by_subject: @notes_by_subject} %>");
 <% else %> //user changed filter settings
-	$('#notes-list').html("<%=j render 'note_list' %>");
+	$("#notes-list").html("<%=j render partial: 'note_list', locals: {notes: @notes, layout: @layout, notes_by_subject: @notes_by_subject} %>");
 <% end %>
 
 //update pagination

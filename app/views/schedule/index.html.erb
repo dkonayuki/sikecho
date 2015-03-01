@@ -1,5 +1,6 @@
 <div id="schedule" class="clear">
-<div id="schedule-content" class="col-sm-8 col-xs-12 pull-right">
+	
+	<div id="schedule-content" class="col-sm-8 col-xs-12 pull-right">
 		<div id="schedule-content-header">
 			<%= image_tag('user_schedule.png') %>
 			<span><%= t('schedule') %></span>
@@ -8,6 +9,7 @@
 			<%= render partial: 'schedule_table', locals: { periods: @periods, view_option: @view_option } %>
 		</div>
 	</div>
+	
 	<div id="schedule-menu" class="col-sm-4 col-xs-12 pull-left">
 		<div id="schedule-search-form">
 			<%= form_tag schedule_path, method: :get, class: 'search-form', id: 'schedule-search' do %>
@@ -19,4 +21,5 @@
 			<%= render 'list_subjects_on_schedule' %>
 		</div>
 	</div>
+	
 </div>

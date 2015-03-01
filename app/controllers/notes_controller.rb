@@ -77,6 +77,8 @@ class NotesController < ApplicationController
         .joins("LEFT JOIN comments ON comments.commentable_id = documents.id AND comments.commentable_type = 'Document'")
         .group('notes.id')
         .order('comment_count DESC, view_count DESC')
+    else
+      @notes = @notes.order('title ASC, view_count DESC')
     end
     
     #search
@@ -88,6 +90,7 @@ class NotesController < ApplicationController
     # return relation (associationrelation)
     @notes = @notes.page(params[:page]).per(20)
     
+    # set layout
     case @user.settings(:note).layout
     when :all
       @layout = :all
@@ -95,9 +98,10 @@ class NotesController < ApplicationController
       # create hash of arrays from array by using group_by
       @notes_by_subject = @notes.group_by { |note| note.subjects.first }
       @layout = :lecture
+    else
+      #default
+      @layout = :all
     end
-    #p @notes
-    #p @notes_by_subject
     
     #respond with js format, index.js.erb will be run
     respond_to do |format|

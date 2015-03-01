@@ -68,6 +68,9 @@ table {
 	padding: 3px 7px;
 	border-radius: 0;
 	font-weight: normal;
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .form-control-inline {

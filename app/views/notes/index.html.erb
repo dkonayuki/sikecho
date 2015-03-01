@@ -116,7 +116,7 @@
 							</div>
 
 							<div id="notes-list" class="row">
-								<%= render 'note_list' %>
+								<%= render partial: 'note_list', locals: {notes: @notes, layout: @layout, notes_by_subject: @notes_by_subject} %>
 							</div>
 							<div class="hidden-pagination">
 								<%= paginate @notes %>										
