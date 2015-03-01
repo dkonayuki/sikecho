@@ -15,12 +15,16 @@ function prepareEducations() {
 	});
 	
 	function change_university() {
+		
 		//clear old select
 		$('#education_faculty_id').empty();
 		$('#education_course_id').empty();
 		$('#education_uni_year_id').empty();
 		$('#education_semester_id').empty();
+		
 		var university_id = $("#education_university_id").val();
+		
+		//get faculties list and refresh select
 		$.ajax({
 				url:"/faculties_list",	
 				data:'university_id=' + university_id,
@@ -34,10 +38,15 @@ function prepareEducations() {
 		          .attr("value",value.id)
 		          .text(value.name));
 					});
+					//add a blank option for course
+					$('#education_course_id').append("<option value=''></option>");
+					//refresh select
 					$('.selectpicker').selectpicker("refresh");
 				}
 			}
 		);
+		
+		//get uni_years list and refresh select
 		$.ajax({
 				url:"/uni_years",	
 				data:'university_id=' + university_id,
@@ -51,6 +60,9 @@ function prepareEducations() {
 		          .attr("value",value.id)
 		          .text(value.name));
 					});
+					//add a blank option for course
+					$('#education_semester_id').append("<option value=''></option>");
+					//refresh select
 					$('.selectpicker').selectpicker("refresh");
 				}
 			}

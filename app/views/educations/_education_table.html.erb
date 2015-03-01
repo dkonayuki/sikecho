@@ -24,9 +24,7 @@
     </tr>
   </thead>
   <tbody>
-  	<% @user.educations.joins('LEFT OUTER JOIN uni_years ON uni_years.id = educations.uni_year_id')
-  	.joins('LEFT OUTER JOIN semesters ON semesters.id = educations.semester_id')
-  	.order('educations.year ASC, uni_years.no ASC, semesters.no ASC, created_at ASC').each do | education | %>
+  	<% @user.educations.ordered.each do | education | %>
     <tr>
       <td><%= education.year unless education.year.blank? %></td>
       <td class="hidden-xs"><%= education.uni_year.name unless education.uni_year.blank? %></td>

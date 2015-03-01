@@ -55,6 +55,7 @@ class SubjectsController < ApplicationController
       #temporal solution for the "for SELECT DISTINCT, ORDER BY expressions must appear in select list" issue
       #need to add uni_years and semesters collumn into select operation
       #because we need to use them to order later
+      #note that semester and uni_year are singular because of the relationship
       @subjects = @subjects.select('distinct subjects.*, uni_years.no, semesters.no')
       .joins(:semester).joins(:uni_year)
       .joins("LEFT JOIN taggings on subjects.id = taggings.taggable_id")

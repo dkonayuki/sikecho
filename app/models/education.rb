@@ -1,4 +1,9 @@
 class Education < ActiveRecord::Base
+  #scope for ordering
+  scope :ordered, -> { joins('LEFT OUTER JOIN uni_years ON uni_years.id = educations.uni_year_id')
+    .joins('LEFT OUTER JOIN semesters ON semesters.id = educations.semester_id')
+    .order('educations.year ASC, uni_years.no ASC, semesters.no ASC, created_at ASC') }
+
   belongs_to :user
   belongs_to :university
   belongs_to :faculty
