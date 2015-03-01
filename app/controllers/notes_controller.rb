@@ -26,7 +26,9 @@ class NotesController < ApplicationController
     else
       case params[:filter].to_sym
       when :my_note
-        @notes = @user.notes
+        # need to add sql: SELECT DISTINCT notes.*
+        # for later use in order by rating
+        @notes = @user.notes.select('distinct notes.*')
       when :registered_note
         @notes = @user.registered_notes
       when :new_arrival_note
@@ -52,11 +54,11 @@ class NotesController < ApplicationController
       @user.settings(:note).layout = params[:layout].to_sym
       @user.save
     end
-    
+
     #reorder
     case @user.settings(:note).order
     when :alphabet
-      @notes = @notes.order('title ASC')
+      @notes = @notes.order('title ASC, view_count DESC')
     when :new
       @notes = @notes.order('created_at DESC')
     when :old
@@ -64,10 +66,17 @@ class NotesController < ApplicationController
     when :view
       @notes = @notes.order('view_count DESC')
     when :rating
-      #TO DO
-      @notes = @notes.order()
+      #need group by notes.id to use the aggregated function SUM
+      #SUM(votes.value) will be caculated for each note
+      @notes = @notes.select('SUM(votes.value) AS rating').joins(:votes).group('notes.id').order('rating DESC, view_count DESC')
     when :comment
-      #TO DO
+      # .joins(documents: :comments) will use INNER JOIN, mean that note without documents or comments will not be displayed
+      # by using LEFT JOIN, notes will be returned even documents or comments are null, which is desired for our system
+      @notes = @notes.select('COUNT(comments.id) AS comment_count')
+        .joins('LEFT JOIN documents ON documents.note_id = notes.id')
+        .joins("LEFT JOIN comments ON comments.commentable_id = documents.id AND comments.commentable_type = 'Document'")
+        .group('notes.id')
+        .order('comment_count DESC, view_count DESC')
     end
     
     #search
@@ -87,6 +96,8 @@ class NotesController < ApplicationController
       @notes_by_subject = @notes.group_by { |note| note.subjects.first }
       @layout = :lecture
     end
+    #p @notes
+    #p @notes_by_subject
     
     #respond with js format, index.js.erb will be run
     respond_to do |format|

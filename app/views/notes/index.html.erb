@@ -108,8 +108,8 @@
 								    <option value="new" <%= 'selected' if @user.settings(:note).order == :new %>><%= t '.sort_by_time_new' %></option>
 								    <option value="old" <%= 'selected' if @user.settings(:note).order == :old %>><%= t '.sort_by_time_old' %></option>
 								    <option value="view" <%= 'selected' if @user.settings(:note).order == :view %>><%= t '.sort_by_view' %></option>
-								    <option value="rating" <%= 'selected' if @user.settings(:note).order == :view %>><%= t '.sort_by_rating' %></option>
-								    <option value="view" <%= 'selected' if @user.settings(:note).order == :view %>><%= t '.sort_by_comment' %></option>
+								    <option value="rating" <%= 'selected' if @user.settings(:note).order == :rating %>><%= t '.sort_by_rating' %></option>
+								    <option value="comment" <%= 'selected' if @user.settings(:note).order == :comment %>><%= t '.sort_by_comment' %></option>
 								  </select>
 								</div>
 								
