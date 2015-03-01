@@ -55,7 +55,6 @@
 			<%= image_tag('lecture_color.png') %>
 			<span><%= t('subject_plural') %></span>
 		</div>
-		<% p @note.subjects %>
 		<% @note.subjects.each do |subject| %>
 			<%= render partial: "subjects/subject_card", locals: {subject: subject} %>
 			<div class="subject-hovercard hovercard" data-id="<%= subject.id %>">

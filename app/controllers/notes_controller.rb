@@ -132,8 +132,8 @@ class NotesController < ApplicationController
     
     #get previous note, next note
     notes = @note.subjects.first.notes
-    @prev = notes.where('created_at < ?', @note.created_at).first
-    @next = notes.where('created_at > ?', @note.created_at).last
+    @prev = notes.where('created_at < ?', @note.created_at).last
+    @next = notes.where('created_at > ?', @note.created_at).first
     
     @tags = @note.tag_list
   end
