@@ -92,6 +92,10 @@ table {
 	cursor: default;
 }
 
+.btn-default {
+  border-color: #ddd;
+}
+
 .btn-default:hover, .btn-default:focus {
 	color: #333333;
 	background-color: #fff;
