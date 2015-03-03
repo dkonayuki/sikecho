@@ -138,7 +138,7 @@
 								<span class="glyphicon glyphicon-plus"></span>
 							<% end %>
 							<div id="syllabus-table">
-								<%= render 'syllabus_table', editable: true %>
+								<%= render partial: 'syllabus_table', locals: {editable: true, subject: @subject} %>
 							</div>
 						<% else %>
 							<p class="notice">*<%= t('.notice1') %></p>

@@ -7,9 +7,9 @@
     </tr>
   </thead>
   <tbody>
-  	<% @subject.outlines.order('no ASC').each do | outline | %>
+  	<% subject.outlines.order('no ASC').each do |outline| %>
     <tr>
-      <% if editable %>
+      <% if defined?(editable) && editable %>
 	      <td><%= outline.no %></td>
 	      <td>
 	      	<a href="#" data-type="date" data-pk="<%= outline.no %>" class="outline-date">
@@ -18,7 +18,7 @@
       	</td>
 	      <td><a href="#" data-pk="<%= outline.no %>" class="outline-content"><%= sanitize(outline.content) %></a></td>
       <% else %>
-	      <td><%= link_to "#{outline.no}", subject_path(tag: outline.no), class: 'outline-btn' %></td>
+	      <td><%= link_to "#{outline.no}", subject_path(outline: outline.no, operation: :outline), class: 'outline-btn' %></td>
 	      <td>
 	      	<% if outline.date %>
 	      	<%= I18n.l outline.date, format: :long %>

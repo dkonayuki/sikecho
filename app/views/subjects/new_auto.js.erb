@@ -1,1 +1,1 @@
-$("#syllabus-table").html("<%=j render 'syllabus_table', editable: true %>");
+$("#syllabus-table").html("<%=j render partial: 'syllabus_table', locals: {editable: true, subject: @subject} %>");

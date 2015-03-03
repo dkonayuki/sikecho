@@ -22,12 +22,17 @@ Shikechou::Application.routes.draw do
     end
     
     resources :subjects do
+      #edit inline feature, in subject edit 
       put 'inline' => 'subjects#inline', on: :member # on: :member will take :id not :subject_id, and path as inline_subject_path
-      get 'version/:version_id' => 'subjects#version', as: 'version', on: :member  # remember on: :collection
+      
+      #change number of outlines, in form
       get 'outline' => 'subjects#outline', on: :member
+      
+      #tags, periods, new_auto in subject edit, subject new
       get 'tags' => 'subjects#tags', on: :member
       get 'periods' => 'subjects#periods', on: :member
       post 'new_auto' => 'subjects#new_auto', on: :member
+      
       # need to reload 1 subject when register btn clicked.
       get 'reload/:id' => 'subjects#reload', on: :collection
     end

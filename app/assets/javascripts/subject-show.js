@@ -13,12 +13,19 @@ $(document).on("page:load ready", function() {
 		
 		/*For outline btn*/
 		$(".outline-btn").on("click", function() {
+			var subjectID = $("#show-subject-schedule").data("id");
+			var url = $(this).attr("href");
+			
 			$.ajax({
-			  url: $(this).attr("href"),
+			  url: url,
 			  dataType: "script",
 			  success: function() {
 			  	ajaxSuccess();
 			  	scrollToAnchor("notes");
+
+		  		//replace current url, compatiable with turbolinks
+  				window.history.replaceState({ turbolinks: true }, "", "/" + I18n["meta"]["code"] + "/subjects/" 
+  					+ subjectID + "?" + decodeURIComponent($.param({outline: getParameterByName("outline", url)[0], operation: "outline"}, false)));
 			  }
 			});
 			return false;
@@ -67,7 +74,11 @@ $(document).on("page:load ready", function() {
 									success: function(msg) {
 										if (msg.status == "ok") {
 											//need to get script in order to refresh menu
-											$.getScript("/" + I18n["meta"]["code"] + "/subjects/" + subjectID, null);
+											$.ajax({
+												url: "/" + I18n["meta"]["code"] + "/subjects/" + subjectID,
+												dataType: "script",
+												data: {operation: "register"}
+											});
 						
 											//Set notification depends on the button user clicked on
 											if (dataMethod == "post") {
@@ -128,6 +139,25 @@ $(document).on("page:load ready", function() {
 	      "<span class='glyphicon glyphicon-chevron-left'></span>",
 	      "<span class='glyphicon glyphicon-chevron-right'></span>"
 	      ],
+		});
+		
+		/*For note pagination*/
+		$("#subject-notes-pagination").on("click", "#subject-note-next-page", function() {
+			var url = $("#show-subject .hidden-pagination .next a").attr("href");
+			if (url) {
+				// hide pagination in case user click too many times
+	    	$(".pagination").text("fetching...");
+	
+	    	//append loading.gif
+				$('#subject-notes-pagination').append("<div id='loading-inline'><img src='/assets/loading.gif'></div>");
+				
+				$.ajax({
+					url: url,
+					dataType: "script",
+					data: {operation: "show_more"}
+				});
+			}
+			return false;
 		});
 		
 	});//end of ready function

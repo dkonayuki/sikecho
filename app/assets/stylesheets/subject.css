@@ -227,6 +227,10 @@
 	position: fixed;
 }
 
+#subject-notes-pagination {
+	padding: 10px 5px;
+}
+
 #show-subject-menu-inner {
 	max-width: 200px;
 }
@@ -488,7 +492,6 @@
 	bottom: 10px;
 	right: 10px;
 }
-
 
 .subject-card {
 	max-width: 350px;

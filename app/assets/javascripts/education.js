@@ -26,8 +26,8 @@ function prepareEducations() {
 		
 		//get faculties list and refresh select
 		$.ajax({
-				url:"/faculties_list",	
-				data:'university_id=' + university_id,
+				url: "/faculties_list",	
+				data: {university_id: university_id},
 				dataType: "json",
 				success: function(data) {
 					//add new data to faculty select
@@ -48,8 +48,8 @@ function prepareEducations() {
 		
 		//get uni_years list and refresh select
 		$.ajax({
-				url:"/uni_years",	
-				data:'university_id=' + university_id,
+				url: "/uni_years",	
+				data: {university_id: university_id},
 				dataType: "json",
 				success: function(data) {
 					//add new data to uni_year select
@@ -74,8 +74,8 @@ function prepareEducations() {
 		$('#education_course_id').empty();
 		var faculty_id = $("#education_faculty_id").val();
 		$.ajax({
-				url:"/courses",	
-				data:'faculty_id=' + faculty_id,
+				url: "/courses",	
+				data: {faculty_id: faculty_id},
 				dataType: "json",
 				success: function(data) {
 					//add new data to course select
@@ -97,8 +97,8 @@ function prepareEducations() {
 		$('#education_semester_id').empty();
 		var uni_year_id = $("#education_uni_year_id").val();
 		$.ajax({
-				url:"/semesters",	
-				data:'uni_year_id=' + uni_year_id,
+				url: "/semesters",	
+				data: {uni_year_id: uni_year_id},
 				dataType: "json",
 				success: function(data) {
 					//add new data to semester select

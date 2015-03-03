@@ -111,20 +111,46 @@ class SubjectsController < ApplicationController
     # need current_user's infos for schedule_menu
     @user = current_user
     
-    @tags = @subject.tag_list
-    
-    #filter note in show subject page
-    if !params[:tag].blank?
-      @notes = @subject.notes.tagged_with(params[:tag])
-    else
-      #default
-      @notes = @subject.notes
+    #default
+    @notes = @subject.notes
+
+    unless params[:operation].blank?
+      @operation = params[:operation].to_sym
+      case @operation
+      when :version
+        #display version
+        #revert to previous version
+        if !params[:version_id].blank?
+          @subject = @subject.versions.find(params[:version_id]).reify
+        end
+      when :outline
+        #filter note in show subject page
+        if !params[:outline].blank?
+          @notes = @subject.notes.tagged_with(params[:outline])
+        end
+      when :show_more
+        #nothing
+      when :register
+        #nothing
+      else
+        #default
+      end
     end
+    
+    #get subject tags
+    @tags = @subject.tag_list
     
     #order by view count
     @notes = @notes.order('view_count DESC')
     
-    # same subjects, need to change later
+    #paginate @notes
+    # only work on collection proxy or relation
+    # page method from kaminari
+    # return relation (associationrelation)
+    @notes = @notes.page(params[:page]).per(4)
+            
+    # same subjects
+    # TO DO
     @same_subjects = @subject.course.subjects.where(name: @subject.name).order('year DESC')
     
     # recommend subjects
@@ -264,40 +290,6 @@ class SubjectsController < ApplicationController
     end
   end
   
-  #display version
-  def version
-    @user = current_user
-    
-    #revert to previous version
-    @subject = @subject.versions.find(params[:version_id]).reify
-    
-    @tags = @subject.tag_list
-    
-    if !params[:tag].blank?
-      #filter in show subject page
-      @notes = @subject.notes.tagged_with(params[:tag])
-    else
-      @notes = @subject.notes
-    end
-    
-    #order by view count
-    @notes = @notes.order('view_count DESC')
-    
-    # custom show
-    @show_subject = false
-    @show_course = true
-    
-    # same subjects, need to change later
-    @same_subjects = @subject.course.subjects.where(name: @subject.name).order('year DESC')
-    
-    # recommend subjects
-    @recommend_subjects = @subject.course.subjects.where('semester_id = ? AND id != ?', @subject.semester, @subject.id).order('view_count DESC, notes_count DESC').limit(8)
-    
-    respond_to do |format|
-      format.html { render action: 'show' }
-    end
-  end
-  
   # for /subjects/tags.json
   def tags
     @tags = @subject.tag_list
@@ -375,7 +367,8 @@ class SubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
-      params.permit(:name, :pk, :value, :tags, :teachers, :version_id, :page, :order, :search, :number_of_outlines, :courses, :semesters, :periods, :auto_type, :tag)
+      #subject show page: outline, page, operation, version_id
+      params.permit(:name, :pk, :value, :tags, :teachers, :version_id, :page, :order, :search, :number_of_outlines, :courses, :semesters, :periods, :auto_type, :outline, :operation)
       params.require(:subject).permit(:name, :description, :year, :place, :semester_id, :uni_year_id, :course_id, :picture)
     end
 end

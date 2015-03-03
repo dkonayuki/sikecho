@@ -46,7 +46,7 @@
 					<li><%= link_to t('latest'), @subject %></li>
 					<% @subject.versions.reverse.first(5).each do |version| %>
 						<li>
-							<%= link_to version_subject_path(id: @subject.id, version_id: version.id) do %>
+							<%= link_to subject_path(id: @subject.id, version_id: version.id, operation: :version) do %>
 				        <%= version.created_at.to_date %>
 								<%= version.created_at.strftime("%I:%M%p") %>
 							<% end %>
@@ -149,7 +149,7 @@
 		    </div>
 				<div class="skc-box-desc skc-box-desc-no-margin collapse out" id="collapseSyllabus">
 					<p class="notice">*<%= t('.notice1') %></p>
-					<%= render 'syllabus_table', editable: false %>
+					<%= render partial: 'syllabus_table', locals: {editable: false, subject: @subject} %>
 				</div><!-- end of box-desc -->
 				
 				<div class="skc-box-menu">
@@ -177,6 +177,15 @@
 			    
 					<div class="skc-box-desc skc-box-desc-no-margin collapse in text-center row" id="collapseNotes">
 						<%= render(partial: 'notes/note_sm', collection: @notes, as: :note, locals: {show_subject: false}) || t('note_not_found') %>
+					</div>
+					<div id="subject-notes-pagination">
+						<% if !@notes.last_page? %>
+							<span class="glyphicon glyphicon-triangle-bottom"></span>
+							<%= link_to_next_page @notes, t('.next'), remote: true, id: 'subject-note-next-page' %>
+						<% end %>
+					</div>
+					<div class="hidden-pagination">
+						<%= paginate @notes %>										
 					</div>
 					
 					<div class="skc-box-inside-menu">

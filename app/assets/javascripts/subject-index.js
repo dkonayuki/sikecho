@@ -403,6 +403,5 @@ $(document).on("page:load ready", function() {
 			}
 		});
 
-
 	}); //end of ready
 });
