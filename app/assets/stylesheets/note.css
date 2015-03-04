@@ -477,3 +477,55 @@
 	display: inline-block;
 	margin-right: 3px;
 }
+
+.note-item-xs {
+	height: 70px;
+	list-style: none;
+}
+
+.note-item-inner-xs {
+	border: 1px solid transparent;
+	border-bottom: 1px solid #eee;	
+	padding: 5px 5px 0 5px;
+	height: 100%;
+	position: relative;
+}
+
+.note-details-xs {
+	width: auto;
+	overflow: hidden;
+}
+
+.note-thumbnail-xs {
+	float: left;
+	height: 100%;
+	width: 20px;
+	margin-right: 6px;
+	margin-top: 3px;
+}
+
+.note-title-xs {
+	text-align: left;
+	font-size: 13px;
+	margin-top: 5px;
+	overflow: hidden;
+	word-wrap: break-word;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.note-subject-name-xs {
+	font-size: 10px;
+	color: #999;
+}
+
+.note-info-xs {
+	position: absolute;
+	right: 5px;
+	top: 10px;
+	font-size: 10px;
+	color: #999999;
+}
+
+.note-time-xs {
+}

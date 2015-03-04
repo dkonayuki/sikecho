@@ -149,6 +149,11 @@ div.message-sm {
 	font-style: italic;
 }
 
+.notice-2 {
+	font-size: 11px;
+	color: #888;
+}
+
 .no-padding {
 	padding: 0 !important;
 }

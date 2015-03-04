@@ -10,8 +10,20 @@
 	</div>
 	
 	<div class="hidden-xs col-sm-3">
-		<div id="widgets">
+		<div id="home-user-profile">
 			<%= render 'users/user_profile_card', user: @user %>
+		</div>
+		<div id="widgets">
+			<div class="widget">
+				<div class="widget-header">
+					<div class="widget-icon"><i class="fa fa-clock-o"></i></div>
+					<div class="widget-header-name"><%= t('.latest_note') %></div>
+					<div class="notice-2"><%= t('.latest_note_notice') %></div>
+				</div>
+				<div class="widget-content clear">
+					<%= render(partial: 'notes/note_xs', collection: @notes, as: :note, locals: {show_subject: true}) || t('note_not_found') %>
+				</div>
+			</div>
 		</div>
 	</div>
 	

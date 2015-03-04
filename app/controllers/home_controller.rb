@@ -8,9 +8,12 @@ class HomeController < ApplicationController
       #deleted notes or subjects won't be displayed
       @activities = PublicActivity::Activity.order('created_at desc')
         .where('(trackable_id in (?) AND trackable_type = ?) OR (trackable_id in (?) AND trackable_type = ?)', @user.current_subjects.ids, 'Subject', @user.registered_notes.ids, 'Note')
-        
+      
+      #kaminari pagination, page param can be nil
       @activities = @activities.page(params[:page]).per(10)
-
+      
+      #latest notes
+      @notes = @user.registered_notes.order('created_at DESC').limit(5)
     else
       redirect_to universities_url
     end
