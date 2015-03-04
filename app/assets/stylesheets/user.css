@@ -227,10 +227,12 @@
 
 .author-img {
 	display: inline-block;
+	float: left;
 }
 
 .author-content {
 	padding-left: 10px;
+	overflow: hidden;
 }
 
 .author-name {
@@ -255,6 +257,8 @@
 	padding-left: 5px;
 	display: inline-block;
 	vertical-align: middle;
+	padding-right: 5px;
+	border-right: 1px solid #ddd;
 }
 
 .user-activity-name a {
@@ -262,7 +266,7 @@
 
 .user-activity-info {
 	vertical-align: middle;
-	padding-left: 5px;
+	padding-left: 2px;
 	color: #888;
 	display: inline-block;
 }

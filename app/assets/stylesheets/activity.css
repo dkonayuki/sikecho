@@ -18,7 +18,7 @@
 }
 
 .activity-inner {
-	min-height: 35px;
+	min-height: 30px;
 }
 
 .activity-inner hr {
@@ -36,6 +36,11 @@
 .activity-thumbnail {
 	height: 100%;
 	float: left;
+}
+
+.activity-thumbnail img {
+	width: 30px;
+	height: 30px;
 }
 
 .activity-details {

@@ -487,11 +487,11 @@ ja:
   public_activity:
     note:
       create:
-        was_created: は作成されました
+        was_created: が作成されました
       update:
-        was_updated: は更新されました
+        was_updated: が更新されました
     subject:
       create:
-        was_created: は作成されました
+        was_created: が作成されました
       update:
-        was_updated: は更新されました
+        was_updated: が更新されました

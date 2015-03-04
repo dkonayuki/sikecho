@@ -38,10 +38,22 @@
 	        left: e.pageX
 	      };
 	      
+	      var pos_to_window = e.pageY - $(window).scrollTop();
+	      
 	      // position of content
-	      if (placement == "top") {
-	      	pos.top -= content.outerHeight();
-	      }
+	      switch (placement) {
+			    case "top":
+	      		pos.top -= content.outerHeight();
+			      if (pos_to_window < content.outerHeight()) {
+			      	pos.top += content.outerHeight();
+			      }
+		        break;
+			    case "bottom":
+			      if (($(window).height() - pos_to_window) < content.outerHeight()) {
+			      	pos.top -= content.outerHeight();
+			      }  
+		        break;
+				}
 
 				// add px unit
 				pos.top += 'px';
