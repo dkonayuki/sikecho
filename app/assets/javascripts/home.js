@@ -15,5 +15,19 @@ $(document).on("page:load ready", function() {
 			});
 		});
 		
+		/*For endless page*/
+		if ($("#home .hidden-pagination").length) {
+			$(window).scroll(function(){
+				url = $("#home .next a").attr("href");
+		    if (url && ($(window).scrollTop() > $(document).height() - $(window).height() - 50)) {
+		    	//disable pagination link
+		    	$("#home .pagination").text("fetching...");
+		    	//append loading.gif
+	  			$("#activities").append("<div id='loading'><img src='/assets/loading.gif'></div>");
+					$.getScript(url);
+		    }
+			});
+		}
+		
 	});//end of ready function
 });

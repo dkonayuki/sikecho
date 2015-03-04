@@ -2,14 +2,10 @@
 	
 	<div class="col-xs-12 col-sm-9">
 		<div id="activities">
-			<% @activities.each do |activity| %>
-				<% case activity.trackable_type 
-				when 'Note' %>
-			    <%= render_activity activity, layout: 'layouts/activity_note', locals: {note: activity.trackable} %>
-		    <% when 'Subject' %>
-			    <%= render_activity activity, layout: 'layouts/activity_subject' %>
-		    <% end %>
-			<% end %>
+			<%= render 'activity_list', activities: @activities || t('.activity_not_found') %>
+		</div>
+		<div class="hidden-pagination">
+			<%= paginate @activities %>										
 		</div>
 	</div>
 	

@@ -335,6 +335,8 @@ en:
   nickname: Nickname
 
   home:
+    index:
+      activity_not_found: No feed
   layouts:
     application:
       title: Sikecho

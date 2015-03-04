@@ -1,0 +1,8 @@
+			<% activities.each do |activity| %>
+				<% case activity.trackable_type 
+				when 'Note' %>
+			    <%= render_activity activity, layout: 'layouts/activity_note', locals: {note: activity.trackable} %>
+		    <% when 'Subject' %>
+			    <%= render_activity activity, layout: 'layouts/activity_subject' %>
+		    <% end %>
+			<% end %>

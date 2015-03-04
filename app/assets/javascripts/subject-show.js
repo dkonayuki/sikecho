@@ -149,7 +149,7 @@ $(document).on("page:load ready", function() {
 	    	$(".pagination").text("fetching...");
 	
 	    	//append loading.gif
-				$('#subject-notes-pagination').append("<div id='loading-inline'><img src='/assets/loading.gif'></div>");
+				$("#subject-notes-pagination").append("<div id='loading-inline'><img src='/assets/loading.gif'></div>");
 				
 				$.ajax({
 					url: url,

@@ -305,6 +305,8 @@ ja:
   nickname: ニックネーム
  
   home:
+    index:
+      activity_not_found: 情報がありません
   layouts:
     application:
       title: シケ帳

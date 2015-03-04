@@ -372,7 +372,7 @@ $(document).on("page:load ready", function() {
 		    	$("#subjects .pagination").text("fetching...");
 
 		    	//append loading.gif
-	  			$('#subjects-list').append("<div id='loading'><img src='/assets/loading.gif'></div>");
+	  			$("#subjects-list").append("<div id='loading'><img src='/assets/loading.gif'></div>");
 					$.getScript(url);
 		    }
 			});

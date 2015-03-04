@@ -38,7 +38,7 @@ function prepareComments() {
     	$(".pagination").text("fetching...");
 
     	//append loading.gif
-			$('#comments-pagination').append("<div id='loading-inline'><img src='/assets/loading.gif'></div>");
+			$("#comments-pagination").append("<div id='loading-inline'><img src='/assets/loading.gif'></div>");
 			$.getScript(url);
 		}
 		return false;

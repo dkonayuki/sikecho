@@ -1,0 +1,5 @@
+	$("#activities #loading").remove();
+	$("#activities").append("<%=j render 'activity_list', activities: @activities %>");
+
+//update pagination
+	$(".hidden-pagination").html("<%=j paginate @activities %>");

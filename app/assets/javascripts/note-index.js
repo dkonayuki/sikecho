@@ -121,7 +121,7 @@ $(document).on("page:load ready", function() {
 		    	//disable pagination link
 		    	$("#notes .pagination").text("fetching...");
 		    	//append loading.gif
-	  			$('#notes-list').append("<div id='loading'><img src='/assets/loading.gif'></div>");
+	  			$("#notes-list").append("<div id='loading'><img src='/assets/loading.gif'></div>");
 					$.getScript(url);
 		    }
 			});
