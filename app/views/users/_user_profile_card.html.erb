@@ -1,0 +1,34 @@
+<div data-role="user-card">
+	<div class="user-card-inner">
+		<div class="user-card-header">
+			<div class="avatar-circle-bg-wrapper">
+				<div class="avatar-circle-bg">
+					<div class="avatar-circle-bg">
+						<div class="avatar-circle-bg">
+							<div class="avatar-circle-bg">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="user-card-avatar-wrapper align align-column">
+			<%= image_tag(user.display_profile_image, class: 'user-card-avatar') %>
+			<%= link_to user.username, user, class: 'user-card-name' %>
+		</div>
+		<div class="user-card-body align">
+		</div>
+		<div class="user-card-info align">
+			<div class="align-item">
+				<p class="no-margin">2</p>
+			 <%= t('note_plural') %>
+			</div>
+			<div class="align-item">
+				<p class="no-margin">2</p>
+				<%= t('subject_plural') %>
+			</div>
+		</div>
+	</div>
+	
+</div>

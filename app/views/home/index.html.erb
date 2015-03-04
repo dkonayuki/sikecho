@@ -5,7 +5,7 @@
 			<% @activities.each do |activity| %>
 				<% case activity.trackable_type 
 				when 'Note' %>
-			    <%= render_activity activity, layout: 'layouts/activity_note' %>
+			    <%= render_activity activity, layout: 'layouts/activity_note', locals: {note: activity.trackable} %>
 		    <% when 'Subject' %>
 			    <%= render_activity activity, layout: 'layouts/activity_subject' %>
 		    <% end %>
@@ -13,7 +13,10 @@
 		</div>
 	</div>
 	
-	<div class="col-xs-12 col-sm-3">
+	<div class="hidden-xs col-sm-3">
+		<div id="widgets">
+			<%= render 'users/user_profile_card', user: @user %>
+		</div>
 	</div>
 	
 </div>

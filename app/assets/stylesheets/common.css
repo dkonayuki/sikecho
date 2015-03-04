@@ -153,6 +153,10 @@ div.message-sm {
 	padding: 0 !important;
 }
 
+.no-margin {
+	margin: 0 !important;
+}
+
 .has-margin {
 	margin: 10px 0 10px;
 }
@@ -729,6 +733,11 @@ input[type=checkbox]:focus {
 .avatar-xxs {
 	width: 20px;
 	height: 20px;
+}
+
+.avatar-xxxs {
+	width: 12px;
+	height: 12px;
 }
 
 .avatar-round {

@@ -280,6 +280,7 @@ en:
   all_option: All
   all: All
   note: Note
+  note_plural: Notes
   subject: Subject
   subject_plural: Subjects
   new_arrival_note: New arrival note

@@ -10,7 +10,7 @@
 		</div>
 		<hr>
 		<div class="activity-user-info">
-			<%= render partial: 'users/user_activity', locals: {user: activity.owner, date: activity.trackable.created_at} %>				
+			<%= render partial: 'users/user_activity', locals: {user: activity.owner, date: note.created_at} %>
 			<div class="user-activity-hovercard hovercard" data-id="<%= activity.id %>">
 				<%= render partial: 'users/user_hovercard', locals: {user: activity.owner} %>		
 			</div>
