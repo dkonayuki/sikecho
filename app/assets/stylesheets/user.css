@@ -218,3 +218,51 @@
 	height: 14px;
 	width: 14px;
 }
+
+/*User item
+ *  ===============================================================================================*/
+
+.author {
+}
+
+.author-img {
+	display: inline-block;
+}
+
+.author-content {
+	padding-left: 10px;
+}
+
+.author-name {
+	color: #E67E22;
+	font-size: 13px;
+}
+
+.author-info {
+	font-size: 11px;
+	color: #888;
+}
+
+.user-activity {
+	font-size: 11px;
+}
+
+.user-activity-img {
+	float: left;
+}
+
+.user-activity-name {
+	padding-left: 5px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.user-activity-name a {
+}
+
+.user-activity-info {
+	vertical-align: middle;
+	padding-left: 5px;
+	color: #888;
+	display: inline-block;
+}

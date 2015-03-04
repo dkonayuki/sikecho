@@ -193,31 +193,6 @@
 	display: none;
 }
 
-.author {
-	height: 35px;
-	width: 300px;
-	display: inline-block;
-}
-
-.author-img {
-	float: left;
-}
-
-.author-content {
-	padding-left: 10px;
-	overflow: hidden;
-}
-
-.author-name {
-	color: #E67E22;
-	font-size: 13px;
-}
-
-.author-info {
-	font-size: 11px;
-	color: #888;
-}
-
 #note-tags-list {
 	margin-top: 10px;
 }

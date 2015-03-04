@@ -20,7 +20,7 @@
 				<% end %>
 								
 				<hr />
-				<%= render partial: "users/author_card", locals: {user: @note.user, date: @note.created_at} %>				
+				<%= render partial: 'users/author_card', locals: {user: @note.user, date: @note.created_at} %>				
 				<div class="author-hovercard hovercard">
 					<%= render partial: 'users/user_hovercard', locals: {user: @note.user} %>		
 				</div>
@@ -55,8 +55,8 @@
 			<%= image_tag('lecture_color.png') %>
 			<span><%= t('subject_plural') %></span>
 		</div>
-		<% @note.subjects.each do |subject| %>
-			<%= render partial: "subjects/subject_card", locals: {subject: subject} %>
+		<% @note.subjects.ordered.each do |subject| %>
+			<%= render partial: 'subjects/subject_card', locals: {subject: subject} %>
 			<div class="subject-hovercard hovercard" data-id="<%= subject.id %>">
 				<%= render partial: 'subjects/subject_hovercard', locals: {subject: subject} %>		
 			</div>

@@ -1,3 +1,19 @@
-<div id="home">
-	<%= render template: 'activities/index' %>
+<div id="home" class="row">
+	
+	<div class="col-xs-12 col-sm-9">
+		<div id="activities">
+			<% @activities.each do |activity| %>
+				<% case activity.trackable_type 
+				when 'Note' %>
+			    <%= render_activity activity, layout: 'layouts/activity_note' %>
+		    <% when 'Subject' %>
+			    <%= render_activity activity, layout: 'layouts/activity_subject' %>
+		    <% end %>
+			<% end %>
+		</div>
+	</div>
+	
+	<div class="col-xs-12 col-sm-3">
+	</div>
+	
 </div>

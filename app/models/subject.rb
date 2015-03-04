@@ -1,7 +1,7 @@
 class Subject < ActiveRecord::Base
   #default scope
   #for example: note.subjects.first will use the order below
-  default_scope {order('id ASC, created_at DESC')}
+  scope :ordered, -> {order('year DESC, name ASC, view_count DESC')}
 
   #for subject_path
   include Rails.application.routes.url_helpers

@@ -1,0 +1,15 @@
+<div class="user-activity">
+	<div class="user-activity-img">
+	<%= link_to user do %>
+		<%= image_tag(user.display_comment_avatar, class: 'avatar-xxs user-activity-hovercard-target avatar-round') %>
+	<% end %>
+	</div>
+	<div class="user-activity-name">
+	<%= link_to user, class: 'user-activity-hovercard-target' do %>
+		<%= user.username %>
+	<% end %>
+	</div>
+	<div class="user-activity-info">
+		<%= time_ago_in_words(date) %><%= t('ago') %>
+	</div>
+</div>

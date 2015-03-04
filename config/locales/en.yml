@@ -334,8 +334,6 @@ en:
   nickname: Nickname
 
   home:
-    widgets:
-      subject_number: Subject number
   layouts:
     application:
       title: Sikecho
@@ -515,3 +513,14 @@ en:
       chugoku: Chugoku
       shikoku: Shikoku
       kyushu: Kyushu
+  public_activity:
+    note:
+      create:
+        was_created: was created
+      update:
+        was_updated: was updated
+    subject:
+      create:
+        was_created: was created
+      update:
+        was_updated: was updated

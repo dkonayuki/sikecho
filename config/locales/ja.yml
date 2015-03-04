@@ -304,8 +304,6 @@ ja:
   nickname: ニックネーム
  
   home:
-    widgets:
-      subject_number: 授業数
   layouts:
     application:
       title: シケ帳
@@ -485,3 +483,14 @@ ja:
       chugoku: 中国
       shikoku: 四国
       kyushu: 九州
+  public_activity:
+    note:
+      create:
+        was_created: は作成されました
+      update:
+        was_updated: は更新されました
+    subject:
+      create:
+        was_created: は作成されました
+      update:
+        was_updated: は更新されました

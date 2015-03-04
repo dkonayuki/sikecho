@@ -1,7 +1,4 @@
-updated subject
-
-<% if activity.trackable %>
-  <%= link_to activity.trackable.name, activity.trackable %>
-<% else %>
-  which has since been removed
-<% end %>
+  <%= link_to activity.trackable do %>
+		<%= activity.trackable.name %>
+	<% end %>
+	<%= t('.was_updated') %>

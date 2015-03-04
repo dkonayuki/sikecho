@@ -1,0 +1,19 @@
+<div class="activity" data-id="<%= activity.id %>">
+	<div class="activity-inner clear">
+		<div class="activity-content clear">
+			<div class="activity-thumbnail">
+				<%= image_tag('note_color.png', class: 'avatar-xs') %>
+			</div>
+			<div class="activity-details">
+				<%= yield %>
+			</div>
+		</div>
+		<hr>
+		<div class="activity-user-info">
+			<%= render partial: 'users/user_activity', locals: {user: activity.owner, date: activity.trackable.created_at} %>				
+			<div class="user-activity-hovercard hovercard" data-id="<%= activity.id %>">
+				<%= render partial: 'users/user_hovercard', locals: {user: activity.owner} %>		
+			</div>
+		</div>
+	</div>
+</div>

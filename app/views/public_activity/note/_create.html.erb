@@ -1,6 +1,4 @@
-added a note
-<% if activity.trackable %>
-  <%= link_to activity.trackable.title, activity.trackable %>
-<% else %>
-  which has since been removed
-<% end %>
+  <%= link_to activity.trackable do %>
+		<%= activity.trackable.title %>
+	<% end %>
+	<%= t('.was_created') %>

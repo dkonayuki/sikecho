@@ -9,7 +9,7 @@ class ScheduleController < ApplicationController
     @subjects = @user.current_university.subjects.search(params[:search]).page(params[:page]).per(4)
     
     #default order option
-    @subjects = @subjects.order('year DESC, name ASC, view_count DESC')
+    @subjects = @subjects.ordered
     
     #for add/remove consistency
     @search = params[:search]

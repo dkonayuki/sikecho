@@ -726,6 +726,11 @@ input[type=checkbox]:focus {
 	height: 35px;
 }
 
+.avatar-xxs {
+	width: 20px;
+	height: 20px;
+}
+
 .avatar-round {
 	border-radius: 50%;
 }
