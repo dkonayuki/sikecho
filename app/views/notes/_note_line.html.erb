@@ -49,7 +49,7 @@
 	    	<% end %>
     	</div>
     	<div class="note-content-line">
-    		<%= note.content %>
+    		<%= sanitize(note.content) %>
     	</div>
 	    <div class="note-tags-line">
 	    	<% note.tag_list.first(5).each do |tag| %>

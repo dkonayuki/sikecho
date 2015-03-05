@@ -464,6 +464,14 @@ en:
       prepare_exam: Exam Preparation
       past_exam: Past Exams
       new: New
+    note_sm:
+      prepare_exam: Exam Preparation
+      past_exam: Past Exams
+      new: New
+    note_box:
+      prepare_exam: Exam Preparation
+      past_exam: Past Exams
+      new: New
   documents:
     show:
       next: Load more comments...

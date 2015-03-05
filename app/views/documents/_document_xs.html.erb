@@ -1,0 +1,10 @@
+<!-- used in note index page -->
+<div class="document-item-xs" data-id="<%= document.id %>">
+	<div class="document-preview">
+		<% if document.file_type != '.pdf' %>
+			<%= link_to image_tag(document.upload.url(:small)), document %>
+		<% else %>
+			<%= link_to image_tag(document.upload.url(:pdf_thumbnail)), document.upload.url %>
+		<% end %>
+	</div>
+</div>

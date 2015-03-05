@@ -21,7 +21,7 @@
 					<div class="notice-2"><%= t('.latest_note_notice') %></div>
 				</div>
 				<div class="widget-content clear">
-					<%= render(partial: 'notes/note_xs', collection: @notes, as: :note, locals: {show_subject: true}) || t('note_not_found') %>
+					<%= render(partial: 'notes/note_xs', collection: @notes, as: :note, locals: {show_subject: true}) || content_tag(:div, t('note_not_found'), class: 'message-xs') %>
 				</div>
 			</div>
 		</div>
