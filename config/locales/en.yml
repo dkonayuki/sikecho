@@ -338,7 +338,7 @@ en:
     index:
       activity_not_found: No feed
       latest_note: Latest notes
-      lastest_note_notice: Notes from subjects that you registered.
+      latest_note_notice: Notes from subjects that you registered.
   layouts:
     application:
       title: Sikecho
