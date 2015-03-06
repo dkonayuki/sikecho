@@ -6,10 +6,11 @@ class ScheduleController < ApplicationController
   def index
     #prepare view
     get_schedule_content
-    @subjects = @user.current_university.subjects.search(params[:search]).page(params[:page]).per(4)
     
     #default order option
-    @subjects = @subjects.ordered
+    @subjects = @user.current_university.subjects.ordered
+    
+    @subjects = @subjects.search(params[:search]).page(params[:page]).per(4)
     
     #for add/remove consistency
     @search = params[:search]

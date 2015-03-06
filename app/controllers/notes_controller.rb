@@ -96,7 +96,7 @@ class NotesController < ApplicationController
       @layout = :all
     when :lecture
       # create hash of arrays from array by using group_by
-      @notes_by_subject = @notes.group_by { |note| note.subjects.first }
+      @notes_by_subject = @notes.group_by { |note| note.subjects.ordered.first }
       @layout = :lecture
     else
       #default

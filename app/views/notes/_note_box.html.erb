@@ -1,19 +1,6 @@
 <div class="note-item-box">
 	<div class="note-item-inner-box">
 		
-	  <div class="note-info-box">
-	  	
-	  	<div class="note-view-box">
-				<span class="glyphicon glyphicon-eye-open"></span>
-				<%= note.impressionist_count %>
-			</div>
-
-	  	<div class="note-time-box">
-	  		<%= time_ago_in_words(note.created_at) %><%= t('ago') %>
-			</div>
-
-		</div>
-		
 	  <div class="note-details-box">
 	    <div class="note-title-box"><%= link_to note.title, note %>
 				<% if user_signed_in? %>
@@ -23,13 +10,28 @@
 	    	<% end %>
     	</div>
     	<div class="note-content-box">
-    		<%= sanitize(note.content) %>
+    		<%= sanitize strip_tags(note.content) %>
     	</div>
-  		<% if !note.documents.empty? %>
-				<div class="note-box-documents-list">
+			<div class="note-box-documents-list">
+  			<% if !note.documents.empty? %>
 				  <%= render(partial: 'documents/document_xs', collection: note.documents.order('created_at ASC').limit(4), as: :document) %>
+				<% end %>
+			</div>
+			
+		  <div class="note-info-box">
+		  	
+		  	<div class="note-view-box">
+					<span class="glyphicon glyphicon-eye-open"></span>
+					<%= note.impressionist_count %>
 				</div>
-			<% end %>
+	
+		  	<div class="note-time-box">
+		  		<%= time_ago_in_words(note.created_at) %><%= t('ago') %>
+				</div>
+				<div class="note-subject-box">
+					<%= note.subjects.ordered.first.name %>
+				</div>
+			</div>
 	  </div>
 
 	</div>

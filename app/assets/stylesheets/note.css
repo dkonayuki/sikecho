@@ -577,15 +577,11 @@
 }
 
 .note-time-box {
-	position: absolute;
-	right: 5px;
-	bottom: 3px;
+	float: right;
 }
 
 .note-view-box {
-	position: absolute;
-	left: 5px;
-	bottom: 3px;
+	float: left;
 }
 
 @media (max-width: 469px) {
@@ -601,4 +597,13 @@
 	text-align: right;
 	height: 35px;
 	overflow: hidden;
+}
+
+.note-subject-box {
+	overflow: hidden;
+	line-height: 15px;
+	height: 15px;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
 }

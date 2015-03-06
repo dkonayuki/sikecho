@@ -20,7 +20,6 @@ $(document).on("page:load ready", function() {
 			  url: url,
 			  dataType: "script",
 			  success: function() {
-			  	ajaxSuccess();
 			  	scrollToAnchor("notes");
 
 		  		//replace current url, compatiable with turbolinks
