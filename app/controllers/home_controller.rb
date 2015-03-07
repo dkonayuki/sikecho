@@ -15,9 +15,11 @@ class HomeController < ApplicationController
         
       #kaminari pagination, page param can be nil
       @activities = @activities.page(params[:page]).per(10)
-      
+
       #latest notes
       @notes = @user.registered_notes.order('created_at DESC').limit(5)
+      @notes.mark_as_read! :all, for: @user
+          #@note.mark_as_read! for: @user
     else
       redirect_to universities_url
     end

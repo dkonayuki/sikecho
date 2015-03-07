@@ -1,9 +1,13 @@
 	<%= link_to activity.owner.display_name, activity.owner %>
 <% if I18n.locale == :ja %>
 	<%= t('.ga') %>
-	<%= link_to image_tag(comment.commentable.upload.url(:small)), comment.commentable, class: 'activity-thumbnail-2' %>
+	<%= link_to image_tag(activity.trackable.commentable.upload.url(:small)), activity.trackable.commentable, class: 'activity-thumbnail-2' %>
 	<%= t('.created') %>
 <% else %>
 	<%= t('.created') %>
-	<%= link_to image_tag(comment.commentable.upload.url(:small)), comment.commentable, class: 'activity-thumbnail-2' %>
+	<%= link_to image_tag(activity.trackable.commentable.upload.url(:small)), activity.trackable.commentable, class: 'activity-thumbnail-2' %>
+<% end %>
+
+<% content_for :thumbnail, flush: true do %>
+	<%= link_to image_tag(activity.owner.display_comment_avatar), activity.owner %>
 <% end %>

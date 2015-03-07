@@ -1,4 +1,8 @@
-  <%= link_to note do %>
-		<%= note.title %>
+  <%= link_to activity.trackable do %>
+		<%= activity.trackable.title %>
 	<% end %>
 	<%= t('.was_created') %>
+	
+<% content_for :thumbnail, flush: true do %>
+	<%= image_tag('note_color.png') %>
+<% end %>

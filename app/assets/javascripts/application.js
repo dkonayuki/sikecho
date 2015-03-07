@@ -34,6 +34,7 @@
 //= require modernizr.custom.js
 //= require classie.js
 //= require mlpushmenu.js
+//= require jquery.nanoscroller.js
 //= require_tree .
 
 /*MaxWidth for ajax popup*/
@@ -188,6 +189,13 @@ $(document).on("page:load ready", function() {
 	    $("#nav-bar").css("position", "fixed");
 		});
 	}
+	
+	//nano slider
+	$(".nano").nanoScroller();
+	//refresh nano slider after dropdown menu shown
+	$("#notification-dropdown").on("shown.bs.dropdown", function () {
+		$(".nano").nanoScroller();
+	});
 	
 	/*check if scrollbar exists*/
 	var hasScrollbar = window.innerWidth > document.documentElement.clientWidth;

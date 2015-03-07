@@ -356,6 +356,8 @@ en:
       search: Search
       subject_search: Search subject
       note_search: Search note
+      notifications: Notifications
+      see_all: See all
   users:
     registrations:
       new:

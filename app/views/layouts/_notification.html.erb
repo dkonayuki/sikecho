@@ -1,0 +1,20 @@
+<div class="notification" data-id="<%= activity.id %>">
+	<div class="notification-inner">
+		<div class="notification-content">
+			<div class="notification-thumbnail">
+				<% if content_for?(:thumbnail) %>
+					<%= content_for :thumbnail %>
+				<% else %>
+					<%= image_tag('lecture_color.png') %>
+				<% end %>
+			</div>
+			<div class="notification-details">
+				<%= yield %>
+			</div>
+			<div class="notification-info">
+				<%= time_ago_in_words(activity.created_at) %><%= t('ago') %>
+			</div>
+		</div>
+
+	</div>
+</div>

@@ -2,3 +2,7 @@
 		<%= activity.trackable.title %>
 	<% end %>
 	<%= t('.was_updated') %>
+
+<% content_for :thumbnail, flush: true do %>
+	<%= image_tag('note_color.png') %>
+<% end %>

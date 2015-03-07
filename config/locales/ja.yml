@@ -326,6 +326,8 @@ ja:
       search: 検索
       subject_search: 授業検索
       note_search: ノート検索
+      notifications: お知らせ
+      see_all: 全て見る
   users:
     registrations:
       new:

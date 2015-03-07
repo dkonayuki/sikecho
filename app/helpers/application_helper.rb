@@ -49,6 +49,15 @@ module ApplicationHelper
     end
   end
   
+  # get notifications for views
+  def notifications
+    PublicActivity::Activity
+      .where('(trackable_id in (?) AND trackable_type = ?)' +
+        'OR (trackable_id in (?) AND trackable_type = ?)' +
+        'OR (trackable_id in (?) AND trackable_type = ?)', @user.current_subjects.ids, 'Subject', @user.registered_notes.ids, 'Note', @user.registered_comments.ids, 'Comment')
+      .order('created_at desc').limit(8)
+  end
+  
   # get current language for js
   def current_translations
     @translations ||= I18n.backend.send(:translations)

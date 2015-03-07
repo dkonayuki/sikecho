@@ -31,6 +31,7 @@
  *= require animate.css
  *= require pushmenu.css
  *= require font-awesome
+ *= require jquery.nanoscroller.css
  *= require_tree .
  * 
  */
