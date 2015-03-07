@@ -1,5 +1,8 @@
 function prepareEducations() {
 	$(".selectpicker").selectpicker();
+	
+	//OPTIMIZE
+	
 	$("#education-form").on("submit", function() {
 		$.ajax({
 			url: $(this).attr("action"),

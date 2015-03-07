@@ -88,6 +88,8 @@ class NotesController < ApplicationController
     # only work on collection proxy or relation
     # page method from kaminari
     # return relation (associationrelation)
+    # kaminari can also paginate on array: Kaminari.paginate_array(my_array_object).page(params[:page]).per(10)
+    # however it's better to unify to relation only
     @notes = @notes.page(params[:page]).per(20)
     
     # set layout

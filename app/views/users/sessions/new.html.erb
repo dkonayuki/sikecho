@@ -9,7 +9,7 @@
     <div class="account-wall">
     	
     	<% if @session_user %>
-      	<%= image_tag(@session_user.display_profile_image, class: 'profile-img') %>
+      	<%= image_tag(@session_user.display_login_avatar, class: 'profile-img') %>
     	<% else %>
       	<%= image_tag('avatar_default.png', class: 'profile-img') %>
       <% end %>

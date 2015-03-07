@@ -185,7 +185,7 @@ ActiveRecord::Schema.define(version: 20150222080151) do
   create_table "registers", force: true do |t|
     t.integer  "education_id"
     t.integer  "subject_id"
-    t.datetime "register_time"
+    t.datetime "created_at"
   end
 
   add_index "registers", ["education_id"], name: "index_registers_on_education_id", using: :btree

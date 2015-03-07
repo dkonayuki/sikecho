@@ -14,18 +14,20 @@
 		</div>
 		
 		<div class="user-card-avatar-wrapper align align-column">
-			<%= image_tag(user.display_profile_image, class: 'user-card-avatar') %>
+			<%= image_tag(user.display_login_avatar, class: 'user-card-avatar') %>
 			<%= link_to user.username, user, class: 'user-card-name' %>
 		</div>
+		
 		<div class="user-card-body align">
 		</div>
+		
 		<div class="user-card-info align">
 			<div class="align-item">
-				<p class="no-margin">2</p>
+				<p class="no-margin"><%= user.registered_notes.count %></p>
 			 <%= t('note_plural') %>
 			</div>
 			<div class="align-item">
-				<p class="no-margin">2</p>
+				<p class="no-margin"><%= user.current_subjects.count %></p>
 				<%= t('subject_plural') %>
 			</div>
 		</div>

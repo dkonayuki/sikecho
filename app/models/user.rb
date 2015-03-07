@@ -77,12 +77,30 @@ class User < ActiveRecord::Base
     end
   end
   
-  #display avatar if exists
+  #display image if exists
   def display_profile_image
     if self.avatar.present? && self.avatar.url(:small).present?
       self.avatar.url(:small)
     else
       ActionController::Base.helpers.asset_path('user.png')
+    end
+  end
+  
+  #display avatar if exists
+  def display_profile_avatar
+    if self.avatar.present? && self.avatar.url(:small).present?
+      self.avatar.url(:small)
+    else
+      ActionController::Base.helpers.asset_path('user_profile.png')
+    end
+  end
+  
+  #login page
+  def display_login_avatar
+    if self.avatar.present? && self.avatar.url(:small).present?
+      self.avatar.url(:small)
+    else
+      ActionController::Base.helpers.asset_path('avatar_default.png')
     end
   end
   
@@ -141,10 +159,21 @@ class User < ActiveRecord::Base
       .where('educations.id = ?', self.current_education.id)
   end
   
+  #return comments from documents in registered notes
+  #need for public activity/new feeds
+  def registered_comments
+    Comment.select('distinct comments.*')
+      .joins("INNER JOIN documents ON documents.id = commentable_id AND commentable_type = 'Document'")
+      .joins('INNER JOIN notes ON notes.id = documents.note_id')
+      .where('notes.id IN (?)', self.registered_notes.ids)
+  end
+  
   # sign in
   # find existed user, if not, create a new user
   def self.find_for_provider_oauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_create do |user|
+    # do not use auth.slice(:provider, :uid)
+    # because rails 4 uses strong params
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
       user.email = auth.info.email
