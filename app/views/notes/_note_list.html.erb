@@ -1,5 +1,5 @@
 <% if layout == :all %>
-	<%= render(partial: 'note_box', collection: notes, as: :note, locals: {show_subject: true}) || content_tag(:div, t('note_not_found'), class: 'message-sm') %>
+	<%= render(partial: 'note', collection: notes, as: :note, locals: {show_subject: true}) || content_tag(:div, t('note_not_found'), class: 'message-sm') %>
 <% elsif layout == :lecture %>
 	<% notes_by_subject.keys.each do |subject| %>
 	<div class="subject-group">

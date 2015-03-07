@@ -64,12 +64,6 @@ function setMaxWidth() {
 		$("#note-search").css("width", $("#note-menu").width() - $("#pushmenu-trigger").outerWidth(true) - $(".filter-menu").width() - $("#new-note-btn").outerWidth(true) - 15);
 	}
 	
-	$(".note-item-box").each(function() {
-		if (!$(this).find(".note-box-documents-list").length) {
-			$(this).find(".note-content-box").css("height", "60px");
-			$(this).find(".note-content-box").css("-webkit-line-clamp", "4");
-		}
-	});
 }
 
 /*Scroll to anchor*/

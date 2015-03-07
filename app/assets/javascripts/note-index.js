@@ -25,7 +25,6 @@ function reloadNoteList() {
 		//use current locale
 	  url: "/" + I18n["meta"]["code"] + "/notes",
 	  data: data,
-	  success: ajaxSuccess,
 	  dataType: "script",
 		contentType: "application/json"
 	});
