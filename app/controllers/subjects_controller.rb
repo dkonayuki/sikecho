@@ -150,10 +150,11 @@ class SubjectsController < ApplicationController
     @notes = @notes.page(params[:page]).per(4)
             
     # same subjects
-    # TO DO
+    # TODO
     @same_subjects = @subject.course.subjects.where(name: @subject.name).order('year DESC')
     
     # recommend subjects
+    # TODO
     @recommend_subjects = @subject.course.subjects.where('semester_id = ? AND id != ?', @subject.semester, @subject.id).order('view_count DESC, notes_count DESC').limit(7)
     
     respond_to do |format|

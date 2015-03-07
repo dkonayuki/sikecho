@@ -507,3 +507,7 @@ ja:
         was_created: が作成されました
       update:
         was_updated: が更新されました
+    comment:
+      create:
+        ga: が
+        created: にコメントを追加しました

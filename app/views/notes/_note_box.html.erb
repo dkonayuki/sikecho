@@ -12,11 +12,11 @@
     	<div class="note-content-box">
     		<%= sanitize strip_tags(note.content) %>
     	</div>
-			<div class="note-box-documents-list">
-  			<% if !note.documents.empty? %>
+			<% if !note.documents.empty? %>
+				<div class="note-box-documents-list">
 				  <%= render(partial: 'documents/document_xs', collection: note.documents.order('created_at ASC').limit(4), as: :document) %>
-				<% end %>
-			</div>
+				</div>
+			<% end %>
 			
 		  <div class="note-info-box">
 		  	

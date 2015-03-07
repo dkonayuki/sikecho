@@ -42,6 +42,10 @@ class CommentsController < ApplicationController
       if @comment.save
         # use @success instead of passing json success
         @success = true
+        
+        #create activity for new feeds
+        @comment.create_activity :create, owner: current_user
+        
         format.html
         format.js
         format.json { render action: 'show', status: :created, location: @comment }

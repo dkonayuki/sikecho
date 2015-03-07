@@ -1,15 +1,6 @@
-<div id="home" class="row">
+<div id="home" class="">
 	
-	<div class="col-xs-12 col-sm-9">
-		<div id="activities">
-			<%= render 'activity_list', activities: @activities || t('.activity_not_found') %>
-		</div>
-		<div class="hidden-pagination">
-			<%= paginate @activities %>										
-		</div>
-	</div>
-	
-	<div class="hidden-xs col-sm-3">
+	<div id="home-right-panel" class="hidden-xs">
 		<div id="home-user-profile">
 			<%= render 'users/user_profile_card', user: @user %>
 		</div>
@@ -24,6 +15,15 @@
 					<%= render(partial: 'notes/note_xs', collection: @notes, as: :note, locals: {show_subject: true}) || content_tag(:div, t('note_not_found'), class: 'message-xs') %>
 				</div>
 			</div>
+		</div>
+	</div>
+		
+	<div id="home-activities" class="clear">
+		<div id="activities">
+			<%= render 'activity_list', activities: @activities || t('.activity_not_found') %>
+		</div>
+		<div class="hidden-pagination">
+			<%= paginate @activities %>										
 		</div>
 	</div>
 	

@@ -1,0 +1,12 @@
+<div class="activity" data-id="<%= activity.id %>">
+	<div class="activity-inner clear">
+		<div class="activity-content clear">
+			<div class="activity-thumbnail">
+				<%= link_to image_tag(activity.owner.display_comment_avatar), activity.owner %>
+			</div>
+			<div class="activity-details">
+				<%= yield %>
+			</div>
+		</div>
+	</div>
+</div>

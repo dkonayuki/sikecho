@@ -43,6 +43,15 @@
 	height: 30px;
 }
 
+.activity-thumbnail-2 {
+	height: 100%;
+}
+
+.activity-thumbnail-2 img {
+	width: 20px;
+	height: 20px;
+}
+
 .activity-details {
 	width: auto;
 	overflow: hidden;

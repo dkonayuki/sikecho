@@ -574,6 +574,11 @@
 .note-info-box {
 	font-size: 11px;
 	color: #999999;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 2px 3px;
 }
 
 .note-time-box {

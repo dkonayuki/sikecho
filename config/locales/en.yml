@@ -537,3 +537,6 @@ en:
         was_created: was created
       update:
         was_updated: was updated
+    comment:
+      create:
+        created: commented on

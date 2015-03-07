@@ -1,0 +1,9 @@
+	<%= link_to activity.owner.display_name, activity.owner %>
+<% if I18n.locale == :ja %>
+	<%= t('.ga') %>
+	<%= link_to image_tag(comment.commentable.upload.url(:small)), comment.commentable, class: 'activity-thumbnail-2' %>
+	<%= t('.created') %>
+<% else %>
+	<%= t('.created') %>
+	<%= link_to image_tag(comment.commentable.upload.url(:small)), comment.commentable, class: 'activity-thumbnail-2' %>
+<% end %>

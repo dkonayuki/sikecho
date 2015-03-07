@@ -6,8 +6,13 @@ class HomeController < ApplicationController
       
       #only display activities from registered subjects and notes
       #deleted notes or subjects won't be displayed
-      @activities = PublicActivity::Activity.order('created_at desc')
+      @activities = PublicActivity::Activity.select('distinct activities.*')
         .where('(trackable_id in (?) AND trackable_type = ?) OR (trackable_id in (?) AND trackable_type = ?)', @user.current_subjects.ids, 'Subject', @user.registered_notes.ids, 'Note')
+        .order('created_at desc')
+      #@activities = PublicActivity::Activity.order('created_at desc').where("trackable_type = 'Comment'")
+      #TODO
+
+
       
       #kaminari pagination, page param can be nil
       @activities = @activities.page(params[:page]).per(10)

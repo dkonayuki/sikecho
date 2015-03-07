@@ -63,6 +63,13 @@ function setMaxWidth() {
 	if ($("#note-search").length) {
 		$("#note-search").css("width", $("#note-menu").width() - $("#pushmenu-trigger").outerWidth(true) - $(".filter-menu").width() - $("#new-note-btn").outerWidth(true) - 15);
 	}
+	
+	$(".note-item-box").each(function() {
+		if (!$(this).find(".note-box-documents-list").length) {
+			$(this).find(".note-content-box").css("height", "60px");
+			$(this).find(".note-content-box").css("-webkit-line-clamp", "4");
+		}
+	});
 }
 
 /*Scroll to anchor*/
@@ -76,7 +83,9 @@ function ajaxSuccess() {
 	
 	/*For note dynamic max width*/
 	$(window).on( "resize", setMaxWidth ); //Remove this if it's not needed. It will react when window changes size.
-
+	
+	setMaxWidth();
+	
 	//load more items if needed
 	$(window).scroll();		
 }

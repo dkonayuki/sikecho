@@ -4,5 +4,7 @@
 			    <%= render_activity activity, layout: 'layouts/activity_note', locals: {note: activity.trackable} %>
 		    <% when 'Subject' %>
 			    <%= render_activity activity, layout: 'layouts/activity_subject' %>
+		    <% when 'Comment' %>
+			    <%= render_activity activity, layout: 'layouts/activity_comment', locals: {comment: activity.trackable} %>
 		    <% end %>
 			<% end %>
