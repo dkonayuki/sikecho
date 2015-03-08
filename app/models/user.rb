@@ -56,6 +56,7 @@ class User < ActiveRecord::Base
     if login = conditions.delete(:login)
       where(conditions).where(["lower(username) = :value OR lower(email) = :value", { value: login.downcase }]).first
     else
+      conditions.permit! if conditions.class.to_s == "ActionController::Parameters"
       where(conditions).first
     end
   end
@@ -214,7 +215,7 @@ class User < ActiveRecord::Base
   
   protected
   def confirmation_required?
-    false
+    true
   end
   
   def strip_blanks
