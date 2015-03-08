@@ -20,21 +20,24 @@ function prepareComments() {
 	/*setting up faye for pub/sub*/
 	var documentID = $("#show-document").data("id");
 	
+
+	//create new client
+	window.faye = new Faye.Client(fayeServerURL);
+	
 	//faye for pub/sub
+	//FIXME fix duplicate comments
 	try {
 		//unsubscribe first
     window.faye.unsubscribe("/documents/" + documentID);
 	}
 	catch(err) {
 	}
-	//create new client
-	window.faye = new Faye.Client(fayeServerURL);
-	
+		
 	//subscribe to specified id channel only
 	faye.subscribe("/documents/" + documentID, function(data) {
 		//execute js
 		eval(data);
-	});		
+	});
 	
 	/*For comment pagination*/
 	$("#comments-pagination").on("click", "#comment-next-page", function() {
