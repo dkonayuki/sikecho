@@ -138,5 +138,18 @@ class ApplicationController < ActionController::Base
   private :disable_nav
   private :set_locale
   private :current_ability
+  
+  # TODO
+  # bugs: 
+  # safari-note page
+  # Access-control-allow origin
+  # wysihtml5 when redirect from other pages
+  # bootstrap dropdown in production environment
+  # thin server: Invalid request: Invalid HTTP format, parsing fails.
+  # cancan, user can still see other users' educations
+  
+  # features: consider using angularjs
+  # improve education table in profile page
+  # improve inline edit in subject form
 
 end
