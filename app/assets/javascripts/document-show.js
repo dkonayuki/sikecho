@@ -20,12 +20,7 @@ function prepareComments() {
 	/*setting up faye for pub/sub*/
 	var documentID = $("#show-document").data("id");
 	
-
-	//create new client
-	window.faye = new Faye.Client(fayeServerURL);
-	
 	//faye for pub/sub
-	//FIXME fix duplicate comments
 	try {
 		//unsubscribe first
     window.faye.unsubscribe("/documents/" + documentID);

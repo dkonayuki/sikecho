@@ -180,9 +180,6 @@ function prepareNotification() {
 		catch(err) {
 		}
 		
-		//create new client
-		window.faye = new Faye.Client(fayeServerURL);
-		
 		//subscribe to current user channel
 		faye.subscribe("/users/" + userID, function(data) {
 			//execute js
@@ -193,7 +190,9 @@ function prepareNotification() {
 }
 
 $(document).ready(function() {
-
+	//create new client
+	//fired only 1 time
+	window.faye = new Faye.Client(fayeServerURL);
 });
 
 /* will run on all pages
