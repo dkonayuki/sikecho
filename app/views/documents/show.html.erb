@@ -1,40 +1,46 @@
-<div id="show-document" class="clear" data-id="<%= @document.id %>">
-	
-	<div id="document-content">
-		<%= image_tag(@document.upload.url(:original)) %>
-		
-		<h4><%= @document.title %></h4>
-		<hr class="visible-xs" />
-		<% if @prev %>
-			<%= link_to @prev, id: 'document-prev', class: 'document-navigation-btn' do %>
-				<span class="glyphicon glyphicon-chevron-left"></span>
-			<% end %>
-		<% end %>
-		<% if @next %>
-			<%= link_to @next, id: 'document-next', class: 'document-navigation-btn' do %>
-				<span class="glyphicon glyphicon-chevron-right"></span>
-			<% end %>
-		<% end %>
+<div id="show-document-wrapper">
+	<div id="show-document-note">
+		<%= render partial: 'notes/note_card', locals: {note: @document.note} %>
 	</div>
 	
-	<div id="document-comment-section">
-		<div>
-			<div id="new-comment">
-				<%= render partial: 'comments/form', locals: {is_new: true} %>
-			</div>
-			<div id="comments">
-				<%= render @comments %>
-			</div>
-			<div id="comments-pagination">
-				<% if !@comments.last_page? %>
-					<%= link_to_next_page @comments, t('.next'), remote: true, id: 'comment-next-page' %>
+	<div id="show-document" class="clear" data-id="<%= @document.id %>">
+		
+		<div id="document-content">
+			<%= image_tag(@document.upload.url(:original)) %>
+			
+			<h4><%= @document.title %></h4>
+			<hr class="visible-xs" />
+			<% if @prev %>
+				<%= link_to @prev, id: 'document-prev', class: 'document-navigation-btn' do %>
+					<span class="glyphicon glyphicon-chevron-left"></span>
 				<% end %>
-			</div>
-			<div class="hidden-pagination">
-				<%= paginate @comments %>										
-			</div>
+			<% end %>
+			<% if @next %>
+				<%= link_to @next, id: 'document-next', class: 'document-navigation-btn' do %>
+					<span class="glyphicon glyphicon-chevron-right"></span>
+				<% end %>
+			<% end %>
 		</div>
-	</div><!-- end of comment section -->
-	
-</div><!-- end of show document -->
+		
+		<div id="document-comment-section">
+			<div>
+				<div id="new-comment">
+					<%= render partial: 'comments/form', locals: {is_new: true} %>
+				</div>
+				<div id="comments">
+					<%= render @comments %>
+				</div>
+				<div id="comments-pagination">
+					<% if !@comments.last_page? %>
+						<%= link_to_next_page @comments, t('.next'), remote: true, id: 'comment-next-page' %>
+					<% end %>
+				</div>
+				<div class="hidden-pagination">
+					<%= paginate @comments %>										
+				</div>
+			</div>
+		</div><!-- end of comment section -->
+		
+	</div><!-- end of show document -->
 
+</div>

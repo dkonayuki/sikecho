@@ -1,0 +1,15 @@
+<div class="note-card">
+	<div class="note-card-img">
+	<%= link_to note do %>
+		<%= image_tag('note_color.png', class: 'avatar-xs') %>
+	<% end %>
+	</div>
+	<div class="note-card-content">
+		<div class="note-card-name">
+			<%= link_to note.title, note %>
+		</div>
+		<div class="note-card-info">
+			<%= l note.created_at, format: :short %>
+		</div>
+	</div>
+</div>
