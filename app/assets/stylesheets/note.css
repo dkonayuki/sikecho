@@ -156,11 +156,21 @@
 	width: auto;
 	height: 50px;
 	overflow: hidden;
-	padding: 0 10px;
+	padding: 0 5px;
+}
+
+#note-prev .note-navigation-content {
+	
 }
 
 .note-navigation-title {
 	font-size: 14px;
+	line-height: 14px;
+	height: 14px;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
 }
 
 .note-navigation-desc {

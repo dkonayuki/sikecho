@@ -215,7 +215,7 @@ class User < ActiveRecord::Base
   
   protected
   def confirmation_required?
-    true
+    false
   end
   
   def strip_blanks
