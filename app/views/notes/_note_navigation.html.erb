@@ -1,11 +1,14 @@
 <div class="note-navigation-item">
+	
 	<%= link_to note, class: 'note-navigation-thumbnail' do %>
-	<%= image_tag(note.subjects.first.display_picture_thumbnail) %>
+		<%= image_tag('note_color.png') %>
 	<% end %>
+	
 	<div class="note-navigation-content">
-		<div class="note-navigation-title"><%= note.title %></div>
+		<div class="note-navigation-title"><%= link_to note.title, note %></div>
 		<div class="note-navigation-desc">
-			<%= note.content %>
+			<%= sanitize strip_tags(note.content) %>
 		</div>
 	</div>
+	
 </div>

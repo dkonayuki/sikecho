@@ -145,6 +145,7 @@
 }
 
 .note-navigation-thumbnail {
+	padding: 5px;
 	float: left;
 	width: 50px;
 	height: 50px;
