@@ -108,25 +108,26 @@
     	<li id="notification-dropdown" class="dropdown">
         <a href="#" id="notification-dropdown-btn" class="dropdown-toggle" data-toggle="dropdown">
         	<%= image_tag('bell.png') %>
-	    		<span id="notification-badget"><%= notifications.count %></span>
+    			<span id="notification-badget"></span>
         </a>
         <ul class="dropdown-menu" id="user-notification-dropdown">
 					<li id="notification-dropdown-header">
-						<h4><%= t('.notifications')%> <span><%= "(#{notifications.count})" %></span></h4>
+						<div id="notification-dropdown-menu">
+							<%= link_to t('.mark_as_read_all'), '#' %>
+						</div>
+						<h4><%= t('.notifications')%> <span id="notification-count"></span></h4>
 					</li>
 					<li class="divider"></li>
 					
 					<div id="notification-dropdown-list" class="nano">
-						<div class="nano-content">
-						<% notifications.each do |activity| %>
-					    <%= render_activity activity, layout: 'layouts/notification' %>
-						<% end %>
+						<div id="notification-dropdown-list-content" class="nano-content">
+
 						</div>
 					</div>
 					
 					<li class="divider"></li>
     			<li>
-    				<%= link_to t('.see_all'), home_path, id: 'notification-all' %>
+    				<%= link_to t('.see_all'), home_path(mark_as_read: 1), id: 'notification-all' %>
     			</li>
         </ul>
       </li>

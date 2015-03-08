@@ -309,7 +309,7 @@ $(document).on("page:load ready", function() {
 									dataType: "json",
 									success: function(msg) {
 										if (msg.status == "ok") {
-											//need to get script in order to reload appropriate subject item
+											//reload appropriate subject item
 											$.getScript("/" + I18n["meta"]["code"] + "/subjects/reload/" + subjectID, null);
 						
 											//Set notification depends on the button user clicked on

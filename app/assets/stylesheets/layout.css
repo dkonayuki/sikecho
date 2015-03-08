@@ -236,10 +236,6 @@ body {
 	height: 250px;
 }
 
-#notification-dropdown-list .notification:last-child {
-	border-color: transparent;
-}
-
 #notification-badget {
 	background: #c0392b;
 	padding: 0 4px;
@@ -251,6 +247,16 @@ body {
 	border-radius: 4px;
 	top: -8px;
 	right: -8px;
+}
+
+#notification-dropdown-menu {
+	float: right;
+	font-size: 12px;
+	color: #999;
+	margin-right: 10px;
+}
+#notification-dropdown-menu a:focus {
+	color: #999;
 }
 
 #notification-all {

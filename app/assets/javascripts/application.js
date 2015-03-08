@@ -124,12 +124,65 @@ function prepareFirstTime() {
 	setMaxWidth();
 }
 
+function prepareNotification() {
+	
+	if ($("#notification-dropdown").length) {
+		//refresh notification count
+		$.getScript("/refresh_notification_count");
+		
+		//dropdown menu shown event
+		$("#notification-dropdown").on("shown.bs.dropdown", function () {
+			
+			//add loading
+			$("#notification-dropdown-list").append("<div id='loading'><img src='/assets/loading.gif'></div>");
+			
+			//refresh list
+			$.getScript("/refresh_notification_list", function() {
+				//nano slider
+				$(".nano").nanoScroller();
+				
+				//on click notification
+				$(".notification").each(function() {
+					var activityID = $(this).data("id");
+					
+					$(this).on("click", "a", function() {
+						$.ajax({
+						  url: "/read",
+						  dataType: "script",
+						  data: {id: activityID},
+						  success: function() {
+						  	//refresh count after read
+						  	$.getScript("/refresh_notification_count");
+						  }
+						});
+					});
+				});
+			});
+		
+		});
+	
+		//mark as read all
+		$("#notification-dropdown-menu").on("click", "a", function() {
+			$.getScript("/mark_as_read_all", function() {
+				//refresh count after mark as read all
+				$.getScript("/refresh_notification_count");
+			});
+			return false;
+		});
+	}
+
+}
+
 $(document).ready(function() {
 
 });
 
+/* will run on all pages
+ * use page:load for turbolinks */
 $(document).on("page:load ready", function() {
+	
 	prepareFirstTime();
+	prepareNotification();
 	
   // disable enter key in filter form
   $(".search-form").on("submit", function() {
@@ -181,26 +234,19 @@ $(document).on("page:load ready", function() {
 	});
 	
 	/*Fix keyboard focus on iphone*/
-  if (navigator.userAgent.match('CriOS')) {
-		$("input").not(".search-bar #search").on('focus', function() {
+  if (navigator.userAgent.match("CriOS")) {
+		$("input").not(".search-bar #search").on("focus", function() {
 	    $("#nav-bar").css("position", "absolute");
 		});
-		$("input").not(".search-bar #search").on('blur', function() {
+		$("input").not(".search-bar #search").on("blur", function() {
 	    $("#nav-bar").css("position", "fixed");
 		});
 	}
 	
-	//nano slider
-	$(".nano").nanoScroller();
-	//refresh nano slider after dropdown menu shown
-	$("#notification-dropdown").on("shown.bs.dropdown", function () {
-		$(".nano").nanoScroller();
-	});
-	
 	/*check if scrollbar exists*/
 	var hasScrollbar = window.innerWidth > document.documentElement.clientWidth;
 	if (hasScrollbar) {
-		
+		//FIXME
 	}
 	
 });

@@ -1,0 +1,4 @@
+<% if @notification_count > 0 %>
+	$("#notification-count").html("<%= "(#{@notification_count})" %>");
+	$("#notification-badget").html("<%= "#{@notification_count}" %>");
+<% end %>

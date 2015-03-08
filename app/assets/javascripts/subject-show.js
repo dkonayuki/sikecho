@@ -72,7 +72,7 @@ $(document).on("page:load ready", function() {
 									dataType: "json",
 									success: function(msg) {
 										if (msg.status == "ok") {
-											//need to get script in order to refresh menu
+											//refresh menu
 											$.ajax({
 												url: "/" + I18n["meta"]["code"] + "/subjects/" + subjectID,
 												dataType: "script",

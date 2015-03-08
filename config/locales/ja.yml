@@ -328,6 +328,7 @@ ja:
       note_search: ノート検索
       notifications: お知らせ
       see_all: 全て見る
+      mark_as_read_all: 既読にする
   users:
     registrations:
       new:

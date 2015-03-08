@@ -57,6 +57,13 @@ Shikechou::Application.routes.draw do
     get 'uni_years' => 'application#uni_years'
     #get semester data
     get 'semesters' => 'application#semesters'
+    
+    # notifications
+    get 'read' => 'activities#read'
+    get 'notification_count' => 'activities#notification_count'
+    get 'mark_as_read_all' => 'activities#mark_as_read_all'
+    get 'refresh_notification_count' => 'activities#refresh_notification_count'
+    get 'refresh_notification_list' => 'activities#refresh_notification_list'
   
     resources :users do
       resources :educations, except: [:show] do
@@ -76,8 +83,6 @@ Shikechou::Application.routes.draw do
     
     resources :requests
       
-    resources :activities
-    
     # new and edit document process is handled in note page
     resources :documents, except: [:new, :edit] do
       put 'inline' => 'documents#inline', on: :collection

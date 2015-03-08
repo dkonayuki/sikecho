@@ -358,6 +358,7 @@ en:
       note_search: Search note
       notifications: Notifications
       see_all: See all
+      mark_as_read_all: Mark as read
   users:
     registrations:
       new:
