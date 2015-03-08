@@ -36,4 +36,4 @@ Start unicorn server: unicorn -c config/unicorn.rb
 
 Start nginx: nginx 
 
-Start mailcatcher (for test: http://localhost:1080/): mailcatcher
+Start mailcatcher (for test: http://localhost:1080/): mailcatcher -f -v
