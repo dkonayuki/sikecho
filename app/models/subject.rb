@@ -78,6 +78,7 @@ class Subject < ActiveRecord::Base
   end
   
   # typeahead is for auto complete search bar
+  # used in json
   def typeahead_thumbnail
     if picture.present? && picture.url(:thumbnail).present?
       picture.url(:thumbnail)
@@ -92,6 +93,15 @@ class Subject < ActiveRecord::Base
   
   def is_registered?(user)
     user.registered?(self)
+  end
+  
+  # get users who registered this subject
+  def registered_users
+    User.select('distinct users.*')
+      .joins('INNER JOIN educations ON educations.current_user_id = users.id')
+      .joins('INNER JOIN registers ON registers.education_id = educations.id')
+      .joins('INNER JOIN subjects ON subjects.id = registers.subject_id')
+      .where('subjects.id = ?', self.id)
   end
 
 end

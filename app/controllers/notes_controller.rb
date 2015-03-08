@@ -243,6 +243,11 @@ class NotesController < ApplicationController
         #create activity for new feeds
         @note.create_activity :create, owner: current_user
         
+        #broadcast for all other related users
+        @note.registered_users.each do |user|
+          broadcast_notification("/users/#{user.id}")
+        end
+        
         format.html { redirect_to @note, notice: 'Note was successfully created.' }
         format.json { render action: 'show', status: :created, location: @note }
       else
@@ -294,6 +299,11 @@ class NotesController < ApplicationController
         #create activity for new feeds
         @note.create_activity :update, owner: current_user
         
+        #broadcast for all other related users
+        @note.registered_users.each do |user|
+          broadcast_notification("/users/#{user.id}")
+        end
+        
         format.html { redirect_to @note, notice: 'Note was successfully updated.' }
         format.json { head :no_content }
       else
@@ -309,6 +319,12 @@ class NotesController < ApplicationController
     #delete the related activity
     @activity = PublicActivity::Activity.find_by_trackable_id(params[:id])
     @activity.destroy
+    
+    #broadcast for all other related users
+    @note.registered_users.each do |user|
+      broadcast_notification("/users/#{user.id}")
+    end
+    
     @note.destroy
             
     respond_to do |format|

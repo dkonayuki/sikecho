@@ -169,6 +169,25 @@ function prepareNotification() {
 			});
 			return false;
 		});
+		
+		//faye for pub/sub
+		//userId will be stored in #notification-dropdown div
+		var userID = $("#notification-dropdown").data("id");
+		try {
+			//unsubscribe first
+	    window.faye.unsubscribe("/users/" + userID);
+		}
+		catch(err) {
+		}
+		
+		//create new client
+		window.faye = new Faye.Client(fayeServerURL);
+		
+		//subscribe to current user channel
+		faye.subscribe("/users/" + userID, function(data) {
+			//execute js
+			eval(data);
+		});
 	}
 
 }

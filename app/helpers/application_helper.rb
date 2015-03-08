@@ -26,6 +26,13 @@ module ApplicationHelper
     Net::HTTP.post_form(uri, message: message.to_json)
   end
   
+  def broadcast_notification(channel)
+    data = "$.getScript('/refresh_notification_count');"
+    message = {channel: channel, data: data, ext: {auth_token: FAYE_TOKEN}}
+    uri = URI.parse(faye_server_url)
+    Net::HTTP.post_form(uri, message: message.to_json)
+  end
+  
   #faye server url
   def faye_server_url
     "#{request.protocol}#{request.host}:9292/faye"
@@ -55,14 +62,17 @@ module ApplicationHelper
     @translations[I18n.locale].with_indifferent_access
   end
   
+  # disable navbar, for example: in login page
   def disable_nav
     @disable_nav = true
   end
   
+  # disable footer
   def disable_footer
     @disable_footer = true
   end
   
+  # disable university change, in education/profile page
   def disable_university_select
     @disable_uni_select = true
   end

@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   has_many :favorites, dependent: :destroy
   
   #has only one education
-  has_one :current_education, class_name: 'Education' , foreign_key: "current_user_id"
+  has_one :current_education, class_name: 'Education' , foreign_key: 'current_user_id'
 
   acts_as_reader
   

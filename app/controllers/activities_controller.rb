@@ -60,6 +60,7 @@ class ActivitiesController < ApplicationController
     def notifications
       @user = current_user
       
+      #TODO need to select only activities that have created_at > register.created_at
       PublicActivity::Activity.unread_by(@user)
         .where('owner_id != ?', current_user.id)
         .where('(trackable_id in (?) AND trackable_type = ?)' +

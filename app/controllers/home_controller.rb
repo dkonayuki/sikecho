@@ -6,7 +6,7 @@ class HomeController < ApplicationController
       
       #only display activities from registered subjects and notes
       #deleted notes or subjects won't be displayed
-      #FIXME
+      #TODO need to select only activities that have created_at > register.created_at
       @activities = PublicActivity::Activity
         .where('owner_id != ?', current_user.id)
         .where('(trackable_id in (?) AND trackable_type = ?)' +

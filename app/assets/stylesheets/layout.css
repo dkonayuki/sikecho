@@ -114,18 +114,12 @@ body {
 
 .nav-calendar {
 	padding: 0 !important;
-	margin-right: 15px !important;
+	margin-right: 20px !important;
 	margin-top: 18px !important;
 }
 
 .nav-calendar img {
 	width: 22px !important
-}
-
-.nav-notification {
-	max-width: 35px;
-	margin-right: 10px !important;
-	margin-top: 10px !important;
 }
 
 .nav-avatar {
@@ -206,7 +200,7 @@ body {
 }
 
 #notification-dropdown-btn {
-	margin: 20px 20px 10px 0;
+	margin: 20px 25px 10px 0;
 	padding: 0;
 	background: #fff;
 	width: 20px;
@@ -246,7 +240,7 @@ body {
 	border: 2px solid #fff;
 	border-radius: 4px;
 	top: -8px;
-	right: -8px;
+	left: 8px;
 }
 
 #notification-dropdown-menu {

@@ -67,5 +67,16 @@ class Note < ActiveRecord::Base
   def comments_count
     self.documents.map{|d| d.comments.count}.sum
   end
+    
+  # get users who registered subjects that has this note
+  def registered_users
+    User.select('distinct users.*')
+      .joins('INNER JOIN educations ON educations.current_user_id = users.id')
+      .joins('INNER JOIN registers ON registers.education_id = educations.id')
+      .joins('INNER JOIN subjects ON subjects.id = registers.subject_id')
+      .joins('INNER JOIN notes_subjects ON notes_subjects.subject_id = subjects.id')
+      .joins('INNER JOIN notes ON notes.id = notes_subjects.note_id')
+      .where('notes.id = ?', self.id)
+  end
   
 end

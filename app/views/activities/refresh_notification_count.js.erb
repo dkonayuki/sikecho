@@ -1,4 +1,7 @@
 <% if @notification_count > 0 %>
 	$("#notification-count").html("<%= "(#{@notification_count})" %>");
-	$("#notification-badget").html("<%= "#{@notification_count}" %>");
+	$("#notification-badget").html("<%= @notification_count > 50 ? '50+' : @notification_count  %>");
+<% else %>
+	$("#notification-count").empty();
+	$("#notification-badget").empty();
 <% end %>

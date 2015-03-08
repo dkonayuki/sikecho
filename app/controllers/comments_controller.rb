@@ -46,6 +46,11 @@ class CommentsController < ApplicationController
         #create activity for new feeds
         @comment.create_activity :create, owner: current_user
         
+        #broadcast for all other related users
+        @comment.registered_users.each do |user|
+          broadcast_notification("/users/#{user.id}")
+        end
+        
         format.html
         format.js
         format.json { render action: 'show', status: :created, location: @comment }
@@ -85,6 +90,15 @@ class CommentsController < ApplicationController
   def destroy
     # need to pass @id to view so js can replace the correct comment in view
     @id = params[:id]
+    
+    #delete the related activity
+    @activity = PublicActivity::Activity.find_by_trackable_id(params[:id])
+    @activity.destroy
+    
+    #broadcast for all other related users
+    @comment.registered_users.each do |user|
+      broadcast_notification("/users/#{user.id}")
+    end
     
     @comment.destroy
     respond_to do |format|

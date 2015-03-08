@@ -105,7 +105,7 @@
   <!-- User info -->
 	<div class="collapse navbar-collapse hidden-xs" id="navbar-collapse-3">
 		<ul class="nav navbar-nav navbar-right">
-    	<li id="notification-dropdown" class="dropdown">
+    	<li id="notification-dropdown" class="dropdown" data-id="<%= current_user.id %>">
         <a href="#" id="notification-dropdown-btn" class="dropdown-toggle" data-toggle="dropdown">
         	<%= image_tag('bell.png') %>
     			<span id="notification-badget"></span>

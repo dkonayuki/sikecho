@@ -148,7 +148,7 @@ class SubjectsController < ApplicationController
     # page method from kaminari
     # return relation (associationrelation)
     @notes = @notes.page(params[:page]).per(4)
-            
+    
     # same subjects
     # TODO
     @same_subjects = @subject.course.subjects.where(name: @subject.name).order('year DESC')
@@ -215,6 +215,7 @@ class SubjectsController < ApplicationController
       if @subject.save
         #create activity for new feeds
         @subject.create_activity :create, owner: current_user
+        
         format.html { redirect_to @subject, notice: 'Subject was successfully created.' }
         format.json { render action: 'show', status: :created, location: @subject }
       else
@@ -334,6 +335,12 @@ class SubjectsController < ApplicationController
       if @subject.update(subject_params)
         #create activity for new feeds
         @subject.create_activity :update, owner: current_user
+        
+        #broadcast for all other related users
+        @subject.registered_users.each do |user|
+          broadcast_notification("/users/#{user.id}")
+        end
+        
         format.html { redirect_to @subject, notice: 'Subject was successfully updated.' }
         format.json { render json: @subject, status: :ok } # 204 No Content
       else
@@ -350,7 +357,14 @@ class SubjectsController < ApplicationController
   def destroy
     #delete the related activity
     @activity = PublicActivity::Activity.find_by_trackable_id(params[:id])
+    
     @activity.destroy
+    
+    #broadcast for all other related users
+    @subject.registered_users.each do |user|
+      broadcast_notification("/users/#{user.id}")
+    end
+    
     @subject.destroy
     
     respond_to do |format|
