@@ -233,17 +233,17 @@
 	transition: 0.5s;
 }
 
-#note-next:hover, #note-next:active {
+#note-next:hover, #note-next:focus {
 	transition: 0.5s;
 	right: -1px;
 }
 
-#note-next:hover .note-navigation-item, #note-next:active .note-navigation-item {
+#note-next:hover .note-navigation-item, #note-next:focus .note-navigation-item {
 	transition: 0.5s;
 	opacity: 1;
 }
 
-#note-next:hover i, #note-next:active i {
+#note-next:hover i, #note-next:focus i {
 	transition: 0.5s;
 	left: 150px;
 }
@@ -273,17 +273,17 @@
 	transition: 0.5s;
 }
 
-#note-prev:hover, #note-prev:active {
+#note-prev:hover, #note-prev:focus {
 	transition: 0.5s;
 	left: -1px;
 }
 
-#note-prev:hover .note-navigation-item, #note-prev:active .note-navigation-item {
+#note-prev:hover .note-navigation-item, #note-prev:focus .note-navigation-item {
 	transition: 0.5s;
 	opacity: 1;
 }
 
-#note-prev:hover i, #note-prev:active i {
+#note-prev:hover i, #note-prev:focus i {
 	transition: 0.5s;
 	right: 150px;
 }
