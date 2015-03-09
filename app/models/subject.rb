@@ -20,8 +20,11 @@ class Subject < ActiveRecord::Base
                               
   validates_attachment_content_type :picture, content_type: ["image/jpg", "image/gif", "image/png", "image/jpeg"]
 
+  #notes_subjects is used instead of has_and_belongs_to_many
+  #so we can use :notes_count in sql
   has_many :notes_subjects
   has_many :notes, through: :notes_subjects
+  
   has_many :outlines, dependent: :destroy
   has_many :periods, dependent: :destroy
 
@@ -53,9 +56,12 @@ class Subject < ActiveRecord::Base
   def self.search(search)
     if search
       q = "%#{search.downcase}%"
-      where('lower(subjects.name) LIKE ?', q)
-      #select('distinct subjects.*').joins(:teachers)
-      #.where('subjects.name LIKE ? OR teachers.last_name_kanji LIKE ? OR teachers.first_name_kanji LIKE ?', q, q, q)
+      #where('lower(subjects.name) LIKE ?', q)
+      joins(:teachers)
+      .joins('LEFT JOIN taggings ON subjects.id = taggings.taggable_id')
+      .joins('LEFT JOIN tags ON tags.id = taggings.tag_id')
+      .where('subjects.name LIKE ? OR teachers.last_name_kanji LIKE ? OR teachers.first_name_kanji LIKE ?' +
+        'OR teachers.first_name LIKE ? OR teachers.last_name LIKE ? OR lower(tags.name) LIKE ?', q, q, q, q, q, q)
     else
       all
     end
