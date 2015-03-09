@@ -3,7 +3,7 @@
 	<div id="subjects-content" class="clear">
 		
 		<div id="subject-menu-top" class="clear">
-			<% if user_signed_in? %>
+			<% if user_signed_in? && current_university == current_user.current_university %>
 			  <%= link_to new_subject_path, class: 'btn btn-orange', id:'new-subject-btn' do %>
 			  <span class="glyphicon glyphicon-plus-sign"></span>
 			  <span id="new-subject-text"><%= t '.new_subject' %></span>

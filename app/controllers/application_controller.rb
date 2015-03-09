@@ -142,7 +142,7 @@ class ApplicationController < ActionController::Base
   # TODO
   # bugs: 
   # safari-note page
-  # Access-control-allow origin
+  # Access-control-allow origin when login with fb, twitter, gg plus
   # wysihtml5 when redirect from other pages
   # bootstrap dropdown in production environment
   # thin server: Invalid request: Invalid HTTP format, parsing fails.
