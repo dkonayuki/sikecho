@@ -251,6 +251,8 @@ $(document).on("page:load ready", function() {
 	  }
 	});
 	
+  $('body').bind('touchstart', function() {});
+	
 	/*Fix keyboard focus on iphone*/
   if (navigator.userAgent.match("CriOS")) {
 		$("input").not(".search-bar #search").on("focus", function() {
