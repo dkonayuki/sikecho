@@ -8,3 +8,7 @@
 			    <%= render_activity activity, layout: 'layouts/activity_comment' %>
 		    <% end %>
 			<% end %>
+			
+<% if activities.count == 0 %>
+ <span class="notice-3"><%= t('.activity_not_found') %></span>
+<% end %>

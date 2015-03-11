@@ -306,9 +306,10 @@ ja:
  
   home:
     index:
-      activity_not_found: 情報がありません
       latest_note: 新着ノート
       latest_note_notice: 登録された授業のノート
+    activity_list:
+      activity_not_found: お知らせがありません
   layouts:
     application:
       title: シケ帳

@@ -160,6 +160,14 @@ div.message-xs {
 	color: #888;
 }
 
+.notice-3 {
+	display: block;
+	padding: 15px;
+	background: #fff;
+	text-align: center;
+	box-shadow: 0 1px 2px rgba(0,0,0,.1);
+}
+
 .no-padding {
 	padding: 0 !important;
 }

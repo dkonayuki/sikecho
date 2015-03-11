@@ -20,7 +20,7 @@
 		
 	<div id="home-activities" class="clear">
 		<div id="activities">
-			<%= render 'activity_list', activities: @activities || t('.activity_not_found') %>
+			<%= render 'activity_list', activities: @activities %>
 		</div>
 		<div class="hidden-pagination">
 			<%= paginate @activities %>										
