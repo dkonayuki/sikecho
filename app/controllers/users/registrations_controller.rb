@@ -67,15 +67,28 @@ class Users::RegistrationsController < Devise::RegistrationsController
           :update_needs_confirmation : :updated
         set_flash_message :notice, flash_key
       end
+      
+      #delete avatar
+      #present? is equivalent to !blank?
+      if params[:remove_avatar].present? && params[:remove_avatar].to_i == 1
+        if resource.avatar.present? 
+          resource.avatar.destroy
+          resource.save!
+        end
+      end
+      
       #update current education
-      resource.current_education = Education.find(params[:current])
-      resource.save!
+      if params[:current_education].present?
+        resource.current_education = Education.find(params[:current_education])
+        resource.save!
+      end
       
       sign_in resource_name, resource, bypass: true
       respond_with resource, location: after_update_path_for(resource)
     else
       clean_up_passwords resource
-      respond_with resource
+      # temporally redirect to the same location
+      respond_with resource, location: after_update_path_for(resource)
     end
   end
   
@@ -91,7 +104,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # Never trust parameters from the scary internet, only allow the white list through.
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:username, :email, :password, :password_confirmation)}
-    devise_parameter_sanitizer.for(:account_update) {|u| u.permit(:username, :nickname, :email, :password, :password_confirmation, :current_password, :avatar, :current)}
+    devise_parameter_sanitizer.for(:account_update) {|u| u.permit(:username, :nickname, :email, :password, :password_confirmation, :current_password, :avatar)}
   end
   
   private :configure_permitted_parameters

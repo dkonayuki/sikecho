@@ -36,9 +36,9 @@
       <% if @isEditable %>
       <td>
       	<% if @user.current_education == education %>
-      		<%= radio_button_tag 'current', education.id, true %>
+      		<%= radio_button_tag 'current_education', education.id, true %>
       	<% else %>
-      		<%= radio_button_tag 'current', education.id %>
+      		<%= radio_button_tag 'current_education', education.id %>
       	<% end %>
       </td>
       <td>

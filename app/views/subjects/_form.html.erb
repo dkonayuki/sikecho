@@ -39,6 +39,7 @@
 					  		<%= f.file_field :picture %>
 				    	</span>
 					    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><%= t('.remove_image') %></a>
+							<input id="remove-picture" name="remove_picture" type="hidden" value="0">
 					  </div>
 					  <% if @subject.errors[:picture] %>
 							<ul>

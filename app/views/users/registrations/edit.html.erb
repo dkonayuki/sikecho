@@ -27,7 +27,8 @@
 					    	<span class="fileinput-exists"><%= t('.change_image') %></span>
 					  		<%= f.file_field :avatar %>
 				    	</span>
-					    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><%= t('.remove_image') %></a>
+					    <a href="#" id="user-avatar-remove-btn" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><%= t('.remove_image') %></a>
+							<input id="remove-avatar" name="remove_avatar" type="hidden" value="0">
 					  </div>
 					  <% if resource.errors[:avatar] %>
 		    			<ul>

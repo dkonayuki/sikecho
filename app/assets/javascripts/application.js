@@ -251,7 +251,9 @@ $(document).on("page:load ready", function() {
 	  }
 	});
 	
-  $('body').bind('touchstart', function() {});
+	//bind touch event in ios
+	//so css hover will work
+  $("body").bind("touchstart", function() {});
 	
 	/*Fix keyboard focus on iphone*/
   if (navigator.userAgent.match("CriOS")) {

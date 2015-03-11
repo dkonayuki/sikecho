@@ -341,6 +341,15 @@ class SubjectsController < ApplicationController
           broadcast_notification("/users/#{user.id}")
         end
         
+        #delete image
+        #present? is equivalent to !blank?
+        if params[:remove_picture].present? && params[:remove_picture].to_i == 1
+          if @subject.picture.present? 
+            @subject.picture.destroy
+            @subject.save!
+          end
+        end
+        
         format.html { redirect_to @subject, notice: 'Subject was successfully updated.' }
         format.json { render json: @subject, status: :ok } # 204 No Content
       else
@@ -383,7 +392,8 @@ class SubjectsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
       #subject show page: outline, page, operation, version_id
-      params.permit(:name, :pk, :value, :tags, :teachers, :version_id, :page, :order, :search, :number_of_outlines, :courses, :semesters, :periods, :auto_type, :outline, :operation)
+      #subject edit: remove_picture, teachers, periods, number_of_outlines, tags
+      params.permit(:name, :pk, :value, :tags, :teachers, :version_id, :page, :order, :search, :number_of_outlines, :courses, :semesters, :periods, :auto_type, :outline, :operation, :remove_picture)
       params.require(:subject).permit(:name, :description, :year, :place, :semester_id, :uni_year_id, :course_id, :picture)
     end
 end

@@ -35,20 +35,29 @@ $(document).on("page:load ready", function() {
 		});
 	
 		/*For ajax education popup in profile*/	
-	  $('.education-popup').magnificPopup({
-		  type: 'ajax',
+	  $(".education-popup").magnificPopup({
+		  type: "ajax",
 		  removalDelay: 300,
-		  mainClass: 'mfp-zoom-in',
+		  mainClass: "mfp-zoom-in",
 	    callbacks: {
 	   		parseAjax: function( mfpResponse ) {
-	        mfpResponse.data = $(mfpResponse.data).find('#education-edit');
+	        mfpResponse.data = $(mfpResponse.data).find("#education-edit");
 			  },
 		    ajaxContentAdded: function() {
 			    // Ajax content is loaded and appended to DOM
 					prepareEducations();
 			  }
 			}
-		});	
+		});
+		
+		//change remove_avatar if needed
+		$("#user-edit .fileinput").on("change.bs.fileinput", function() {
+			$("#user-edit #remove-avatar").val("0");
+		});
+		
+		$("#user-edit .fileinput").on("clear.bs.fileinput", function() {
+			$("#user-edit #remove-avatar").val("1");
+		});
 		
 	});//end of ready function
 });

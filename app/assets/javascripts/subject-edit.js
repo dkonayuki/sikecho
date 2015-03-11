@@ -211,6 +211,15 @@ $(document).on("page:load ready", function() {
 			$("#subject-table input[value='" + [cell.data("day"), cell.data("time")] + "']").remove();
 			cell.removeClass("active");
 		});
+		
+		//change remove_picture if needed
+		$("#subject-edit .fileinput").on("change.bs.fileinput", function() {
+			$("#subject-edit #remove-picture").val("0");
+		});
+		
+		$("#subject-edit .fileinput").on("clear.bs.fileinput", function() {
+			$("#subject-edit #remove-picture").val("1");
+		});
 			
 	});//end of ready function
 });
