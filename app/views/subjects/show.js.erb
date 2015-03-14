@@ -16,6 +16,17 @@
 	
 <% when :outline %>
 	$("#collapseNotes").html("<%=j render(partial: 'notes/note_sm', collection: @notes, as: :note, locals: {show_subject: false}) || t('note_not_found') %>");
+	
+	//update pagination
+	$(".hidden-pagination").html("<%=j paginate @notes %>");
+	
+	var url = $(".hidden-pagination .next a").attr("href");
+	if (url) {
+		//update next btn if pagination has next page
+		$("#subject-notes-pagination").html("<%=j link_to_next_page @notes, t('.next'), remote: true, id: 'subject-note-next-page' %>");
+	} else {
+		$("#subject-notes-pagination").remove();
+	}
 <% when :register %>
 	$("#show-subject-schedule").html("<%=j render partial: 'schedule_menu', locals: {subject: @subject} %>");
 	$("#show-subject-schedule-mobile").html("<%=j render partial: 'schedule_menu_mobile', locals: {subject: @subject} %>");
