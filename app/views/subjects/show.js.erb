@@ -11,9 +11,9 @@
 		//update next btn if pagination has next page
 		$("#subject-notes-pagination").html("<%=j link_to_next_page @notes, t('.next'), remote: true, id: 'subject-note-next-page' %>");
 	} else {
-		$("#subject-notes-pagination").remove();
+		$("#subject-notes-pagination").empty();
 	}
-	
+
 <% when :outline %>
 	$("#collapseNotes").html("<%=j render(partial: 'notes/note_sm', collection: @notes, as: :note, locals: {show_subject: false}) || t('note_not_found') %>");
 	
@@ -25,7 +25,7 @@
 		//update next btn if pagination has next page
 		$("#subject-notes-pagination").html("<%=j link_to_next_page @notes, t('.next'), remote: true, id: 'subject-note-next-page' %>");
 	} else {
-		$("#subject-notes-pagination").remove();
+		$("#subject-notes-pagination").empty();
 	}
 <% when :register %>
 	$("#show-subject-schedule").html("<%=j render partial: 'schedule_menu', locals: {subject: @subject} %>");

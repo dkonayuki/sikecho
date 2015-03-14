@@ -179,7 +179,6 @@
 				</div>
 				<div id="subject-notes-pagination">
 					<% if !@notes.last_page? %>
-						<span class="glyphicon glyphicon-triangle-bottom"></span>
 						<%= link_to_next_page @notes, t('.next'), remote: true, id: 'subject-note-next-page' %>
 					<% end %>
 				</div>

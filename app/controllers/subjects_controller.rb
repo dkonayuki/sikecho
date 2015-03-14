@@ -126,7 +126,10 @@ class SubjectsController < ApplicationController
       when :outline
         #filter note in show subject page
         if !params[:outline].blank?
-          @notes = @subject.notes.tagged_with(params[:outline])
+          #if outline == 0 use the default @notes
+          if params[:outline].to_i != 0
+            @notes = @subject.notes.tagged_with(params[:outline])
+          end
         end
       when :show_more
         #nothing

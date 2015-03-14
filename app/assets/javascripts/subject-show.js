@@ -11,22 +11,50 @@ $(document).on("page:load ready", function() {
 			return false;
 		});
 		
+		//prepare outline btn
+		var outlineParam = getParameterByName("outline");
+		$("#subject-syllabus-table tr[data-no=" + outlineParam + "]").addClass("active");
+		
 		/*For outline btn*/
 		$(".outline-btn").on("click", function() {
 			var subjectID = $("#show-subject-schedule").data("id");
-			var url = $(this).attr("href");
 			
-			$.ajax({
-			  url: url,
-			  dataType: "script",
-			  success: function() {
-			  	scrollToAnchor("notes");
-
-		  		//replace current url, compatiable with turbolinks
-  				window.history.replaceState({ turbolinks: true }, "", "/" + I18n["meta"]["code"] + "/subjects/" 
-  					+ subjectID + "?" + decodeURIComponent($.param({outline: getParameterByName("outline", url)[0], operation: "outline"}, false)));
-			  }
-			});
+			if ($(this).parents("tr").hasClass("active")) {
+				
+				var data = {outline: 0, operation: "outline"};
+				var url = "/" + I18n["meta"]["code"] + "/subjects/" + subjectID;
+				
+				$(this).parents("tr").removeClass("active");
+				
+				$.ajax({
+				  url: url,
+				  data: data,
+				  dataType: "script",
+				  success: function() {
+				  	scrollToAnchor("notes");
+	
+			  		//replace current url, compatiable with turbolinks
+	  				window.history.replaceState({ turbolinks: true }, "", url);
+				  }
+				});
+			} else {
+				var url = $(this).attr("href");
+				
+				$("#subject-syllabus-table tr").removeClass("active");
+				$(this).parents("tr").addClass("active");
+				
+				$.ajax({
+				  url: url,
+				  dataType: "script",
+				  success: function() {
+				  	scrollToAnchor("notes");
+	
+			  		//replace current url, compatiable with turbolinks
+	  				window.history.replaceState({ turbolinks: true }, "", "/" + I18n["meta"]["code"] + "/subjects/" 
+	  					+ subjectID + "?" + decodeURIComponent($.param({outline: getParameterByName("outline", url)[0], operation: "outline"}, false)));
+				  }
+				});
+			}
 			return false;
 		});
 		

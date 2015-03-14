@@ -1,4 +1,4 @@
-<table class="table table-bordered table-hover">
+<table id="subject-syllabus-table" class="table table-bordered table-hover">
   <thead>
     <tr>
       <th class="col-xs-2 col-sm-1"><%= t('number') %></th>
@@ -8,7 +8,7 @@
   </thead>
   <tbody>
   	<% subject.outlines.order('no ASC').each do |outline| %>
-    <tr>
+    <tr data-no="<%= outline.no %>">
       <% if defined?(editable) && editable %>
 	      <td><%= outline.no %></td>
 	      <td>
