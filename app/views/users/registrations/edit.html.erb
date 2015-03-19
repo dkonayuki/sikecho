@@ -61,47 +61,49 @@
 					<%= render template: 'educations/index' %>
 					<hr />
 					
-					<p>
-						<strong><%= t('.current_password') %>:</strong>
-						<%= f.password_field :current_password, class: 'form-control form-control-inline', autocomplete: "off", required: true %>
-						<a data-toggle="collapse" href="#collapsePassword" class="has-tooltip" data-toggle="tooltip" data-placement="right" title="<%= t('.change_password') %> ">
-			        <span class="glyphicon glyphicon-lock"></span>
-			      </a>
-		    		<% if resource.errors[:current_password] %>
-		    			<ul>
-				      <% resource.errors.full_messages_for(:current_password).each do |msg| %>
-				        <li class="error-msg"><%= msg %></li>
-				      <% end %>
-				      </ul>
-		    		<% end %>
-					</p>
+					<% if f.object.encrypted_password.present? %>
+						<p>
+							<strong><%= t('.current_password') %>:</strong>
+							<%= f.password_field :current_password, class: 'form-control form-control-inline', autocomplete: "off", required: true %>
+							<a data-toggle="collapse" href="#collapsePassword" class="has-tooltip" data-toggle="tooltip" data-placement="right" title="<%= t('.change_password') %> ">
+				        <span class="glyphicon glyphicon-lock"></span>
+				      </a>
+			    		<% if resource.errors[:current_password] %>
+			    			<ul>
+					      <% resource.errors.full_messages_for(:current_password).each do |msg| %>
+					        <li class="error-msg"><%= msg %></li>
+					      <% end %>
+					      </ul>
+			    		<% end %>
+						</p>
+					
+						<div class="collapse out" id="collapsePassword">
+							<p>
+								<strong><%= t('password') %>:</strong>
+								<%= f.password_field :password, class: 'form-control form-control-inline', autocomplete: "off" %>
+								<% if resource.errors[:password] %>
+				    			<ul>
+						      <% resource.errors.full_messages_for(:password).each do |msg| %>
+						        <li class="error-msg"><%= msg %></li>
+						      <% end %>
+						      </ul>
+				    		<% end %>
+							</p>
+							<p>
+								<strong><%= t('password_confirmation') %>:</strong>
+								<%= f.password_field :password_confirmation, class: 'form-control form-control-inline', autocomplete: "off" %>
+								<% if resource.errors[:password_confirmation] %>
+				    			<ul>
+						      <% resource.errors.full_messages_for(:password_confirmation).each do |msg| %>
+						        <li class="error-msg"><%= msg %></li>
+						      <% end %>
+						      </ul>
+				    		<% end %>
+							</p>
+						</div>
 				
-					<div class="collapse out" id="collapsePassword">
-						<p>
-							<strong><%= t('password') %>:</strong>
-							<%= f.password_field :password, class: 'form-control form-control-inline', autocomplete: "off" %>
-							<% if resource.errors[:password] %>
-			    			<ul>
-					      <% resource.errors.full_messages_for(:password).each do |msg| %>
-					        <li class="error-msg"><%= msg %></li>
-					      <% end %>
-					      </ul>
-			    		<% end %>
-						</p>
-						<p>
-							<strong><%= t('password_confirmation') %>:</strong>
-							<%= f.password_field :password_confirmation, class: 'form-control form-control-inline', autocomplete: "off" %>
-							<% if resource.errors[:password_confirmation] %>
-			    			<ul>
-					      <% resource.errors.full_messages_for(:password_confirmation).each do |msg| %>
-					        <li class="error-msg"><%= msg %></li>
-					      <% end %>
-					      </ul>
-			    		<% end %>
-						</p>
-					</div>
-			
-				<hr />
+						<hr />
+					<% end %>
 				</div>
 				<%= f.submit class: 'btn btn-success col-sm-2 col-sm-offset-5 col-xs-12 col-xs-offset-0'%>
 				<br />

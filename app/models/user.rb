@@ -213,6 +213,20 @@ class User < ActiveRecord::Base
     ["admin", "mod", "user"]
   end
   
+  # password is not needed when log in from other provider: fb, twitter, gg
+  def password_required?
+    super && provider.blank?
+  end
+  
+  # update attributes when user doesn't have a password
+  def update_with_password(params, *options)
+    if encrypted_password.blank?
+      update_attributes(params, *options)
+    else
+      super
+    end
+  end
+   
   protected
   def confirmation_required?
     false

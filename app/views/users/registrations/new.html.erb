@@ -19,27 +19,29 @@
   		<% end %>
 			<br />
 
-			<label><%= t 'password' %>:</label>
-			<%= f.password_field :password, class: 'form-control', autocomplete: "off", required: true %>
-  		<% if resource.errors[:password] %>
-  			<ul>
-	      <% resource.errors.full_messages_for(:password).each do |msg| %>
-	        <li class="error-msg"><%= msg %></li>
-	      <% end %>
-	      </ul>
-  		<% end %>
-			<br />
-
-			<label><%= t 'password_confirmation' %>:</label>
-			<%= f.password_field :password_confirmation, class: 'form-control', autocomplete: "off", required: true %>
-  		<% if resource.errors[:password_confirmation] %>
-  			<ul>
-	      <% resource.errors.full_messages_for(:password_confirmation).each do |msg| %>
-	        <li class="error-msg"><%= msg %></li>
-	      <% end %>
-	      </ul>
-  		<% end %>
-			<br />
+			<% if f.object.password_required? %>
+				<label><%= t 'password' %>:</label>
+				<%= f.password_field :password, class: 'form-control', autocomplete: "off", required: true %>
+	  		<% if resource.errors[:password] %>
+	  			<ul>
+		      <% resource.errors.full_messages_for(:password).each do |msg| %>
+		        <li class="error-msg"><%= msg %></li>
+		      <% end %>
+		      </ul>
+	  		<% end %>
+				<br />
+	
+				<label><%= t 'password_confirmation' %>:</label>
+				<%= f.password_field :password_confirmation, class: 'form-control', autocomplete: "off", required: true %>
+	  		<% if resource.errors[:password_confirmation] %>
+	  			<ul>
+		      <% resource.errors.full_messages_for(:password_confirmation).each do |msg| %>
+		        <li class="error-msg"><%= msg %></li>
+		      <% end %>
+		      </ul>
+	  		<% end %>
+				<br />
+			<% end %>
 
 			<label><%= t 'email' %>:</label>
 			<%= f.email_field :email, class: 'form-control', placeholder: 'name@email.com', required: true %>
