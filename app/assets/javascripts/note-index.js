@@ -40,8 +40,8 @@ function prepareLoadNotePage() {
 	var filter = getParameterByName("filter");
 	if (filter == null) {
 		//default
-		$(".filter-menu a[data-type='all']").addClass("active");
-		$("#mp-menu a[data-type='all']").addClass("active");
+		$(".filter-menu a[data-type='registered_note']").addClass("active");
+		$("#mp-menu a[data-type='registered_note']").addClass("active");
 	} else {
 		$(".filter-menu a[data-type='" + filter + "']").addClass("active");
 		$("#mp-menu a[data-type='" + filter + "']").addClass("active");

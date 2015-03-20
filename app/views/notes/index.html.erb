@@ -19,12 +19,6 @@
 								<% end %>
 							</li>
 							<li>
-								<%= link_to notes_path(filter: 'registered_note'), data: {type: 'registered_note'} do %>
-									<%= image_tag('lecture_color.png') %>
-									<%= t('.registered_subjects_note') %>
-								<% end %>
-							</li>
-							<li>
 								<%= link_to notes_path(filter: 'my_note'), data: {type: 'my_note'} do %>
 									<%= image_tag('user_profile.png') %>
 									<%= t('.my_note') %>
@@ -45,6 +39,12 @@
 									<%= t('all_option') %>
 	  						<% end %>
 	  					</li>
+							<li>
+								<%= link_to notes_path(filter: 'registered_note'), data: {type: 'registered_note'} do %>
+									<%= image_tag('lecture_color.png') %>
+									<%= t('.registered_subjects_note') %>
+								<% end %>
+							</li>
 				  	</ul>
 					</div>
 				</nav>
@@ -70,6 +70,7 @@
 								<% end %>
 								
 								<ul class="hidden-xs filter-menu">
+									<li><%= link_to t('.registered_subjects_note'), notes_path(filter: 'registered_note'), data: {type: 'registered_note'} %></li>
 								  <li><%= link_to t('all_option'), notes_path(filter: 'all'), data: {type: 'all'} %></li>
 								  <li>
 								  	<%= link_to notes_path(filter: 'new_arrival_note'), data: {type: 'new_arrival_note'} do %>
@@ -80,7 +81,6 @@
 								  	<% end %>
 								  </li>
 									<li><%= link_to t('.my_note'), notes_path(filter: 'my_note'), data: {type: 'my_note'} %></li>
-									<li><%= link_to t('.registered_subjects_note'), notes_path(filter: 'registered_note'), data: {type: 'registered_note'} %></li>
 	  							<li>
 	  								<%= link_to notes_path(filter: 'favorite'), data: {type: 'favorite'} do %>
 								    	<%= t('.favorite') %>
