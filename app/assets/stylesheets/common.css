@@ -326,6 +326,10 @@ div.message-xs {
     clear:both;
 }
 
+.skc-box-header {
+	position: relative;
+}
+
 .skc-box-sm .skc-box-content {
 	padding: 20px;
 }

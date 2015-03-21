@@ -165,6 +165,12 @@
 	margin: 20px auto 0;
 }
 
+#education-switch {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
 .thumbnail-sm {
 	width: 150px;
 	height: 150px;

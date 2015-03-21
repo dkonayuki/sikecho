@@ -59,5 +59,13 @@ $(document).on("page:load ready", function() {
 			$("#user-edit #remove-avatar").val("1");
 		});
 		
+		// make sure education-public param is submitted even when not checked
+		// by making a hidden input and change it's value
+		// because 0 or false will not be passed to controller
+		$("#education-public").change(function() {
+	  	$("#education-switch input[type=hidden]").val($(this).is(":checked") == true ? 1 : 0);
+	  	$(this).val($(this).is(":checked") == true ? 1 : 0);
+		});
+		
 	});//end of ready function
 });

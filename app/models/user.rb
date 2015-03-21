@@ -37,6 +37,7 @@ class User < ActiveRecord::Base
   has_settings do |s|
     s.key :note, defaults: { order: :time, layout: :all }
     s.key :subject, defaults: { order: :all }
+    s.key :education, defaults: { public: 1 }
   end
   
   has_attached_file :avatar, styles: {thumbnail: ["60x60#", :jpg], small: ["150x150>", :jpg]}, #force type

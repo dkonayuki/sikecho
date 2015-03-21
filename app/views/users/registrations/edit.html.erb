@@ -57,7 +57,15 @@
 				  <% end %>
 				  
 					<hr />
-					<h5><%= t('.education') %></h5><br />
+					<div class="skc-box-header">
+						<h5><%= t('.education') %></h5>
+						<div class="switch switch-warning" id="education-switch">
+							<input name="education_public" type="hidden">
+						  <input type="checkbox" id="education-public" name="education_public" value="<%= f.object.settings(:education).public %>" <%= 'checked' if f.object.settings(:education).public == 1 %>>
+						  <label for="education-public"></label>
+						</div>
+					</div>
+
 					<%= render template: 'educations/index' %>
 					<hr />
 					

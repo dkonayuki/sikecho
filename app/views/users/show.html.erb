@@ -20,10 +20,6 @@
 						<strong><%= t('.schedule') %>:</strong>
 						<%= link_to image_tag("calendar.png", class: 'calendar'), schedule_path, class: 'has-tooltip', data: {placement: "right", toggle: "tooltip"}, title: t('schedule') %>
 					</p>
-<div class="switch switch-warning">
-  <input type="checkbox" id="cb" />
-  <label for="cb"></label>
-</div>
 	      <% end %>
 			</div>
 		  <% if @user == current_user %>

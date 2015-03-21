@@ -83,6 +83,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
         resource.save!
       end
       
+      #update settings public or not
+      if params[:education_public].present?
+        resource.settings(:education).public = params[:education_public].to_i
+        resource.save
+      end
+      
       sign_in resource_name, resource, bypass: true
       respond_with resource, location: after_update_path_for(resource)
     else
