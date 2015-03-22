@@ -190,8 +190,9 @@ function prepareNotification() {
 }
 
 $(document).ready(function() {
-	//create new client
-	//fired only 1 time
+	/* create new faye client for all pages
+	 * fired only 1 time
+	 */
 	window.faye = new Faye.Client(fayeServerURL);
 });
 
