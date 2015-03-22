@@ -12,11 +12,6 @@ function prepareComments() {
 	 */
   $("textarea").autosize();
   
-  $("#new-comment .comment-btn").prop("disabled", true);
-  $("#new-comment #comment-content").keyup(function() {
-	  $("#new-comment .comment-btn").prop("disabled", (($(this).val().length >= 4) && ($(this).val().length <= 150)) ? false : true);
-  });
-	
 	/*setting up faye for pub/sub*/
 	var documentID = $("#show-document").data("id");
 	
@@ -47,6 +42,14 @@ function prepareComments() {
 		}
 		return false;
 	});
+	
+	//disable commment btn at beginning
+  $("#new-comment .comment-btn").prop("disabled", true);
+  
+  //check if comment content has enough characters
+  $("#new-comment #comment-content").keyup(function() {
+  	$("#new-comment .comment-btn").prop("disabled", (($(this).val().length >= 4) && ($(this).val().length <= 150)) ? false : true);
+  });
 	
 };
 		
