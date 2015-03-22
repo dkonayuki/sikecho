@@ -22,7 +22,7 @@
 		<td class="cell" colspan="6">
 			<% if periods[[d, t]].count > 0 %>
 				<div class="details">
-					<%= render collection: periods[[d, t]], partial: 'subjects/subject_tag', as: :subject %>
+					<%= render collection: periods[[d, t]], partial: 'subjects/subject_tag', as: :subject, locals: {custom_class: 'subject-tag-info'} %>
 				</div>
 			<% end %>
 		</td>

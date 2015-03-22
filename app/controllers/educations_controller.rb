@@ -16,6 +16,10 @@ class EducationsController < ApplicationController
   # GET /educations/1
   # GET /educations/1.json
   def show
+    @periods = Hash.new
+    1.upto(Period::MAX_DAY).each do |d| 
+      @periods[d] = @education.subjects.joins(:periods).where(periods: {day: d}) || []
+    end
   end
 
   # GET /educations/new

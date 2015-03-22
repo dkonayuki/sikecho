@@ -29,3 +29,52 @@
 	background: #f6f9fc;
   border-radius: 3px;
 }
+
+#education-show {
+	position: relative;
+  background: #FFF;
+  padding: 15px 20px;
+  width: auto;
+  max-width: 600px;
+  overflow: auto;
+  margin: 20px auto;
+}
+
+#education-image {
+	float: left;
+  width: 60px;
+  height: 60px;
+}
+
+#education-show-content {
+	padding-left: 20px;
+  width: auto;
+  overflow: hidden;
+}
+
+.education-day {
+  border-bottom: 1px solid #ddd;
+  padding: 5px;
+  overflow: hidden;
+}
+
+.education-day-header {
+	float: left;
+	height: 30px;
+	padding-top: 6px;
+}
+
+.education-day-header span {
+	background: #d64635;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  padding: 5px 7px;
+  border-radius: 50%;
+}
+
+.education-day-content {
+	padding-left: 10px;
+  width: auto;
+  overflow: hidden;
+}

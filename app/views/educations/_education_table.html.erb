@@ -20,45 +20,60 @@
       <th class="hidden-xs"><%= raw t('.course') %></th>
       <th class="hidden-xs"><%= t('.subject_number') %></th>
       <th></th>
+      <th></th>
       <% end %>
     </tr>
   </thead>
   <tbody>
-  	<% @user.educations.ordered.each do | education | %>
-    <tr>
-      <td><%= education.year unless education.year.blank? %></td>
-      <td class="hidden-xs"><%= education.uni_year.name unless education.uni_year.blank? %></td>
-      <td><%= education.semester.name unless education.semester.blank? %></td>
-      <td><%= education.university.name unless education.university.blank? %></td>
-      <td class="hidden-xs"><%= education.faculty.name unless education.faculty.blank? %></td>
-      <td class="hidden-xs"><%= education.course.name unless education.course.blank? %></td>
-      <td class="hidden-xs"><%= education.subjects.count %></td>
+  	<% @user.educations.ordered.each do |education| %>
       <% if @isEditable %>
-      <td>
-      	<% if @user.current_education == education %>
-      		<%= radio_button_tag 'current_education', education.id, true %>
-      	<% else %>
-      		<%= radio_button_tag 'current_education', education.id %>
-      	<% end %>
-      </td>
-      <td>
-      	<%= link_to [:edit, @user, education], class: 'education-popup' do %>
-					<span class="glyphicon glyphicon-pencil"></span>
-				<% end %>
-				<% if @user.educations.count > 1 %>
-        	<%= link_to [@user, education], method: :delete, class: 'education-delete', data: {id: education.id} do %>
-						<span class="glyphicon glyphicon-remove"></span>
-        	<% end %>
-      	<% end %>
-      </td>
+	    	<tr>
+		      <td><%= education.year unless education.year.blank? %></td>
+		      <td class="hidden-xs"><%= education.uni_year.name unless education.uni_year.blank? %></td>
+		      <td><%= education.semester.name unless education.semester.blank? %></td>
+		      <td><%= education.university.name unless education.university.blank? %></td>
+		      <td class="hidden-xs"><%= education.faculty.name unless education.faculty.blank? %></td>
+		      <td class="hidden-xs"><%= education.course.name unless education.course.blank? %></td>
+		      <td class="hidden-xs"><%= education.subjects.count %></td>
+		      <td>
+		      	<% if @user.current_education == education %>
+		      		<%= radio_button_tag 'current_education', education.id, true %>
+		      	<% else %>
+		      		<%= radio_button_tag 'current_education', education.id %>
+		      	<% end %>
+		      </td>
+		      <td>
+		      	<%= link_to [:edit, @user, education], class: 'education-popup' do %>
+							<span class="glyphicon glyphicon-pencil"></span>
+						<% end %>
+						<% if @user.educations.count > 1 %>
+		        	<%= link_to [@user, education], method: :delete, class: 'education-delete', data: {id: education.id} do %>
+								<span class="glyphicon glyphicon-remove"></span>
+		        	<% end %>
+		      	<% end %>
+		      </td>
+	    	</tr>
       <% else %>
-      <td>
-      	<% if @user.current_education == education %>
-      	&bull;
-      	<% end %>
-      </td>
+	    	<tr>
+		      <td><%= education.year unless education.year.blank? %></td>
+		      <td class="hidden-xs"><%= education.uni_year.name unless education.uni_year.blank? %></td>
+		      <td><%= education.semester.name unless education.semester.blank? %></td>
+		      <td><%= education.university.name unless education.university.blank? %></td>
+		      <td class="hidden-xs"><%= education.faculty.name unless education.faculty.blank? %></td>
+		      <td class="hidden-xs"><%= education.course.name unless education.course.blank? %></td>
+		      <td class="hidden-xs"><%= education.subjects.count %></td>
+		      <td>
+		      	<% if @user.current_education == education %>
+		      	&bull;
+		      	<% end %>
+		      </td>
+		      <td>
+	        	<%= link_to [@user, education], class: 'education-show-popup' do %>
+							<span class="glyphicon glyphicon-eye-open"></span>
+	        	<% end %>
+		      </td>
+	    	</tr>
       <% end %>
-    </tr>
     <% end %>
   </tbody>
 </table>

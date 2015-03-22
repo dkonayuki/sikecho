@@ -125,18 +125,31 @@
 }
 
 .subject-tag-item a {
-	color: #fff;
 	padding: 3px 6px;
-	background: #24b2f2;	
-}
-
-.subject-tag-item a:hover {
-	background: #46d4f4;
-	color: #fff;
 }
 
 .subject-tag-item a:last-child {
 	margin-left: -2px;
+}
+
+.subject-tag-default a {
+	color: #999;
+	border: 1px solid #ddd;
+}
+
+.subject-tag-default a:hover {
+	color: #777;
+	border-color: #999;
+}
+
+.subject-tag-info a {
+	color: #fff;
+	background: #24b2f2;
+}
+
+.subject-tag-info a:hover {
+	background: #46d4f4;
+	color: #fff;
 }
 
 #subject-filter-trigger {

@@ -66,7 +66,7 @@ Shikechou::Application.routes.draw do
     get 'refresh_notification_list' => 'activities#refresh_notification_list'
   
     resources :users do
-      resources :educations, except: [:show] do
+      resources :educations do
         post '/new_auto' => 'educations#new_auto', on: :collection
       end
     end

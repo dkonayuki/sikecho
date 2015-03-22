@@ -1,0 +1,15 @@
+<div id="education-show">
+	<div id="education-image" class="hidden-xxs">
+		<%= image_tag('user_schedule.png') %>
+	</div>
+	<div id="education-show-content">
+			<% 1.upto(Period::MAX_DAY).each do |d| %>
+			<div class="education-day">
+				<div class="education-day-header"><span><%= t('date.short_day_names')[d] %></span></div>
+				<div class="education-day-content">
+					<%= render collection: @periods[d], partial: 'subjects/subject_tag', as: :subject %>
+				</div>
+			</div>
+			<% end %>
+	</div>
+</div>

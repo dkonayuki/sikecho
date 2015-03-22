@@ -146,7 +146,6 @@ class ApplicationController < ActionController::Base
   # wysihtml5 when redirect from other pages
   # bootstrap dropdown in production environment
   # thin server: Invalid request: Invalid HTTP format, parsing fails.
-  # cancan, user can still see other users' educations
   
   # features: consider using angularjs
   # improve education table in profile page
