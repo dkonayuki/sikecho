@@ -1,4 +1,5 @@
 class Ability
+  #define whether user can access to pages or not
   include CanCan::Ability
 
   def initialize(user, request=nil)
@@ -12,13 +13,16 @@ class Ability
         can :dashboard                # allow access to dashboard: /admin
         can :manage, :all
       elsif user.role == 'mod'
-        can :manage, :all             # allow mod to manage
+        can :manage, :all             # this will include :read, :show, :edit, :update, and :delete
       else
         #normal user
         can :show, User                                   # see other users
-        can :show, Education
-        can :manage, Education do |e|                     # only owner can manage his educations
+        can :show, University
+        can :manage, Education do |e|                     # owner can manage his educations
           e.user == user
+        end
+        can :read, Education do |e|                       # can view other users' educations if they are public
+          e.user.settings(:education).public == 1
         end
       end
       

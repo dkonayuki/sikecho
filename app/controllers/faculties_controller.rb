@@ -3,29 +3,34 @@ class FacultiesController < ApplicationController
   before_action :set_university, only: [:index, :new, :create]
   load_and_authorize_resource only: [:index, :show, :new, :edit, :destroy]
 
-  # GET /universities/:university_id/faculties
-  # GET /universities/:university_id/faculties
+  # GET /faculties
+  # GET /faculties
   def index
-    @faculties = @university.faculties
+    #@faculties = @university.faculties
+    #not in use
   end
 
-  # GET /universities/:university_id/faculty/1
-  # GET /universities/:university_id/faculty/1.json
+  # GET /faculty/1
+  # GET /faculty/1.json
   def show
+    #not in use
   end
 
-  # GET /universities/:university_id/faculties
+  # GET /faculties
   def new
-    @faculty = @university.faculties.build
+    #@faculty = @university.faculties.build
+    #not in use
   end
 
-  # GET /universities/:university_id/faculties/1/edit
+  # GET /faculties/1/edit
   def edit
+    #not in use
   end
 
-  # POST /universities/:university_id/faculties
-  # POST /universities/:university_id/faculties.json
+  # POST /faculties
+  # POST /faculties.json
   def create
+    #not in use
     @faculty = @university.faculties.new(faculty_params)
 
     respond_to do |format|
@@ -39,9 +44,10 @@ class FacultiesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /universities/:university_id/faculties/1
-  # PATCH/PUT /universities/:university_id/faculties/1.json
+  # PATCH/PUT /faculties/1
+  # PATCH/PUT /faculties/1.json
   def update
+    #not in use
     respond_to do |format|
       if @faculty.update(faculty_params)
         format.html { redirect_to @faculty, notice: 'Faculty was successfully updated.' }
@@ -53,9 +59,10 @@ class FacultiesController < ApplicationController
     end
   end
 
-  # DELETE /universities/:university_id/faculties/1
-  # DELETE /universities/:university_id/faculties/1.json
+  # DELETE /faculties/1
+  # DELETE /faculties/1.json
   def destroy
+    #not in use
     @faculty.destroy
     respond_to do |format|
       format.html { redirect_to university_faculties_path(@faculty.university) }

@@ -1,7 +1,7 @@
 class EducationsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource :user
-  load_and_authorize_resource :education, through: :user, only: [:index, :show, :new, :edit, :destroy]
+  load_and_authorize_resource :education, through: :user, only: [:index, :new, :edit, :destroy, :show] # index action is authorized a bit different
   before_action :set_education, only: [:show, :edit, :update, :destroy]
   before_action :set_user
 
@@ -10,12 +10,16 @@ class EducationsController < ApplicationController
   # GET /educations
   # GET /educations.json
   def index
-    @educations = Education.all
+    # need to manually perform a query and authorzie it
+    # related to cancan bug with nested resources: index page can be viewed even without authority
+    educations = @user.educations
+    authorize! :index, educations
   end
 
   # GET /educations/1
   # GET /educations/1.json
   def show
+    # @periods is hash of subjects group by day
     @periods = Hash.new
     1.upto(Period::MAX_DAY).each do |d| 
       @periods[d] = @education.subjects.joins(:periods).where(periods: {day: d}) || []
@@ -130,7 +134,6 @@ class EducationsController < ApplicationController
     
     def set_user
       @user = User.find(params[:user_id])
-      #@user = current_user
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

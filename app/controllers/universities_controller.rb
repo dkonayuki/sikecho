@@ -27,16 +27,19 @@ class UniversitiesController < ApplicationController
 
   # GET /universities/new
   def new
-    @university = University.new
+    #not in use
+    #@university = University.new
   end
 
   # GET /universities/1/edit
   def edit
+    #not in use
   end
 
   # POST /universities
   # POST /universities.json
   def create
+    #not in use
     @university = University.new(university_params)
 
     respond_to do |format|
@@ -53,6 +56,7 @@ class UniversitiesController < ApplicationController
   # PATCH/PUT /universities/1
   # PATCH/PUT /universities/1.json
   def update
+    #not in use
     respond_to do |format|
       if @university.update(university_params)
         format.html { redirect_to @university, notice: 'University was successfully updated.' }
@@ -67,6 +71,7 @@ class UniversitiesController < ApplicationController
   # DELETE /universities/1
   # DELETE /universities/1.json
   def destroy
+    #not in use
     @university.destroy
     
     respond_to do |format|

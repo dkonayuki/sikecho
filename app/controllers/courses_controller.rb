@@ -3,29 +3,34 @@ class CoursesController < ApplicationController
   before_action :set_faculty, only: [:index, :new, :create]
   load_and_authorize_resource only: [:index, :show, :new, :edit, :destroy]
 
-  # GET /courses
-  # GET /courses.json
+  # GET /faculties/faculty_id/courses
+  # GET /faculties/faculty_id//courses.json
   def index
-    @courses = @faculty.courses
+    #not in use
+    #@courses = @faculty.courses
   end
 
   # GET /courses/1
   # GET /courses/1.json
   def show
+    #not in use
   end
 
-  # GET /courses/new
+  # GET /faculties/faculty_id/courses/new
   def new
-    @course = @faculty.courses.build
+    #not in use
+    #@course = @faculty.courses.build
   end
 
   # GET /courses/1/edit
   def edit
+    #not in use
   end
 
   # POST /courses
   # POST /courses.json
   def create
+    #not in use
     @course = @faculty.courses.new(course_params)
 
     respond_to do |format|
@@ -42,6 +47,7 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1
   # PATCH/PUT /courses/1.json
   def update
+    #not in use
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }
@@ -56,6 +62,7 @@ class CoursesController < ApplicationController
   # DELETE /courses/1
   # DELETE /courses/1.json
   def destroy
+    #not in use
     @course.destroy
     respond_to do |format|
       format.html { redirect_to faculty_courses_path(@course.faculty) }

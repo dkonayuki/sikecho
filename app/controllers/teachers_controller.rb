@@ -6,6 +6,7 @@ class TeachersController < ApplicationController
   # GET /teachers
   # GET /teachers.json
   def index
+    # TODO
     @teachers = Teacher.all
   end
 
@@ -20,16 +21,19 @@ class TeachersController < ApplicationController
 
   # GET /teachers/new
   def new
+    # TODO
     @teacher = Teacher.new
   end
 
   # GET /teachers/1/edit
   def edit
+    # TODO
   end
 
   # POST /teachers
   # POST /teachers.json
   def create
+    # TODO
     @teacher = Teacher.new(teacher_params)
 
     respond_to do |format|
@@ -46,6 +50,7 @@ class TeachersController < ApplicationController
   # PATCH/PUT /teachers/1
   # PATCH/PUT /teachers/1.json
   def update
+    # TODO
     respond_to do |format|
       if @teacher.update(teacher_params)
         format.html { redirect_to @teacher, notice: 'Teacher was successfully updated.' }
@@ -60,6 +65,7 @@ class TeachersController < ApplicationController
   # DELETE /teachers/1
   # DELETE /teachers/1.json
   def destroy
+    # TODO
     @teacher.destroy
     
     respond_to do |format|

@@ -16,7 +16,7 @@
 					<hr />
 	      <% end %>
 	      
-	      <% if @user.settings(:education).public == 1 %>
+	      <% if @user.settings(:education).public == 1 || @user == current_user %>
 					<h5><%= t('.education') %></h5>
 					<%= render template: 'educations/index' %>
 					<hr />

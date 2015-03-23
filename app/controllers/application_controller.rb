@@ -141,11 +141,11 @@ class ApplicationController < ActionController::Base
   
   # TODO
   # bugs: 
-  # safari-note page
-  # Access-control-allow origin when login with fb, twitter, gg plus
-  # wysihtml5 when redirect from other pages
-  # bootstrap dropdown in production environment
-  # thin server: Invalid request: Invalid HTTP format, parsing fails.
+  # 1.safari-note page
+  # 2.Access-control-allow origin when login with fb, twitter, gg plus
+  # 3.wysihtml5 when redirect from other pages
+  # 4.bootstrap dropdown in production environment
+  # 5.thin server log message: Invalid request: Invalid HTTP format, parsing fails.
   
   # features: consider using angularjs
   # improve education table in profile page

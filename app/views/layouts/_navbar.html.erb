@@ -1,25 +1,36 @@
 <nav class="navbar navbar-default" role="navigation" id="nav-bar">
+	
   <!-- Brand and toggle get grouped for better mobile display -->
+<!-- header -->
   <div class="navbar-header">
+  	
+  	<!-- search btn in mobile -->
 	  <button type="button" class="navbar-toggle pull-right <%= 'hidden-xs' if current_university == nil %>" data-toggle="collapse" data-target="#navbar-collapse-2" id="navbar-search">
 	  	<span class="sr-only">Toggle navigation</span>
  			<i class="glyphicon glyphicon-search"></i>
  		</button>
+ 		
+ 		<!-- navbar btn in mobile -->
     <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target="#navbar-collapse-1" id="navbar-menu">
       <span class="sr-only">Toggle navigation</span>
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
+    
+    <!-- logo -->
     <% if user_signed_in? %>
     	<%= link_to image_tag("logo.png"), root_url(subdomain: current_user.current_university.codename), class: 'navbar-brand', id: 'logo' %>
     <% else %>
     	<%= link_to image_tag("logo.png"), root_url(subdomain: ''), class: 'navbar-brand', id: 'logo' %>
     <% end %>
   </div>
+<!-- end of header -->
   
-  <!-- Menu bar -->
+<!-- Menu bar -->
   <div class="collapse navbar-collapse no-transition" id="navbar-collapse-1">
+  	
+  	<!-- desktop navbar -->
     <ul class="nav navbar-nav hidden-xs">
       <li class="<%= 'active' if params[:controller] == 'subjects' %> <%= 'disabled' if current_university == nil %>"><%= link_to t('.subject'), subjects_path %></li>
 			<% if user_signed_in? && current_university == current_user.current_university %>
@@ -38,6 +49,7 @@
 			<% end %>
     </ul>
     
+    <!-- mobile navbar -->
     <ul class="nav navbar-nav visible-xs nav-mobile">
 
 			<% if current_university == nil %>
@@ -83,9 +95,12 @@
       	</li>
       <% end %>
     </ul>
-  </div><!-- /.navbar-collapse -->
+    <!-- end of mobile navbar -->
+    
+  </div>
+<!-- end of menu bar -->
   
-  <!-- Search bar -->
+<!-- Search bar -->
   <% if user_signed_in? || current_university != nil %>
 	  <div class="collapse navbar-collapse no-transition" id="navbar-collapse-2">
 		<%= form_tag search_path, class: "navbar-form navbar-left search-bar" do %>
@@ -98,74 +113,76 @@
 				</div>
 			</div>	    
 		<% end %>
-	  </div><!-- /.navbar-collapse -->
+	  </div>
   <% end %>
+<!-- end of search bar -->
   
+<!-- User info, only in desktop site -->
   <% if user_signed_in? %>
-  <!-- User info -->
-	<div class="collapse navbar-collapse hidden-xs" id="navbar-collapse-3">
-		<ul class="nav navbar-nav navbar-right">
-    	<li id="notification-dropdown" class="dropdown" data-id="<%= current_user.id %>">
-        <a href="#" id="notification-dropdown-btn" class="dropdown-toggle" data-toggle="dropdown">
-        	<%= image_tag('bell.png') %>
-    			<span id="notification-badget"></span>
-        </a>
-        <ul class="dropdown-menu" id="user-notification-dropdown">
-					<li id="notification-dropdown-header">
-						<div id="notification-dropdown-menu">
-							<%= link_to t('.mark_as_read_all'), '#' %>
+		<div class="collapse navbar-collapse hidden-xs" id="navbar-collapse-3">
+			<ul class="nav navbar-nav navbar-right">
+	    	<li id="notification-dropdown" class="dropdown" data-id="<%= current_user.id %>">
+	        <a href="#" id="notification-dropdown-btn" class="dropdown-toggle" data-toggle="dropdown">
+	        	<%= image_tag('bell.png') %>
+	    			<span id="notification-badget"></span>
+	        </a>
+	        <ul class="dropdown-menu" id="user-notification-dropdown">
+						<li id="notification-dropdown-header">
+							<div id="notification-dropdown-menu">
+								<%= link_to t('.mark_as_read_all'), '#' %>
+							</div>
+							<h4><%= t('.notifications')%> <span id="notification-count"></span></h4>
+						</li>
+						<li class="divider"></li>
+						
+						<div id="notification-dropdown-list" class="nano">
+							<div id="notification-dropdown-list-content" class="nano-content">
+	
+							</div>
 						</div>
-						<h4><%= t('.notifications')%> <span id="notification-count"></span></h4>
-					</li>
-					<li class="divider"></li>
-					
-					<div id="notification-dropdown-list" class="nano">
-						<div id="notification-dropdown-list-content" class="nano-content">
-
-						</div>
-					</div>
-					
-					<li class="divider"></li>
-    			<li>
-    				<%= link_to t('.see_all'), home_path(mark_as_read: 1), id: 'notification-all' %>
-    			</li>
-        </ul>
-      </li>
-      
-			<li>  
-		    <%= link_to image_tag("calendar.png"), schedule_path, class: "nav navbar-nav navbar-right nav-calendar" %>
-			</li>
-			
-    	<li class="dropdown">
-        <a href="#" id="user-info-dropdown-btn" class="dropdown-toggle" data-toggle="dropdown"><%= image_tag(current_user.display_profile_avatar, class: 'nav-avatar') %> <b class="caret"></b></a>
-        <ul class="dropdown-menu" id="user-info-dropdown-menu">
-					<li>
-						<%= link_to current_user do %>
-							<%= image_tag('user_profile.png') %>
-							<%= t('.profile') %>
-						<% end %>
-					</li>
-					<li>
-						<%= link_to schedule_url do %>
-							<%= image_tag('user_schedule.png') %>
-							<%= t('.schedule') %>
-						<% end %>
-					</li>
-					<li class="divider"></li>
-    			<li>
-    				<%= link_to destroy_user_session_path, method: :delete do %>
-    					<%= image_tag('user_logout.png') %>
-    					<%= t('.logout') %>
-    				<% end %>
-    			</li>
-        </ul>
-      </li>
-
-    </ul>
-    <!-- <%= link_to image_tag("notification.png"), '', class: "nav navbar-nav navbar-right nav-notification" %> -->
-  </div><!-- /.navbar-collapse -->
+						
+						<li class="divider"></li>
+	    			<li>
+	    				<%= link_to t('.see_all'), home_path(mark_as_read: 1), id: 'notification-all' %>
+	    			</li>
+	        </ul>
+	      </li>
+	      
+				<li>  
+			    <%= link_to image_tag("calendar.png"), schedule_path, class: "nav navbar-nav navbar-right nav-calendar" %>
+				</li>
+				
+	    	<li class="dropdown">
+	        <a href="#" id="user-info-dropdown-btn" class="dropdown-toggle" data-toggle="dropdown"><%= image_tag(current_user.display_profile_avatar, class: 'nav-avatar') %> <b class="caret"></b></a>
+	        <ul class="dropdown-menu" id="user-info-dropdown-menu">
+						<li>
+							<%= link_to current_user do %>
+								<%= image_tag('user_profile.png') %>
+								<%= t('.profile') %>
+							<% end %>
+						</li>
+						<li>
+							<%= link_to schedule_url do %>
+								<%= image_tag('user_schedule.png') %>
+								<%= t('.schedule') %>
+							<% end %>
+						</li>
+						<li class="divider"></li>
+	    			<li>
+	    				<%= link_to destroy_user_session_path, method: :delete do %>
+	    					<%= image_tag('user_logout.png') %>
+	    					<%= t('.logout') %>
+	    				<% end %>
+	    			</li>
+	        </ul>
+	      </li>
+	
+	    </ul>
+	  </div>
   <% else %>
-  <%= link_to t('.login'), new_user_session_path, class: 'btn btn-sm btn-orange navbar-right hidden-xs', id: 'login-btn' %>
+  <!-- login btn when user not logged in -->
+  	<%= link_to t('.login'), new_user_session_path, class: 'btn btn-sm btn-orange navbar-right hidden-xs', id: 'login-btn' %>
 	<% end %>
+<!-- end of user info -->
 	
 </nav>
