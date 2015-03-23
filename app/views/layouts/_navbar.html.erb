@@ -42,7 +42,7 @@
 		      	<% end %>
 	      	<% end %>
 	    	</li>
-	      <li class="<%= 'active' if params[:controller] == 'users' %>"><%= link_to t('.profile'), current_user %></li>
+	      <li class="<%= 'active' if params[:controller] == 'users' %>"><%= link_to t('.profile'), profile_path %></li>
 			<% else %>
 	      <li class="<%= 'active' if params[:controller] == 'notes' %> disabled"><%= link_to t('.note'), notes_path %></li>
 	      <li class="<%= 'active' if params[:controller] == 'users' %> disabled"><%= link_to t('.profile'), current_user %></li>
@@ -72,7 +72,7 @@
 	      	<% end %>
 	    	</li>
 	      <li class="<%= 'active' if params[:controller] == 'users' %> col-xs-3">
-	      	<%= link_to image_tag("user.png"), current_user %>
+	      	<%= link_to image_tag("user.png"), profile_path %>
       	</li>
     	<% else %>
 	    	<li class="<%= 'active' if params[:controller] == 'notes' %> col-xs-3 disabled">
@@ -121,6 +121,8 @@
   <% if user_signed_in? %>
 		<div class="collapse navbar-collapse hidden-xs" id="navbar-collapse-3">
 			<ul class="nav navbar-nav navbar-right">
+				
+				<!-- notification dropdown -->
 	    	<li id="notification-dropdown" class="dropdown" data-id="<%= current_user.id %>">
 	        <a href="#" id="notification-dropdown-btn" class="dropdown-toggle" data-toggle="dropdown">
 	        	<%= image_tag('bell.png') %>
@@ -147,22 +149,24 @@
 	    			</li>
 	        </ul>
 	      </li>
+				<!-- end of notification dropdown -->
 	      
 				<li>  
 			    <%= link_to image_tag("calendar.png"), schedule_path, class: "nav navbar-nav navbar-right nav-calendar" %>
 				</li>
 				
+				<!-- user menu -->
 	    	<li class="dropdown">
 	        <a href="#" id="user-info-dropdown-btn" class="dropdown-toggle" data-toggle="dropdown"><%= image_tag(current_user.display_profile_avatar, class: 'nav-avatar') %> <b class="caret"></b></a>
 	        <ul class="dropdown-menu" id="user-info-dropdown-menu">
 						<li>
-							<%= link_to current_user do %>
+							<%= link_to profile_path do %>
 								<%= image_tag('user_profile.png') %>
 								<%= t('.profile') %>
 							<% end %>
 						</li>
 						<li>
-							<%= link_to schedule_url do %>
+							<%= link_to schedule_path do %>
 								<%= image_tag('user_schedule.png') %>
 								<%= t('.schedule') %>
 							<% end %>
@@ -176,6 +180,7 @@
 	    			</li>
 	        </ul>
 	      </li>
+				<!-- end of user menu -->
 	
 	    </ul>
 	  </div>

@@ -21,29 +21,38 @@ class Ability
         can :manage, Education do |e|                     # owner can manage his educations
           e.user == user
         end
-        can :read, Education do |e|                       # can view other users' educations if they are public
-          e.user.settings(:education).public == 1
-        end
       end
       
       # if subdomain is from user's university
       # add many new abilities for user
       if request != nil && University.find_by_codename(request.subdomain) == user.current_university
-        can :read, [Note, Teacher]                      # read everything relate to user's university
-        can :show, Document                             # only see document and comments
+        can :read, Teacher
         
+        can :read, Education do |e|                     # can view other users' educations if they are public
+          e.user.settings(:education).public == 1
+        end
+                
         can [:create, :update], Subject                 # allow user to update his university's subjects only
+        
         can :update, User do |u|                        # only user can edit his profile
           u == user
         end
         
-        can :create, [Note, Comment, Document]          # create note and comment only in user's university
-        can [:update, :destroy], [Note, Comment] do |t| # owner can edit
+        can [:read, :create], Note                      # create note only in user's university
+        can [:update, :destroy], Note do |t|            # owner can edit
           t.user == user
         end
+        
+        can [:create], Comment
+        can [:update, :destroy], Comment do |t|         # owner can edit
+          t.user == user
+        end
+        
+        can [:create, :show], Document
         can [:update, :destroy], Document do |d|        # owner can edit
           d.note.user == user
         end
+        
       end
 
     end

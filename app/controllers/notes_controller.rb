@@ -21,8 +21,8 @@ class NotesController < ApplicationController
     
     #process filter if has any
     if params[:filter].blank?
-      #no filter, default: all
-      @notes = @user.current_university.notes
+      #no filter, default: registered_note
+      @notes = @user.registered_notes
     else
       case params[:filter].to_sym
       when :my_note
@@ -39,7 +39,7 @@ class NotesController < ApplicationController
         @notes = @user.current_university.notes
       else
         #default
-        @notes = @user.current_university.notes
+        @notes = @user.registered_notes
       end
     end
     

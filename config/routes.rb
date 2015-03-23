@@ -70,6 +70,8 @@ Shikechou::Application.routes.draw do
         post '/new_auto' => 'educations#new_auto', on: :collection
       end
     end
+    # special url for profile, will handler no id param passed as current_user
+    get 'profile' => 'users#show', as: :profile
     
     # there is only one schedule, no schedules
     # so the routes will be a bit difference
