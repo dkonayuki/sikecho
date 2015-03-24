@@ -5,7 +5,7 @@ class Teacher < ActiveRecord::Base
 
   validates :first_name, presence: true, length: 1..16
   validates :last_name, presence: true, length: 1..16
-  
+    
   has_attached_file :picture, styles: {thumbnail: "120x120#", small: "150x150^"}, 
                               #local config
                               url: "/uploads/teachers/:id/picture/:style/:basename.:extension",

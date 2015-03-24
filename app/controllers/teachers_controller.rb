@@ -6,8 +6,8 @@ class TeachersController < ApplicationController
   # GET /teachers
   # GET /teachers.json
   def index
-    # TODO
-    @teachers = Teacher.all
+    # get teachers from current university ( in subdomain )
+    @teachers = current_university.teachers
   end
 
   # GET /teachers/1
@@ -83,6 +83,6 @@ class TeachersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def teacher_params
-      params.require(:teacher).permit(:first_name, :first_name_kana, :last_name, :last_name_kana, :role, :university_id, :faculty_id)
+      params.require(:teacher).permit(:first_name, :first_name_kana, :first_name_kanji, :last_name, :last_name_kana, :last_name_kanji, :title, :info, :faculty_id, :lab, :lab_url, :email, :picture)
     end
 end

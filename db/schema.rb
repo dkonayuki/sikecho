@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20150323162122) do
 
   create_table "courses", force: true do |t|
     t.string   "name"
+    t.text     "info"
     t.integer  "faculty_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -90,6 +91,7 @@ ActiveRecord::Schema.define(version: 20150323162122) do
   create_table "faculties", force: true do |t|
     t.string   "name"
     t.string   "website"
+    t.text     "info"
     t.integer  "university_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
@@ -287,7 +289,8 @@ ActiveRecord::Schema.define(version: 20150323162122) do
     t.string   "last_name"
     t.string   "last_name_kana"
     t.string   "last_name_kanji"
-    t.text     "role"
+    t.text     "info"
+    t.string   "title"
     t.integer  "university_id"
     t.integer  "faculty_id"
     t.string   "lab"
@@ -318,6 +321,7 @@ ActiveRecord::Schema.define(version: 20150323162122) do
     t.string   "name"
     t.string   "address"
     t.string   "website"
+    t.text     "info"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.string   "codename"
