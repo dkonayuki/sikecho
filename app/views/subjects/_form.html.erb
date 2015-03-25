@@ -115,9 +115,9 @@
 					<p>
 						<strong><%= t('teacher_plural') %>:</strong>
 						<% if @subject.teachers %>
-						<%= select_tag :teachers, options_for_select(@teachers.map { |t| [t.name_kanji, t.id] }, selected: @subject.teachers.map { |t| t.id }), class: 'selectpicker show-tick', data: {width: 'auto', "live-search" => "true"}, multiple: true, title: '' %>
+						<%= f.select :teachers, options_for_select(@teachers.map { |t| [t.name_kanji, t.id] }, selected: @subject.teachers.map { |t| t.id }), {}, class: 'selectpicker show-tick', data: {width: 'auto', "live-search" => "true"}, multiple: true, title: '' %>
 						<% else %>
-						<%= select_tag :teachers, options_for_select(@teachers.map { |t| [t.name_kanji, t.id] }), class: 'selectpicker show-tick', data: {width: 'auto', "live-search" => "true"}, multiple: true, title: '' %>
+						<%= f.select :teachers, options_for_select(@teachers.map { |t| [t.name_kanji, t.id] }), {}, class: 'selectpicker show-tick', data: {width: 'auto', "live-search" => "true"}, multiple: true, title: '' %>
 						<% end %>
 					</p>
 					

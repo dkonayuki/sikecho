@@ -194,7 +194,7 @@ class SubjectsController < ApplicationController
     
     #create new subject
     @subject = Subject.new(subject_params)
-    @subject.teachers = Teacher.where(id: params[:teachers])
+    @subject.teachers = current_university.teachers.where(id: params[:subject][:teachers])
     
     #add periods
     if !params[:periods].blank?
@@ -333,7 +333,7 @@ class SubjectsController < ApplicationController
     @subject.tag_list = tags
     
     #add teachers
-    @subject.teachers = Teacher.where(id: params[:teachers])
+    @subject.teachers = current_university.teachers.where(id: params[:subject][:teachers])
             
     #delete image
     #present? is equivalent to !blank?
@@ -395,8 +395,8 @@ class SubjectsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
       #subject show page: outline, page, operation, version_id
-      #subject edit: remove_picture, teachers, periods, number_of_outlines, tags
-      params.permit(:name, :pk, :value, :tags, :teachers, :version_id, :page, :order, :search, :number_of_outlines, :courses, :semesters, :periods, :auto_type, :outline, :operation, :remove_picture)
-      params.require(:subject).permit(:name, :description, :year, :place, :semester_id, :uni_year_id, :course_id, :picture)
+      #subject edit: remove_picture, periods, number_of_outlines, tags
+      params.permit(:name, :pk, :value, :tags, :version_id, :page, :order, :search, :number_of_outlines, :courses, :semesters, :periods, :auto_type, :outline, :operation, :remove_picture)
+      params.require(:subject).permit(:name, :description, :year, :place, :semester_id, :uni_year_id, :course_id, :picture, :teachers)
     end
 end
