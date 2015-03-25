@@ -9,7 +9,7 @@ class UniversitiesController < ApplicationController
     
     if !params[:area].blank?
       # select only university which has city in correct area
-      @universities = @universities.where('universities.city IN (?)', University.areas[params[:area].to_i])
+      @universities = @universities.where('universities.city IN (?)', University::AREAS[params[:area].to_i])
     end
     
     #respond with js format, index.js.erb will be run

@@ -1,13 +1,17 @@
 class TeachersController < ApplicationController
   before_action :set_teacher, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  load_and_authorize_resource only: [:index, :show, :new, :edit, :destroy]
+  load_and_authorize_resource only: [:show, :new, :edit, :destroy] # index action is authorized a bit different
+  
+  include TeachersHelper
+
 
   # GET /teachers
   # GET /teachers.json
   def index
     # get teachers from current university ( in subdomain )
     @teachers = current_university.teachers
+    # authorize! :index, @teachers
   end
 
   # GET /teachers/1
@@ -21,20 +25,22 @@ class TeachersController < ApplicationController
 
   # GET /teachers/new
   def new
-    # TODO
     @teacher = Teacher.new
+    prepare_view_content
   end
 
   # GET /teachers/1/edit
   def edit
-    # TODO
+    prepare_view_content
   end
 
   # POST /teachers
   # POST /teachers.json
   def create
-    # TODO
-    @teacher = Teacher.new(teacher_params)
+    prepare_view_content
+
+    @teacher = current_university.teachers.new(teacher_params)
+    @teacher.subjects = current_university.subjects.where(id: params[:teacher][:subjects])
 
     respond_to do |format|
       if @teacher.save
@@ -50,7 +56,19 @@ class TeachersController < ApplicationController
   # PATCH/PUT /teachers/1
   # PATCH/PUT /teachers/1.json
   def update
-    # TODO
+    prepare_view_content
+    
+    #add subjects
+    @teacher.subjects = current_university.subjects.where(id: params[:teacher][:subjects])
+    
+    #delete image
+    #present? is equivalent to !blank?
+    if params[:remove_picture].present? && params[:remove_picture].to_i == 1
+      if @teacher.picture.present? 
+        @teacher.picture.destroy
+      end
+    end
+    
     respond_to do |format|
       if @teacher.update(teacher_params)
         format.html { redirect_to @teacher, notice: 'Teacher was successfully updated.' }
@@ -65,11 +83,10 @@ class TeachersController < ApplicationController
   # DELETE /teachers/1
   # DELETE /teachers/1.json
   def destroy
-    # TODO
     @teacher.destroy
     
     respond_to do |format|
-      format.html { redirect_to teachers_url }
+      format.html { redirect_to :teachers }
       format.json { head :no_content }
     end
   end

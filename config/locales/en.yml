@@ -505,6 +505,24 @@ en:
     index:
       notice1: Please select your current education
   teachers:
+    TITLES:
+      doctor: Doctor
+      professor: Professor
+    index:
+      add_new_teacher: Add a new teacher
+    form:
+      first_name: First name
+      last_name: Last name
+      first_name_kana: First name in Katakana
+      last_name_kana: Last name in Katakana
+      first_name_kanji: First name in Kanji
+      last_name_kanji: Last name in Kanji
+      select_image: Select image
+      change_image: Change
+      remove_image: Remove
+      title: Title
+      info: Information
+      subjects: Subjects
     show:
       university: University
       course: Course
@@ -519,8 +537,7 @@ en:
       address: Address
       website: Website
   universities:
-    index:
-      all: All
+    AREAS:
       hokkaido: Hokkaido
       tohoku: Tohoku
       kanto: Kanto
@@ -530,6 +547,8 @@ en:
       chugoku: Chugoku
       shikoku: Shikoku
       kyushu: Kyushu
+    index:
+      all: All
   public_activity:
     note:
       create:

@@ -2,12 +2,17 @@
 	<div class="skc-box skc-box-lg">
 		<div class="skc-box-content">
 			<div class="skc-box-thumbnail">
-				<%= image_tag("user.png") %>
+				<%= image_tag(@teacher.display_profile_image) %>
 			</div>
 			<div class="skc-box-desc">
 				<h4>
 					<%= @teacher.full_name %>
 				</h4>
+				<% if !@teacher.info.blank? %>
+					<p>
+						<%= sanitize(@teacher.info) %>
+					</p>
+				<% end %>
 				<hr />
 				<p>
 					<strong><%= t('email') %>:</strong>
@@ -18,7 +23,7 @@
 					<%= @teacher.university.name %>
 				</p>
 				<p>
-					<strong><%= t('.course') %>:</strong>
+					<strong><%= t('.faculty') %>:</strong>
 					<%= @teacher.faculty.name %>
 				</p>
 				<p>
@@ -29,6 +34,18 @@
 					<strong><%= t('.lab_url') %>:</strong>
 					<%= @teacher.lab_url %>
 				</p>
+			</div>
+  		<div class="skc-box-menu">
+				<% if can? :update, @teacher %>
+					<%= link_to edit_teacher_path(@teacher.id), class: 'has-tooltip', data: {toggle: "tooltip", placement: "top"}, title: t('edit') do %>
+						<span class="glyphicon glyphicon-pencil"></span>
+					<% end %>
+				<% end %>
+				<% if can? :destroy, @teacher %>
+					<%= link_to @teacher, method: :delete, data: { confirm: t('delete_confirm') } do %>
+						<span class="glyphicon glyphicon-remove"></span>
+					<% end %>
+				<% end %>
 			</div>
 		</div><!-- end of skc-box-content -->
 	</div><!-- end of skc-box -->

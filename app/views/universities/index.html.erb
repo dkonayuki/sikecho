@@ -12,15 +12,15 @@
 			<area shape="poly" alt="shikoku" data-id="8" coords="95,290,95,280,100,280,100,270,95,270,94,264,79,264,80,275,75,274,74,269,59,269,59,280,54,280,54,295,74,295,75,285,85,285,85,289" />
 			<area shape="poly" alt="kyushu" data-id="9" coords="20,270,30,270,30,280,45,280,44,300,40,300,40,310,35,310,34,320,10,321,10,315,14,314,15,309,20,310,20,295,14,294,15,305,9,305,9,310,0,309,0,289,5,289,5,280,15,279,15,275,20,274,20,269" />
 		</map>
-		<span class="area-name" id="area-name-hokkaido" data-id="1"><%= t('.hokkaido') %></span>
-		<span class="area-name" id="area-name-tohoku" data-id="2"><%= t('.tohoku') %></span>
-		<span class="area-name" id="area-name-kanto" data-id="3"><%= t('.kanto') %></span>
-		<span class="area-name" id="area-name-tokai" data-id="4"><%= t('.tokai') %></span>
-		<span class="area-name" id="area-name-koshinetsu" data-id="5"><%= t('.koshinetsu') %></span>
-		<span class="area-name" id="area-name-kansai" data-id="6"><%= t('.kansai') %></span>
-		<span class="area-name" id="area-name-chugoku" data-id="7"><%= t('.chugoku') %></span>
-		<span class="area-name" id="area-name-shikoku" data-id="8"><%= t('.shikoku') %></span>
-		<span class="area-name" id="area-name-kyushu" data-id="9"><%= t('.kyushu') %></span>
+		<span class="area-name" id="area-name-hokkaido" data-id="1"><%= t(:hokkaido, scope: 'universities.AREAS') %></span>
+		<span class="area-name" id="area-name-tohoku" data-id="2"><%= t(:tohoku, scope: 'universities.AREAS') %></span>
+		<span class="area-name" id="area-name-kanto" data-id="3"><%= t(:kanto, scope: 'universities.AREAS') %></span>
+		<span class="area-name" id="area-name-tokai" data-id="4"><%= t(:tokai, scope: 'universities.AREAS') %></span>
+		<span class="area-name" id="area-name-koshinetsu" data-id="5"><%= t(:koshinetsu, scope: 'universities.AREAS') %></span>
+		<span class="area-name" id="area-name-kansai" data-id="6"><%= t(:kansai, scope: 'universities.AREAS') %></span>
+		<span class="area-name" id="area-name-chugoku" data-id="7"><%= t(:chugoku, scope: 'universities.AREAS') %></span>
+		<span class="area-name" id="area-name-shikoku" data-id="8"><%= t(:shikoku, scope: 'universities.AREAS') %></span>
+		<span class="area-name" id="area-name-kyushu" data-id="9"><%= t(:kyushu, scope: 'universities.AREAS') %></span>
 	</div>
 	<div id="university-menu">
 		<%= form_tag notes_path, method: :get, id: 'filter-university' do %>

@@ -16,4 +16,9 @@ module NotesHelper
     current_user.favorites.notes.count
   end
   
+  #get view content
+  def prepare_view_content
+    @subjects = current_university.subjects.order('notes_count DESC, year DESC')
+  end
+  
 end

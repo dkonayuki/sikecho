@@ -1,4 +1,4 @@
-/* university
+/* university index page
  ***************************************************************************/
 
 #university-index {
@@ -156,7 +156,6 @@
 }
 
 #universities-list {
-	margin-top: 20px;
 	margin: 0 auto;
 }
 
@@ -173,6 +172,41 @@
 	max-width: 300px;
 	margin: 0 auto;
 }
+
+#new-request {
+	background: #fff;
+	max-width: 300px;
+	margin: auto;
+	position: relative;
+	border-radius: 3px;
+}
+
+#new-request-title {
+	padding: 20px 32px;
+	font-size: 18px;
+	text-align: center;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+#new-request-form {
+	line-height: 1.8em;
+	font-size: 13px;
+	padding: 20px 32px;
+	background: #f6f9fc;
+	border-radius: 3px;
+}
+
+#uni-not-found {
+	text-align: center;
+}
+
+#uni-not-found a {
+	color: #563d7c;
+	font-style: italic;
+}
+
+/* university item
+ ***************************************************************************/
 
 .uni-item {
 	background: #fff;
@@ -244,36 +278,4 @@
 .uni-user {
 	display: inline-table;
 	width: 33%;
-}
-
-#new-request {
-	background: #fff;
-	max-width: 300px;
-	margin: auto;
-	position: relative;
-	border-radius: 3px;
-}
-
-#new-request-title {
-	padding: 20px 32px;
-	font-size: 18px;
-	text-align: center;
-	border-bottom: 1px solid #e5e5e5;
-}
-
-#new-request-form {
-	line-height: 1.8em;
-	font-size: 13px;
-	padding: 20px 32px;
-	background: #f6f9fc;
-	border-radius: 3px;
-}
-
-#uni-not-found {
-	text-align: center;
-}
-
-#uni-not-found a {
-	color: #563d7c;
-	font-style: italic;
 }

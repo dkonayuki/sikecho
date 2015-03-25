@@ -58,10 +58,8 @@ class Subject < ActiveRecord::Base
       q = "%#{search.downcase}%"
       #where('lower(subjects.name) LIKE ?', q)
       joins(:teachers)
-      .joins('LEFT JOIN taggings ON subjects.id = taggings.taggable_id')
-      .joins('LEFT JOIN tags ON tags.id = taggings.tag_id')
       .where('subjects.name LIKE ? OR teachers.last_name_kanji LIKE ? OR teachers.first_name_kanji LIKE ?' +
-        'OR teachers.first_name LIKE ? OR teachers.last_name LIKE ? OR lower(tags.name) LIKE ?', q, q, q, q, q, q)
+        'OR teachers.first_name LIKE ? OR teachers.last_name LIKE ?', q, q, q, q, q)
     else
       all
     end

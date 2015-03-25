@@ -1,4 +1,19 @@
-/* Teacher page
+/* Teacher index page
+ ===============================================================================================*/
+
+#teachers-index {
+	margin: 15px;
+}
+
+#teachers-list {
+  margin: 0 auto;
+}
+
+#teachers-menu {
+	text-align: center;
+}
+
+/* Teacher show page
  ===============================================================================================*/
 
 #show-teacher {
@@ -8,4 +23,84 @@
 #show-teacher .subject-by-year {
 	margin-bottom: 3px;
 	display: inline-block;
+}
+
+/* Teacher edit page
+ ===============================================================================================*/
+
+#teacher-edit {
+  margin: 20px auto 0;
+}
+
+/* Teacher items
+ ===============================================================================================*/
+
+.teacher {
+	background: #fff;
+	width: 200px;
+	height: 60px;
+	padding: 5px 5px;
+	display: inline-block;
+	margin-bottom: 10px;
+	border: 1px solid #ddd;
+}
+
+.teacher-img {
+	display: inline-block;
+	float: left;
+}
+
+.teacher-content {
+	padding-left: 10px;
+	overflow: hidden;
+}
+
+.teacher-name {
+	color: #E67E22;
+	font-size: 13px;
+}
+
+.teacher-info {
+	font-size: 11px;
+	color: #888;
+}
+
+.teacher-hovercard-item {
+	width: 100px;
+	height: 140px;
+	display: inline-block;
+}
+
+.teacher-hovercard-img {
+	width: 100px;
+	height: 100px;
+	overflow: hidden;
+	float: left;
+}
+
+.teacher-hovercard-img img {	
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.teacher-hovercard-content {
+	padding: 5px 10px;
+	overflow: hidden;
+	text-align: center;
+}
+
+.teacher-hovercard-name {
+	font-weight: 700;
+	font-size: 12px;
+}
+
+.teacher-hovercard-info {
+	font-size: 11px;
+	padding-top: 5px;
+}
+
+.teacher-hovercard-info img {
+	height: 14px;
+	width: 14px;
 }

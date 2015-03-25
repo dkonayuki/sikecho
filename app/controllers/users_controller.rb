@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    #not use
     @users = User.order(:username)
     
     respond_to do |format|
@@ -21,28 +22,34 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-  #use registrations_controller
+    #not use
+    #use registrations_controller
   end
 
   # GET /users/1/edit
   def edit
+    #not use
+    #use registrations_controller
   end
 
   # POST /users
   # POST /users.json
   def create
-  #use registrations_controller
+    #not use
+    #use registrations_controller
   end
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-  #use registrations_controller
+    #not use
+    #use registrations_controller
   end
 
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    #not use
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url }

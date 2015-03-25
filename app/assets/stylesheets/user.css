@@ -185,6 +185,31 @@
 	max-height: 140px;
 }
 
+/*User item
+ *  ===============================================================================================*/
+
+.author {
+}
+
+.author-img {
+	display: inline-block;
+	float: left;
+}
+
+.author-content {
+	padding-left: 10px;
+	overflow: hidden;
+}
+
+.author-name {
+	color: #E67E22;
+	font-size: 13px;
+}
+
+.author-info {
+	font-size: 11px;
+	color: #888;
+}
 .user-hovercard-item {
 	width: 100px;
 	height: 140px;
@@ -223,32 +248,6 @@
 .user-hovercard-info img {
 	height: 14px;
 	width: 14px;
-}
-
-/*User item
- *  ===============================================================================================*/
-
-.author {
-}
-
-.author-img {
-	display: inline-block;
-	float: left;
-}
-
-.author-content {
-	padding-left: 10px;
-	overflow: hidden;
-}
-
-.author-name {
-	color: #E67E22;
-	font-size: 13px;
-}
-
-.author-info {
-	font-size: 11px;
-	color: #888;
 }
 
 .user-activity {

@@ -1,45 +1,134 @@
-<%= form_for(@teacher) do |f| %>
-  <% if @teacher.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@teacher.errors.count, "error") %> prohibited this teacher from being saved:</h2>
-
-      <ul>
-      <% @teacher.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :first_name_kana %><br>
-    <%= f.text_field :first_name_kana %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name_kana %><br>
-    <%= f.text_field :last_name_kana %>
-  </div>
-  <div class="field">
-    <%= f.label :role %><br>
-    <%= f.text_area :role %>
-  </div>
-  <div class="field">
-    <%= f.label :university_id %><br>
-    <%= f.number_field :university_id %>
-  </div>
-  <div class="field">
-    <%= f.label :faculty_id %><br>
-    <%= f.number_field :faculty_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<!-- define is_new if not defined -->
+<% if !defined?(is_new) %>
+	<% is_new = true %>
 <% end %>
+<div id="teacher-edit">
+	<%= form_for(@teacher) do |f| %>
+		<div class="skc-box skc-box-lg">
+			<div class="skc-box-content">
+				<div class="skc-box-thumbnail">
+					<%= image_tag("user.png")  %>
+				</div>
+				<div class="skc-box-desc">
+
+					<% if @teacher.picture.exists? %>
+					<div class="fileinput fileinput-exists" data-provides="fileinput">
+					<% else %>
+					<div class="fileinput fileinput-new" data-provides="fileinput">
+					<% end %>
+					  <div class="fileinput-new thumbnail thumbnail-sm">
+					  </div>
+					  <div class="fileinput-preview fileinput-exists thumbnail thumbnail-preview-sm">
+					  <% if @teacher.picture.exists? %>
+					  	<%= image_tag @teacher.picture.url(:original) %>
+				  	<% end %>
+					  </div>
+					  <div>
+					    <span class="btn btn-default btn-file">
+					    	<span class="fileinput-new"><%= t('.select_image') %></span>
+					    	<span class="fileinput-exists"><%= t('.change_image') %></span>
+					  		<%= f.file_field :picture %>
+				    	</span>
+					    <a href="#" id="teacher-picture-remove-btn" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><%= t('.remove_image') %></a>
+							<input id="remove-picture" name="remove_picture" type="hidden" value="0">
+					  </div>
+					  <% if @teacher.errors[:picture] %>
+		    			<ul>
+				      <% @teacher.errors.full_messages_for(:picture).each do |msg| %>
+				        <li class="error-msg"><%= msg %></li>
+				      <% end %>
+				      </ul>
+		    		<% end %>
+					</div>
+					
+					<hr />
+					<p>
+						<strong><%= t('.first_name') %></strong>
+						:
+						<%= f.text_field :first_name, class: 'form-control form-control-inline', required: 'true' %>
+		    		<% if @teacher.errors[:first_name].count > 0 %>
+		    			<ul>
+				      <% @teacher.errors.full_messages_for(:first_name).each do |msg| %>
+				        <li class="error-msg"><%= msg %></li>
+				      <% end %>
+				      </ul>
+		    		<% end %>
+					</p>
+					<p>
+						<strong><%= t('.last_name') %></strong>
+						:
+						<%= f.text_field :last_name, class: 'form-control form-control-inline', required: 'true' %>
+		    		<% if @teacher.errors[:last_name].count > 0 %>
+		    			<ul>
+				      <% @teacher.errors.full_messages_for(:last_name).each do |msg| %>
+				        <li class="error-msg"><%= msg %></li>
+				      <% end %>
+				      </ul>
+		    		<% end %>
+					</p>
+					<p>
+						<strong><%= t('.first_name_kana') %></strong>
+						:
+						<%= f.text_field :first_name_kana, class: 'form-control form-control-inline' %>
+					</p>
+					<p>
+						<strong><%= t('.last_name_kana') %></strong>
+						:
+						<%= f.text_field :last_name_kana, class: 'form-control form-control-inline' %>
+					</p>
+					<p>
+						<strong><%= t('.first_name_kanji') %></strong>
+						:
+						<%= f.text_field :first_name_kanji, class: 'form-control form-control-inline' %>
+					</p>
+					<p>
+						<strong><%= t('.last_name_kanji') %></strong>
+						:
+						<%= f.text_field :last_name_kanji, class: 'form-control form-control-inline' %>
+					</p>
+					<p>
+						<strong><%= t('.title') %></strong>
+						:
+						<% if !@teacher.title.blank? %>
+						<%= f.select :title, options_for_select(Teacher::TITLES.map {|title| [t(title, scope: 'teachers.TITLES'), title]}, selected: @teacher.title), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<% else %>
+						<%= f.select :title, options_for_select(Teacher::TITLES.map {|title| [t(title, scope: 'teachers.TITLES'), title]}), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<% end %>
+					</p>
+					<p>
+						<strong><%= t('email') %></strong>
+						:
+						<%= f.email_field :email, class: 'form-control form-control-inline' %>
+					</p>
+					<p>
+						<strong><%= t('.info') %></strong>
+						:
+						<%= f.text_area :info, class: 'form-control', id: 'teacher-info' %>
+					</p>
+					<p>
+						<strong><%= t('faculty') %>:</strong>
+						<% if @teacher.faculty %>
+						<%= f.select :faculty_id, options_from_collection_for_select(@faculties,"id","name", selected: @teacher.faculty.id), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<% else %>
+						<%= f.select :faculty_id, options_from_collection_for_select(@faculties,"id","name"), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<% end %>
+					</p>
+					
+					<hr />
+					<p>
+						<strong><%= t('.subjects') %>:</strong>
+						<% if @teacher.subjects %>
+							<%= f.select :subjects, options_for_select(@subjects.map { |s| ["#{s.name}-#{s.year}", s.id]}, selected: @teacher.subjects.map { |s| s.id } ), {}, {class: 'form-control selectpicker', multiple: true, title: '', data: {width: '100%', "live-search" => "true"}} %>
+						<% else %>
+			  			<%= f.select :subjects, options_from_collection_for_select(@subjects,"id","name"), {}, {class: 'form-control selectpicker', multiple: true, title: '', data: {width: '100%', "live-search" => "true"}} %>
+						<% end %>
+					</p>
+						
+				</div>
+				<%= f.submit class: 'btn btn-success col-sm-2 col-sm-offset-5 col-xs-12 col-xs-offset-0'%>
+				<br />
+			</div>
+		</div>
+			
+	<% end %>
+</div>

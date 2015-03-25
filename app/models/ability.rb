@@ -26,7 +26,7 @@ class Ability
       # if subdomain is from user's university
       # add many new abilities for user
       if request != nil && University.find_by_codename(request.subdomain) == user.current_university
-        can :read, Teacher
+        can [:read, :update], Teacher
         
         can :read, Education do |e|                     # can view other users' educations if they are public
           e.user.settings(:education).public == 1

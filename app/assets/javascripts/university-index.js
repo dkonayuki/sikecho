@@ -1,24 +1,24 @@
-function prepareMasonry() {
-	var container = document.querySelector('#universities-list');
+function prepareUniMasonry() {
+	var container = document.querySelector("#universities-list");
 	var msnry = new Masonry( container, {
 	  // options
 	  "gutter": 10,
 	  "isFitWidth": true,
-	  itemSelector: '.uni-item'
+	  itemSelector: ".uni-item"
 	});
 }
 
 function prepareUniversities() {
 	
   /*For ajax popup link*/	
-  $('#uni-request-btn').magnificPopup({
+  $("#uni-request-btn").magnificPopup({
     // Delay in milliseconds before popup is removed
 	  removalDelay: 300,
 	
 	  // Class that is added to popup wrapper and background
 	  // make it unique to apply your CSS animations just to this exact popup
-	  mainClass: 'mfp-zoom-in',
-	  type: 'ajax',
+	  mainClass: "mfp-zoom-in",
+	  type: "ajax",
     callbacks: {
    		parseAjax: function( mfpResponse ) {
         mfpResponse.data = $(mfpResponse.data).find('#new-request');
@@ -47,7 +47,7 @@ function prepareUniversities() {
 	
 }
 
-function prepareMap() {
+function prepareUniMap() {
 	
 	// array of map images
 	var mapImgs = new Array();
@@ -161,7 +161,7 @@ function reloadUniversityList() {
 	  data: data,
 	  success: function() {
 	  	//run after js.erb file executed
-			prepareMasonry();
+			prepareUniMasonry();
 			prepareUniversities();
 	  },
 	  dataType: "script",
@@ -179,7 +179,7 @@ $(document).on("page:load ready", function() {
 		
 	  // disable enter key
 	  $("#filter-university").on("submit", function() {
-			return false; 
+			return false;
 	  });
 	  
 		$("body").css("background-color", "#fff");
@@ -192,9 +192,9 @@ $(document).on("page:load ready", function() {
 			return false;
 		});
 		
-		prepareMasonry();
+		prepareUniMasonry();
 		prepareUniversities();
-		prepareMap();
+		prepareUniMap();
 		
 	});
 });

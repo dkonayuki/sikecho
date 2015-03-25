@@ -103,7 +103,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def after_update_path_for(resource)
     #redirect to user's profile
     #remember to use url for changing subdomain
-    user_url(id: resource.id, subdomain: resource.current_education.university.codename)
+    profile_url(subdomain: resource.current_education.university.codename)
     #resource
   end
   

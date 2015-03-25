@@ -475,6 +475,24 @@ ja:
     index:
       notice1: 現在有効な学歴のラジオボタンをOnにしてください
   teachers:
+    TITLES:
+      doctor: 博士
+      professor: 教授
+    index:
+      add_new_teacher: 教員追加
+    form:
+      first_name: 名
+      last_name: 姓
+      first_name_kana: メイ(カタカナ)
+      last_name_kana: セイ(カタカナ)
+      first_name_kanji: 名(漢字)
+      last_name_kanji: 姓(漢字)
+      select_image: 画像選択
+      change_image: 変更
+      remove_image: 削除
+      title: 学位
+      info: 情報
+      subjects: 担当授業
     show:
       university: 所属大学
       course: 所属学科
@@ -489,8 +507,7 @@ ja:
       address: 住所
       website: ウェブサイト
   universities:
-    index:
-      all: 全国
+    AREAS:
       hokkaido: 北海道
       tohoku: 東北
       kanto: 関東
@@ -500,6 +517,8 @@ ja:
       chugoku: 中国
       shikoku: 四国
       kyushu: 九州
+    index:
+      all: 全国
   public_activity:
     note:
       create:

@@ -202,14 +202,14 @@ class NotesController < ApplicationController
 
   # GET /notes/new
   def new
-    @user = current_user
     @note = Note.new
 
     #create note from subject page, subject_id
     if !params[:subject_id].blank? 
-      @note.subjects << Subject.find(params[:subject_id])
+      @note.subjects << current_university.subjects.find(params[:subject_id])
     end
-    @subjects = @user.current_university.subjects.order('notes_count DESC, year DESC')
+    
+    prepare_view_content
   end
 
   # POST /notes
@@ -219,18 +219,14 @@ class NotesController < ApplicationController
     tags_text = Moji.zen_to_han(params[:tags])
     tags = tags_text.split(',')
     
-    @user = current_user
-    @note = Note.new(note_params)
+    @note = current_user.notes.new(note_params)
     @note.tag_list = tags
 
     #prepare subjects list
-    @subjects = @user.current_university.subjects
+    prepare_view_content
     
     #add subjects
-    @note.subjects = Subject.where(id: params[:note][:subjects])
-
-    #add relationship
-    @note.user = @user
+    @note.subjects = current_university.subjects.where(id: params[:note][:subjects])
 
     #create association between note and uploaded documents
     @note.documents = Document.where(id: params[:document_ids])
@@ -238,7 +234,7 @@ class NotesController < ApplicationController
     respond_to do |format|
       if @note.save
         # need to save b4 mark as read
-        @note.mark_as_read! for: @user
+        @note.mark_as_read! for: current_user
         
         #create activity for new feeds
         @note.create_activity :create, owner: current_user
@@ -259,9 +255,8 @@ class NotesController < ApplicationController
   
   # GET /notes/1/edit
   def edit
-    @user = current_user
-
-    @subjects = @user.current_university.subjects
+    prepare_view_content
+    
     @note = Note.find(params[:id])
     @tags = @note.tag_list
   end
@@ -277,18 +272,16 @@ class NotesController < ApplicationController
   # PATCH/PUT /notes/1
   # PATCH/PUT /notes/1.json
   def update
-    @user = current_user
-    
     # update tags list
     tags = params[:tags].split(',')
     @note.tag_list = tags
     @tags = @note.tag_list
     
     #prepare subjects list
-    @subjects = @user.current_university.subjects
+    prepare_view_content
 
     #update subjects
-    @note.subjects = Subject.where(id: params[:note][:subjects])
+    @note.subjects = current_university.subjects.where(id: params[:note][:subjects])
     
     #update document
     @note.documents = Document.where(id: params[:document_ids])

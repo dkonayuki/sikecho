@@ -1,4 +1,19 @@
 class University < ActiveRecord::Base
+  
+  # constant hash for university model specifically
+  AREAS =
+    {
+      1 => [:hokkaido], #hokkaido
+      2 => [:akita, :aomori, :fukushima, :iwate, :miyagi, :tamagata], #tohoku
+      3 => [:chiba, :gunma, :ibaraki, :kanagawa, :saitama, :tochigi, :tokyo], #kanto
+      4 => [:fukui, :ishikawa, :nagano, :niigata, :toyama, :tamanashi], #tokai
+      5 => [:aichi, :gifu, :shizuoka, :mie], #koshinetsu
+      6 => [:hyogo, :kyoto, :nara, :osaka, :shiga, :wakayama], #kansai
+      7 => [:hiroshima, :okayama, :shimane, :tottori, :yamaguchi], #chugoku
+      8 => [:ehime, :kagawa, :kochi, :tokushima], #shikoku
+      9 => [:fukuoka, :kagoshima, :kumamoto, :miyazaki, :nagasaki, :oita, :saga] #kyushu
+    }
+    
   has_many :faculties, dependent: :destroy
   has_many :teachers
   has_many :uni_years
@@ -79,25 +94,7 @@ class University < ActiveRecord::Base
   #for rails_admin, city field will use a select box instead of normal text
   def city_enum
     # Do not select any value, or add any blank field. RailsAdmin will do it for you.
-    ["Hokkaido", "Akita", "Aomori", "Fukushima", "Iwate", "Miyagi", "Yamagata", "Chiba", "Gunma", "Ibaraki", "Kanagawa", "Saitama", "Tochigi", "Tokyo",
-      "Fukui", "Ishikawa", "Nagano", "Niigata", "Toyama", "Yamanashi", "Aichi", "Gifu", "Shizuoka", "Mie", "Hyogo", "Kyoto", "Nara", "Osaka", "Shiga", "Wakayama",
-      "Hiroshima", "Okayama", "Shimane", "Tottori", "Yamaguchi", "Ehime", "Kagawa", "Kochi", "Tokushima", "Fukuoka", "Kagoshima", "Kumamoto", "Miyazaki", "Nagasaki", 
-      "Oita", "Saga"]
-  end
-  
-  # constant hash for university model specifically
-  def self.areas
-    {
-      1 => ["Hokkaido"], #hokkaido
-      2 => ["Akita", "Aomori", "Fukushima", "Iwate", "Miyagi", "Yamagata"], #tohoku
-      3 => ["Chiba", "Gunma", "Ibaraki", "Kanagawa", "Saitama", "Tochigi", "Tokyo"], #kanto
-      4 => ["Fukui", "Ishikawa", "Nagano", "Niigata", "Toyama", "Yamanashi"], #tokai
-      5 => ["Aichi", "Gifu", "Shizuoka", "Mie"], #koshinetsu
-      6 => ["Hyogo", "Kyoto", "Nara", "Osaka", "Shiga", "Wakayama"], #kansai
-      7 => ["Hiroshima", "Okayama", "Shimane", "Tottori", "Yamaguchi"], #chugoku
-      8 => ["Ehime", "Kagawa", "Kochi", "Tokushima"], #shikoku
-      9 => ["Fukuoka", "Kagoshima", "Kumamoto", "Miyazaki", "Nagasaki", "Oita", "Saga"] #kyushu
-    }
+    University::AREAS.values.flatten
   end
   
 end

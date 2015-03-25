@@ -1,0 +1,14 @@
+<div class="teacher">
+	<div class="teacher-img">
+	<%= link_to teacher do %>
+		<%= image_tag(teacher.display_profile_image, class: 'avatar-xs teacher-hovercard-target avatar-round') %>
+	<% end %>
+	</div>
+	<div class="teacher-content">
+		<div class="teacher-name">
+			<%= teacher.full_name %>
+		</div>
+		<div class="teacher-info">
+		</div>
+	</div>
+</div>

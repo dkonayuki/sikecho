@@ -19,7 +19,8 @@ class SubjectsController < ApplicationController
     end
 
     #all
-    @subjects = @university.subjects
+    # need to add select distinct to prevent duplicate items
+    @subjects = @university.subjects.select('distinct subjects.*')
     
     #filter courses, use OR  
     if !params[:courses].blank?
@@ -52,11 +53,11 @@ class SubjectsController < ApplicationController
     #filter tag, use OR
     if !params[:tags].blank?
       #@subjects = @subjects.tagged_with(params[:tags], any: true)
-      #temporal solution for the "for SELECT DISTINCT, ORDER BY expressions must appear in select list" issue
+      #solution for the "for SELECT DISTINCT, ORDER BY expressions must appear in select list" issue
       #need to add uni_years and semesters collumn into select operation
       #because we need to use them to order later
       #note that semester and uni_year are singular because of the relationship
-      @subjects = @subjects.select('distinct subjects.*, uni_years.no, semesters.no')
+      @subjects = @subjects
       .joins(:semester).joins(:uni_year)
       .joins("LEFT JOIN taggings on subjects.id = taggings.taggable_id")
       .joins("LEFT JOIN tags on tags.id = taggings.tag_id").where('tags.name IN (?)', params[:tags])
@@ -333,6 +334,14 @@ class SubjectsController < ApplicationController
     
     #add teachers
     @subject.teachers = Teacher.where(id: params[:teachers])
+            
+    #delete image
+    #present? is equivalent to !blank?
+    if params[:remove_picture].present? && params[:remove_picture].to_i == 1
+      if @subject.picture.present? 
+        @subject.picture.destroy
+      end
+    end
     
     respond_to do |format|
       if @subject.update(subject_params)
@@ -342,15 +351,6 @@ class SubjectsController < ApplicationController
         #broadcast for all other related users
         @subject.registered_users.each do |user|
           broadcast_notification("/users/#{user.id}")
-        end
-        
-        #delete image
-        #present? is equivalent to !blank?
-        if params[:remove_picture].present? && params[:remove_picture].to_i == 1
-          if @subject.picture.present? 
-            @subject.picture.destroy
-            @subject.save!
-          end
         end
         
         format.html { redirect_to @subject, notice: 'Subject was successfully updated.' }
