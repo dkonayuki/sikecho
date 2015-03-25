@@ -94,7 +94,7 @@ class University < ActiveRecord::Base
   #for rails_admin, city field will use a select box instead of normal text
   def city_enum
     # Do not select any value, or add any blank field. RailsAdmin will do it for you.
-    University::AREAS.values.flatten
+    AREAS.values.flatten
   end
   
 end

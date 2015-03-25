@@ -1,4 +1,5 @@
 class Teacher < ActiveRecord::Base
+  
   TITLES = [:doctor, :professor]
 
   belongs_to :faculty
@@ -38,6 +39,12 @@ class Teacher < ActiveRecord::Base
     else
       ActionController::Base.helpers.asset_path('user_profile.png')
     end
+  end
+  
+  #for rails_admin, title field will use a select box instead of normal text
+  def title_enum
+    # Do not select any value, or add any blank field. RailsAdmin will do it for you.
+    TITLES
   end
   
 end

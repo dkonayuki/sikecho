@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  
+  ROLES = [:admin, :mod, :user]
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
@@ -211,7 +214,7 @@ class User < ActiveRecord::Base
   #for rails_admin, role field will use a select box instead of normal text
   def role_enum
     # Do not select any value, or add any blank field. RailsAdmin will do it for you.
-    ["admin", "mod", "user"]
+    ROLES
   end
   
   # password is not needed when log in from other provider: fb, twitter, gg
