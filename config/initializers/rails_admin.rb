@@ -36,7 +36,7 @@ RailsAdmin.config do |config|
   end
   
   # exclude these unnecessary model
-  config.excluded_models = ["Education", "Impression", "Outline", "NotesSubject", "Period", "Register"]
+  config.excluded_models = ["Education", "Impression", "Outline", "NotesSubject", "Period", "Register", "Vote", "Favorite"]
 
   # choose what to display in user
   config.model 'User' do
@@ -68,6 +68,17 @@ RailsAdmin.config do |config|
         date_format :default
       end
       field :role
+    end
+  end
+  
+  config.model 'Subject' do
+    edit do
+      configure :view_count do
+        read_only true
+      end
+      configure :notes_count do
+        read_only true
+      end
     end
   end
   

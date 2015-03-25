@@ -157,6 +157,85 @@ en:
       month: Month
       second: Seconds
       year: Year
+  activerecord:
+    models:
+      user:
+        one: User
+        other: Users
+      subject:
+        one: Subject
+        other: Subjects
+      note:
+        one: Note
+        other: Notes
+      teacher:
+        one: Teacher
+        other: Teachers
+      comment:
+        one: Comment
+        other: Comments
+      university:
+        one: University
+        other: Universities
+      faculty:
+        one: Faculty
+        other: Faculties
+      course:
+        one: Course
+        other: Courses
+      uni_year:
+        one: University year
+        other: University years
+      semester:
+        one: Semester
+        other: Semesters
+      document:
+        one: Document
+        other: Documents
+      request:
+        one: Request
+        other: Requests
+    attributes:
+      user:
+        username: Username
+        avatar: Avatar
+        password: Password
+        email: Email
+      subject:
+        name: Name
+        uni_year_id: University year
+        semester_id: Semester
+        course_id: Course
+        picture: Picture
+      note:
+        title: Title
+        subjects: Subjects
+      teacher:
+        first_name: First name
+        last_name: Last name
+        picture: Picture
+      comment:
+        content: Content
+      university:
+        name: Name
+        codename: Codename
+        city: City
+        logo: Logo
+        picture: Picture
+      faculty:
+        name: Name
+        university: University
+      course:
+        name: Name
+        faculty: Faculty
+      uni_year:
+        name: Name
+        no: No
+        university: University
+      semester:
+        name: Name
+        no: No
+        uni_year: University year
   errors:
     format: ! '%{attribute} %{message}'
     messages:

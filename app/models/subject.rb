@@ -9,9 +9,12 @@ class Subject < ActiveRecord::Base
   include PublicActivity::Common
 
   validates :name, presence: true
+  
+  #in order to pass params and create new subject
+  #validates course_id instead of course
   validates :semester_id, presence: true
   validates :uni_year_id, presence: true
-  validates :course, presence: true
+  validates :course_id, presence: true
   
   has_attached_file :picture, styles: {thumbnail: "120x120#", small: "150x150^"}, 
                               #local config

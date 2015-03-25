@@ -58,9 +58,9 @@
 					<p>
 						<strong><%= t('.course') %>:</strong>
 						<% if @subject.course %>
-						<%= f.select :course_id	, options_from_collection_for_select(@courses,"id","name", selected: @subject.course.id), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<%= f.select :course_id, options_from_collection_for_select(@courses,"id","name", selected: @subject.course.id), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
 						<% else %>
-						<%= f.select :course_id	, options_from_collection_for_select(@courses,"id","name"), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<%= f.select :course_id, options_from_collection_for_select(@courses,"id","name"), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
 						<% end %>
 		    		<% if @subject.errors[:course_id].count > 0 %>
 		    			<ul>
@@ -73,9 +73,9 @@
 					<p>
 						<strong><%= t('uni_year') %>:</strong>
 						<% if @subject.uni_year %>
-						<%= f.select :uni_year_id	, options_from_collection_for_select(@uni_years,"id","name", selected:@subject.uni_year.id), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<%= f.select :uni_year_id, options_from_collection_for_select(@uni_years,"id","name", selected: @subject.uni_year.id), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
 						<% else %>
-						<%= f.select :uni_year_id	, options_from_collection_for_select(@uni_years,"id","name"), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<%= f.select :uni_year_id, options_from_collection_for_select(@uni_years,"id","name"), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
 						<% end %>
 		    		<% if @subject.errors[:uni_year_id].count > 0 %>
 		    			<ul>

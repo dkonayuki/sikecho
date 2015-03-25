@@ -137,6 +137,85 @@ ja:
       month: 月
       second: 秒
       year: 年
+  activerecord:
+    models:
+      user:
+        one: ユーザー
+        other: ユーザー
+      subject:
+        one: 授業
+        other: 授業
+      note:
+        one: ノート
+        other: ノート
+      teacher:
+        one: 教員
+        other: 教員
+      comment:
+        one: コメント
+        other: コメント
+      university:
+        one: 学校
+        other: 学校
+      faculty:
+        one: 学部
+        other: 学部
+      course:
+        one: 学科
+        other: 学科
+      uni_year:
+        one: 学年
+        other: 学年
+      semester:
+        one: 学期
+        other: 学期
+      document:
+        one: 資料
+        other: 資料
+      request:
+        one: リクエスト
+        other: リクエスト
+    attributes:
+      user:
+        username: ユーザー名
+        avatar: アバター
+        password: パスワード
+        email: メールアドレス
+      subject:
+        name: 授業名
+        uni_year_id: 学年
+        semester_id: 学期
+        course_id: 所属学科
+        picture: 画像
+      note:
+        title: タイトル
+        subjects: 科目
+      teacher:
+        first_name: 名
+        last_name: 姓
+        picture: 画像
+      comment:
+        content: 内容
+      university:
+        name: 学校名
+        codename: コードネーム
+        city: 都道府県
+        logo: ロゴ
+        picture: 画像
+      faculty:
+        name: 学部名
+        university: 学校
+      course:
+        name: 学科名
+        faculty: 学部
+      uni_year:
+        name: 学年名
+        no: 番号
+        university: 学校
+      semester:
+        name: 学期名
+        no: 番号
+        uni_year: 学年
   errors:
     format: ! '%{attribute}%{message}'
     messages:
@@ -244,7 +323,7 @@ ja:
   username: ユーザー名
   password: パスワード
   password_confirmation: パスワード確認
-  email: Eメール
+  email: メールアドレス
   university: 大学
   register: 登録
   all_option: 全て
