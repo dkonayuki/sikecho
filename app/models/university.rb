@@ -91,6 +91,14 @@ class University < ActiveRecord::Base
     end
   end
   
+  def display_picture
+    if self.picture.present? && self.picture.url(:original).present?
+      self.picture.url(:original)
+    else
+      'university.png'
+    end
+  end
+  
   #for rails_admin, city field will use a select box instead of normal text
   def city_enum
     # Do not select any value, or add any blank field. RailsAdmin will do it for you.

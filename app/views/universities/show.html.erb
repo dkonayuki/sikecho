@@ -1,21 +1,22 @@
-<!-- not in use -->
-<p id="notice"><%= notice %></p>
+<div id="university-show">
+	<div id="university-header">
+		<div id="university-picture">
+			<%= image_tag(@university.display_picture)%>
+		</div>
+		<div id="university-logo">
+			<%= image_tag(@university.display_logo_thumbnail) %>
+		</div>
+		<div id="university-name">
+			<%= @university.display_name %>
+		</div>
+	</div>
+	<div id="university-content">
+		<div id="university-info">
+		</div>
+		<div id="university-faculty-list">
+		</div>
+		<div id="university-teacher-list">
+		</div>
+	</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @university.name %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @university.address %>
-</p>
-
-<p>
-  <strong>Website:</strong>
-  <%= @university.website %>
-</p>
-<%= image_tag(@university.display_logo_original, class: 'logo') %>
-
-<%= link_to 'Edit', edit_university_path(@university) %> |
-<%= link_to 'Back', universities_path %>
+</div>

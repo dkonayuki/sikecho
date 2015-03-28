@@ -11,7 +11,7 @@ class TeachersController < ApplicationController
   def index
     # get teachers from current university ( in subdomain )
     @teachers = current_university.teachers
-    # authorize! :index, @teachers
+    authorize! :index, @teachers
   end
 
   # GET /teachers/1

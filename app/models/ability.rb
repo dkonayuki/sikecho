@@ -4,7 +4,8 @@ class Ability
 
   def initialize(user, request=nil)
     can :read, Subject                # allow everyone to view Subject :index and :show, and can read other pages if authorize is not called
-    can [:index], University          # allow first time user to see list of university
+    can :read, University             # allow first time user to see list of university, and university info page
+    # faculty and course index pages will not be able to viewed for better ui
     
     if user
       
@@ -16,22 +17,24 @@ class Ability
         can :manage, :all             # this will include :read, :show, :edit, :update, and :delete
       else
         #normal user
-        can :show, User                                   # see other users
-        can :show, University
-        can :manage, Education do |e|                     # owner can manage his educations
+        can :show, User                                 # see other users
+        
+        #teacher index can be viewed by render template or partial without trigger the ability
+        #can :read, Teacher                              
+        
+        can :manage, Education do |e|                   # owner can manage his educations
           e.user == user
+        end
+        can :read, Education do |e|                     # can view other users' educations if they are public
+          e.user.settings(:education).public == 1
         end
       end
       
       # if subdomain is from user's university
       # add many new abilities for user
       if request != nil && University.find_by_codename(request.subdomain) == user.current_university
-        can [:read, :update], Teacher
+        can [:create, :update], Teacher
         
-        can :read, Education do |e|                     # can view other users' educations if they are public
-          e.user.settings(:education).public == 1
-        end
-                
         can [:create, :update], Subject                 # allow user to update his university's subjects only
         
         can :update, User do |u|                        # only user can edit his profile
