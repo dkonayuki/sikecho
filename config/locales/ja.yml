@@ -574,7 +574,7 @@ ja:
       subjects: 担当授業
     show:
       university: 所属大学
-      course: 所属学科
+      faculty: 所属学科
       lab: 研究室
       lab_url: 研究室URL
       subjects: 担当講義
