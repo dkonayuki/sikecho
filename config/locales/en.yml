@@ -376,6 +376,7 @@ en:
   subject_not_found: Subject not found
   note_not_found: Note not found
   university_not_found: University not found.
+  teacher_not_found: Teacher not found
   request_university: Request new university
   registered: Registered
   cancel_subject_registered: Cancel

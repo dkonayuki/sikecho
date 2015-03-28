@@ -1,15 +1,25 @@
-<div class="teacher-hovercard-item">
-	<div class="teacher-hovercard-img">
-		<%= image_tag(teacher.display_profile_image) %>
-	</div>
-	<div class="teacher-hovercard-content">
-		<div class="teacher-hovercard-name">
-			<%= teacher.full_name %>
+<div class="teacher-hovercard hovercard" data-id="<%= teacher.id %>">
+	<div class="teacher-hovercard-item">
+		<div class="teacher-hovercard-img">
+		<%= link_to teacher do %>
+			<%= image_tag(teacher.display_profile_image) %>
+		<% end %>
 		</div>
-		<div class="teacher-hovercard-info">
-			<%= link_to teacher, class: 'has-tooltip', data: {placement: "bottom", toggle: "tooltip"}, title: t('profile') do %>
-				<%= image_tag('user.png') %>
-			<% end %>
+		<div class="teacher-hovercard-content">
+			<div class="teacher-hovercard-name">
+				<%= teacher.full_name %>
+			</div>
+			<div class="teacher-hovercard-info">
+				<%= teacher.faculty.name %>
+			</div>
+			<div class="teacher-hovercard-desc">
+				<%= teacher.info %>
+			</div>
+			<div class="teacher-hovercard-subjects">
+				<% teacher.subjects.ordered.first(5).each do |subject| %>
+					<%= render partial: 'subjects/subject_tag', locals: {subject: subject, custom_class: 'subject-tag-navi subject-tag-xs'} %>
+				<% end %>
+			</div>
 		</div>
 	</div>
 </div>

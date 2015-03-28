@@ -57,9 +57,7 @@
 		</div>
 		<% @note.subjects.ordered.each do |subject| %>
 			<%= render partial: 'subjects/subject_card', locals: {subject: subject} %>
-			<div class="subject-hovercard hovercard" data-id="<%= subject.id %>">
-				<%= render partial: 'subjects/subject_hovercard', locals: {subject: subject} %>		
-			</div>
+			<%= render partial: 'subjects/subject_hovercard', locals: {subject: subject} %>		
 		<% end %>
 	</div>
 				

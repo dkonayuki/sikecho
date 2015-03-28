@@ -1,6 +1,7 @@
 <div id="teachers-index">
 	<div id="teachers-list">
-		<%= render @teachers %>
+		<%= render(@teachers) || content_tag(:div, t('teacher_not_found'), class: 'message') %>
+		<%= render collection: @teachers, partial: 'teacher_hovercard', as: :teacher %>
 	</div>
 	
 	<div id="teachers-menu">

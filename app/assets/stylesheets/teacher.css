@@ -37,9 +37,9 @@
 
 .teacher {
 	background: #fff;
-	width: 200px;
-	height: 60px;
-	padding: 5px 5px;
+  width: 180px;
+  height: 50px;
+  padding: 6px 8px;
 	display: inline-block;
 	margin-bottom: 10px;
 	border: 1px solid #ddd;
@@ -65,42 +65,59 @@
 	color: #888;
 }
 
+.teacher-hovercard {
+	width: 340px;
+	height: 120px;
+}
+
 .teacher-hovercard-item {
-	width: 100px;
-	height: 140px;
-	display: inline-block;
+  padding: 10px 15px;
 }
 
 .teacher-hovercard-img {
-	width: 100px;
-	height: 100px;
-	overflow: hidden;
 	float: left;
+  height: 100%;
 }
 
 .teacher-hovercard-img img {	
-  /* Preserve aspet ratio */
-  min-width: 100%;
-  min-height: 100%;
+	width: 45px;
+	height: 45px;
 }
 
 .teacher-hovercard-content {
-	padding: 5px 10px;
+	padding-left: 15px;
 	overflow: hidden;
-	text-align: center;
 }
 
 .teacher-hovercard-name {
 	font-weight: 700;
-	font-size: 12px;
+  font-size: 15px;
+  line-height: 16px;
+  height: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 5px;
 }
 
 .teacher-hovercard-info {
-	font-size: 11px;
-	padding-top: 5px;
+	margin-bottom: 5px;
 }
 
-.teacher-hovercard-info img {
-	height: 14px;
-	width: 14px;
+.teacher-hovercard-desc {
+	color: #999;
+	font-size: 11px;
+	line-height: 16px;
+	height: 32px;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	margin-bottom: 5px;
+}
+
+.teacher-hovercard-subjects {
+  height: 20px;
+  overflow: hidden;
 }

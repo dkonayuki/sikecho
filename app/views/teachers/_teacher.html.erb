@@ -1,4 +1,4 @@
-<div class="teacher">
+<div class="teacher" data-id="<%= teacher.id %>">
 	<div class="teacher-img">
 	<%= link_to teacher do %>
 		<%= image_tag(teacher.display_profile_image, class: 'avatar-xs teacher-hovercard-target avatar-round') %>
@@ -9,6 +9,7 @@
 			<%= teacher.full_name %>
 		</div>
 		<div class="teacher-info">
+			<%= teacher.faculty.name %>&bull;<%= teacher.subjects.count %>
 		</div>
 	</div>
 </div>

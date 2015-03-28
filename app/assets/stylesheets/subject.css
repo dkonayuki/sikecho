@@ -148,8 +148,23 @@
 }
 
 .subject-tag-info a:hover {
-	background: #46d4f4;
 	color: #fff;
+	background: #46d4f4;
+}
+
+.subject-tag-navi a {
+	color: #fff;
+	background: #34495E;
+}
+
+.subject-tag-navi a:hover {
+	color: #fff;
+	background: #566B7F;
+}
+
+.subject-tag-xs {
+	font-size: 10px;
+	margin: 2px;
 }
 
 #subject-filter-trigger {
