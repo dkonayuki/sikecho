@@ -181,6 +181,8 @@ ja:
         avatar: アバター
         password: パスワード
         email: メールアドレス
+        current_password: 現在のパスワード
+        password_confirmation: パスワード確認
       subject:
         name: 授業名
         uni_year_id: 学年

@@ -201,6 +201,8 @@ en:
         avatar: Avatar
         password: Password
         email: Email
+        current_password: Current password
+        password_confirmation: Password confirmation
       subject:
         name: Name
         uni_year_id: University year

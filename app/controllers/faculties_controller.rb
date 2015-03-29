@@ -6,8 +6,7 @@ class FacultiesController < ApplicationController
   # GET /faculties
   # GET /faculties
   def index
-    #@faculties = @university.faculties
-    #not in use
+    @faculties = @university.faculties
   end
 
   # GET /faculty/1
