@@ -588,8 +588,9 @@ en:
     TITLES:
       doctor: Doctor
       professor: Professor
-    index:
+    teacher_list:
       add_new_teacher: Add a new teacher
+    index:
     form:
       first_name: First name
       last_name: Last name
@@ -603,6 +604,7 @@ en:
       title: Title
       info: Information
       subjects: Subjects
+      faculty: Faculty
     show:
       university: University
       faculty: Faculty
@@ -629,6 +631,19 @@ en:
       kyushu: Kyushu
     index:
       all: All
+    form:
+      select_logo: Select logo
+      change_logo: Change logo
+      remove_logo: Remove
+      select_picture: Select picture
+      change_picture: Change picture
+      remove_picture: Remove
+      name: Name
+      city: City
+      address: Address
+      website: Website
+      info: Info
+      teachers: Teachers
   public_activity:
     note:
       create:

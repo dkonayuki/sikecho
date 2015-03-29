@@ -20,7 +20,7 @@
 						<%= subject.name %>
 					</div>
 		  		<div class="subject-schedule-info">
-		  			<%= subject.teachers.first.full_name %>
+		  			<%= subject.teachers.first.full_name if subject.teachers.count > 0 %>
 		  			&bull;
 		  			<%= subject.year %>
 					</div>

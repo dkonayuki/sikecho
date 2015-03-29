@@ -1,0 +1,11 @@
+		<div id="teachers-list">
+		<%= render(teachers) || content_tag(:div, t('teacher_not_found'), class: 'message') %>
+		<%= render collection: teachers, partial: 'teachers/teacher_hovercard', as: :teacher %>
+		</div>
+		<div id="teachers-list-menu">
+			<% if editable.present? && editable %>
+				<%= link_to new_teacher_path, class: 'teacher', id: 'teacher-popup' do %>  
+					<span class="glyphicon glyphicon-plus-sign"></span><%= t('.add_new_teacher') %>
+				<% end %>
+			<% end %>
+		</div>

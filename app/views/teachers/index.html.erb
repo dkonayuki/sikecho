@@ -1,12 +1,6 @@
 <div id="teachers-index">
-	<div id="teachers-list">
-		<%= render(@teachers) || content_tag(:div, t('teacher_not_found'), class: 'message') %>
-		<%= render collection: @teachers, partial: 'teacher_hovercard', as: :teacher %>
+	<div id="teachers-list-wrapper">
+		<%= render partial: 'teachers/teacher_list', locals: {teachers: @teachers, editable: @editable} %>
 	</div>
-	
-	<div id="teachers-menu">
-		<%= link_to new_teacher_path, class: 'btn btn-orange' do %>  
-			<span class="glyphicon glyphicon-plus-sign"></span><%= t('.add_new_teacher') %>
-		<% end %>
-	</div>
+
 </div>

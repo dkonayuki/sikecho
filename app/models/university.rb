@@ -95,7 +95,7 @@ class University < ActiveRecord::Base
     if self.picture.present? && self.picture.url(:original).present?
       self.picture.url(:original)
     else
-      'university.png'
+      'university_bg.jpg'
     end
   end
   

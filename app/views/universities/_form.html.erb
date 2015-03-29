@@ -1,61 +1,115 @@
-<!-- TODO -->
-<!-- not in use -->
-<%= form_for(@university) do |f| %>
-  <% if @university.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@university.errors.count, "error") %> prohibited this university from being saved:</h2>
+<div id="university-edit" data-id="<%= @university.id %>">
+	<%= form_for(@university) do |f| %>
+		<div class="skc-box skc-box-lg">
+			<div class="skc-box-content">
+				<div class="skc-box-thumbnail">
+					<%= image_tag("university.png")  %>
+				</div>
+				<div class="skc-box-desc">
 
-      <ul>
-      <% @university.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
-    <%= f.label :website %><br>
-    <%= f.text_field :website %>
-  </div>
-  
-  <% if @university.logo.exists? %>
-	<div class="fileinput fileinput-exists" data-provides="fileinput">
-	<% else %>
-	<div class="fileinput fileinput-new" data-provides="fileinput">
+					<% if @university.logo.exists? %>
+					<div id="uni-logo-fileinput" class="fileinput fileinput-exists" data-provides="fileinput">
+					<% else %>
+					<div id="uni-logo-fileinput" class="fileinput fileinput-new" data-provides="fileinput">
+					<% end %>
+					  <div class="fileinput-new thumbnail thumbnail-sm">
+					  </div>
+					  <div class="fileinput-preview fileinput-exists thumbnail thumbnail-preview-sm">
+					  <% if @university.logo.exists? %>
+					  	<%= image_tag @university.logo.url(:original) %>
+				  	<% end %>
+					  </div>
+					  <div>
+					    <span class="btn btn-default btn-file">
+					    	<span class="fileinput-new"><%= t('.select_logo') %></span>
+					    	<span class="fileinput-exists"><%= t('.change_logo') %></span>
+					  		<%= f.file_field :logo %>
+				    	</span>
+					    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><%= t('.remove_logo') %></a>
+							<input id="remove-logo" name="remove_logo" type="hidden" value="0">
+					  </div>
+					  <% if @university.errors[:logo] %>
+		    			<ul>
+				      <% @university.errors.full_messages_for(:logo).each do |msg| %>
+				        <li class="error-msg"><%= msg %></li>
+				      <% end %>
+				      </ul>
+		    		<% end %>
+					</div>
+					
+					<% if @university.picture.exists? %>
+					<div id="uni-picture-fileinput" class="fileinput fileinput-exists" data-provides="fileinput">
+					<% else %>
+					<div id="uni-picture-fileinput" class="fileinput fileinput-new" data-provides="fileinput">
+					<% end %>
+					  <div class="fileinput-new thumbnail thumbnail-sm">
+					  </div>
+					  <div class="fileinput-preview fileinput-exists thumbnail thumbnail-preview-sm">
+					  <% if @university.picture.exists? %>
+					  	<%= image_tag @university.picture.url(:original) %>
+				  	<% end %>
+					  </div>
+					  <div>
+					    <span class="btn btn-default btn-file">
+					    	<span class="fileinput-new"><%= t('.select_picture') %></span>
+					    	<span class="fileinput-exists"><%= t('.change_picture') %></span>
+					  		<%= f.file_field :picture %>
+				    	</span>
+					    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><%= t('.remove_picture') %></a>
+							<input id="remove-picture" name="remove_picture" type="hidden" value="0">
+					  </div>
+					  <% if @university.errors[:picture] %>
+		    			<ul>
+				      <% @university.errors.full_messages_for(:picture).each do |msg| %>
+				        <li class="error-msg"><%= msg %></li>
+				      <% end %>
+				      </ul>
+		    		<% end %>
+					</div>
+					
+					<hr />
+					<p>
+						<strong><%= t('.name') %></strong>
+						:
+						<%= f.text_field :name, class: 'form-control form-control-inline' %>
+		    		<% if @university.errors[:name].count > 0 %>
+		    			<ul>
+				      <% @university.errors.full_messages_for(:name).each do |msg| %>
+				        <li class="error-msg"><%= msg %></li>
+				      <% end %>
+				      </ul>
+		    		<% end %>
+					</p>
+					<p>
+						<strong><%= t('.city') %></strong>
+						:						
+					</p>
+					<p>
+						<strong><%= t('.address') %></strong>
+						:
+						<%= f.text_field :address, class: 'form-control form-control-inline' %>
+					</p>
+					<p>
+						<strong><%= t('.website') %></strong>
+						:
+						<%= f.text_field :website, class: 'form-control form-control-inline' %>
+					</p>
+					<p>
+						<strong><%= t('.info') %></strong>
+						:
+						<%= f.text_area :info, class: 'form-control' %>
+					</p>
+					
+					<hr />
+					<div id="university-edit-teacher">
+						<div id="university-edit-teacher-header"><h5><%= t('.teachers') %></h5></div>
+						<%= render template: 'teachers/index' %>
+					</div>
+					
+				</div>
+				<%= f.submit class: 'btn btn-success col-sm-2 col-sm-offset-5 col-xs-12 col-xs-offset-0'%>
+				<br />
+			</div>
+		</div>
 	<% end %>
-	  <div class="fileinput-new thumbnail thumbnail-sm">
-	  </div>
-	  <div class="fileinput-preview fileinput-exists thumbnail thumbnail-preview-sm">
-	  <% if @university.logo.exists? %>
-	  	<%= image_tag @university.logo.url(:original) %>
-  	<% end %>
-	  </div>
-	  <div>
-	    <span class="btn btn-default btn-file">
-	    	<span class="fileinput-new">Select image</span>
-	    	<span class="fileinput-exists">Change</span>
-	  		<%= f.file_field :logo %>
-    	</span>
-	    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-	  </div>
-	  <% if @university.errors[:logo] %>
-			<ul>
-      <% @university.errors.full_messages_for(:logo).each do |msg| %>
-        <li class="error-msg"><%= msg %></li>
-      <% end %>
-      </ul>
-		<% end %>
-	</div>
-	
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

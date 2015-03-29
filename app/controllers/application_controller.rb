@@ -150,5 +150,8 @@ class ApplicationController < ActionController::Base
   # features: consider using angularjs
   # improve education table in profile page
   # improve inline edit in subject form
+  # add mail confirmation
+  # clean remained attachments if existed
+  # clean remained tags if existed 
 
 end

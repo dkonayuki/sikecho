@@ -1,22 +1,38 @@
 <div id="university-show">
-	<div id="university-header">
-		<div id="university-picture">
-			<%= image_tag(@university.display_picture)%>
+	<div id="university-show-content">	
+		<div id="university-header">
+			<div id="university-picture">
+				<%= image_tag(@university.display_picture)%>
+			</div>
 		</div>
-		<div id="university-logo">
-			<%= image_tag(@university.display_logo_thumbnail) %>
-		</div>
-		<div id="university-name">
-			<%= @university.display_name %>
+		
+		<div id="university-content">
+			<div id="university-desc-wrapper">
+				<div id="university-logo">
+					<%= image_tag(@university.display_logo_thumbnail) %>
+				</div>
+				<div id="university-desc">
+					<h4><%= @university.display_name %></h4>
+					<p><%= @university.info %></p>
+				</div>
+			</div>
+			<div id="university-faculty-list">
+			</div>
+			<div id="university-teacher-list">
+				<%= render template: 'teachers/index' %>
+			</div>
+			<div id="university-info">
+				<p><span class="glyphicon glyphicon-globe"></span><%= @university.address %></p>
+				<p><span class="glyphicon glyphicon-home"></span><%= link_to @university.website, @university.website %></p>
+			</div>
+			
+			<% if can? :update, @university %>
+			<div id="university-show-menu">
+				<%= link_to edit_university_path(@university.id), class: 'has-tooltip', data: {toggle: "tooltip", placement: "top"}, title: t('edit') do %>
+					<span class="glyphicon glyphicon-pencil"></span>
+				<% end %>		
+			</div>
+			<% end %>
 		</div>
 	</div>
-	<div id="university-content">
-		<div id="university-info">
-		</div>
-		<div id="university-faculty-list">
-		</div>
-		<div id="university-teacher-list">
-		</div>
-	</div>
-
 </div>

@@ -3,6 +3,7 @@ function prepareEducations() {
 	
 	//OPTIMIZE
 	
+	//close popup after submit
 	$("#education-form").on("submit", function() {
 		$.ajax({
 			url: $(this).attr("action"),
@@ -56,17 +57,17 @@ function prepareEducations() {
 				dataType: "json",
 				success: function(data) {
 					//add new data to uni_year select
-					$('#education_uni_year_id').append("<option value=''></option>");
+					$("#education_uni_year_id").append("<option value=''></option>");
 					$.each(data, function(key, value) {   
-				    $('#education_uni_year_id')
+				    $("#education_uni_year_id")
 		          .append($("<option></option>")
 		          .attr("value",value.id)
 		          .text(value.name));
 					});
 					//add a blank option for course
-					$('#education_semester_id').append("<option value=''></option>");
+					$("#education_semester_id").append("<option value=''></option>");
 					//refresh select
-					$('.selectpicker').selectpicker("refresh");
+					$(".selectpicker").selectpicker("refresh");
 				}
 			}
 		);
@@ -82,9 +83,9 @@ function prepareEducations() {
 				dataType: "json",
 				success: function(data) {
 					//add new data to course select
-					$('#education_course_id').append("<option value=''></option>");
+					$("#education_course_id").append("<option value=''></option>");
 					$.each(data, function(key, value) {   
-				    $('#education_course_id')
+				    $("#education_course_id")
 		          .append($("<option></option>")
 		          .attr("value",value.id)
 		          .text(value.name));

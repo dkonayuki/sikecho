@@ -3,8 +3,8 @@
 	<% is_new = true %>
 <% end %>
 <div id="teacher-edit">
-	<%= form_for(@teacher) do |f| %>
-		<div class="skc-box skc-box-lg">
+	<%= form_for(@teacher, html: {class: 'teacher-form'}) do |f| %>
+		<div class="skc-box skc-box-lg <%= 'no-padding' if is_new %>">
 			<div class="skc-box-content">
 				<div class="skc-box-thumbnail">
 					<%= image_tag("user.png")  %>
@@ -106,7 +106,7 @@
 						<%= f.text_area :info, class: 'form-control', id: 'teacher-info' %>
 					</p>
 					<p>
-						<strong><%= t('faculty') %>:</strong>
+						<strong><%= t('.faculty') %>:</strong>
 						<% if @teacher.faculty %>
 						<%= f.select :faculty_id, options_from_collection_for_select(@faculties,"id","name", selected: @teacher.faculty.id), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
 						<% else %>

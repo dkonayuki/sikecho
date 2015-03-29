@@ -558,8 +558,9 @@ ja:
     TITLES:
       doctor: 博士
       professor: 教授
-    index:
+    teacher_list:
       add_new_teacher: 教員追加
+    index:
     form:
       first_name: 名
       last_name: 姓
@@ -573,6 +574,7 @@ ja:
       title: 学位
       info: 情報
       subjects: 担当授業
+      faculty: 所属学科
     show:
       university: 所属大学
       faculty: 所属学科
@@ -599,6 +601,19 @@ ja:
       kyushu: 九州
     index:
       all: 全国
+    form:
+      select_logo: ロゴ選択
+      change_logo: ロゴ変更
+      remove_logo: 削除
+      select_picture: 画像選択
+      change_picture: 画像変更
+      remove_picture: 削除
+      name: 大学名
+      city: 都道府県
+      address: 住所
+      website: ウェブサイト
+      info: 情報
+      teachers: 教員
   public_activity:
     note:
       create:

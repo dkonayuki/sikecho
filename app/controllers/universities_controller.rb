@@ -1,5 +1,5 @@
 class UniversitiesController < ApplicationController
-  before_action :set_university, only: [:show, :edit, :update, :destroy]
+  before_action :set_university, only: [:show, :edit, :update, :destroy, :reload]
   load_and_authorize_resource only: [:index, :show, :new, :edit, :destroy]
 
   # GET /universities
@@ -23,6 +23,10 @@ class UniversitiesController < ApplicationController
   # GET /universities/1
   # GET /universities/1.json
   def show
+    @teachers = @university.teachers
+    
+    #editable for teacher list
+    @editable = false
   end
 
   # GET /universities/new
@@ -30,10 +34,25 @@ class UniversitiesController < ApplicationController
     #not in use
     #@university = University.new
   end
+  
+  # GET /universities/1/reload
+  def reload
+    @teachers = @university.teachers
 
+    #editable for teacher list
+    @editable = true
+    
+    respond_to do |format|
+      format.js
+    end
+  end
+  
   # GET /universities/1/edit
   def edit
-    #not in use
+    @teachers = @university.teachers
+
+    #editable for teacher list
+    @editable = true
   end
 
   # POST /universities
@@ -56,7 +75,24 @@ class UniversitiesController < ApplicationController
   # PATCH/PUT /universities/1
   # PATCH/PUT /universities/1.json
   def update
-    #not in use
+    @teachers = @university.teachers
+
+    #editable for teacher list
+    @editable = true
+    
+    #delete image
+    #present? is equivalent to !blank?
+    if params[:remove_picture].present? && params[:remove_picture].to_i == 1
+      if @university.picture.present? 
+        @university.picture.destroy
+      end
+    end
+    if params[:remove_logo].present? && params[:remove_logo].to_i == 1
+      if @university.logo.present? 
+        @university.logo.destroy
+      end
+    end
+    
     respond_to do |format|
       if @university.update(university_params)
         format.html { redirect_to @university, notice: 'University was successfully updated.' }
@@ -88,7 +124,7 @@ class UniversitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def university_params
-      params.permit(:search, :area)
-      params.require(:university).permit(:name, :address, :website, :logo, :info)
+      params.permit(:search, :area, :remove_picture, :remove_logo)
+      params.require(:university).permit(:name, :address, :website, :logo, :picture, :info, :city)
     end
 end

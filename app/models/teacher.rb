@@ -37,7 +37,7 @@ class Teacher < ActiveRecord::Base
     if self.picture.present? && self.picture.url(:small).present?
       self.picture.url(:small)
     else
-      ActionController::Base.helpers.asset_path('user_profile.png')
+      ActionController::Base.helpers.asset_path('user.png')
     end
   end
   

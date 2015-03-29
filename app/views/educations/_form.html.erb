@@ -4,16 +4,6 @@
 <% end %>
 	<div id="education-content">
 		<%= form_for([@user, @education], html: {id: 'education-form', remote: true, class: 'clear'}) do |f| %>
-		  <% if @education.errors.any? %>
-		    <div id="error_explanation">
-		      <h2><%= pluralize(@education.errors.count, "error") %> prohibited this education from being saved:</h2>
-		      <ul>
-		      <% @education.errors.full_messages.each do |msg| %>
-		        <li><%= msg %></li>
-		      <% end %>
-		      </ul>
-		    </div>
-		  <% end %>
 		  <p>
 		    <%= t('university') %>:
 		    <% if @education.university %>
