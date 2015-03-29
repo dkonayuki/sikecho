@@ -147,9 +147,9 @@ class ApplicationController < ActionController::Base
   # 4.bootstrap dropdown in production environment
   # 5.thin server log message: Invalid request: Invalid HTTP format, parsing fails.
   
-  # features: consider using angularjs
-  # improve education table in profile page
-  # improve inline edit in subject form
+  # features:
+  # consider using angularjs to improve education table in profile page, improve inline edit in subject form
+  # navbar looks ugly when zoom in mobile or type in form
   # add mail confirmation
   # clean remained attachments if existed
   # clean remained tags if existed 
