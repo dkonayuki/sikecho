@@ -77,4 +77,17 @@ module ApplicationHelper
     @disable_uni_select = true
   end
   
+  def is_register_time
+    if current_university.register_start.present? && current_university.register_end.present?
+      if Time.now > current_university.register_start && Time.now < current_university.register_end
+        true
+      else
+        false
+      end
+    else
+      #default
+      true
+    end
+  end
+  
 end

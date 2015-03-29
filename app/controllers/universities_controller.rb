@@ -119,7 +119,11 @@ class UniversitiesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_university
-      @university = University.find(params[:id])
+      if params[:id].nil? # if there is no user id in params, show current one
+        @university = current_university
+      else # if there is the user id in params just use it, 
+        @university = University.find(params[:id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

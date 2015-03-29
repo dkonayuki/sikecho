@@ -401,6 +401,7 @@ ja:
       subject: 授業
       note: ノート
       profile: プロフィール
+      university: 学校情報
       login: ログイン
       schedule: スケジュール
       logout: ログアウト
@@ -438,6 +439,7 @@ ja:
     show:
       education: 学歴
       schedule: 時間割表
+      logout: ログアウト
   subjects:
     index:
       subject_search: 授業検索

@@ -17,6 +17,8 @@ Shikechou::Application.routes.draw do
       # reload teachers list in edit page
       get 'reload' => 'universities#reload', on: :member
     end
+    # special url for uni info page, will handler no id param passed as current_university
+    get 'information' => 'universities#show', as: :uni_information
     #university will be used as subdomain. so faculty should not be nested inside university
     
     resources :faculties, shallow: true do

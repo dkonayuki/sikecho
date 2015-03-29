@@ -262,16 +262,6 @@
   background: #fff;
 }
 
-@media (max-width: 767px) {
-	#university-logo img {
-	  width: 90px;
-	  height: 90px;
-	}
-	#university-header {
-		height: 100px;
-	}
-}
-
 #university-desc-wrapper {
   border-bottom: 1px solid #ddd;
   min-height: 160px;
@@ -305,6 +295,44 @@
 	position: absolute;
 	top: 10px;
 	right: 10px;
+}
+
+@media (max-width: 767px) {
+	#university-logo img {
+	  width: 90px;
+	  height: 90px;
+	}
+	#university-header {
+		height: 120px;
+	}
+	#university-desc-wrapper {
+		top: -30px;
+	}
+	#university-desc {
+  	padding: 30px 15px 10px 20px;
+  }
+  #university-content {
+  	padding: 0 20px;
+	}
+}
+
+@media (max-width: 469px) {
+	#university-logo img {
+	  width: 60px;
+	  height: 60px;
+	}
+	#university-header {
+		height: 100px;
+	}
+	#university-desc-wrapper {
+		top: -20px;
+	}
+	#university-desc {
+  	padding: 20px 15px 0 10px;
+  }
+  #university-content {
+  	padding: 0 15px;
+	}
 }
 
 /* university item

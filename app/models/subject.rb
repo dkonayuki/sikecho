@@ -1,4 +1,5 @@
 class Subject < ActiveRecord::Base
+  
   #default scope
   #for example: note.subjects.first will use the order below
   scope :ordered, -> {order('year DESC, name ASC, view_count DESC')}

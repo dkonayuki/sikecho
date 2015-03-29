@@ -431,6 +431,7 @@ en:
       subject: Subject
       note: Note
       profile: Profile
+      university: University
       login: Login
       schedule: Schedule
       logout: Logout
@@ -468,6 +469,7 @@ en:
     show:
       education: Educations
       schedule: Schedule
+      logout: Log out
   subjects:
     index:
       subject_search: Search subject

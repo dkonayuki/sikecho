@@ -395,6 +395,17 @@ div.message-xs {
 	margin-left: 5px;
 }
 
+.skc-box-menu-bottom {
+	position: absolute;
+	bottom: 15px;
+	right: 15px;	
+}
+
+.skc-box-menu-bottom a img {
+  width: 20px;
+  height: 20px;
+}
+
 .skc-box-title {
 	margin-left: 105px;
 }

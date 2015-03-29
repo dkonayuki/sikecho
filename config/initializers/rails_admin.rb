@@ -71,7 +71,19 @@ RailsAdmin.config do |config|
     end
   end
   
+  config.model 'University' do
+    edit do
+      configure :register_start do
+        date_format :default
+      end
+      configure :register_end do
+        date_format :default
+      end
+    end
+  end
+  
   config.model 'Subject' do
+    #set read_only true for unnecessary fields
     edit do
       configure :view_count do
         read_only true

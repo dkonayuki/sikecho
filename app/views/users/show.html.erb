@@ -36,6 +36,11 @@
 			  	<span class="glyphicon glyphicon-pencil"></span>
 			  	<% end %>
 				</div>
+				<div class="skc-box-menu-bottom">
+  				<%= link_to destroy_user_session_path, method: :delete, class: 'has-tooltip', data: {placement: "top", toggle: "tooltip"}, title: t('.logout') do %>
+  					<%= image_tag('user_logout.png') %>
+  				<% end %>
+				</div>
 		  <% end %>
 		</div>
 	</div>

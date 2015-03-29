@@ -42,11 +42,14 @@ function setMaxWidth() {
 	
 	//for desktop page
 	if ($(window).width() >= 768) {
+		//document will be on the left of comments section
 		if ($("#document-content").length) {
 			$("#document-content").css("maxWidth", ( $("#show-document").width() - $("#document-comment-section").width() - 30 ) + "px"); //30 for scroolbar				
 		}
 		//search form in navbar
-		$("#navbar-collapse-2").css("width", $("#nav-bar").width() - $("#logo").innerWidth() - $("#navbar-collapse-1").width() - $("#navbar-collapse-3 ul").innerWidth() - 60 - 25 + "px");//25 for scroolbar	60 for calendar img and padding			
+		var width = $("#nav-bar").width() - $("#logo").innerWidth() - $("#navbar-collapse-1").width() - $("#navbar-collapse-3 ul").innerWidth() - 30 - 75;//25 for scrollbar
+		$("#navbar-collapse-2 #search").css("width", width);
+		$("#navbar-collapse-2 .tt-hint").css("width", width);
 	}
 	
 	//set dynamic width for subject recommend

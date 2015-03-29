@@ -95,6 +95,13 @@ body {
 		float: none;
 		width: 100% !important;
 	}
+	#navbar-collapse-2 #search {
+		width: 100% !important;
+		max-width: 100%;
+	}
+	#navbar-collapse-2 .tt-hint {
+		max-width: 100%;
+	}
 }
 
 @media (min-width: 768px) {
@@ -104,7 +111,13 @@ body {
 	#navbar-collapse-2 {
 		padding: 0 !important;
 		overflow: visible !important;
-		max-width: 260px;
+		max-width: 200px;
+	}
+	#navbar-collapse-2 #search {
+		max-width: 200px;
+	}
+		#navbar-collapse-2 .tt-hint {
+		max-width: 200px;
 	}
 }
 
@@ -200,7 +213,7 @@ body {
 }
 
 #notification-dropdown-btn {
-	margin: 18px 25px 12px 0;
+	margin: 18px 15px 12px 0;
 	padding: 0;
 	background: #fff;
 	width: 20px;
