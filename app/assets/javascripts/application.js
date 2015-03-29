@@ -92,7 +92,8 @@ function ajaxSuccess() {
 function getParameterByName(key,target){
 	var values = [];
 	if(!target){
-    target = location.href;
+		//decode url first
+    target = decodeURIComponent(location.href);
 	}
 	
 	key = key.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
@@ -218,8 +219,6 @@ $(document).on("page:load ready", function() {
   
   /*For search bar submit on navbar*/
   $(".search-bar").on("submit", function() {
-  	// default search is subject
-  	//window.location.href = "/" + I18n["meta"]["code"] + "/search?query=" + $(this).find("#query").val() + "&type=subject";
   	//redirect to other page when submit
   	window.location.href = "/" + I18n["meta"]["code"] + "/subjects?search=" + $(this).find("#search").val();
   	return false;

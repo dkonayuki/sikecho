@@ -4,7 +4,7 @@
 		
 		<div id="subject-menu-top" class="clear">
 			<% if user_signed_in? && current_university == current_user.current_university %>
-			  <%= link_to new_subject_path, class: 'btn btn-orange', id:'new-subject-btn' do %>
+			  <%= link_to new_subject_path, class: 'btn btn-orange', id: 'new-subject-btn' do %>
 			  <span class="glyphicon glyphicon-plus-sign"></span>
 			  <span id="new-subject-text"><%= t '.new_subject' %></span>
 				<% end %>
@@ -18,7 +18,7 @@
 		<div id="subject-menu-right" class="col-sm-3 col-xs-12 hidden-xs pull-right">
 				<div id="subject-menu-content">
 				<div class="subject-menu-item-header">
-					<%= image_tag("course.png") %>
+					<%= image_tag('course.png') %>
 					<span><%= t 'course1' %></span>
 				</div>
 				<ul id="subject-menu-course">
@@ -43,7 +43,7 @@
 				</ul>
 				
 				<div class="subject-menu-item-header">
-					<%= image_tag("semester.png") %>
+					<%= image_tag('semester.png') %>
 					<span><%= t 'semester' %></span>
 				</div>
 				<table class="table table-bordered" id="subject-menu-semester">
@@ -63,7 +63,7 @@
 				</table>
 				
 				<div class="subject-menu-item-header">
-					<%= image_tag("tags.png") %>
+					<%= image_tag('tags.png') %>
 					<span><%= t 'tag' %></span>
 				</div>
 				<div id="subject-menu-tag">
@@ -73,7 +73,7 @@
 				</div>
 				
 				<div class="subject-menu-item-header">
-					<%= image_tag("week.png") %>
+					<%= image_tag('week.png') %>
 					<span><%= t 'day' %>&bull;<%= t 'period' %></span>
 				</div>
 				<div id="subject-menu-week">

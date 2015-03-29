@@ -1,0 +1,35 @@
+.faculty {
+  width: 100%;
+  padding: 0 20px;
+}
+
+.faculty-wrapper {
+	width: 100%;
+  border-top: 1px solid #ddd;
+  display: table;
+}
+
+.faculty:last-child .faculty-wrapper {
+  border-bottom: 1px solid #ddd;
+}
+
+.faculty-name {
+  height: 100%;
+  width: 20%;
+  padding: 10px 15px;
+  border-right: 1px solid #ddd;
+  display: table-cell;
+  font-weight: 700;
+  text-align: right;
+}
+
+.faculty-content {
+	padding: 10px;
+  display: table-cell;
+}
+
+@media (max-width: 469px) {
+	.faculty {
+		padding: 0 10px;
+	}
+}

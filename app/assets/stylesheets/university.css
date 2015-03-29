@@ -263,7 +263,6 @@
 }
 
 #university-desc-wrapper {
-  border-bottom: 1px solid #ddd;
   min-height: 160px;
   position: relative;
   top: -40px;
@@ -277,6 +276,8 @@
 
 #university-faculty-list {
   border-bottom: 1px solid #ddd;
+  padding-bottom: 20px;
+  margin-top: -10px;
 }
 
 #university-teacher-list {
@@ -335,6 +336,9 @@
 	}
 	#university-show {
 		padding: 0 10px;
+	}
+	#university-faculty-list {
+		padding-bottom: 10px;
 	}
 }
 

@@ -24,9 +24,10 @@ class UniversitiesController < ApplicationController
   # GET /universities/1.json
   def show
     @teachers = @university.teachers
-    
     #editable for teacher list
     @editable = false
+    
+    @faculties = @university.faculties
   end
 
   # GET /universities/new
