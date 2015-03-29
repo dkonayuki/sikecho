@@ -82,7 +82,12 @@
 					</p>
 					<p>
 						<strong><%= t('.city') %></strong>
-						:						
+						:
+						<% if !@university.city.blank? %>
+						<%= f.select :city, options_for_select(University::CITIES.map {|city| [t(city, scope: 'universities.CITIES'), city]}, selected: @university.city), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<% else %>
+						<%= f.select :city, options_for_select(University::CITIES.map {|city| [t(city, scope: 'universities.CITIES'), city]}), {}, {class: 'selectpicker show-tick', data: {width: 'auto'}} %>
+						<% end %>
 					</p>
 					<p>
 						<strong><%= t('.address') %></strong>

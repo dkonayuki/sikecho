@@ -599,6 +599,53 @@ ja:
       chugoku: 中国
       shikoku: 四国
       kyushu: 九州
+    CITIES:
+      hokkaido: 北海道
+      akita: 秋田
+      aomori: 青森
+      fukushima: 福島
+      iwate: 岩手
+      miyagi: 宮城
+      yamagata: 山形
+      chiba: 千葉
+      gunma: 群馬
+      ibaraki: 茨城
+      kanagawa: 神奈川
+      saitama: 埼玉
+      tochigi: 栃木
+      tokyo: 東京
+      fukui: 福井
+      ishikawa: 石川
+      nagano: 長野
+      niigata: 新潟
+      toyama: 富山
+      yamanashi: 山梨
+      aichi: 愛知
+      gifu: 岐阜
+      shizuoka: 静岡
+      mie: 三重
+      hyogo: 兵庫
+      kyoto: 京都
+      nara: 奈良
+      osaka: 大阪
+      shiga: 滋賀
+      wakayama: 和歌山
+      hiroshima: 広島
+      okayama: 岡山
+      shimane: 島根
+      tottori: 鳥取
+      yamaguchi: 山口
+      ehime: 愛媛
+      kagawa: 香川
+      kochi: 高知
+      tokushima: 徳島
+      fukuoka: 福岡
+      kagoshima: 鹿児島
+      kumamoto: 熊本
+      miyazaki: 宮崎
+      nagasaki: 長崎
+      oita: 大分
+      saga: 佐賀
     index:
       all: 全国
     form:

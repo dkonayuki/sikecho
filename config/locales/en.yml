@@ -629,6 +629,53 @@ en:
       chugoku: Chugoku
       shikoku: Shikoku
       kyushu: Kyushu
+    CITIES:
+      hokkaido: Hokkaido
+      akita: Akita
+      aomori: Aomori
+      fukushima: Fukushima
+      iwate: Iwate
+      miyagi: Miyagi
+      yamagata: Yamagata
+      chiba: Chiba
+      gunma: Gunma
+      ibaraki: Ibaraka
+      kanagawa: Kanagawa
+      saitama: Saitama
+      tochigi: Togichi
+      tokyo: Tokyo
+      fukui: Fukui
+      ishikawa: Ishikawa
+      nagano: Nagano
+      niigata: Niigata
+      toyama: Toyama
+      yamanashi: Yamanashi
+      aichi: Aichi
+      gifu: Gifu
+      shizuoka: Shizuoka
+      mie: Mie
+      hyogo: Hyogo
+      kyoto: Kyoto
+      nara: Nara
+      osaka: Osaka
+      shiga: Shiga
+      wakayama: Wakayama
+      hiroshima: Hiroshima
+      okayama: Okayama
+      shimane: Shimane
+      tottori: Tottori
+      yamaguchi: Yamaguchi
+      ehime: Ehime
+      kagawa: Kagawa
+      kochi: Kochi
+      tokushima: Tokushima
+      fukuoka: Fukuoka
+      kagoshima: Kagoshima
+      kumamoto: Kumamoto
+      miyazaki: Miyazaki
+      nagasaki: Nagasaki
+      oita: Oita
+      saga: Saga
     index:
       all: All
     form:

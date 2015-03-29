@@ -43,6 +43,8 @@ $(document).on("page:load ready", function() {
 		prepareTeacherIndex();
 		prepareUniversityEdit();
 		
+		$(".selectpicker").selectpicker();
+		
 		//change remove_log if needed
 		$("#uni-logo-fileinput").on("change.bs.fileinput", function() {
 			$("#uni-logo-fileinput #remove-logo").val("0");

@@ -4,15 +4,17 @@ class University < ActiveRecord::Base
   AREAS =
     {
       1 => [:hokkaido], #hokkaido
-      2 => [:akita, :aomori, :fukushima, :iwate, :miyagi, :tamagata], #tohoku
+      2 => [:akita, :aomori, :fukushima, :iwate, :miyagi, :yamagata], #tohoku
       3 => [:chiba, :gunma, :ibaraki, :kanagawa, :saitama, :tochigi, :tokyo], #kanto
-      4 => [:fukui, :ishikawa, :nagano, :niigata, :toyama, :tamanashi], #tokai
+      4 => [:fukui, :ishikawa, :nagano, :niigata, :toyama, :yamanashi], #tokai
       5 => [:aichi, :gifu, :shizuoka, :mie], #koshinetsu
       6 => [:hyogo, :kyoto, :nara, :osaka, :shiga, :wakayama], #kansai
       7 => [:hiroshima, :okayama, :shimane, :tottori, :yamaguchi], #chugoku
       8 => [:ehime, :kagawa, :kochi, :tokushima], #shikoku
       9 => [:fukuoka, :kagoshima, :kumamoto, :miyazaki, :nagasaki, :oita, :saga] #kyushu
     }
+    
+  CITIES = AREAS.values.flatten
     
   has_many :faculties, dependent: :destroy
   has_many :teachers
