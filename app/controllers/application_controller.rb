@@ -141,16 +141,17 @@ class ApplicationController < ActionController::Base
   
   # TODO
   # bugs: 
-  # 1.safari-note page
-  # 2.Access-control-allow origin when login with fb, twitter, gg plus
-  # 3.wysihtml5 when redirect from other pages
-  # 4.bootstrap dropdown in production environment
-  # 5.thin server log message: Invalid request: Invalid HTTP format, parsing fails.
+  # 1.wysihtml5 not working when redirect back from other pages by using browser's back btn: https://github.com/Nerian/bootstrap-wysihtml5-rails/issues/99
+  # 2.bootstrap dropdown in production environment: https://github.com/twbs/bootstrap-sass/issues/714
   
   # features:
   # consider using angularjs to improve education table in profile page, improve inline edit in subject form
   # navbar looks ugly when zoom in mobile or type in form
   # add mail confirmation
+  
+  # minor things:
+  # Access-control-allow-origin red message in js console when login with fb, twitter, gg plus
+  # thin server log message: Invalid request: Invalid HTTP format, parsing fails.
   # clean remained attachments if existed
   # clean remained tags if existed 
 
