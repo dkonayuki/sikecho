@@ -139,7 +139,7 @@ class ApplicationController < ActionController::Base
   private :set_locale
   private :current_ability
   
-  # TODO
+  # TODO main todos
   # bugs: 
   # 1.wysihtml5 not working when redirect back from other pages by using browser's back btn: https://github.com/Nerian/bootstrap-wysihtml5-rails/issues/99
   # 2.bootstrap dropdown in production environment: https://github.com/twbs/bootstrap-sass/issues/714
@@ -147,10 +147,10 @@ class ApplicationController < ActionController::Base
   # features:
   # consider using angularjs to improve education table in profile page, improve inline edit in subject form
   # navbar looks ugly when zoom in mobile or type in form
-  # add mail confirmation
+  # add mail confirmation, forgot password for devise gem
   
   # minor things:
-  # Access-control-allow-origin red message in js console when login with fb, twitter, gg plus
+  # Access-control-allow-origin red message in js console when login with fb, twitter, gg plus: https://github.com/mkdynamic/omniauth-facebook/issues/148
   # thin server log message: Invalid request: Invalid HTTP format, parsing fails.
   # clean remained attachments if existed
   # clean remained tags if existed 

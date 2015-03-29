@@ -4,16 +4,9 @@ class HomeController < ApplicationController
     if user_signed_in? 
       @user = current_user
       
-      #only display activities from registered subjects and notes
-      #deleted notes or subjects won't be displayed
-      #TODO need to select only activities that have created_at > register.created_at
-      #@activities = PublicActivity::Activity
-      #  .where('owner_id != ?', current_user.id)
-      #  .where('(trackable_id in (?) AND trackable_type = ?)' +
-      #    'OR (trackable_id in (?) AND trackable_type = ?)' +
-      #    'OR (trackable_id in (?) AND trackable_type = ?)', @user.current_subjects.ids, 'Subject', @user.registered_notes.ids, 'Note', @user.registered_comments.ids, 'Comment')
-      #  .order('created_at desc')
-        
+      # only display activities from registered subjects and notes
+      # deleted notes or subjects won't be displayed
+      # need to select only activities that have created_at > register.created_at
       @subject_activities = PublicActivity::Activity.select('distinct activities.*')
         .joins("INNER JOIN subjects ON ((subjects.id = trackable_id) AND (trackable_type = 'Subject'))")
         .joins('INNER JOIN registers ON ((registers.subject_id = subjects.id) AND (registers.created_at < activities.created_at))')
@@ -41,7 +34,7 @@ class HomeController < ApplicationController
         .joins('INNER JOIN users ON users.id = educations.current_user_id')
         .where('users.id = ? AND owner_id != ?', @user.id, @user.id)
       
-      #wait for ActiveRecord 5.0 to be able to merge 2 relations with #OR arthime
+      #TODO wait for ActiveRecord 5.0 to be able to merge 2 relations with #OR arthime
       #https://github.com/rails/rails/commit/9e42cf019f2417473e7dcbfcb885709fa2709f89
       @activities = @subject_activities + @note_activities + @comment_activities
       @activities.sort_by! { |a| a.created_at }.reverse!

@@ -23,8 +23,7 @@ function prepareUniversityEdit() {
 						data: $(this).serialize(),
 						type: "post",
 						success: function() {
-							//TODO
-							//need to check for errors when create a new teacher
+							//TODO need to check for errors when create a new teacher
 							
 							//close popup after submit
 							$.magnificPopup.close();

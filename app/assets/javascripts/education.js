@@ -1,7 +1,8 @@
 function prepareEducations() {
 	$(".selectpicker").selectpicker();
 	
-	//OPTIMIZE
+	//OPTIMIZE need to refactor these functions, or use other approaches if possible
+	// code looks ugly
 	
 	//close popup after submit
 	$("#education-form").on("submit", function() {
