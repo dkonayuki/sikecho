@@ -15,6 +15,7 @@ function prepareUniversityEdit() {
 	    ajaxContentAdded: function() {
 		    // Ajax content is loaded and appended to DOM
 				prepareTeacherEdit();
+				$("#teacher-edit").css("background", "#fff");
 				
 				//close popup after submit
 				$(".teacher-form").on("submit", function() {
