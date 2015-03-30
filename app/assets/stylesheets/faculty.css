@@ -16,6 +16,7 @@
 .faculty-name {
   height: 100%;
   width: 20%;
+  min-width: 80px;
   padding: 10px 15px;
   border-right: 1px solid #ddd;
   display: table-cell;

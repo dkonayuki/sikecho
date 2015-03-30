@@ -263,7 +263,6 @@
 }
 
 #university-desc-wrapper {
-  min-height: 160px;
   position: relative;
   top: -40px;
 }
@@ -319,11 +318,11 @@
 
 @media (max-width: 469px) {
 	#university-logo img {
-	  width: 60px;
-	  height: 60px;
+	  width: 50px;
+	  height: 50px;
 	}
 	#university-header {
-		height: 100px;
+		height: 80px;
 	}
 	#university-desc-wrapper {
 		top: -20px;
