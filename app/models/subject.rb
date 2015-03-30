@@ -60,7 +60,8 @@ class Subject < ActiveRecord::Base
   def self.search(search)
     if search
       q = "%#{search.downcase}%"
-      #where('lower(subjects.name) LIKE ?', q)
+      #search with teachers' name too
+      #tags should not be searched in here
       joins(:teachers)
       .where('lower(subjects.name) LIKE ? OR lower(teachers.last_name_kanji) LIKE ? OR lower(teachers.first_name_kanji) LIKE ?' +
         'OR lower(teachers.first_name) LIKE ? OR lower(teachers.last_name) LIKE ?', q, q, q, q, q)

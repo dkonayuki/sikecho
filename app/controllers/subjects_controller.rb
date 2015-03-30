@@ -52,15 +52,11 @@ class SubjectsController < ApplicationController
 
     #filter tag, use OR
     if !params[:tags].blank?
-      #@subjects = @subjects.tagged_with(params[:tags], any: true)
-      #solution for the "for SELECT DISTINCT, ORDER BY expressions must appear in select list" issue
-      #need to add uni_years and semesters collumn into select operation
-      #because we need to use them to order later
-      #note that semester and uni_year are singular because of the relationship
-      @subjects = @subjects
-      .joins(:semester).joins(:uni_year)
-      .joins("LEFT JOIN taggings on subjects.id = taggings.taggable_id")
-      .joins("LEFT JOIN tags on tags.id = taggings.tag_id").where('tags.name IN (?)', params[:tags])
+      @subjects = @subjects.tagged_with(params[:tags], any: true)
+      #manually do sql if above line not working
+      #@subjects = @subjects
+      #.joins("LEFT JOIN taggings on subjects.id = taggings.taggable_id")
+      #.joins("LEFT JOIN tags on tags.id = taggings.tag_id").where('tags.name IN (?)', params[:tags])
     end
     
     #order option
@@ -80,7 +76,10 @@ class SubjectsController < ApplicationController
       when :all
         @subjects = @subjects.order('year DESC, name ASC, view_count DESC')
       when :semester
-        @subjects = @subjects.joins(:semester).joins(:uni_year).order('uni_years.no ASC, semesters.no ASC')
+        #solution for the "for SELECT DISTINCT, ORDER BY expressions must appear in select list" issue
+        #need to add uni_years and semesters collumn into select operation
+        #note that semester and uni_year are singular because of the relationship
+        @subjects = @subjects.select('uni_years.no, semesters.no').joins(:semester).joins(:uni_year).order('uni_years.no ASC, semesters.no ASC')
       when :note_count
         @subjects = @subjects.order('notes_count DESC')
       end
