@@ -33,7 +33,7 @@ class Ability
       # if subdomain is from user's university
       # add many new abilities for user
       if request != nil && University.find_by_codename(request.subdomain) == user.current_university
-        can [:create, :update], Teacher
+        can [:show, :create, :update], Teacher
         
         can [:create, :update], Subject                 # allow user to update his university's subjects only
         
