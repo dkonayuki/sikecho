@@ -25,7 +25,7 @@ class UniversitiesController < ApplicationController
   def show
     @teachers = @university.teachers
     #editable for teacher list
-    @editable = false
+    @editable = true
     
     @faculties = @university.faculties
   end
