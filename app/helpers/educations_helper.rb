@@ -1,5 +1,5 @@
 module EducationsHelper
-  def prepare_view_content
+  def prepare_education_content
     @universities = University.all
     @years = (Subject::MAX_YEAR_BEGIN..Subject::MAX_YEAR_END).to_a
     @times = 1.upto(Period::MAX_TIME).to_a

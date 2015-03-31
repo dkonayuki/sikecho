@@ -1,4 +1,4 @@
-<table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover" data-current="<%= @user.current_education.id %>">
   <thead>
     <tr>
       <% if @isEditable %>
@@ -43,7 +43,7 @@
 		      	<% end %>
 		      </td>
 		      <td>
-		      	<%= link_to [:edit, @user, education], class: 'education-popup' do %>
+		      	<%= link_to [:edit, @user, education], class: 'education-edit-popup' do %>
 							<span class="glyphicon glyphicon-pencil"></span>
 						<% end %>
 						<% if @user.educations.count > 1 %>

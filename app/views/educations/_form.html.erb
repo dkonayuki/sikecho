@@ -46,7 +46,11 @@
 		  </p>
 	  	<p>
 		    <%= t('year') %>:
+		    <% if @education.year %>
+		    <%= f.select :year, options_for_select(@years, selected: @education.year), {}, {class: 'form-control selectpicker show-tick', data: {width: 'auto'}} %>
+		    <% else %>
 		    <%= f.select :year, options_for_select(@years), {}, {class: 'form-control selectpicker show-tick', data: {width: 'auto'}} %>
+		    <% end %>
 		  </p>	
 			<%= f.submit class: 'btn btn-success col-sm-4 col-sm-offset-4 col-xs-12 col-xs-offset-0'%>
 			<br />

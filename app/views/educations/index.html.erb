@@ -7,7 +7,7 @@
 </div>
 
 <% if @isEditable %>
-	<%= link_to new_user_education_path(@user), {class: 'btn btn-default education-popup'} do %>
+	<%= link_to new_user_education_path(@user), {class: 'btn btn-default education-new-popup'} do %>
 		<span class="glyphicon glyphicon-plus"></span><%= t('.add') %>
 	<% end %>
 	<%= link_to new_auto_user_educations_path(@user), {class: 'btn btn-default education-auto', remote: true, method: :post} do %>

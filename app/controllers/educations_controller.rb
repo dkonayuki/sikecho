@@ -29,7 +29,7 @@ class EducationsController < ApplicationController
   # GET /educations/new
   def new
     @education = @user.educations.build
-    prepare_view_content
+    prepare_education_content
   end
   
   # POST /users/:user_id/educations/new_auto
@@ -70,7 +70,7 @@ class EducationsController < ApplicationController
   
   # GET /educations/1/edit
   def edit
-    prepare_view_content
+    prepare_education_content
   end
 
   # POST /educations
